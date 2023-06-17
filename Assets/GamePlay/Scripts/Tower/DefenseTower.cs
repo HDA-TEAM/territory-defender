@@ -1,14 +1,11 @@
+using GamePlay.Scripts.Unit;
 using System;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Tower
 {
-    public class DefenseTower : TowerBase,ITowerAttack
+    public class DefenseTower : TowerBase
     {
-        public void Attack()
-        {
-            
-        }
         public override void TowerUpdate()
         {
             

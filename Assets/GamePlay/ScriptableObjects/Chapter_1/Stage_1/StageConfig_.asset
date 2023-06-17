@@ -10,14 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f41b31ae1a084abfa691b1f11c138e17, type: 3}
-  m_Name: StageConfig_1
+  m_Name: StageConfig_
   m_EditorClassIdentifier: 
-  stageId: 1
-  TowerKitLocation:
-  - {x: 11.30609, y: 5.793203}
-  - {x: -17.146013, y: 13.875656}
-  - {x: -40.879456, y: -7.148065}
-  - {x: -9.717631, y: -9.76435}
-  - {x: 34.66578, y: 1.6818976}
-  - {x: 15.650992, y: -14.202691}
-  - {x: 35.273132, y: -17.800083}
+  StageChapterKey: 1
+  StageIdKey: 1
+  towerKitSetConfig: {fileID: 0}
+  routeSetConfig: {fileID: 0}

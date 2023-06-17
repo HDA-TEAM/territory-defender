@@ -1,36 +1,52 @@
+using GamePlay.Scripts;
 using GamePlay.Scripts.Tower;
+using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageConfig_", menuName = "ScriptableObject/Stage/StageConfig")]
 public class StageConfig : ScriptableObject
 {
-    public int stageId;
-    [SerializeField] private List<Vector2> TowerKitLocation = new List<Vector2>();
-    public int CountNumberTowerKit()
+    public StageChapterKey StageChapterKey;
+    public StageIdKey StageIdKey;
+    
+    public TowerKitSetConfig towerKitSetConfig;
+    public RouteSetConfig routeSetConfig;
+    // public int CountNumberTowerKit()
+    // {
+    //     return towerKitLocation.Count;
+    // }
+    public void CreateNewStageOs(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
     {
-        return TowerKitLocation.Count;
+        towerKitSetConfig = CreateInstance<TowerKitSetConfig>();
+        routeSetConfig = CreateInstance<RouteSetConfig>();
+        
+        string parentPath = AssetDatabase.GetAssetPath(this);
+        string newAssetPathTowerKitSet = Path.GetDirectoryName(parentPath) + "/" + "towerKitSet.asset";
+        string newAssetPathRouteSet = Path.GetDirectoryName(parentPath) + "/" + "routeSetConfig.asset";
+        AssetDatabase.CreateAsset(towerKitSetConfig, newAssetPathTowerKitSet);
+        AssetDatabase.CreateAsset(routeSetConfig, newAssetPathRouteSet);
+        SaveToOS(towerKits, routeLines);
     }
-    public void SaveTowerKITsPosition(List<TowerKIT> towerKITs)
+    public void LoadFormOs(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
     {
-        TowerKitLocation.Clear();
-        foreach (TowerKIT tk in towerKITs)
+        if (routeSetConfig == null && towerKitSetConfig == null)
         {
-            if (tk.gameObject.activeSelf == true)
-            {
-                TowerKitLocation.Add(tk.gameObject.transform.position);
-            }
+            CreateNewStageOs(towerKits,routeLines);
         }
+        
+        towerKitSetConfig.LoadTowerKitsPositionFromOs(towerKits);
+        routeSetConfig.LoadFromOs(routeLines);
+        
+        
     }
-    public void LoadTowerKITsPosition(List<TowerKIT> towerKITs)
+    public void SaveToOS(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
     {
-        for (int i = 0; i < this.TowerKitLocation.Count; i++)
-        {
-            if (towerKITs[i].gameObject.activeSelf == false)
-            {
-                towerKITs[i].gameObject.SetActive(true);
-            }
-            towerKITs[i].gameObject.transform.position = this.TowerKitLocation[i];
-        }
+        towerKitSetConfig.SaveTowerKitPositionToOs(towerKits);
+        routeSetConfig.SaveToOs(routeLines);
     }
+    
+    
 }
