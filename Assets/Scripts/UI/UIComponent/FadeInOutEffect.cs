@@ -4,23 +4,31 @@ using UnityEngine;
 
 public class FadeInOutEffect : MonoBehaviour
 {
-    [SerializeField] float fadeTime = 1f;
+    [SerializeField] private float fadeTime = 1f;
     bool fadeIn = true;
     CanvasGroup canvasGroup;
 
-    IEnumerator FadeCanvasGroup () {
-        while (true) {
-            if (fadeIn) {
+    IEnumerator FadeCanvasGroup()
+    {
+        while (true)
+        {
+            if (fadeIn)
+            {
                 canvasGroup.alpha += Time.deltaTime / fadeTime;
-            } else {
+            }
+            else
+            {
                 canvasGroup.alpha -= Time.deltaTime / fadeTime;
             }
             yield return null;
 
-            if (canvasGroup.alpha <= 0) {
+            if (canvasGroup.alpha <= 0)
+            {
                 canvasGroup.alpha = 0;
                 fadeIn = true;
-            } else if (canvasGroup.alpha >= 1) {
+            }
+            else if (canvasGroup.alpha >= 1)
+            {
                 canvasGroup.alpha = 1;
                 fadeIn = false;
             }
@@ -36,6 +44,6 @@ public class FadeInOutEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
