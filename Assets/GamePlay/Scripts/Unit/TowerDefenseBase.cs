@@ -11,7 +11,7 @@ namespace GamePlay.Scripts.Unit
         // public abstract void Detail();
     
         // public abstract void Flag();
-        public void Attack()
+        public override void Attack()
         {
             if (target == null)
             {
@@ -28,7 +28,7 @@ namespace GamePlay.Scripts.Unit
             if (unitAttribute.attackCoolDown <= 0)
             {
                 // ExcuteAnimator();
-                unitAttribute.attackCoolDown = unitConfig.attackSpeed;
+                unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
             }
 
         }
@@ -50,7 +50,6 @@ namespace GamePlay.Scripts.Unit
         }
         public override void Idle()
         {
-            base.Idle();
             List<UnitBase> units = battleEventManager.FindUnitCollectionByTag("Enemy");
             this.target = FindNearestTargetInDetectRange(units);
             if (this.target != null)
@@ -62,7 +61,7 @@ namespace GamePlay.Scripts.Unit
         {
             // Do nothing
         }
-        public void Destroy()
+        public override void Destroy()
         {
         
         }

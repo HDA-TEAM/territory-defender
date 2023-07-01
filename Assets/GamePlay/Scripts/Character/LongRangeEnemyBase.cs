@@ -49,7 +49,6 @@ namespace GamePlay.Scripts.Character
         }
         public override void Idle()
         {
-            base.Idle();
             List<UnitBase> units = battleEventManager.FindUnitCollectionByTag("Ally");
             this.target = FindNearestTargetInDetectRange(units);
             if (this.target != null)

@@ -14,7 +14,7 @@ namespace GamePlay.GameLogic.Scripts
     }
     public class BattleEventManager : MonoBehaviour
     {
-        private static Dictionary<string, List<UnitBase>> _unitDictionary = new Dictionary<string, List<UnitBase>>();
+        private Dictionary<string, List<UnitBase>> _unitDictionary = new Dictionary<string, List<UnitBase>>();
         private List<BattleEvent> _battleEvents = new List<BattleEvent>();
         
         private void FixedUpdate()
@@ -32,7 +32,6 @@ namespace GamePlay.GameLogic.Scripts
                 {
                     switch (unit.CurrentActionEnum)
                     {
-                        
                         case ActionEnum.Idle: 
                         {
                             unit.Idle();
@@ -76,13 +75,11 @@ namespace GamePlay.GameLogic.Scripts
                 {
                     if (CheckOnBattleWithThisTarget(unitEnemy))
                     {
-                        Debug.Log("Always true");
                         return true;
                     }
                     break;
                 }
             }
-            Debug.Log("Always false");
             return false;
         }
         bool CheckOnBattleWithThisTarget(UnitBase enemyTarget)
@@ -136,13 +133,6 @@ namespace GamePlay.GameLogic.Scripts
                 units.Remove(unit);
             }
         }
-        // private void NotifyAllUnitToRemove(UnitBase unit)
-        // {
-        //     foreach (var battleEvent in _battleEvents)
-        //     {
-        //         battleEvent.OnBattleChange();
-        //     }
-        // }
     }
 
     public interface BattleEvent

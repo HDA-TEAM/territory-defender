@@ -52,21 +52,12 @@ namespace GamePlay.Scripts.Unit
         {
             return "";
         }
-        
-        
-        
-        public virtual void Attack()
-        {
-            
-        }
-        public virtual void Idle()
-        {
-            unitAttribute.attackCoolDown = 0f;
-        }
-        public virtual void Destroy()
-        {
-            
-        }
+
+
+
+        public abstract void Attack();
+        public abstract void Idle();
+        public abstract void Destroy();
         public void CheckTargetOnDestroy(UnitBase unitBase)
         {
             if (target == unitBase)

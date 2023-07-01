@@ -1,15 +1,21 @@
+using System;
 using UnityEngine;
 
 
+[Serializable]
 public struct UnitAttribute
 {
+    [Header("Attack")]
     public float attackRange;
-    public float detectRange;
-    public float health;
-    public float movementSpeed;
-    public float attackSpeed;
-    public float attackDamage;
     public float attackCoolDown;
+    public float attackSpeedMax;
+    public float attackSpeedMin;
+    public float attackDamage;
+    public float detectRange;
+    [Header("Health")]
+    public float health;
+    [Header("Movement")]
+    public float movementSpeed;
     // public UnitAttribute(float attackRange,float detectRange,float health,float movementSpeed,float attackSpeed,float attackDamage,float attackCoolDown = 0)
     // {
     public UnitAttribute(UnitConfig unitConfig)
@@ -18,7 +24,8 @@ public struct UnitAttribute
         this.detectRange = unitConfig.detectRange;
         this.health = unitConfig.health;
         this.movementSpeed = unitConfig.MovementSpeed;
-        this.attackSpeed = unitConfig.attackSpeed;
+        this.attackSpeedMax = unitConfig.attackSpeedMax;
+        this.attackSpeedMin = unitConfig.attackSpeedMin;
         this.attackDamage = unitConfig.attackDamage;
         this.attackCoolDown = 0;
     }
@@ -27,16 +34,19 @@ public struct UnitAttribute
 [CreateAssetMenu(fileName = "Unit", menuName = "ScriptableObject/Unit/UnitBase")]
 public class UnitConfig : ScriptableObject
 {
+    [Space(20)]
     [Header("Range")]
     public float attackRange;
     public float detectRange;
     [Header("Health")]
     public float health;
-    [Header("Speed")]
+    [Header("Movement")]
     [SerializeField] private float movementSpeed;
-    public float attackSpeed;
     [Header("Dame")]
     public float attackDamage;
+    [Header("AttackSpeed")]
+    public float attackSpeedMax;
+    public float attackSpeedMin;
     // [Header("Skill")]
     // public float cooldown;
     public float MovementSpeed

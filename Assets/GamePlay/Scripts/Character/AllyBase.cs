@@ -25,6 +25,14 @@ namespace GamePlay.Scripts.Character
                 guardingPlace,
                 this.unitAttribute.movementSpeed);
         }
+        public override void Idle()
+        {
+            
+        }
+        public override void Attack()
+        {
+            
+        }
         
     }
 }

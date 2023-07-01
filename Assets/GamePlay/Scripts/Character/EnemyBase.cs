@@ -14,6 +14,7 @@ namespace GamePlay.Scripts.Character
             base.Awake();
             CombatConfigRule = new EnemySideCombatConfigRule();
         }
+        
         protected void ApproachTarget()
         {
             this.gameObject.transform.position = VectorUtility.Format3dTo2dZeroZ(Vector3.MoveTowards(
@@ -33,7 +34,7 @@ namespace GamePlay.Scripts.Character
                 // ExcuteAnimator();
                 target.TakingDame(unitConfig.attackDamage);
                 Debug.Log("Enemy attack");
-                unitAttribute.attackCoolDown = unitConfig.attackSpeed;
+                unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
             }
 
         }
@@ -64,6 +65,14 @@ namespace GamePlay.Scripts.Character
                 this.gameObject.transform.position,
                 routeLineToDesGate.GetPosition(currentIndexInRouteLine),
                 this.unitAttribute.movementSpeed);
+        }
+        public override void Idle()
+        {
+            
+        }
+        public override void Attack()
+        {
+            
         }
     }
 }

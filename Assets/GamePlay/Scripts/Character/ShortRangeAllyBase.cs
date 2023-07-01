@@ -41,7 +41,7 @@ namespace GamePlay.Scripts.Character
                 // ExcuteAnimator();
                 Debug.Log("Ally short range attack");
                 target.TakingDame(unitConfig.attackDamage);
-                unitAttribute.attackCoolDown = unitConfig.attackSpeed;
+                unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
             }
 
         }
@@ -70,7 +70,6 @@ namespace GamePlay.Scripts.Character
         }
         public override void Idle()
         {
-            base.Idle();
             List<UnitBase> units = battleEventManager.FindUnitCollectionByTag(UnitSideLabel.Enemy.ToString());
             this.target = FindTargetInDetectRange(units);
             if (this.target != null)
