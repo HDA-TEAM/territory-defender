@@ -6,22 +6,22 @@ using TMPro;
 
 public class ResourceController: MonoBehaviour
 {
-    [SerializeField] TMP_Text _gemCount;
-    [SerializeField] TMP_Text _starCount;
+    [SerializeField] private TMP_Text gemCount;
+    [SerializeField] private TMP_Text starCount;
 
-    User user;
+    private User _user;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        user = User.Instance;
+        _user = User.Instance;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        _gemCount.text = user.gem.ToString();
-        _starCount.text = user.star.ToString();
+        gemCount.text = _user.gem.ToString();
+        starCount.text = _user.star.ToString();
     }
 }

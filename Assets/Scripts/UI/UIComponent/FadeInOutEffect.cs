@@ -4,32 +4,32 @@ using UnityEngine;
 
 public class FadeInOutEffect : MonoBehaviour
 {
-    [SerializeField] float fadeTime = 1f;
-    bool fadeIn = true;
-    CanvasGroup canvasGroup;
+    [SerializeField] private float fadeTime = 1f;
+    private bool _fadeIn = true;
+    private CanvasGroup _canvasGroup;
 
-    IEnumerator FadeCanvasGroup () {
+    private IEnumerator FadeCanvasGroup () {
         while (true) {
-            if (fadeIn) {
-                canvasGroup.alpha += Time.deltaTime / fadeTime;
+            if (_fadeIn) {
+                _canvasGroup.alpha += Time.deltaTime / fadeTime;
             } else {
-                canvasGroup.alpha -= Time.deltaTime / fadeTime;
+                _canvasGroup.alpha -= Time.deltaTime / fadeTime;
             }
             yield return null;
 
-            if (canvasGroup.alpha <= 0) {
-                canvasGroup.alpha = 0;
-                fadeIn = true;
-            } else if (canvasGroup.alpha >= 1) {
-                canvasGroup.alpha = 1;
-                fadeIn = false;
+            if (_canvasGroup.alpha <= 0) {
+                _canvasGroup.alpha = 0;
+                _fadeIn = true;
+            } else if (_canvasGroup.alpha >= 1) {
+                _canvasGroup.alpha = 1;
+                _fadeIn = false;
             }
         }
     }
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        _canvasGroup = GetComponent<CanvasGroup>();
         StartCoroutine(FadeCanvasGroup());
     }
 

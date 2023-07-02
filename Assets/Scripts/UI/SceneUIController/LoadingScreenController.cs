@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -7,30 +6,30 @@ using TMPro;
 
 public class LoadingScreenController : MonoBehaviour
 {
-    [SerializeField] Image _progressBar;
-    [SerializeField] int _scene;
-    [SerializeField] GameObject _waiter;
+    [SerializeField] Image progressBar;
+    [SerializeField] int scene;
+    [SerializeField] GameObject waiter;
 
-    [SerializeField] TMP_Text _waiterText;
+    [SerializeField] TMP_Text waiterText;
    
-    void LoadScene(){
+    private void LoadScene(){
         StartCoroutine(LoadSceneAsync());
     }
 
-    void UpdateScreen(){
-        _progressBar.gameObject.SetActive(false);
-        _waiter.gameObject.SetActive(true);
+    private void UpdateScreen(){
+        progressBar.gameObject.SetActive(false);
+        waiter.gameObject.SetActive(true);
     }
 
     IEnumerator LoadSceneAsync(){
         yield return null;
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_scene);
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(scene);
         asyncOperation.allowSceneActivation = false;
         //When the load is still in progress, output the Text and progress bar
         while (!asyncOperation.isDone)
         {
             float progressVal = Mathf.Clamp01(asyncOperation.progress /0.9f);
-            _progressBar.fillAmount = progressVal;
+            progressBar.fillAmount = progressVal;
             // Check if the load has finished
             if (asyncOperation.progress >= 0.9f)
             {
@@ -49,9 +48,9 @@ public class LoadingScreenController : MonoBehaviour
     
 
     void Start() {
-        _scene = GlobalValue.Instance.nextScene;
-        _waiterText.text = UIString.Instance.waiterText;
-        _waiter.gameObject.SetActive(false);
+        scene = GlobalValue.Instance.nextScene;
+        waiterText.text = UIString.Instance.WaiterText;
+        waiter.gameObject.SetActive(false);
         LoadScene();
     }
 

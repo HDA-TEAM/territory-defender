@@ -3,7 +3,7 @@ public class StageString: Singleton<StageString>
 {
     public string language = "en";
 
-    public string settingTitle
+    public string SettingTitle
     {
         get 
         {
@@ -14,7 +14,7 @@ public class StageString: Singleton<StageString>
             };
         }
     }
-    public string quitBtnText
+    public string QuitBtnText
     {
         get 
         { 
@@ -25,7 +25,7 @@ public class StageString: Singleton<StageString>
             };
         }
     }
-    public string restartBtnText
+    public string RestartBtnText
     {
         get 
         { 

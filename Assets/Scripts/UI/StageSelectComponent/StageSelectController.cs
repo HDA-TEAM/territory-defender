@@ -7,13 +7,13 @@ using TMPro;
 
 public class StageSelectController: MonoBehaviour
 {
-    User user;
+    private User _user;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        user = User.Instance;
-        user.saveUserData();
+        _user = User.Instance;
+        _user.saveUserData();
     } 
 
     // Update is called once per frame

@@ -3,7 +3,7 @@ public class UIString: Singleton<UIString>
 {
     public string language = "en";
 
-    public string startBtnText
+    public string StartBtnText
     {
         get 
         { 
@@ -15,7 +15,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string languageTitle 
+    public string LanguageTitle 
     {
         get 
         { 
@@ -27,7 +27,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string vietnameseBtnText
+    public string VietnameseBtnText
     {
         get 
         { 
@@ -39,7 +39,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string englishBtnText
+    public string EnglishBtnText
     {
         get 
         { 
@@ -51,7 +51,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string newsTitle
+    public string NewsTitle
     {
         get {
             switch (language)
@@ -62,7 +62,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string waiterText
+    public string WaiterText
     {
         get 
         {
@@ -74,7 +74,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string settingTitle
+    public string SettingTitle
     {
         get 
         {
@@ -86,7 +86,7 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string quitBtnText
+    public string QuitBtnText
     {
         get 
         {

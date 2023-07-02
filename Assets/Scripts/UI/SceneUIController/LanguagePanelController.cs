@@ -7,11 +7,11 @@ using TMPro;
 public class LanguagePanelController : MonoBehaviour
 {
 
-    [SerializeField] TMP_Text _languageTitle;
-    [SerializeField] TMP_Text _languageViBtn;
-    [SerializeField] TMP_Text _languageEnBtn;
+    [SerializeField] private TMP_Text languageTitle;
+    [SerializeField] private TMP_Text languageViBtn;
+    [SerializeField] private TMP_Text languageEnBtn;
 
-    public void langToVietnamese(){
+    public void LangToVietnamese(){
         PlayerPrefs.SetString("Language", "vn");
         UIString.Instance.language = "vn";
         StageString.Instance.language = "vn";
@@ -19,7 +19,7 @@ public class LanguagePanelController : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void langToEnglish(){
+    public void LangToEnglish(){
         PlayerPrefs.SetString("Language", "en");
         UIString.Instance.language = "en";
         StageString.Instance.language = "en";
@@ -30,9 +30,9 @@ public class LanguagePanelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _languageTitle.text = UIString.Instance.languageTitle;
-        _languageViBtn.text = UIString.Instance.vietnameseBtnText;
-        _languageEnBtn.text = UIString.Instance.englishBtnText;
+        languageTitle.text = UIString.Instance.LanguageTitle;
+        languageViBtn.text = UIString.Instance.VietnameseBtnText;
+        languageEnBtn.text = UIString.Instance.EnglishBtnText;
     }
 
     // Update is called once per frame
