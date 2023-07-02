@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91734beb2e664f8399c0f97f3b569a10, type: 3}
   m_Name: CharacterConfig
   m_EditorClassIdentifier: 
-  characterKey: 0
-  characterAttributes: []
+  characterAttributes:
+  - CharacterKey: 101
+    CharacterAttributeFollowLevels: []

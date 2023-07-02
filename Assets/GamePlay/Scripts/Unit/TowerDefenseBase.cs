@@ -5,6 +5,7 @@ namespace GamePlay.Scripts.Unit
 {
     public class TowerDefenseBase : TowerBase
     {
+        [SerializeField] private GameObject bulletPrefab;
         // public abstract void TowerUpdate();
         // public abstract void Sell();
         // public abstract void Build();
@@ -28,6 +29,12 @@ namespace GamePlay.Scripts.Unit
             if (unitAttribute.attackCoolDown <= 0)
             {
                 // ExcuteAnimator();
+                Debug.Log("tower fire");
+                var bullet = Instantiate(bulletPrefab);
+                bullet.transform.SetParent(this.transform);
+                bullet.transform.position = this.transform.position;
+                var bulletBase = bullet.GetComponent<BulletBase>();
+                bulletBase.SetUp(target.gameObject,unitAttribute.attackDamage);
                 unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
             }
 
@@ -52,14 +59,11 @@ namespace GamePlay.Scripts.Unit
         {
             List<UnitBase> units = battleEventManager.FindUnitCollectionByTag("Enemy");
             this.target = FindNearestTargetInDetectRange(units);
+            Debug.Log("Tower target " + target);
             if (this.target != null)
             {
                 this.CurrentActionEnum = ActionEnum.Attack;
             }
-        }
-        public void Move()
-        {
-            // Do nothing
         }
         public override void Destroy()
         {

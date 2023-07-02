@@ -129,6 +129,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 6093051815202494009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81dbbcf7c44745809049274c575d13c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 20d485603e7043bd97bf6b398e0a9d5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitConfig: {fileID: 11400000, guid: ea94d41d5153c4ccf99d7dd3467b3306, type: 2}
+  unitType: 0
+  CurrentActionEnum: 0
+  battleEventManager: {fileID: 0}
+  target: {fileID: 0}
+  unitAttribute:
+    attackRange: 0
+    attackCoolDown: 0
+    attackSpeedMax: 0
+    attackSpeedMin: 0
+    attackDamage: 0
+    detectRange: 0
+    health: 0
+    movementSpeed: 0
+  bulletPrefab: {fileID: 4282071385477853601, guid: aa41697b25e414a7492eff1c158438e6, type: 3}

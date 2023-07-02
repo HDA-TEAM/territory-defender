@@ -12,7 +12,7 @@ namespace GamePlay.GameLogic.Scripts
         Ally,
         Enemy
     }
-    public class BattleEventManager : MonoBehaviour
+    public class BattleEventManager :Singleton<BattleEventManager>
     {
         private Dictionary<string, List<UnitBase>> _unitDictionary = new Dictionary<string, List<UnitBase>>();
         private List<BattleEvent> _battleEvents = new List<BattleEvent>();

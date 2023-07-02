@@ -2,7 +2,6 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Tower
 {
@@ -45,12 +44,15 @@ namespace GamePlay.Scripts.Tower
         }
         private void BuildTower(TowerCanBuild towerCanBuild)
         {
-            GameObject go = Instantiate(towerCanBuild.gameObject);
-            go.transform.position = transform.position;
-            go.transform.SetParent(transform.parent);
-            
+            GameObject tower = Instantiate(towerCanBuild.gameObject);
+            var towerScript = tower.GetComponent<TowerBase>();
+            towerScript.Build(this);
             this.gameObject.SetActive(false);
             // reduce coin
+        }
+        public void ResetTowerKitStatus()
+        {
+            this.gameObject.SetActive(true);
         }
     }
 }

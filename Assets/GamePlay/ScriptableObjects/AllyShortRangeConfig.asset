@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3f21ce44967471eb31dafb7e4b95b15, type: 3}
   m_Name: AllyShortRangeConfig
   m_EditorClassIdentifier: 
-  attackRange: 1
+  attackRange: 10
   detectRange: 10
   health: 100
   movementSpeed: 5
-  attackSpeed: 4
   attackDamage: 50
+  attackSpeedMax: 2
+  attackSpeedMin: 1
