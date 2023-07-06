@@ -1,29 +1,50 @@
 using GamePlay.Scripts.Tower;
 using GamePlay.Scripts.Unit;
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public abstract class TowerBase : UnitBase
 {
-    private TowerKIT towerKitParent;
+    [SerializeField] private Button button; 
+    private TowerKitManager towerKitParent;
+    protected override void Awake()
+    {
+        base.Awake();
+        unitType = UnitType.Tower;
+        button.onClick.AddListener(Detail);
+        // if(towerKitParent.GetComponent<TOwe>())
+    }
+    // public void Reset()
+    // {
+    //     if (button == null)
+    //     {
+    //         button = this.GetComponent<Button>();
+    //     }
+    // }
+    public void OpenToolKit()
+    {
+        
+    }
     public void TowerUpdate()
     {
         //todo 
         // Fake inventory to check enough coin to update
         
     }
-    public void Sell()
+    public void TowerSelling()
     {
         //todo 
         // Fake inventory to add  coin 
         // if sell success
         
-        towerKitParent.ResetTowerKitStatus();
+        // towerKitParent.ResetTowerKitStatus();
     }
-    public void Build(TowerKIT towerKit)
+    public void TowerBuild(TowerKitManager towerKitManager)
     {
-        towerKitParent = towerKit;
+        towerKitParent = towerKitManager;
         this.transform.position = towerKitParent.transform.position;
         this.transform.SetParent(towerKitParent.transform.parent);
         //todo
@@ -36,9 +57,4 @@ public abstract class TowerBase : UnitBase
     }
     
     // public abstract void Flag();
-    protected override void Awake()
-    {
-        base.Awake();
-        unitType = UnitType.Tower;
-    }
 }

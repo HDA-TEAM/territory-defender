@@ -10,10 +10,10 @@ public class TowerKitSetConfig : ScriptableObject
     {
         return towerKitLocation.Count;
     }
-    public void SaveTowerKitPositionToOs(List<TowerKIT> towerKITs)
+    public void SaveTowerKitPositionToOs(List<TowerKitManager> towerKITs)
     {
         towerKitLocation.Clear();
-        foreach (TowerKIT tk in towerKITs)
+        foreach (TowerKitManager tk in towerKITs)
         {
             if (tk.gameObject.activeSelf == true)
             {
@@ -21,7 +21,7 @@ public class TowerKitSetConfig : ScriptableObject
             }
         }
     }
-    public void LoadTowerKitsPositionFromOs(List<TowerKIT> towerKITs)
+    public void LoadTowerKitsPositionFromOs(List<TowerKitManager> towerKITs)
     {
         for (int i = 0; i < this.towerKitLocation.Count; i++)
         {

@@ -18,7 +18,7 @@ public class StageConfig : ScriptableObject
     // {
     //     return towerKitLocation.Count;
     // }
-    public void CreateNewStageOs(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
+    public void CreateNewStageOs(List<TowerKitManager> towerKits,List<LineRenderer> routeLines)
     {
         towerKitSetConfig = CreateInstance<TowerKitSetConfig>();
         routeSetConfig = CreateInstance<RouteSetConfig>();
@@ -30,7 +30,7 @@ public class StageConfig : ScriptableObject
         AssetDatabase.CreateAsset(routeSetConfig, newAssetPathRouteSet);
         SaveToOS(towerKits, routeLines);
     }
-    public void LoadFormOs(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
+    public void LoadFormOs(List<TowerKitManager> towerKits,List<LineRenderer> routeLines)
     {
         if (routeSetConfig == null && towerKitSetConfig == null)
         {
@@ -42,7 +42,7 @@ public class StageConfig : ScriptableObject
         
         
     }
-    public void SaveToOS(List<TowerKIT> towerKits,List<LineRenderer> routeLines)
+    public void SaveToOS(List<TowerKitManager> towerKits,List<LineRenderer> routeLines)
     {
         towerKitSetConfig.SaveTowerKitPositionToOs(towerKits);
         routeSetConfig.SaveToOs(routeLines);
