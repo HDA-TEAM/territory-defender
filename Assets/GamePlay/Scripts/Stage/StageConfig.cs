@@ -32,11 +32,10 @@ public class StageConfig : ScriptableObject
     }
     public void LoadFormOs(List<TowerKitManager> towerKits,List<LineRenderer> routeLines)
     {
-        if (routeSetConfig == null && towerKitSetConfig == null)
-        {
-            CreateNewStageOs(towerKits,routeLines);
-        }
-        
+        // if (routeSetConfig == null && towerKitSetConfig == null)
+        // {
+        //     CreateNewStageOs(towerKits,routeLines);
+        // }
         towerKitSetConfig.LoadTowerKitsPositionFromOs(towerKits);
         routeSetConfig.LoadFromOs(routeLines);
         

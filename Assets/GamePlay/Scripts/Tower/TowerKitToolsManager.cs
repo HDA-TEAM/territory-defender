@@ -22,23 +22,26 @@ public class TowerKitToolsManager : MonoBehaviour
     [SerializeField] private Button btnSell;
     [SerializeField] private Button btnCamping;
     [SerializeField] private Button buttonKitTools;
-    [SerializeField] private GameObject kitToolsContent;
+    public GameObject kitToolsContent;
     // [SerializeField] private TowerBase towerBase;
     public void SetUpTools(TowerBase towerBase)
     {
         this.gameObject.SetActive(true);
+
+        RemoveTools();
+        
         btnUpdate.onClick.AddListener(towerBase.TowerUpdate);
         btnSell.onClick.AddListener(towerBase.TowerSelling);
         buttonKitTools.onClick.AddListener(ToolKitTurnControl);
         // buttonKitTools.SetActive(false);
         kitToolsContent.SetActive(false);
+        // buttonKitTools.gameObject.SetActive(false);
         // btnCamping.onClick.AddListener(towerBase.TowerUpdate);
         //todo 
         // if this tower is troop tower , register btnCamping
     }
     private void ToolKitTurnControl()
     {
-        Debug.Log("onlcick open tools");
         kitToolsContent.SetActive(!kitToolsContent.activeSelf);
     }
     public void RemoveTools()
@@ -46,5 +49,6 @@ public class TowerKitToolsManager : MonoBehaviour
         btnUpdate.onClick.RemoveAllListeners();
         btnSell.onClick.RemoveAllListeners();
         btnCamping.onClick.RemoveAllListeners();
+        buttonKitTools.onClick.RemoveAllListeners();
     }
 }

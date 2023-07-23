@@ -19,5 +19,9 @@ public class InGamePlay : MonoBehaviour
         currentStageConfig.LoadFormOs(
             towerKitSetController.CurrentTowerKits, 
             routeSetController.CurrentRouteLineRenderers);
+        foreach (var i in towerKitSetController.CurrentTowerKits)
+        {
+            Debug.Log("kit pos "+ i.transform.position.z);
+        }
     }
 }

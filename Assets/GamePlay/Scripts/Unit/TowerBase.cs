@@ -14,7 +14,7 @@ public abstract class TowerBase : UnitBase
     {
         base.Awake();
         unitType = UnitType.Tower;
-        button.onClick.AddListener(Detail);
+        // button.onClick.AddListener(Detail);
         // if(towerKitParent.GetComponent<TOwe>())
     }
     // public void Reset()
@@ -39,8 +39,9 @@ public abstract class TowerBase : UnitBase
         //todo 
         // Fake inventory to add  coin 
         // if sell success
-        
-        // towerKitParent.ResetTowerKitStatus();
+        battleEventManager.RemoveUnit(this);
+        towerKitParent.ResetTowerKit();
+        Destroy(this.gameObject);
     }
     public void TowerBuild(TowerKitManager towerKitManager)
     {

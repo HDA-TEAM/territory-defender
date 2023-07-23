@@ -34,7 +34,7 @@ public class CharacterConfig : ScriptableObject
     public List<CharacterAttribute> characterAttributes;
 }
 
-public class CharacterConfigManager : Singleton<CharacterConfigManager>
+public class CharacterConfigManager : MonoBehaviour
 {
     
 }

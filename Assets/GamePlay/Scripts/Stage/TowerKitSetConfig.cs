@@ -28,8 +28,12 @@ public class TowerKitSetConfig : ScriptableObject
             if (towerKITs[i].gameObject.activeSelf == false)
             {
                 towerKITs[i].gameObject.SetActive(true);
+                
             }
-            towerKITs[i].gameObject.transform.position = this.towerKitLocation[i];
+            towerKITs[i].transform.position =  new Vector3(
+                this.towerKitLocation[i].x,
+                this.towerKitLocation[i].y,
+                0f);
         }
     }
 }

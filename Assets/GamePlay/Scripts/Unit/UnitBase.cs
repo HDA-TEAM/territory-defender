@@ -39,7 +39,11 @@ namespace GamePlay.Scripts.Unit
                 battleEventManager = GameObject.FindObjectOfType<BattleEventManager>();
             }
         }
-        
+        [SerializeField] private IFindTargetBase findTargetBase;
+        private void Start()
+        {
+            findTargetBase = this.GetComponent<IFindTargetBase>();
+        }
         private void OnEnable()
         {
             battleEventManager.AddUnit(this);
@@ -68,7 +72,7 @@ namespace GamePlay.Scripts.Unit
         }
         public virtual void TakingDame(float dame)
         {
-            
+                
         }
         public bool BeingTarget(UnitBase unitBase)
         {

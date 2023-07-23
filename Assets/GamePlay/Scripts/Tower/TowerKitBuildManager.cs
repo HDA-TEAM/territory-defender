@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable] 
 public struct TowerCanBuild
@@ -15,18 +16,42 @@ public struct TowerCanBuild
 //     public void ExecuteStep();
 //     public void GoingToNextStep();
 // }
+// public interface TowerKitBehavious
+// {
+//     public void SetupFlag(Button flag, GameObject TowerBehavious)
+//     {
+//         flag.onClick.RemoveAllListeners();
+//         flag.onClick.AddListener(delegate
+//         {
+//             flag.gameObject.SetActive(false);
+//             TowerBehavious.gameObject.SetActive(true);
+//         });
+//     }
+// }
 public class TowerKitBuildManager: MonoBehaviour
 {
     private TowerKitManager parentKitManager;
-    [SerializeField] private GameObject flagObject;
+    public GameObject content;
+    // [SerializeField] private Button flagObject;
     [SerializeField] private List<TowerCanBuild> towersCanBuild;
     // public bool IsBuild = false;
     private Vector2 _place;
 
     public void Setup(TowerKitManager parent)
     {
+        ResetListener();
+        // flagObject.onClick.AddListener(ToolKitTurnControl);
         parentKitManager = parent;
+        ResetTowerKitStatus();
         ResetCheckWantToBuild();
+    }
+    void ResetListener()
+    {
+        // flagObject.onClick.RemoveAllListeners();
+    }
+    private void ToolKitTurnControl()
+    {
+        this.gameObject.SetActive(!this.gameObject.activeSelf);
     }
     private void ResetCheckWantToBuild()
     {
@@ -57,7 +82,7 @@ public class TowerKitBuildManager: MonoBehaviour
         towerScript.TowerBuild(parentKitManager);
 
         DeactivateBuildKit();
-        
+
         parentKitManager.SetupToolsKit(towerScript);
         
         //todo
@@ -66,10 +91,12 @@ public class TowerKitBuildManager: MonoBehaviour
     public void DeactivateBuildKit()
     {
         this.gameObject.SetActive(false);
-        flagObject.gameObject.SetActive(false);
+        content.gameObject.SetActive(false);
+        // flagObject.gameObject.SetActive(false);
     }
     public void ResetTowerKitStatus()
     {
         this.gameObject.SetActive(true);
+        content.gameObject.SetActive(false);
     }
 }
