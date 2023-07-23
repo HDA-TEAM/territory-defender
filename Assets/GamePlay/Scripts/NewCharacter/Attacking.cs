@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public enum AttackingType
 {
+    Tower,
     Melee = 1,
     Ranger = 2,
 }
@@ -20,7 +21,7 @@ public class Attacking : MonoBehaviour
 
     private bool canAttacking = true;
     
-    private Character baseCharacter;
+    private UnitBase _baseUnitBase;
 
     private void Awake()
     {
@@ -28,31 +29,38 @@ public class Attacking : MonoBehaviour
     }
     private void Validate()
     {
-        if (baseCharacter == null)
+        if (_baseUnitBase == null)
         {
-            baseCharacter = GetComponent<Character>();
+            _baseUnitBase = GetComponent<UnitBase>();
         }
     }
     private void OnEnable()
     {
-        baseCharacter.OnCharacterChange += AttackingTarget;
+        _baseUnitBase.OnCharacterChange += AttackingTarget;
     }
     private void OnDisable()
     {
-        baseCharacter.OnCharacterChange -= AttackingTarget;
+        _baseUnitBase.OnCharacterChange -= AttackingTarget;
     }
     private void Start()
     {
         // attackingRange = GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject.transform., objAttackRange.gameObject);
         attackingRange = 5;
     }
-    private async void AttackingTarget(Character target)
+    private async void AttackingTarget(UnitBase target)
     {
         if (target == null)
         {
             return;
         }
-        if (canAttacking && GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject,target.gameObject) < attackingRange)
+        if (canAttacking && attackingType == AttackingType.Tower)
+        {
+            canAttacking = false;
+            new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
+            await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
+            canAttacking = true;
+        }
+        else if (canAttacking && GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject,target.gameObject) < attackingRange)
         {
             // AttackMachineUtility.GetCooldownTime()
             
@@ -66,7 +74,7 @@ public class Attacking : MonoBehaviour
 }
 internal interface ICharacterAttacking
 {
-    void PlayAttacking(Character character, int attackingDamage);
+    void PlayAttacking(UnitBase unitBase, int attackingDamage);
 }
 
 internal class CharacterAttackingFactory
@@ -83,6 +91,10 @@ internal class CharacterAttackingFactory
                 {
                     return new MeleeAttacking();
                 }
+            case AttackingType.Tower:
+                {
+                    return new TowerAttacking();
+                }
             default:
                 {
                     return new MeleeAttacking();
@@ -92,7 +104,14 @@ internal class CharacterAttackingFactory
 }
 internal class MeleeAttacking : ICharacterAttacking
 {
-    public void PlayAttacking(Character target, int attackingDamage)
+    public void PlayAttacking(UnitBase target, int attackingDamage)
+    {
+        target.HealthComp().PlayHurting(attackingDamage);
+    }
+}
+internal class TowerAttacking : ICharacterAttacking
+{
+    public void PlayAttacking(UnitBase target, int attackingDamage)
     {
         target.HealthComp().PlayHurting(attackingDamage);
     }

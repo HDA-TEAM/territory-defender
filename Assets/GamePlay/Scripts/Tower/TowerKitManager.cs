@@ -21,11 +21,11 @@ public class TowerKitManager : MonoBehaviour
         SetupBuildKit();
         Debug.Log("Start pos "+ this.transform.position);
     }
-    public void SetupToolsKit(TowerBase towerBase)
+    public void SetupToolsKit(TowerBaseOld towerBaseOld)
     {
         flagCanvasGr.alpha = 0;
         SetupFlag(flagObject, towerKitToolsManager.kitToolsContent.gameObject);
-        towerKitToolsManager.SetUpTools(towerBase);
+        towerKitToolsManager.SetUpTools(towerBaseOld);
     }
     public void SetupBuildKit()     
     {

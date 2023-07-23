@@ -6,12 +6,12 @@ using UnityEngine.Events;
 
 public class Approaching : MonoBehaviour
 {
-    [SerializeField] private Character target;
+    [SerializeField] private UnitBase target;
     [SerializeField] private float movingSpeed;
     [SerializeField] private float attackingRange;
     public float MovingSpeed() => movingSpeed;
 
-    private Character baseCharacter;
+    private UnitBase _baseUnitBase;
 
     private void Awake()
     {
@@ -19,25 +19,25 @@ public class Approaching : MonoBehaviour
     }
     private void Validate()
     {
-        if (baseCharacter == null)
+        if (_baseUnitBase == null)
         {
-            baseCharacter = GetComponent<Character>();
+            _baseUnitBase = GetComponent<UnitBase>();
         }
     }
     private void OnEnable()
     {
-        baseCharacter.OnCharacterChange += TargetApproaching;
+        _baseUnitBase.OnCharacterChange += TargetApproaching;
     }
     private void OnDisable()
     {
-        baseCharacter.OnCharacterChange -= TargetApproaching;
+        _baseUnitBase.OnCharacterChange -= TargetApproaching;
     }
     private void Start()
     {
         attackingRange = 5;
     }
    
-    private void TargetApproaching(Character target)
+    private void TargetApproaching(UnitBase target)
     {
         if (target == null)
         {

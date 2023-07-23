@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public class ShortRangeEnemyBase : EnemyBase
+    public class ShortRangeEnemyBaseOld : EnemyBaseOld
     {
         protected override void Awake()
         {

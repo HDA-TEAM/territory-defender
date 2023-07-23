@@ -3,7 +3,7 @@ using GamePlay.Scripts.Unit;
 public struct CombatConfigRule
 {
     public int MeleeCompetitorCounter;
-    public bool IsRuleApproved(UnitBase unit){
+    public bool IsRuleApproved(UnitBaseOld unit){
         if (unit.unitType == UnitType.ShortRangeTroop && MeleeCompetitorCounter - 1 >= 0)
         {
             MeleeCompetitorCounter--;

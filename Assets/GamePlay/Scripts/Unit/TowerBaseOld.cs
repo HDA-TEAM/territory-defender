@@ -6,7 +6,7 @@ using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class TowerBase : UnitBase
+public abstract class TowerBaseOld : UnitBaseOld
 {
     [SerializeField] private Button button; 
     private TowerKitManager towerKitParent;

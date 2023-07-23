@@ -4,12 +4,12 @@ using System.Numerics;
 
 public interface IFindTargetBase
 {
-    public UnitBase ApplyFindTarget(UnitBase finder, List<UnitBase> unitBases);
+    public UnitBaseOld ApplyFindTarget(UnitBaseOld finder, List<UnitBaseOld> unitBases);
 }
 
 public class FindNearestTargetInDetectRange : IFindTargetBase
 {
-    public UnitBase ApplyFindTarget(UnitBase finder, List<UnitBase> unitBases)
+    public UnitBaseOld ApplyFindTarget(UnitBaseOld finder, List<UnitBaseOld> unitBases)
     {
         //todo
         //need to define
@@ -24,12 +24,12 @@ public interface IAttackBase
 
 public interface IMovingBase
 {
-    Vector2 ApplyMoving(UnitBase unitBase);
+    Vector2 ApplyMoving(UnitBaseOld unitBaseOld);
 }
 
 public class MovingDestinationGate : IMovingBase
 {
-    public Vector2 ApplyMoving(UnitBase unitBase)
+    public Vector2 ApplyMoving(UnitBaseOld unitBaseOld)
     { 
         // todo 
         return new Vector2();
@@ -38,7 +38,7 @@ public class MovingDestinationGate : IMovingBase
 
 public class MovingGuardPlace: IMovingBase
 {
-    public Vector2 ApplyMoving(UnitBase unitBase)
+    public Vector2 ApplyMoving(UnitBaseOld unitBaseOld)
     { 
         // todo 
         return new Vector2();

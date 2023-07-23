@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Unit
 {
-    public class TowerDefenseBase : TowerBase
+    public class TowerDefenseBaseOld : TowerBaseOld
     {
         [SerializeField] private GameObject bulletPrefab;
         // public abstract void TowerUpdate();
@@ -39,10 +39,10 @@ namespace GamePlay.Scripts.Unit
             }
 
         }
-        public UnitBase FindNearestTargetInDetectRange(List<UnitBase> units)
+        public UnitBaseOld FindNearestTargetInDetectRange(List<UnitBaseOld> units)
         {
             float nearestDis = float.MaxValue;
-            UnitBase targetUnit = null;
+            UnitBaseOld targetUnit = null;
             foreach (var unit in units)
             {
                 float curDis = Vector2.Distance(this.gameObject.transform.position,
@@ -57,7 +57,7 @@ namespace GamePlay.Scripts.Unit
         }
         public override void Idle()
         {
-            List<UnitBase> units = battleEventManager.FindUnitCollectionByTag("Enemy");
+            List<UnitBaseOld> units = battleEventManager.FindUnitCollectionByTag("Enemy");
             this.target = FindNearestTargetInDetectRange(units);
             Debug.Log("Tower target " + target);
             if (this.target != null)

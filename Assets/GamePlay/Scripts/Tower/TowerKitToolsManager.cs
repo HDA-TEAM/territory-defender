@@ -24,14 +24,14 @@ public class TowerKitToolsManager : MonoBehaviour
     [SerializeField] private Button buttonKitTools;
     public GameObject kitToolsContent;
     // [SerializeField] private TowerBase towerBase;
-    public void SetUpTools(TowerBase towerBase)
+    public void SetUpTools(TowerBaseOld towerBaseOld)
     {
         this.gameObject.SetActive(true);
 
         RemoveTools();
         
-        btnUpdate.onClick.AddListener(towerBase.TowerUpdate);
-        btnSell.onClick.AddListener(towerBase.TowerSelling);
+        btnUpdate.onClick.AddListener(towerBaseOld.TowerUpdate);
+        btnSell.onClick.AddListener(towerBaseOld.TowerSelling);
         buttonKitTools.onClick.AddListener(ToolKitTurnControl);
         // buttonKitTools.SetActive(false);
         kitToolsContent.SetActive(false);

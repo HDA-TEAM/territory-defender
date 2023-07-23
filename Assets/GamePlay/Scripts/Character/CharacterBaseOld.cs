@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public abstract class CharacterBase : UnitBase
+    public abstract class CharacterBaseOld : UnitBaseOld
     {
         // public void Attack()
         // {

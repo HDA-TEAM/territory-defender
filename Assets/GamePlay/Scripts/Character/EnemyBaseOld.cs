@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public class EnemyBase : CharacterBase
+    public class EnemyBaseOld : CharacterBaseOld
     {
         public LineRenderer routeLineToDesGate;
         public int currentIndexInRouteLine;

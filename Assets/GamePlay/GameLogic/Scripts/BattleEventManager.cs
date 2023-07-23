@@ -14,7 +14,7 @@ namespace GamePlay.GameLogic.Scripts
     }
     public class BattleEventManager :Singleton<BattleEventManager>
     {
-        private Dictionary<string, List<UnitBase>> _unitDictionary = new Dictionary<string, List<UnitBase>>();
+        private Dictionary<string, List<UnitBaseOld>> _unitDictionary = new Dictionary<string, List<UnitBaseOld>>();
         private List<BattleEvent> _battleEvents = new List<BattleEvent>();
         
         private void FixedUpdate()
@@ -53,17 +53,17 @@ namespace GamePlay.GameLogic.Scripts
                 }
             }
         }
-        void NotifyAllUnitCheckTargetOnDestroy(UnitBase unitBase)
+        void NotifyAllUnitCheckTargetOnDestroy(UnitBaseOld unitBaseOld)
         {
             foreach (var unitCollection in _unitDictionary.Values.ToList())
             {
                 foreach (var unit in unitCollection)
                 {
-                    unit.CheckTargetOnDestroy(unitBase);
+                    unit.CheckTargetOnDestroy(unitBaseOld);
                 }
             }
         }
-        public bool IsCanFocusTarget(UnitBase unitAlly, UnitBase unitEnemy)
+        public bool IsCanFocusTarget(UnitBaseOld unitAlly, UnitBaseOld unitEnemy)
         {
             if (unitEnemy.target == null)
             {
@@ -82,10 +82,10 @@ namespace GamePlay.GameLogic.Scripts
             }
             return false;
         }
-        bool CheckOnBattleWithThisTarget(UnitBase enemyTarget)
+        bool CheckOnBattleWithThisTarget(UnitBaseOld enemyTarget)
         {
             CombatConfigRule combatConfigRule = enemyTarget.CombatConfigRule.ApplyRule(new CombatConfigRule());
-            _unitDictionary.TryGetValue(UnitSideLabel.Ally.ToString(), out List<UnitBase> unitBases);
+            _unitDictionary.TryGetValue(UnitSideLabel.Ally.ToString(), out List<UnitBaseOld> unitBases);
             foreach (var ally in unitBases)
             {
                 if (ally.target == enemyTarget )
@@ -110,23 +110,23 @@ namespace GamePlay.GameLogic.Scripts
         //         }
         //     }
         // }
-        public void AddUnit(UnitBase unit)
+        public void AddUnit(UnitBaseOld unit)
         {
-            List<UnitBase> units = FindUnitCollectionByTag(unit.gameObject.tag);
+            List<UnitBaseOld> units = FindUnitCollectionByTag(unit.gameObject.tag);
             units.Add(unit);
         }
-        public List<UnitBase> FindUnitCollectionByTag(string tag)
+        public List<UnitBaseOld> FindUnitCollectionByTag(string tag)
         {
             if (_unitDictionary.ContainsKey(tag) == false)
             {
-                _unitDictionary.Add(tag,new List<UnitBase>());
+                _unitDictionary.Add(tag,new List<UnitBaseOld>());
             }
-            _unitDictionary.TryGetValue(tag, out List<UnitBase> unitBases);
+            _unitDictionary.TryGetValue(tag, out List<UnitBaseOld> unitBases);
             return unitBases;
         }
-        public void RemoveUnit(UnitBase unit)
+        public void RemoveUnit(UnitBaseOld unit)
         {
-            List<UnitBase> units = FindUnitCollectionByTag(unit.gameObject.tag);
+            List<UnitBaseOld> units = FindUnitCollectionByTag(unit.gameObject.tag);
             if (units.Contains(unit))
             {
                 NotifyAllUnitCheckTargetOnDestroy(unit);

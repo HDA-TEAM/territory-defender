@@ -6,14 +6,14 @@ namespace GamePlay.Scripts
     public class BattleRoom 
     {
         private string _roomKey;
-        private Dictionary<string, UnitBase> _units;
+        private Dictionary<string, UnitBaseOld> _units;
         private int _maxLowRangeEnemyUnits = 1;
         private int _maxLowRangeAllyUnits = 2;
-        void RuleOfRoom(UnitBase unit)
+        void RuleOfRoom(UnitBaseOld unit)
         {
           
         }
-        void JoinRoom(UnitBase unit)
+        void JoinRoom(UnitBaseOld unit)
         {
             
         }

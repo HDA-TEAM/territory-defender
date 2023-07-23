@@ -6,16 +6,16 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public class LongRangeEnemyBase : EnemyBase
+    public class LongRangeEnemyBaseOld : EnemyBaseOld
     {
         private void Awake()
         {
             unitType = UnitType.LongRangeTroop;
         }
-        public UnitBase FindNearestTargetInDetectRange(List<UnitBase> units)
+        public UnitBaseOld FindNearestTargetInDetectRange(List<UnitBaseOld> units)
         {
             float nearestDis = float.MaxValue;
-            UnitBase targetUnit = null;
+            UnitBaseOld targetUnit = null;
             foreach (var unit in units)
             {
                 float curDis = Vector2.Distance(this.gameObject.transform.position,
@@ -49,7 +49,7 @@ namespace GamePlay.Scripts.Character
         }
         public override void Idle()
         {
-            List<UnitBase> units = battleEventManager.FindUnitCollectionByTag("Ally");
+            List<UnitBaseOld> units = battleEventManager.FindUnitCollectionByTag("Ally");
             this.target = FindNearestTargetInDetectRange(units);
             if (this.target != null)
             {

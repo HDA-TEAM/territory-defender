@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public class AllyBase : CharacterBase
+    public class AllyBaseOld : CharacterBaseOld
     {
         public Vector2 guardingPlace;
         protected override void Awake()

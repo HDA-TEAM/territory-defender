@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character
 {
-    public class ShortRangeAllyBase : AllyBase
+    public class ShortRangeAllyBaseOld : AllyBaseOld
     {
         protected override void Awake()
         {
@@ -52,7 +52,7 @@ namespace GamePlay.Scripts.Character
                 target.gameObject.transform.position,
                 this.unitAttribute.movementSpeed);
         }
-        public UnitBase FindTargetInDetectRange(List<UnitBase> units)
+        public UnitBaseOld FindTargetInDetectRange(List<UnitBaseOld> units)
         {
             float nearestDis = float.MaxValue;
             foreach (var unit in units)
@@ -70,7 +70,7 @@ namespace GamePlay.Scripts.Character
         }
         public override void Idle()
         {
-            List<UnitBase> units = battleEventManager.FindUnitCollectionByTag(UnitSideLabel.Enemy.ToString());
+            List<UnitBaseOld> units = battleEventManager.FindUnitCollectionByTag(UnitSideLabel.Enemy.ToString());
             this.target = FindTargetInDetectRange(units);
             if (this.target != null)
             {

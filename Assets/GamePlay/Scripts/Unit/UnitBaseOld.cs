@@ -21,7 +21,7 @@ namespace GamePlay.Scripts.Unit
         ShortLongRangeTroop,
         ShortMediumRangeTropp,
     }
-    public abstract class UnitBase : MonoBehaviour
+    public abstract class UnitBaseOld : MonoBehaviour
     {
         public UnitConfig unitConfig;
         public ICombatConfigRule CombatConfigRule;
@@ -29,7 +29,7 @@ namespace GamePlay.Scripts.Unit
         public UnitType unitType;
         public ActionEnum CurrentActionEnum;
         public BattleEventManager battleEventManager;
-        public UnitBase target = null;
+        public UnitBaseOld target = null;
         public UnitAttribute unitAttribute;
         protected virtual void Awake()
         {
@@ -62,9 +62,9 @@ namespace GamePlay.Scripts.Unit
         public abstract void Attack();
         public abstract void Idle();
         public abstract void Destroy();
-        public void CheckTargetOnDestroy(UnitBase unitBase)
+        public void CheckTargetOnDestroy(UnitBaseOld unitBaseOld)
         {
-            if (target == unitBase)
+            if (target == unitBaseOld)
             {
                 this.target = null;
                 CurrentActionEnum = ActionEnum.Idle;
@@ -74,11 +74,11 @@ namespace GamePlay.Scripts.Unit
         {
                 
         }
-        public bool BeingTarget(UnitBase unitBase)
+        public bool BeingTarget(UnitBaseOld unitBaseOld)
         {
             if (this.target == null)
             {
-                this.target = unitBase;
+                this.target = unitBaseOld;
                 this.CurrentActionEnum = ActionEnum.Attack;
                 return true;
             }

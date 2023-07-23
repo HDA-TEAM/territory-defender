@@ -9,14 +9,13 @@ public enum CharacterSide
 {
     Ally = 1,
     Enemy = 2,
-    
 }
 public class TargetDetecting : MonoBehaviour
 {
     [SerializeField] private CharacterSide characterSideNeedToTarget;
     [SerializeField] private float rangeDetecting;
-    private List<Character> targets = new List<Character>();
-    private Character baseCharacter;
+    private List<UnitBase> targets = new List<UnitBase>();
+    private UnitBase _baseUnitBase;
    
     private void Awake()
     {
@@ -28,19 +27,19 @@ public class TargetDetecting : MonoBehaviour
     }
     private void Validate()
     {
-        if (baseCharacter == null)
+        if (_baseUnitBase == null)
         {
-            baseCharacter = GetComponent<Character>();
+            _baseUnitBase = GetComponent<UnitBase>();
         }
     }
     private void Update()
     {
         CheckingTarget();
     }
-    private Character prevTarget = null;
+    private UnitBase prevTarget = null;
     private void CheckingTarget()
     {
-        Character curTarget = null;
+        UnitBase curTarget = null;
         if (targets.Count > 0)
         {
             if (targets[0] == null)
@@ -61,7 +60,7 @@ public class TargetDetecting : MonoBehaviour
         // if (prevTarget == curTarget)
         //     return;
         // else
-        baseCharacter.OnCharacterChange?.Invoke(curTarget); 
+        _baseUnitBase.OnCharacterChange?.Invoke(curTarget); 
 
     }
     private void OnTriggerStay2D(Collider2D other)
@@ -71,7 +70,7 @@ public class TargetDetecting : MonoBehaviour
         if (other.gameObject.CompareTag(characterSideNeedToTarget.ToString())
             && GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject,other.gameObject) < rangeDetecting)
         {
-            Character target = other.gameObject.GetComponent<Character>();
+            UnitBase target = other.gameObject.GetComponent<UnitBase>();
             // Debug.Log("target " + target);
             if (target != null && !targets.Exists( (t) => t == target))
             {
@@ -85,7 +84,7 @@ public class TargetDetecting : MonoBehaviour
         // Debug.Log("other.gameObject exit " + other.tag);
         if (other.gameObject.CompareTag(characterSideNeedToTarget.ToString()))
         {
-            Character target = other.gameObject.GetComponent<Character>();
+            UnitBase target = other.gameObject.GetComponent<UnitBase>();
             if (target != null && targets.Exists( (t) => t == target))
             {
                 targets.Remove(target);

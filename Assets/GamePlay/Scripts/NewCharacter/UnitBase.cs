@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Character : MonoBehaviour
+public class UnitBase : MonoBehaviour
 {
     [SerializeField] private CharacterStateSystem characterStateSystem;
     [SerializeField] private TargetDetecting targetDetecting;
@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     public CheckingCombatJoinIn CheckingCombatJoinIn () => checkingCombatJoinIn;
 
     #region Event
-        public Action<Character> OnCharacterChange;
+        public Action<UnitBase> OnCharacterChange;
     #endregion
     
     private void Reset()

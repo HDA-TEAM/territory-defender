@@ -14,7 +14,7 @@ public class EnemyMovement : MonoBehaviour
     private int currentIndexInRouteLine = 0;
 
     private bool IsMovingToGate = true;
-    private Character baseCharacter;
+    private UnitBase _baseUnitBase;
 
     private void Awake()
     {
@@ -22,18 +22,18 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Validate()
     {
-        if (baseCharacter == null)
-            baseCharacter = GetComponent<Character>();
+        if (_baseUnitBase == null)
+            _baseUnitBase = GetComponent<UnitBase>();
         // if (routeToGate == null)
         //     routeToGate = RouteSetController.Instance.CurrentRouteLineRenderers[0];
     }
     private void OnEnable()
     {
-        baseCharacter.OnCharacterChange += OnTargetChanging;
+        _baseUnitBase.OnCharacterChange += OnTargetChanging;
     }
     private void OnDisable()
     {
-        baseCharacter.OnCharacterChange -= OnTargetChanging;
+        _baseUnitBase.OnCharacterChange -= OnTargetChanging;
     }
     private void Update()
     {
@@ -43,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
         }
         MovingToDestination();
     }
-    private void OnTargetChanging(Character target)
+    private void OnTargetChanging(UnitBase target)
     {
         IsMovingToGate = (target == null);
     }

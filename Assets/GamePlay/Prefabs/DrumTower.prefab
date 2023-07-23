@@ -13,6 +13,11 @@ GameObject:
   - component: {fileID: 6093051815202494014}
   - component: {fileID: 6093051815202494015}
   - component: {fileID: 2500527627554880948}
+  - component: {fileID: -7030754689199355094}
+  - component: {fileID: -4014004145528540507}
+  - component: {fileID: -3783447317423522785}
+  - component: {fileID: 3202232322924649724}
+  - component: {fileID: 1130639990547555886}
   m_Layer: 0
   m_Name: DrumTower
   m_TagString: Untagged
@@ -148,3 +153,88 @@ MonoBehaviour:
     movementSpeed: 0
   button: {fileID: 0}
   bulletPrefab: {fileID: 4282071385477853601, guid: aa41697b25e414a7492eff1c158438e6, type: 3}
+--- !u!114 &-7030754689199355094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterStateSystem: {fileID: 0}
+  targetDetecting: {fileID: -4014004145528540507}
+  healthComp: {fileID: 0}
+  attacking: {fileID: -3783447317423522785}
+  checkingCombatJoinIn: {fileID: 0}
+--- !u!114 &-4014004145528540507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818c545cf3e447818c1bb1eb857dfc64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterSideNeedToTarget: 2
+  rangeDetecting: 12.95
+--- !u!114 &-3783447317423522785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackingType: 0
+  attackingCooldown: 1
+  attackingDamage: 20
+  attackingRange: 12.95
+  objAttackRange: {fileID: 0}
+--- !u!50 &3202232322924649724
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!58 &1130639990547555886
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 30
