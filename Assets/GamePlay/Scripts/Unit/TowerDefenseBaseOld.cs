@@ -25,18 +25,18 @@ namespace GamePlay.Scripts.Unit
         }
         private void InAttackProcess()
         {
-            unitAttribute.attackCoolDown -= Time.deltaTime;
-            if (unitAttribute.attackCoolDown <= 0)
-            {
-                // ExcuteAnimator();
-                Debug.Log("tower fire");
-                var bullet = Instantiate(bulletPrefab);
-                bullet.transform.SetParent(this.transform);
-                bullet.transform.position = this.transform.position;
-                var bulletBase = bullet.GetComponent<BulletBase>();
-                bulletBase.SetUp(target.gameObject,unitAttribute.attackDamage);
-                unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
-            }
+            // unitAttribute.attackCoolDown -= Time.deltaTime;
+            // if (unitAttribute.attackCoolDown <= 0)
+            // {
+            //     // ExcuteAnimator();
+            //     Debug.Log("tower fire");
+            //     var bullet = Instantiate(bulletPrefab);
+            //     bullet.transform.SetParent(this.transform);
+            //     bullet.transform.position = this.transform.position;
+            //     var bulletBase = bullet.GetComponent<BulletBase>();
+            //     bulletBase.SetUp(target.gameObject,unitAttribute.attackDamage);
+            //     unitAttribute.attackCoolDown = AttackMachineUtility.GetCooldownTime(unitAttribute.attackSpeedMin,unitAttribute.attackSpeedMax);
+            // }
 
         }
         public UnitBaseOld FindNearestTargetInDetectRange(List<UnitBaseOld> units)
@@ -59,7 +59,7 @@ namespace GamePlay.Scripts.Unit
         {
             List<UnitBaseOld> units = battleEventManager.FindUnitCollectionByTag("Enemy");
             this.target = FindNearestTargetInDetectRange(units);
-            Debug.Log("Tower target " + target);
+            // Debug.Log("Tower target " + target);
             if (this.target != null)
             {
                 this.CurrentActionEnum = ActionEnum.Attack;

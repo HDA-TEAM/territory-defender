@@ -18,6 +18,7 @@ public class Attacking : MonoBehaviour
     [SerializeField] private int attackingDamage;
     [SerializeField] private float attackingRange = 12.95f;
     [SerializeField] private GameObject objAttackRange;
+    [SerializeField] private BulletDataAsset bulletDataAsset;
 
     private bool canAttacking = true;
     
@@ -56,7 +57,8 @@ public class Attacking : MonoBehaviour
         if (canAttacking && attackingType == AttackingType.Tower)
         {
             canAttacking = false;
-            new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
+            // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
+            bulletDataAsset.GetLineRoute(transform.position,BulletType.Arrow,target);
             await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
             canAttacking = true;
         }
@@ -113,6 +115,7 @@ internal class TowerAttacking : ICharacterAttacking
 {
     public void PlayAttacking(UnitBase target, int attackingDamage)
     {
-        target.HealthComp().PlayHurting(attackingDamage);
+        
+        
     }
 }
