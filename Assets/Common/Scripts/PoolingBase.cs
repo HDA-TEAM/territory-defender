@@ -14,12 +14,13 @@ public class PoolingBase : MonoBehaviour
         this.prefab = prefab;
         InitPool();
     }
-    public void InitPool()
+    
+    private void InitPool()
     {
         poolObjects = new List<GameObject>();
         for (int i = 0; i < initNumber; i++)
         {
-            GameObject instance = Instantiate(prefab);
+            GameObject instance = Instantiate(prefab,parent.transform,false);
             poolObjects.Add(instance);
             instance.gameObject.transform.SetParent(parent.transform);
             instance.gameObject.SetActive(false);

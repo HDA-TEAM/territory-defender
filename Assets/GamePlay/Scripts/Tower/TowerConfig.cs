@@ -34,7 +34,7 @@ public class TowerConfig : ScriptableObject
     public List<TowerAttribute> towerAttributes;
 }
 
-public class TowerConfigManager : Singleton<TowerConfigManager>
-{
-    
-}
+// public class TowerConfigManager : Singleton<TowerConfigManager>
+// {
+//     
+// }

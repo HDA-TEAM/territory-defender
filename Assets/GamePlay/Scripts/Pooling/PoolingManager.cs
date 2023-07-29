@@ -8,7 +8,8 @@ public enum PoolingTypeEnum
 {
     Tower = 1,
     Ally = 100,
-    Enemy = 200
+    Enemy = 200,
+    EnemyShieldMan = 201,
 }
 
 public class UnitPooling : PoolingBase
@@ -25,17 +26,22 @@ public struct PoolingComposite
 }
 public class PoolingManager : Singleton<PoolingManager>
 {
-    private Dictionary<PoolingTypeEnum,UnitPooling> dictUnitPooling;
-    [SerializeField] private List<PoolingComposite> initPoolings;
+    [SerializeField] private GameObject poolingContainer;
+    [SerializeField] private List<PoolingComposite> initPooling;
+    
+    private Dictionary<PoolingTypeEnum,UnitPooling> dictUnitPooling = new Dictionary<PoolingTypeEnum, UnitPooling>();
+    
     private void Start()
     {
         SetUp();
     }
     private void SetUp()
     {
-        foreach (var pooling in initPoolings)
+        foreach (var pooling in initPooling)
         {
-            GameObject parent = GameObject.Find(pooling.poolingType.ToString());
+            String poolingPath = $"/{poolingContainer.name}/{pooling.poolingType.ToString()}";
+            Debug.Log("poolingPath " + pooling);
+            GameObject parent =  GameObject.Find(poolingPath);
             UnitPooling tmpPooling = new UnitPooling();
             tmpPooling.InitPoolWithParam(pooling.initNumber, pooling.prefab, parent);
             dictUnitPooling.Add(
