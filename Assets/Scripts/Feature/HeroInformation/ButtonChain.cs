@@ -10,9 +10,8 @@ namespace Feature.HeroInformation
 
         public void OnButtonClick()
         {
-            characterController.ChangeButtonImages(button);
+            characterController.ChangeButtonImagesAndColorText(button);
         }
     }
 
 }
-
