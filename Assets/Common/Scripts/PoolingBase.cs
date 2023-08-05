@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolingBase : MonoBehaviour 
@@ -20,11 +21,15 @@ public class PoolingBase : MonoBehaviour
         poolObjects = new List<GameObject>();
         for (int i = 0; i < initNumber; i++)
         {
-            GameObject instance = Instantiate(prefab,parent.transform,false);
-            poolObjects.Add(instance);
-            instance.gameObject.transform.SetParent(parent.transform);
-            instance.gameObject.SetActive(false);
+            poolObjects.Add(InitObjectInstance());
         }
+    }
+    private GameObject InitObjectInstance()
+    {
+        GameObject instance = Instantiate(prefab,parent.transform,false);
+        instance.gameObject.transform.SetParent(parent.transform);
+        instance.gameObject.SetActive(false);
+        return instance;
     }
     public GameObject GetInstance()
     {
@@ -35,7 +40,9 @@ public class PoolingBase : MonoBehaviour
                 return i;
             }
         }
-        return null;
+        GameObject go = InitObjectInstance();
+        poolObjects.Add(go);
+        return go;
     }
     public void ReturnPool(GameObject gameObject)
     {

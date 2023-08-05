@@ -9,7 +9,18 @@ public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private LineRenderer routeToGate;
     [SerializeField] private float movementSpeed;
-    public LineRenderer RouteToGate() => routeToGate;
+    public LineRenderer RouteToGate
+    {
+        get
+        {
+            return routeToGate;
+        }
+        set
+        {
+            currentIndexInRouteLine = 0;
+            routeToGate = value;
+        }
+    } 
 
     private int currentIndexInRouteLine = 0;
 
@@ -37,7 +48,7 @@ public class EnemyMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (IsMovingToGate == false)
+        if (IsMovingToGate == false || routeToGate == null)
         {
             return;
         }
@@ -52,6 +63,7 @@ public class EnemyMovement : MonoBehaviour
         if (IsReachedDestinationGate())
         {
             this.gameObject.SetActive(false);
+            routeToGate = null;
             return;
             //todo 
             // reduce player heath

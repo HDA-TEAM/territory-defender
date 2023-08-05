@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: flagObject
       value: 
       objectReference: {fileID: 6744289844941878412}
+    - target: {fileID: 3766247886341376077, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: towersCanBuild.Array.data[1].gameObject
+      value: 
+      objectReference: {fileID: 6795851934078780236, guid: b25153f9c64d3488b999d0ae40b9bbd4, type: 3}
     - target: {fileID: 6878341851928845448, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

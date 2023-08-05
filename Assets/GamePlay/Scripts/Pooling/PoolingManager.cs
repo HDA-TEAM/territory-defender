@@ -12,10 +12,6 @@ public enum PoolingTypeEnum
     EnemyShieldMan = 201,
 }
 
-public class UnitPooling : PoolingBase
-{
-        
-}
 
 [Serializable]
 public struct PoolingComposite
@@ -26,10 +22,8 @@ public struct PoolingComposite
 }
 public class PoolingManager : Singleton<PoolingManager>
 {
-    [SerializeField] private GameObject poolingContainer;
-    [SerializeField] private List<PoolingComposite> initPooling;
-    
-    private Dictionary<PoolingTypeEnum,UnitPooling> dictUnitPooling = new Dictionary<PoolingTypeEnum, UnitPooling>();
+    [SerializeField] private List<UnitPooling> poolingList;
+    private Dictionary<PoolingTypeEnum, PoolingBase> dictPooling = new Dictionary<PoolingTypeEnum, PoolingBase>();
     
     private void Start()
     {
@@ -37,18 +31,24 @@ public class PoolingManager : Singleton<PoolingManager>
     }
     private void SetUp()
     {
-        foreach (var pooling in initPooling)
+        foreach (var pooling in poolingList)
         {
-            String poolingPath = $"/{poolingContainer.name}/{pooling.poolingType.ToString()}";
-            Debug.Log("poolingPath " + pooling);
-            GameObject parent =  GameObject.Find(poolingPath);
-            UnitPooling tmpPooling = new UnitPooling();
-            tmpPooling.InitPoolWithParam(pooling.initNumber, pooling.prefab, parent);
-            dictUnitPooling.Add(
-                pooling.poolingType,
-                tmpPooling
-            );
+            PoolingComposite poolingComposite = pooling.UnitPool;
+            pooling.InitPoolWithParam(poolingComposite.initNumber, poolingComposite.prefab, pooling.gameObject);
+            dictPooling.Add(poolingComposite.poolingType,pooling);
         }
+    }
+    public PoolingBase GetPooling(PoolingTypeEnum poolingTypeEnum)
+    {
+        dictPooling.TryGetValue(poolingTypeEnum, out PoolingBase poolingBase );
+        return poolingBase;
+    }
+    public GameObject SpawnObject(PoolingTypeEnum poolingType, Vector2 pos)
+    {
+        GameObject go = GetPooling(poolingType).GetInstance();
+        go.SetActive(transform);
+        go.transform.position = pos;
+        return go;
     }
 }
 
