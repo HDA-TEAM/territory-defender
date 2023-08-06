@@ -6,7 +6,7 @@ namespace Feature.HeroInformation
 {
     public class ChangeButtonController : MonoBehaviour
     {
-        public List<Button> buttonList;
+        public List<ButtonChain> buttonList;
         
         [SerializeField] private Sprite positiveImage;
         [SerializeField] private Sprite absoluteImage;
@@ -22,14 +22,15 @@ namespace Feature.HeroInformation
             if (ColorUtility.TryParseHtmlString(_hexPositiveColor, out _positiveColor) &&
                 ColorUtility.TryParseHtmlString(_hexAbsoluteColor, out _absoluteColor))
             {
-                foreach (Button button in buttonList)
+                foreach (ButtonChain buttonChain in buttonList)
                 {
-                    button.image.sprite = button == clickedButton ? positiveImage : absoluteImage;
-                    TextMeshProUGUI buttonText = button.GetComponentInChildren<TextMeshProUGUI>();
                     
-                    if (buttonText != null)
+                    buttonChain.Button().image.sprite = buttonChain.Button() == clickedButton ? positiveImage : absoluteImage;
+                    
+                    
+                    if (buttonChain.Text() != null)
                     {
-                        buttonText.color = button == clickedButton ? _positiveColor : _absoluteColor;
+                        buttonChain.Text().color = buttonChain.Button() == clickedButton ? _positiveColor : _absoluteColor;
                     }
                 }
             }
