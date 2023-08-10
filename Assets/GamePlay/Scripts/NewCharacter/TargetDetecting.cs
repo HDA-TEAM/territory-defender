@@ -23,7 +23,6 @@ public class TargetDetecting : MonoBehaviour
     }
     private void Start()
     {
-        rangeDetecting = 10;
     }
     private void Validate()
     {

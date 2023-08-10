@@ -17,7 +17,7 @@ public class TowerKitSetConfig : ScriptableObject
         {
             if (tk.gameObject.activeSelf == true)
             {
-                towerKitLocation.Add(tk.gameObject.transform.position);
+                towerKitLocation.Add(tk.gameObject.transform.position );
             }
         }
     }

@@ -78,7 +78,7 @@ public class TowerKitBuildManager: MonoBehaviour
     {
         GameObject tower = Instantiate(towerCanBuild.gameObject,this.transform,false);
         
-        var towerScript = tower.GetComponent<TowerBaseOld>();
+        var towerScript = tower.GetComponent<TowerBase>();
         towerScript.TowerBuild(parentKitManager);
 
         DeactivateBuildKit();

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class VectorUtility
+public static class VectorUtility
 {
     public static Vector3 Format3dTo2dZeroZ(Vector3 vector3)
     {
@@ -20,6 +20,14 @@ public class VectorUtility
         return Vector2.MoveTowards(
             pointA,
             pointB,
-            Time.deltaTime * movementSpeed * 10f);
+            Time.deltaTime * movementSpeed * 200f);
+    }
+    public static float GetZAngleOfTwoPoint(Vector3 startPoint, Vector3 endPoint)
+    {
+        Vector3 direction = endPoint - startPoint;
+
+        // Calculate the angle between the direction vector and the forward vector (Z-axis).
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return angle;
     }
 }

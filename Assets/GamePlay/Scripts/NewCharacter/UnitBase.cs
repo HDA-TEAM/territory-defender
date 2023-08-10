@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
+// [RequireComponent(typeof(HealthComp),
+//     typeof(HealthComp))]
 public class UnitBase : MonoBehaviour
 {
     [SerializeField] private CharacterStateSystem characterStateSystem;

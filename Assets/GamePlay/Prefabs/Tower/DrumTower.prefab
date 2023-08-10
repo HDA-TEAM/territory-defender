@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 6093051815202494013}
   - component: {fileID: 6093051815202494014}
   - component: {fileID: 6093051815202494015}
-  - component: {fileID: 2500527627554880948}
   - component: {fileID: -7030754689199355094}
   - component: {fileID: -4014004145528540507}
   - component: {fileID: -3783447317423522785}
   - component: {fileID: 3202232322924649724}
   - component: {fileID: 1130639990547555886}
+  - component: {fileID: 3858257114877186647}
   m_Layer: 0
   m_Name: DrumTower
   m_TagString: Untagged
@@ -125,34 +125,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2500527627554880948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6093051815202494009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d485603e7043bd97bf6b398e0a9d5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitConfig: {fileID: 11400000, guid: ea94d41d5153c4ccf99d7dd3467b3306, type: 2}
-  unitType: 0
-  CurrentActionEnum: 0
-  battleEventManager: {fileID: 0}
-  target: {fileID: 0}
-  unitAttribute:
-    attackRange: 0
-    attackCoolDown: 0
-    attackSpeedMax: 0
-    attackSpeedMin: 0
-    attackDamage: 0
-    detectRange: 0
-    health: 0
-    movementSpeed: 0
-  button: {fileID: 0}
-  bulletPrefab: {fileID: 4282071385477853601, guid: aa41697b25e414a7492eff1c158438e6, type: 3}
 --- !u!114 &-7030754689199355094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAttackPoint: {fileID: 0}
   attackingType: 0
   attackingCooldown: 1
   attackingDamage: 20
@@ -239,3 +212,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 250
+--- !u!114 &3858257114877186647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4058b914e3d4cfb805de50ccec5135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}

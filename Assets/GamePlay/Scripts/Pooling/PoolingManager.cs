@@ -10,6 +10,7 @@ public enum PoolingTypeEnum
     Ally = 100,
     Enemy = 200,
     EnemyShieldMan = 201,
+    ArrowBullet = 1000,
 }
 
 
@@ -43,7 +44,7 @@ public class PoolingManager : Singleton<PoolingManager>
         dictPooling.TryGetValue(poolingTypeEnum, out PoolingBase poolingBase );
         return poolingBase;
     }
-    public GameObject SpawnObject(PoolingTypeEnum poolingType, Vector2 pos)
+    public GameObject SpawnObject(PoolingTypeEnum poolingType, Vector2 pos = new Vector2())
     {
         GameObject go = GetPooling(poolingType).GetInstance();
         go.SetActive(transform);

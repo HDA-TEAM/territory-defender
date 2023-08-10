@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public enum StageChapterKey
+public enum ChapterKey
 {   
     chap_1 = 1,
 }
@@ -37,11 +37,11 @@ public class StageConfigManager : MonoBehaviour
         //         }
         //     }
         // }
-        public StageConfig FindStageConfig(StageIdKey stageId, StageChapterKey chapterKey)
+        public StageConfig FindStageConfig(StageIdKey stageId, ChapterKey chapterKey)
         {
             foreach (var stageConfig in stages)
             {
-                if (stageConfig.StageIdKey == stageId && stageConfig.StageChapterKey == chapterKey)
+                if (stageConfig.StageIdKey == stageId && stageConfig.chapterKey == chapterKey)
                 {
                     return stageConfig;
                 }

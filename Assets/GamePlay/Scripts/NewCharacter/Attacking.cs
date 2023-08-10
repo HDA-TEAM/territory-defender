@@ -13,12 +13,14 @@ public enum AttackingType
 }
 public class Attacking : MonoBehaviour
 {
+    [SerializeField] private Transform startAttackPoint;
     [SerializeField] private AttackingType attackingType;
     [SerializeField] private float attackingCooldown  = 2f;
     [SerializeField] private int attackingDamage;
-    [SerializeField] private float attackingRange = 12.95f;
+    [SerializeField] private float attackingRange = 250f;
     [SerializeField] private GameObject objAttackRange;
     [SerializeField] private BulletDataAsset bulletDataAsset;
+    private CircleCollider2D _collider2D;
 
     private bool canAttacking = true;
     
@@ -27,6 +29,10 @@ public class Attacking : MonoBehaviour
     private void Awake()
     {
         Validate();
+        if (_collider2D == null)
+            _collider2D = GetComponent<CircleCollider2D>();
+        if (_collider2D != null)
+            _collider2D.radius = attackingRange;
     }
     private void Validate()
     {
@@ -45,8 +51,6 @@ public class Attacking : MonoBehaviour
     }
     private void Start()
     {
-        // attackingRange = GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject.transform., objAttackRange.gameObject);
-        attackingRange = 5;
     }
     private async void AttackingTarget(UnitBase target)
     {
@@ -58,7 +62,7 @@ public class Attacking : MonoBehaviour
         {
             canAttacking = false;
             // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
-            bulletDataAsset.GetLineRoute(transform.position,BulletType.Arrow,target);
+            bulletDataAsset.GetLineRoute(startAttackPoint.position,BulletType.Arrow,target);
             await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
             canAttacking = true;
         }

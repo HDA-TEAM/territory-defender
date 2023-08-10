@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4257876450914891706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2696311148227786877}
+  m_Layer: 0
+  m_Name: StartAttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2696311148227786877
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4257876450914891706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6795851934078780237}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 19, y: 83}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6795851934078780236
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,12 +48,12 @@ GameObject:
   - component: {fileID: 6795851934078780232}
   - component: {fileID: 6795851934078780235}
   - component: {fileID: 6795851934078780234}
-  - component: {fileID: 2914604823018875073}
   - component: {fileID: 1489799602416066143}
   - component: {fileID: 4794659575842744272}
   - component: {fileID: 4737531385572206954}
   - component: {fileID: 2788278272778684809}
   - component: {fileID: 392303621484278619}
+  - component: {fileID: 4633892424354047686}
   m_Layer: 0
   m_Name: BowTower
   m_TagString: Untagged
@@ -36,7 +72,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2696311148227786877}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -125,34 +162,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2914604823018875073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795851934078780236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20d485603e7043bd97bf6b398e0a9d5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitConfig: {fileID: 11400000, guid: ea94d41d5153c4ccf99d7dd3467b3306, type: 2}
-  unitType: 0
-  CurrentActionEnum: 0
-  battleEventManager: {fileID: 0}
-  target: {fileID: 0}
-  unitAttribute:
-    attackRange: 0
-    attackCoolDown: 0
-    attackSpeedMax: 0
-    attackSpeedMin: 0
-    attackDamage: 0
-    detectRange: 0
-    health: 0
-    movementSpeed: 0
-  button: {fileID: 0}
-  bulletPrefab: {fileID: 4282071385477853601, guid: aa41697b25e414a7492eff1c158438e6, type: 3}
 --- !u!114 &1489799602416066143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterSideNeedToTarget: 2
-  rangeDetecting: 12.95
+  rangeDetecting: 250
 --- !u!114 &4737531385572206954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,10 +205,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startAttackPoint: {fileID: 2696311148227786877}
   attackingType: 0
   attackingCooldown: 1
   attackingDamage: 20
-  attackingRange: 12.95
+  attackingRange: 300
   objAttackRange: {fileID: 0}
   bulletDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
 --- !u!50 &2788278272778684809
@@ -239,3 +249,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 250
+--- !u!114 &4633892424354047686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6795851934078780236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4058b914e3d4cfb805de50ccec5135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}

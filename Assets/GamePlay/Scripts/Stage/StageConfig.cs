@@ -5,11 +5,13 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "StageConfig_", menuName = "ScriptableObject/Stage/StageConfig")]
 public class StageConfig : ScriptableObject
 {
-    public StageChapterKey StageChapterKey;
+    [FormerlySerializedAs("StageChapterKey")]
+    public ChapterKey chapterKey;
     public StageIdKey StageIdKey;
     
     public TowerKitSetConfig towerKitSetConfig;

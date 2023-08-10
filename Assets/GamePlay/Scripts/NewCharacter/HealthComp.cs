@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthComp : MonoBehaviour
 {
-    private int currentHealth = 50;
+    [SerializeField] private int currentHealth = 50;
     [SerializeField] private TMP_Text txtToast;
     public async void PlayHurting(int dame)
     {

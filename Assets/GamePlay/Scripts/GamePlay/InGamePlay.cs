@@ -9,24 +9,29 @@ public class InGamePlay : MonoBehaviour
     [SerializeField] private TowerKitSetController towerKitSetController;
     [SerializeField] private Button callWave;
     private StageConfig currentStageConfig;
-    
+    [SerializeField] private StageSpawningInformation stageSpawningInformation;
     private void Awake()
     {
-        // Set up stage config
         SetUpStageConfig();
         callWave.onClick.AddListener(OnCallWave);
     }
     private void SetUpStageConfig()
     {
-        currentStageConfig = stageConfigManager.FindStageConfig(StageIdKey.stage_1, StageChapterKey.chap_1);
+        currentStageConfig = stageConfigManager.FindStageConfig(StageIdKey.stage_1, ChapterKey.chap_1);
+        currentStageConfig.SaveToOS(
+            towerKitSetController.CurrentTowerKits, 
+            routeSetController.CurrentRouteLineRenderers);
         currentStageConfig.LoadFormOs(
             towerKitSetController.CurrentTowerKits, 
             routeSetController.CurrentRouteLineRenderers);
     }
     private void OnCallWave()
     {
-        GameObject go = PoolingManager.Instance.SpawnObject(PoolingTypeEnum.EnemyShieldMan,this.transform.position);
-        go.TryGetComponent<EnemyMovement>(out EnemyMovement component);
-        component.RouteToGate = routeSetController.CurrentRouteLineRenderers[0];
+        StartSpawning();
+    }
+    private void StartSpawning()
+    {
+        Debug.Log("Start Spawning");
+        stageSpawningInformation.StartSpawning();
     }
 }

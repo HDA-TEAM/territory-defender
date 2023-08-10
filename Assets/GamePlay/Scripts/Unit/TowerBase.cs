@@ -1,22 +1,11 @@
-using GamePlay.Scripts.Tower;
-using GamePlay.Scripts.Unit;
-using System;
-using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class TowerBaseOld : UnitBaseOld
+public class TowerBase : MonoBehaviour
 {
     [SerializeField] private Button button; 
     private TowerKitManager towerKitParent;
-    protected override void Awake()
-    {
-        base.Awake();
-        unitType = UnitType.Tower;
-        // button.onClick.AddListener(Detail);
-        // if(towerKitParent.GetComponent<TOwe>())
-    }
+ 
     // public void Reset()
     // {
     //     if (button == null)
@@ -39,7 +28,6 @@ public abstract class TowerBaseOld : UnitBaseOld
         //todo 
         // Fake inventory to add  coin 
         // if sell success
-        battleEventManager.RemoveUnit(this);
         towerKitParent.ResetTowerKit();
         Destroy(this.gameObject);
     }
@@ -59,3 +47,4 @@ public abstract class TowerBaseOld : UnitBaseOld
     
     // public abstract void Flag();
 }
+

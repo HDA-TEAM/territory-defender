@@ -18,6 +18,7 @@ public class RouteSetConfig : ScriptableObject
                 for (int j = 0; j < lineRouteSet[i].positionCount; j++)
                 {
                     routeSet[i].Add(lineRouteSet[i].GetPosition(j));
+                    
                 }
             }
         }
@@ -33,7 +34,7 @@ public class RouteSetConfig : ScriptableObject
             {
                 originLineSet[i].gameObject.SetActive(true);
             }
-            originLineSet[i].SetVertexCount(routeSet[i].Count);
+            originLineSet[i].positionCount = routeSet[i].Count;
             
             for (int j = 0; j < originLineSet[i].positionCount; j++)
             {

@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531614a5309f47fca3737b286d1aa0aa, type: 3}
+  m_Name: SpawningConfig_Chap-1_Stage-1
+  m_EditorClassIdentifier: 
+  ChapterKey: 1
+  StageIdKey: 1
+  RoundsInfo:
+  - TotalRoundTimeInSecond: 10
+    WavesInfo:
+    - StartSpawningTimeOfWaveInSecond: 0
+      GroupsInfo:
+      - StartSpawningTimeOfGroupInSecond: 0
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 0
+      - StartSpawningTimeOfGroupInSecond: 1
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 1
+    - StartSpawningTimeOfWaveInSecond: 3
+      GroupsInfo:
+      - StartSpawningTimeOfGroupInSecond: 0
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 0
+  - TotalRoundTimeInSecond: 10
+    WavesInfo:
+    - StartSpawningTimeOfWaveInSecond: 0
+      GroupsInfo:
+      - StartSpawningTimeOfGroupInSecond: 0
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 0
+      - StartSpawningTimeOfGroupInSecond: 1
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 1
+    - StartSpawningTimeOfWaveInSecond: 3
+      GroupsInfo:
+      - StartSpawningTimeOfGroupInSecond: 0
+        ObjectSpawn: 201
+        NumberSpawning: 3
+        RouteId: 0
