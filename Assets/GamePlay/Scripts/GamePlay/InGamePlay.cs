@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class InGamePlay : MonoBehaviour
 {
+    [SerializeField] private bool IsWantSaveToOS;
+    
     [SerializeField] private StageConfigManager stageConfigManager;
     [SerializeField] private RouteSetController routeSetController;
     [SerializeField] private TowerKitSetController towerKitSetController;
@@ -18,9 +20,12 @@ public class InGamePlay : MonoBehaviour
     private void SetUpStageConfig()
     {
         currentStageConfig = stageConfigManager.FindStageConfig(StageIdKey.stage_1, ChapterKey.chap_1);
-        currentStageConfig.SaveToOS(
-            towerKitSetController.CurrentTowerKits, 
-            routeSetController.CurrentRouteLineRenderers);
+        if (IsWantSaveToOS)
+        {
+            currentStageConfig.SaveToOS(
+                towerKitSetController.CurrentTowerKits, 
+                routeSetController.CurrentRouteLineRenderers);   
+        }
         currentStageConfig.LoadFormOs(
             towerKitSetController.CurrentTowerKits, 
             routeSetController.CurrentRouteLineRenderers);
