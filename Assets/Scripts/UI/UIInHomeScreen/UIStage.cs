@@ -1,19 +1,25 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-using UI.UIInHomeScreen;
-
-public class UIStage : MonoBehaviour
+namespace UI.UIInHomeScreen
 {
-    private StageController _stage;
-
-    private void Start()
+    public class UIStage : MonoBehaviour
     {
-        _stage = gameObject.AddComponent<StageController>();
-    }
+        private StageController _stage;
+        [SerializeField] private Button _button;
+        
+        private void Start()
+        {
+            _button.onClick.AddListener(StageLoad);
+        }
 
-    public void StageLoad()
-    { 
-        _stage.Load();
+        public void StageLoad()
+        { 
+            Debug.Log("Stage is open");
+            // _stage = gameObject.AddComponent<StageController>();
+            // _stage.Load();
+        }
     }
 }
+
 

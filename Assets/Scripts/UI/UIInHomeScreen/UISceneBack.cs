@@ -1,17 +1,21 @@
-using System;
 using UnityEngine;
-using UI.UIInHomeScreen;
+using UnityEngine.UI;
 
-public class UISceneBack : MonoBehaviour
+namespace UI.UIInHomeScreen
 {
-    private SceneBackController _sceneBack;
-    private void Start()
+    public class UISceneBack : MonoBehaviour
     {
-        _sceneBack = gameObject.AddComponent<SceneBackController>();
-    }
-
-    public void SceneBack()
-    {
-        _sceneBack.BackFromHeroToHome();
+        private SceneBackController _sceneBack;
+        [SerializeField] private Button _button;
+        private void Start()
+        {
+            _sceneBack = gameObject.AddComponent<SceneBackController>();
+            _button.onClick.AddListener(SceneBackLoad);
+        }
+        private void SceneBackLoad()
+        {
+            _sceneBack.BackFromHeroToHome();
+        }
     }
 }
+

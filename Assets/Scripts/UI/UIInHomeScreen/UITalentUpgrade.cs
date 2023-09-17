@@ -1,20 +1,22 @@
-using System;
 using UnityEngine;
-using UI.UIInHomeScreen;
-using UnityEngine.UI;
-public class UITalentUpgrade : MonoBehaviour
+
+namespace UI.UIInHomeScreen
 {
-    [SerializeField] private GameObject upgradePicture;
-    private TalentUpgradeController _talentUpgrade;
-
-    private void Start()
+    public class UITalentUpgrade : MonoBehaviour
     {
-        //upgradePicture.GetComponent<Image>();
-        _talentUpgrade = gameObject.AddComponent<TalentUpgradeController>();
-    }
+        [SerializeField] private GameObject upgradePicture;
+        private TalentUpgradeController _talentUpgrade;
 
-    public void TalentUpgradeLoad()
-    {
-        _talentUpgrade.Load(upgradePicture);
+        private void Start()
+        {
+            //upgradePicture.GetComponent<Image>();
+            _talentUpgrade = gameObject.AddComponent<TalentUpgradeController>();
+        }
+
+        public void TalentUpgradeLoad()
+        {
+            _talentUpgrade.Load(upgradePicture);
+        }
     }
 }
+

@@ -15,7 +15,7 @@ namespace UI.UIInHomeScreen
         }
     }
     
-    public class StoreController : MonoBehaviour
+    public class ShopController : MonoBehaviour
     {
         [SerializeField] private int scene;
 
