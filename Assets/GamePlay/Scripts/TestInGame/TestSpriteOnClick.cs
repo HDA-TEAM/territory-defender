@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UILandscape : MonoBehaviour
+public class TestSpriteOnClick : MonoBehaviour
 {
-    private void Awake()
+    private void OnMouseDown()
     {
-        throw new NotImplementedException();
+        Debug.Log("OnClick");
     }
 
     // Update is called once per frame

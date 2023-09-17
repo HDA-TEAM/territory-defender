@@ -6,13 +6,9 @@ using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class SetScreenUI : MonoBehaviour
+public class RescaleScreenUI : MonoBehaviour
 {
-
-    // Use this for initialization
     [SerializeField] CanvasScaler canvasUi;
-    [SerializeField] EventSystem dragHold;
-    [SerializeField] Camera scaleModel;
 
     private float scaler;
     private int width;
@@ -25,41 +21,24 @@ public class SetScreenUI : MonoBehaviour
     void Awake()
     {
         SetCanvasScaler();
-        // SetDragThrHold();
     }
 
-    // canvas scale 
-    public void SetCanvasScaler()
+    // Scaling canvas 
+    private void SetCanvasScaler()
     {
         height = Screen.height;
         width = Screen.width;
-        float sceenScale = 16f/9;
+        float screenScale = 16f/9;
         scaler = GetScale(height, width, new Vector2(width, height),1f);
-        if (scaler >= sceenScale)
+        if (scaler >= screenScale)
         {
             if (canvasUi != null)
                 canvasUi.matchWidthOrHeight = 1;
-            if (scaleModel != null)
-                scaleModel.orthographicSize = 5f;
         }
         else
         {
             if (canvasUi != null)
                 canvasUi.matchWidthOrHeight = 0;
-            if (scaleModel != null)
-                scaleModel.orthographicSize = 6;
         }
-        if (scaleModel)
-            scaleModel.orthographicSize = sceenScale / ((float)width / height);
     }
-    // // set draghold with event system
-    // public void SetDragThrHold()
-    // {
-    //     if(dragHold!=null)
-    //     {
-    //         int defaultValue = dragHold.pixelDragThreshold;
-    //         dragHold.pixelDragThreshold = Mathf.Max(defaultValue, (int)(defaultValue * Screen.dpi / 160f));
-    //     }
-    //
-    // }
 }
