@@ -9,7 +9,7 @@ public class StartScreenController : MonoBehaviour
     [SerializeField] private TMP_Text startBtn;
     
     public void ToMainMenu(){
-        GlobalValue.Instance.nextScene = 3;
+        GlobalValue.Instance._nextScene = 3;
         SceneManager.LoadScene(1);
     }
 

@@ -16,8 +16,8 @@ namespace UI.UIInHomeScreen
         public void StageLoad()
         { 
             Debug.Log("Stage is open");
-            // _stage = gameObject.AddComponent<StageController>();
-            // _stage.Load();
+            _stage = gameObject.AddComponent<StageController>();
+            _stage.Load();
         }
     }
 }

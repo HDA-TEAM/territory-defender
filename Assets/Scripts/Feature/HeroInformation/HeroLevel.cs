@@ -7,13 +7,12 @@ namespace Feature.HeroInformation
 {
     public class HeroLevel: MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI levelText;
-        [SerializeField] private TextMeshProUGUI hpText;
-        [SerializeField] private TextMeshProUGUI atkText;
-        [SerializeField] private TextMeshProUGUI defText;
-        [SerializeField] private TextMeshProUGUI rangeText;
-        
-        [SerializeField] private Image experienceBarImage;
+        [SerializeField] private TextMeshProUGUI _levelText;
+        [SerializeField] private TextMeshProUGUI _hpText;
+        [SerializeField] private TextMeshProUGUI _atkText;
+        [SerializeField] private TextMeshProUGUI _defText;
+        [SerializeField] private TextMeshProUGUI _rangeText;
+        [SerializeField] private Image _experienceBarImage;
 
         private void Awake()
         {
@@ -27,32 +26,32 @@ namespace Feature.HeroInformation
 
         private void SetExperienceBarSize(float experienceNormalized)
         {
-            experienceBarImage.fillAmount = experienceNormalized;
+            _experienceBarImage.fillAmount = experienceNormalized;
         }
 
         private void SetLevelNumber(int levelNumber)
         {
-            levelText.text = (levelNumber).ToString();
+            _levelText.text = (levelNumber).ToString();
         }
         
         private void SetHealthPointNumber(int hpNumber)
         {
-            hpText.text = (hpNumber).ToString();
+            _hpText.text = (hpNumber).ToString();
         }
         
         private void SetAttackNumber(int atkNumber)
         {
-            atkText.text = (atkNumber).ToString();
+            _atkText.text = (atkNumber).ToString();
         }
         
         private void SetDefenseNumber(int defNumber)
         {
-            defText.text = (defNumber).ToString();
+            _defText.text = (defNumber).ToString();
         }
         
         private void SetRangeNumber(double rangeNumber)
         {
-            rangeText.text = (rangeNumber).ToString("F2");
+            _rangeText.text = (rangeNumber).ToString("F2");
         }
     }
 }

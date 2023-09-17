@@ -13,17 +13,17 @@ public class LanguagePanelController : MonoBehaviour
 
     public void LangToVietnamese(){
         PlayerPrefs.SetString("Language", "vn");
-        UIString.Instance.language = "vn";
-        StageString.Instance.language = "vn";
-        GlobalValue.Instance.nextScene = SceneManager.GetActiveScene().buildIndex;
+        UIString.Instance._language = "vn";
+        StageString.Instance._language = "vn";
+        GlobalValue.Instance._nextScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(1);
     }
 
     public void LangToEnglish(){
         PlayerPrefs.SetString("Language", "en");
-        UIString.Instance.language = "en";
-        StageString.Instance.language = "en";
-        GlobalValue.Instance.nextScene = SceneManager.GetActiveScene().buildIndex;
+        UIString.Instance._language = "en";
+        StageString.Instance._language = "en";
+        GlobalValue.Instance._nextScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(1);
     }
 

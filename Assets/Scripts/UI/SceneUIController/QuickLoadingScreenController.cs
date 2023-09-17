@@ -42,7 +42,7 @@ public class QuickLoadingScreenController : MonoBehaviour
     
 
     void Start() {
-        scene = GlobalValue.Instance.nextScene;
+        scene = GlobalValue.Instance._nextScene;
         LoadScene();
     }
 

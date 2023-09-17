@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,14 +5,17 @@ namespace UI.UIInHomeScreen
 {
     public class UIHomeMenuController: MonoBehaviour
     {
+        private HeroController _hero;
+        private ShopController _shop;
+
         [SerializeField] private Button _buttonShop;
-        [SerializeField] private Button _buttonHeroInfor;
+        [SerializeField] private Button _buttonHeroInfo;
         [SerializeField] private Button _buttonDictionary;
         [SerializeField] private Button _buttonHistory;
 
         private void Start()
         {
-            _buttonHeroInfor.onClick.AddListener(HeroInformationLoad);
+            _buttonHeroInfo.onClick.AddListener(HeroInformationLoad);
             _buttonShop.onClick.AddListener(ShopLoad);
             _buttonDictionary.onClick.AddListener(DictionaryLoad);
             _buttonHistory.onClick.AddListener(HistoryLoad);
@@ -22,8 +24,8 @@ namespace UI.UIInHomeScreen
         private void HeroInformationLoad()
         {
             Debug.Log("Hero info is open");
-            // _hero = gameObject.AddComponent<HeroController>();
-            //_hero.Load();
+            _hero = gameObject.AddComponent<HeroController>();
+            _hero.Load();
         }
         
         private void ShopLoad()

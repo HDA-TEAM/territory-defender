@@ -5,16 +5,16 @@ namespace Feature.HeroInformation
 {
     public class ButtonSkillDescribe : MonoBehaviour
     {
-        [SerializeField] private Button buttonSkillDescribe;
-        [SerializeField] private Image describeSkillImage;
-        [SerializeField] private SkillTextManage skillTextManage;
+        [SerializeField] private Button _buttonSkillDescribe;
+        [SerializeField] private Image _describeSkillImage;
+        [SerializeField] private SkillTextManage _skillTextManage;
         
-        public Button SkillDescribeButton() => buttonSkillDescribe;
-        public Image DescribeSkillImage() => describeSkillImage;
+        public Button SkillDescribeButton() => _buttonSkillDescribe;
+        public Image DescribeSkillImage() => _describeSkillImage;
 
         public void OnButtonClick()
         {
-            skillTextManage.ClickedSkill(buttonSkillDescribe);
+            _skillTextManage.ClickedSkill(_buttonSkillDescribe);
         }
     }
 }

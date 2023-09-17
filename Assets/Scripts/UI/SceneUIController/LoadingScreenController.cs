@@ -48,7 +48,7 @@ public class LoadingScreenController : MonoBehaviour
     
 
     void Start() {
-        scene = GlobalValue.Instance.nextScene;
+        scene = GlobalValue.Instance._nextScene;
         waiterText.text = UIString.Instance.WaiterText;
         waiter.gameObject.SetActive(false);
         LoadScene();

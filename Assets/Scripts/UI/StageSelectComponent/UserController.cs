@@ -7,8 +7,8 @@ using TMPro;
 
 public class UserController: MonoBehaviour
 {
-    [SerializeField] private TMP_Text username;
-    [SerializeField] private Image expBar;
+    [SerializeField] private TMP_Text _username;
+    [SerializeField] private Image _expBar;
 
    private User _user;
 
@@ -16,16 +16,11 @@ public class UserController: MonoBehaviour
     void Start()
     {
         _user = User.Instance;
-        float expVal = Mathf.Clamp01(_user.exp /0.9f);
-        username.text = _user.username;
-        expBar.fillAmount = expVal;
+        float expVal = Mathf.Clamp01(_user._exp /0.9f);
+        _username.text = _user._username;
+        _expBar.fillAmount = expVal;
     } 
 
-    // Update is called once per frame
-    void Update()
-    {
+    // Update is called once per frame...
 
-       
-    }
-    
 }

@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FadeInOutEffect : MonoBehaviour
 {
-    [SerializeField] private float fadeTime = 1f;
+    [SerializeField] private float _fadeTime = 1f;
     private bool _fadeIn = true;
     private CanvasGroup _canvasGroup;
 
     private IEnumerator FadeCanvasGroup () {
         while (true) {
             if (_fadeIn) {
-                _canvasGroup.alpha += Time.deltaTime / fadeTime;
+                _canvasGroup.alpha += Time.deltaTime / _fadeTime;
             } else {
-                _canvasGroup.alpha -= Time.deltaTime / fadeTime;
+                _canvasGroup.alpha -= Time.deltaTime / _fadeTime;
             }
             yield return null;
 

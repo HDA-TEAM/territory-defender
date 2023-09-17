@@ -8,43 +8,43 @@ namespace UI.UIInHomeScreen
 {
     public class StageController : MonoBehaviour
     {
-        [SerializeField] private int scene;
+        [SerializeField] private int _scene;
         public void Load(){
-            GlobalValue.Instance.nextScene = scene;
+            GlobalValue.Instance._nextScene = _scene;
             SceneManager.LoadScene(4);
         }
     }
     
     public class ShopController : MonoBehaviour
     {
-        [SerializeField] private int scene;
+        [SerializeField] private int _scene;
 
         public void Load()
         {
-            GlobalValue.Instance.nextScene = scene;
+            GlobalValue.Instance._nextScene = _scene;
             SceneManager.LoadScene(6);
         }
     }
 
     public class HeroController : MonoBehaviour
     {
-        [SerializeField] private int scene;
+        [SerializeField] private int _scene;
 
         public void Load()
         {
-            GlobalValue.Instance.nextScene = scene;
+            GlobalValue.Instance._nextScene = _scene;
             SceneManager.LoadScene(7);
         }
     }
 
     public class TalentUpgradeController : MonoBehaviour
     {
-        [SerializeField] private GameObject talentUpgrade;
+        [SerializeField] private GameObject _talentUpgrade;
 
         public void Load(GameObject upgradePicture)
         {
-            talentUpgrade = upgradePicture;
-            talentUpgrade.gameObject.SetActive(true);
+            _talentUpgrade = upgradePicture;
+            _talentUpgrade.gameObject.SetActive(true);
         }
     }
 
@@ -80,12 +80,12 @@ namespace UI.UIInHomeScreen
 
     public class SceneBackController : MonoBehaviour
     {
-        [SerializeField] private int previousSceneIndex;
+        [SerializeField] private int _previousSceneIndex;
         public void BackFromHeroToHome()
         {
             // Load the previous scene in the build settings
-            previousSceneIndex = SceneManager.GetActiveScene().buildIndex - 2;
-            SceneManager.LoadScene(previousSceneIndex);
+            _previousSceneIndex = SceneManager.GetActiveScene().buildIndex - 2;
+            SceneManager.LoadScene(_previousSceneIndex);
         }
     }
 

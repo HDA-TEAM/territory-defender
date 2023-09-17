@@ -6,21 +6,21 @@ namespace Feature.HeroInformation
 {
     public class ButtonChain : MonoBehaviour
     {
-        [SerializeField] private Button button;
-        [SerializeField] private ChangeButtonController characterController;
+        [SerializeField] private Button _button;
+        [SerializeField] private ChangeButtonController _characterController;
         
         private TextMeshProUGUI _text;
-        public Button Button() => button;
+        public Button Button() => _button;
         
         public TextMeshProUGUI Text() => _text;
         private void Awake()
         {
-             _text = button.GetComponentInChildren<TextMeshProUGUI>();
+             _text = _button.GetComponentInChildren<TextMeshProUGUI>();
         }
 
         public void OnButtonClick()
         {
-            characterController.ChangeButtonImagesAndColorText(button);
+            _characterController.ChangeButtonImagesAndColorText(_button);
         }
     }
 
