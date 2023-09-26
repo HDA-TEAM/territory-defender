@@ -618,8 +618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 87420578}
-  characterController: {fileID: 1031417082}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!1 &144647224
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,12 +849,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30158f325e84f31b0622dd4abbbc03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonList:
-  - {fileID: 2138737040}
-  - {fileID: 1393958721}
-  - {fileID: 462274680}
-  positiveImage: {fileID: 21300000, guid: 15517ad18cb90408a88312b4426dc022, type: 3}
-  absoluteImage: {fileID: 21300000, guid: 95a4ce81f4bb841cbbd9f1a20d9feb02, type: 3}
+  _buttonList: []
+  _positiveImage: {fileID: 0}
+  _absoluteImage: {fileID: 0}
 --- !u!1 &211022760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,8 +1546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 462274681}
-  characterController: {fileID: 151744492}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!114 &462274681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1792,8 +1789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 489914964}
-  characterController: {fileID: 1031417082}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!1 &520047168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,12 +2150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e614309b1d46a986318927d14d862a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelText: {fileID: 1496378328}
-  hpText: {fileID: 1742774367}
-  atkText: {fileID: 1722644912}
-  defText: {fileID: 1986343447}
-  rangeText: {fileID: 1101522031}
-  experienceBarImage: {fileID: 1219960714}
+  _levelText: {fileID: 0}
+  _hpText: {fileID: 0}
+  _atkText: {fileID: 0}
+  _defText: {fileID: 0}
+  _rangeText: {fileID: 0}
+  _experienceBarImage: {fileID: 0}
 --- !u!1 &777070062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2296,8 +2293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 811849656}
-  characterController: {fileID: 1031417082}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!114 &811849656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3106,7 +3103,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 771.18, y: 109.53003}
+  m_AnchoredPosition: {x: 771.18005, y: 109.53003}
   m_SizeDelta: {x: -1620, y: -541.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031417082
@@ -3121,12 +3118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30158f325e84f31b0622dd4abbbc03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonList:
-  - {fileID: 811849655}
-  - {fileID: 87420581}
-  - {fileID: 489914967}
-  positiveImage: {fileID: 21300000, guid: 8b1205afbd5694429a93f51e48383520, type: 3}
-  absoluteImage: {fileID: 21300000, guid: 470ea89e198604549b4f1a6d5466e1fd, type: 3}
+  _buttonList: []
+  _positiveImage: {fileID: 0}
+  _absoluteImage: {fileID: 0}
 --- !u!222 &1031417083
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4041,7 +4035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66e90409248a3428b8d2a2cf337b674c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSkillDescribesList:
+  _buttonSkillDescribesList:
   - {fileID: 1980982331}
   - {fileID: 1411540285}
 --- !u!1 &1393958716
@@ -4191,8 +4185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1393958718}
-  characterController: {fileID: 151744492}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!1 &1411540280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4340,9 +4334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a9f524009d14036948aba1405888e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSkillDescribe: {fileID: 1411540282}
-  describeSkillImage: {fileID: 868316303}
-  skillTextManage: {fileID: 1390506485}
+  _buttonSkillDescribe: {fileID: 0}
+  _describeSkillImage: {fileID: 0}
+  _skillTextManage: {fileID: 0}
 --- !u!1 &1487136852
 GameObject:
   m_ObjectHideFlags: 0
@@ -4381,17 +4375,6 @@ RectTransform:
   m_AnchoredPosition: {x: 57, y: 59}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1496378328 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5497528269047242945, guid: c837541e0a7d94160ac818490ea2775a, type: 3}
-  m_PrefabInstance: {fileID: 5497528268356209433}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1584197342
 GameObject:
   m_ObjectHideFlags: 0
@@ -6460,9 +6443,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a9f524009d14036948aba1405888e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSkillDescribe: {fileID: 1980982328}
-  describeSkillImage: {fileID: 940229512}
-  skillTextManage: {fileID: 1390506485}
+  _buttonSkillDescribe: {fileID: 0}
+  _describeSkillImage: {fileID: 0}
+  _skillTextManage: {fileID: 0}
 --- !u!1 &1986343445
 GameObject:
   m_ObjectHideFlags: 0
@@ -6958,8 +6941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 2138737037}
-  characterController: {fileID: 151744492}
+  _button: {fileID: 0}
+  _characterController: {fileID: 0}
 --- !u!1 &2145887633
 GameObject:
   m_ObjectHideFlags: 0
