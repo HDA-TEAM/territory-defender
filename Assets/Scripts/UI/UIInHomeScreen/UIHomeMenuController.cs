@@ -24,8 +24,8 @@ namespace UI.UIInHomeScreen
         private void HeroInformationLoad()
         {
             Debug.Log("Hero info is open");
-            // _hero = gameObject.AddComponent<HeroController>();
-            // _hero.Load();
+            _hero = gameObject.AddComponent<HeroController>();
+            _hero.Load();
         }
         
         private void ShopLoad()
