@@ -29,9 +29,9 @@ public class TowerKitToolsManager : MonoBehaviour
         this.gameObject.SetActive(true);
 
         RemoveTools();
-        
-        btnUpdate.onClick.AddListener(towerBase.TowerUpdate);
-        btnSell.onClick.AddListener(towerBase.TowerSelling);
+        btnUpdate.onClick.AddListener(ShowTest);
+        // btnUpdate.onClick.AddListener(towerBase.TowerUpdate);
+        // btnSell.onClick.AddListener(towerBase.TowerSelling);
         buttonKitTools.onClick.AddListener(ToolKitTurnControl);
         // buttonKitTools.SetActive(false);
         kitToolsContent.SetActive(false);
@@ -39,6 +39,10 @@ public class TowerKitToolsManager : MonoBehaviour
         // btnCamping.onClick.AddListener(towerBase.TowerUpdate);
         //todo 
         // if this tower is troop tower , register btnCamping
+    }
+    void ShowTest()
+    {
+        Debug.Log("hi");
     }
     private void ToolKitTurnControl()
     {
@@ -51,4 +55,6 @@ public class TowerKitToolsManager : MonoBehaviour
         btnCamping.onClick.RemoveAllListeners();
         buttonKitTools.onClick.RemoveAllListeners();
     }
+    
+    
 }

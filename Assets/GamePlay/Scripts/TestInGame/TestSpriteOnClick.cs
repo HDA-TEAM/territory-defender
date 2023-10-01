@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class TestSpriteOnClick : MonoBehaviour
 {
+    private void Start()
+    {
+        Debug.Log("hello");
+    }
     private void OnMouseDown()
     {
         Debug.Log("OnClick");

@@ -1,39 +1,38 @@
 using GamePlay.Scripts.Tower;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "TowerKitSet_", menuName = "ScriptableObject/Stage/TowerKitSetConfig")]
+[CreateAssetMenu(fileName = "TowerKitSetConfig_", menuName = "ScriptableObject/Database/Stage/TowerKitSetConfig")]
 public class TowerKitSetConfig : ScriptableObject
 {
-    [SerializeField] private List<Vector2> towerKitLocation = new List<Vector2>();
-    public int CountNumberTowerKit()
+    [FormerlySerializedAs("towerKitLocation")]
+    [SerializeField] private List<Vector3> _towerKitLocation = new List<Vector3>();
+    public void SaveTowerKitPositionToConfig(List<TowerKit> towerKITs)
     {
-        return towerKitLocation.Count;
-    }
-    public void SaveTowerKitPositionToOs(List<TowerKitManager> towerKITs)
-    {
-        towerKitLocation.Clear();
-        foreach (TowerKitManager tk in towerKITs)
+        // Clear config
+        _towerKitLocation.Clear();
+        
+        foreach (TowerKit tk in towerKITs)
         {
-            if (tk.gameObject.activeSelf == true)
-            {
-                towerKitLocation.Add(tk.gameObject.transform.position );
-            }
+            // Check if this Kit available to save
+            if (tk.gameObject.activeSelf)
+                _towerKitLocation.Add(tk.gameObject.transform.position );
         }
     }
-    public void LoadTowerKitsPositionFromOs(List<TowerKitManager> towerKITs)
+    public void LoadTowerKitsPositionFromConfig(List<TowerKit> towerKITs)
     {
-        for (int i = 0; i < this.towerKitLocation.Count; i++)
+        for (int i = 0; i < this._towerKitLocation.Count; i++)
         {
-            if (towerKITs[i].gameObject.activeSelf == false)
-            {
+            // Check if this Kit available to save
+            if (!towerKITs[i].gameObject.activeSelf)
                 towerKITs[i].gameObject.SetActive(true);
                 
-            }
+            // Save position of kit
             towerKITs[i].transform.position =  new Vector3(
-                this.towerKitLocation[i].x,
-                this.towerKitLocation[i].y,
-                0f);
+                _towerKitLocation[i].x,
+                _towerKitLocation[i].y,
+                _towerKitLocation[i].z);
         }
     }
 }

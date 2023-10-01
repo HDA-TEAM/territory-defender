@@ -1,10 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class StageSpawningMachine : MonoBehaviour
 {
-    [SerializeField] private StageSpawningInformation stageSpawningInformation;
+    [FormerlySerializedAs("stageSpawningInformation")]
+    [SerializeField] private StageSpawningConfig stageSpawningConfig;
     private void StartSpawning()
     {
-        stageSpawningInformation.StartSpawning();
+        stageSpawningConfig.StartSpawning();
     }
 }

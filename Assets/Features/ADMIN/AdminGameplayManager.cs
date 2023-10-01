@@ -8,7 +8,7 @@ namespace Features.ADMIN
     {
         private int _currentStageId;
         [SerializeField] AdminTowerKitManager adminTowerKitManager;
-        [SerializeField] List<StageConfig> _stages;
+        [SerializeField] List<OldStageConfig> _stages;
         public void ChangeStage()
         {
             LoadMap();

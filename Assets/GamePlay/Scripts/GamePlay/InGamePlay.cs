@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class InGamePlay : MonoBehaviour
@@ -10,8 +11,9 @@ public class InGamePlay : MonoBehaviour
     [SerializeField] private RouteSetController routeSetController;
     [SerializeField] private TowerKitSetController towerKitSetController;
     [SerializeField] private Button callWave;
-    private StageConfig currentStageConfig;
-    [SerializeField] private StageSpawningInformation stageSpawningInformation;
+    private OldStageConfig _currentOldStageConfig;
+    [FormerlySerializedAs("stageSpawningInformation")]
+    [SerializeField] private StageSpawningConfig stageSpawningConfig;
     private void Awake()
     {
         SetUpStageConfig();
@@ -19,16 +21,16 @@ public class InGamePlay : MonoBehaviour
     }
     private void SetUpStageConfig()
     {
-        currentStageConfig = stageConfigManager.FindStageConfig(StageIdKey.stage_1, ChapterKey.chap_1);
-        if (IsWantSaveToOS)
-        {
-            currentStageConfig.SaveToOS(
-                towerKitSetController.CurrentTowerKits, 
-                routeSetController.CurrentRouteLineRenderers);   
-        }
-        currentStageConfig.LoadFormOs(
-            towerKitSetController.CurrentTowerKits, 
-            routeSetController.CurrentRouteLineRenderers);
+        _currentOldStageConfig = stageConfigManager.FindStageConfig(StageIdKey.stage_1, ChapterKey.chap_1);
+        // if (IsWantSaveToOS)
+        // {
+        //     _currentOldStageConfig.SaveToOS(
+        //         towerKitSetController.CurrentTowerKits, 
+        //         routeSetController.CurrentRouteLineRenderers);   
+        // }
+        // _currentOldStageConfig.LoadFormOs(
+        //     towerKitSetController.CurrentTowerKits, 
+        //     routeSetController.CurrentRouteLineRenderers);
     }
     private void OnCallWave()
     {
@@ -37,6 +39,6 @@ public class InGamePlay : MonoBehaviour
     private void StartSpawning()
     {
         Debug.Log("Start Spawning");
-        stageSpawningInformation.StartSpawning();
+        stageSpawningConfig.StartSpawning();
     }
 }

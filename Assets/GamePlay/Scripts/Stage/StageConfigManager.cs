@@ -14,7 +14,7 @@ public enum StageIdKey
 }
 public class StageConfigManager : MonoBehaviour
     {
-        [SerializeField] private List<StageConfig> stages;
+        [SerializeField] private List<OldStageConfig> stages;
         // [SerializeField] private TowerKITManager towerKitManager;
         // [SerializeField] private RouteSetManager routeSetManager;
         // [SerializeField] private TowerKitSetConfigManager _towerKitSetConfigManager;
@@ -37,7 +37,7 @@ public class StageConfigManager : MonoBehaviour
         //         }
         //     }
         // }
-        public StageConfig FindStageConfig(StageIdKey stageId, ChapterKey chapterKey)
+        public OldStageConfig FindStageConfig(StageIdKey stageId, ChapterKey chapterKey)
         {
             foreach (var stageConfig in stages)
             {

@@ -27,6 +27,7 @@ public struct TowerCanBuild
 //             TowerBehavious.gameObject.SetActive(true);
 //         });
 //     }
+
 // }
 public class TowerKitBuildManager: MonoBehaviour
 {
@@ -76,17 +77,17 @@ public class TowerKitBuildManager: MonoBehaviour
     }
     private void BuildTower(TowerCanBuild towerCanBuild)
     {
-        GameObject tower = Instantiate(towerCanBuild.gameObject,this.transform,false);
-        
-        var towerScript = tower.GetComponent<TowerBase>();
-        towerScript.TowerBuild(parentKitManager);
-
-        DeactivateBuildKit();
-
-        parentKitManager.SetupToolsKit(towerScript);
-        
-        //todo
-        // reduce coin
+        // GameObject tower = Instantiate(towerCanBuild.gameObject,this.transform,false);
+        //
+        // var towerScript = tower.GetComponent<TowerBase>();
+        // towerScript.TowerBuild(parentKitManager);
+        //
+        // DeactivateBuildKit();
+        //
+        // parentKitManager.SetupToolsKit(towerScript);
+        //
+        // //todo
+        // // reduce coin
     }
     public void DeactivateBuildKit()
     {

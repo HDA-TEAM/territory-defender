@@ -1,18 +1,29 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RouteSetController : MonoBehaviour
 {
-    [SerializeField] private List<LineRenderer> currentRouteLineRenders = new List<LineRenderer>();
+    [FormerlySerializedAs("currentRouteLineRenders")]
+    [SerializeField] private List<LineRenderer> _currentRouteLineRenders = new List<LineRenderer>();
+    [SerializeField] private StageDataAsset _stageDataAsset;
+
+    private StageConfig _stageConfig;
     public List<LineRenderer> CurrentRouteLineRenderers
     {
         get
         {
-            return currentRouteLineRenders;
+            return _currentRouteLineRenders;
         } 
         set
         {
-            currentRouteLineRenders = value;
+            _currentRouteLineRenders = value;
         }
+    }
+    private void Start()
+    {
+        _stageConfig = _stageDataAsset.GetStageConfig();
+        _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
     }
 }

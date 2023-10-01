@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1136347050768493609}
+  - component: {fileID: 3863561784080980402}
   - component: {fileID: 1136347050768493608}
   m_Layer: 0
   m_Name: Route
@@ -17,8 +17,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1136347050768493609
-RectTransform:
+--- !u!4 &3863561784080980402
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -32,11 +32,6 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!120 &1136347050768493608
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -78,35 +73,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: -59.420155, y: 1.6089523, z: -51.185806}
-  - {x: -54.807182, y: 1.7531062, z: -51.185806}
-  - {x: -46.013695, y: 1.4647951, z: -51.185806}
-  - {x: -41.833183, y: 0.744019, z: -51.185806}
-  - {x: -38.51761, y: 0.45570788, z: -51.185806}
-  - {x: -35.778652, y: 0.45570788, z: -51.185806}
-  - {x: -31.453987, y: 0.59986174, z: -51.185806}
-  - {x: -26.264389, y: 0.16739678, z: -51.185806}
-  - {x: -22.804657, y: -0.4092254, z: -51.185806}
-  - {x: -19.344927, y: -0.4092254, z: -51.185806}
-  - {x: -15.596884, y: -0.55338097, z: -51.185806}
-  - {x: -8.965727, y: -1.4183143, z: -51.185806}
-  - {x: -4.2085657, y: -2.715677, z: -51.395325}
-  - {x: 1.4135017, y: -3.8689198, z: -51.395325}
-  - {x: 5.449856, y: -4.3013864, z: -51.395325}
-  - {x: 10.495294, y: -5.0221643, z: -51.395325}
-  - {x: 14.81996, y: -5.742942, z: -51.395325}
-  - {x: 19.721249, y: -6.3195643, z: -51.395325}
-  - {x: 24.190102, y: -7.4727983, z: -51.4682}
-  - {x: 28.514769, y: -8.770198, z: -51.4682}
-  - {x: 32.69528, y: -9.923443, z: -51.4682}
-  - {x: 37.019943, y: -10.932529, z: -51.4682}
-  - {x: 41.777077, y: -11.797462, z: -51.4682}
-  - {x: 45.669273, y: -12.950707, z: -51.4682}
-  - {x: 49.849785, y: -14.392263, z: -51.4682}
-  - {x: 53.16536, y: -14.9688835, z: -51.4682}
-  - {x: 56.33678, y: -15.2571945, z: -51.4682}
-  - {x: 59.075733, y: -15.40135, z: -51.4682}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

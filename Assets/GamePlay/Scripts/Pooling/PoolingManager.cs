@@ -21,7 +21,7 @@ public struct PoolingComposite
     public PoolingTypeEnum poolingType;
     public GameObject prefab;
 }
-public class PoolingManager : Singleton<PoolingManager>
+public class PoolingManager : SingletonBase<PoolingManager>
 {
     [SerializeField] private List<UnitPooling> poolingList;
     private Dictionary<PoolingTypeEnum, PoolingBase> dictPooling = new Dictionary<PoolingTypeEnum, PoolingBase>();
