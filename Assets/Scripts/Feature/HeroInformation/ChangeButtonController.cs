@@ -6,7 +6,7 @@ namespace Feature.HeroInformation
 {
     public class ChangeButtonController : MonoBehaviour
     {
-        public List<ButtonChain> _buttonList;
+        [SerializeField] private List<ButtonChain> _buttonList;
         
         [SerializeField] private Sprite _positiveImage;
         [SerializeField] private Sprite _absoluteImage;
@@ -16,18 +16,24 @@ namespace Feature.HeroInformation
         
         private readonly string _hexAbsoluteColor = "#323232"; // Replace this with your desired hexadecimal color
         private  Color _absoluteColor;
-        
-        public void ChangeButtonImagesAndColorText(Button clickedButton)
+
+        private void Start()
         {
+            foreach (var buttonChain in _buttonList)
+            {
+                buttonChain.SetUp(ChangeButtonImagesAndColorText);
+            }
+        }
+
+        private void ChangeButtonImagesAndColorText(Button clickedButton)
+        {        
             if (ColorUtility.TryParseHtmlString(_hexPositiveColor, out _positiveColor) &&
                 ColorUtility.TryParseHtmlString(_hexAbsoluteColor, out _absoluteColor))
             {
                 foreach (ButtonChain buttonChain in _buttonList)
                 {
-                    
                     buttonChain.Button().image.sprite = buttonChain.Button() == clickedButton ? _positiveImage : _absoluteImage;
-                    
-                    
+
                     if (buttonChain.Text() != null)
                     {
                         buttonChain.Text().color = buttonChain.Button() == clickedButton ? _positiveColor : _absoluteColor;
