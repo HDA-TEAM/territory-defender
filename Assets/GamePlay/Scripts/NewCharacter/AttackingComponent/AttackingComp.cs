@@ -4,6 +4,7 @@ using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public enum AttackingType
 {
@@ -23,8 +24,10 @@ public class AttackingComp : UnitBaseComponent
     [SerializeField] private float attackingDamage;
     [SerializeField] private float attackingRange;
 
+    [FormerlySerializedAs("bulletDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private BulletDataAsset bulletDataAsset;
+    [SerializeField] private ProjectileDataAsset _projectileDataAsset;
+    [SerializeField] private UnitId _projectileId;
 
     private bool canAttacking = true;
 
@@ -64,7 +67,10 @@ public class AttackingComp : UnitBaseComponent
 
                         Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
                         // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
-                        bulletDataAsset.GetLineRoute(startAttackPoint.position, BulletType.Arrow, target);
+                       
+                        var prjBase = _projectileDataAsset.GetProjectileBase(_projectileId);
+                        prjBase.GetProjectileMovement().GetLineRoute(startAttackPoint.position, EProjectileType.Arrow, target);
+                        
                         await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
 
                         canAttacking = true;
