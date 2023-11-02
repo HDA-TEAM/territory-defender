@@ -6,7 +6,7 @@ public enum TowerId
 {
     ArcherTower = 1,
     SpearTower = 20,
-    CanonTower = 40,
+    ElephantTower = 40,
     DrumTower = 60
 }
 

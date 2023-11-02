@@ -29,8 +29,9 @@ public class PoolingController : SingletonBase<PoolingController>
     [SerializeField] private List<UnitPooling> poolingList;
     private Dictionary<UnitId, PoolingBase> dictPooling = new Dictionary<UnitId, PoolingBase>();
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         SetUp();
     }
     private void SetUp()

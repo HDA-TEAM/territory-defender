@@ -110,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 6093051815202494009}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d351f34dd4f47472388e52bf210483aa, type: 2}
+  m_Controller: {fileID: 9100000, guid: 80a7f2ab45180400caff63f09db70bc8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: -7030754689199355094}
   startAttackPoint: {fileID: 8934224768507753962}
   attackingType: 0
   attackingCooldown: 1

@@ -28,8 +28,9 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
     {
         _currentTowerKits = GetComponentsInChildren<TowerKit>().ToList();
     }
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         SetUpData();
     }
     private void SetUpData()
