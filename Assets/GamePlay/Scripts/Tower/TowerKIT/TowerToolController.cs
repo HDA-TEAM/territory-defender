@@ -13,12 +13,6 @@ public class TowerToolController : MonoBehaviour
         _towerToolBases.Clear();
         _towerToolBases = gameObject.GetComponentsInChildren<TowerToolBase>().ToList();
         foreach (TowerToolBase towerToolBase in _towerToolBases)
-        {
             towerToolBase.Reset();
-        }
     }
-    private void Start()
-    {
-    }
-    
 }

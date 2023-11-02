@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckingCombatJoinIn : MonoBehaviour
+public class CheckingCombatJoinInComp : MonoBehaviour
 {
     private Dictionary<AttackingType, UnitBase> dicCurCombatMember;
     public bool CheckingCanJoinIn(UnitBase current)

@@ -4,19 +4,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public enum CharacterSide
 {
     Ally = 1,
     Enemy = 2,
 }
+
 public class TargetDetecting : MonoBehaviour
 {
-    [SerializeField] private CharacterSide characterSideNeedToTarget;
-    [SerializeField] private float rangeDetecting;
-    private List<UnitBase> targets = new List<UnitBase>();
+    [SerializeField] private CharacterSide _characterSideNeedToTarget;
+    [SerializeField] private float _rangeDetecting;
+    private readonly List<UnitBase> _targets = new List<UnitBase>();
     private UnitBase _baseUnitBase;
-   
+    private UnitBase _curTarget;
+
     private void Awake()
     {
         Validate();
@@ -35,60 +38,63 @@ public class TargetDetecting : MonoBehaviour
     {
         CheckingTarget();
     }
-    private UnitBase prevTarget = null;
     private void CheckingTarget()
     {
-        UnitBase curTarget = null;
-        if (targets.Count > 0)
+        _curTarget = null;
+        if (_targets.Count > 0)
         {
-            if (targets[0] == null)
-            {
-                targets.RemoveAt(0);
-            }
+            if (_targets[0] == null)
+                _targets.RemoveAt(0);
             else
             {
                 //todo
                 //add condition to Set target By CheckingCombatJoinIn
-                curTarget = targets[0];
+                _curTarget = _targets[0];
             }
         }
         else
-        {
-            curTarget = null;
-        }
+            _curTarget = null;
+
         // if (prevTarget == curTarget)
         //     return;
         // else
-        _baseUnitBase.OnCharacterChange?.Invoke(curTarget); 
+        _baseUnitBase.OnCharacterChange?.Invoke(_curTarget);
 
     }
     private void OnTriggerStay2D(Collider2D other)
     {
         // Debug.Log("other.gameObject Stay " + other.tag);
         // Debug.Log(GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject,other.gameObject));
-        if (other.gameObject.CompareTag(characterSideNeedToTarget.ToString())
-            && GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject,other.gameObject) < rangeDetecting)
+        if (!other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
+            return;
+
+        if (GameObjectUtility.Distance2dOfTwoGameObject(gameObject, other.gameObject) < _rangeDetecting)
         {
             UnitBase target = other.gameObject.GetComponent<UnitBase>();
-            // Debug.Log("target " + target);
-            if (target != null && !targets.Exists( (t) => t == target))
+            if (target != null && !_targets.Exists((t) => t == target))
             {
-                targets.Add(target);
+                _targets.Add(target);
                 Debug.Log("target add ");
             }
         }
+        else
+            TryRemoveFromTargetList(other);
     }
+    /// handle case object is deActive
     private void OnTriggerExit2D(Collider2D other)
     {
         // Debug.Log("other.gameObject exit " + other.tag);
-        if (other.gameObject.CompareTag(characterSideNeedToTarget.ToString()))
+        if (other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
         {
-            UnitBase target = other.gameObject.GetComponent<UnitBase>();
-            if (target != null && targets.Exists( (t) => t == target))
-            {
-                targets.Remove(target);
-            }
+            TryRemoveFromTargetList(other);
+        }
+    }
+    private void TryRemoveFromTargetList(Collider2D other)
+    {
+        UnitBase target = other.gameObject.GetComponent<UnitBase>();
+        if (target != null && _targets.Exists((t) => t == target))
+        {
+            _targets.Remove(target);
         }
     }
 }
-

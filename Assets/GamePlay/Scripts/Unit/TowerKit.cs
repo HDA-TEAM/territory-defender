@@ -11,37 +11,40 @@ public enum TowerKitState
     TowerExisted = 2,
     Hiding = 3,
 }
+
 public class TowerKit : MonoBehaviour
 {
-    [Header("Event"),Space(12)]
+    [Header("Event"), Space(12)]
     [SerializeField] private Button _btn;
-    
-    [Header("UI"),Space(12)]
+
+    [Header("UI"), Space(12)]
     [SerializeField] private CanvasGroup _canvasGroupBtn;
     [SerializeField] private GameObject _towerBuildTool;
     [SerializeField] private GameObject _towerUsingTool;
     [SerializeField] private GameObject _spawnTowerHolder;
-    
-    [Header("Data"),Space(12)]
+
+    [Header("Data"), Space(12)]
     [SerializeField] private TowerDataAsset _towerDataAsset;
-    
+
     // Internal
     private TowerKitState _towerKitState;
     private TowerKitState TowerKitState
     {
-        get {
+        get
+        {
             return _towerKitState;
         }
-        set {
+        set
+        {
             _towerKitState = value;
             SetMenuState();
         }
     }
     private GameObject _towerEntity;
-    
+
     // call back
     private Action<TowerKit> _onSelected;
-    
+
     private void Start()
     {
         TowerKitState = TowerKitState.Default;
@@ -49,10 +52,10 @@ public class TowerKit : MonoBehaviour
     }
     private void OnSelected()
     {
-        Debug.LogError("Kit Selected " + this );
+        Debug.LogError("Kit Selected " + this);
         _onSelected?.Invoke(this);
         TowerKitState = _towerEntity ? TowerKitState.TowerExisted : TowerKitState.Building;
-        
+
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             IsOn = true,
@@ -71,28 +74,28 @@ public class TowerKit : MonoBehaviour
         _towerUsingTool.SetActive(false);
         switch (_towerKitState)
         {
-            case TowerKitState.Default :
-            {
-                _canvasGroupBtn.alpha = 1f;
-                _canvasGroupBtn.interactable = true;
-                return;
-            }
-            case TowerKitState.Building :
-            {
-                _canvasGroupBtn.alpha = 1f;
-                _towerBuildTool.SetActive(true);
-                return;
-            }
-            case TowerKitState.TowerExisted :
-            {
-                _towerUsingTool.SetActive(true);
-                return;
-            }
-            case TowerKitState.Hiding :
-            {
-                _canvasGroupBtn.interactable = true;
-                return;
-            }
+            case TowerKitState.Default:
+                {
+                    _canvasGroupBtn.alpha = 1f;
+                    _canvasGroupBtn.interactable = true;
+                    return;
+                }
+            case TowerKitState.Building:
+                {
+                    _canvasGroupBtn.alpha = 1f;
+                    _towerBuildTool.SetActive(true);
+                    return;
+                }
+            case TowerKitState.TowerExisted:
+                {
+                    _towerUsingTool.SetActive(true);
+                    return;
+                }
+            case TowerKitState.Hiding:
+                {
+                    _canvasGroupBtn.interactable = true;
+                    return;
+                }
             default: throw new ArgumentOutOfRangeException();
         }
     }

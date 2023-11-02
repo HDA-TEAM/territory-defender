@@ -24,7 +24,7 @@ public class BulletDataAsset : ScriptableObject
     [SerializeField] private AnimationCurve bowAttackCurve;
     public void GetLineRoute(Vector2 posSpawn, BulletType bulletType,UnitBase target)
     {
-        var bullet = PoolingManager.Instance.SpawnObject(PoolingTypeEnum.ArrowBullet,posSpawn);
+        var bullet = PoolingController.Instance.SpawnObject(UnitId.ArrowBullet,posSpawn);
         new ProjectileTrajectoryRouteLine().ApplyLineRoute(bullet, target, bowAttackCurve);
     }
 }
@@ -107,7 +107,7 @@ public class ProjectileTrajectoryRouteLine : WeaponLineRoute
             .OnComplete(
                 () =>
                 {
-                    target.GetComponent<HealthComp>().PlayHurting(10);
+                    target.HealthComp().PlayHurting(10);
                     curWeapon.SetActive(false);
                 });
     }

@@ -1,52 +1,48 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Serialization;
 
-// [RequireComponent(typeof(HealthComp),
-//     typeof(HealthComp))]
 public class UnitBase : MonoBehaviour
 {
-    [SerializeField] private CharacterStateSystem characterStateSystem;
-    [SerializeField] private TargetDetecting targetDetecting;
-    [SerializeField] private HealthComp healthComp;
-    [SerializeField] private Attacking attacking;
-    [SerializeField] private CheckingCombatJoinIn checkingCombatJoinIn;
-    public CharacterStateSystem CharacterStateSystem () =>  characterStateSystem;
-    public TargetDetecting TargetDetecting () => targetDetecting;
-    public HealthComp HealthComp () =>  healthComp;
-    public Attacking Attacking () =>  attacking;
-    public CheckingCombatJoinIn CheckingCombatJoinIn () => checkingCombatJoinIn;
+    // [SerializeField] private CharacterConfig _characterConfig;
+    #region Component
+    [SerializeField] private CharacterStateSystem _characterStateSystem;
+    [SerializeField] private TargetDetecting _targetDetecting;
+    [SerializeField] private HealthComp _healthComp;
+    [SerializeField] private AttackingComp _attackingComp;
+    [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
+    [SerializeField] private Stats _unitStatsComp;
+    #endregion
+
+    #region Access
+    protected CharacterStateSystem CharacterStateSystem() => _characterStateSystem;
+    protected TargetDetecting TargetDetecting() => _targetDetecting;
+    public HealthComp HealthComp() => _healthComp;
+    public AttackingComp AttackingComp() => _attackingComp;
+    public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
+    
+    public Stats UnitStatsComp() => _unitStatsComp;
+    #endregion
+
+    #region Validate
+    private void OnValidate()
+    {
+        _characterStateSystem ??= GetComponent<CharacterStateSystem>(); 
+        _targetDetecting ??= GetComponent<TargetDetecting>(); 
+        _healthComp ??= GetComponent<HealthComp>(); 
+        _attackingComp ??= GetComponent<AttackingComp>();
+        _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
+    }
+    #endregion
+
+
 
     #region Event
-        public Action<UnitBase> OnCharacterChange;
+    public Action<UnitBase> OnCharacterChange;
+    public Action OnUpdateStats;
     #endregion
-    
-    private void Reset()
-    {
-        if(characterStateSystem == null)
-            characterStateSystem = GetComponent<CharacterStateSystem>();
-        if(targetDetecting == null)
-            targetDetecting = GetComponent<TargetDetecting>();
-        if(healthComp == null)
-            healthComp = GetComponent<HealthComp>();
-        if(attacking == null)
-            attacking = GetComponent<Attacking>();
-        // if(characterStateSystem == null)
-        //     characterStateSystem = GetComponent<CharacterStateSystem>();
-        // if(targetDetecting == null)
-        //     targetDetecting = GetComponent<TargetDetecting>();
-        
-        
-    }
 }
-// #region Event
-// public struct TargetChangingPayload
-// {
-//     public Character target;
-// }
-//     
-// #endregion
+
 public enum CharacterState
 {
     Idle = 0,
@@ -56,8 +52,27 @@ public enum CharacterState
     TakingDame = 4,
     Die = 5
 }
+
 public class CharacterStateSystem : MonoBehaviour
 {
     private CharacterState currentState;
     public CharacterState CurrentState() => currentState;
+}
+
+public class UnitBaseComponent : MonoBehaviour
+{
+    [SerializeField] protected UnitBase _unitBaseParent;
+    private void OnValidate() => _unitBaseParent ??= GetComponent<UnitBase>();
+    protected virtual void StatsUpdate()
+    {
+        
+    }
+    private void Awake()
+    {
+        _unitBaseParent.OnUpdateStats += StatsUpdate;
+    }
+    private void OnDestroy()
+    {
+        _unitBaseParent.OnUpdateStats -= StatsUpdate;
+    }
 }

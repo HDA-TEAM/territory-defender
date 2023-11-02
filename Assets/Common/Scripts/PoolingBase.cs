@@ -20,13 +20,11 @@ public class PoolingBase : MonoBehaviour
     {
         poolObjects = new List<GameObject>();
         for (int i = 0; i < initNumber; i++)
-        {
             poolObjects.Add(InitObjectInstance());
-        }
     }
     private GameObject InitObjectInstance()
     {
-        GameObject instance = Instantiate(prefab,parent.transform,false);
+        GameObject instance = Instantiate(prefab);
         instance.gameObject.transform.SetParent(parent.transform);
         instance.gameObject.SetActive(false);
         return instance;
@@ -34,19 +32,12 @@ public class PoolingBase : MonoBehaviour
     public GameObject GetInstance()
     {
         foreach (GameObject i in poolObjects)
-        {
             if (i.gameObject.activeSelf == false)
-            {
                 return i;
-            }
-        }
         GameObject go = InitObjectInstance();
         poolObjects.Add(go);
         return go;
     }
-    public void ReturnPool(GameObject gameObject)
-    {
-        gameObject.gameObject.SetActive(false);
-    }
-        
+    public void ReturnPool(GameObject gameObject) => gameObject.gameObject.SetActive(false);
+
 }

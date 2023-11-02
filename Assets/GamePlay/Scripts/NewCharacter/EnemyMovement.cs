@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EnemyMovement : MonoBehaviour
+public class EnemyMovement : UnitBaseComponent
 {
     [SerializeField] private LineRenderer routeToGate;
     [SerializeField] private float movementSpeed;
@@ -26,26 +26,20 @@ public class EnemyMovement : MonoBehaviour
     private int currentIndexInRouteLine = 0;
 
     private bool IsMovingToGate = true;
-    private UnitBase _baseUnitBase;
 
-    private void Awake()
+    protected override void StatsUpdate()
     {
-        Validate();
+        var stats = _unitBaseParent.UnitStatsComp();
+        movementSpeed = stats.GetStat(StatId.Movement);
     }
-    private void Validate()
-    {
-        if (_baseUnitBase == null)
-            _baseUnitBase = GetComponent<UnitBase>();
-        // if (routeToGate == null)
-        //     routeToGate = RouteSetController.Instance.CurrentRouteLineRenderers[0];
-    }
+    
     private void OnEnable()
     {
-        _baseUnitBase.OnCharacterChange += OnTargetChanging;
+        _unitBaseParent.OnCharacterChange += OnTargetChanging;
     }
     private void OnDisable()
     {
-        _baseUnitBase.OnCharacterChange -= OnTargetChanging;
+        _unitBaseParent.OnCharacterChange -= OnTargetChanging;
     }
     private void Update()
     {

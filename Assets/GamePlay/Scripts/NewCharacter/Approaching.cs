@@ -40,9 +40,8 @@ public class Approaching : MonoBehaviour
     private void TargetApproaching(UnitBase target)
     {
         if (target == null)
-        {
             return;
-        }
+        
         if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) > attackingRange)
         {
             gameObject.transform.position = VectorUtility.Vector2MovingAToB(this.transform.position, target.transform.position, movingSpeed);

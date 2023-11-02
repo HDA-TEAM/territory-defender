@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class RouteSetController : MonoBehaviour
+public class RouteSetController : SingletonBase<RouteSetController>
 {
     [FormerlySerializedAs("currentRouteLineRenders")]
     [SerializeField] private List<LineRenderer> _currentRouteLineRenders = new List<LineRenderer>();

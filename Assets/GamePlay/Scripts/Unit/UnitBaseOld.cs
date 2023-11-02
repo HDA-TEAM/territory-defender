@@ -23,7 +23,7 @@ namespace GamePlay.Scripts.Unit
     }
     public abstract class UnitBaseOld : MonoBehaviour
     {
-        public UnitConfig unitConfig;
+        
         public ICombatConfigRule CombatConfigRule;
         public CombatConfigRule CurrentCombatConfig;
         public UnitType unitType;
@@ -33,7 +33,6 @@ namespace GamePlay.Scripts.Unit
         public UnitAttribute unitAttribute;
         protected virtual void Awake()
         {
-            unitAttribute = new UnitAttribute(unitConfig);
             if (battleEventManager == null)
             {
                 battleEventManager = GameObject.FindObjectOfType<BattleEventManager>();

@@ -20,6 +20,7 @@ public class StageSpawningConfig : ScriptableObject
             await UniTask.Delay(TimeSpan.FromSeconds(round.TotalRoundTimeInSecond));
         }
     }
+
     [Serializable]
     public class RoundSpawningInformation
     {
@@ -71,7 +72,7 @@ public class StageSpawningConfig : ScriptableObject
     {
         [Header("Detail type of spawning objects config")]
         public float StartSpawningTimeOfGroupInSecond;
-        public PoolingTypeEnum ObjectSpawn;
+        public UnitId ObjectSpawn;
         public int NumberSpawning;
         public int RouteId;
         public async void StartSpawning()
@@ -79,18 +80,25 @@ public class StageSpawningConfig : ScriptableObject
             for (int i = 0; i < NumberSpawning; i++)
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(StageConsts.MinSpawningObjectIntervalInSecond));
-                
-                GameObject go = PoolingManager.Instance.SpawnObject(ObjectSpawn);
-                go.TryGetComponent<EnemyMovement>(out EnemyMovement component);
+
+                GameObject go = PoolingController.Instance.SpawnObject(ObjectSpawn);
+
                 Debug.Log("Spawning " + ObjectSpawn);
-                
-                var routeSet = GameObject.Find("RouteSet");
-                routeSet.TryGetComponent<RouteSetController>(out RouteSetController routeSetController);
-                component.RouteToGate = routeSetController.CurrentRouteLineRenderers[RouteId];
-                go.transform.position = component.RouteToGate.GetPosition(0);
+
+                SetRoute(go);
+                UpdateStats(go);
             }
+        }
+        private void SetRoute(GameObject go)
+        {
+            go.TryGetComponent(out EnemyMovement component);
+            component.RouteToGate = RouteSetController.Instance.CurrentRouteLineRenderers[RouteId];
+            go.transform.position = component.RouteToGate.GetPosition(0);
+        }
+        private void UpdateStats(GameObject go)
+        {
+            go.TryGetComponent(out UnitBase component);
+            component.OnUpdateStats?.Invoke();
         }
     }
 }
-
-

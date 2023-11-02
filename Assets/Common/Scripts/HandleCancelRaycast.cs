@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HandleCancelRaycast : MonoBehaviour
 {
-    [SerializeField] private Button _button; 
+    [SerializeField] private Button _button;
     [SerializeField] private CanvasGroup _canvasGroup;
 
     private Action _callback;
@@ -27,7 +27,7 @@ public class HandleCancelRaycast : MonoBehaviour
         _canvasGroup.blocksRaycasts = false;
         _callback?.Invoke();
     }
-    
+
 }
 
 public struct HandleCancelRaycastPayload
