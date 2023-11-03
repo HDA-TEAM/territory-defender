@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TrungNhiSO", menuName = "Champion/TrungNhiScriptableObject", order = 2)]
+[CreateAssetMenu(fileName = "TrungNhiSO", menuName = "Champion/TrungNhiSO", order = 2)]
 public class TrungNhiSO : ScriptableObject
 {
     //attack property

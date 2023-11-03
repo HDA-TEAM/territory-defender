@@ -8,7 +8,7 @@ namespace Feature.HeroInformation
     public class ButtonChain : MonoBehaviour
     {
         [SerializeField] private Button _button;
-        [SerializeField] private ChangeButtonController _characterController;
+        [SerializeField] private ButtonView _characterController;
         [SerializeField] private MenuCharacterModes _menuType;
         private TextMeshProUGUI _text;
         public Button Button() => _button;
