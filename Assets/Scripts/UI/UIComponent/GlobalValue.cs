@@ -1,5 +1,6 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GlobalValue: Singleton<GlobalValue> {
-    public int nextScene = 0;
+    public int _nextScene = 0;
 }

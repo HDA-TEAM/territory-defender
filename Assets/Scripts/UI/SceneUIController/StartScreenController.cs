@@ -6,17 +6,17 @@ using TMPro;
 
 public class StartScreenController : MonoBehaviour
 {
-    [SerializeField] TMP_Text _startBtn;
+    [SerializeField] private TMP_Text startBtn;
     
-    public void toMainMenu(){
-        GlobalValue.Instance.nextScene = 3;
+    public void ToMainMenu(){
+        GlobalValue.Instance._nextScene = 3;
         SceneManager.LoadScene(1);
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        _startBtn.text = UIString.Instance.startBtnText;
+        startBtn.text = UIString.Instance.StartBtnText;
     }
 
     // Update is called once per frame

@@ -7,25 +7,20 @@ using TMPro;
 
 public class UserController: MonoBehaviour
 {
-    [SerializeField] TMP_Text _username;
-    [SerializeField] Image _expBar;
+    [SerializeField] private TMP_Text _username;
+    [SerializeField] private Image _expBar;
 
-    User user;
+   private User _user;
 
     // Start is called before the first frame update
     void Start()
     {
-        user = User.Instance;
-        float expVal = Mathf.Clamp01(user.exp /0.9f);
-        _username.text = user.username;
+        _user = User.Instance;
+        float expVal = Mathf.Clamp01(_user._exp /0.9f);
+        _username.text = _user._username;
         _expBar.fillAmount = expVal;
     } 
 
-    // Update is called once per frame
-    void Update()
-    {
+    // Update is called once per frame...
 
-       
-    }
-    
 }

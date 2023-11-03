@@ -6,8 +6,8 @@ using TMPro;
 
 public class SettingPanelController : MonoBehaviour
 {
-    [SerializeField] TMP_Text _title;
-    [SerializeField] TMP_Text _quitBtnText;
+    [SerializeField] private TMP_Text title;
+    [SerializeField] private TMP_Text quitBtnText;
 
     public void ApplicationQuit(){
         Application.Quit();
@@ -24,7 +24,7 @@ public class SettingPanelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _title.text = UIString.Instance.settingTitle;
+        title.text = UIString.Instance.SettingTitle;
         //_quitBtnText.text = UIString.Instance.quitBtnText;
     }
 

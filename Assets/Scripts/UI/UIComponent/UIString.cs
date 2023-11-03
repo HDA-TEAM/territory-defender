@@ -1,13 +1,15 @@
 
+using UnityEngine.Serialization;
+
 public class UIString: Singleton<UIString>
 {
-    public string language = "en";
+    [FormerlySerializedAs("language")] public string _language = "en";
 
-    public string startBtnText
+    public string StartBtnText
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Bắt đầu";
                 default: return "Start";
@@ -15,11 +17,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string languageTitle 
+    public string LanguageTitle 
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Ngôn ngữ";
                 default: return "Language";
@@ -27,11 +29,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string vietnameseBtnText
+    public string VietnameseBtnText
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Tiếng Việt";
                 default: return "Vietnamese";
@@ -39,11 +41,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string englishBtnText
+    public string EnglishBtnText
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Tiếng Anh";
                 default: return "English";
@@ -51,10 +53,10 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string newsTitle
+    public string NewsTitle
     {
         get {
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Bản tin";
                 default: return "Update";
@@ -62,11 +64,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string waiterText
+    public string WaiterText
     {
         get 
         {
-            switch(language)
+            switch(_language)
             {
                 case "vn": return "Chạm để tiếp tục";
                 default: return "Tap to continue";
@@ -74,11 +76,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string settingTitle
+    public string SettingTitle
     {
         get 
         {
-            switch(language)
+            switch(_language)
             {
                 case "vn": return "Cài đặt";
                 default: return "Settings";
@@ -86,11 +88,11 @@ public class UIString: Singleton<UIString>
         }
     }
 
-    public string quitBtnText
+    public string QuitBtnText
     {
         get 
         {
-            switch(language)
+            switch(_language)
             {
                 case "vn": return "Thoát game";
                 default: return "Quit game";

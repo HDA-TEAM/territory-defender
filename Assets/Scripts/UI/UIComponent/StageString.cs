@@ -1,35 +1,37 @@
 
+using UnityEngine.Serialization;
+
 public class StageString: Singleton<StageString>
 {
-    public string language = "en";
+    public string _language = "en";
 
-    public string settingTitle
+    public string SettingTitle
     {
         get 
         {
-            switch(language)
+            switch(_language)
             {
                 case "vn": return "Cài đặt";
                 default: return "Settings";
             };
         }
     }
-    public string quitBtnText
+    public string QuitBtnText
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Thoát";
                 default: return "Quit";
             };
         }
     }
-    public string restartBtnText
+    public string RestartBtnText
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Chơi lại";
                 default: return "Restart";
@@ -42,7 +44,7 @@ public class StageString: Singleton<StageString>
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Âm thanh";
                 default: return "Sound";
@@ -54,7 +56,7 @@ public class StageString: Singleton<StageString>
     {
         get 
         { 
-            switch (language)
+            switch (_language)
             {
                 case "vn": return "Nhạc nền";
                 default: return "Music";

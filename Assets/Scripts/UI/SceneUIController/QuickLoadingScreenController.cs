@@ -7,28 +7,28 @@ using TMPro;
 
 public class QuickLoadingScreenController : MonoBehaviour
 {
-    [SerializeField] Image _progressBar;
-    [SerializeField] int _scene;
+    [SerializeField] private Image progressBar;
+    [SerializeField] private int scene;
     
     AsyncOperation _asyncOperation;
-    void LoadScene(){
+    private void LoadScene(){
         StartCoroutine(LoadSceneAsync());
     }
 
-    void ActivateScene(){
+    private void ActivateScene(){
         _asyncOperation.allowSceneActivation = true;
     }
 
 
     IEnumerator LoadSceneAsync(){
         yield return null;
-        _asyncOperation = SceneManager.LoadSceneAsync(_scene);
+        _asyncOperation = SceneManager.LoadSceneAsync(scene);
         _asyncOperation.allowSceneActivation = false;
         //When the load is still in progress, output the Text and progress bar
         while (!_asyncOperation.isDone)
         {
             float progressVal = Mathf.Clamp01(_asyncOperation.progress /0.9f);
-            _progressBar.fillAmount = progressVal;
+            progressBar.fillAmount = progressVal;
             // Check if the load has finished
             if (_asyncOperation.progress >= 0.9f)
             {
@@ -42,7 +42,7 @@ public class QuickLoadingScreenController : MonoBehaviour
     
 
     void Start() {
-        _scene = GlobalValue.Instance.nextScene;
+        scene = GlobalValue.Instance._nextScene;
         LoadScene();
     }
 

@@ -7,32 +7,32 @@ using TMPro;
 public class LanguagePanelController : MonoBehaviour
 {
 
-    [SerializeField] TMP_Text _languageTitle;
-    [SerializeField] TMP_Text _languageViBtn;
-    [SerializeField] TMP_Text _languageEnBtn;
+    [SerializeField] private TMP_Text languageTitle;
+    [SerializeField] private TMP_Text languageViBtn;
+    [SerializeField] private TMP_Text languageEnBtn;
 
-    public void langToVietnamese(){
+    public void LangToVietnamese(){
         PlayerPrefs.SetString("Language", "vn");
-        UIString.Instance.language = "vn";
-        StageString.Instance.language = "vn";
-        GlobalValue.Instance.nextScene = SceneManager.GetActiveScene().buildIndex;
+        UIString.Instance._language = "vn";
+        StageString.Instance._language = "vn";
+        GlobalValue.Instance._nextScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(1);
     }
 
-    public void langToEnglish(){
+    public void LangToEnglish(){
         PlayerPrefs.SetString("Language", "en");
-        UIString.Instance.language = "en";
-        StageString.Instance.language = "en";
-        GlobalValue.Instance.nextScene = SceneManager.GetActiveScene().buildIndex;
+        UIString.Instance._language = "en";
+        StageString.Instance._language = "en";
+        GlobalValue.Instance._nextScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(1);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _languageTitle.text = UIString.Instance.languageTitle;
-        _languageViBtn.text = UIString.Instance.vietnameseBtnText;
-        _languageEnBtn.text = UIString.Instance.englishBtnText;
+        languageTitle.text = UIString.Instance.LanguageTitle;
+        languageViBtn.text = UIString.Instance.VietnameseBtnText;
+        languageEnBtn.text = UIString.Instance.EnglishBtnText;
     }
 
     // Update is called once per frame
