@@ -1,9 +1,6 @@
 using Cysharp.Threading.Tasks;
-using GamePlay.Scripts.Tower;
-using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public enum AttackingType

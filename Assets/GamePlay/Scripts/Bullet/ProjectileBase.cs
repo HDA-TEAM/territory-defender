@@ -1,5 +1,3 @@
-using GamePlay.Scripts.Tower;
-using System;
 using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour

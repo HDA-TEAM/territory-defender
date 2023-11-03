@@ -13,6 +13,8 @@ public class PuInGameSettings : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [Header("Data"), Space(12)] private SettingDataAsset _settingDataAsset;
 
+    private void OnEnable() => Time.timeScale = 0f;
+    private void OnDisable() => Time.timeScale = 1f;
     private void Awake()
     {
         _btnClose.onClick.AddListener(OnClose);

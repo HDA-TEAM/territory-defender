@@ -1,4 +1,3 @@
-using GamePlay.Scripts.Tower;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
