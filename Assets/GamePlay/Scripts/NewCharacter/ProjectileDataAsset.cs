@@ -38,7 +38,7 @@ public class ProjectileDataAsset : ScriptableObject
 
 public interface IProjectileLineRoute
 {
-    void ApplyLineRoute(GameObject curWeapon,UnitBase target, AnimationCurve customCurve, TweenCallback callback);
+    void ApplyLineRoute(GameObject curWeapon, UnitBase target, AnimationCurve customCurve, float duration = 1f, TweenCallback callback = null);
 }
 // public class ArcRouteLine : WeaponLineRoute
 // {
@@ -83,11 +83,11 @@ public interface IProjectileLineRoute
 
 public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
 {
-    public void ApplyLineRoute(GameObject curWeapon, UnitBase target, AnimationCurve customCurve, TweenCallback callback)
+    public void ApplyLineRoute(GameObject curWeapon, UnitBase target, AnimationCurve customCurve, float duration = 1f, TweenCallback callback = null)
     {
         float t = 0f;
         Vector3 prevBulletPos = curWeapon.transform.position;
-        DOTween.To(() => t, x => t = x, 1f, 0.75f)
+        DOTween.To(() => t, x => t = x, 1f, duration)
             .SetEase(customCurve)
             .OnUpdate(() =>
             {

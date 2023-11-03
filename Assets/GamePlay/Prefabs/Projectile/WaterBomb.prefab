@@ -130,26 +130,35 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0.98826176
+      outSlope: 0.98826176
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.16432795
     - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
+      time: 0.5692826
+      value: 0.29446328
+      inSlope: 0.8346637
+      outSlope: 0.8346637
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.14263871
+      outWeight: 0.12404296
+    - serializedVersion: 3
+      time: 0.9998779
+      value: 1.2182465
+      inSlope: 5.1449375
+      outSlope: 5.1449375
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18379143
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   _particleCompleted: {fileID: 3338083134648278260}
-  _movementSpeed: 0
+  _duration: 2
 --- !u!114 &2406083832133193363
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class ProjectileMovement : ProjectileBaseComponent
 {
     [SerializeField] private AnimationCurve _movementCurve;
     [SerializeField] private ParticleSystem _particleCompleted;
-    [SerializeField] private float _movementSpeed;
+    [SerializeField] private float _duration;
 
     private UnitBase _target;
     // Get route between cur pos to target 
@@ -14,7 +14,12 @@ public class ProjectileMovement : ProjectileBaseComponent
     {
         _target = target;
         this.transform.position = posSpawn;
-        new ProjectileTrajectoryRouteLine().ApplyLineRoute(this.gameObject, target, _movementCurve,OnCompleted);
+        new ProjectileTrajectoryRouteLine().ApplyLineRoute(
+            this.gameObject,
+            target, 
+            _movementCurve,
+            _duration,
+            OnCompleted);
     }
     private async void OnCompleted()
     {
