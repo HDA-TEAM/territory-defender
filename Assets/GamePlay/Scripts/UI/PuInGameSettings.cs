@@ -9,15 +9,18 @@ public class PuInGameSettings : MonoBehaviour
     [SerializeField] private Button _btnMusic;
     [SerializeField] private Button _btnReplay;
     [SerializeField] private Button _btnQuit;
-    [SerializeField] private Button _btnClose;
+    [SerializeField] private Button[] _btnCloses;
     [SerializeField] private CanvasGroup _canvasGroup;
-    [Header("Data"), Space(12)] private SettingDataAsset _settingDataAsset;
+    [Header("Data"), Space(12)] [SerializeField] private SettingDataAsset _settingDataAsset;
 
-    private void OnEnable() => Time.timeScale = 0f;
-    private void OnDisable() => Time.timeScale = 1f;
+    private void OnEnable() => _settingDataAsset.TimeScaleSetting = ETimeScaleType.Pause;
+    private void OnDisable() => _settingDataAsset.TimeScaleSetting = _settingDataAsset.PreTimeScaleSetting();
     private void Awake()
     {
-        _btnClose.onClick.AddListener(OnClose);
+        foreach (var btnClose in _btnCloses)
+        {
+            btnClose.onClick.AddListener(OnClose);
+        }
     }
     private void OnClose() => this.gameObject.SetActive(false);
 }
