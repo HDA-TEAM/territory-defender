@@ -363,8 +363,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerTool
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3766247886341376077, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
 --- !u!1 &247484987142502873 stripped
 GameObject:
@@ -736,14 +735,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7942718578203552361, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: buttonKitTools
-      value: 
-      objectReference: {fileID: 6744289844941878412}
-    - target: {fileID: 7942718578203552361, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: kitToolsContent
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8163978382351769485, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_Name
       value: TowerTool
@@ -752,8 +743,7 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7942718578203552361, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
 --- !u!224 &6496181943433739408 stripped
 RectTransform:
