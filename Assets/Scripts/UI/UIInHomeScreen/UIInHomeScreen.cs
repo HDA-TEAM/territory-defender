@@ -1,3 +1,4 @@
+using BrunoMikoski.UIManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,12 +81,9 @@ namespace UI.UIInHomeScreen
 
     public class SceneBackController : MonoBehaviour
     {
-        [SerializeField] private int _previousSceneIndex;
         public void BackFromHeroToHome()
         {
-            // Load the previous scene in the build settings
-            _previousSceneIndex = SceneManager.GetActiveScene().buildIndex - 2;
-            SceneManager.LoadScene(_previousSceneIndex);
+            UiWindowCollectionStatic.HomeMenuScreen.Open();
         }
     }
 
