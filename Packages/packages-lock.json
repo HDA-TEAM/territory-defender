@@ -7,6 +7,22 @@
       "dependencies": {},
       "hash": "a786134e17ad4d30d8c3272d7625ef3e43afc7d5"
     },
+    "com.brunomikoski.scriptableobjectcollection": {
+      "version": "https://github.com/brunomikoski/ScriptableObjectCollection.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "6b7289a022c8072483360a13c5367f45a8c37b17"
+    },
+    "com.brunomikoski.uimanager": {
+      "version": "https://github.com/brunomikoski/UIManager.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.brunomikoski.scriptableobjectcollection": "2.0.3"
+      },
+      "hash": "1ec0db40076d2a5535a59d17fb3db46f21bc74e8"
+    },
     "com.coffee.ui-effect": {
       "version": "https://github.com/mob-sakai/UIEffect.git",
       "depth": 0,
