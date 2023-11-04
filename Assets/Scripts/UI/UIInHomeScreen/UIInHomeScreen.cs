@@ -29,12 +29,9 @@ namespace UI.UIInHomeScreen
 
     public class HeroController : MonoBehaviour
     {
-        [SerializeField] private int _scene;
-
         public void Load()
         {
-            GlobalValue.Instance._nextScene = _scene;
-            SceneManager.LoadScene(7);
+            
         }
     }
 

@@ -7,28 +7,13 @@ public enum CharacterSide
     Enemy = 2,
 }
 
-public class TargetDetecting : MonoBehaviour
+public class TargetDetecting : UnitBaseComponent
 {
     [SerializeField] private CharacterSide _characterSideNeedToTarget;
     [SerializeField] private float _rangeDetecting;
     private readonly List<UnitBase> _targets = new List<UnitBase>();
-    private UnitBase _baseUnitBase;
     private UnitBase _curTarget;
-
-    private void Awake()
-    {
-        Validate();
-    }
-    private void Start()
-    {
-    }
-    private void Validate()
-    {
-        if (_baseUnitBase == null)
-        {
-            _baseUnitBase = GetComponent<UnitBase>();
-        }
-    }
+    
     private void Update()
     {
         CheckingTarget();
@@ -53,7 +38,7 @@ public class TargetDetecting : MonoBehaviour
         // if (prevTarget == curTarget)
         //     return;
         // else
-        _baseUnitBase.OnCharacterChange?.Invoke(_curTarget);
+        _unitBaseParent.OnCharacterChange?.Invoke(_curTarget);
 
     }
     private void OnTriggerStay2D(Collider2D other)
