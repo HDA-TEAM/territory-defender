@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6093051815202494015}
   - component: {fileID: -7030754689199355094}
   - component: {fileID: 3858257114877186647}
+  - component: {fileID: 1069866960922029881}
   m_Layer: 0
   m_Name: TowerBase
   m_TagString: Untagged
@@ -179,6 +180,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4058b914e3d4cfb805de50ccec5135c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1069866960922029881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e2686ed185432b9af34151f4f5fe59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: -7030754689199355094}
+  _spriteRenderer: {fileID: 6093051815202494013}
 --- !u!1 &6942991946045224393
 GameObject:
   m_ObjectHideFlags: 0

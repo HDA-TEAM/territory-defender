@@ -21,7 +21,6 @@ public class AttackingComp : UnitBaseComponent
     [SerializeField] private float attackingDamage;
     [SerializeField] private float attackingRange;
 
-    [FormerlySerializedAs("bulletDataAsset")]
     [Header("Data"), Space(12)]
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId _projectileId;
@@ -31,11 +30,11 @@ public class AttackingComp : UnitBaseComponent
     #region Event
     private void OnEnable()
     {
-        _unitBaseParent.OnCharacterChange += AttackingTarget;
+        _unitBaseParent.OnTargetChanging += AttackingTarget;
     }
     private void OnDisable()
     {
-        _unitBaseParent.OnCharacterChange -= AttackingTarget;
+        _unitBaseParent.OnTargetChanging -= AttackingTarget;
     }
     #endregion
 

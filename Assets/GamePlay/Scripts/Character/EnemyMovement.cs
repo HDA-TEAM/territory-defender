@@ -20,21 +20,18 @@ public class EnemyMovement : UnitBaseComponent
     private int currentIndexInRouteLine = 0;
 
     private bool IsMovingToGate = true;
-
-    protected override void StatsUpdate()
-    {
-        var stats = _unitBaseParent.UnitStatsComp();
-        movementSpeed = stats.GetStat(StatId.Movement);
-    }
     
+    #region Core
     private void OnEnable()
     {
-        _unitBaseParent.OnCharacterChange += OnTargetChanging;
+        _unitBaseParent.OnTargetChanging += OnTargetChanging;
     }
     private void OnDisable()
     {
-        _unitBaseParent.OnCharacterChange -= OnTargetChanging;
+        _unitBaseParent.OnTargetChanging -= OnTargetChanging;
     }
+    #endregion
+    #region Data update
     private void Update()
     {
         if (IsMovingToGate == false || routeToGate == null)
@@ -47,6 +44,13 @@ public class EnemyMovement : UnitBaseComponent
     {
         IsMovingToGate = (target == null);
     }
+    protected override void StatsUpdate()
+    {
+        var stats = _unitBaseParent.UnitStatsComp();
+        movementSpeed = stats.GetStat(StatId.Movement);
+    }
+    #endregion
+    #region Moving Logic
     private void MovingToDestination()
     {
         if (IsReachedDestinationGate())
@@ -60,7 +64,7 @@ public class EnemyMovement : UnitBaseComponent
         }
         if (VectorUtility.IsTwoPointReached(
             gameObject.transform.position, 
-              routeToGate.GetPosition(currentIndexInRouteLine)))
+            routeToGate.GetPosition(currentIndexInRouteLine)))
         {
             currentIndexInRouteLine += 1;
         }
@@ -77,4 +81,5 @@ public class EnemyMovement : UnitBaseComponent
             routeToGate.GetPosition(currentIndexInRouteLine),
             movementSpeed);
     }
+    #endregion
 }

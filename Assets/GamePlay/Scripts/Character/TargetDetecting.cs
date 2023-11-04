@@ -38,7 +38,7 @@ public class TargetDetecting : UnitBaseComponent
         // if (prevTarget == curTarget)
         //     return;
         // else
-        _unitBaseParent.OnCharacterChange?.Invoke(_curTarget);
+        _unitBaseParent.OnTargetChanging?.Invoke(_curTarget);
 
     }
     private void OnTriggerStay2D(Collider2D other)

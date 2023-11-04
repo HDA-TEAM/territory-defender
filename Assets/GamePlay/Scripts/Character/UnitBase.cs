@@ -38,7 +38,7 @@ public class UnitBase : MonoBehaviour
 
 
     #region Event
-    public Action<UnitBase> OnCharacterChange;
+    public Action<UnitBase> OnTargetChanging;
     public Action OnUpdateStats;
     #endregion
 }

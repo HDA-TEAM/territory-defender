@@ -22,11 +22,11 @@ public class Approaching : MonoBehaviour
     }
     private void OnEnable()
     {
-        _baseUnitBase.OnCharacterChange += TargetApproaching;
+        _baseUnitBase.OnTargetChanging += TargetApproaching;
     }
     private void OnDisable()
     {
-        _baseUnitBase.OnCharacterChange -= TargetApproaching;
+        _baseUnitBase.OnTargetChanging -= TargetApproaching;
     }
     private void Start()
     {
