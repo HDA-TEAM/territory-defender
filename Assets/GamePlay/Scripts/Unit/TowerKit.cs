@@ -50,10 +50,7 @@ public class TowerKit : MonoBehaviour
         ResetToDefault();
         _btn.onClick.AddListener(OnSelected);
     }
-    public void ResetToDefault()
-    {
-        TowerKitState = TowerKitState.Default;
-    }
+    public void ResetToDefault() => TowerKitState = TowerKitState.Default;
     private void OnSelected()
     {
         _onSelected?.Invoke(this);
