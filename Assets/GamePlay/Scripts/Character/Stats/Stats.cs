@@ -48,7 +48,8 @@ public enum StatId
 
     ///Tower
     CoinNeedToBuild = 200,
-    TimeToSpawnUnit = 201,
+    CoinNeedToUpgrade = 201,
+    TimeToSpawnUnit = 202,
 
 
 }
