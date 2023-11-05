@@ -35,7 +35,6 @@ namespace Feature.HeroInformation
         {
             _onSelected?.Invoke(_button);
             _onChangedContent?.Invoke(_menuType);
-            //_characterController.ChangeButtonImagesAndColorText(_button);
         }
     }
 

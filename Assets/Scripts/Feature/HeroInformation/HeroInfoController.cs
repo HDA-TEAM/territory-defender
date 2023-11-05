@@ -5,11 +5,11 @@ namespace Feature.HeroInformation
 {
     public class HeroInfoController : MonoBehaviour
     {
-        public TrungTracHeroInfoSO _trungTracHeroInfo;
+        public HeroSO _heroInfo;
 
-        public void SetHeroInfo(TrungTracHeroInfoSO info)
+        public void SetHeroInfo(HeroSO info)
         {
-            _trungTracHeroInfo = info;
+            _heroInfo = info;
         }
     }
 }
