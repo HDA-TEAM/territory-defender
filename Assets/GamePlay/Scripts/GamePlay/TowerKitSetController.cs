@@ -9,6 +9,7 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
     [SerializeField] private StageDataAsset _stageDataAsset;
     [SerializeField] private TowerDataAsset _towerDataAsset;
     public TowerKit CurrentSelectedKit;
+    private TowerKit _preSelectedKit;
     private StageConfig _stageConfig;
     private Action _onSelected;
     
@@ -46,5 +47,13 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
         // Setup towerKit runtime data dictionary
         // _towerDataAsset.LoadRuntimeData(ref _currentTowerKits);
     }
-    private void SetCurrentSelectedKit(TowerKit towerKit) => CurrentSelectedKit = towerKit;
+    private void SetCurrentSelectedKit(TowerKit towerKit)
+    {
+        if (_preSelectedKit != null)
+        {
+            _preSelectedKit.ResetToDefault();
+        }
+        CurrentSelectedKit = towerKit;
+        _preSelectedKit = CurrentSelectedKit;
+    }
 }

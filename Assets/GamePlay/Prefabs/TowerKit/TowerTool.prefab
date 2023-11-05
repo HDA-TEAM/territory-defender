@@ -207,6 +207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9162817489338520532}
   - component: {fileID: 8832742283551690969}
+  - component: {fileID: 6553166745705370855}
   m_Layer: 0
   m_Name: TowerTool
   m_TagString: Untagged
@@ -252,6 +253,22 @@ MonoBehaviour:
   _button: {fileID: 9162817488560842882}
   _defaultIcon: {fileID: 9162817489922991205}
   _acceptedIcon: {fileID: 9162817488421669523}
+--- !u!114 &6553166745705370855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9162817489338520533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _button: {fileID: 9162817488560842882}
+  _defaultIcon: {fileID: 9162817489922991205}
+  _spriteBlock: {fileID: 302624510, guid: 5793de93155e44b18ba37419aa564000, type: 3}
+  _blockMaterial: {fileID: 2100000, guid: 32bb184ecacd44689a4639476f013858, type: 2}
 --- !u!1 &9162817489922991207
 GameObject:
   m_ObjectHideFlags: 0

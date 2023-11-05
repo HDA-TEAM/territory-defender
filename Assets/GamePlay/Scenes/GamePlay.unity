@@ -405,6 +405,10 @@ PrefabInstance:
       value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 1136347050768493608, guid: 6ca4690bbfa884061a7b14b6ed8379ee, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 07c254e5561a94bd486f45daa3e68ca2, type: 2}
+    - target: {fileID: 1136347050768493608, guid: 6ca4690bbfa884061a7b14b6ed8379ee, type: 3}
       propertyPath: m_Positions.Array.data[0].x
       value: -0.42193985
       objectReference: {fileID: 0}
@@ -1110,7 +1114,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.83, y: 5.91}
+    oldSize: {x: 3.8322656, y: 5.91}
     newSize: {x: 3.83, y: 5.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1542,6 +1546,10 @@ PrefabInstance:
     - target: {fileID: 6744289845074533784, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832461592147819697, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
@@ -2794,6 +2802,18 @@ PrefabInstance:
       propertyPath: _spawnTowerHolder
       value: 
       objectReference: {fileID: 300349018}
+    - target: {fileID: 6496181943433739408, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496181943433739408, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496181943433739408, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6496181943433739409, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2829,6 +2849,10 @@ PrefabInstance:
     - target: {fileID: 6744289845074533767, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_Name
       value: TowerKIT
+      objectReference: {fileID: 0}
+    - target: {fileID: 6744289845074533767, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6744289845074533784, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_Pivot.x
@@ -2912,6 +2936,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6744289845074533784, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832461592147819696, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832461592147819696, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832461592147819696, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832461592147819697, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3277,7 +3317,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.83, y: 5.91}
+    oldSize: {x: 3.8322656, y: 5.91}
     newSize: {x: 3.83, y: 5.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4770,7 +4810,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.83, y: 5.91}
+    oldSize: {x: 3.8322656, y: 5.91}
     newSize: {x: 3.83, y: 5.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5018,7 +5058,7 @@ GameObject:
   - component: {fileID: 1384252163}
   - component: {fileID: 1384252164}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: DemoAva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5288,7 +5328,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.83, y: 5.91}
+    oldSize: {x: 3.8322656, y: 5.91}
     newSize: {x: 3.83, y: 5.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7116,6 +7156,89 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917346677}
   m_CullTransparentMesh: 1
+--- !u!1 &1970671877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6496181943433739409, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
+  m_PrefabInstance: {fileID: 590597536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1970671880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970671877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSteps:
+  - rid: 7982686534885703682
+  updateType: 0
+  timeScaleIndependent: 0
+  autoplayMode: 0
+  startPaused: 0
+  playbackSpeed: 1
+  playType: 0
+  loops: 0
+  loopType: 0
+  autoKill: 1
+  onStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  progress: -1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7982686534885703682
+      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        delay: 0
+        flowType: 0
+        target: {fileID: 1970671877}
+        duration: 0.5
+        loopCount: 0
+        loopType: 0
+        actions:
+        - rid: 7982686534885703683
+        - rid: 7982686534885703684
+    - rid: 7982686534885703683
+      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        direction: 1
+        ease:
+          ease: 7
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        isRelative: 0
+        scale: {x: 0, y: 0, z: 0}
+        axisConstraint: 0
+    - rid: 7982686534885703684
+      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        direction: 0
+        ease:
+          ease: 7
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        isRelative: 0
+        scale: {x: 1, y: 1, z: 1}
+        axisConstraint: 0
 --- !u!1 &1972052445
 GameObject:
   m_ObjectHideFlags: 0
@@ -7326,7 +7449,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.83, y: 5.91}
+    oldSize: {x: 3.8322656, y: 5.91}
     newSize: {x: 3.83, y: 5.91}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7632,10 +7755,6 @@ PrefabInstance:
       propertyPath: _spawnTowerHolder
       value: 
       objectReference: {fileID: 335446670}
-    - target: {fileID: 2117454944, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
-      propertyPath: _towerBuildId
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 6496181943433739409, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
       propertyPath: m_IsActive
       value: 1

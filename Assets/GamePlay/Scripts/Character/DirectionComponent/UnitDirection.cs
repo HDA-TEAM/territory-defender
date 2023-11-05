@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class UnitDirection : UnitBaseComponent
@@ -6,7 +5,6 @@ public class UnitDirection : UnitBaseComponent
     [SerializeField] private Transform _transform;
     private Vector3 _prePos;
     private Vector3 _curPos;
-
     private bool _isFocusTarget;
     private UnitBase _target;
     private float _localScaleX;
@@ -22,12 +20,11 @@ public class UnitDirection : UnitBaseComponent
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
     }
     #endregion
-
-    #region Data update
+    #region Update data
     private void Update()
     {
         bool isTurnOnFlipX;
-        _curPos = this.gameObject.transform.position;
+        _curPos = gameObject.transform.position;
         if (_target)
         {
             isTurnOnFlipX = CheckLeftToRightDirection(_curPos,_target.transform.position);
@@ -49,5 +46,4 @@ public class UnitDirection : UnitBaseComponent
         return direction.x > 0;
     }
     #endregion
-    
 }

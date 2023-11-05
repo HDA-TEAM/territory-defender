@@ -47,12 +47,15 @@ public class TowerKit : MonoBehaviour
 
     private void Start()
     {
-        TowerKitState = TowerKitState.Default;
+        ResetToDefault();
         _btn.onClick.AddListener(OnSelected);
+    }
+    public void ResetToDefault()
+    {
+        TowerKitState = TowerKitState.Default;
     }
     private void OnSelected()
     {
-        Debug.LogError("Kit Selected " + this);
         _onSelected?.Invoke(this);
         TowerKitState = _towerEntity ? TowerKitState.TowerExisted : TowerKitState.Building;
 

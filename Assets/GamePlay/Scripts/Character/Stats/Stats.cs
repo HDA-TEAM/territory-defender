@@ -23,15 +23,8 @@ public class Stats : ScriptableObject
         Debug.LogError($"No stat value found for key {statId} on {this.name} with level {level}");
         return 0;
     }
-    private float StatCalculatePerLevel(StatId statId, int level, float value)
+    protected virtual float StatCalculatePerLevel(StatId statId, int level, float value)
     {
-        // switch (statId)
-        // {
-        //     case StatId.AttackDamage:
-        //         {
-        //             value
-        //         }
-        // }
         return value;
     }
 }

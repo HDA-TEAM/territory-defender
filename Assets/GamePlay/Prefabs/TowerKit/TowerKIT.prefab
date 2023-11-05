@@ -382,7 +382,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerToolStatusHandle: {fileID: 2789528972889128683}
   _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _inGameInventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 491974220771195605}
   _towerBuildId: 40
 --- !u!114 &491974220771195605 stripped
@@ -424,9 +426,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerToolStatusHandle: {fileID: 3697810427918902548}
   _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _inGameInventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 1383995823105728810}
   _towerBuildId: 60
+--- !u!114 &2789528972889128683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2815705469208010455, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+  m_PrefabInstance: {fileID: 118501955251462204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247484987142502873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3697810427918902548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3671632269361317160, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+  m_PrefabInstance: {fileID: 118501955251462204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623575586926420518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5482125966187145751 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5598374987736304171, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+  m_PrefabInstance: {fileID: 118501955251462204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623810353359367461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6587972564454838701 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6541529869743452561, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -455,7 +492,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerToolStatusHandle: {fileID: 8865507410867492243}
   _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _inGameInventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 6587972564454838701}
   _towerBuildId: 1
 --- !u!224 &6832461592147819696 stripped
@@ -502,7 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _towerToolStatusHandle: {fileID: 5482125966187145751}
   _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _inGameInventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 7814271628858601001}
   _towerBuildId: 60
 --- !u!114 &7814271628858601001 stripped
@@ -514,6 +555,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8865507410867492243 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8839894139310601647, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+  m_PrefabInstance: {fileID: 118501955251462204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6832461591857861281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &8504424394869428144

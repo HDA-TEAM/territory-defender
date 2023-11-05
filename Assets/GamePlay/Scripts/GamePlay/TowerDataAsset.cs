@@ -1,6 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum TowerId
 {
@@ -13,18 +14,19 @@ public enum TowerId
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : ScriptableObject
 {
+    [FormerlySerializedAs("_towerTypeDict")]
     [SerializedDictionary("TowerId", "TowerType")]
-    [SerializeField] private SerializedDictionary<TowerId, TowerBase> _towerTypeDicts = new SerializedDictionary<TowerId, TowerBase>();
+    [SerializeField] private SerializedDictionary<TowerId, UnitBase> _towerTypeDict = new SerializedDictionary<TowerId, UnitBase>();
     // [SerializedDictionary("KitId", "TowerKit")]
     // [SerializeField] private SerializedDictionary<int,TowerKit> _towerKits = new SerializedDictionary<int, TowerKit>();
     // public TowerKit CurrentSelectedTowerKit;
-    public TowerBase GetTowerType(TowerId towerId)
+    public UnitBase GetTowerType(TowerId towerId)
     {
-        _towerTypeDicts.TryGetValue(towerId, out TowerBase towerBase);
+        _towerTypeDict.TryGetValue(towerId, out UnitBase towerBase);
         if (!towerBase)
         {
             Debug.LogError("Tower type not exist in dictionary");
-            return _towerTypeDicts[0];
+            return _towerTypeDict[0];
         }
         return towerBase;
     }

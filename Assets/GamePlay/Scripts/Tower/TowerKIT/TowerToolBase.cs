@@ -11,8 +11,10 @@ public enum TowerToolType
 
 public abstract class TowerToolBase : MonoBehaviour
 {
+    [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
     [SerializeField] protected TowerDataAsset _towerDataAsset;
-    [SerializeField] private ConfirmHandle _confirmHandle;
+    [SerializeField] protected InGameInventoryDataAsset _inGameInventoryDataAsset;
+    [SerializeField] protected ConfirmHandle _confirmHandle;
     public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
     private void Start() => _confirmHandle.SetUp(Apply);
     protected virtual void Apply() {}

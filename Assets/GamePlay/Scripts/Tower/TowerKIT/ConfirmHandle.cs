@@ -7,20 +7,6 @@ public enum ConfirmStatus
     None = 0,
     WaitingConfirm = 1,
 }
-
-// public interface IConditionInteractive
-// {
-//     public bool IsInteractive();
-// }
-//
-// public class CheckTowerToolInteractionCondition : IConditionInteractive
-// {
-//     [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
-//     public bool IsInteractive()
-//     {
-//         TowerKitSetController.Instance.CurrentSelectedKit.
-//     }
-// }
 public class ConfirmHandle : MonoBehaviour
 {
     [SerializeField] private Button _button; 
