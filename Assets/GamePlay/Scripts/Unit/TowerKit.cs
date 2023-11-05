@@ -40,17 +40,16 @@ public class TowerKit : MonoBehaviour
             SetMenuState();
         }
     }
-    private GameObject _towerEntity;
+    private UnitBase _towerEntity;
 
     // call back
     private Action<TowerKit> _onSelected;
 
     private void Start()
     {
-        ResetToDefault();
+        TowerKitState = TowerKitState.Default;
         _btn.onClick.AddListener(OnSelected);
     }
-    public void ResetToDefault() => TowerKitState = TowerKitState.Default;
     private void OnSelected()
     {
         _onSelected?.Invoke(this);
@@ -62,7 +61,7 @@ public class TowerKit : MonoBehaviour
             callback = OnCancelMenu,
         });
     }
-    private void OnCancelMenu()
+    public void OnCancelMenu()
     {
         TowerKitState = _towerEntity ? TowerKitState.Hiding : TowerKitState.Default;
     }
@@ -103,11 +102,18 @@ public class TowerKit : MonoBehaviour
     {
         _onSelected = onSelected;
     }
-    public void SetTower(GameObject tower)
+    public void SetTower(UnitBase tower)
     {
         _towerEntity = tower;
         _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
         _towerEntity.transform.position = _spawnTowerHolder.transform.position;
         TowerKitState = TowerKitState.Hiding;
+    }
+    public void UpgradeTower()
+    {
+        // _towerEntity = tp;
+        // _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
+        // _towerEntity.transform.position = _spawnTowerHolder.transform.position;
+        // TowerKitState = TowerKitState.Hiding;
     }
 }

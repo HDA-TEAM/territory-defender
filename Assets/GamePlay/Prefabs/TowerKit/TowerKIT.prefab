@@ -363,6 +363,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerTool
       objectReference: {fileID: 0}
+    - target: {fileID: 8281239250490285771, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
 --- !u!1 &247484987142502873 stripped
@@ -585,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071337119792884550, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_RaycastTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1071337120375446774, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_Name
@@ -593,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1071337121009436080, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_RaycastTarget
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1071337121009436094, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_IsActive
@@ -709,7 +713,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3180346054578500385, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3180346054673453959, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_RootOrder
@@ -820,3 +824,81 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolBases: []
+--- !u!114 &6394022393207852737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6496181943433739409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationSteps:
+  - rid: 7982686534885703682
+  updateType: 0
+  timeScaleIndependent: 0
+  autoplayMode: 0
+  startPaused: 0
+  playbackSpeed: 1
+  playType: 0
+  loops: 0
+  loopType: 0
+  autoKill: 1
+  onStartEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onFinishedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onProgressEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  progress: -1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7982686534885703682
+      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        delay: 0
+        flowType: 0
+        target: {fileID: 6496181943433739409}
+        duration: 0.5
+        loopCount: 0
+        loopType: 0
+        actions:
+        - rid: 7982686534885703683
+        - rid: 7982686534885703684
+    - rid: 7982686534885703683
+      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        direction: 1
+        ease:
+          ease: 7
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        isRelative: 0
+        scale: {x: 0, y: 0, z: 0}
+        axisConstraint: 0
+    - rid: 7982686534885703684
+      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
+      data:
+        direction: 0
+        ease:
+          ease: 7
+          curve:
+            serializedVersion: 2
+            m_Curve: []
+            m_PreInfinity: 2
+            m_PostInfinity: 2
+            m_RotationOrder: 4
+        isRelative: 0
+        scale: {x: 1, y: 1, z: 1}
+        axisConstraint: 0

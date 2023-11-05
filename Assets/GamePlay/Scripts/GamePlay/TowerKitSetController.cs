@@ -51,7 +51,7 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
     {
         if (_preSelectedKit != null)
         {
-            _preSelectedKit.ResetToDefault();
+            _preSelectedKit.OnCancelMenu();
         }
         CurrentSelectedKit = towerKit;
         _preSelectedKit = CurrentSelectedKit;

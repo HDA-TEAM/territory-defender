@@ -13,16 +13,20 @@ public class ConfirmHandle : MonoBehaviour
     [SerializeField] private Image _defaultIcon;
     [SerializeField] private Image _acceptedIcon;
     private ConfirmStatus _confirmStatus;
-    private Action _callbackAction;
+    private Action _callbackToolAction;
+    private Action<ConfirmHandle> _callbackSelected;
 
     #region Core
     private void Start() => _button.onClick.AddListener(OnClick);
     public void OnEnable() => ResetToDefault();
-    public void SetUp(Action callback) => _callbackAction = callback;
+    public void SetUpTool(Action callback) => _callbackToolAction = callback;
+    public void SetUpSelected(Action<ConfirmHandle> callback) => _callbackSelected = callback;
+    
     #endregion
     
     private void OnClick()
     {
+        _callbackSelected?.Invoke(this);
         switch (_confirmStatus)
         {
             case ConfirmStatus.WaitingConfirm:
@@ -45,8 +49,8 @@ public class ConfirmHandle : MonoBehaviour
         _defaultIcon.gameObject.SetActive(false);
         
     }
-    private void OnAccepted() => _callbackAction?.Invoke();
-    private void ResetToDefault()
+    private void OnAccepted() => _callbackToolAction?.Invoke();
+    public void ResetToDefault()
     {
         _confirmStatus = ConfirmStatus.None;
         _acceptedIcon.gameObject.SetActive(false);

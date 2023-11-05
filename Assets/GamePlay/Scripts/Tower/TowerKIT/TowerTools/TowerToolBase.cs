@@ -16,7 +16,7 @@ public abstract class TowerToolBase : MonoBehaviour
     [SerializeField] protected InGameInventoryDataAsset _inGameInventoryDataAsset;
     [SerializeField] protected ConfirmHandle _confirmHandle;
     public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
-    private void Start() => _confirmHandle.SetUp(Apply);
+    private void Start() => _confirmHandle.SetUpTool(Apply);
     protected virtual void Apply() {}
 }
 // public class TowerUpgradeTool : TowerToolBase
