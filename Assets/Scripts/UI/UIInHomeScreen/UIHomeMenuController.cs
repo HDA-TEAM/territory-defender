@@ -1,3 +1,4 @@
+using BrunoMikoski.UIManager;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,9 +6,6 @@ namespace UI.UIInHomeScreen
 {
     public class UIHomeMenuController: MonoBehaviour
     {
-        private HeroController _hero;
-        private ShopController _shop;
-
         [SerializeField] private Button _buttonShop;
         [SerializeField] private Button _buttonHeroInfo;
         [SerializeField] private Button _buttonDictionary;
@@ -23,25 +21,24 @@ namespace UI.UIInHomeScreen
         
         private void HeroInformationLoad()
         {
+            UiWindowCollectionStatic.HeroesScreen.Open();
             Debug.Log("Hero info is open");
-            _hero = gameObject.AddComponent<HeroController>();
-            _hero.Load();
         }
         
         private void ShopLoad()
         {
             Debug.Log("Shop is open");
-            //_shop = gameObject.AddComponent<ShopController>();
-            //_shop.Load();
         }
         
         private void DictionaryLoad()
         {
+            UiWindowCollectionStatic.DictionaryScreen.Open();
             Debug.Log("Dictionary is open");
         }
         
         private void HistoryLoad()
         {
+            UiWindowCollectionStatic.HistoryScreen.Open();
             Debug.Log("History is open");
         }
     }

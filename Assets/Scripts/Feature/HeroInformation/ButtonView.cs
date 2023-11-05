@@ -19,10 +19,7 @@ namespace Feature.HeroInformation
 
         // Modes object
         [SerializeField] private List<GameObject> _objContentList;
-        // public GameObject _skillObject;
-        // public GameObject _skinObject;
-        // public GameObject _historyObject;
-
+        
         private MenuCharacterModes _currentMenuType;
         private Dictionary<MenuCharacterModes, GameObject> _buttonToObjectDictionary = new Dictionary<MenuCharacterModes, GameObject>();
 
