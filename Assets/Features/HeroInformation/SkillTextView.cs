@@ -1,20 +1,21 @@
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
-    public class ButtonSkillDescribe : MonoBehaviour
+    public class SkillTextView : MonoBehaviour
     {
         [SerializeField] private Button _buttonSkillDescribe;
         [SerializeField] private Image _describeSkillImage;
-        [SerializeField] private SkillTextManage _skillTextManage;
+        [FormerlySerializedAs("_skillTextManage")] [SerializeField] private SkillTextViewModel _skillTextViewModel;
         
         public Button SkillDescribeButton() => _buttonSkillDescribe;
         public Image DescribeSkillImage() => _describeSkillImage;
 
         public void OnButtonClick()
         {
-            _skillTextManage.ClickedSkill(_buttonSkillDescribe);
+            _skillTextViewModel.ClickedSkill(_buttonSkillDescribe);
         }
     }
 }

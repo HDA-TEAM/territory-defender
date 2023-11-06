@@ -1,4 +1,4 @@
-namespace Feature.Talent
+namespace Features.Talent
 {
     public class SkillConfig
     {

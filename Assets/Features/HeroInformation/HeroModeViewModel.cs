@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
     // Enum for the different character menu modes
     public enum MenuCharacterModes

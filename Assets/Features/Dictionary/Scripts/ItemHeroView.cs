@@ -11,11 +11,14 @@ public class ItemHeroView : MonoBehaviour
     [SerializeField] private Button _btn;
     [SerializeField] private Image _imageBg;
     [SerializeField] private Sprite _spriteSelectedBg;
-
+    
     public HeroComposite HeroComposite;
     
     private Sprite _sprite;
     private Action<ItemHeroView> _onSelected;
+    
+    private readonly string _hexSelectedColor = "#F3EF94";
+    private readonly string _hexUnselectedColor = "#323232";
     #region Core
     private void Awake()
     {
@@ -31,14 +34,22 @@ public class ItemHeroView : MonoBehaviour
         SetName(heroComposite.Name);
     }
     #endregion
-    private void OnSelectedHero()
+    public void OnSelectedHero()
     {
         _imageBg.sprite = _spriteSelectedBg;
+        if (ColorUtility.TryParseHtmlString(_hexSelectedColor, out Color selectedColor))
+        {
+            _txtName.color = selectedColor; // Set to the color represented by the hex string
+        }
         _onSelected?.Invoke(this);
     }
     public void RemoveSelected()
     {
         _imageBg.sprite = _sprite;
+        if (ColorUtility.TryParseHtmlString(_hexUnselectedColor, out Color unSelectedColor))
+        {
+            _txtName.color = unSelectedColor;
+        }
     }
     private void SetName(string name)
     {

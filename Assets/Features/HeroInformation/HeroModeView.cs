@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
     public class HeroModeView : MonoBehaviour
     {

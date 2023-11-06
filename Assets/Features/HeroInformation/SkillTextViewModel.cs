@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
-    public class SkillTextManage : MonoBehaviour
+    public class SkillTextViewModel : MonoBehaviour
     {
-        public List<ButtonSkillDescribe> _buttonSkillDescribesList;
+        public List<SkillTextView> _buttonSkillDescribesList;
 
         private bool _status;
         public void ClickedSkill(Button skillClicked)
         {
-            foreach (ButtonSkillDescribe button in _buttonSkillDescribesList)
+            foreach (SkillTextView button in _buttonSkillDescribesList)
             {
                 _status = button.SkillDescribeButton() == skillClicked ? true : false;
                 button.DescribeSkillImage().gameObject.SetActive(_status);

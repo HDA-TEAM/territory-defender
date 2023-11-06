@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
     public class LevelSystem : MonoBehaviour
     {

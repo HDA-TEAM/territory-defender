@@ -1,6 +1,6 @@
 using System;
 
-namespace Feature.Talent.Hero
+namespace Features.Talent.Hero
 {
     public class CharacterUnitConfig
     {

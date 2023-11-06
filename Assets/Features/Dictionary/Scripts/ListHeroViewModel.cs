@@ -16,7 +16,7 @@ public class ListHeroViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemHeroView> _itemHeroViews;
-    // [SerializeField] private HeroDetailView _heroDetailView;
+    [SerializeField] private HeroDetailView _heroDetailView;
 
     [SerializeField] private ListHeroModeViewModel _listHeroModeViewModel;
     [Header("Data"), Space(12)] [SerializeField]
@@ -25,6 +25,12 @@ public class ListHeroViewModel : MonoBehaviour
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
+
+    private void Start()
+    {
+        _itemHeroViews[0].OnSelectedHero();
+    }
+
     private void Awake()
     {
         _heroComposites = new List<HeroComposite>();
@@ -40,6 +46,7 @@ public class ListHeroViewModel : MonoBehaviour
                 new HeroComposite
                 {
                     Name = heroDataSo._heroName,
+                    Level = heroDataSo._heroLevel.ToString(),
                     Avatar = heroDataSo._heroImage
                 }
             );
@@ -61,15 +68,14 @@ public class ListHeroViewModel : MonoBehaviour
             }
             
         }
-        
     }
     private void OnSelectedItem(ItemHeroView itemHeroView)
     {
         if (_preSelectedItem != null)
             _preSelectedItem.RemoveSelected();
         _preSelectedItem = itemHeroView;
-        // _heroDetailView.Setup(itemHeroView.HeroComposite);
-        _listHeroModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
+        _heroDetailView.Setup(itemHeroView.HeroComposite);
+        //_listHeroModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
     }
     
     

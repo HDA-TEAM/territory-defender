@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-namespace Feature.HeroInformation
+namespace Features.HeroInformation
 {
     public class HeroLevel: MonoBehaviour
     {

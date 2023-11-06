@@ -1,4 +1,4 @@
-namespace Feature.Talent.Hero
+namespace Features.Talent.Hero
 {
     public class HeroSkillUpgrade : IHeroSkill
     {
