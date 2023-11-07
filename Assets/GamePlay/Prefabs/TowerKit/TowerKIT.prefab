@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6923579826607023577, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
+      propertyPath: _confirmHandle
+      value: 
+      objectReference: {fileID: 1285741066417378361}
     - target: {fileID: 6961425330366525433, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_Name
       value: TowerTool
@@ -840,6 +844,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1589972732339235433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6923579826607023577, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
+  m_PrefabInstance: {fileID: 8504424394869428144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744076076c7d432fae32f06b64bea92c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6496181943433739408 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3180346054578500384, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
@@ -862,7 +877,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8031999b77de749009693cfe7507c9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerToolBases: []
+  _towerToolBases:
+  - {fileID: 1589972732339235433}
   _confirmHandles:
   - {fileID: 9036198015728701514}
   - {fileID: 1285741066417378361}

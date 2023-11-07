@@ -116,4 +116,14 @@ public class TowerKit : MonoBehaviour
         // _towerEntity.transform.position = _spawnTowerHolder.transform.position;
         // TowerKitState = TowerKitState.Hiding;
     }
+    public void SellingTower()
+    {
+        //todo 
+        // Logic get 30% coin used 
+        // UnitBase towerBase = _towerEntity.GetComponent<UnitBase>();
+        // towerBase.UnitStatsComp().GetStat(StatId.Armour
+        
+        Destroy(_towerEntity);
+        TowerKitState = TowerKitState.Default;
+    }
 }
