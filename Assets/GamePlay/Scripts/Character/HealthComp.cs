@@ -52,10 +52,9 @@ public class HealthComp : UnitBaseComponent
         if (_currentHealth <= 0)
             ResetState();
     }
-    private void ResetState()
+    public void ResetState()
     {
         gameObject.SetActive(false);
-        // PoolingController.Instance.GetPooling(UnitBaseParent().CharacterConfig.).ReturnPool(this.gameObject);
         CurrentHealth = _maxHeath;
     }
 }

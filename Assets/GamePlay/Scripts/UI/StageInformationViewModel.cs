@@ -17,6 +17,17 @@ public class StageInformationViewModel : MonoBehaviour
     {
         UpdateView();
     }
+    private void Awake()
+    {
+        _inventoryDataAsset.RegisterLifeChange(OnInventoryChange);
+        _inventoryDataAsset.RegisterCurrencyChange(OnInventoryChange);
+    }
+    private void OnDestroy()
+    {
+        _inventoryDataAsset.UnRegisterLifeChange(OnInventoryChange);
+        _inventoryDataAsset.UnRegisterCurrencyChange(OnInventoryChange);
+    }
+    private void OnInventoryChange(int fakeValue) => UpdateView();
     private void UpdateView()
     {
         _stageResourceView.Setup(new StageResource

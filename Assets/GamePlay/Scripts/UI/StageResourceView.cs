@@ -14,7 +14,7 @@ public class StageResourceView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtUserLife;
     [SerializeField] private TextMeshProUGUI _txtTotalCoin;
     [SerializeField] private TextMeshProUGUI _txtWaveCount;
-
+    
     public void Setup(StageResource stageResource)
     {
         _txtUserLife.text = stageResource.CurLife.ToString();

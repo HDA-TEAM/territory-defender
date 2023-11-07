@@ -35,9 +35,7 @@ public class EnemyMovement : UnitBaseComponent
     private void Update()
     {
         if (IsMovingToGate == false || routeToGate == null)
-        {
             return;
-        }
         MovingToDestination();
     }
     private void OnTargetChanging(UnitBase target)
@@ -55,12 +53,10 @@ public class EnemyMovement : UnitBaseComponent
     {
         if (IsReachedDestinationGate())
         {
-            this.gameObject.SetActive(false);
+            // remove route to stop moving
             routeToGate = null;
+            _unitBaseParent.EnemyReachingDestinationComp.OnReachingDestination();
             return;
-            //todo 
-            // reduce player heath
-            // return pooler
         }
         if (VectorUtility.IsTwoPointReached(
             gameObject.transform.position, 
@@ -77,7 +73,7 @@ public class EnemyMovement : UnitBaseComponent
     private void PlayMoving()
     {
         this.gameObject.transform.position =VectorUtility.Vector2MovingAToB(
-            this.gameObject.transform.position,
+            gameObject.transform.position,
             routeToGate.GetPosition(currentIndexInRouteLine),
             movementSpeed);
     }
