@@ -1,15 +1,14 @@
-using Features.Dictionary.Scripts;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-
 
 public struct HeroComposite
 {
     public string Name;
     public string Level;
+    public string Hp;
+    public string Atk;
+    public string Def;
+    public string Range;
     public Sprite Avatar;
 }
 public class ListHeroViewModel : MonoBehaviour
@@ -47,6 +46,10 @@ public class ListHeroViewModel : MonoBehaviour
                 {
                     Name = heroDataSo._heroName,
                     Level = heroDataSo._heroLevel.ToString(),
+                    Hp = heroDataSo._heroHp.ToString(),
+                    Atk = heroDataSo._heroAtk.ToString(),
+                    Def = heroDataSo._heroDef.ToString(),
+                    Range = heroDataSo._heroRange.ToString("F2"),
                     Avatar = heroDataSo._heroImage
                 }
             );
