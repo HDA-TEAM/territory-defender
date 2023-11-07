@@ -47,7 +47,6 @@ public class ConfirmHandle : MonoBehaviour
         _confirmStatus = ConfirmStatus.WaitingConfirm;
         _acceptedIcon.gameObject.SetActive(true);
         _defaultIcon.gameObject.SetActive(false);
-        
     }
     private void OnAccepted() => _callbackToolAction?.Invoke();
     public void ResetToDefault()

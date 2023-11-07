@@ -18,7 +18,7 @@ public class TowerBuildTool : TowerToolBase
     protected override void Apply()
     { 
         UnitBase towerBase = _towerDataAsset.GetTowerType(_towerBuildId);
-        Instantiate(towerBase.gameObject);
-        TowerKitSetController.Instance.CurrentSelectedKit.SetTower(towerBase);
+        GameObject tower = Instantiate(towerBase.gameObject);
+        TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower);
     }
 }

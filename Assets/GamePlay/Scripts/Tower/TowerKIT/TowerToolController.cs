@@ -28,9 +28,9 @@ public class TowerToolController : MonoBehaviour
     }
     private void SetCurrentSelectedConfirm(ConfirmHandle confirmHandle)
     {
-        if (confirmHandle != null)
+        if (_preConfirmHandle != null && _preConfirmHandle != confirmHandle)
         {
-            confirmHandle.ResetToDefault();
+            _preConfirmHandle.ResetToDefault();
         }
         CurrentConfirmHandle = confirmHandle;
         _preConfirmHandle = CurrentConfirmHandle;

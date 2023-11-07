@@ -40,7 +40,7 @@ public class TowerKit : MonoBehaviour
             SetMenuState();
         }
     }
-    private UnitBase _towerEntity;
+    private GameObject _towerEntity;
 
     // call back
     private Action<TowerKit> _onSelected;
@@ -102,7 +102,7 @@ public class TowerKit : MonoBehaviour
     {
         _onSelected = onSelected;
     }
-    public void SetTower(UnitBase tower)
+    public void SetTower(GameObject tower)
     {
         _towerEntity = tower;
         _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
