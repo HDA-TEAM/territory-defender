@@ -52,9 +52,25 @@ public class TowerKit : MonoBehaviour
     }
     private void OnSelected()
     {
+        if (TowerKitSetController.Instance.CurrentSelectedKit == this 
+            && (TowerKitState == TowerKitState.TowerExisted || TowerKitState == TowerKitState.Building))
+        {
+            // reset state
+            OnCancelMenu();
+            // Turn off canvas block raycast
+            Messenger.Default.Publish(new HandleCancelRaycastPayload
+            {
+                IsOn = false,
+                callback = null,
+            });
+            return;
+        }
+        
         _onSelected?.Invoke(this);
         TowerKitState = _towerEntity ? TowerKitState.TowerExisted : TowerKitState.Building;
 
+        Debug.Log("Onclick");
+        // Handle user want to cancel selection menu by canvas block raycast
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             IsOn = true,
@@ -68,7 +84,6 @@ public class TowerKit : MonoBehaviour
     private void SetMenuState()
     {
         _canvasGroupBtn.alpha = 0f;
-        _canvasGroupBtn.interactable = false;
         _towerBuildTool.SetActive(false);
         _towerUsingTool.SetActive(false);
         switch (_towerKitState)
@@ -76,7 +91,6 @@ public class TowerKit : MonoBehaviour
             case TowerKitState.Default:
                 {
                     _canvasGroupBtn.alpha = 1f;
-                    _canvasGroupBtn.interactable = true;
                     return;
                 }
             case TowerKitState.Building:
@@ -92,7 +106,6 @@ public class TowerKit : MonoBehaviour
                 }
             case TowerKitState.Hiding:
                 {
-                    _canvasGroupBtn.interactable = true;
                     return;
                 }
             default: throw new ArgumentOutOfRangeException();
