@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class HeroModeBaseView : MonoBehaviour
+public class ModeBaseView : MonoBehaviour
 {
     [SerializeField] private Button _heroModeBtn;
     [SerializeField] private TextMeshProUGUI _txtName;

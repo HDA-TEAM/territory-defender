@@ -546,6 +546,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 909207f5dc15427cbb188bfd369f071b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heroModeBtn: {fileID: 3184731182350071717}
+  _txtName: {fileID: 7963087118994574519}
+  _imageBg: {fileID: 8383337765638970003}
+  _selectedSpriteBg: {fileID: 21300000, guid: 8b1205afbd5694429a93f51e48383520, type: 3}
+  _unselectedSpriteBg: {fileID: 21300000, guid: 470ea89e198604549b4f1a6d5466e1fd, type: 3}
+  _modeType: 2
 --- !u!1 &5436810411294194417
 GameObject:
   m_ObjectHideFlags: 0

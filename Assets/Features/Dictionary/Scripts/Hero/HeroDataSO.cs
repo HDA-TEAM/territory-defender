@@ -10,5 +10,6 @@ public class HeroDataSO : ScriptableObject
     public int _heroDef;
     public float _heroRange;
     public Sprite _heroImage;
+    //public 
     [SerializeField] private Stats _stats;
 }

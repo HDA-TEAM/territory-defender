@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public struct HeroComposite
 {
@@ -11,13 +12,20 @@ public struct HeroComposite
     public string Range;
     public Sprite Avatar;
 }
+
+public struct SkillComposite
+{
+    public string Name;
+    public string SkillText;
+    public Sprite SkillImage;
+}
 public class ListHeroViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemHeroView> _itemHeroViews;
     [SerializeField] private HeroDetailView _heroDetailView;
 
-    [SerializeField] private ListHeroModeViewModel _listHeroModeViewModel;
+    [FormerlySerializedAs("_listHeroModeViewModel")] [SerializeField] private ListModeViewModel _listModeViewModel;
     [Header("Data"), Space(12)] [SerializeField]
     private HeroesDataAsset _heroesDataAsset;
 
@@ -77,7 +85,7 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedItem.RemoveSelected();
         _preSelectedItem = itemHeroView;
         _heroDetailView.Setup(itemHeroView.HeroComposite);
-        _listHeroModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
+        _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
     }
     
     

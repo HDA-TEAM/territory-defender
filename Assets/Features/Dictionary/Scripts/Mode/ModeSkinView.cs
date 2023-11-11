@@ -6,7 +6,7 @@ public interface ISetupHeroViewMode
     void SetSelectedState(bool isSelected);
 }
 
-public class HeroSkinView :  HeroModeBaseView , ISetupHeroViewMode
+public class ModeSkinView :  ModeBaseView , ISetupHeroViewMode
 {
     public void Setup(HeroComposite heroComposite, EHeroViewMode eHeroViewMode, Action<EHeroViewMode> selectAction)
     {
