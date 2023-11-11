@@ -1,10 +1,11 @@
-using Features.Dictionary.Scripts;
-using UnityEngine;
+using System;
 
-public class HeroSkillView : MonoBehaviour, SetupHeroViewMode
+public class HeroSkillView : HeroModeBaseView, ISetupHeroViewMode
 {
-    public void Setup(HeroComposite heroComposite, EHeroViewMode eHeroViewMode)
+    public void Setup(HeroComposite heroComposite, EHeroViewMode eHeroViewMode, Action<EHeroViewMode> selectAction)
     {
-        
+        HeroComposite = heroComposite;
+        _onSelectedButton = selectAction;
     }
+    
 }

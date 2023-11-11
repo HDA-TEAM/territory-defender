@@ -69,7 +69,6 @@ public class ListHeroViewModel : MonoBehaviour
             {
                 _itemHeroViews[i].gameObject.SetActive(false);    
             }
-            
         }
     }
     private void OnSelectedItem(ItemHeroView itemHeroView)
@@ -78,7 +77,7 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedItem.RemoveSelected();
         _preSelectedItem = itemHeroView;
         _heroDetailView.Setup(itemHeroView.HeroComposite);
-        //_listHeroModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
+        _listHeroModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
     }
     
     

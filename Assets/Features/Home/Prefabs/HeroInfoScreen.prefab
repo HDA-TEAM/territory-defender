@@ -270,6 +270,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937ea27ba3624c9d8ef0e1ba4b2d67a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heroModeBtn: {fileID: 742241003962242496}
+  _txtName: {fileID: 716676569500318301}
+  _imageBg: {fileID: 6512735876559023378}
+  _selectedSpriteBg: {fileID: 21300000, guid: 8b1205afbd5694429a93f51e48383520, type: 3}
+  _unselectedSpriteBg: {fileID: 21300000, guid: 470ea89e198604549b4f1a6d5466e1fd, type: 3}
+  _modeType: 1
 --- !u!1 &4351886808376380272
 GameObject:
   m_ObjectHideFlags: 0
@@ -6327,6 +6333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f366741a90468cb276783a84a2fa1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heroModeBtn: {fileID: 5186480291282254862}
+  _txtName: {fileID: 9036439879147920831}
+  _imageBg: {fileID: 6520664721419721676}
+  _selectedSpriteBg: {fileID: 21300000, guid: 8b1205afbd5694429a93f51e48383520, type: 3}
+  _unselectedSpriteBg: {fileID: 21300000, guid: 470ea89e198604549b4f1a6d5466e1fd, type: 3}
+  _modeType: 0
 --- !u!1 &7860531202919003916
 GameObject:
   m_ObjectHideFlags: 0

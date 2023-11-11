@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +16,7 @@ public class ItemHeroView : MonoBehaviour
     private Action<ItemHeroView> _onSelected;
     
     private readonly string _hexSelectedColor = "#F3EF94";
-    private readonly string _hexUnselectedColor = "#323232";
+    private readonly string _hexDeselectedColor = "#323232";
     #region Core
     private void Awake()
     {
@@ -46,7 +44,7 @@ public class ItemHeroView : MonoBehaviour
     public void RemoveSelected()
     {
         _imageBg.sprite = _sprite;
-        if (ColorUtility.TryParseHtmlString(_hexUnselectedColor, out Color unSelectedColor))
+        if (ColorUtility.TryParseHtmlString(_hexDeselectedColor, out Color unSelectedColor))
         {
             _txtName.color = unSelectedColor;
         }
