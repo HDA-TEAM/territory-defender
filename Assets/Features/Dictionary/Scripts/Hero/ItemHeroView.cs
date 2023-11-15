@@ -9,7 +9,7 @@ public class ItemHeroView : MonoBehaviour
     [SerializeField] private Button _btn;
     [SerializeField] private Image _imageBg;
     [SerializeField] private Sprite _spriteSelectedBg;
-    
+
     public HeroComposite HeroComposite;
     
     private Sprite _sprite;
@@ -28,7 +28,7 @@ public class ItemHeroView : MonoBehaviour
         HeroComposite = heroComposite;
         
         _onSelected = onSelected;
-        
+
         SetName(heroComposite.Name);
     }
     #endregion

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Hero", menuName = "Hero", order = 2)]
@@ -10,6 +11,8 @@ public class HeroDataSO : ScriptableObject
     public int _heroDef;
     public float _heroRange;
     public Sprite _heroImage;
+    //public List<SkillDataSO> _heroSkills;
     //public 
+    
     [SerializeField] private Stats _stats;
 }

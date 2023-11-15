@@ -12,8 +12,8 @@ public enum ESkillId
 [CreateAssetMenu(fileName = "SkillDataAsset", menuName = "ScriptableObject/DataAsset/SkillsDataAsset")]
 public class SkillsDataAsset : ScriptableObject
 {
-    [SerializedDictionary("SkillId", "SkillDataSO")] [SerializeField]
-    private SerializedDictionary<ESkillId, SkillDataSO> _skillDataDict =
+    [SerializedDictionary("SkillId", "SkillDataSO")] 
+    [SerializeField] private SerializedDictionary<ESkillId, SkillDataSO> _skillDataDict =
         new SerializedDictionary<ESkillId, SkillDataSO>();
 
     public SkillDataSO GetSkillDataById(ESkillId skillId)

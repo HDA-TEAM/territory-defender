@@ -1,10 +1,10 @@
 using System;
-
-public class ModeSkillView : ModeBaseView, ISetupHeroViewMode
+public class HeroModeHistoryView : HeroModeBaseView, ISetupHeroViewMode
 {
     public void Setup(HeroComposite heroComposite, EHeroViewMode eHeroViewMode, Action<EHeroViewMode> selectAction)
     {
-        HeroComposite = heroComposite;
+        // HeroComposite = heroComposite;
         _onSelectedButton = selectAction;
     }
 }
+

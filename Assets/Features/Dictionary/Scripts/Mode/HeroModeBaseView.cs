@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ModeBaseView : MonoBehaviour
+public class HeroModeBaseView : MonoBehaviour
 {
     [SerializeField] private Button _heroModeBtn;
     [SerializeField] private TextMeshProUGUI _txtName;
@@ -16,7 +16,7 @@ public class ModeBaseView : MonoBehaviour
     private readonly string _hexUnselectedColor = "#323232";
     
     protected Action<EHeroViewMode> _onSelectedButton;
-    protected HeroComposite HeroComposite;
+    //protected HeroComposite HeroComposite;
     
     private void Start()
     {

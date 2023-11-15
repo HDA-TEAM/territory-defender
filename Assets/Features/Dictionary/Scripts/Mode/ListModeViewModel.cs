@@ -10,9 +10,9 @@ public enum EHeroViewMode
 
 public class ListModeViewModel : MonoBehaviour
 {
-    [SerializeField] private ModeSkillView _modeSkillView;
-    [SerializeField] private ModeSkinView _modeSkinView;
-    [SerializeField] private ModeHistoryView _modeHistoryView;
+    [SerializeField] private HeroModeSkillView _heroModeSkillView;
+    [SerializeField] private HeroModeSkinView _heroModeSkinView;
+    [SerializeField] private HeroModeHistoryView _heroModeHistoryView;
 
     private ISetupHeroViewMode _selectedViewMode;
     private EHeroViewMode _currentViewMode;
@@ -23,10 +23,10 @@ public class ListModeViewModel : MonoBehaviour
         _heroComposite = heroComposite;
 
         // Set up the default view (HeroSkillView)
-        _modeSkillView.Setup(heroComposite, EHeroViewMode.Skill, OnHeroModeViewSelected);
-        _modeSkinView.Setup(heroComposite, EHeroViewMode.Skin, OnHeroModeViewSelected);
-        _modeHistoryView.Setup(heroComposite, EHeroViewMode.History, OnHeroModeViewSelected);
-        _selectedViewMode = _modeSkillView;
+        _heroModeSkillView.Setup(heroComposite, EHeroViewMode.Skill, OnHeroModeViewSelected);
+        _heroModeSkinView.Setup(heroComposite, EHeroViewMode.Skin, OnHeroModeViewSelected);
+        _heroModeHistoryView.Setup(heroComposite, EHeroViewMode.History, OnHeroModeViewSelected);
+        _selectedViewMode = _heroModeSkillView;
     }
 
     private void UpdateModeView(EHeroViewMode newViewMode)
@@ -40,15 +40,15 @@ public class ListModeViewModel : MonoBehaviour
             switch (newViewMode)
             {
                 case EHeroViewMode.Skin:
-                    SetSelectedViewMode(_modeSkinView);
+                    SetSelectedViewMode(_heroModeSkinView);
                     break;
 
                 case EHeroViewMode.Skill:
-                    SetSelectedViewMode(_modeSkillView);
+                    SetSelectedViewMode(_heroModeSkillView);
                     break;
 
                 case EHeroViewMode.History:
-                    SetSelectedViewMode(_modeHistoryView);
+                    SetSelectedViewMode(_heroModeHistoryView);
                     break;
 
                 default:
