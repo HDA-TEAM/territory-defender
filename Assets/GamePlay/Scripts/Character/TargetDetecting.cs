@@ -14,10 +14,7 @@ public class TargetDetecting : UnitBaseComponent
     private readonly List<UnitBase> _targets = new List<UnitBase>();
     private UnitBase _curTarget;
     
-    private void Update()
-    {
-        CheckingTarget();
-    }
+    private void Update() => CheckingTarget();
     private void CheckingTarget()
     {
         _curTarget = null;
@@ -52,10 +49,7 @@ public class TargetDetecting : UnitBaseComponent
         {
             UnitBase target = other.gameObject.GetComponent<UnitBase>();
             if (target != null && !_targets.Exists((t) => t == target))
-            {
                 _targets.Add(target);
-                Debug.Log("target add ");
-            }
         }
         else
             TryRemoveFromTargetList(other);
