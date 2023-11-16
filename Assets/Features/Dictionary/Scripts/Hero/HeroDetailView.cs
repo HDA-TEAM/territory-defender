@@ -1,8 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HeroDetailView : MonoBehaviour
+public class HeroDetailView : MonoBehaviour, IHeroModePageView
 {
     [Header("Property"), Space(8)]
     [SerializeField] private TextMeshProUGUI _txtHeroName;
@@ -22,7 +23,9 @@ public class HeroDetailView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtPassiveSkillName;
     [SerializeField] private TextMeshProUGUI _txtPassiveSkillText;
     [SerializeField] private Image _imgPassiveSkill;
-    
+
+    [Header("Object Hero Detail"), Space(4)]
+    [SerializeField] private GameObject _objHeroDetailView;
     
     #region Core
     public void Setup(HeroComposite heroComposite)
@@ -43,6 +46,12 @@ public class HeroDetailView : MonoBehaviour
         _txtActiveSkillText.text = heroComposite.ActiveSkill.SkillText;
         _imgActiveSkill.sprite = heroComposite.ActiveSkill.SkillImage;
     }
+
+    public void PageSelected(bool isSelected)
+    {
+        _objHeroDetailView.gameObject.SetActive(isSelected);
+    }
+
     #endregion
     
 }

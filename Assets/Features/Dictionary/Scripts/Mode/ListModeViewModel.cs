@@ -14,7 +14,13 @@ public class ListModeViewModel : MonoBehaviour
     [SerializeField] private HeroModeSkinView _heroModeSkinView;
     [SerializeField] private HeroModeHistoryView _heroModeHistoryView;
 
+    [SerializeField] private HeroDetailView _heroDetailView;
+    [SerializeField] private SkinPageView _skinPageView;
+    [SerializeField] private HistoryPageView _historyPageView;
+    
     private ISetupHeroViewMode _selectedViewMode;
+    private IHeroModePageView _selectedPageView;
+    
     private EHeroViewMode _currentViewMode;
     private HeroComposite _heroComposite;
 
@@ -27,6 +33,7 @@ public class ListModeViewModel : MonoBehaviour
         _heroModeSkinView.Setup(heroComposite, EHeroViewMode.Skin, OnHeroModeViewSelected);
         _heroModeHistoryView.Setup(heroComposite, EHeroViewMode.History, OnHeroModeViewSelected);
         _selectedViewMode = _heroModeSkillView;
+        _selectedPageView = _heroDetailView;
     }
 
     private void UpdateModeView(EHeroViewMode newViewMode)
@@ -39,16 +46,18 @@ public class ListModeViewModel : MonoBehaviour
             // Handle the setup for different view modes
             switch (newViewMode)
             {
-                case EHeroViewMode.Skin:
-                    SetSelectedViewMode(_heroModeSkinView);
-                    break;
-
                 case EHeroViewMode.Skill:
-                    SetSelectedViewMode(_heroModeSkillView);
+                    SetSelectedViewMode(_heroModeSkillView, _heroDetailView);
+                    
                     break;
-
+                
+                case EHeroViewMode.Skin:
+                    SetSelectedViewMode(_heroModeSkinView, _skinPageView);
+                    
+                    break;
+                
                 case EHeroViewMode.History:
-                    SetSelectedViewMode(_heroModeHistoryView);
+                    SetSelectedViewMode(_heroModeHistoryView, _historyPageView);
                     break;
 
                 default:
@@ -58,19 +67,34 @@ public class ListModeViewModel : MonoBehaviour
         }
     }
 
-    private void SetSelectedViewMode(ISetupHeroViewMode newHeroViewMode)
+    private void SetSelectedViewMode(ISetupHeroViewMode newHeroViewMode, IHeroModePageView newHeroModePageView)
     {
         // Deselect the previous view
         if (_selectedViewMode != null)
         {
             _selectedViewMode.SetSelectedState(false);
+            _selectedPageView.PageSelected(false);
         }
 
         // Set up and select the new view
         _selectedViewMode = newHeroViewMode;
         _selectedViewMode.Setup(_heroComposite, _currentViewMode, OnHeroModeViewSelected);
         _selectedViewMode.SetSelectedState(true);
+        
+        _selectedPageView = newHeroModePageView;
+        _selectedPageView.PageSelected(true);
+        
     }
+    
+    public void ResetToSkillView(EHeroViewMode resetViewMode)
+    {
+        // Perform the setup for the skill view
+        SetSelectedViewMode(_heroModeSkillView, _heroDetailView);
+
+        // Update the current view mode
+        _currentViewMode = resetViewMode;
+    }
+
 
     private void OnHeroModeViewSelected(EHeroViewMode eHeroViewMode)
     {

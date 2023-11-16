@@ -117,9 +117,14 @@ public class ListHeroViewModel : MonoBehaviour
     {
         if (_preSelectedItem != null)
             _preSelectedItem.RemoveSelected();
+        
         _preSelectedItem = itemHeroView;
         _heroDetailView.Setup(itemHeroView.HeroComposite);
+        
+        // reset to Skill view when switch another hero
+        _listModeViewModel.ResetToSkillView(EHeroViewMode.Skill);
         _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
+        
     }
 
     private void OnSkillSelected(ItemSkillView itemItemSkillView)
