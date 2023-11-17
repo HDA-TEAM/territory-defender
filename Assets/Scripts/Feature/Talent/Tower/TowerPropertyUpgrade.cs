@@ -1,6 +1,6 @@
 using System;
 
-namespace Feature.Talent.Tower
+namespace Features.Talent.Tower
 {
     public class TowerUnitConfig
     {

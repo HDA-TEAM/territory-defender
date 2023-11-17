@@ -437,9 +437,8 @@ GameObject:
   - component: {fileID: 6629436533076306688}
   - component: {fileID: 6629436533076306691}
   - component: {fileID: 6629436533076306690}
-  - component: {fileID: 6629436533076306689}
   m_Layer: 5
-  m_Name: btnSkillShow
+  m_Name: btnHeroSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,34 +546,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6629436533076306691}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6629436533076306689}
-        m_TargetAssemblyTypeName: Feature.HeroInformation.ButtonChain, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6629436533076306689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533076306692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 6629436533076306690}
-  _characterController: {fileID: 0}
-  _menuType: 0
+      m_Calls: []
 --- !u!1 &6629436533115071357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,9 +983,8 @@ GameObject:
   - component: {fileID: 6629436533210662898}
   - component: {fileID: 6629436533210662901}
   - component: {fileID: 6629436533210662900}
-  - component: {fileID: 6629436533210662899}
   m_Layer: 5
-  m_Name: btnShowSkin
+  m_Name: btnHeroSkin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1121,34 +1092,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6629436533210662901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6629436533210662899}
-        m_TargetAssemblyTypeName: Feature.HeroInformation.ButtonChain, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6629436533210662899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533210662902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 6629436533210662900}
-  _characterController: {fileID: 0}
-  _menuType: 1
+      m_Calls: []
 --- !u!1 &6629436533243048950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,9 +1868,8 @@ GameObject:
   - component: {fileID: 6629436533400338156}
   - component: {fileID: 6629436533400338159}
   - component: {fileID: 6629436533400338158}
-  - component: {fileID: 6629436533400338145}
   m_Layer: 5
-  m_Name: btnShowHistory
+  m_Name: btnHeroHistory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2034,34 +1977,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6629436533400338159}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6629436533400338145}
-        m_TargetAssemblyTypeName: Feature.HeroInformation.ButtonChain, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6629436533400338145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533400338147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca131a84eb4455c975e6e0c1e0d2555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _button: {fileID: 6629436533400338158}
-  _characterController: {fileID: 0}
-  _menuType: 2
+      m_Calls: []
 --- !u!1 &6629436533446590266
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,9 +2491,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6629436533617919407}
   - component: {fileID: 6629436533617919405}
-  - component: {fileID: 6629436533617919402}
   m_Layer: 5
-  m_Name: objCharacterMore
+  m_Name: objCharacterMode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2615,28 +2530,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6629436533617919406}
   m_CullTransparentMesh: 1
---- !u!114 &6629436533617919402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533617919406}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89ff9286b1e34c1695c92f10912fb891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _btnClickedList:
-  - {fileID: 6629436533076306689}
-  - {fileID: 6629436533210662899}
-  - {fileID: 6629436533400338145}
-  _objContentList:
-  - {fileID: 6629436533786972180}
-  - {fileID: 6629436533243048950}
-  - {fileID: 6629436533822173020}
-  _positiveImage: {fileID: 21300000, guid: 15517ad18cb90408a88312b4426dc022, type: 3}
-  _absoluteImage: {fileID: 21300000, guid: 95a4ce81f4bb841cbbd9f1a20d9feb02, type: 3}
 --- !u!1 &6629436533698683394
 GameObject:
   m_ObjectHideFlags: 0
@@ -2875,7 +2768,6 @@ GameObject:
   - component: {fileID: 6629436533786972181}
   - component: {fileID: 6629436533786972179}
   - component: {fileID: 6629436533786972178}
-  - component: {fileID: 7076969246624783738}
   m_Layer: 5
   m_Name: objHeroPropertyBoard
   m_TagString: Untagged
@@ -2944,21 +2836,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7076969246624783738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533786972180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44a73f6d64ef4df8b4e8aeb9e07df257, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _txtHeroName: {fileID: 6629436533207781286}
-  _txtLevel: {fileID: 6629436533248684036}
-  _imgHero: {fileID: 6629436534499102413}
 --- !u!1 &6629436533822173020
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,7 +2883,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6629436533911869602}
-  - component: {fileID: 6629436533911869603}
   m_Layer: 5
   m_Name: objSkillTextManage
   m_TagString: Untagged
@@ -3038,21 +2914,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &6629436533911869603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436533911869605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66e90409248a3428b8d2a2cf337b674c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonSkillDescribesList:
-  - {fileID: 6629436534504443245}
-  - {fileID: 6629436534000143467}
 --- !u!1 &6629436533943620651
 GameObject:
   m_ObjectHideFlags: 0
@@ -3200,7 +3061,6 @@ GameObject:
   - component: {fileID: 6629436534000143466}
   - component: {fileID: 6629436534000143469}
   - component: {fileID: 6629436534000143468}
-  - component: {fileID: 6629436534000143467}
   m_Layer: 5
   m_Name: btnPassiveSkill
   m_TagString: Untagged
@@ -3309,34 +3169,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6629436534000143469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6629436534000143467}
-        m_TargetAssemblyTypeName: Feature.HeroInformation.ButtonSkillDescribe, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6629436534000143467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436534000143470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a9f524009d14036948aba1405888e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonSkillDescribe: {fileID: 6629436534000143468}
-  _describeSkillImage: {fileID: 6629436533393874393}
-  _skillTextManage: {fileID: 6629436533911869603}
+      m_Calls: []
 --- !u!1 &6629436534075605250
 GameObject:
   m_ObjectHideFlags: 0
@@ -3595,7 +3428,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6629436534105687944}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f190abb96a142ef8604c9f88abf1f4c, type: 3}
   m_Name: 
@@ -3605,8 +3438,11 @@ MonoBehaviour:
   - {fileID: 6844155478131120420}
   - {fileID: 4889124170825990194}
   - {fileID: 2555775569358120873}
-  _heroDetailView: {fileID: 7076969246624783738}
+  _heroDetailView: {fileID: 0}
+  _itemSkillViews: []
+  _listModeViewModel: {fileID: 0}
   _heroesDataAsset: {fileID: 11400000, guid: 784600e1af4334f049c57b9feccd4023, type: 2}
+  _skillsDataAsset: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
 --- !u!1 &6629436534132708629
 GameObject:
   m_ObjectHideFlags: 0
@@ -4723,7 +4559,6 @@ GameObject:
   - component: {fileID: 6629436534504443244}
   - component: {fileID: 6629436534504443247}
   - component: {fileID: 6629436534504443246}
-  - component: {fileID: 6629436534504443245}
   m_Layer: 5
   m_Name: btnActiveSkill
   m_TagString: Untagged
@@ -4832,34 +4667,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6629436534504443247}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6629436534504443245}
-        m_TargetAssemblyTypeName: Feature.HeroInformation.ButtonSkillDescribe, Assembly-CSharp
-        m_MethodName: OnButtonClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &6629436534504443245
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6629436534504443232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a9f524009d14036948aba1405888e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonSkillDescribe: {fileID: 6629436534504443246}
-  _describeSkillImage: {fileID: 6629436533533043422}
-  _skillTextManage: {fileID: 6629436533911869603}
+      m_Calls: []
 --- !u!1 &6629436534507707203
 GameObject:
   m_ObjectHideFlags: 0

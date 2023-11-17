@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Feature.Talent.Hero;
-using Feature.Talent.Tower;
+using Features.Talent.Hero;
+using Features.Talent.Tower;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Feature.Talent
+namespace Features.Talent
 {
     public class TalentUpgrade : MonoBehaviour
     {
