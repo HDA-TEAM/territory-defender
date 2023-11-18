@@ -4,9 +4,8 @@ using UnityEngine.Serialization;
 
 public class UnitBase : MonoBehaviour
 {
-    // [SerializeField] private CharacterConfig _characterConfig;
     #region Component
-    [SerializeField] private CharacterStateSystem _characterStateSystem;
+    [SerializeField] private CharacterStateMachine _characterStateMachine;
     [SerializeField] private TargetDetecting _targetDetecting;
     [SerializeField] private HealthComp _healthComp;
     [SerializeField] private AttackingComp _attackingComp;
@@ -16,7 +15,7 @@ public class UnitBase : MonoBehaviour
     #endregion
 
     #region Access
-    protected CharacterStateSystem CharacterStateSystem() => _characterStateSystem;
+    protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     protected TargetDetecting TargetDetecting() => _targetDetecting;
     public HealthComp HealthComp() => _healthComp;
     public AttackingComp AttackingComp() => _attackingComp;
@@ -28,7 +27,7 @@ public class UnitBase : MonoBehaviour
     #region Validate
     private void OnValidate()
     {
-        _characterStateSystem ??= GetComponent<CharacterStateSystem>(); 
+        _characterStateMachine ??= GetComponent<CharacterStateMachine>(); 
         _targetDetecting ??= GetComponent<TargetDetecting>(); 
         _healthComp ??= GetComponent<HealthComp>(); 
         _attackingComp ??= GetComponent<AttackingComp>();
@@ -42,22 +41,6 @@ public class UnitBase : MonoBehaviour
     public Action<UnitBase> OnTargetChanging;
     public Action OnUpdateStats;
     #endregion
-}
-
-public enum CharacterState
-{
-    Idle = 0,
-    Moving = 1,
-    Attacking = 2,
-    Guarding = 3,
-    TakingDame = 4,
-    Die = 5
-}
-
-public class CharacterStateSystem : MonoBehaviour
-{
-    private CharacterState currentState;
-    public CharacterState CurrentState() => currentState;
 }
 
 public class UnitBaseComponent : MonoBehaviour

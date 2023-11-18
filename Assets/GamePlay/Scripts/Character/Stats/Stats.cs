@@ -41,7 +41,7 @@ public enum StatId
     HealingPerSecond = 100,
     MaxHeal = 101,
     Armour = 105,
-    Movement = 106,
+    MovementSpeed = 106,
     LifeReduce = 107,
     DropCoinWhenDie = 108,
     TimeToRevive = 109,

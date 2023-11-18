@@ -8,7 +8,7 @@ public class EnemyMovement : UnitBaseComponent
     {
         get
         {
-            return routeToGate;
+            return routeToGate; 
         }
         set
         {
@@ -45,7 +45,7 @@ public class EnemyMovement : UnitBaseComponent
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
-        movementSpeed = stats.GetStat(StatId.Movement);
+        movementSpeed = stats.GetStat(StatId.MovementSpeed);
     }
     #endregion
     #region Moving Logic

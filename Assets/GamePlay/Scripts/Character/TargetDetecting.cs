@@ -9,11 +9,11 @@ public enum CharacterSide
 
 public class TargetDetecting : UnitBaseComponent
 {
+    
     [SerializeField] private CharacterSide _characterSideNeedToTarget;
     [SerializeField] private float _rangeDetecting;
     private readonly List<UnitBase> _targets = new List<UnitBase>();
     private UnitBase _curTarget;
-    
     private void Update() => CheckingTarget();
     private void CheckingTarget()
     {
@@ -54,21 +54,17 @@ public class TargetDetecting : UnitBaseComponent
         else
             TryRemoveFromTargetList(other);
     }
-    /// handle case object is deActive
+    /// Handle case object is deActive
     private void OnTriggerExit2D(Collider2D other)
     {
         // Debug.Log("other.gameObject exit " + other.tag);
         if (other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
-        {
             TryRemoveFromTargetList(other);
-        }
     }
     private void TryRemoveFromTargetList(Collider2D other)
     {
         UnitBase target = other.gameObject.GetComponent<UnitBase>();
         if (target != null && _targets.Exists((t) => t == target))
-        {
             _targets.Remove(target);
-        }
     }
 }

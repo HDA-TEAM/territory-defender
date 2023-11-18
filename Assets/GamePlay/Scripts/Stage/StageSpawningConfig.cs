@@ -91,7 +91,7 @@ public class StageSpawningConfig : ScriptableObject
         }
         private void SetRoute(GameObject go)
         {
-            go.TryGetComponent(out EnemyMovement component);
+            go.TryGetComponent(out BaseEnemyStateMachine component);
             component.RouteToGate = RouteSetController.Instance.CurrentRouteLineRenderers[RouteId];
             go.transform.position = component.RouteToGate.GetPosition(0);
         }

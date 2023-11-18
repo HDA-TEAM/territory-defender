@@ -25,7 +25,7 @@ public class AttackingComp : UnitBaseComponent
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId _projectileId;
 
-    private bool canAttacking = true;
+    private bool isNeedToWaitCoolDownAttacking = false;
 
     #region Event
     private void OnEnable()
@@ -46,20 +46,21 @@ public class AttackingComp : UnitBaseComponent
         attackingRange = stats.GetStat(StatId.AttackRange);
     }
     #endregion
+    
     #region Logic
     private async void AttackingTarget(UnitBase target)
     {
         if (target == null)
             return;
 
-        if (canAttacking)
+        if (!isNeedToWaitCoolDownAttacking)
         {
             switch (attackingType)
             {
                 case AttackingType.Tower:
                     {
                         // Tower don't need to check distance, it always fire any target exist
-                        canAttacking = false;
+                        isNeedToWaitCoolDownAttacking = true;
 
                         Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
                         // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
@@ -69,7 +70,7 @@ public class AttackingComp : UnitBaseComponent
                         
                         await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
 
-                        canAttacking = true;
+                        isNeedToWaitCoolDownAttacking = false;
                         return;
                     }
                 case AttackingType.Melee:
@@ -79,17 +80,17 @@ public class AttackingComp : UnitBaseComponent
                         if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) < attackingRange)
                             return;
                         
-                        canAttacking = false;
+                        isNeedToWaitCoolDownAttacking = true;
 
                         new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target, attackingDamage);
                         await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
 
-                        canAttacking = true;
+                        isNeedToWaitCoolDownAttacking = false;
                         return;
                     }
                 default:
                     {
-                        canAttacking = false;
+                        isNeedToWaitCoolDownAttacking = true;
                         return;
                     }
             }
