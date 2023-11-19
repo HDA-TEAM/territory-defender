@@ -1,7 +1,7 @@
 public class EnemyIdleState : CharacterBaseState
 {
     private BaseEnemyStateMachine _context;
-    public EnemyIdleState(BaseEnemyStateMachine currentContext, CharacterStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    public EnemyIdleState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         _context = currentContext;
     }

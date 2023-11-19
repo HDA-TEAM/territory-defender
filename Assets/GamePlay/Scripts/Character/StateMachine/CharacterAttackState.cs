@@ -3,8 +3,7 @@ using UnityEngine;
 public class CharacterAttackState : CharacterBaseState
 {
     protected float _cooldownNextAttack;
-    public CharacterAttackState(CharacterStateMachine currentContext, CharacterStateFactory characterStateFactory) 
-        : base(currentContext,characterStateFactory)
+    public CharacterAttackState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
     }

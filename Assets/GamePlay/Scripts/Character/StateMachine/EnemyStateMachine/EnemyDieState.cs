@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyDieState : CharacterDieState
 {
     private readonly BaseEnemyStateMachine _context;
-    public EnemyDieState(BaseEnemyStateMachine currentContext, CharacterStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    public EnemyDieState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
         _context = currentContext;

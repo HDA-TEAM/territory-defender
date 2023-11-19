@@ -1,7 +1,6 @@
 public class CharacterIdleState : CharacterBaseState
 {
-    public CharacterIdleState(CharacterStateMachine currentContext, CharacterStateFactory characterStateFactory) 
-        : base(currentContext,characterStateFactory)
+    public CharacterIdleState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
     }

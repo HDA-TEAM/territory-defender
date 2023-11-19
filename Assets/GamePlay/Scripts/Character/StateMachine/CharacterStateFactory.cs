@@ -39,8 +39,8 @@ public class EnemyStateFactory : CharacterStateFactory
     public EnemyStateFactory(BaseEnemyStateMachine currentContext)
     { 
         _context = currentContext;
-        _states[CharacterState.Die] = new EnemyDieState(_context, this);
-        _states[CharacterState.Moving] = new EnemyMovingState(_context, this);
+        _states[CharacterState.Die] = new EnemyDieState(_context);
+        _states[CharacterState.Moving] = new EnemyMovingState(_context);
     }
     
     public CharacterBaseState GetState(CharacterState characterState)
@@ -57,10 +57,10 @@ public class HeroStateFactory : CharacterStateFactory
     public HeroStateFactory(BaseHeroStateMachine currentContext)
     { 
         _context = currentContext;
-        _states[CharacterState.Die] = new HeroIdleState(_context, this);
-        _states[CharacterState.Attacking] = new HeroAttackState(_context, this);
-        _states[CharacterState.Idle] = new HeroIdleState(_context, this);
-        _states[CharacterState.Moving] = new HeroDieState(_context, this);
+        _states[CharacterState.Die] = new HeroDieState(_context);
+        _states[CharacterState.Attacking] = new HeroAttackState(_context);
+        _states[CharacterState.Idle] = new HeroIdleState(_context);
+        _states[CharacterState.Moving] = new HeroMovingState(_context);
     }
     
     public CharacterBaseState GetState(CharacterState characterState)

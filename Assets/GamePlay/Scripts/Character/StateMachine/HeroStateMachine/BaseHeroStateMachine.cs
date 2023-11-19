@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class BaseHeroStateMachine : CharacterStateMachine
 {
-    [SerializeField] private LineRenderer _routeToGate;
-    
     private HeroStateFactory _factory;
     private bool _isAttack;
     private bool _isMoving;
@@ -19,7 +17,7 @@ public class BaseHeroStateMachine : CharacterStateMachine
     protected override void Awake()
     {
         _factory = new HeroStateFactory(this);
-        _currentState = _factory.GetState(CharacterState.Moving);
+        _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
     }
     protected override void OnTargetChanging(UnitBase target)
@@ -42,7 +40,7 @@ public class BaseHeroStateMachine : CharacterStateMachine
         
         var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetStat(StatId.AttackRange);
         _isAttack = isInAttackRange;
-        _isMoving = !_isAttack;
+        _isMoving = !isInAttackRange;
     }
     #endregion
 }

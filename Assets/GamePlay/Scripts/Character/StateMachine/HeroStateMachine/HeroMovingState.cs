@@ -1,8 +1,8 @@
 public class HeroMovingState : CharacterBaseState
 {
-    private BaseEnemyStateMachine _context;
+    private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
-    public HeroMovingState(BaseEnemyStateMachine currentContext, EnemyStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
         _context = currentContext;
@@ -10,19 +10,22 @@ public class HeroMovingState : CharacterBaseState
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
+        _context.CharacterAnimator.SetBool("IsMoving",true);
     }
     public override void UpdateState()
     {
-        MovingToDestination();
+        PlayMoving();
         CheckSwitchState();
     }
     public override void ExitState()
     {
+        _context.CharacterAnimator.SetBool("IsMoving",false);
     }
     public override void CheckSwitchState()
     {
-        if (!_context.IsMovingToGate)
+        if (!_context.IsMoving)
         {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
     }
     public override void InitializeSubState()
@@ -30,33 +33,11 @@ public class HeroMovingState : CharacterBaseState
         throw new System.NotImplementedException();
     }
     #region Moving Logic
-    private void MovingToDestination()
-    {
-        if (IsReachedDestinationGate())
-        {
-            // remove route to stop moving
-            // _context.RouteToGate = null;
-            // _unitBaseParent.EnemyReachingDestinationComp.OnReachingDestination();
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
-            return;
-        }
-        if (VectorUtility.IsTwoPointReached(
-            _context.transform.position, 
-            _context.RouteToGate.GetPosition(_context.CurrentIndexInRouteLine)))
-        {
-            _context.CurrentIndexInRouteLine += 1;
-        }
-        PlayMoving();
-    }
-    private bool IsReachedDestinationGate()
-    {
-        return (_context.CurrentIndexInRouteLine == _context.RouteToGate.positionCount - 1);
-    }
     private void PlayMoving()
     {
         _context.transform.position =VectorUtility.Vector2MovingAToB(
             _context.transform.position,
-            _context.RouteToGate.GetPosition(_context.CurrentIndexInRouteLine),
+            _context.Target.transform.position,
             _movingSpeed);
     }
     #endregion

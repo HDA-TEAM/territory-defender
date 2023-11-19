@@ -1,8 +1,8 @@
 public class EnemyMovingState : CharacterBaseState
 {
-    private BaseEnemyStateMachine _context;
+    private readonly BaseEnemyStateMachine _context;
     private float _movingSpeed;
-    public EnemyMovingState(BaseEnemyStateMachine currentContext, EnemyStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    public EnemyMovingState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
         _context = currentContext;

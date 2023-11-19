@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public abstract class CharacterBaseState
 {
     private bool _isRootState = false;
@@ -7,13 +9,8 @@ public abstract class CharacterBaseState
 
     protected bool IsRootState { set { _isRootState = value; } }
     protected CharacterStateMachine Context { get { return _context; } }
-    // private CharacterStateFactory _factory;
-    // protected CharacterStateFactory Factory { get { return _factory; } }
     
-    protected CharacterBaseState(CharacterStateMachine currentContext, CharacterStateFactory characterStateFactory)
-    {
-        _context = currentContext;
-    }
+    protected CharacterBaseState(CharacterStateMachine currentContext) => _context = currentContext;
     public abstract void EnterState();
     public abstract void UpdateState();
     public abstract void ExitState();

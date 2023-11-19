@@ -3,7 +3,7 @@ using System;
 public class TowerIdleState : CharacterBaseState
 {
 
-    public TowerIdleState(BaseTowerStateMachine currentContext, CharacterStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    public TowerIdleState(BaseTowerStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
     }

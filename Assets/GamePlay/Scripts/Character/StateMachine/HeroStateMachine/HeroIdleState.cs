@@ -2,14 +2,15 @@ using System;
 
 public class HeroIdleState : CharacterBaseState
 {
-    private BaseHeroStateMachine _context;
-    public HeroIdleState(BaseHeroStateMachine currentContext, CharacterStateFactory characterStateFactory) : base(currentContext, characterStateFactory)
+    private readonly BaseHeroStateMachine _context;
+    public HeroIdleState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
-        
+        Context.CharacterAnimator.SetBool("IsIdle", true);
     }
     public override void UpdateState()
     {
@@ -17,7 +18,7 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        Context.CharacterAnimator.SetBool("IsIdle", false);
     }
     public override void CheckSwitchState()
     {
