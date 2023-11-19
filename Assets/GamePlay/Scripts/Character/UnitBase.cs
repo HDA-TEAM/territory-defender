@@ -47,6 +47,8 @@ public class UnitBaseComponent : MonoBehaviour
 {
     [SerializeField] protected UnitBase _unitBaseParent;
     private void OnValidate() => _unitBaseParent ??= GetComponent<UnitBase>();
+    
+    public UnitBase UnitBaseParent()=> _unitBaseParent;
     protected virtual void StatsUpdate()
     {
         

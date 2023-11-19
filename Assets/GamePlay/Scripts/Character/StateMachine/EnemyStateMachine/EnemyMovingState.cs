@@ -25,19 +25,15 @@ public class EnemyMovingState : CharacterBaseState
         {
         }
     }
-    public override void InitializeSubState()
-    {
-        throw new System.NotImplementedException();
-    }
+    public override void InitializeSubState() {}
     #region Moving Logic
     private void MovingToDestination()
     {
-        if (IsReachedDestinationGate())
+        if (IsReachedDestinationGate() && _context.RouteToGate != null)
         {
             // remove route to stop moving
-            // _context.RouteToGate = null;
-            // _unitBaseParent.EnemyReachingDestinationComp.OnReachingDestination();
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+            _context.RouteToGate = null;
+            OnReachingDestination();
             return;
         }
         if (VectorUtility.IsTwoPointReached(
@@ -58,6 +54,13 @@ public class EnemyMovingState : CharacterBaseState
             _context.transform.position,
             _context.RouteToGate.GetPosition(_context.CurrentIndexInRouteLine),
             _movingSpeed);
+    }
+    public void OnReachingDestination()
+    {
+        // return pooling and status
+        _context.InGameInventoryData.TryChangeLife(
+            - (int)_context.CharacterStats.GetStat(StatId.LifeReduce));
+        _context.UnitBaseParent().HealthComp().ResetState();
     }
     #endregion
 }
