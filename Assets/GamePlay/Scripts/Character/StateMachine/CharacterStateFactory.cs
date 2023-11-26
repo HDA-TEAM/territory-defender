@@ -39,7 +39,9 @@ public class EnemyStateFactory : CharacterStateFactory
     public EnemyStateFactory(BaseEnemyStateMachine currentContext)
     { 
         _context = currentContext;
+        _states[CharacterState.Idle] = new EnemyIdleState(_context);
         _states[CharacterState.Die] = new EnemyDieState(_context);
+        _states[CharacterState.Attacking] = new EnemyAttackState(_context);
         _states[CharacterState.Moving] = new EnemyMovingState(_context);
     }
     

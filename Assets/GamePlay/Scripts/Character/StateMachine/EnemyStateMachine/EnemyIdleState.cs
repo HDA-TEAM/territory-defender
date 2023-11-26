@@ -1,28 +1,37 @@
 public class EnemyIdleState : CharacterBaseState
 {
-    private BaseEnemyStateMachine _context;
+    private readonly BaseEnemyStateMachine _context;
     public EnemyIdleState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
     }
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        CheckSwitchState();
     }
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
     }
     public override void CheckSwitchState()
     {
-        throw new System.NotImplementedException();
+        if (_context.IsDie)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }
+        else if (_context.IsStopToAttack)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
+        }
+        else if (_context.IsMovingToGate)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
+        }
     }
     public override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
     }
 }

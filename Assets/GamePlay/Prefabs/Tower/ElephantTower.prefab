@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 80a7f2ab45180400caff63f09db70bc8, type: 2}
+    - target: {fileID: 7126902680260101256, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _isTower
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7230033807750692009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _projectileId
       value: 1001

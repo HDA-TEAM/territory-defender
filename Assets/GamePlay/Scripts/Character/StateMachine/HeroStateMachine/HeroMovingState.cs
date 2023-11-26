@@ -23,14 +23,17 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void CheckSwitchState()
     {
-        if (!_context.IsMoving)
+        if (_context.IsDie)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }
+        if (!_context.IsMovingToTarget)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
     }
     public override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
     }
     #region Moving Logic
     private void PlayMoving()

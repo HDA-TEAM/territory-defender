@@ -21,8 +21,13 @@ public class EnemyMovingState : CharacterBaseState
     }
     public override void CheckSwitchState()
     {
+        if (_context.IsDie)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }       
         if (!_context.IsMovingToGate)
         {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
     }
     public override void InitializeSubState() {}

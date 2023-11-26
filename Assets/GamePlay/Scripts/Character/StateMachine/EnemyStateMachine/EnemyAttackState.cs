@@ -1,21 +1,20 @@
 using System;
 using UnityEngine;
 
-public class HeroAttackState : CharacterAttackState
+public class EnemyAttackState : CharacterAttackState
 {
-    private readonly BaseHeroStateMachine _context;
-    public HeroAttackState(BaseHeroStateMachine currentContext) : base(currentContext)
+    private readonly BaseEnemyStateMachine _context;
+    public EnemyAttackState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         _context = currentContext;
     }
     public override void CheckSwitchState()
     {
-        base.EnterState();
         if (_context.IsDie)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
-        if (!_context.IsAttack || _context.IsDie)
+        if (!_context.IsStopToAttack)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }

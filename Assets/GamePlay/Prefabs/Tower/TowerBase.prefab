@@ -162,12 +162,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterStateSystem: {fileID: 0}
+  _characterStateMachine: {fileID: 0}
   _targetDetecting: {fileID: 7126902680260101256}
   _healthComp: {fileID: 0}
   _attackingComp: {fileID: 7230033807750692009}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
+  _enemyReachingDestination: {fileID: 0}
+  _targetChallenging: {fileID: 0}
 --- !u!114 &3858257114877186647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,3 +303,4 @@ MonoBehaviour:
   _unitBaseParent: {fileID: -7030754689199355094}
   _characterSideNeedToTarget: 2
   _rangeDetecting: 5
+  _isTower: 1

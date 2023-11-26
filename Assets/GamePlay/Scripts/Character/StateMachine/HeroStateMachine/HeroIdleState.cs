@@ -1,8 +1,10 @@
 using System;
+using UnityEngine;
 
 public class HeroIdleState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
+    private Vector3 _pos;
     public HeroIdleState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -22,11 +24,15 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void CheckSwitchState()
     {
-        if (_context.IsAttack)
+        if (_context.IsDie)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }
+        else if (_context.IsAttack)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
         }
-        if (_context.IsMoving)
+        else if (_context.IsMovingToTarget)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
         }

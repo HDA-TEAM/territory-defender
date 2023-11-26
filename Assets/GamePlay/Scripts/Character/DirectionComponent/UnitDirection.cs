@@ -8,6 +8,8 @@ public class UnitDirection : UnitBaseComponent
     private bool _isFocusTarget;
     private UnitBase _target;
     private float _localScaleX;
+
+    private bool isCurrentTurnOnFlipX;
     
     #region Core
     private void Start() => _localScaleX = _transform.localScale.x;
@@ -33,9 +35,12 @@ public class UnitDirection : UnitBaseComponent
         {
             isTurnOnFlipX = CheckLeftToRightDirection(_prePos,_curPos);
         }
+        if (isTurnOnFlipX == isCurrentTurnOnFlipX )
+            return;
         var localScale = _transform.localScale;
         _transform.localScale = isTurnOnFlipX ? new Vector3(_localScaleX, localScale.y, localScale.z) : new Vector3(-_localScaleX, localScale.y, localScale.z);
-        _prePos = _curPos;  
+        _prePos = _curPos;
+        isCurrentTurnOnFlipX = isTurnOnFlipX;
     }
     private void OnTargetChanging(UnitBase target) => _target = target;
     #endregion

@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 1678257231}
   - component: {fileID: 1678257230}
   - component: {fileID: 1678257229}
-  - component: {fileID: 1678257232}
   - component: {fileID: 1678257234}
   - component: {fileID: 3109024967751958898}
   - component: {fileID: -866078463075045641}
@@ -304,30 +303,11 @@ MonoBehaviour:
   _characterStateMachine: {fileID: 666001084183805972}
   _targetDetecting: {fileID: 1678257234}
   _healthComp: {fileID: 3109024967751958898}
-  _attackingComp: {fileID: 1678257232}
+  _attackingComp: {fileID: 0}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
   _enemyReachingDestination: {fileID: 0}
---- !u!114 &1678257232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192807291828039942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitBaseParent: {fileID: 1678257229}
-  startAttackPoint: {fileID: 0}
-  attackingType: 1
-  attackingCooldown: 4
-  attackingDamage: 20
-  attackingRange: 1.5
-  _projectileDataAsset: {fileID: 0}
-  _projectileId: 0
+  _targetChallenging: {fileID: 0}
 --- !u!114 &1678257234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +323,7 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 1678257229}
   _characterSideNeedToTarget: 1
   _rangeDetecting: 3
+  _isTower: 0
 --- !u!114 &3109024967751958898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,9 +368,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
+  _attackingType: 1
   _animator: {fileID: 6715228475396641559}
   _stats: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
-  _routeToGate: {fileID: 0}
+  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
+  _projectileId: 0
+  _curTarget: {fileID: 0}
 --- !u!1 &4668294441519044016
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,7 +789,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.079, y: 0.67}
+  m_AnchoredPosition: {x: -0.07, y: 0.67}
   m_SizeDelta: {x: 0.6, y: 0.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2861465079126801452

@@ -10,7 +10,7 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private float _currentHealth = 50;
     [SerializeField] private TMP_Text _txtToast;
     [SerializeField] private Slider _healthSlider;
-    
+
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
@@ -47,11 +47,7 @@ public class HealthComp : UnitBaseComponent
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         _txtToast.gameObject.SetActive(false);
     }
-    private void CheckDie()
-    {
-        if (_currentHealth <= 0)
-            ResetState();
-    }
+    private void CheckDie() => _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
     public void ResetState()
     {
         gameObject.SetActive(false);
