@@ -72,7 +72,7 @@ public class EnemyMovement : UnitBaseComponent
     }
     private void PlayMoving()
     {
-        this.gameObject.transform.position =VectorUtility.Vector3MovingAToB(
+        this.gameObject.transform.position = VectorUtility.Vector3MovingAToB(
             gameObject.transform.position,
             routeToGate.GetPosition(currentIndexInRouteLine),
             movementSpeed);
