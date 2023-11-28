@@ -15,12 +15,12 @@ public static class VectorUtility
         }
         return false;
     }
-    public static Vector2 Vector2MovingAToB(Vector2 pointA,Vector2 pointB, float movementSpeed)
+    public static Vector3 Vector3MovingAToB(Vector3 pointA,Vector3 pointB, float movementSpeed)
     {
-        return Vector2.MoveTowards(
+        return Vector3.MoveTowards(
             pointA,
             pointB,
-            Time.deltaTime * movementSpeed * 200f);
+            Time.deltaTime * movementSpeed);
     }
     public static float GetZAngleOfTwoPoint(Vector3 startPoint, Vector3 endPoint)
     {

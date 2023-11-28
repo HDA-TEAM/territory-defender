@@ -38,7 +38,7 @@ public class HeroMovingState : CharacterBaseState
     #region Moving Logic
     private void PlayMoving()
     {
-        _context.transform.position =VectorUtility.Vector2MovingAToB(
+        _context.transform.position =VectorUtility.Vector3MovingAToB(
             _context.transform.position,
             _context.Target.transform.position,
             _movingSpeed);

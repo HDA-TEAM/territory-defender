@@ -55,7 +55,7 @@ public class EnemyMovingState : CharacterBaseState
     }
     private void PlayMoving()
     {
-        _context.transform.position =VectorUtility.Vector2MovingAToB(
+        _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
             _context.RouteToGate.GetPosition(_context.CurrentIndexInRouteLine),
             _movingSpeed);
