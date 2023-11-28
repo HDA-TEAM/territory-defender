@@ -341,6 +341,7 @@ MonoBehaviour:
   _currentHealth: 50
   _txtToast: {fileID: 2029764526316118146}
   _healthSlider: {fileID: 2861465079126801452}
+  _healthParentCanvasGroup: {fileID: 5236940759064892841}
 --- !u!114 &-866078463075045641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,6 +386,7 @@ GameObject:
   - component: {fileID: 8569080110682562540}
   - component: {fileID: 4120808662686420710}
   - component: {fileID: 7162727952927087264}
+  - component: {fileID: 5236940759064892841}
   m_Layer: 0
   m_Name: HealthCanvas
   m_TagString: Untagged
@@ -458,6 +460,18 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
+--- !u!225 &5236940759064892841
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4668294441519044016}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5464716973891426887
 GameObject:
   m_ObjectHideFlags: 0

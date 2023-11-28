@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System;
+using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +12,10 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private float _currentHealth = 50;
     [SerializeField] private TMP_Text _txtToast;
     [SerializeField] private Slider _healthSlider;
+    [SerializeField] private CanvasGroup _healthParentCanvasGroup;
 
+    private float _preSliderValue = 1f; // always full heal
+    
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
@@ -38,7 +43,14 @@ public class HealthComp : UnitBaseComponent
     }
     private void SetHealthSlider()
     {
-        _healthSlider.value = (float)(_currentHealth * 1.0 / _maxHeath);
+        _healthParentCanvasGroup.alpha = 1;
+        var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
+        var duration = Math.Abs(_preSliderValue - sliderValue);
+        _healthSlider.DOValue(sliderValue, duration).OnComplete(()=>
+        {
+            _healthParentCanvasGroup.alpha = 0;
+            _preSliderValue = sliderValue;
+        });
     }
     private async void ShowToastHitting(float dame)
     {
