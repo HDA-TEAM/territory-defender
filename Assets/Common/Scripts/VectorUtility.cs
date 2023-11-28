@@ -7,9 +7,9 @@ public static class VectorUtility
         vector3.z = 0;
         return  vector3;
     }
-    public static bool IsTwoPointReached(Vector2 pointA,Vector2 pointB)
+    public static bool IsTwoPointReached(Vector3 pointA,Vector3 pointB)
     {
-        if (Vector2.Distance(pointA, pointB) < 0.5f)
+        if (Vector3.Distance(pointA, pointB) < 0.5f)
         {
             return true;
         }
