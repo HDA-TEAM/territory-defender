@@ -56,7 +56,7 @@ public class UnitBaseComponent : MonoBehaviour
     {
         
     }
-    private void Awake()
+    protected void Awake()
     {
         _unitBaseParent.OnUpdateStats += StatsUpdate;
     }

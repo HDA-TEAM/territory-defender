@@ -9,12 +9,23 @@ public enum CharacterSide
 
 public class TargetDetecting : UnitBaseComponent
 {
-    
+    [SerializeField] private CircleCollider2D _circleCollider2D; 
     [SerializeField] private CharacterSide _characterSideNeedToTarget;
-    [SerializeField] private float _rangeDetecting;
     [SerializeField] private bool _isTower;
     private readonly List<UnitBase> _targets = new List<UnitBase>();
     private UnitBase _curTarget;
+    private float _rangeDetecting;
+
+    private void UpdateDetectRange()
+    {
+        _rangeDetecting = _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange);
+        _circleCollider2D.radius = _rangeDetecting;
+    }
+    protected void Awake()
+    {
+        base.Awake();
+        UpdateDetectRange();
+    }
     private void Update() => CheckingTarget();
     
     private void CheckingTarget()

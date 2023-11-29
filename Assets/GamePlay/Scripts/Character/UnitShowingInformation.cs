@@ -1,9 +1,15 @@
+using SuperMaxim.Messaging;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UIElements;
 
-public class UnitShowingInformation : MonoBehaviour
-{ 
-    
-    private void OnMouseDown(){
-        Debug.Log("Sprite Clicked");
+public class UnitShowingInformation : UnitBaseComponent, IPointerClickHandler
+{
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Messenger.Default.Publish(new ShowUnitInformationPayload
+        {
+            StatsData = _unitBaseParent.UnitStatsComp()
+        });
     }
 }

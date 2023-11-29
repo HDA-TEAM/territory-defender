@@ -26,8 +26,10 @@ public class HandleCancelRaycast : MonoBehaviour
     {
         _canvasGroup.blocksRaycasts = false;
         _callback?.Invoke();
+        
+        // Hiding Information panel
+        Messenger.Default.Publish(new HideUnitInformationPayload());
     }
-
 }
 
 public struct HandleCancelRaycastPayload

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 3858257114877186647}
   - component: {fileID: 1069866960922029881}
   m_Layer: 0
-  m_Name: TowerBase
+  m_Name: TowerPrefabBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,6 +301,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
+  _circleCollider2D: {fileID: 1021085056082389208}
   _characterSideNeedToTarget: 2
-  _rangeDetecting: 5
   _isTower: 1
