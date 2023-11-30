@@ -4,8 +4,10 @@ using SuperMaxim.Messaging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UnitInformationPanel: MonoBehaviour
@@ -36,13 +38,15 @@ public class UnitInformationPanel: MonoBehaviour
         _txtName.text = payload.StatsData.GetInformation(InformationId.Name);
         _isShowing = true;
     }
-    private async void HidePanelInformation(HideUnitInformationPayload payload)
+    private void HidePanelInformation(HideUnitInformationPayload payload)
     {
         if (_isShowing)
         {
             _isShowing = false;
-            await _closeAnim.PlayAsync();
-            _canvasGroup.alpha = 0f;
+            _closeAnim.Play(() =>
+            {
+                _canvasGroup.alpha = 0;
+            });
         }
         _isShowing = false;
     }

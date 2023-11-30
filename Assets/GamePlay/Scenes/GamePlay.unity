@@ -4659,28 +4659,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905420913}
   m_CullTransparentMesh: 1
---- !u!1 &919002410 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3471298441881994424, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
-  m_PrefabInstance: {fileID: 1491092502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &919002416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919002410}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &926984686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,35 +5201,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1036453538}
   m_CullTransparentMesh: 1
---- !u!1 &1044153757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1192807291828039942, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
-  m_PrefabInstance: {fileID: 1491092502}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1044153762 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
-  m_PrefabInstance: {fileID: 1491092502}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044153757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1044153766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1044153757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d85d98fb71b40dc842e706f81bed444, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitBaseParent: {fileID: 1044153762}
 --- !u!1 &1121015624
 GameObject:
   m_ObjectHideFlags: 0
