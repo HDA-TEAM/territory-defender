@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace UI.UIInHomeScreen
 {
-    public class UISceneBack : MonoBehaviour
+    public class ItemBackView : MonoBehaviour
     {
         [SerializeField] private Button _button;
         private void Start()

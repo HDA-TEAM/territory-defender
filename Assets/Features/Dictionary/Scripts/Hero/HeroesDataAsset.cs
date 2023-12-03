@@ -7,6 +7,11 @@ public enum EHeroId
 {
     TrungTrac = 1,
     TrungNhi = 2,
+    ToDinh = 3,
+    NgoQuyen = 4,
+    QuangTrung = 5,
+    MaVien = 6,
+    TrungTrac2 = 7
 }
 
 [CreateAssetMenu(fileName = "HeroesDataAsset", menuName = "ScriptableObject/DataAsset/HeroesDataAsset")]

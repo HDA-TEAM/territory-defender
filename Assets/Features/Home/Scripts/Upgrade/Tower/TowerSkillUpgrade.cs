@@ -26,16 +26,4 @@ namespace Features.Talent.Tower
             return this;
         }
     }
-    
-    // //Usage
-    // public class UsageTowerSkillUpgrade
-    // {
-    //     public void UpgradeHeroSkill(SkillConfig skillConfig)
-    //     {
-    //         TowerSkillUpgrade towerSkill = new TowerSkillUpgrade();
-    //         towerSkill.Apply(skillConfig);
-    //     }
-    // }
-        
-    
 }

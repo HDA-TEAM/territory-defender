@@ -27,6 +27,7 @@ public class ListModeViewModel : MonoBehaviour
     public void Setup(HeroComposite heroComposite, EHeroViewMode eHeroViewMode)
     {
         _heroComposite = heroComposite;
+        _currentViewMode = eHeroViewMode;
 
         // Set up the default view (HeroSkillView)
         _heroModeSkillView.Setup(heroComposite, EHeroViewMode.Skill, OnHeroModeViewSelected);

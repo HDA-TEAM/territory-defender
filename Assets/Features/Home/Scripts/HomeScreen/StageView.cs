@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace UI.UIInHomeScreen
 {
-    public class UIStage : MonoBehaviour
+    public class StageView : MonoBehaviour
     {
        ///private StageController _stage;
         [SerializeField] private Button _button;

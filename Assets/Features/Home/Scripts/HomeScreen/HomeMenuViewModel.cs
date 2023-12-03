@@ -4,12 +4,13 @@ using UnityEngine.UI;
 
 namespace UI.UIInHomeScreen
 {
-    public class UIHomeMenuController: MonoBehaviour
+    public class HomeMenuViewModel: MonoBehaviour
     {
         [SerializeField] private Button _buttonShop;
         [SerializeField] private Button _buttonHeroInfo;
         [SerializeField] private Button _buttonDictionary;
         [SerializeField] private Button _buttonHistory;
+        [SerializeField] private Button _buttonUpgradeTower;
 
         private void Start()
         {
@@ -17,6 +18,7 @@ namespace UI.UIInHomeScreen
             _buttonShop.onClick.AddListener(ShopLoad);
             _buttonDictionary.onClick.AddListener(DictionaryLoad);
             _buttonHistory.onClick.AddListener(HistoryLoad);
+            _buttonUpgradeTower.onClick.AddListener(UpgradeTowerLoad);
         }
         
         private void HeroInformationLoad()
@@ -40,6 +42,12 @@ namespace UI.UIInHomeScreen
         {
             UiWindowCollectionStatic.HistoryScreen.Open();
             Debug.Log("History is open");
+        }
+
+        private void UpgradeTowerLoad()
+        { 
+            UiWindowCollectionStatic.UpgradeTowerPopup.Open();
+            Debug.Log("Upgrade tower is open");
         }
     }
 }

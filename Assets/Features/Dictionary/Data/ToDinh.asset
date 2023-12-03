@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fdb9c00b4d04d72a7d3a18ad1a45a1a, type: 3}
+  m_Name: ToDinh
+  m_EditorClassIdentifier: 
+  _heroName: To Dinh
+  _heroLevel: 15
+  _heroHp: 150
+  _heroAtk: 30
+  _heroDef: 20
+  _heroRange: 1
+  _heroImage: {fileID: 21300000, guid: 3e6c90e617cf44e3089ccdac823b87bd, type: 3}
+  _stats: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}

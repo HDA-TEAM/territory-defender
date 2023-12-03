@@ -36,7 +36,7 @@ public class ListHeroViewModel : MonoBehaviour
     private List<HeroComposite> _heroComposites;
     private List<SkillComposite> _skillComposites;
     private ItemHeroView _preSelectedItem;
-    private ItemSkillView _peSelectedSkillItem;
+    private ItemSkillView _preSelectedSkillItem;
     private bool _status;
     private void Start()
     {

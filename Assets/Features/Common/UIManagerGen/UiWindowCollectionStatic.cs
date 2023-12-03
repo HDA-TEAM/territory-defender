@@ -21,6 +21,8 @@ namespace BrunoMikoski.UIManager
         private static BrunoMikoski.UIManager.PrefabUIWindow cachedDictionaryScreen;
         private static bool hasCachedHistoryScreen;
         private static BrunoMikoski.UIManager.PrefabUIWindow cachedHistoryScreen;
+        private static bool hasCachedUpgradeTowerPopup;
+        private static BrunoMikoski.UIManager.PrefabUIWindow cachedUpgradeTowerPopup;
         
         public static BrunoMikoski.UIManager.UIWindowCollection Values
         {
@@ -70,6 +72,16 @@ namespace BrunoMikoski.UIManager
                 if (!hasCachedHistoryScreen)
                     hasCachedHistoryScreen = Values.TryGetItemByGUID(new LongGuid(5665893544405310904, 3215892205131976629), out cachedHistoryScreen);
                 return cachedHistoryScreen;
+            }
+        }
+        
+        public static BrunoMikoski.UIManager.PrefabUIWindow UpgradeTowerPopup
+        {
+            get
+            {
+                if (!hasCachedUpgradeTowerPopup)
+                    hasCachedUpgradeTowerPopup = Values.TryGetItemByGUID(new LongGuid(5669383001437361876, 3587359844264896428), out cachedUpgradeTowerPopup);
+                return cachedUpgradeTowerPopup;
             }
         }
         
