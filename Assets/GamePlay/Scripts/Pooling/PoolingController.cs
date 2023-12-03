@@ -9,6 +9,10 @@ public enum UnitId
     Ally = 100,
     Enemy = 200,
     EnemyShieldMan = 201,
+    
+    
+    //Projectile
+    
     Arrow = 1000,
     WaterBomb = 1001
 }
