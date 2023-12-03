@@ -8,7 +8,7 @@ public class EnemyMovement : UnitBaseComponent
     {
         get
         {
-            return routeToGate;
+            return routeToGate; 
         }
         set
         {
@@ -45,7 +45,7 @@ public class EnemyMovement : UnitBaseComponent
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
-        movementSpeed = stats.GetStat(StatId.Movement);
+        movementSpeed = stats.GetStat(StatId.MovementSpeed);
     }
     #endregion
     #region Moving Logic
@@ -72,7 +72,7 @@ public class EnemyMovement : UnitBaseComponent
     }
     private void PlayMoving()
     {
-        this.gameObject.transform.position =VectorUtility.Vector2MovingAToB(
+        this.gameObject.transform.position = VectorUtility.Vector3MovingAToB(
             gameObject.transform.position,
             routeToGate.GetPosition(currentIndexInRouteLine),
             movementSpeed);

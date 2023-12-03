@@ -40,7 +40,7 @@ public class Approaching : MonoBehaviour
         
         if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) > attackingRange)
         {
-            gameObject.transform.position = VectorUtility.Vector2MovingAToB(this.transform.position, target.transform.position, movingSpeed);
+            gameObject.transform.position = VectorUtility.Vector3MovingAToB(this.transform.position, target.transform.position, movingSpeed);
         }
     }
 }

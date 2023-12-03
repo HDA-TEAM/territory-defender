@@ -30,14 +30,25 @@ public class SettingDataAsset : ScriptableObject
         }
     }
     public ETimeScaleType PreTimeScaleSetting() => _preTimeScale;
-    private float ConvertTimeScaleValue(ETimeScaleType timeScaleType)
+    public float ConvertTimeScaleValue(ETimeScaleType timeScaleType)
     {
         switch (timeScaleType)
         {
             case ETimeScaleType.Pause: return 0f;
             case ETimeScaleType.Fast: return 1.5f;
             case ETimeScaleType.VeryFast: return 2f;
+            // Normal case
             default: return 1f;
+        }
+    }
+    public ETimeScaleType GetNextTimeScaleValue()
+    {
+        switch (_timeScale)
+        {
+            case ETimeScaleType.Normal: return ETimeScaleType.Fast;
+            case ETimeScaleType.Fast: return ETimeScaleType.VeryFast;
+            case ETimeScaleType.VeryFast: return ETimeScaleType.Normal;
+            default: return ETimeScaleType.Normal;
         }
     }
 }

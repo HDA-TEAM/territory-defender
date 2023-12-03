@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum StageId
 {
-    CHAP_1_STAGE_1 = 100,
+    CHAP_1_STAGE_1 = 101,
 }
 
 [Serializable]

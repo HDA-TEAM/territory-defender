@@ -7,20 +7,20 @@ public static class VectorUtility
         vector3.z = 0;
         return  vector3;
     }
-    public static bool IsTwoPointReached(Vector2 pointA,Vector2 pointB)
+    public static bool IsTwoPointReached(Vector3 pointA,Vector3 pointB)
     {
-        if (Vector2.Distance(pointA, pointB) < 0.5f)
+        if (Vector3.Distance(pointA, pointB) < 0.5f)
         {
             return true;
         }
         return false;
     }
-    public static Vector2 Vector2MovingAToB(Vector2 pointA,Vector2 pointB, float movementSpeed)
+    public static Vector3 Vector3MovingAToB(Vector3 pointA,Vector3 pointB, float movementSpeed)
     {
-        return Vector2.MoveTowards(
+        return Vector3.MoveTowards(
             pointA,
             pointB,
-            Time.deltaTime * movementSpeed * 200f);
+            Time.deltaTime * movementSpeed);
     }
     public static float GetZAngleOfTwoPoint(Vector3 startPoint, Vector3 endPoint)
     {

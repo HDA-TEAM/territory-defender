@@ -8,9 +8,14 @@ public class UnitDirection : UnitBaseComponent
     private bool _isFocusTarget;
     private UnitBase _target;
     private float _localScaleX;
+
+    private bool _isLeftToRightDirection;
     
     #region Core
-    private void Start() => _localScaleX = _transform.localScale.x;
+    private void Start()
+    {
+        _localScaleX = _transform.localScale.x;
+    } 
     private void OnEnable()
     {
         _unitBaseParent.OnTargetChanging += OnTargetChanging;
@@ -23,19 +28,24 @@ public class UnitDirection : UnitBaseComponent
     #region Update data
     private void Update()
     {
-        bool isTurnOnFlipX;
+        bool isLeftToRightDirection;
         _curPos = gameObject.transform.position;
         if (_target)
         {
-            isTurnOnFlipX = CheckLeftToRightDirection(_curPos,_target.transform.position);
+            isLeftToRightDirection = CheckLeftToRightDirection(_curPos,_target.transform.position);
         }
         else
         {
-            isTurnOnFlipX = CheckLeftToRightDirection(_prePos,_curPos);
+            isLeftToRightDirection = CheckLeftToRightDirection(_prePos,_curPos);
         }
+        
+        _prePos = _curPos;
+        
+        if (isLeftToRightDirection == _isLeftToRightDirection )
+            return;
         var localScale = _transform.localScale;
-        _transform.localScale = isTurnOnFlipX ? new Vector3(_localScaleX, localScale.y, localScale.z) : new Vector3(-_localScaleX, localScale.y, localScale.z);
-        _prePos = _curPos;  
+        _transform.localScale = isLeftToRightDirection ? new Vector3(_localScaleX, localScale.y, localScale.z) : new Vector3(-_localScaleX, localScale.y, localScale.z);
+        _isLeftToRightDirection = isLeftToRightDirection;
     }
     private void OnTargetChanging(UnitBase target) => _target = target;
     #endregion
@@ -43,7 +53,7 @@ public class UnitDirection : UnitBaseComponent
     private bool CheckLeftToRightDirection(Vector3 posA, Vector3 posB)
     {
         Vector3 direction = (posB - posA).normalized;
-        return direction.x > 0;
+        return direction.x >= 0;
     }
     #endregion
 }

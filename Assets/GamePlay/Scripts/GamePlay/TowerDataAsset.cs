@@ -14,7 +14,6 @@ public enum TowerId
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : ScriptableObject
 {
-    [FormerlySerializedAs("_towerTypeDict")]
     [SerializedDictionary("TowerId", "TowerType")]
     [SerializeField] private SerializedDictionary<TowerId, UnitBase> _towerTypeDict = new SerializedDictionary<TowerId, UnitBase>();
     // [SerializedDictionary("KitId", "TowerKit")]

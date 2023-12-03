@@ -4,21 +4,24 @@ using UnityEngine;
 public class TowerBuildTool : TowerToolBase
 {
     [SerializeField] private TowerId _towerBuildId;
-    
+    private UnitBase _towerCanBuild;
     protected void OnEnable()
     {
         _towerToolStatusHandle.SetUp(CheckCurrencyIsEnough() ? TowerTooltatus.Available : TowerTooltatus.UnAvailable);
     }
     private bool CheckCurrencyIsEnough()
     {
-        UnitBase towerBase = _towerDataAsset.GetTowerType(_towerBuildId);
-        var towerStats = towerBase.UnitStatsComp();
+        _towerCanBuild = _towerDataAsset.GetTowerType(_towerBuildId);
+        var towerStats = _towerCanBuild.UnitStatsComp();
         return towerStats.GetStat(StatId.CoinNeedToBuild) <= _inGameInventoryDataAsset.GetCurrencyValue();
     }
     protected override void Apply()
     { 
-        UnitBase towerBase = _towerDataAsset.GetTowerType(_towerBuildId);
-        GameObject tower = Instantiate(towerBase.gameObject);
+        // Checked enough coin to build
+        _inGameInventoryDataAsset.TryChangeCurrency(
+            - (int)_towerCanBuild.UnitStatsComp().GetStat(StatId.CoinNeedToBuild));
+        
+        GameObject tower = Instantiate(_towerCanBuild.gameObject);
         TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower);
     }
 }

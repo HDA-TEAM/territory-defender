@@ -18,7 +18,7 @@ public class HandleCancelRaycast : MonoBehaviour
     }
     private void OnHandleCancelRaycast(HandleCancelRaycastPayload payload)
     {
-        _callback = payload.callback;
+        _callback += payload.callback;
         _canvasGroup.blocksRaycasts = payload.IsOn;
     }
     private void OnDestroy() => Messenger.Default.Unsubscribe<HandleCancelRaycastPayload>(OnHandleCancelRaycast);
@@ -26,8 +26,10 @@ public class HandleCancelRaycast : MonoBehaviour
     {
         _canvasGroup.blocksRaycasts = false;
         _callback?.Invoke();
+        
+        // Hiding Information panel
+        Messenger.Default.Publish(new HideUnitInformationPayload());
     }
-
 }
 
 public struct HandleCancelRaycastPayload

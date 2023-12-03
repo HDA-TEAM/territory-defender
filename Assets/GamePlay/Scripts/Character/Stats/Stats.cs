@@ -4,9 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Unit stats")]
 public class Stats : ScriptableObject
 {
-    [SerializedDictionary("StatName", "Value")]
+    [SerializedDictionary("StatId", "Value")]
     [SerializeField] private SerializedDictionary<StatId, float> _statDict = new SerializedDictionary<StatId, float>();
-
+    [SerializedDictionary("InformationId", "Value")]
+    [SerializeField] private SerializedDictionary<InformationId, string> _informationDict = new SerializedDictionary<InformationId, string>();
+    #region Stats access
     public float GetStat(StatId statId)
     {
         if (_statDict.TryGetValue(statId, out float res))
@@ -23,12 +25,30 @@ public class Stats : ScriptableObject
         Debug.LogError($"No stat value found for key {statId} on {this.name} with level {level}");
         return 0;
     }
+
     protected virtual float StatCalculatePerLevel(StatId statId, int level, float value)
     {
         return value;
     }
+    #endregion
+    #region Information access
+    public string GetInformation(InformationId informationId)
+    {
+        if ((_informationDict).TryGetValue(informationId, out string res))
+            return res;
+        Debug.LogError($"No stat value found for key {informationId} on {this.name}");
+        return "";
+    }
+    #endregion
+    
 }
 
+public enum InformationId
+{
+    ///Common
+    Name = 0,
+    
+}
 public enum StatId
 {
     /// Common
@@ -41,7 +61,7 @@ public enum StatId
     HealingPerSecond = 100,
     MaxHeal = 101,
     Armour = 105,
-    Movement = 106,
+    MovementSpeed = 106,
     LifeReduce = 107,
     DropCoinWhenDie = 108,
     TimeToRevive = 109,

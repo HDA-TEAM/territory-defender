@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _unitStatsComp
+      value: 
+      objectReference: {fileID: 11400000, guid: 1d6bdba1869be451b90abe2916f5e006, type: 2}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
       value: ElephantTower
@@ -23,6 +27,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 80a7f2ab45180400caff63f09db70bc8, type: 2}
+    - target: {fileID: 7126902680260101256, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _isTower
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7230033807750692009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _projectileId
       value: 1001
