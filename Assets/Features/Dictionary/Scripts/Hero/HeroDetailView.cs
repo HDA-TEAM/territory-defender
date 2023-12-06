@@ -38,13 +38,13 @@ public class HeroDetailView : MonoBehaviour, IHeroModePageView
         _txtRange.text = heroComposite.Range;
         _imgHero.sprite = heroComposite.Avatar;
         
-        _txtPassiveSkillName.text = heroComposite.PassiveSkill.Name;
-        _txtPassiveSkillText.text = heroComposite.PassiveSkill.SkillText;
-        _imgPassiveSkill.sprite = heroComposite.PassiveSkill.SkillImage;
+        _txtPassiveSkillName.text = heroComposite.Skills[0]._skillName;
+        _txtPassiveSkillText.text = heroComposite.Skills[0]._skillText;
+        _imgPassiveSkill.sprite = heroComposite.Skills[0]._skillImage;
         
-        _txtActiveSkillName.text = heroComposite.ActiveSkill.Name;
-        _txtActiveSkillText.text = heroComposite.ActiveSkill.SkillText;
-        _imgActiveSkill.sprite = heroComposite.ActiveSkill.SkillImage;
+        _txtActiveSkillName.text = heroComposite.Skills[1]._skillName;
+        _txtActiveSkillText.text = heroComposite.Skills[1]._skillText;
+        _imgActiveSkill.sprite = heroComposite.Skills[1]._skillImage;
     }
 
     public void PageSelected(bool isSelected)

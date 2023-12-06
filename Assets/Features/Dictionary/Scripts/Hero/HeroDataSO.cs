@@ -4,14 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Hero", menuName = "Hero", order = 2)]
 public class HeroDataSO : ScriptableObject
 {
-    public string _heroName;
-    public int _heroLevel;
-    public int _heroHp;
-    public int _heroAtk;
-    public int _heroDef;
-    public float _heroRange;
     public Sprite _heroImage;
-    //public List<SkillDataSO> _heroSkills;s
-
-    [SerializeField] private Stats _stats;
+    
+    public SkillsDataAsset _heroSkills;
+    public Stats _stats;
 }

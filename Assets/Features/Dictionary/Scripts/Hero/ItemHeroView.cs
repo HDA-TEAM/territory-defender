@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ public class ItemHeroView : MonoBehaviour
     
     private readonly string _hexSelectedColor = "#F3EF94";
     private readonly string _hexDeselectedColor = "#323232";
+    
     #region Core
     private void Awake()
     {
@@ -53,5 +55,5 @@ public class ItemHeroView : MonoBehaviour
     {
         _txtName.text = name;
     }
-    
+
 }
