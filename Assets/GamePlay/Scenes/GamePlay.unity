@@ -2692,6 +2692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 0}
 --- !u!114 &519540518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3766,6 +3767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 0}
 --- !u!114 &653575703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7404,6 +7406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 0}
 --- !u!114 &1521586972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8609,6 +8612,7 @@ GameObject:
   - component: {fileID: 1804081917}
   - component: {fileID: 1804081918}
   - component: {fileID: 1804081919}
+  - component: {fileID: 1804081920}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -8644,6 +8648,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 1804081920}
 --- !u!114 &1804081919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8658,6 +8663,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _resultsController: {fileID: 1351077664}
+--- !u!114 &1804081920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804081916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee448606cea3d42c5be7e35ed4c6bafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageEnemySpawningConfigs:
+    _serializedList:
+    - Key: 101
+      Value: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
+  _spawningEachObjectInterval: 1
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0
@@ -9592,6 +9614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 0}
 --- !u!114 &1972052448
 MonoBehaviour:
   m_ObjectHideFlags: 0
