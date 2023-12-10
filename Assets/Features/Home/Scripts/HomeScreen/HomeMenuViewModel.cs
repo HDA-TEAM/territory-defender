@@ -11,7 +11,9 @@ namespace UI.UIInHomeScreen
         [SerializeField] private Button _buttonDictionary;
         [SerializeField] private Button _buttonHistory;
         [SerializeField] private Button _buttonUpgradeTower;
-
+        [SerializeField] private Button _buttonSetting;
+        [SerializeField] private Button _buttonQuest;
+        
         private void Start()
         {
             _buttonHeroInfo.onClick.AddListener(HeroInformationLoad);
@@ -19,6 +21,8 @@ namespace UI.UIInHomeScreen
             _buttonDictionary.onClick.AddListener(DictionaryLoad);
             _buttonHistory.onClick.AddListener(HistoryLoad);
             _buttonUpgradeTower.onClick.AddListener(UpgradeTowerLoad);
+            _buttonSetting.onClick.AddListener(SettingLoad);
+            _buttonQuest.onClick.AddListener(QuestLoad);
         }
         
         private void HeroInformationLoad()
@@ -48,6 +52,18 @@ namespace UI.UIInHomeScreen
         { 
             UiWindowCollectionStatic.UpgradeTowerPopup.Open();
             Debug.Log("Upgrade tower is open");
+        }
+
+        private void SettingLoad()
+        {
+            UiWindowCollectionStatic.SettingPopup.Open();
+            Debug.Log("Setting is open");
+        }
+
+        private void QuestLoad()
+        {
+            UiWindowCollectionStatic.SettingPopup.Open();
+            Debug.Log("Quest is open");
         }
     }
 }

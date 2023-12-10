@@ -26,7 +26,7 @@ public class HeroDetailView : MonoBehaviour, IHeroModePageView
 
     [Header("Object Hero Detail"), Space(4)]
     [SerializeField] private GameObject _objHeroDetailView;
-    
+
     #region Core
     public void Setup(HeroComposite heroComposite)
     {
@@ -37,14 +37,21 @@ public class HeroDetailView : MonoBehaviour, IHeroModePageView
         _txtDef.text = heroComposite.Def;
         _txtRange.text = heroComposite.Range;
         _imgHero.sprite = heroComposite.Avatar;
+
+        for (int i = 0; i < heroComposite.Skills.Count; i++)
+        {
+            if (i == 0)
+            {
+                _txtPassiveSkillName.text = heroComposite.Skills[i]._skillName;
+                _txtPassiveSkillText.text = heroComposite.Skills[i]._skillText;
+                _imgPassiveSkill.sprite = heroComposite.Skills[i]._skillImage;
+            } else {
+                _txtActiveSkillName.text = heroComposite.Skills[i]._skillName;
+                _txtActiveSkillText.text = heroComposite.Skills[i]._skillText;
+                _imgActiveSkill.sprite = heroComposite.Skills[i]._skillImage;
+            }
+        }
         
-        _txtPassiveSkillName.text = heroComposite.Skills[0]._skillName;
-        _txtPassiveSkillText.text = heroComposite.Skills[0]._skillText;
-        _imgPassiveSkill.sprite = heroComposite.Skills[0]._skillImage;
-        
-        _txtActiveSkillName.text = heroComposite.Skills[1]._skillName;
-        _txtActiveSkillText.text = heroComposite.Skills[1]._skillText;
-        _imgActiveSkill.sprite = heroComposite.Skills[1]._skillImage;
     }
 
     public void PageSelected(bool isSelected)
