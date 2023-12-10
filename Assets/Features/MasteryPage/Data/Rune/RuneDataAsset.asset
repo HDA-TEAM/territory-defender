@@ -9,22 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1da985ce8b6b4fa795c80c065d77d4d2, type: 3}
-  m_Name: ElephantTower
+  m_Script: {fileID: 11500000, guid: 2c0d8a5e309d4efa828b29c248d4220b, type: 3}
+  m_Name: RuneDataAsset
   m_EditorClassIdentifier: 
-  _statDict:
+  _runeDataDict:
     _serializedList:
-    - Key: 0
-      Value: 10
     - Key: 1
-      Value: 1
-    - Key: 2
-      Value: 4
-    - Key: 3
-      Value: 4
-    - Key: 200
-      Value: 60
-  _informationDict:
-    _serializedList:
-    - Key: 0
-      Value: Elephant Tower
+      Value: {fileID: 11400000, guid: 6db3b07ceea7a480293f9ebd465bf853, type: 2}

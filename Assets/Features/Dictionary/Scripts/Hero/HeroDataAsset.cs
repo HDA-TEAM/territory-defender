@@ -14,7 +14,7 @@ public enum EHeroId
     TrungTrac2 = 7
 }
 
-[CreateAssetMenu(fileName = "HeroesDataAsset", menuName = "ScriptableObject/DataAsset/HeroesDataAsset")]
+[CreateAssetMenu(fileName = "HeroDataAsset", menuName = "ScriptableObject/DataAsset/HeroDataAsset")]
 public class HeroDataAsset : ScriptableObject
 {
     [SerializedDictionary("HeroId", "HeroDataSO")]

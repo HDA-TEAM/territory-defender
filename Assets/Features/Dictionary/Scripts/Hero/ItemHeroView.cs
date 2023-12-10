@@ -29,7 +29,6 @@ public class ItemHeroView : MonoBehaviour
     public void Setup(HeroComposite heroComposite,Action<ItemHeroView> onSelected)
     {
         HeroComposite = heroComposite;
-        
         _onSelected = onSelected;
 
         SetName(heroComposite.Name);

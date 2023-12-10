@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
+  m_Name: Rune1
+  m_EditorClassIdentifier: 
+  _name: Attack Rune
+  _additionalValue: 20
+  _operate: Increased damage
+  _currentStacks: 1
+  _stacks: 4
+  _avatarSelected: {fileID: 21300000, guid: 2181ac019aa244a6c9e0464f739d6557, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: d240f41255dad4e49ab3f4bc6483a85d, type: 3}

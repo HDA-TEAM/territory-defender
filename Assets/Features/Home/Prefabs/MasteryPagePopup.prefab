@@ -386,7 +386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Skill 1
+  m_text: Rune
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 391ae142b166647c5ba4c5539bcf4e37, type: 2}
   m_sharedMaterial: {fileID: 5103311199522127650, guid: 391ae142b166647c5ba4c5539bcf4e37, type: 2}
@@ -1182,7 +1182,7 @@ RectTransform:
   m_Children:
   - {fileID: 3585109617133447244}
   m_Father: {fileID: 7210937206813889141}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -1376,8 +1376,9 @@ GameObject:
   - component: {fileID: 7621205063922614602}
   - component: {fileID: 2617720799616243565}
   - component: {fileID: 6367977656536948192}
+  - component: {fileID: 3663978233633327939}
   m_Layer: 5
-  m_Name: btnUpgrade
+  m_Name: btnRune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1390,14 +1391,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3736147318353564790}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4437604771123277064}
-  m_Father: {fileID: 7210937206813889141}
-  m_RootOrder: 3
+  m_Father: {fileID: 1150572961465642404}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1486,6 +1487,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3663978233633327939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3736147318353564790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39fd04e7130408d988bbfec2217361e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _txtName: {fileID: 8577927610924405170}
+  _btn: {fileID: 4331525246520386821}
+  _imageBg: {fileID: 2617720799616243565}
 --- !u!1 &4562547138879920226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,8 +1538,8 @@ RectTransform:
   - {fileID: 2463903658393954887}
   - {fileID: 8566697825412785129}
   - {fileID: 3532269571152857060}
-  - {fileID: 800395549937461596}
   - {fileID: 3585109617272016326}
+  - {fileID: 1150572961465642404}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1626,6 +1642,59 @@ MonoBehaviour:
     collectionGUIDValueB: 5179766507890645133
     itemLastKnownName: UpgradeTowerPopup
     collectionLastKnowName: UIWindowCollection
+--- !u!1 &4649661346269384323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1150572961465642404}
+  - component: {fileID: 5185883942578266067}
+  m_Layer: 5
+  m_Name: objRunes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1150572961465642404
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649661346269384323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 800395549937461596}
+  m_Father: {fileID: 7210937206813889141}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5185883942578266067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4649661346269384323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52f2c59dfcdf40e2891816c39e704c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemRuneViews:
+  - {fileID: 3663978233633327939}
+  _runeDataAsset: {fileID: 11400000, guid: 0309459fbc8284a85b0bd3842e94e9e3, type: 2}
 --- !u!1 &4880375718204489336
 GameObject:
   m_ObjectHideFlags: 0
