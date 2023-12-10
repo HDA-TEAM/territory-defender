@@ -13,6 +13,7 @@ public class ItemHeroView : MonoBehaviour
 
     public HeroComposite HeroComposite;
     
+    // Internal
     private Sprite _sprite;
     private Action<ItemHeroView> _onSelected;
     

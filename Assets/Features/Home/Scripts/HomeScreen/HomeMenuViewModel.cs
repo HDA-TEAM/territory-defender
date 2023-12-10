@@ -50,7 +50,7 @@ namespace UI.UIInHomeScreen
 
         private void UpgradeTowerLoad()
         { 
-            UiWindowCollectionStatic.UpgradeTowerPopup.Open();
+            UiWindowCollectionStatic.MasteryPagePopup.Open();
             Debug.Log("Upgrade tower is open");
         }
 
@@ -62,7 +62,7 @@ namespace UI.UIInHomeScreen
 
         private void QuestLoad()
         {
-            UiWindowCollectionStatic.SettingPopup.Open();
+            UiWindowCollectionStatic.QuestPopup.Open();
             Debug.Log("Quest is open");
         }
     }

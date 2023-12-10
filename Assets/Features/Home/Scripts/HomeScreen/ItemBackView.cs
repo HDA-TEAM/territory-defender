@@ -13,6 +13,7 @@ namespace UI.UIInHomeScreen
         }
         private void SceneBackLoad()
         {
+            Debug.Log("Back home....");
             UiWindowCollectionStatic.HomeMenuScreen.Open();
         }
     }

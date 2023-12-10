@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public struct HeroComposite
 {
@@ -13,12 +14,6 @@ public struct HeroComposite
 
     public List<SkillDataSO> Skills;
 }
-public struct SkillComposite
-{
-    public string Name;
-    public string SkillText;
-    public Sprite SkillImage;
-}
 public class ListHeroViewModel : MonoBehaviour
 {
     [Header("UI")]
@@ -27,11 +22,11 @@ public class ListHeroViewModel : MonoBehaviour
     
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
-    
+  
     [Header("Data"), Space(12)] 
-    [SerializeField] private HeroesDataAsset _heroesDataAsset;
+    [SerializeField] private HeroDataAsset _heroDataAsset;
 
-    [SerializeField] private List<OnClickHandle> _onClickHandles;
+    //[SerializeField] private List<OnClickHandle> _onClickHandles;
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -40,9 +35,7 @@ public class ListHeroViewModel : MonoBehaviour
     private void Start()
     {
         _itemHeroViews[0].OnSelectedHero();
-       
     }
-
     private void Awake()
     {
         _heroComposites = new List<HeroComposite>();
@@ -51,10 +44,10 @@ public class ListHeroViewModel : MonoBehaviour
     }
     private void UpdateData()
     {
-        List<HeroDataSO> heroDataSos = _heroesDataAsset.GetAllHeroData();
+        List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
 
         // Update data from list hero data to HeroComposite
-        foreach (var heroDataSo in heroDataSos)
+        foreach (var heroDataSo in listHeroDataSo)
         {
             _heroComposites.Add(
                 new HeroComposite
@@ -121,9 +114,7 @@ public class ListHeroViewModel : MonoBehaviour
         }
         _listModeViewModel.ResetToSkillView(EHeroViewMode.Skill);
         _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
-        
     }
-
     private void OnSkillSelected(ItemSkillView itemSkillView)
     {
         foreach (ItemSkillView itemSkill in _itemSkillViews)
