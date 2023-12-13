@@ -6,33 +6,39 @@ using UnityEngine.UI;
 
 public class ItemRuneView : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _txtName;
     [SerializeField] private Button _btn;
     [SerializeField] private Image _imageBg;
-    //[SerializeField] private Sprite _spriteSelectedBg;
+    [SerializeField] private TextMeshProUGUI _txtRuneStacks;
     
     public RuneComposite RuneComposite;
+    
     // Internal
+    private int _valueCastStringToInt;
     private Sprite _sprite;
     private Action<ItemRuneView> _onSelected;
 
     private void Awake()
     {
         _sprite = _imageBg.sprite;
-        _btn.onClick.AddListener(OnSelectedRune);
+        _btn.onClick.AddListener(OnSelectedRuneItem);
     }
     
-    public void Setup(RuneComposite runeComposite,Action<ItemRuneView> onSelected)
+    public void Setup(RuneComposite runeComposite, Action<ItemRuneView> onSelected)
     {
-        RuneComposite = runeComposite;
+        Debug.Log("Base stack: " + _valueCastStringToInt);
         _onSelected = onSelected;
-        
+        RuneComposite = runeComposite;
     }
 
-    public void OnSelectedRune()
+    private void OnSelectedRuneItem()
     {
         Debug.Log("select rune...");
         _onSelected?.Invoke(this);
+    }
+
+    public void SetRuneStacks(RuneComposite runeComposite)
+    {
+        _txtRuneStacks.text = runeComposite.CurrentStacks + " / " + runeComposite.Stacks;
     }
 
     public void SetAvatarRune(Sprite spriteImg)

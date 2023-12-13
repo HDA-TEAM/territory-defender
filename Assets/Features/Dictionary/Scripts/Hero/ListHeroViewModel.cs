@@ -98,13 +98,8 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedItem.RemoveSelected();
         
         _preSelectedItem = itemHeroView;
-        // Use OnClickHandle to delay the setup action
-        // _onClickHandles.ForEach(handle => handle.DelayedAction(1f, () => {
-        //     _heroDetailView.Setup(itemHeroView.HeroComposite);
-        //     _listModeViewModel.ResetToSkillView(EHeroViewMode.Skill);
-        //     _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
-        // }));
-        
+
+        // Setup hero detail view
         _heroDetailView.Setup(itemHeroView.HeroComposite);
         
         // reset to Skill view when switch another hero
