@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CharacterStateMachine : UnitBaseComponent
 {
-    [SerializeField] protected AttackingType _attackingType;
+    [FormerlySerializedAs("_attackingType")]
+    [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
     [SerializeField] protected CharacterBaseState _currentState;
     [SerializeField] protected Stats _stats;
@@ -19,7 +21,7 @@ public class CharacterStateMachine : UnitBaseComponent
     public UnitBase CurrentTarget { get { return _curTarget; } }
     public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
     public UnitId CharacterProjectileIUnitId { get { return _projectileId; } }
-    public AttackingType CharacterAttackingType { get { return _attackingType; } }
+    public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
     public Animator CharacterAnimator { get { return _animator; } }
     public Stats CharacterStats { get { return _stats; } }
     

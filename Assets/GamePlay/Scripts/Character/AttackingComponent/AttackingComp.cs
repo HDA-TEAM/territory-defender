@@ -3,19 +3,12 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public enum AttackingType
-{
-    Tower = 0,
-    Melee = 1,
-    Ranger = 2,
-    MeleeAndRanger = 3,
-}
-
 public class AttackingComp : UnitBaseComponent
 {
     [Header("Attribute")]
     [SerializeField] private Transform startAttackPoint;
-    [SerializeField] private AttackingType attackingType;
+    [FormerlySerializedAs("attackingType")]
+    [SerializeField] private TroopBehaviourType _troopBehaviourType;
     
     [SerializeField] private float attackingCooldown;
     [SerializeField] private float attackingDamage;
@@ -55,9 +48,9 @@ public class AttackingComp : UnitBaseComponent
 
         if (!isNeedToWaitCoolDownAttacking)
         {
-            switch (attackingType)
+            switch (_troopBehaviourType)
             {
-                case AttackingType.Tower:
+                case TroopBehaviourType.Tower:
                     {
                         // Tower don't need to check distance, it always fire any target exist
                         isNeedToWaitCoolDownAttacking = true;
@@ -73,8 +66,8 @@ public class AttackingComp : UnitBaseComponent
                         isNeedToWaitCoolDownAttacking = false;
                         return;
                     }
-                case AttackingType.Melee:
-                case AttackingType.Ranger:
+                case TroopBehaviourType.Melee:
+                case TroopBehaviourType.Ranger:
                     {
                         // Need to check is in available attack range
                         if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) < attackingRange)
@@ -82,7 +75,7 @@ public class AttackingComp : UnitBaseComponent
                         
                         isNeedToWaitCoolDownAttacking = true;
 
-                        new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target, attackingDamage);
+                        new CharacterAttackingFactory().GetAttackingStrategy(_troopBehaviourType).PlayAttacking(target, attackingDamage);
                         await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
 
                         isNeedToWaitCoolDownAttacking = false;
@@ -108,19 +101,19 @@ internal interface ICharacterAttacking
 
 internal class CharacterAttackingFactory
 {
-    public ICharacterAttacking GetAttackingStrategy(AttackingType attackingType)
+    public ICharacterAttacking GetAttackingStrategy(TroopBehaviourType troopBehaviourType)
     {
-        switch (attackingType)
+        switch (troopBehaviourType)
         {
-            case AttackingType.Melee:
+            case TroopBehaviourType.Melee:
                 {
                     return new MeleeAttacking();
                 }
-            case AttackingType.Ranger:
+            case TroopBehaviourType.Ranger:
                 {
                     return new MeleeAttacking();
                 }
-            case AttackingType.Tower:
+            case TroopBehaviourType.Tower:
                 {
                     return new TowerAttacking();
                 }

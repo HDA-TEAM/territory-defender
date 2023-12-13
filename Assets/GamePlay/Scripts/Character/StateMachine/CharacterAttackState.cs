@@ -33,9 +33,9 @@ public class CharacterAttackState : CharacterBaseState
             // Reset cooldown next attack time
             _cooldownNextAttack = Context.CharacterStats.GetStat(StatId.AttackSpeed);
             
-            switch (Context.CharacterAttackingType)
+            switch (Context.CharacterTroopBehaviourType)
             {
-                case AttackingType.Tower:
+                case TroopBehaviourType.Tower:
                     {
                         // Tower don't need to check distance, it always fire any target exist
                         
@@ -46,8 +46,8 @@ public class CharacterAttackState : CharacterBaseState
                         prjBase.GetProjectileMovement().GetLineRoute(Context.transform.position, EProjectileType.Arrow, Context.CurrentTarget);
                         return;
                     }
-                case AttackingType.Melee:
-                case AttackingType.Ranger:
+                case TroopBehaviourType.Melee:
+                case TroopBehaviourType.Ranger:
                     {
                         // Need to check is in available attack range
                         // if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) < attackingRange)
@@ -55,7 +55,7 @@ public class CharacterAttackState : CharacterBaseState
                         
                         // isNeedToWaitCoolDownAttacking = true;
 
-                        new CharacterAttackingFactory().GetAttackingStrategy(AttackingType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame);
+                        new CharacterAttackingFactory().GetAttackingStrategy(TroopBehaviourType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame);
                         // await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
                         //
                         // isNeedToWaitCoolDownAttacking = false;

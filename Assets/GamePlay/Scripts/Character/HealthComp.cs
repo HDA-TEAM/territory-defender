@@ -15,7 +15,11 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private CanvasGroup _healthParentCanvasGroup;
 
     private float _preSliderValue = 1f; // always full heal
-    
+
+    private void OnEnable()
+    {
+        UnitObserver.Instance.AddUnit(_unitBaseParent);
+    }
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
@@ -36,9 +40,9 @@ public class HealthComp : UnitBaseComponent
     public void PlayHurting(float dame)
     {
         CurrentHealth -= dame;
-        
+
         CheckDie();
-        
+
         ShowToastHitting(dame);
     }
     private void SetHealthSlider()
@@ -46,7 +50,7 @@ public class HealthComp : UnitBaseComponent
         _healthParentCanvasGroup.alpha = 1;
         var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
         var duration = Math.Abs(_preSliderValue - sliderValue);
-        _healthSlider.DOValue(sliderValue, duration).OnComplete(()=>
+        _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
         {
             _healthParentCanvasGroup.alpha = 0;
             _preSliderValue = sliderValue;
@@ -59,8 +63,16 @@ public class HealthComp : UnitBaseComponent
         await UniTask.Delay(TimeSpan.FromSeconds(1f));
         _txtToast.gameObject.SetActive(false);
     }
-    private void CheckDie() => _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
-    public void ResetState()
+    private void CheckDie()
+    {
+        // Notify for unit observer to remove it self
+        _unitBaseParent.OnOutOfHeal?.Invoke(_unitBaseParent);
+        
+        // Notify for state machine
+        _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
+    }
+
+public void ResetState()
     {
         gameObject.SetActive(false);
         CurrentHealth = _maxHeath;
