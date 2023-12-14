@@ -17,8 +17,8 @@ public class ItemTowerView : MonoBehaviour
     private Sprite _sprite;
     private Action<ItemTowerView> _onSelected;
     
-    private readonly string _hexSelectedColor = "#F3EF94";
-    private readonly string _hexDeselectedColor = "#323232";
+    // private readonly string _hexSelectedColor = "#F3EF94";
+    // private readonly string _hexDeselectedColor = "#323232";
     private void Awake()
     {
         _btn.onClick.AddListener(OnSelectedTower);

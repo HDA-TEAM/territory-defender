@@ -10,6 +10,7 @@ public class RuneDataSO : ScriptableObject
     public string _operate;
     public float _currentStacks;
     public float _stacks;
+    public float _starNeedToUpgrade;
     public Sprite _avatarSelected;
     public Sprite _avatarStarted;
     

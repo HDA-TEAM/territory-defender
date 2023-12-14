@@ -14,18 +14,17 @@ public class ItemRuneView : MonoBehaviour
     
     // Internal
     private int _valueCastStringToInt;
-    private Sprite _sprite;
+    //private Sprite _sprite;
     private Action<ItemRuneView> _onSelected;
 
     private void Awake()
     {
-        _sprite = _imageBg.sprite;
+        //_sprite = _imageBg.sprite;
         _btn.onClick.AddListener(OnSelectedRuneItem);
     }
     
     public void Setup(RuneComposite runeComposite, Action<ItemRuneView> onSelected)
     {
-        Debug.Log("Base stack: " + _valueCastStringToInt);
         _onSelected = onSelected;
         RuneComposite = runeComposite;
     }
