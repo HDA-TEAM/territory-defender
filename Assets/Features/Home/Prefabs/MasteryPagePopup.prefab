@@ -1772,6 +1772,7 @@ MonoBehaviour:
   _itemUpgradeRuneView: {fileID: 6335632413185824703}
   _starView: {fileID: 3647299838282285556}
   _runeDataAsset: {fileID: 11400000, guid: 0309459fbc8284a85b0bd3842e94e9e3, type: 2}
+  _starDataAsset: {fileID: 11400000, guid: bd8d43ff3d094459f9ea35666ace6192, type: 2}
 --- !u!1 &4880375718204489336
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,7 +2833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _txtStarNumber: {fileID: 4876468770570947352}
-  _star: {fileID: 11400000, guid: acd501d4b47014a6b90c8e2fbbb76d93, type: 2}
 --- !u!1 &7559093839338339455
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3380,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
   m_sharedMaterial: {fileID: -3163399200741351937, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}

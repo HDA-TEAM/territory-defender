@@ -5,29 +5,15 @@ using UnityEngine;
 public class StarView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _txtStarNumber;
-    [SerializeField] private StarSO _star;
 
+    public StarComposite StarComposite;
     public Action _onDataUpdated;
-    private void Awake()
+
+    public void Setup(StarComposite starComposite)
     {
-        //_txtStarNumber.text = _star._starNumber.ToString("");
+        _txtStarNumber.text = starComposite.StarNumber.ToString("");
+        //_onDataUpdated?.Invoke();
     }
 
-    public void Setup(float starNumber)
-    {
-        _txtStarNumber.text = starNumber.ToString("");
-    }
-
-    public void UpdateStar(float starNumber)
-    {
-        _star._starNumber -= starNumber;
-        Debug.Log("Subtract star");
-        
-        _onDataUpdated?.Invoke();
-    }
-
-    public float GetStarNumber()
-    {
-        return _star._starNumber;
-    }
+    
 }
