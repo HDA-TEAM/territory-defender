@@ -1,35 +1,49 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunePageViewModel : MonoBehaviour
+public class ListRuneViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemRuneView> _itemRuneViews;
-    [SerializeField] private RuneDetailViewModel _runeDetailViewModel;
-    
+    [SerializeField] private RuneDetailView _runeDetailView;
+    [SerializeField] private ItemUpgradeRuneView _itemUpgradeRuneView;
+    [SerializeField] private StarView _starView;
     
     [Header("Data"), Space(12)] 
     [SerializeField] private RuneDataAsset _runeDataAsset;
     
     // Internal
     private List<RuneComposite> _runeComposites;
+    private StarComposite _starComposite;
     private RuneDataSO _preRuneDataSo;
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
+    private float _starNumber;
     
     private float _valueCastStringToInt;
     private void Awake()
     {
         _runeComposites = new List<RuneComposite>();
-
+        _starComposite = new StarComposite();
+        _starNumber = _starView.GetStarNumber();
         UpdateData();
+    }
+    
+    private void Start()
+    {
+        if (_runeDataAsset != null)
+            _runeDataAsset._onDataUpdated += UpdateData;
+
+        if (_starView != null)
+            _starView._onDataUpdated += UpdateData;
     }
     
     private void UpdateData()
     {
-        List<RuneDataSO> listRuneDataSo = _runeDataAsset.GetAllRuneData();
+        _runeComposites.Clear();
         
+        List<RuneDataSO> listRuneDataSo = _runeDataAsset.GetAllRuneData();
+
         foreach (var runeDataSo in listRuneDataSo)
         {
             _runeComposites.Add(
@@ -56,7 +70,9 @@ public class RunePageViewModel : MonoBehaviour
         {
             // Setup rune view
             _itemRuneViews[i].SetRuneStacks(_runeComposites[i]);
-
+            // Setup star view
+            _starView.Setup(_starNumber);
+            
             // Rune avatar logic
             _itemRuneViews[i].SetAvatarRune(_runeComposites[i].CurrentStacks > 0 ? _runeComposites[i].AvatarSelected : _runeComposites[i].AvatarStarted);
             
@@ -69,26 +85,50 @@ public class RunePageViewModel : MonoBehaviour
     {
         if (_preSelectedItem == null)
         {
-            _runeDetailViewModel.StartSetup();
+            _itemUpgradeRuneView.gameObject.SetActive(true);
+            _runeDetailView.gameObject.SetActive(true);
         }
         _preSelectedItem = itemRuneView;
-        _runeDetailViewModel.Setup(_preSelectedItem.RuneComposite);
-        
-        // Update stacks data
-        if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks)
-        {
-            _valueCastStringToInt = itemRuneView.RuneComposite.CurrentStacks;
-            _preRuneDataSo = _runeDataAsset.GetRune(itemRuneView.RuneComposite.RuneId);
-            _preRuneDataSo._currentStacks = ++_valueCastStringToInt;
-            
-            // Update rune data
-            _runeDataAsset.RuneUpdate(_preRuneDataSo);
-            UpdateData();
-        }
-        
-        //
+        _runeDetailView.Setup(_preSelectedItem.RuneComposite);
+        _itemUpgradeRuneView.Setup(_preSelectedItem.RuneComposite, OnSelectedUpgradeRuneItem);
     }
     
+    private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
+    {
+        if (itemUpgradeRuneView == null || _preSelectedItem == null || _runeDataAsset == null || _starView == null)
+        {
+            Debug.LogError("One or more required objects are null.");
+            return;
+        }
+        
+        _preSelectedUpgradeRuneView = itemUpgradeRuneView;
+        
+        // Update stacks data
+        if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _starView.GetStarNumber() > 0)
+        {
+            _preRuneDataSo = _runeDataAsset.GetRune(itemUpgradeRuneView.RuneComposite.RuneId);
+
+            if (_preRuneDataSo != null)
+            {
+                _preRuneDataSo._currentStacks++;
+            
+                // Subtract star number
+                _starView.UpdateStar(_preRuneDataSo._starNeedToUpgrade);
+
+                _starNumber = _starView.GetStarNumber();
+            
+                // Update rune data
+                _runeDataAsset.RuneUpdate(_preRuneDataSo);
+                Debug.Log("Upgrade rune successful....");
+            }
+        }
+        else
+        {
+            Debug.Log("Upgrade rune fail");
+        }
+        
+        Debug.Log("Upgrade rune....");
+    }
 }
 
 public struct RuneComposite
@@ -102,4 +142,9 @@ public struct RuneComposite
     public float StarNeedToUpgrade;
     public Sprite AvatarSelected;
     public Sprite AvatarStarted;
+}
+
+public struct StarComposite
+{
+    public float _starNumber;
 }

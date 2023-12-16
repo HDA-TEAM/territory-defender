@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Rune", menuName = "Rune", order = 2)]
@@ -13,5 +12,4 @@ public class RuneDataSO : ScriptableObject
     public float _starNeedToUpgrade;
     public Sprite _avatarSelected;
     public Sprite _avatarStarted;
-    
 }

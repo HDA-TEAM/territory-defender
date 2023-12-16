@@ -1495,7 +1495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2633050232344776853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1503,7 +1503,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3702147244670846238}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1543,14 +1543,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5151925115259915144}
-  - component: {fileID: 3463978476399942040}
   m_Layer: 5
   m_Name: objRuneDetail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5151925115259915144
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1573,20 +1572,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3463978476399942040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4081866766341000470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff3279e9bcaa4097824eb4b6af77b89d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _runeDetailView: {fileID: 7505075942688255521}
-  _itemUpgradeRuneView: {fileID: 6335632413185824703}
 --- !u!1 &4562547138879920226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1783,7 +1768,9 @@ MonoBehaviour:
   _itemRuneViews:
   - {fileID: 3001253364433171673}
   - {fileID: 8844754419555788606}
-  _runeDetailViewModel: {fileID: 3463978476399942040}
+  _runeDetailView: {fileID: 7505075942688255521}
+  _itemUpgradeRuneView: {fileID: 6335632413185824703}
+  _starView: {fileID: 3647299838282285556}
   _runeDataAsset: {fileID: 11400000, guid: 0309459fbc8284a85b0bd3842e94e9e3, type: 2}
 --- !u!1 &4880375718204489336
 GameObject:
@@ -2137,7 +2124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6740648024558492939
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2145,7 +2132,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5942419420171980942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
