@@ -1,8 +1,5 @@
-
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Serialization;
 
 public class ListTowerViewModel : MonoBehaviour
 {
@@ -14,9 +11,14 @@ public class ListTowerViewModel : MonoBehaviour
     
     private List<TowerComposite> _towerComposites;
     private ItemTowerView _preSelectedItem;
-    private void Awake()
+
+    private void Start()
     {
         _itemTowerViews[0].OnSelectedTower();
+    }
+
+    private void Awake()
+    {
         _towerComposites = new List<TowerComposite>();
 
         UpdateData();
