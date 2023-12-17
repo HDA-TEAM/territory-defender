@@ -10,10 +10,9 @@ public class TargetChallenging : UnitBaseComponent
 
     private List<UnitBase> _challengers;
     private UnitBase _challenger;
-    public void CanChallenging(UnitBase unit)
+    public bool CanChallenging()
     {
-        
-        _unitBaseParent.OnTargetChanging?.Invoke(unit);
+        return _challenger == null;
     }
     public void SetChallenger(UnitBase unit)
     {

@@ -19,7 +19,7 @@ public class UnitBase : MonoBehaviour
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     protected TargetDetecting TargetDetecting() => _targetDetecting;
     public HealthComp HealthComp() => _healthComp;
-    public AttackingComp AttackingComp() => _attackingComp;
+    // public AttackingComp AttackingComp() => _attackingComp;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
     public TargetChallenging TargetChallengingComp() => _targetChallenging; 
@@ -32,7 +32,7 @@ public class UnitBase : MonoBehaviour
         _characterStateMachine ??= GetComponent<CharacterStateMachine>(); 
         _targetDetecting ??= GetComponent<TargetDetecting>(); 
         _healthComp ??= GetComponent<HealthComp>(); 
-        _attackingComp ??= GetComponent<AttackingComp>();
+        // _attackingComp ??= GetComponent<AttackingComp>();
         _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
     }
     #endregion
@@ -40,7 +40,10 @@ public class UnitBase : MonoBehaviour
 
 
     #region Event
+    public UnitBase CurrentTarget;
+    public Action<UnitBase> OnOutOfHeal;
     public Action<UnitBase> OnTargetChanging;
+    public Action OnResetFindTarget;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
     #endregion

@@ -7,7 +7,7 @@ public enum CharacterSide
     Enemy = 2,
 }
 
-public class TargetDetecting : UnitBaseComponent
+public class TargetDetecting : UnitBaseComponent, IFindTarget
 {
     [SerializeField] private CircleCollider2D _circleCollider2D; 
     [SerializeField] private CharacterSide _characterSideNeedToTarget;
@@ -21,36 +21,48 @@ public class TargetDetecting : UnitBaseComponent
         _rangeDetecting = _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange);
         _circleCollider2D.radius = _rangeDetecting;
     }
-    protected void Awake()
+    protected new void Awake()
     {
         base.Awake();
         UpdateDetectRange();
     }
-    private void Update() => CheckingTarget();
-    
-    private void CheckingTarget()
+    private void OnEnable()
     {
-        _curTarget = null;
-        if (_targets.Count > 0)
-        {
-            if (_targets[0] == null || !_targets[0].gameObject.activeSelf)
-                _targets.RemoveAt(0);
-            else
-            {
-                _curTarget = _targets[0];
-                // Tower don't challenges
-                if (!_isTower)
-                {
-                    _curTarget.TargetChallengingComp().SetChallenger(_unitBaseParent);
-                }
-            }
-        }
-        else
-            _curTarget = null;
-
-        _unitBaseParent.OnTargetChanging?.Invoke(_curTarget);
-
+        UnitObserver.Instance.SingleTargetController.OnRegister(this);
     }
+    private void OnDisable()
+    {
+        UnitObserver.Instance?.SingleTargetController.OnUnRegister(this);
+    }
+    // private void Update() => CheckingTarget();
+    
+    // private void CheckingTarget()
+    // {
+    //     _curTarget = null;
+    //     if (_targets.Count > 0)
+    //     {
+    //         if (_targets[0] == null || !_targets[0].gameObject.activeSelf)
+    //             _targets.RemoveAt(0);
+    //         else
+    //         {
+    //             _curTarget = _targets[0];
+    //             // // Tower don't challenges
+    //             // if (!_isTower)
+    //             // {
+    //             //     var challengingComp = _curTarget.TargetChallengingComp();
+    //             //     if (challengingComp.CanChallenging())
+    //             //         challengingComp.SetChallenger(_unitBaseParent);
+    //             //     else
+    //             //         _targets.RemoveAt(0);  
+    //             // }
+    //         }
+    //     }
+    //     else
+    //         _curTarget = null;
+    //
+    //     _unitBaseParent.OnTargetChanging?.Invoke(_curTarget);
+    //
+    // }
     private void OnTriggerStay2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
@@ -76,6 +88,36 @@ public class TargetDetecting : UnitBaseComponent
     {
         UnitBase target = other.gameObject.GetComponent<UnitBase>();
         if (target != null && _targets.Exists((t) => t == target))
+        {
             _targets.Remove(target);
+            target.OnResetFindTarget?.Invoke();
+        }
+    }
+    public void FindTarget()
+    {
+        _curTarget = null;
+        if (_targets.Count > 0)
+        {
+            if (_targets[0] == null || !_targets[0].gameObject.activeSelf)
+                _targets.RemoveAt(0);
+            else
+            {
+                _curTarget = _targets[0];
+                // // Tower don't challenges
+                // if (!_isTower)
+                // {
+                //     var challengingComp = _curTarget.TargetChallengingComp();
+                //     if (challengingComp.CanChallenging())
+                //         challengingComp.SetChallenger(_unitBaseParent);
+                //     else
+                //         _targets.RemoveAt(0);  
+                // }
+            }
+        }
+        else
+            _curTarget = null;
+
+        _unitBaseParent.OnTargetChanging?.Invoke(_curTarget);
     }
 }
+
