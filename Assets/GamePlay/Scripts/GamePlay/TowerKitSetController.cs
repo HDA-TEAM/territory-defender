@@ -33,19 +33,59 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
         base.Awake();
         SetUpData();
     }
+    [SerializeField] private StageId _currentStageId;
+    [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
+    [ContextMenu("SaveToConfig")]
+    public void SaveToConfig()
+    {
+        List<Vector3> places = new List<Vector3>();
+        
+        foreach (TowerKit tk in _currentTowerKits)
+        {
+            // Check if this Kit available to save
+            if (tk.gameObject.activeSelf)
+                places.Add(tk.gameObject.transform.position);
+        }
+        
+        _towerKitSetConfig.SaveToConfig(places,_currentStageId);
+    }
+    [ContextMenu("LoadFromConfig")]
+    public void LoadFromConfig()
+    {
+        var places = _towerKitSetConfig.LoadFromConfig(_currentStageId);
+        
+        for (int i = 0; i < _currentTowerKits.Count; i++)
+        {
+            // If current kit exist on map > total places count in config
+            if (i >= places.Count)
+            {
+                _currentTowerKits[i].gameObject.SetActive(false);
+                continue;
+            }
+            
+            // Check if this Kit available to load
+            if (!_currentTowerKits[i].gameObject.activeSelf)
+                _currentTowerKits[i].gameObject.SetActive(true);
+            
+            // Save position of kit
+            // Value of Z always zero
+            _currentTowerKits[i].transform.position = new Vector3(
+                places[i].x,
+                places[i].y,
+                0);
+        }
+    }
     private void SetUpData()
     {
         // Loading position and place for each kit
         _stageConfig = _stageDataAsset.GetStageConfig();
         // _stageConfig.TowerKitSetConfig.LoadTowerKitsPositionFromConfig(_currentTowerKits);
         
-        // Setup id for each tower kit
+        // Setup callback when selected
         foreach (TowerKit kit in _currentTowerKits)
         {
             kit.Setup(SetCurrentSelectedKit);
         }
-        // Setup towerKit runtime data dictionary
-        // _towerDataAsset.LoadRuntimeData(ref _currentTowerKits);
     }
     private void SetCurrentSelectedKit(TowerKit towerKit)
     {

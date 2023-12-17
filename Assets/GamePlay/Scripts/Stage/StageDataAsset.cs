@@ -5,7 +5,9 @@ using UnityEngine;
 
 public enum StageId
 {
+    CHAP_1_STAGE_0 = 100,
     CHAP_1_STAGE_1 = 101,
+    CHAP_1_STAGE_2 = 102,
 }
 
 [Serializable]
@@ -17,6 +19,11 @@ public struct StageConfig
     public InGameInventoryDataAsset InGameInventoryDataAsset;
 }
 
+// public abstract class LocalDataAssetBase{
+//     public abstract void SaveToConfig
+// }
+
+
 [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
 public class StageDataAsset : ScriptableObject
 {
@@ -24,6 +31,7 @@ public class StageDataAsset : ScriptableObject
     [SerializeField] [SerializedDictionary("StageId","StageConfig")]
     private SerializedDictionary<StageId,StageConfig> _stageDict;
     public StageId CurrentStageId() => _currentStageId;
+
     
     public StageConfig GetStageConfig(StageId stageId = StageId.CHAP_1_STAGE_1)
     {

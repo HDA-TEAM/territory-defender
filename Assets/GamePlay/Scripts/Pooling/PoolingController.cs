@@ -46,7 +46,7 @@ public class PoolingController : SingletonBase<PoolingController>
             dictPooling.Add(poolingComposite._objectType, pooling);
         }
     }
-    public PoolingBase GetPooling(UnitId unitId)
+    private PoolingBase GetPooling(UnitId unitId)
     {
         dictPooling.TryGetValue(unitId, out PoolingBase poolingBase);
         return poolingBase;
