@@ -55,7 +55,7 @@ public class PoolingController : SingletonBase<PoolingController>
     {
         GameObject go = GetPooling(objectType).GetInstance();
         go.SetActive(transform);
-        go.transform.position = position;
+        go.transform.position = new Vector3(position.x,position.y,0);
         return go;
     }
 }

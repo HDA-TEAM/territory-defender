@@ -72,7 +72,7 @@ public class HealthComp : UnitBaseComponent
         _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
     }
 
-public void ResetState()
+    public void ResetState()
     {
         gameObject.SetActive(false);
         CurrentHealth = _maxHeath;

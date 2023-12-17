@@ -7,7 +7,7 @@ public class CampingRoomController
 {
     
     private static readonly List<CampingTargetDetecting> _campingRooms = new List<CampingTargetDetecting>();
-    // private static List<List<CampingTargetDetecting>> _campingRoomGroups = new List<List<CampingTargetDetecting>>();
+   
     public void OnRegister(CampingTargetDetecting campingTargetDetecting)
     {
         if (!_campingRooms.Contains(campingTargetDetecting))

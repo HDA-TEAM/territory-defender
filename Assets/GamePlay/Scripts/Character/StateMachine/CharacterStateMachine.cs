@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 
 public class CharacterStateMachine : UnitBaseComponent
 {
-    [FormerlySerializedAs("_attackingType")]
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
     [SerializeField] protected CharacterBaseState _currentState;

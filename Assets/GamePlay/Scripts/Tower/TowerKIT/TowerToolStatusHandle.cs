@@ -3,8 +3,11 @@ using UnityEngine.UI;
 
 public enum TowerTooltatus
 {
+    // Available to choose
     Available = 0,
+    // Not enough coin
     UnAvailable = 1,
+    // This tower don't unlock this tool
     Block = 2,
 }
 public class TowerToolStatusHandle : MonoBehaviour

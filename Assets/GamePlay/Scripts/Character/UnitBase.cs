@@ -13,6 +13,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private Stats _unitStatsComp;
     [SerializeField] private EnemyReachingDestination _enemyReachingDestination;
     [SerializeField] private TargetChallenging _targetChallenging;
+    [SerializeField] private UnitShowingInformation _unitShowingInformation;
     #endregion
 
     #region Access
@@ -22,7 +23,8 @@ public class UnitBase : MonoBehaviour
     // public AttackingComp AttackingComp() => _attackingComp;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
-    public TargetChallenging TargetChallengingComp() => _targetChallenging; 
+    public TargetChallenging TargetChallengingComp() => _targetChallenging;
+    public UnitShowingInformation UnitShowingInformationComp() => _unitShowingInformation;
     public Stats UnitStatsComp() => _unitStatsComp;
     #endregion
 
