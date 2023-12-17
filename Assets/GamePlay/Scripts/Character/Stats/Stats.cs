@@ -57,6 +57,7 @@ public enum StatId
     AttackSpeed = 1,
     AttackRange = 2,
     DetectRange = 3,
+    CampingRange = 4,
 
     /// Characteristic
     HealingPerSecond = 100,

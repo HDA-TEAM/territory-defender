@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 666001084183805972}
   m_Layer: 0
   m_Name: HeroPrefabBase
-  m_TagString: Enemy
+  m_TagString: Ally
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   _unitStatsComp: {fileID: 11400000, guid: 17c65a71ad5114b419abb98691ee4299, type: 2}
   _enemyReachingDestination: {fileID: 0}
   _targetChallenging: {fileID: 0}
+  CurrentTarget: {fileID: 0}
 --- !u!114 &1678257234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
-  _attackingType: 1
+  _troopBehaviourType: 1
   _animator: {fileID: 6715228475396641559}
   _stats: {fileID: 11400000, guid: 17c65a71ad5114b419abb98691ee4299, type: 2}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}

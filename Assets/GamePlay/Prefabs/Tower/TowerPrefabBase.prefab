@@ -283,6 +283,8 @@ MonoBehaviour:
   _unitStatsComp: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
   _enemyReachingDestination: {fileID: 0}
   _targetChallenging: {fileID: 0}
+  _unitShowingInformation: {fileID: 5838589748708221372}
+  CurrentTarget: {fileID: 0}
 --- !u!114 &3858257114877186647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -395,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
   startAttackPoint: {fileID: 8679165266974667951}
-  attackingType: 0
+  _troopBehaviourType: 0
   attackingCooldown: 1
   attackingDamage: 5
   attackingRange: 5

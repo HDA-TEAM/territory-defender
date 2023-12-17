@@ -6,9 +6,13 @@ using UnityEngine.UI;
 
 public enum TowerKitState
 {
+    // Just show flag on map
     Default = 0,
+    // Show flag and build tower tool
     Building = 1,
-    TowerExisted = 2,
+    // Show tool of current tower entity
+    ShowToolOfTowerExisted = 2,
+    // Hide all tool and show curren tower
     Hiding = 3,
 }
 
@@ -22,10 +26,12 @@ public class TowerKit : MonoBehaviour
     [SerializeField] private GameObject _towerBuildTool;
     [SerializeField] private GameObject _towerUsingTool;
     [SerializeField] private GameObject _spawnTowerHolder;
+    [SerializeField] private Button _btnRange;
 
     [Header("Data"), Space(12)]
     [SerializeField] private TowerDataAsset _towerDataAsset;
-
+    [SerializeField] private TowerId _towerId;
+    [SerializeField] private UnitBase _unitBase;
     // Internal
     private TowerKitState _towerKitState;
     private TowerKitState TowerKitState
@@ -45,6 +51,13 @@ public class TowerKit : MonoBehaviour
     // call back
     private Action<TowerKit> _onSelected;
 
+    #region Access
+    public TowerId GetTowerId() => _towerId;
+
+    public UnitBase GetUnitBase() => _unitBase;
+    
+    #endregion
+    
     private void Start()
     {
         TowerKitState = TowerKitState.Default;
@@ -53,7 +66,7 @@ public class TowerKit : MonoBehaviour
     private void OnSelected()
     {
         if (TowerKitSetController.Instance.CurrentSelectedKit == this 
-            && (TowerKitState == TowerKitState.TowerExisted || TowerKitState == TowerKitState.Building))
+            && (TowerKitState == TowerKitState.ShowToolOfTowerExisted || TowerKitState == TowerKitState.Building))
         {
             // reset state
             OnCancelMenu();
@@ -67,7 +80,7 @@ public class TowerKit : MonoBehaviour
         }
         
         _onSelected?.Invoke(this);
-        TowerKitState = _towerEntity ? TowerKitState.TowerExisted : TowerKitState.Building;
+        TowerKitState = _towerEntity ? TowerKitState.ShowToolOfTowerExisted : TowerKitState.Building;
 
         Debug.Log("Onclick");
         // Handle user want to cancel selection menu by canvas block raycast
@@ -99,9 +112,12 @@ public class TowerKit : MonoBehaviour
                     _towerBuildTool.SetActive(true);
                     return;
                 }
-            case TowerKitState.TowerExisted:
+            case TowerKitState.ShowToolOfTowerExisted:
                 {
                     _towerUsingTool.SetActive(true);
+                    
+                    _unitBase.UnitShowingInformationComp().ShowUnitInformation();
+
                     return;
                 }
             case TowerKitState.Hiding:
@@ -115,9 +131,12 @@ public class TowerKit : MonoBehaviour
     {
         _onSelected = onSelected;
     }
-    public void SetTower(GameObject tower)
+    public void SetTower(GameObject tower, TowerId towerId)
     {
+        _towerId = towerId;
         _towerEntity = tower;
+        _unitBase = _towerEntity.GetComponent<UnitBase>();
+
         _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
         _towerEntity.transform.position = _spawnTowerHolder.transform.position;
         TowerKitState = TowerKitState.Hiding;
@@ -135,8 +154,37 @@ public class TowerKit : MonoBehaviour
         // Logic get 30% coin used 
         // UnitBase towerBase = _towerEntity.GetComponent<UnitBase>();
         // towerBase.UnitStatsComp().GetStat(StatId.Armour
-        
+
+        _unitBase = null;
         Destroy(_towerEntity);
         TowerKitState = TowerKitState.Default;
+    }
+    public void ActiveCampingMode()
+    {
+        
+        var rangeVal= _unitBase.UnitStatsComp().GetStat(StatId.CampingRange);
+        
+        SetRangeOfTower(rangeVal);
+
+        TowerKitState = TowerKitState.Hiding;
+        _btnRange.gameObject.SetActive(true);
+
+        _btnRange.onClick.AddListener(() =>
+        {
+            // Set camping position
+            var troopTowerBehaviour = _unitBase.GetComponent<TroopTowerBehaviour>();
+            var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.LogError("Camping position : " + mousePos);
+            troopTowerBehaviour.SetCampingPlace(new Vector3(mousePos.x, mousePos.y,0));
+            
+            // Hiding select camping position
+            _btnRange.gameObject.SetActive(false);
+            TowerKitState = TowerKitState.Hiding;
+            _btnRange.onClick.RemoveAllListeners();
+        });
+    }
+    private void SetRangeOfTower(float range)
+    {
+        _btnRange.image.rectTransform.sizeDelta = new Vector2(range * 2, range * 2);
     }
 }

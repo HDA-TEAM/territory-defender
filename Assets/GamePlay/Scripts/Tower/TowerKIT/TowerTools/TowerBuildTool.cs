@@ -22,6 +22,6 @@ public class TowerBuildTool : TowerToolBase
             - (int)_towerCanBuild.UnitStatsComp().GetStat(StatId.CoinNeedToBuild));
         
         GameObject tower = Instantiate(_towerCanBuild.gameObject);
-        TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower);
+        TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower, _towerBuildId);
     }
 }
