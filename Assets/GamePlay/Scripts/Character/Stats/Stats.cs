@@ -60,6 +60,8 @@ public enum StatId
     CampingRange = 4,
 
     /// Characteristic
+    Level = 20,
+    Exp = 21,
     HealingPerSecond = 100,
     MaxHeal = 101,
     Armour = 105,

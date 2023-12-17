@@ -1,5 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -37,4 +38,9 @@ public class TowerDataAsset : ScriptableObject
     //         _towerKits.Add(towerKit.TowerKitId,towerKit);
     //     }
     // }
+    
+    public List<UnitBase> GetAllTowerData()
+    {
+        return _towerTypeDict.Values.ToList();
+    }
 }

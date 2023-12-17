@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,11 +13,13 @@ public class ItemHeroView : MonoBehaviour
 
     public HeroComposite HeroComposite;
     
+    // Internal
     private Sprite _sprite;
     private Action<ItemHeroView> _onSelected;
     
     private readonly string _hexSelectedColor = "#F3EF94";
     private readonly string _hexDeselectedColor = "#323232";
+    
     #region Core
     private void Awake()
     {
@@ -26,7 +29,6 @@ public class ItemHeroView : MonoBehaviour
     public void Setup(HeroComposite heroComposite,Action<ItemHeroView> onSelected)
     {
         HeroComposite = heroComposite;
-        
         _onSelected = onSelected;
 
         SetName(heroComposite.Name);
@@ -53,5 +55,5 @@ public class ItemHeroView : MonoBehaviour
     {
         _txtName.text = name;
     }
-    
+
 }
