@@ -75,6 +75,7 @@ public class ListRuneViewModel : MonoBehaviour
         {
             // Setup rune view
             _itemRuneViews[i].SetRuneStacks(_runeComposites[i]);
+            
             // Setup star view
             _starView.Setup(_starComposite);
             
@@ -94,6 +95,8 @@ public class ListRuneViewModel : MonoBehaviour
             _runeDetailView.gameObject.SetActive(true);
         }
         _preSelectedItem = itemRuneView;
+        
+        // Setup rune view
         _runeDetailView.Setup(_preSelectedItem.RuneComposite);
         _itemUpgradeRuneView.Setup(_preSelectedItem.RuneComposite, OnSelectedUpgradeRuneItem);
     }
@@ -108,7 +111,7 @@ public class ListRuneViewModel : MonoBehaviour
         
         _preSelectedUpgradeRuneView = itemUpgradeRuneView;
         
-        // Update stacks data
+        // Conditions to upgrade any skill
         if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _starDataAsset.GetStarNumber() > 0)
         {
             _preRuneDataSo = _runeDataAsset.GetRune(itemUpgradeRuneView.RuneComposite.RuneId);

@@ -2,28 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using UnityEngine.Serialization;
 
-public struct TowerComposite
-{
-    public string Name;
-    public string MaxHeal;
-    public string AttackDamage;
-    public string AttackSpeed;
-    public string DetectRange;
-    public string CoinValue;
-}
 public class ListTowerViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
     
-    [Header("Data"), Space(12)] 
-    [SerializeField] private TowerDataAsset _towerDataAsset;
+    [Header("Data"), Space(12)]
+    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
     
     private List<TowerComposite> _towerComposites;
     private ItemTowerView _preSelectedItem;
     private void Awake()
     {
+        _itemTowerViews[0].OnSelectedTower();
         _towerComposites = new List<TowerComposite>();
 
         UpdateData();
@@ -31,20 +24,24 @@ public class ListTowerViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        //List<UnitBase> listTowerData = _towerDataAsset.GetAllTowerData();
+        List<Stats> listTowerData = _commonTowerDataAsset.GetAllTowerData();
+        
+        foreach (var towerDataSo in listTowerData)
+        {
+            _towerComposites.Add(
+                new TowerComposite
+                {
+                    Name = towerDataSo.GetInformation(InformationId.Name),
+                    MaxHeal = towerDataSo.GetStat(StatId.MaxHeal).ToString(""),
+                    AttackDamage = towerDataSo.GetStat(StatId.AttackDamage).ToString(""),
+                    AttackSpeed = towerDataSo.GetStat(StatId.AttackSpeed).ToString("F2"),
+                    DetectRange = towerDataSo.GetStat(StatId.DetectRange).ToString(""),
+                    CoinNeedToBuild = towerDataSo.GetStat(StatId.CoinNeedToBuild).ToString(""),
+                    CoinNeedToUpgrade = towerDataSo.GetStat(StatId.CoinNeedToUpgrade).ToString("")
+                }
+            );
+        }
 
-        _towerComposites.Add(
-            new TowerComposite
-            {
-                Name = "Archer Tower",
-                MaxHeal = "999",
-                AttackDamage = "99",
-                AttackSpeed = "9.9",
-                DetectRange = "3",
-                CoinValue = "60"
-            }
-        );
-            
         UpdataView();
     }
 
@@ -72,4 +69,15 @@ public class ListTowerViewModel : MonoBehaviour
 
         _preSelectedItem = itemTowerView;
     }
+}
+
+public struct TowerComposite
+{
+    public string Name;
+    public string MaxHeal;
+    public string AttackDamage;
+    public string AttackSpeed;
+    public string DetectRange;
+    public string CoinNeedToBuild;
+    public string CoinNeedToUpgrade;
 }
