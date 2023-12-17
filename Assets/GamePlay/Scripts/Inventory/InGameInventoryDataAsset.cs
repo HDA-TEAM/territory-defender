@@ -6,9 +6,11 @@ public class InGameInventoryDataAsset : ScriptableObject
 {
     [SerializeField] private int _currency;
     [SerializeField] private int _life;
-
+    [SerializeField] private int _star;
+    
     public int GetCurrencyValue() => _currency;
     public int GetLifeValue() => _life;
+    public int GetStarValue() => _star;
     
     #region Callback
     private Action<int> _onCurrencyChange;
@@ -31,5 +33,11 @@ public class InGameInventoryDataAsset : ScriptableObject
         if (_life > value)
             _life += value;
         _onLifeChange?.Invoke(_life);
+    }
+    
+    public void TryChangeStar(int starNumber)
+    {
+        _star -= starNumber;
+        Debug.Log("Subtract star");
     }
 }

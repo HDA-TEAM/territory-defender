@@ -11,7 +11,7 @@ public class ListRuneViewModel : MonoBehaviour
 
     [Header("Data"), Space(12)] 
     [SerializeField] private RuneDataAsset _runeDataAsset;
-    [SerializeField] private StarDataAsset _starDataAsset;
+    [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
     
     // Internal
     private List<RuneComposite> _runeComposites;
@@ -26,7 +26,7 @@ public class ListRuneViewModel : MonoBehaviour
     {
         _runeComposites = new List<RuneComposite>();
         _starComposite = new StarComposite();
-        //_starNumber = _starView.GetStarNumber();
+        
         UpdateData();
     }
     
@@ -37,6 +37,9 @@ public class ListRuneViewModel : MonoBehaviour
 
         if (_starView != null)
             _starView._onDataUpdated += UpdateData;
+
+        if (_runeDetailView != null)
+            _runeDetailView._onDataUpdated += UpdateData;
     }
     
     private void UpdateData()
@@ -50,7 +53,7 @@ public class ListRuneViewModel : MonoBehaviour
             _runeComposites.Add(
                 new RuneComposite
                 {
-                    RuneId = runeDataSo._runeId,
+                    RuneId = runeDataSo.GetRuneId(),
                     TypeName = runeDataSo._name,
                     AdditionalValue =  runeDataSo._additionalValue,
                     Operate = runeDataSo._operate,
@@ -64,8 +67,8 @@ public class ListRuneViewModel : MonoBehaviour
         }
         
         // Load Star data
-        _starComposite.StarNumber = _starDataAsset.GetStarNumber();
-        
+        _starComposite.StarNumber = _inventoryDataAsset.GetStarValue();
+
         UpdateView();
     }
 
@@ -112,17 +115,17 @@ public class ListRuneViewModel : MonoBehaviour
         _preSelectedUpgradeRuneView = itemUpgradeRuneView;
         
         // Conditions to upgrade any skill
-        if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _starDataAsset.GetStarNumber() > 0)
+        if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _inventoryDataAsset.GetStarValue() > 0)
         {
-            _preRuneDataSo = _runeDataAsset.GetRune(itemUpgradeRuneView.RuneComposite.RuneId);
+            _preRuneDataSo= _runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
 
             if (_preRuneDataSo != null)
             {
                 _preRuneDataSo._currentStacks++;
             
                 // Subtract star number
-                _starDataAsset.UpdateStarData(_preRuneDataSo._starNeedToUpgrade);
-            
+                _inventoryDataAsset.TryChangeStar(_preRuneDataSo._starNeedToUpgrade);
+
                 // Update rune data
                 _runeDataAsset.RuneUpdate(_preRuneDataSo);
                 Debug.Log("Upgrade rune successful....");
@@ -145,7 +148,7 @@ public struct RuneComposite
     public string Operate;
     public float CurrentStacks;
     public float Stacks;
-    public float StarNeedToUpgrade;
+    public int StarNeedToUpgrade;
     public Sprite AvatarSelected;
     public Sprite AvatarStarted;
 }

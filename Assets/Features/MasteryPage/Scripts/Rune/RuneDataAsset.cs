@@ -42,12 +42,17 @@ public class RuneDataAsset : ScriptableObject
             return;
         }
 
-        if (_runeDataDict.TryGetValue(runeDataSo._runeId, out RuneDataSO existingRuneData))
+        RuneId runeId = runeDataSo.GetRuneId(); // Using GetRuneId() instead of directly accessing the field.
+
+        if (_runeDataDict.TryGetValue(runeId, out RuneDataSO existingRuneData))
         {
-            Debug.Log(runeDataSo._runeId + " rune current stacks: "  + existingRuneData._currentStacks);
-        } else {
-            Debug.LogError("Rune ID not found in dictionary: " + runeDataSo._runeId);
+            Debug.Log(runeId + " rune current stacks: " + existingRuneData.GetCurrentStacks()); // Assuming GetCurrentStacks() is a method.
+        }
+        else
+        {
+            Debug.LogError("Rune ID not found in dictionary: " + runeId);
         }
         _onDataUpdated?.Invoke();
     }
+
 }

@@ -64,6 +64,9 @@ public class ListTowerViewModel : MonoBehaviour
 
     private void OnSelectedItem(ItemTowerView itemTowerView)
     {
+        //Prevent multiple clicks
+        if (_preSelectedItem == itemTowerView) return;
+        
         if (_preSelectedItem != null)
         {
             _preSelectedItem.RemoveSelected();
