@@ -6,10 +6,10 @@ public class StarView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _txtStarNumber;
 
-    public StarComposite StarComposite;
+    public InventoryComposite InventoryComposite;
     public Action _onDataUpdated;
 
-    public void Setup(StarComposite starComposite)
+    public void Setup(InventoryComposite starComposite)
     {
         _txtStarNumber.text = starComposite.StarNumber.ToString("");
         //_onDataUpdated?.Invoke();

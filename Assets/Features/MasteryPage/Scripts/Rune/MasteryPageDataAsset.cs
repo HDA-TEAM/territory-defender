@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum RuneId
 {
@@ -14,16 +15,16 @@ public enum RuneId
 }
 
 [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
-public class RuneDataAsset : ScriptableObject
+public class MasteryPageDataAsset : ScriptableObject
 {
-    [SerializedDictionary("RuneId", "RuneDataSO")] [SerializeField]
-    private SerializedDictionary<RuneId, RuneDataSO> _runeDataDict = new SerializedDictionary<RuneId, RuneDataSO>();
+    [FormerlySerializedAs("_runeDataDict")] [SerializedDictionary("RuneId", "RuneDataSO")] [SerializeField]
+    private SerializedDictionary<RuneId, RuneDataSO> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataSO>();
     
     public Action _onDataUpdated;
 
     public RuneDataSO GetRune(RuneId runeId)
     {
-        if (_runeDataDict.TryGetValue(runeId, out RuneDataSO runeDataSo))
+        if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataSO runeDataSo))
             return runeDataSo;
             
         Debug.LogError($"No rune value found for key {runeId} on ");
@@ -31,7 +32,7 @@ public class RuneDataAsset : ScriptableObject
     }
     public List<RuneDataSO> GetAllRuneData()
     {
-        return _runeDataDict.Values.ToList();
+        return _masteryPageDataDict.Values.ToList();
     }
 
     public void RuneUpdate(RuneDataSO runeDataSo)
@@ -44,7 +45,7 @@ public class RuneDataAsset : ScriptableObject
 
         RuneId runeId = runeDataSo.GetRuneId(); // Using GetRuneId() instead of directly accessing the field.
 
-        if (_runeDataDict.TryGetValue(runeId, out RuneDataSO existingRuneData))
+        if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataSO existingRuneData))
         {
             Debug.Log(runeId + " rune current stacks: " + existingRuneData.GetCurrentStacks()); // Assuming GetCurrentStacks() is a method.
         }

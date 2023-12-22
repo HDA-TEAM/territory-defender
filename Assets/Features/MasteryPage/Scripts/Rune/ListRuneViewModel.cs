@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ListRuneViewModel : MonoBehaviour
 {
@@ -8,32 +9,32 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private RuneDetailView _runeDetailView;
     [SerializeField] private ItemUpgradeRuneView _itemUpgradeRuneView;
     [SerializeField] private StarView _starView;
-
+    
     [Header("Data"), Space(12)] 
-    [SerializeField] private RuneDataAsset _runeDataAsset;
+    [SerializeField] private MasteryPageDataAsset _masteryPageDataAsset;
     [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
+    [SerializeField] private CommonTowerMasteryPageDataAsset _commonTowerMasteryPageDataAsset;
     
     // Internal
     private List<RuneComposite> _runeComposites;
-    private StarComposite _starComposite;
+    private InventoryComposite _inventoryComposite;
     private RuneDataSO _preRuneDataSo;
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
     private float _starNumber;
     
-    private float _valueCastStringToInt;
     private void Awake()
     {
         _runeComposites = new List<RuneComposite>();
-        _starComposite = new StarComposite();
+        _inventoryComposite = new InventoryComposite();
         
         UpdateData();
     }
     
     private void Start()
     {
-        if (_runeDataAsset != null)
-            _runeDataAsset._onDataUpdated += UpdateData;
+        if (_masteryPageDataAsset != null)
+            _masteryPageDataAsset._onDataUpdated += UpdateData;
 
         if (_starView != null)
             _starView._onDataUpdated += UpdateData;
@@ -47,7 +48,7 @@ public class ListRuneViewModel : MonoBehaviour
         _runeComposites.Clear();
         
         // Load Rune data
-        List<RuneDataSO> listRuneDataSo = _runeDataAsset.GetAllRuneData();
+        List<RuneDataSO> listRuneDataSo = _masteryPageDataAsset.GetAllRuneData();
         foreach (var runeDataSo in listRuneDataSo)
         {
             _runeComposites.Add(
@@ -67,7 +68,9 @@ public class ListRuneViewModel : MonoBehaviour
         }
         
         // Load Star data
-        _starComposite.StarNumber = _inventoryDataAsset.GetStarValue();
+        _inventoryComposite.Currency = _inventoryDataAsset.GetCurrencyValue();
+        _inventoryComposite.Life = _inventoryDataAsset.GetLifeValue();
+        _inventoryComposite.StarNumber = _inventoryDataAsset.GetStarValue();
 
         UpdateView();
     }
@@ -80,7 +83,7 @@ public class ListRuneViewModel : MonoBehaviour
             _itemRuneViews[i].SetRuneStacks(_runeComposites[i]);
             
             // Setup star view
-            _starView.Setup(_starComposite);
+            _starView.Setup(_inventoryComposite);
             
             // Rune avatar logic
             _itemRuneViews[i].SetAvatarRune(_runeComposites[i].CurrentStacks > 0 ? _runeComposites[i].AvatarSelected : _runeComposites[i].AvatarStarted);
@@ -106,7 +109,7 @@ public class ListRuneViewModel : MonoBehaviour
     
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
-        if (itemUpgradeRuneView == null || _preSelectedItem == null || _runeDataAsset == null || _starView == null)
+        if (itemUpgradeRuneView == null || _preSelectedItem == null || _masteryPageDataAsset == null || _starView == null)
         {
             Debug.LogError("One or more required objects are null.");
             return;
@@ -117,7 +120,7 @@ public class ListRuneViewModel : MonoBehaviour
         // Conditions to upgrade any skill
         if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _inventoryDataAsset.GetStarValue() > 0)
         {
-            _preRuneDataSo= _runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
+            _preRuneDataSo= _masteryPageDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
 
             if (_preRuneDataSo != null)
             {
@@ -127,7 +130,7 @@ public class ListRuneViewModel : MonoBehaviour
                 _inventoryDataAsset.TryChangeStar(_preRuneDataSo._starNeedToUpgrade);
 
                 // Update rune data
-                _runeDataAsset.RuneUpdate(_preRuneDataSo);
+                _masteryPageDataAsset.RuneUpdate(_preRuneDataSo);
                 Debug.Log("Upgrade rune successful....");
             }
         }
@@ -153,7 +156,9 @@ public struct RuneComposite
     public Sprite AvatarStarted;
 }
 
-public struct StarComposite
+public struct InventoryComposite
 {
+    public float Currency;
+    public float Life;
     public float StarNumber;
 }
