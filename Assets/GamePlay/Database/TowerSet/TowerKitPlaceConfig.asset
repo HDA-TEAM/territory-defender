@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acbeeb8d1df946239173c343cb6036f9, type: 3}
-  m_Name: TowerKitSet_100
+  m_Name: TowerKitPlaceConfig
   m_EditorClassIdentifier: 
-  towerKitLocation:
-  - {x: 11.30609, y: 5.793203}
-  - {x: -17.146013, y: 13.875656}
-  - {x: -40.879456, y: -7.148065}
-  - {x: -9.717631, y: -9.76435}
-  - {x: 34.66578, y: 1.6818976}
-  - {x: 15.650992, y: -14.202691}
-  - {x: 36.627995, y: -17.80008}
+  _towerKitLocations:
+    _serializedList:
+    - Key: 100
+      Value: []
