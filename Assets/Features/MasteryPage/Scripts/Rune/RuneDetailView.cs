@@ -7,8 +7,7 @@ public class RuneDetailView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtRuneName;
     [SerializeField] private TextMeshProUGUI _txtRuneDescribe;
     [SerializeField] private TextMeshProUGUI _txtRuneStacks;
-
-    public Action _onDataUpdated;
+    
     #region Core
     public void Setup(RuneComposite runeComposite)
     {
@@ -18,5 +17,11 @@ public class RuneDetailView : MonoBehaviour
         
        // _onDataUpdated?.Invoke();
     }
+
+    public void UpdateCurrentStackView(RuneDataSO runeDataSo)
+    {
+        _txtRuneStacks.text = runeDataSo._currentStacks + " / " + runeDataSo._stacks;
+    }
+
     #endregion
 }

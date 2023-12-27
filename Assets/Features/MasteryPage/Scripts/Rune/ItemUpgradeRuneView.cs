@@ -5,9 +5,11 @@ using UnityEngine.UI;
 public class ItemUpgradeRuneView : MonoBehaviour
 {
     [SerializeField] private Button _btnUpgradeRune;
-
-    private Action<ItemUpgradeRuneView> _onSelected;
+    
+    //public Action _onUpdateDataRuneAction;
     public RuneComposite RuneComposite;
+    
+    private Action<ItemUpgradeRuneView> _onSelected;
     private void Awake()
     {
         _btnUpgradeRune.onClick.AddListener(OnSelectedUpgradeRune);
@@ -22,5 +24,6 @@ public class ItemUpgradeRuneView : MonoBehaviour
     private void OnSelectedUpgradeRune()
     {
         _onSelected?.Invoke(this);
+        //_onUpdateDataRuneAction?.Invoke();
     }
 }

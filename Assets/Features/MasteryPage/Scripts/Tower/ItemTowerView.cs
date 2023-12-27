@@ -20,6 +20,7 @@ public class ItemTowerView : MonoBehaviour
     
     private void Awake()
     {
+        _sprite = _imageBg.sprite;
         _btn.onClick.AddListener(OnSelectedTower);
     }
     
@@ -40,7 +41,7 @@ public class ItemTowerView : MonoBehaviour
             _txtName.color = selectedColor; // Set to the color represented by the hex string
         }
         
-        Debug.Log("select tower... " + TowerComposite.Name);
+        //Debug.Log("select tower... " + TowerComposite.Name);
         _onSelected?.Invoke(this);
     }
 

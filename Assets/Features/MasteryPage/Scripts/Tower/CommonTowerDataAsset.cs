@@ -10,6 +10,7 @@ public class CommonTowerDataAsset : ScriptableObject
     [SerializedDictionary("TowerId", "TowerType")] [SerializeField]
     private SerializedDictionary<TowerId, Stats> _towerTypeDict = new SerializedDictionary<TowerId, Stats>();
     
+    private TowerId _towerId;
     public Stats GetTowerType(TowerId towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out Stats towerStats);
@@ -21,9 +22,23 @@ public class CommonTowerDataAsset : ScriptableObject
         return towerStats;
     }
     
+    public TowerId GetTowerId(Stats stats)
+    {
+        foreach (var kvp in _towerTypeDict)
+        {
+            if (kvp.Value == stats)
+            {
+                _towerId = kvp.Key;
+                return _towerId;
+            }
+        }
+        return _towerId;
+    }
+    
     public List<Stats> GetAllTowerData()
     {
         return _towerTypeDict.Values.ToList();
     }
+    
 }
 

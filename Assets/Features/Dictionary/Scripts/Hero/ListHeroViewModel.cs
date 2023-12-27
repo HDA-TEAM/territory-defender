@@ -120,4 +120,30 @@ public class ListHeroViewModel : MonoBehaviour
 
         _preSelectedSkillItem = itemSkillView;
     }
+    public void ResetView()
+    {
+        // Reset the selected hero
+        if (_preSelectedItem != null)
+        {
+            _preSelectedItem.RemoveSelected();
+            _preSelectedItem = null;
+        }
+
+        // Reset the selected skill
+        if (_preSelectedSkillItem != null)
+        {
+            _preSelectedSkillItem.ResetSkillViews(); // Assuming such a method exists
+            _preSelectedSkillItem = null;
+        }
+
+        // Optionally reset other UI elements
+
+        // Select the first hero by default if the list is not empty
+        if (_itemHeroViews != null)
+        {
+            _itemHeroViews[0].OnSelectedHero();
+            // Additional setup for the first hero, if necessary
+        }
+    }
+
 }

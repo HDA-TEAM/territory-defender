@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,13 +6,17 @@ public class ListTowerViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
+    [SerializeField] private ListRuneViewModel _listRuneViewModel;
     
     [Header("Data"), Space(12)]
     [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
     
     private List<TowerComposite> _towerComposites;
+    private TowerComposite _towerComposite;
+    
     private ItemTowerView _preSelectedItem;
-
+    
+    public Action<TowerId> _onUpdateViewAction;
     private void Start()
     {
         _itemTowerViews[0].OnSelectedTower();
@@ -20,7 +25,7 @@ public class ListTowerViewModel : MonoBehaviour
     private void Awake()
     {
         _towerComposites = new List<TowerComposite>();
-
+        
         UpdateData();
     }
 
@@ -33,6 +38,7 @@ public class ListTowerViewModel : MonoBehaviour
             _towerComposites.Add(
                 new TowerComposite
                 {
+                    TowerId = _commonTowerDataAsset.GetTowerId(towerDataSo),
                     Name = towerDataSo.GetInformation(InformationId.Name),
                     MaxHeal = towerDataSo.GetStat(StatId.MaxHeal).ToString(""),
                     AttackDamage = towerDataSo.GetStat(StatId.AttackDamage).ToString(""),
@@ -44,10 +50,10 @@ public class ListTowerViewModel : MonoBehaviour
             );
         }
 
-        UpdataView();
+        UpdateView();
     }
 
-    private void UpdataView()
+    private void UpdateView()
     {
         for (int i = 0; i < _itemTowerViews.Count; i++)
         {
@@ -73,11 +79,33 @@ public class ListTowerViewModel : MonoBehaviour
         }
 
         _preSelectedItem = itemTowerView;
+        
+        Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
+        GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
+        _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
+    }
+    
+    public void ResetView()
+    {
+        // Reset the selection state
+        if (_preSelectedItem != null)
+        {
+            _preSelectedItem.RemoveSelected();
+            _preSelectedItem = null;
+        }
+
+        // Reset the view to its initial state, such as selecting the first tower again
+        if (_itemTowerViews != null)
+        {
+            _itemTowerViews[0].OnSelectedTower();
+            _onUpdateViewAction?.Invoke(_towerComposites[0].TowerId);
+        }
     }
 }
 
 public struct TowerComposite
 {
+    public TowerId TowerId;
     public string Name;
     public string MaxHeal;
     public string AttackDamage;

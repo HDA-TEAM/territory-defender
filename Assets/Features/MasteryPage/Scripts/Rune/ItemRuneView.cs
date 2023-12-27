@@ -29,7 +29,6 @@ public class ItemRuneView : MonoBehaviour
 
     private void OnSelectedRuneItem()
     {
-        Debug.Log("select rune...");
         _onSelected?.Invoke(this);
     }
 
