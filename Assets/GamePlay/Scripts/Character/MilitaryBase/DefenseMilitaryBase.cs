@@ -31,8 +31,9 @@ public class DefenseMilitaryBase : MonoBehaviour
             });
         }
     }
-    public enum MilitaryCommand
+    public enum BeingTargetCommand
     {
+        None = 0,
         Block = 1,
         Attack = 2,
     }
@@ -46,7 +47,6 @@ public class DefenseMilitaryBase : MonoBehaviour
         if (suspectUnit != null && !_suspectUnits.Contains(suspectUnit))
         {
             _suspectUnits.Add(suspectUnit);
-            Debug.LogError("OnDetectSuspect");
             UpdateTargeting();
         }
         
@@ -56,7 +56,7 @@ public class DefenseMilitaryBase : MonoBehaviour
         if (suspectUnit != null && _suspectUnits.Contains(suspectUnit))
         {
             _suspectUnits.Remove(suspectUnit);
-            Debug.LogError("OnSuspectOut");
+            UpdateTargeting();
         }
     }
     #region Helper
@@ -64,23 +64,40 @@ public class DefenseMilitaryBase : MonoBehaviour
     {
         foreach (var defenseUnit in _defenseUnits)
         {
-            // if (defenseUnit.GetUnitState() != UnitBase.UnitState.Free)
-            //     continue;
-            
+            if (!defenseUnit.gameObject.activeSelf || _suspectUnits.Count <= 0)
+                continue;
             switch (defenseUnit.UnitTypeId())
             {
                 case UnitBase.UnitType.Melee:
                     {
-                        // Set Command Block
-                        defenseUnit.OnTargetChanging?.Invoke(_suspectUnits[0]);
-                        _suspectUnits[0].OnTargetChanging?.Invoke(defenseUnit);
+                        var suspectTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+                        {
+                            Target = _suspectUnits[0],
+                            BeingTargetCommand = BeingTargetCommand.None
+                        };
+                        defenseUnit.OnTargetChanging?.Invoke(suspectTargetChangingComposite);
+                        var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+                        {
+                            Target = defenseUnit,
+                            BeingTargetCommand = BeingTargetCommand.Block
+                        };
+                        _suspectUnits[0].OnTargetChanging?.Invoke(defenderTargetChangingComposite);
                         break;
                     }
                 case UnitBase.UnitType.Range:
                     {
-                        // Set Command Attack
-                        defenseUnit.OnTargetChanging?.Invoke(_suspectUnits[0]);
-                        _suspectUnits[0].OnTargetChanging?.Invoke(defenseUnit);
+                        var suspectTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+                        {
+                            Target = _suspectUnits[0],
+                            BeingTargetCommand = BeingTargetCommand.None
+                        };
+                        defenseUnit.OnTargetChanging?.Invoke(suspectTargetChangingComposite);
+                        var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+                        {
+                            Target = defenseUnit,
+                            BeingTargetCommand = BeingTargetCommand.Attack
+                        };
+                        _suspectUnits[0].OnTargetChanging?.Invoke(defenderTargetChangingComposite);
                         break;
                     }
             }

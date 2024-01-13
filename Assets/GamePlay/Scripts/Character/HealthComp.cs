@@ -15,10 +15,9 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private CanvasGroup _healthParentCanvasGroup;
 
     private float _preSliderValue = 1f; // always full heal
-
+    private Tween _tweenProgressHeal;
     private void OnEnable()
     {
-        UnitObserver.Instance.AddUnit(_unitBaseParent);
     }
     protected override void StatsUpdate()
     {
@@ -45,16 +44,17 @@ public class HealthComp : UnitBaseComponent
 
         ShowToastHitting(dame);
     }
-    private void SetHealthSlider()
+    private async void SetHealthSlider()
     {
         _healthParentCanvasGroup.alpha = 1;
         var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
         var duration = Math.Abs(_preSliderValue - sliderValue);
-        _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
+        _tweenProgressHeal = _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
         {
             _healthParentCanvasGroup.alpha = 0;
             _preSliderValue = sliderValue;
         });
+        await _tweenProgressHeal.AsyncWaitForCompletion();
     }
     private async void ShowToastHitting(float dame)
     {

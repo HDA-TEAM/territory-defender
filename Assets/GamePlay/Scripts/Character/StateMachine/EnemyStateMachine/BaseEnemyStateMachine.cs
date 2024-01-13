@@ -45,10 +45,11 @@ public class BaseEnemyStateMachine : CharacterStateMachine
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
     }
-    protected override void OnTargetChanging(UnitBase target)
+    protected override void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
-        base.OnTargetChanging(target);
-        bool isTargetValid = target == null;
+        base.OnTargetChanging(composite);
+        
+        bool isTargetValid = composite.Target == null;
         _isMovingToGate = isTargetValid;
         _isStopToAttack = !isTargetValid;
     }

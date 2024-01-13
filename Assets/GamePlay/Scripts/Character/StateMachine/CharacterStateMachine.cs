@@ -11,6 +11,7 @@ public class CharacterStateMachine : UnitBaseComponent
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId _projectileId;
     [SerializeField] private UnitBase _curTarget;
+    [SerializeField] private DefenseMilitaryBase.BeingTargetCommand _beingTargetCommand;
     #region Setter and getter
     public CharacterBaseState CurrentState
     {
@@ -18,6 +19,7 @@ public class CharacterStateMachine : UnitBaseComponent
         get { return _currentState; }
     }
     public UnitBase CurrentTarget { get { return _curTarget; } }
+    public DefenseMilitaryBase.BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
     public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
     public UnitId CharacterProjectileIUnitId { get { return _projectileId; } }
     public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
@@ -40,8 +42,9 @@ public class CharacterStateMachine : UnitBaseComponent
     {
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
     }
-    protected virtual void OnTargetChanging(UnitBase unitBase)
+    protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
-        _curTarget = unitBase;
+        _curTarget = composite.Target;
+        _beingTargetCommand = composite.BeingTargetCommand;
     }
 }

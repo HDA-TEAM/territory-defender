@@ -1,10 +1,15 @@
 using System;
 using UnityEngine;
 
+public enum UnitSide
+{
+    Ally = 1,
+    Enemy = 2,
+}
 public class DefenderDetecting : UnitBaseComponent
 {
     [SerializeField] private CircleCollider2D _circleCollider2D; 
-    [SerializeField] private CharacterSide _characterSideNeedToTarget;
+    [SerializeField] private UnitSide _UnitSideNeedToTarget;
     private float _rangeDetecting;
 
     private Action<UnitBase> _onDetectSuspect;
@@ -40,7 +45,7 @@ public class DefenderDetecting : UnitBaseComponent
     // }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
+        if (!other.gameObject.CompareTag(_UnitSideNeedToTarget.ToString()))
             return;
         
         if (other.gameObject.activeSelf || GameObjectUtility.Distance2dOfTwoGameObject(_campingPlace.gameObject, other.gameObject) < _rangeDetecting)
@@ -55,7 +60,7 @@ public class DefenderDetecting : UnitBaseComponent
     private void OnTriggerExit2D(Collider2D other)
     {
         // Debug.Log("other.gameObject exit " + other.tag);
-        if (other.gameObject.CompareTag(_characterSideNeedToTarget.ToString()))
+        if (other.gameObject.CompareTag(_UnitSideNeedToTarget.ToString()))
             TryRemoveFromTargetList(other);
     }
     private void TryRemoveFromTargetList(Collider2D other)

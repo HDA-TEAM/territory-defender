@@ -6,10 +6,8 @@ public class UnitBase : MonoBehaviour
 {
     #region Component
     [SerializeField] private CharacterStateMachine _characterStateMachine;
-    [SerializeField] private TargetDetecting _targetDetecting;
     [SerializeField] private DefenderDetecting _defenderDetecting;
     [SerializeField] private HealthComp _healthComp;
-    [SerializeField] private AttackingComp _attackingComp;
     [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
     [SerializeField] private Stats _unitStatsComp;
     [SerializeField] private EnemyReachingDestination _enemyReachingDestination;
@@ -27,7 +25,6 @@ public class UnitBase : MonoBehaviour
     }
     #region Access
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
-    protected TargetDetecting TargetDetecting() => _targetDetecting;
     public HealthComp HealthComp() => _healthComp;
     public UnitType UnitTypeId() => _unitType;
     
@@ -43,7 +40,6 @@ public class UnitBase : MonoBehaviour
     private void OnValidate()
     {
         _characterStateMachine ??= GetComponent<CharacterStateMachine>(); 
-        _targetDetecting ??= GetComponent<TargetDetecting>(); 
         _healthComp ??= GetComponent<HealthComp>(); 
         // _attackingComp ??= GetComponent<AttackingComp>();
         _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
@@ -61,10 +57,15 @@ public class UnitBase : MonoBehaviour
     #region Event
     public UnitBase CurrentTarget;
     public Action<UnitBase> OnOutOfHeal;
-    public Action<UnitBase> OnTargetChanging;
+    public Action<OnTargetChangingComposite> OnTargetChanging;
     public Action OnResetFindTarget;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
+    public struct OnTargetChangingComposite
+    {
+        public UnitBase Target;
+        public DefenseMilitaryBase.BeingTargetCommand BeingTargetCommand;
+    }
     #endregion
 }
 
