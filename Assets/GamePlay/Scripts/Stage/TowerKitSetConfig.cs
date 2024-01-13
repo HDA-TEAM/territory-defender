@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "TowerKitSetConfig_", menuName = "ScriptableObject/Database/Stage/TowerKitSetConfig")]
+[CreateAssetMenu(fileName = "TowerKitSetConfig", menuName = "ScriptableObject/Database/Stage/TowerKitSetConfig")]
 public class TowerKitSetConfig : ScriptableObject
 {
-    [SerializeField] [SerializedDictionary("StageId", "StageConfig")]
+    [SerializeField] [SerializedDictionary("StageId", "TowerKitLocation")]
     private SerializedDictionary<StageId, List<Vector3>> _towerKitLocations = new SerializedDictionary<StageId, List<Vector3>>();
     public void SaveToConfig(List<Vector3> towerKitPlaces, StageId stageId)
     {
@@ -18,7 +18,7 @@ public class TowerKitSetConfig : ScriptableObject
         
         _towerKitLocations[stageId] = towerKitPlaces;
     }
-    public List<Vector3> LoadFromConfig( StageId stageId)
+    public List<Vector3> LoadFromConfig(StageId stageId)
     {
         List<Vector3> places = new List<Vector3>();
         if (!_towerKitLocations.TryGetValue(stageId, out places))

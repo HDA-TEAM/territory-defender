@@ -7,6 +7,7 @@ public class UnitBase : MonoBehaviour
     #region Component
     [SerializeField] private CharacterStateMachine _characterStateMachine;
     [SerializeField] private TargetDetecting _targetDetecting;
+    [SerializeField] private DefenderDetecting _defenderDetecting;
     [SerializeField] private HealthComp _healthComp;
     [SerializeField] private AttackingComp _attackingComp;
     [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
@@ -14,13 +15,23 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private EnemyReachingDestination _enemyReachingDestination;
     [SerializeField] private TargetChallenging _targetChallenging;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
+    [SerializeField] private UnitType _unitType;
     #endregion
-
+    public enum UnitType
+    {
+        Tower = 1,
+        Hero = 2,
+        Melee = 3,
+        Range = 4,
+        Mixed = 5,
+    }
     #region Access
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     protected TargetDetecting TargetDetecting() => _targetDetecting;
     public HealthComp HealthComp() => _healthComp;
-    // public AttackingComp AttackingComp() => _attackingComp;
+    public UnitType UnitTypeId() => _unitType;
+    
+    public DefenderDetecting DefenderDetecting() => _defenderDetecting;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
     public TargetChallenging TargetChallengingComp() => _targetChallenging;
@@ -39,8 +50,14 @@ public class UnitBase : MonoBehaviour
     }
     #endregion
 
-
-
+    public UnitState GetUnitState()
+    {
+        return UnitState.Free;
+    }
+    public enum UnitState
+    {
+        Free = 0
+    }
     #region Event
     public UnitBase CurrentTarget;
     public Action<UnitBase> OnOutOfHeal;
