@@ -11,12 +11,12 @@ public class ListTowerViewModel : MonoBehaviour
     [Header("Data"), Space(12)]
     [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
     
+    public Action<TowerId> _onUpdateViewAction;
+    
     private List<TowerComposite> _towerComposites;
     private TowerComposite _towerComposite;
     
     private ItemTowerView _preSelectedItem;
-    
-    public Action<TowerId> _onUpdateViewAction;
     private void Start()
     {
         _itemTowerViews[0].OnSelectedTower();
@@ -31,21 +31,15 @@ public class ListTowerViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        List<Stats> listTowerData = _commonTowerDataAsset.GetAllTowerData();
+        List<CommonTowerSO> listTowerData = _commonTowerDataAsset.GetAllTowerData();
         
         foreach (var towerDataSo in listTowerData)
         {
             _towerComposites.Add(
                 new TowerComposite
                 {
-                    TowerId = _commonTowerDataAsset.GetTowerId(towerDataSo),
-                    Name = towerDataSo.GetInformation(InformationId.Name),
-                    MaxHeal = towerDataSo.GetStat(StatId.MaxHeal).ToString(""),
-                    AttackDamage = towerDataSo.GetStat(StatId.AttackDamage).ToString(""),
-                    AttackSpeed = towerDataSo.GetStat(StatId.AttackSpeed).ToString("F2"),
-                    DetectRange = towerDataSo.GetStat(StatId.DetectRange).ToString(""),
-                    CoinNeedToBuild = towerDataSo.GetStat(StatId.CoinNeedToBuild).ToString(""),
-                    CoinNeedToUpgrade = towerDataSo.GetStat(StatId.CoinNeedToUpgrade).ToString("")
+                    TowerId = towerDataSo.GetTowerId(),
+                    RuneLevels = towerDataSo.GetAllRuneDatLevels(),
                 }
             );
         }
@@ -106,11 +100,6 @@ public class ListTowerViewModel : MonoBehaviour
 public struct TowerComposite
 {
     public TowerId TowerId;
-    public string Name;
-    public string MaxHeal;
-    public string AttackDamage;
-    public string AttackSpeed;
-    public string DetectRange;
-    public string CoinNeedToBuild;
-    public string CoinNeedToUpgrade;
+    //public string Name;
+    public List<RuneLevel> RuneLevels;
 }

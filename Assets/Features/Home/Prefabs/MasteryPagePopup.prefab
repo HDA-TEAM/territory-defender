@@ -757,7 +757,8 @@ MonoBehaviour:
   _starView: {fileID: 3647299838282285556}
   _listTowerViewModel: {fileID: 2112815877278511160}
   _inventoryDataAsset: {fileID: 11400000, guid: 00465d5a7f2764ec0a42daf0bf647b3c, type: 2}
-  _commonTowerMasteryPageDataAsset: {fileID: 11400000, guid: c5394f792a97e415a9f0eaa4590de32b, type: 2}
+  _commonTowerDataAsset: {fileID: 11400000, guid: cbe5eb5c34f5842599d4001f063bc79f, type: 2}
+  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
 --- !u!1 &4880375718204489336
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1878,10 @@ PrefabInstance:
       propertyPath: _listRuneViewModel
       value: 
       objectReference: {fileID: 5185883942578266067}
+    - target: {fileID: 6782918887739409250, guid: ceaed9381fbec43aba1d5a619dac32cd, type: 3}
+      propertyPath: _commonTowerDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: cbe5eb5c34f5842599d4001f063bc79f, type: 2}
     - target: {fileID: 8264985067686117020, guid: ceaed9381fbec43aba1d5a619dac32cd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

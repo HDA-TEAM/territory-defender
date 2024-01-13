@@ -7,20 +7,22 @@ public class RuneDetailView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtRuneName;
     [SerializeField] private TextMeshProUGUI _txtRuneDescribe;
     [SerializeField] private TextMeshProUGUI _txtRuneStacks;
-    
+
+    private int _additionAttribute;
     #region Core
     public void Setup(RuneComposite runeComposite)
     {
-        _txtRuneName.text = runeComposite.TypeName;
-        _txtRuneDescribe.text = runeComposite.Operate + " (+" + runeComposite.AdditionalValue + ")";
-        _txtRuneStacks.text = runeComposite.CurrentStacks + " / " + runeComposite.Stacks;
-        
-       // _onDataUpdated?.Invoke();
+        _txtRuneName.text = runeComposite.Name;
+
+        _additionAttribute = runeComposite.Level * 10; 
+        _txtRuneDescribe.text = runeComposite.RuneId + " (+" + _additionAttribute + ")";
+
+        _txtRuneStacks.text = "Level " + runeComposite.Level;
     }
 
-    public void UpdateCurrentStackView(RuneDataSO runeDataSo)
+    public void UpdateCurrentStackView(RuneSO runeSo)
     {
-        _txtRuneStacks.text = runeDataSo._currentStacks + " / " + runeDataSo._stacks;
+        //_txtRuneStacks.text = runeSo._currentStacks + " / " + runeSo._stacks;
     }
 
     #endregion

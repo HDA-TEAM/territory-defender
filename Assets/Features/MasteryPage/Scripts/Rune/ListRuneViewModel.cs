@@ -1,6 +1,7 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+
 
 public class ListRuneViewModel : MonoBehaviour
 {
@@ -13,26 +14,26 @@ public class ListRuneViewModel : MonoBehaviour
     
     [Header("Data"), Space(12)]
     [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
-    [SerializeField] private CommonTowerMasteryPageDataAsset _commonTowerMasteryPageDataAsset;
-    
+    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
+    [SerializeField] private RuneDataAsset _runeDataAsset;
     // Internal
-    private List<RuneDataSO> _listRuneDataSo;
+    private List<RuneLevel> _runeLevels;
     private List<TowerComposite> _towerComposites;
     private List<RuneComposite> _runeComposites;
-    private List<TowerMasteryPageComposite> _towerMasteryPageComposites;
+    private List<TowerDataAssetComposite> _towerDataAssetComposites;
     
     private InventoryComposite _inventoryComposite;
-    private TowerMasteryPageComposite _preTowerMasteryPageComposite;
-    
-    private RuneDataSO _preRuneDataSo;
-    private MasteryPageDataAsset _masteryPageDataAsset;
-    
+    private TowerDataAssetComposite _preTowerDataAssetComposite;
+
+    private List<RuneSO> _runeSos;
+    private RuneSO _preRuneSo;
+
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
     private void Awake()
     {
         _runeComposites = new List<RuneComposite>();
-        _towerMasteryPageComposites = new List<TowerMasteryPageComposite>();
+        _towerDataAssetComposites = new List<TowerDataAssetComposite>();
         _inventoryComposite = new InventoryComposite();
         
         UpdateData();
@@ -43,9 +44,6 @@ public class ListRuneViewModel : MonoBehaviour
         {
             _listTowerViewModel._onUpdateViewAction += UpdateView;
         }
-        
-        if (_commonTowerMasteryPageDataAsset != null)
-            _commonTowerMasteryPageDataAsset._onDataUpdatedAction += UpdateData;
 
         if (_starView != null)
             _starView._onDataUpdated += UpdateData;
@@ -53,34 +51,51 @@ public class ListRuneViewModel : MonoBehaviour
     
     private void UpdateData()
     {
-        _towerMasteryPageComposites.Clear();
+        _towerDataAssetComposites.Clear();
         _runeComposites.Clear();
         
         // Load Rune data
-        List<MasteryPageDataAsset> listMpDataSo = _commonTowerMasteryPageDataAsset.GetAllRuneData();
-
-        foreach (var mpDataSo in listMpDataSo)
+        List<RuneSO> listRuneSos = _runeDataAsset.GetAllRuneData();
+        List<CommonTowerSO> listTowerDataAsset = _commonTowerDataAsset.GetAllTowerData();
+        TowerDataAssetList loadedTowerData = DataAssetLoading.LoadTowerDataAssetList();
+        
+        foreach (var towerSo in listTowerDataAsset)
         {
             _runeComposites = new List<RuneComposite>();
-            _listRuneDataSo = mpDataSo.GetAllRuneData();
-            foreach (var runeDataSo in _listRuneDataSo)
+
+            foreach (var runeSo in listRuneSos)
             {
                 _runeComposites.Add(new RuneComposite
                 {
-                    RuneId = runeDataSo.GetRuneId(),
-                    TypeName = runeDataSo._name,
-                    AdditionalValue =  runeDataSo._additionalValue,
-                    Operate = runeDataSo._operate,
-                    CurrentStacks = runeDataSo._currentStacks,
-                    Stacks = runeDataSo._stacks,
-                    StarNeedToUpgrade = runeDataSo._starNeedToUpgrade,
-                    AvatarSelected = runeDataSo._avatarSelected,
-                    AvatarStarted = runeDataSo._avatarStarted
+                    RuneId = runeSo.GetRuneId(),
+                    Name = runeSo._name,
+                    Level = 0,
+                    MaxLevel = runeSo._maxLevel,
+                    AvatarSelected = runeSo._avatarSelected,
+                    AvatarStarted = runeSo._avatarStarted
                 });
             }
-            _towerMasteryPageComposites.Add(new TowerMasteryPageComposite
+
+            // Find the corresponding TowerSoSaver in loadedTowerData
+            int towerSoSaverIndex = loadedTowerData._towerList.FindIndex(t => t._towerId == towerSo.GetTowerId());
+            if (towerSoSaverIndex != -1)
             {
-                TowerId = _commonTowerMasteryPageDataAsset.GetTowerId(mpDataSo),
+                TowerSoSaver towerSoSaver = loadedTowerData._towerList[towerSoSaverIndex];
+                foreach (var runeLevel in towerSoSaver._runeLevels)
+                {
+                    int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel._runeId);
+                    if (runeCompositeIndex != -1)
+                    {
+                        RuneComposite temp = _runeComposites[runeCompositeIndex];
+                        temp.Level = runeLevel._level;
+                        _runeComposites[runeCompositeIndex] = temp;
+                    }
+                }
+            }
+            
+            _towerDataAssetComposites.Add(new TowerDataAssetComposite
+            {
+                TowerId = towerSo.GetTowerId(),
                 RuneComposite = _runeComposites
             });
         }
@@ -89,26 +104,23 @@ public class ListRuneViewModel : MonoBehaviour
         _inventoryComposite.Life = _inventoryDataAsset.GetLifeValue();
         _inventoryComposite.StarNumber = _inventoryDataAsset.GetStarValue();
 
-        if (_preTowerMasteryPageComposite.RuneComposite == null)
+        if (_preTowerDataAssetComposite.RuneComposite == null)
         {
-            _preTowerMasteryPageComposite = _towerMasteryPageComposites[0];
-            _masteryPageDataAsset = _commonTowerMasteryPageDataAsset.GetMasteryPageDataAsset(_preTowerMasteryPageComposite.TowerId);
+            _preTowerDataAssetComposite = _towerDataAssetComposites[0];
         }
      
-        UpdateView(_preTowerMasteryPageComposite.TowerId);
+        UpdateView(_preTowerDataAssetComposite.TowerId);
     }
     private void UpdateView(TowerId towerId)
     {
-        var result = FindByTowerId(_towerMasteryPageComposites, towerId);
-        if (result.Equals(default(TowerMasteryPageComposite)))
+        var result = FindByTowerId(_towerDataAssetComposites, towerId);
+        if (result.Equals(default(TowerDataAssetComposite)))
         {
             Debug.LogError("UpdateView: result is default, no update performed");
             return;
         }
         
-        _preTowerMasteryPageComposite = result;
-        _masteryPageDataAsset =
-            _commonTowerMasteryPageDataAsset.GetMasteryPageDataAsset(_preTowerMasteryPageComposite.TowerId);
+        _preTowerDataAssetComposite = result;
         
         for (int runeIndex = 0; runeIndex < _itemRuneViews.Count; runeIndex++)
         {
@@ -119,7 +131,7 @@ public class ListRuneViewModel : MonoBehaviour
             _starView.Setup(_inventoryComposite);
         
             // Rune avatar logic
-            _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].CurrentStacks > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
+            _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
         
             // Selected rune setup
             _itemRuneViews[runeIndex].Setup(result.RuneComposite[runeIndex], OnSelectedRuneItem);
@@ -143,35 +155,35 @@ public class ListRuneViewModel : MonoBehaviour
     
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
-        if (itemUpgradeRuneView == null || _preSelectedItem == null || _masteryPageDataAsset == null || _starView == null)
+        if (itemUpgradeRuneView == null || _preSelectedItem == null || _runeDataAsset == null || _starView == null)
         {
             Debug.LogError("One or more required objects are null.");
             return;
         }
         _preSelectedUpgradeRuneView = itemUpgradeRuneView;
         
-        // Conditions to upgrade any skill
-        if (_preSelectedItem.RuneComposite.CurrentStacks < _preSelectedItem.RuneComposite.Stacks && _inventoryDataAsset.GetStarValue() > 0)
+        //Conditions to upgrade any skill
+        if (_preSelectedItem.RuneComposite.Level <= _preSelectedItem.RuneComposite.MaxLevel  && _inventoryDataAsset.GetStarValue() > 0)
         {
-            _preRuneDataSo = _masteryPageDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
-            if (_preRuneDataSo != null)
+            _preRuneSo = _runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
+            
+            if (_preRuneSo != null)
             {
-                _preRuneDataSo._currentStacks++;
+                _commonTowerDataAsset.UpdateTowerData(_preTowerDataAssetComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
             
                 // Subtract star number
-                _inventoryDataAsset.TryChangeStar(_preRuneDataSo._starNeedToUpgrade);
-
+                _inventoryDataAsset.TryChangeStar(1);
+        
                 // Update rune data
-                _commonTowerMasteryPageDataAsset.UpdateMasteryPage(_masteryPageDataAsset, _preRuneDataSo);
-                _runeDetailView.UpdateCurrentStackView(_preRuneDataSo);
+                _runeDetailView.UpdateCurrentStackView(_preRuneSo);
                 Debug.Log("Upgrade rune successful....");
             }
         } else {
-            Debug.Log("Upgrade rune fail");
+            CommonLog.LogError("Upgrade rune fail");
         }
     }
     
-    private TowerMasteryPageComposite FindByTowerId(List<TowerMasteryPageComposite> list, TowerId towerId)
+    private TowerDataAssetComposite FindByTowerId(List<TowerDataAssetComposite> list, TowerId towerId)
     {
         foreach (var item in list)
         {
@@ -182,7 +194,7 @@ public class ListRuneViewModel : MonoBehaviour
             }
         }
         Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
-        return default(TowerMasteryPageComposite); 
+        return default(TowerDataAssetComposite); 
     }
 
     public void SetupRuneDetailView(bool flag)
@@ -194,12 +206,9 @@ public class ListRuneViewModel : MonoBehaviour
 public struct RuneComposite
 {
     public RuneId RuneId;
-    public string TypeName;
-    public string AdditionalValue;
-    public string Operate;
-    public float CurrentStacks;
-    public float Stacks;
-    public int StarNeedToUpgrade;
+    public string Name;
+    public int Level;
+    public int MaxLevel;
     public Sprite AvatarSelected;
     public Sprite AvatarStarted;
 }
@@ -211,7 +220,7 @@ public struct InventoryComposite
     public float StarNumber;
 }
 
-public struct TowerMasteryPageComposite
+public struct TowerDataAssetComposite
 {
     public TowerId TowerId;
     public List<RuneComposite> RuneComposite;

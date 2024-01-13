@@ -30,7 +30,7 @@ public class ItemTowerView : MonoBehaviour
         
         _onSelected = onSelected;
 
-        SetName(towerComposite.Name);
+        SetName(towerComposite.TowerId.ToString());
     }
     
     public void OnSelectedTower()
@@ -52,7 +52,7 @@ public class ItemTowerView : MonoBehaviour
         {
             _txtName.color = unSelectedColor;
         }
-        Debug.Log("remove select... " + TowerComposite.Name);
+        //Debug.Log("remove select... " + TowerComposite.Name);
     }
 
     private void SetName(string name)
