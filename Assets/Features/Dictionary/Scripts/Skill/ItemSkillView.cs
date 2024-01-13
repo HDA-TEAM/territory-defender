@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +26,11 @@ public class ItemSkillView : MonoBehaviour
     public void OnButtonClick()
     {
        _onSelected?.Invoke(this);
+    }
+
+    public void ResetSkillViews()
+    {
+        _describeSkillImage.gameObject.SetActive(false);
     }
 }
 
