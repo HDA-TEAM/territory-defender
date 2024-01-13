@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -30,6 +31,8 @@ public class ListRuneViewModel : MonoBehaviour
 
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
+    
+    public Action _onTowerDataUpdatedAction;
     private void Awake()
     {
         _runeComposites = new List<RuneComposite>();
@@ -41,12 +44,18 @@ public class ListRuneViewModel : MonoBehaviour
     private void Start()
     {
         if (_listTowerViewModel != null)
-        {
             _listTowerViewModel._onUpdateViewAction += UpdateView;
-        }
-
+        
         if (_starView != null)
             _starView._onDataUpdated += UpdateData;
+
+        // if(_commonTowerDataAsset != null)
+        //     _commonTowerDataAsset._onTowerDataUpdatedAction += UpdateView;
+
+        _onTowerDataUpdatedAction += UpdateData;
+
+        // if (_runeDetailView != null)
+        //     _runeDetailView._onDataUpdated += UpdateData;
     }
     
     private void UpdateData()
@@ -76,19 +85,22 @@ public class ListRuneViewModel : MonoBehaviour
                 });
             }
 
-            // Find the corresponding TowerSoSaver in loadedTowerData
-            int towerSoSaverIndex = loadedTowerData._towerList.FindIndex(t => t._towerId == towerSo.GetTowerId());
-            if (towerSoSaverIndex != -1)
+            if (loadedTowerData._towerList != null) // Check if json is new created or null
             {
-                TowerSoSaver towerSoSaver = loadedTowerData._towerList[towerSoSaverIndex];
-                foreach (var runeLevel in towerSoSaver._runeLevels)
+                // Find the corresponding TowerSoSaver in loadedTowerData
+                int towerSoSaverIndex = loadedTowerData._towerList.FindIndex(t => t._towerId == towerSo.GetTowerId());
+                if (towerSoSaverIndex != -1)
                 {
-                    int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel._runeId);
-                    if (runeCompositeIndex != -1)
+                    TowerSoSaver towerSoSaver = loadedTowerData._towerList[towerSoSaverIndex];
+                    foreach (var runeLevel in towerSoSaver._runeLevels)
                     {
-                        RuneComposite temp = _runeComposites[runeCompositeIndex];
-                        temp.Level = runeLevel._level;
-                        _runeComposites[runeCompositeIndex] = temp;
+                        int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel._runeId);
+                        if (runeCompositeIndex != -1)
+                        {
+                            RuneComposite temp = _runeComposites[runeCompositeIndex];
+                            temp.Level = runeLevel._level;
+                            _runeComposites[runeCompositeIndex] = temp;
+                        }
                     }
                 }
             }
@@ -104,11 +116,10 @@ public class ListRuneViewModel : MonoBehaviour
         _inventoryComposite.Life = _inventoryDataAsset.GetLifeValue();
         _inventoryComposite.StarNumber = _inventoryDataAsset.GetStarValue();
 
+        // Default setting
         if (_preTowerDataAssetComposite.RuneComposite == null)
-        {
             _preTowerDataAssetComposite = _towerDataAssetComposites[0];
-        }
-     
+        
         UpdateView(_preTowerDataAssetComposite.TowerId);
     }
     private void UpdateView(TowerId towerId)
@@ -175,8 +186,10 @@ public class ListRuneViewModel : MonoBehaviour
                 _inventoryDataAsset.TryChangeStar(1);
         
                 // Update rune data
-                _runeDetailView.UpdateCurrentStackView(_preRuneSo);
+                //_runeDetailView.UpdateCurrentStackView(_preRuneSo);
                 Debug.Log("Upgrade rune successful....");
+                
+                _onTowerDataUpdatedAction?.Invoke();
             }
         } else {
             CommonLog.LogError("Upgrade rune fail");

@@ -20,7 +20,7 @@ public enum RuneId
 [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
 public class RuneDataAsset : ScriptableObject
 {
-    [FormerlySerializedAs("_runeDataDict")] [SerializedDictionary("RuneId", "RuneDataSO")] [SerializeField]
+   [SerializedDictionary("RuneId", "RuneDataSO")] [SerializeField]
     private SerializedDictionary<RuneId, RuneSO> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneSO>();
 
     public RuneSO GetRune(RuneId runeId)
@@ -38,24 +38,6 @@ public class RuneDataAsset : ScriptableObject
 
     public void RuneUpdate(RuneSO runeSo)
     {
-        // if (runeSo == null)
-        // {
-        //     Debug.LogError("runeDataSo is null");
-        //     return;
-        // }
-        //
-        // RuneId runeId = runeSo.GetRuneId(); // Using GetRuneId() instead of directly accessing the field.
-        //
-        // if (_masteryPageDataDict.TryGetValue(runeId, out RuneSO existingRuneData))
-        // {
-        //     //existingRuneData.SaveRuneData();
-        //     Debug.Log(runeId + " rune current stacks: " + existingRuneData.GetCurrentStacks()); // Assuming GetCurrentStacks() is a method.
-        // }
-        // else
-        // {
-        //     Debug.LogError("Rune ID not found in dictionary: " + runeId);
-        // }
-        //
     }
 
 }

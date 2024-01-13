@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
@@ -11,6 +12,7 @@ public class CommonTowerDataAsset : ScriptableObject
     private SerializedDictionary<TowerId, CommonTowerSO> _towerTypeDict = new SerializedDictionary<TowerId, CommonTowerSO>();
     
     private TowerId _towerId;
+    public Action<TowerId> _onTowerDataUpdatedAction;
     public CommonTowerSO GetTowerType(TowerId towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO tower);
@@ -30,7 +32,6 @@ public class CommonTowerDataAsset : ScriptableObject
     public void UpdateTowerData(TowerId towerId, RuneComposite runeComposite)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO curTower);
-        Debug.Log("curTower" + curTower._towerId);
         if (!curTower)
         {
             Debug.LogError("Tower type not exist in dictionary");
@@ -55,7 +56,6 @@ public class CommonTowerDataAsset : ScriptableObject
     public void ShowTowerRuneData(TowerId towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO curTower);
-        Debug.Log(curTower.RuneLevels.Count + " - ????????");
     }
 }
 

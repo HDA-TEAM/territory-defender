@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Path = System.IO.Path;
 
 [CreateAssetMenu(fileName = "CommonTowerSO", menuName = "ScriptableObject/DataAsset/CommonTowerSO")]
@@ -8,7 +9,7 @@ public class CommonTowerSO : ScriptableObject
 {
     public TowerId _towerId;
     
-    public Action _onDataUpdatedAction;
+    public Action _onTowerDataUpdatedAction;
     
     public List<RuneLevel> RuneLevels;
     
@@ -41,7 +42,7 @@ public class CommonTowerSO : ScriptableObject
     
         DataAssetSaver.SaveTowerData(_towerId, RuneLevels);
     
-        _onDataUpdatedAction?.Invoke();
+       // _onTowerDataUpdatedAction?.Invoke();
     }
     
     public void UpdateRune(int index)
@@ -53,6 +54,8 @@ public class CommonTowerSO : ScriptableObject
 
         // Rune with the same ID found, increment its level
         RuneLevels[index] = new RuneLevel(RuneLevels[index]._runeId, RuneLevels[index]._level + 1);
+        
+        //_onTowerDataUpdatedAction?.Invoke();
     }
     #endregion
 }

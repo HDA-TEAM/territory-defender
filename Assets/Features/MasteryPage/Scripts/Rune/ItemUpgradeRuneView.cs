@@ -6,9 +6,7 @@ public class ItemUpgradeRuneView : MonoBehaviour
 {
     [SerializeField] private Button _btnUpgradeRune;
     
-    //public Action _onUpdateDataRuneAction;
     public RuneComposite RuneComposite;
-    
     private Action<ItemUpgradeRuneView> _onSelected;
     private void Awake()
     {
@@ -24,6 +22,5 @@ public class ItemUpgradeRuneView : MonoBehaviour
     private void OnSelectedUpgradeRune()
     {
         _onSelected?.Invoke(this);
-        //_onUpdateDataRuneAction?.Invoke();
     }
 }
