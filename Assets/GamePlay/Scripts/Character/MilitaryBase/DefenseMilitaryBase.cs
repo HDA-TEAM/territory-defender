@@ -95,7 +95,7 @@ public class DefenseMilitaryBase : MonoBehaviour
                         var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
                         {
                             Target = defenseUnit,
-                            BeingTargetCommand = BeingTargetCommand.Attack
+                            BeingTargetCommand = BeingTargetCommand.None
                         };
                         _suspectUnits[0].OnTargetChanging?.Invoke(defenderTargetChangingComposite);
                         break;

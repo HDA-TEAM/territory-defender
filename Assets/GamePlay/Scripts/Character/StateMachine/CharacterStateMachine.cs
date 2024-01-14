@@ -41,6 +41,7 @@ public class CharacterStateMachine : UnitBaseComponent
     protected virtual void OnDisable()
     {
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+        
     }
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {

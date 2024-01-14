@@ -18,6 +18,11 @@ public class HealthComp : UnitBaseComponent
     private Tween _tweenProgressHeal;
     private void OnEnable()
     {
+        UnitObserver.Instance.Subscribe(_unitBaseParent);
+    }
+    private void OnDisable()
+    {
+        UnitObserver.Instance.UnSubscribe(_unitBaseParent);
     }
     protected override void StatsUpdate()
     {
