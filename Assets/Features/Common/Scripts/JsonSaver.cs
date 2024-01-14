@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class JsonSaver
+public static class JsonSaver
 {
     public static void SaveToJsonFile<T>(T data, string filePath)
     {

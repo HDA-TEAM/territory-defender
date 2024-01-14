@@ -32,7 +32,7 @@ public class ItemRuneView : MonoBehaviour
         _onSelected?.Invoke(this);
     }
 
-    public void SetRuneStacks(RuneComposite runeComposite)
+    public void SetRuneLevel(RuneComposite runeComposite)
     {
         _txtRuneStacks.text = "Level " + runeComposite.Level;
     }

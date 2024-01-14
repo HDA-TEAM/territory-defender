@@ -32,7 +32,7 @@ public class ListRuneViewModel : MonoBehaviour
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
     
-    public Action _onTowerDataUpdatedAction;
+    private Action _onTowerDataUpdatedAction;
     private void Awake()
     {
         _runeComposites = new List<RuneComposite>();
@@ -49,13 +49,11 @@ public class ListRuneViewModel : MonoBehaviour
         if (_starView != null)
             _starView._onDataUpdated += UpdateData;
 
-        // if(_commonTowerDataAsset != null)
-        //     _commonTowerDataAsset._onTowerDataUpdatedAction += UpdateView;
+        if (_itemUpgradeRuneView != null)
+            _onTowerDataUpdatedAction += UpdateData;
 
-        _onTowerDataUpdatedAction += UpdateData;
-
-        // if (_runeDetailView != null)
-        //     _runeDetailView._onDataUpdated += UpdateData;
+        //if (_runeDetailView != null)
+            //_runeDetailView. += UpdateData;
     }
     
     private void UpdateData()
@@ -66,7 +64,7 @@ public class ListRuneViewModel : MonoBehaviour
         // Load Rune data
         List<RuneSO> listRuneSos = _runeDataAsset.GetAllRuneData();
         List<CommonTowerSO> listTowerDataAsset = _commonTowerDataAsset.GetAllTowerData();
-        TowerDataAssetList loadedTowerData = DataAssetLoading.LoadTowerDataAssetList();
+        TowerDataModel loadedTowerData = DataAssetLoading.LoadTowerDataAssetList();
         
         foreach (var towerSo in listTowerDataAsset)
         {
@@ -136,7 +134,7 @@ public class ListRuneViewModel : MonoBehaviour
         for (int runeIndex = 0; runeIndex < _itemRuneViews.Count; runeIndex++)
         {
             // Setup rune view
-            _itemRuneViews[runeIndex].SetRuneStacks(result.RuneComposite[runeIndex]);
+            _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
         
             // Setup star view
             _starView.Setup(_inventoryComposite);
@@ -186,7 +184,8 @@ public class ListRuneViewModel : MonoBehaviour
                 _inventoryDataAsset.TryChangeStar(1);
         
                 // Update rune data
-                //_runeDetailView.UpdateCurrentStackView(_preRuneSo);
+                // TODO
+                _runeDetailView.UpdateCurrentLevel(_preSelectedUpgradeRuneView.RuneComposite);
                 Debug.Log("Upgrade rune successful....");
                 
                 _onTowerDataUpdatedAction?.Invoke();

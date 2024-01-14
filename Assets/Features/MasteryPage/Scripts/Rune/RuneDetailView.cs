@@ -20,9 +20,10 @@ public class RuneDetailView : MonoBehaviour
         _txtRuneStacks.text = "Level " + runeComposite.Level;
     }
 
-    public void UpdateCurrentStackView(RuneSO runeSo)
+    public void UpdateCurrentLevel(RuneComposite runeComposite)
     {
-        //_txtRuneStacks.text = runeSo._currentStacks + " / " + runeSo._stacks;
+        Debug.Log(runeComposite.RuneId + "..." + runeComposite.Level + "..." );
+        _txtRuneStacks.text = "Level " + runeComposite.Level;
     }
 
     #endregion
