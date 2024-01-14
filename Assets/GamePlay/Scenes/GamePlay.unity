@@ -10031,6 +10031,7 @@ GameObject:
   - component: {fileID: 1804081918}
   - component: {fileID: 1804081919}
   - component: {fileID: 1804081920}
+  - component: {fileID: 1804081921}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -10098,6 +10099,19 @@ MonoBehaviour:
     - Key: 101
       Value: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
   _spawningEachObjectInterval: 1
+--- !u!114 &1804081921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804081916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e0ee35faa5b46ccad22d2717c06c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _testDataAsset: {fileID: 11400000, guid: ed3db68a63f3e481c94b28ff8bbdafca, type: 2}
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0
