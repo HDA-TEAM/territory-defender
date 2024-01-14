@@ -4,20 +4,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TestDataAsset", menuName = "ScriptableObject/DataAsset/TestDataAsset")]
-public class TestDataAsset : BaseDataAsset<TowerDataModel>
+public class TestDataAsset : BaseDataAsset<TestDataModel>
 {
-    public void InitData()
+    public int LoginDay
     {
-        TowerSoSaver towerSoSaver = new TowerSoSaver()
+        get
         {
-            _towerId = 0,
-            _runeLevels = new List<RuneLevel>()
-        };
+            return _model.LoginDay;
+        }
+        set
+        {
+            _model.LoginDay = value;
+            SaveData();
+        }
+    }
+}
 
-        _model._towerList = new List<TowerSoSaver>();
-        
-        Debug.Log("Set default " + towerSoSaver);
-        _model._towerList.Add(towerSoSaver);
+[Serializable]
+public struct TestDataModel : IDefaultCustom
+{
+    public int LoginDay;
+    public bool IsEmpty()
+    {
+        return LoginDay == 0;
+    }
+    public void SetDefault()
+    {
+        LoginDay = 5;
     }
 }
 

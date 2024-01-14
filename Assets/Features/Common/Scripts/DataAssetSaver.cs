@@ -76,7 +76,7 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
     {
         return Path.Combine(Application.persistentDataPath, filename);
     }
-    public void SaveData(string filename, T model)
+    protected void SaveData(string filename, T model)
     {
         string filePath = GetFilePath(filename);
 
@@ -84,16 +84,13 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
         {
             model = new T();
             model.SetDefault();
-            
-            Debug.Log("Model: " + model);
         }
         
-        Debug.Log("Model 2: " + model);
         string data = JsonConvert.SerializeObject(model);
-        JsonSaver.SaveToJsonFile(data, filePath);
+        File.WriteAllText(filePath, data);
     }
     
-    public void LoadData(string filename, out T model)
+    protected void LoadData(string filename, out T model)
     {
         string filePath = GetFilePath(filename);
 
@@ -101,8 +98,12 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
         {
             string jsonData = File.ReadAllText(filePath);
             model = JsonConvert.DeserializeObject<T>(jsonData);
+            if (model.IsEmpty())
+            {
+                model = new T();
+                model.SetDefault();
+            }
         }
-
         else
         {
             model = new T();
@@ -116,7 +117,8 @@ public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultCu
     [SerializeField] private string _filename;
     [SerializeField] protected T _model;
     
-    public void SaveData()
+    
+    protected void SaveData()
     {
         base.SaveData(_filename, _model);
     }
@@ -125,8 +127,6 @@ public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultCu
     {
         base.LoadData(_filename, out _model);
     }
-    
-    // Luu va Doc file
 
 }
 
@@ -136,7 +136,6 @@ public struct TowerDataModel : IDefaultCustom
     public List<TowerSoSaver> _towerList;
     public bool IsEmpty()
     {
-        Debug.Log("Is empty");
         return _towerList == null || _towerList.Count == 0;
     }
 
@@ -147,9 +146,7 @@ public struct TowerDataModel : IDefaultCustom
             _towerId = 0,
             _runeLevels = new List<RuneLevel>()
         };
-        _towerList = new List<TowerSoSaver>();
-        Debug.Log("Set default " + towerSoSaver);
-        _towerList.Add(towerSoSaver);
+        _towerList = new List<TowerSoSaver> { towerSoSaver };
     }
 }
 

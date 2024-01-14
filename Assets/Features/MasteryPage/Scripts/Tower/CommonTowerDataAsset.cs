@@ -57,9 +57,6 @@ public class CommonTowerDataAsset : ScriptableObject
                 AddRune(curTower, runeLevel);
                 //curTower.AddRune(runeLevel);
             }
-    
-            _testDataAsset.InitData();
-            _testDataAsset.SaveData();
             //SaveTowers();
         }
     }
