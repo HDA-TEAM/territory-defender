@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ListTowerViewModel : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class ListTowerViewModel : MonoBehaviour
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
     [SerializeField] private ListRuneViewModel _listRuneViewModel;
     
+    [FormerlySerializedAs("_commonTowerDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
+    [SerializeField] private CommonTowerConfig _commonTowerConfig;
     
     public Action<TowerId> _onUpdateViewAction;
     
@@ -31,7 +33,7 @@ public class ListTowerViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        List<CommonTowerSO> listTowerData = _commonTowerDataAsset.GetAllTowerData();
+        List<CommonTowerSO> listTowerData = _commonTowerConfig.GetAllTowerData();
         
         foreach (var towerDataSo in listTowerData)
         {

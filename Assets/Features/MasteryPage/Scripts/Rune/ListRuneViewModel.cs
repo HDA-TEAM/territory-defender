@@ -15,8 +15,9 @@ public class ListRuneViewModel : MonoBehaviour
     
     [Header("Data"), Space(12)]
     [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
-    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
+    [SerializeField] private CommonTowerConfig _commonTowerConfig;
     [SerializeField] private RuneDataAsset _runeDataAsset;
+
     // Internal
     private List<RuneLevel> _runeLevels;
     private List<TowerComposite> _towerComposites;
@@ -63,8 +64,8 @@ public class ListRuneViewModel : MonoBehaviour
         
         // Load Rune data
         List<RuneSO> listRuneSos = _runeDataAsset.GetAllRuneData();
-        List<CommonTowerSO> listTowerDataAsset = _commonTowerDataAsset.GetAllTowerData();
-        TowerDataModel loadedTowerData = DataAssetLoading.LoadTowerDataAssetList();
+        List<CommonTowerSO> listTowerDataAsset = _commonTowerConfig.GetAllTowerData();
+        TowerDataModel loadedTowerData = _commonTowerConfig.GetTowerDataAsset();
         
         foreach (var towerSo in listTowerDataAsset)
         {
@@ -178,7 +179,7 @@ public class ListRuneViewModel : MonoBehaviour
             
             if (_preRuneSo != null)
             {
-                _commonTowerDataAsset.UpdateTowerData(_preTowerDataAssetComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
+                _commonTowerConfig.UpdateTowerData(_preTowerDataAssetComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
             
                 // Subtract star number
                 _inventoryDataAsset.TryChangeStar(1);

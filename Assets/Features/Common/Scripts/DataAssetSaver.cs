@@ -80,11 +80,12 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
     {
         string filePath = GetFilePath(filename);
 
-        if (!IsFileExist(filePath))
-        {
-            model = new T();
-            model.SetDefault();
-        }
+        // TODO
+        // if (!IsFileExist(filePath))
+        // {
+        //     model = new T();
+        //     model.SetDefault();
+        // }
         
         string data = JsonConvert.SerializeObject(model);
         File.WriteAllText(filePath, data);
@@ -128,48 +129,6 @@ public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultCu
         base.LoadData(_filename, out _model);
     }
 
-}
-
-[Serializable]
-public struct TowerDataModel : IDefaultCustom
-{
-    public List<TowerSoSaver> _towerList;
-    public bool IsEmpty()
-    {
-        return _towerList == null || _towerList.Count == 0;
-    }
-
-    public void SetDefault()
-    {
-        TowerSoSaver towerSoSaver = new TowerSoSaver()
-        {
-            _towerId = 0,
-            _runeLevels = new List<RuneLevel>()
-        };
-        _towerList = new List<TowerSoSaver> { towerSoSaver };
-    }
-}
-
-
-[Serializable]
-public struct TowerSoSaver
-{
-    public TowerId _towerId;
-    public List<RuneLevel> _runeLevels;
-
-}
-
-[Serializable]
-public struct RuneLevel
-{
-    public RuneId _runeId;
-    public int _level;
-    
-    public RuneLevel(RuneId runeId, int level)
-    {
-        _runeId = runeId;
-        _level = level;
-    }
 }
 
 
