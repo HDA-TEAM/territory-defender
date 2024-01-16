@@ -38,11 +38,11 @@ public class BaseHeroStateMachine : CharacterStateMachine
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
     }
-    protected override void OnTargetChanging(UnitBase target)
+    protected override void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
-        base.OnTargetChanging(target);
-                
-        _target = target;
+        base.OnTargetChanging(composite);
+        
+        _target = composite.Target;
 
         CheckingAttackOrMoving(_target);
     }

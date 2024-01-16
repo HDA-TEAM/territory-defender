@@ -21,14 +21,14 @@ public class AttackingComp : UnitBaseComponent
     private bool isNeedToWaitCoolDownAttacking = false;
 
     #region Event
-    private void OnEnable()
-    {
-        _unitBaseParent.OnTargetChanging += AttackingTarget;
-    }
-    private void OnDisable()
-    {
-        _unitBaseParent.OnTargetChanging -= AttackingTarget;
-    }
+    // private void OnEnable()
+    // {
+    //     _unitBaseParent.OnTargetChanging += AttackingTarget;
+    // }
+    // private void OnDisable()
+    // {
+    //     _unitBaseParent.OnTargetChanging -= AttackingTarget;
+    // }
     #endregion
 
     #region Stats

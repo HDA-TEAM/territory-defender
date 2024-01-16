@@ -304,12 +304,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterStateMachine: {fileID: 5243910596837583625}
   _targetDetecting: {fileID: 0}
+  _defenderDetecting: {fileID: 0}
   _healthComp: {fileID: 3109024967751958898}
   _attackingComp: {fileID: 1678257232}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
   _enemyReachingDestination: {fileID: 0}
-  _targetChallenging: {fileID: 0}
+  _targetChallenging: {fileID: 421500131297264376}
+  _unitShowingInformation: {fileID: 0}
+  _unitType: 3
+  CurrentTarget: {fileID: 0}
 --- !u!114 &1678257232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   startAttackPoint: {fileID: 0}
-  attackingType: 1
+  _troopBehaviourType: 1
   attackingCooldown: 4
   attackingDamage: 20
   attackingRange: 1.5
@@ -375,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
-  _attackingType: 0
+  _troopBehaviourType: 0
   _animator: {fileID: 6715228475396641559}
   _stats: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
   _projectileDataAsset: {fileID: 0}
