@@ -10,7 +10,6 @@ public class CommonTowerConfig : ScriptableObject
 {
     [SerializedDictionary("TowerId", "CommonTowerSO")] [SerializeField]
     private SerializedDictionary<TowerId, CommonTowerSO> _towerTypeDict = new SerializedDictionary<TowerId, CommonTowerSO>();
-
     [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
 
     private TowerId _towerId;
@@ -40,7 +39,7 @@ public class CommonTowerConfig : ScriptableObject
         else
         {
             RuneLevel runeLevel = new RuneLevel(runeComposite.RuneId, runeComposite.Level);
-            int index = curTower.RuneLevels.FindIndex(r => r._runeId == runeComposite.RuneId);
+            int index = curTower._runeLevels.FindIndex(r => r.RuneId == runeComposite.RuneId);
             if (index != -1)
             {
                 // RuneId exists, update the rune
@@ -58,36 +57,36 @@ public class CommonTowerConfig : ScriptableObject
     
     private void AddRune(CommonTowerSO towerSo, RuneLevel runeLevel)
     {
-        if (towerSo.RuneLevels == null)
+        if (towerSo._runeLevels == null)
         {
-            towerSo.RuneLevels = new List<RuneLevel>();
+            towerSo._runeLevels = new List<RuneLevel>();
         }
 
         // Set the level of the rune to 1 regardless of its current level
         RuneLevel newRune = new RuneLevel
         {
-            _runeId = runeLevel._runeId,
-            _level = 1 // Set level to 1 for the new rune
+            RuneId = runeLevel.RuneId,
+            Level = 1 // Set level to 1 for the new rune
         };
-        towerSo.RuneLevels.Add(newRune);
+        towerSo._runeLevels.Add(newRune);
 
         // Optionally, sort the RuneLevels list by RuneId
-        towerSo.RuneLevels.Sort((a, b) => a._runeId.CompareTo(b._runeId));
+        towerSo._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
     }
 
     
     private void UpdateRune(CommonTowerSO towerSo, int index)
     {
-        if (towerSo.RuneLevels == null || index < 0 || index >= towerSo.RuneLevels.Count)
+        if (towerSo._runeLevels == null || index < 0 || index >= towerSo._runeLevels.Count)
         {
             Debug.LogError("Invalid index or RuneLevels is not initialized.");
             return;
         }
 
         // Increment the level of the existing rune
-        RuneLevel existingRuneLevel = towerSo.RuneLevels[index];
-        existingRuneLevel._level++;  // Increment the level by 1
-        towerSo.RuneLevels[index] = existingRuneLevel;
+        RuneLevel existingRuneLevel = towerSo._runeLevels[index];
+        existingRuneLevel.Level++;  // Increment the level by 1
+        towerSo._runeLevels[index] = existingRuneLevel;
     }
 
 

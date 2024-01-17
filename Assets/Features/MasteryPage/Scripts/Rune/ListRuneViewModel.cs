@@ -52,9 +52,6 @@ public class ListRuneViewModel : MonoBehaviour
 
         if (_itemUpgradeRuneView != null)
             _onTowerDataUpdatedAction += UpdateData;
-
-        //if (_runeDetailView != null)
-            //_runeDetailView. += UpdateData;
     }
     
     private void UpdateData()
@@ -84,20 +81,20 @@ public class ListRuneViewModel : MonoBehaviour
                 });
             }
 
-            if (loadedTowerData._towerList != null) // Check if json is new created or null
+            if (loadedTowerData.TowerList != null) // Check if json is new created or null
             {
                 // Find the corresponding TowerSoSaver in loadedTowerData
-                int towerSoSaverIndex = loadedTowerData._towerList.FindIndex(t => t._towerId == towerSo.GetTowerId());
+                int towerSoSaverIndex = loadedTowerData.TowerList.FindIndex(t => t.TowerId == towerSo.GetTowerId());
                 if (towerSoSaverIndex != -1)
                 {
-                    TowerSoSaver towerSoSaver = loadedTowerData._towerList[towerSoSaverIndex];
-                    foreach (var runeLevel in towerSoSaver._runeLevels)
+                    TowerSoSaver towerSoSaver = loadedTowerData.TowerList[towerSoSaverIndex];
+                    foreach (var runeLevel in towerSoSaver.RuneLevels)
                     {
-                        int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel._runeId);
+                        int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel.RuneId);
                         if (runeCompositeIndex != -1)
                         {
                             RuneComposite temp = _runeComposites[runeCompositeIndex];
-                            temp.Level = runeLevel._level;
+                            temp.Level = runeLevel.Level;
                             _runeComposites[runeCompositeIndex] = temp;
                         }
                     }
@@ -146,6 +143,18 @@ public class ListRuneViewModel : MonoBehaviour
             // Selected rune setup
             _itemRuneViews[runeIndex].Setup(result.RuneComposite[runeIndex], OnSelectedRuneItem);
         }
+
+        // Update rune data when updated the level of that rune
+        if (_runeDetailView != null && _preSelectedItem != null && _itemUpgradeRuneView != null)
+        {
+            foreach (var runeComposite in _preTowerDataAssetComposite.RuneComposite)
+            {
+                if (runeComposite.RuneId == _preSelectedItem.RuneComposite.RuneId)
+                {
+                    _runeDetailView.UpdateCurrentRuneData(runeComposite);
+                }
+            }
+        }
     }
 
     private void OnSelectedRuneItem(ItemRuneView itemRuneView)
@@ -184,9 +193,7 @@ public class ListRuneViewModel : MonoBehaviour
                 // Subtract star number
                 _inventoryDataAsset.TryChangeStar(1);
         
-                // Update rune data
-                // TODO
-                _runeDetailView.UpdateCurrentLevel(_preSelectedUpgradeRuneView.RuneComposite);
+                
                 Debug.Log("Upgrade rune successful....");
                 
                 _onTowerDataUpdatedAction?.Invoke();

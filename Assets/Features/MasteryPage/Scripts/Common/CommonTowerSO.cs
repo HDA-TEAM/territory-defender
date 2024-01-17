@@ -8,7 +8,7 @@ using Path = System.IO.Path;
 public class CommonTowerSO : ScriptableObject
 {
     public TowerId _towerId;
-    public List<RuneLevel> RuneLevels;
+    public List<RuneLevel> _runeLevels;
     
     public TowerId GetTowerId()
     {
@@ -18,7 +18,7 @@ public class CommonTowerSO : ScriptableObject
 
     public List<RuneLevel> GetAllRuneDatLevels()
     {
-        return RuneLevels;
+        return _runeLevels;
     }
     #endregion
 }

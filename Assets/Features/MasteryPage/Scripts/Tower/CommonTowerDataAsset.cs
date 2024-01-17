@@ -1,8 +1,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "CommonTowerDataAsset", menuName = "ScriptableObject/DataAsset/CommonTowerDataAsset")]
 public class CommonTowerDataAsset : BaseDataAsset<TowerDataModel>
@@ -17,19 +19,19 @@ public class CommonTowerDataAsset : BaseDataAsset<TowerDataModel>
     {
         var model = new TowerDataModel
         {
-            _towerList = new List<TowerSoSaver>()
+            TowerList = new List<TowerSoSaver>()
         };
 
         foreach (var kvp in towerTypeDict)
         {
-            if (kvp.Value != null && kvp.Value.RuneLevels != null && kvp.Value.RuneLevels.Count > 0)
+            if (kvp.Value != null && kvp.Value._runeLevels != null && kvp.Value._runeLevels.Count > 0)
             {
                 var towerSoSaver = new TowerSoSaver
                 {
-                    _towerId = kvp.Key,
-                    _runeLevels = kvp.Value.RuneLevels
+                    TowerId = kvp.Key,
+                    RuneLevels = kvp.Value._runeLevels
                 };
-                model._towerList.Add(towerSoSaver);
+                model.TowerList.Add(towerSoSaver);
             }
         }
 
@@ -38,7 +40,7 @@ public class CommonTowerDataAsset : BaseDataAsset<TowerDataModel>
     
     public TowerDataModel LoadTowers()
     {
-        LoadData(); // Load the data into _model
+        LoadData(); // Load the data from json file into _model
         return _model;
     }
 }
@@ -46,41 +48,41 @@ public class CommonTowerDataAsset : BaseDataAsset<TowerDataModel>
 [Serializable]
 public struct TowerDataModel : IDefaultCustom
 {
-    public List<TowerSoSaver> _towerList;
+    public List<TowerSoSaver> TowerList;
     public bool IsEmpty()
     {
-        return _towerList == null || _towerList.Count == 0;
+        return TowerList == null || TowerList.Count == 0;
     }
 
     public void SetDefault()
     {
         TowerSoSaver towerSoSaver = new TowerSoSaver()
         {
-            _towerId = 0,
-            _runeLevels = new List<RuneLevel>()
+            TowerId = 0,
+            RuneLevels = new List<RuneLevel>()
         };
-        _towerList = new List<TowerSoSaver> { towerSoSaver };
+        TowerList = new List<TowerSoSaver> { towerSoSaver };
     }
 }
 
 [Serializable]
 public struct TowerSoSaver
 {
-    public TowerId _towerId;
-    public List<RuneLevel> _runeLevels;
+    public TowerId TowerId;
+    public List<RuneLevel> RuneLevels;
 
 }
 
 [Serializable]
 public struct RuneLevel
 {
-    public RuneId _runeId;
-    public int _level;
+    public RuneId RuneId;
+    public int Level;
     
     public RuneLevel(RuneId runeId, int level)
     {
-        _runeId = runeId;
-        _level = level;
+        RuneId = runeId;
+        Level = level;
     }
 }
 

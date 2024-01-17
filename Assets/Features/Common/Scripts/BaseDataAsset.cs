@@ -5,59 +5,6 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public static class DataAssetSaver
-{
-    public static void SaveTowerData(TowerId towerId, List<RuneLevel> runeLevels)
-    {
-        // Define the file path
-        string filePath = Path.Combine(Application.persistentDataPath, "towerDataAsset.json");
-        TowerDataModel towerDataModel;
-
-        // Load existing TowerDataAssetList
-        if (File.Exists(filePath) && new FileInfo(filePath).Length > 0)
-        {
-            string jsonData = File.ReadAllText(filePath);
-            towerDataModel = JsonUtility.FromJson<TowerDataModel>(jsonData);
-        }
-        else
-        {
-            towerDataModel = new TowerDataModel();
-        }
-
-        // Initialize the _towerList if it's null
-        if (towerDataModel._towerList == null)
-        {
-            towerDataModel._towerList = new List<TowerSoSaver>();
-        }
-
-        // Find the TowerSoSaver with the same TowerId
-        var existingTowerIndex = towerDataModel._towerList.FindIndex(t => t._towerId == towerId);
-        if (existingTowerIndex != -1)
-        {
-            // Update the RuneLevels of the existing TowerSoSaver
-            TowerSoSaver existingTower = towerDataModel._towerList[existingTowerIndex];
-            existingTower._runeLevels = runeLevels;
-            towerDataModel._towerList[existingTowerIndex] = existingTower;
-        }
-        else
-        {
-            // Create and add a new TowerSoSaver
-            TowerSoSaver newTowerSoSaver = new TowerSoSaver
-            {
-                _towerId = towerId,
-                _runeLevels = runeLevels
-            };
-            towerDataModel._towerList.Add(newTowerSoSaver);
-        }
-
-        // Save the updated TowerDataAssetList to a file
-        JsonSaver.SaveToJsonFile(towerDataModel, filePath);
-
-        Debug.Log("Data saved to: " + filePath);
-    }
-
-}
-
 public interface IDefaultCustom
 {
     public bool IsEmpty();
