@@ -72,7 +72,7 @@ public class HealthComp : UnitBaseComponent
     {
         // Notify for unit observer to remove it self
         _unitBaseParent.OnOutOfHeal?.Invoke(_unitBaseParent);
-        
+        UnitObserver.Instance.NotifyAllUnit(_unitBaseParent.gameObject.tag,_unitBaseParent);
         // Notify for state machine
         _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
     }

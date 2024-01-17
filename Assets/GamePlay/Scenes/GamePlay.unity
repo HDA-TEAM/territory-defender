@@ -3128,7 +3128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 496623968}
-  - component: {fileID: 496623970}
+  - component: {fileID: 496623969}
   m_Layer: 0
   m_Name: UnitController
   m_TagString: Untagged
@@ -3151,7 +3151,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496623970
+--- !u!114 &496623969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3160,9 +3160,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 496623966}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e81da005d504143c9bd1f1bd6f2798ae, type: 3}
+  m_Script: {fileID: 11500000, guid: e4eadc922cbe41e9b48ed54c402b5374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitAllys: []
+  _unitEnemies: []
 --- !u!1 &519540515
 GameObject:
   m_ObjectHideFlags: 0
@@ -5732,7 +5734,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1804081918}
+      - m_Target: {fileID: 1804081921}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -10284,7 +10286,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1804081917}
-  - component: {fileID: 1804081918}
   - component: {fileID: 1804081919}
   - component: {fileID: 1804081920}
   - component: {fileID: 1804081921}
@@ -10310,20 +10311,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1804081918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804081916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e0e3363cc594e6e93a783ddecf4377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
-  _enemySpawningFactory: {fileID: 1804081920}
 --- !u!114 &1804081919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10364,10 +10351,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1804081916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e0ee35faa5b46ccad22d2717c06c1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 70e0e3363cc594e6e93a783ddecf4377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _testDataAsset: {fileID: 11400000, guid: ed3db68a63f3e481c94b28ff8bbdafca, type: 2}
+  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 1804081920}
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0

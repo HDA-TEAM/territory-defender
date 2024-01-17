@@ -9,6 +9,12 @@ public struct DefenseMilitaryComposite
     public Action<UnitBase> OnSuspectOut;
     
 }
+public enum BeingTargetCommand
+{
+    None = 0,
+    Block = 1,
+    Attack = 2,
+}
 public class DefenseMilitaryBase : MonoBehaviour
 {
     [SerializeField] private List<UnitBase> _defenseUnits = new List<UnitBase>();
@@ -31,12 +37,7 @@ public class DefenseMilitaryBase : MonoBehaviour
             });
         }
     }
-    public enum BeingTargetCommand
-    {
-        None = 0,
-        Block = 1,
-        Attack = 2,
-    }
+    
 
     private void OnUpdateCampingPlace()
     {

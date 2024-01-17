@@ -276,14 +276,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterStateMachine: {fileID: 0}
-  _targetDetecting: {fileID: 7126902680260101256}
+  _defenderDetecting: {fileID: 0}
   _healthComp: {fileID: 0}
-  _attackingComp: {fileID: 7230033807750692009}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
   _enemyReachingDestination: {fileID: 0}
   _targetChallenging: {fileID: 0}
   _unitShowingInformation: {fileID: 5838589748708221372}
+  _unitType: 0
   CurrentTarget: {fileID: 0}
 --- !u!114 &3858257114877186647
 MonoBehaviour:
@@ -323,7 +323,6 @@ GameObject:
   - component: {fileID: 6643799260356660022}
   - component: {fileID: 1021085056082389208}
   - component: {fileID: 7230033807750692009}
-  - component: {fileID: 7126902680260101256}
   m_Layer: 0
   m_Name: AttackComp
   m_TagString: Untagged
@@ -403,19 +402,3 @@ MonoBehaviour:
   attackingRange: 5
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
---- !u!114 &7126902680260101256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6942991946045224393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 818c545cf3e447818c1bb1eb857dfc64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitBaseParent: {fileID: -7030754689199355094}
-  _circleCollider2D: {fileID: 1021085056082389208}
-  _characterSideNeedToTarget: 2
-  _isTower: 1

@@ -58,13 +58,14 @@ public class UnitBase : MonoBehaviour
     public UnitBase CurrentTarget;
     public Action<UnitBase> OnOutOfHeal;
     public Action<OnTargetChangingComposite> OnTargetChanging;
+    public Action OnRecheckTarget;
     public Action OnResetFindTarget;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
     public struct OnTargetChangingComposite
     {
         public UnitBase Target;
-        public DefenseMilitaryBase.BeingTargetCommand BeingTargetCommand;
+        public BeingTargetCommand BeingTargetCommand;
     }
     #endregion
 }

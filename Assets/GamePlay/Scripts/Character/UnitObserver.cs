@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,6 @@ public class UnitObserver : SingletonBase<UnitObserver>
 {
     [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
     [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
-    public bool s;
     public void Subscribe(UnitBase unitBase)
     {
         if (unitBase.gameObject.tag == UnitId.Enemy.ToString())
@@ -28,19 +28,19 @@ public class UnitObserver : SingletonBase<UnitObserver>
             _unitAllys.Remove(unitBase);
         }
     }
-    private void NotifyAllUnit(UnitId unitId, UnitBase unitOut)
+    public void NotifyAllUnit(string unitId, UnitBase unitOut)
     {
-        var listUnit = unitId switch
-        {
-            UnitId.Ally => _unitAllys,
-            UnitId.Enemy => _unitEnemies,
-        };
+        // var listUnit = unitId switch
+        // {
+        //     UnitId.Ally/ToString() => _unitAllys,
+        //     UnitId.Enemy => _unitEnemies,
+        // };
+        Debug.LogError(unitId);
+        var listUnit = unitId == UnitId.Ally.ToString() ?_unitEnemies : _unitAllys;
         foreach (var unit in listUnit)
         {
-            if (unit.OnTargetChanging.Target == unitOut)
-            {
-                unit.OnTargetChanging.Target ==
-            }
+            unit.OnRecheckTarget?.Invoke();
         }
     }
+    
 }
