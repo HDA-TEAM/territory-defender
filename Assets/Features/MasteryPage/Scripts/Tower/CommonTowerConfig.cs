@@ -12,8 +12,8 @@ public class CommonTowerConfig : ScriptableObject
     private SerializedDictionary<TowerId, CommonTowerSO> _towerTypeDict = new SerializedDictionary<TowerId, CommonTowerSO>();
     [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
 
-    private TowerId _towerId;
-    public CommonTowerSO GetTowerType(TowerId towerId)
+    //private TowerId _towerId;
+    public CommonTowerSO GetTower(TowerId towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO tower);
         if (!tower)
