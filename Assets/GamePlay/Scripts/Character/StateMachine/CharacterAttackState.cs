@@ -16,8 +16,9 @@ public class CharacterAttackState : CharacterBaseState
         _cooldownNextAttack -= Time.deltaTime;
         _attackDame = Context.CharacterStats.GetStat(StatId.AttackDamage);
         
-        HandleAttack();
         CheckSwitchState();
+        
+        HandleAttack();
     }
     public override void ExitState()
     {

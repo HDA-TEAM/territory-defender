@@ -45,7 +45,7 @@ public class CharacterStateMachine : UnitBaseComponent
         _unitBaseParent.OnRecheckTarget -= OnRecheckTarget;
         
     }
-    protected void OnRecheckTarget()
+    private void OnRecheckTarget()
     {
         if (_curTarget == null || !_curTarget.gameObject.activeSelf)
         {
@@ -59,6 +59,7 @@ public class CharacterStateMachine : UnitBaseComponent
     
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
+        _unitBaseParent.CurrentTarget = _curTarget;
         _curTarget = composite.Target;
         _beingTargetCommand = composite.BeingTargetCommand;
     }

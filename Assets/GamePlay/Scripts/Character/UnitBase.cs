@@ -5,8 +5,9 @@ using UnityEngine.Serialization;
 public class UnitBase : MonoBehaviour
 {
     #region Component
+    [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
-    [SerializeField] private DefenderDetecting _defenderDetecting;
+    // [SerializeField] private DefenderDetecting _defenderDetecting;
     [SerializeField] private HealthComp _healthComp;
     [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
     [SerializeField] private Stats _unitStatsComp;
@@ -24,11 +25,12 @@ public class UnitBase : MonoBehaviour
         Mixed = 5,
     }
     #region Access
+    public UnitController UnitController() => _unitController;
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
     public UnitType UnitTypeId() => _unitType;
     
-    public DefenderDetecting DefenderDetecting() => _defenderDetecting;
+    // public DefenderDetecting DefenderDetecting() => _defenderDetecting;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
     public TargetChallenging TargetChallengingComp() => _targetChallenging;
@@ -45,7 +47,7 @@ public class UnitBase : MonoBehaviour
         _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
     }
     #endregion
-
+    
     public UnitState GetUnitState()
     {
         return UnitState.Free;
@@ -66,7 +68,13 @@ public class UnitBase : MonoBehaviour
     {
         public UnitBase Target;
         public BeingTargetCommand BeingTargetCommand;
+        public void SetDefault()
+        {
+            Target = null;
+            BeingTargetCommand = BeingTargetCommand.None;
+        }
     }
+    
     #endregion
 }
 

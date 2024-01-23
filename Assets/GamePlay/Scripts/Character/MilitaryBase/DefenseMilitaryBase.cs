@@ -27,15 +27,15 @@ public class DefenseMilitaryBase : MonoBehaviour
     }
     private void InitBase()
     {
-        foreach (var defenseUnit in _defenseUnits)
-        {
-            defenseUnit.DefenderDetecting().Setup(new DefenseMilitaryComposite
-            {
-                CampingPlace = _campingPlace,
-                OnDetectSuspect = OnDetectSuspect,
-                OnSuspectOut = OnSuspectOut
-            });
-        }
+        // foreach (var defenseUnit in _defenseUnits)
+        // {
+        //     defenseUnit.DefenderDetecting().Setup(new DefenseMilitaryComposite
+        //     {
+        //         CampingPlace = _campingPlace,
+        //         OnDetectSuspect = OnDetectSuspect,
+        //         OnSuspectOut = OnSuspectOut
+        //     });
+        // }
     }
     
 

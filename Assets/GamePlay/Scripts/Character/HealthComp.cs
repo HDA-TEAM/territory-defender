@@ -16,14 +16,6 @@ public class HealthComp : UnitBaseComponent
 
     private float _preSliderValue = 1f; // always full heal
     private Tween _tweenProgressHeal;
-    private void OnEnable()
-    {
-        UnitObserver.Instance.Subscribe(_unitBaseParent);
-    }
-    private void OnDisable()
-    {
-        UnitObserver.Instance.UnSubscribe(_unitBaseParent);
-    }
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
@@ -72,7 +64,7 @@ public class HealthComp : UnitBaseComponent
     {
         // Notify for unit observer to remove it self
         _unitBaseParent.OnOutOfHeal?.Invoke(_unitBaseParent);
-        UnitObserver.Instance.NotifyAllUnit(_unitBaseParent.gameObject.tag,_unitBaseParent);
+        // UnitManager.Instance.NotifyAllUnit(_unitBaseParent.gameObject.tag,_unitBaseParent);
         // Notify for state machine
         _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
     }
