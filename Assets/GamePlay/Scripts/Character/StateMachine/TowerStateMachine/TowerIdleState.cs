@@ -2,14 +2,14 @@ using System;
 
 public class TowerIdleState : CharacterBaseState
 {
-
+    private readonly BaseTowerStateMachine _context;
     public TowerIdleState(BaseTowerStateMachine currentContext) : base(currentContext)
     {
+        _context = currentContext;
         IsRootState = true;
     }
     public override void EnterState()
     {
-        throw new System.NotImplementedException();
     }
     public override void UpdateState()
     {
@@ -17,13 +17,15 @@ public class TowerIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
     }
     public override void CheckSwitchState()
     {
+        if (_context.IsAttack)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
+        }
     }
     public override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
     }
 }

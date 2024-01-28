@@ -81,8 +81,8 @@ public class TowerStateFactory : CharacterStateFactory
     {
         _context = currentContext;
         // _states[CharacterState.Die] = new HeroDieState(_context);
-        // _states[CharacterState.Attacking] = new HeroAttackState(_context);
-        // _states[CharacterState.Idle] = new HeroIdleState(_context);
+        _states[CharacterState.Attacking] = new TowerAttackState(_context);
+        _states[CharacterState.Idle] = new TowerIdleState(_context);
         // _states[CharacterState.Moving] = new HeroMovingState(_context);
     }
 

@@ -1,44 +1,19 @@
 using System;
 using UnityEngine;
 
-public class TowerAttackState : CharacterBaseState
+public class TowerAttackState : CharacterAttackState
 {
-    private readonly BaseHeroStateMachine _context;
+    private readonly BaseTowerStateMachine _context;
     private Vector3 _pos;
-    public TowerAttackState(BaseHeroStateMachine currentContext) : base(currentContext)
+    public TowerAttackState(BaseTowerStateMachine currentContext) : base(currentContext)
     {
-        IsRootState = true;
         _context = currentContext;
-    }
-    public override void EnterState()
-    {
-        Context.CharacterAnimator.SetBool("IsIdle", true);
-    }
-    public override void UpdateState()
-    {
-        CheckSwitchState();
-    }
-    public override void ExitState()
-    {
-        Context.CharacterAnimator.SetBool("IsIdle", false);
     }
     public override void CheckSwitchState()
     {
-        if (_context.IsDie)
+        if (!_context.IsAttack)
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
-        else if (_context.IsAttack)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
-        }
-        else if (_context.IsMovingToTarget)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
-        }
-    }
-    public override void InitializeSubState()
-    {
-        throw new System.NotImplementedException();
     }
 }

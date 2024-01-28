@@ -3,7 +3,6 @@ public class BaseTowerStateMachine : CharacterStateMachine
     public bool IsAttack { get; set; }
     
     private TowerStateFactory _factory;
-    private bool _isStopToAttack;
 
     #region Event
     protected virtual void OnEnable()
@@ -33,7 +32,6 @@ public class BaseTowerStateMachine : CharacterStateMachine
         base.OnTargetChanging(composite);
         
         bool isTargetValid = composite.Target == null;
-        _ = isTargetValid;
-        _isStopToAttack = !isTargetValid;
+        IsAttack = !isTargetValid;
     }
 }

@@ -12,54 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf08783d4234dc6ac4a1566e413f97a, type: 3}
   m_Name: ProjectileDataAsset
   m_EditorClassIdentifier: 
-  bowAttackCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.6702286
-      outSlope: 0.6702286
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5900953
-      value: 0.39549872
-      inSlope: 0.60064435
-      outSlope: 0.60064435
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.5976053
-    - serializedVersion: 3
-      time: 0.6906809
-      value: 0.69068086
-      inSlope: 3.5065427
-      outSlope: 3.5065427
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.1307957
-    - serializedVersion: 3
-      time: 0.77490187
-      value: 0.8866976
-      inSlope: 0.5460831
-      outSlope: 0.5460831
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.38450876
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.50334674
-      outSlope: 0.50334674
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  _projectileBases:
+  - {fileID: -2924856379041931363, guid: aa41697b25e414a7492eff1c158438e6, type: 3}
+  - {fileID: -2924856379041931363, guid: 0287e11e59b96453db3f73dfbea0aac5, type: 3}
