@@ -159,9 +159,10 @@ GameObject:
   - component: {fileID: 3858257114877186647}
   - component: {fileID: 1069866960922029881}
   - component: {fileID: 2176556897988213634}
+  - component: {fileID: 3298969290697362971}
   m_Layer: 0
   m_Name: TowerPrefabBase
-  m_TagString: Ally
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitController: {fileID: 2176556897988213634}
-  _characterStateMachine: {fileID: 0}
+  _characterStateMachine: {fileID: 3298969290697362971}
   _healthComp: {fileID: 0}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
@@ -325,6 +326,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
+--- !u!114 &3298969290697362971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a045308d3a24cd999bc3e763fcee004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: -7030754689199355094}
+  _troopBehaviourType: 0
+  _animator: {fileID: 6093051815202494015}
+  _stats: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
+  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
+  _projectileId: 1000
+  _curTarget: {fileID: 0}
+  _beingTargetCommand: 0
 --- !u!1 &6942991946045224393
 GameObject:
   m_ObjectHideFlags: 0

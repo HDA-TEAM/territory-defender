@@ -14,8 +14,8 @@ public class UnitInformationPanel: MonoBehaviour
 {
     [SerializeField] private Image _avatar;
     [SerializeField] private TextMeshProUGUI _txtName;
-    [SerializeField] private AnimationSequencerController _openAnim;
-    [SerializeField] private AnimationSequencerController _closeAnim;
+    // [SerializeField] private AnimationSequencerController _openAnim;
+    // [SerializeField] private AnimationSequencerController _closeAnim;
     [SerializeField] private CanvasGroup _canvasGroup;
     private bool _isShowing = false;
     
@@ -33,8 +33,8 @@ public class UnitInformationPanel: MonoBehaviour
     private void ShowPanelInformation(ShowUnitInformationPayload payload)
     {
         _canvasGroup.alpha = 1;
-        if (!_isShowing)
-            _openAnim.Play();
+        // if (!_isShowing)
+        //     _openAnim.Play();
         _txtName.text = payload.StatsData.GetInformation(InformationId.Name);
         _isShowing = true;
     }
@@ -43,10 +43,10 @@ public class UnitInformationPanel: MonoBehaviour
         if (_isShowing)
         {
             _isShowing = false;
-            _closeAnim.Play(() =>
-            {
-                _canvasGroup.alpha = 0;
-            });
+                // _closeAnim.Play(() =>
+                // {
+                //     _canvasGroup.alpha = 0;
+                // });
         }
         _isShowing = false;
     }

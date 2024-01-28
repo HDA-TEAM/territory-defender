@@ -29,11 +29,8 @@ public class CharacterStateMachine : UnitBaseComponent
     // public bool IsAttack() => _isAttack;
     #endregion
     protected virtual void Awake() {}
-    protected void Update()
-    {
-        _currentState.UpdateStates();
-    }
-    
+    protected void Update() => _currentState.UpdateStates();
+
     protected virtual void OnEnable()
     {
         _unitBaseParent.OnTargetChanging += OnTargetChanging;

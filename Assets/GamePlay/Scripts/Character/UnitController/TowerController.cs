@@ -29,17 +29,9 @@ public class TowerController : UnitController
         var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
         {
             Target = target,
-            BeingTargetCommand = BeingTargetCommand.Block
-        };
-        _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
-        
-        if (!target) return;
-        var attackTargetChangingComposite = new UnitBase.OnTargetChangingComposite
-        {
-            Target = _unitBaseParent,
             BeingTargetCommand = BeingTargetCommand.None
         };
-        target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
+        _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
     }
  
 }

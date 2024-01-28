@@ -8,8 +8,10 @@ public enum UnitId
 {
     Ally = 100,
     Enemy = 200,
+    
     EnemyShieldMan = 201,
 
+    Tower = 300,
 
     //Projectile
     
