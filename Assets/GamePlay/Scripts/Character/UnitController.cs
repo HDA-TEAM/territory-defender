@@ -1,22 +1,16 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UnitController : UnitBaseComponent
 {
     private void OnEnable()
     {
         if (UnitManager.IsAlive())
-        {
             UnitManager.Instance.Subscribe(_unitBaseParent);
-        }
     }
     private void OnDisable()
     {
         if (UnitManager.IsAlive())
-        {
             UnitManager.Instance.UnSubscribe(_unitBaseParent);
-        }
     }
     public virtual void UpdateStatus(List<UnitBase> targets)
     {

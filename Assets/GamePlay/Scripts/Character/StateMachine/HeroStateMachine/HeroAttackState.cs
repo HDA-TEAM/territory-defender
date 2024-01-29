@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class HeroAttackState : CharacterAttackState
 {
     private readonly BaseHeroStateMachine _context;

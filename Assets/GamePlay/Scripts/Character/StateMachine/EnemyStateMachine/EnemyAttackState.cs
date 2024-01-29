@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class EnemyAttackState : CharacterAttackState
 {
     private readonly BaseEnemyStateMachine _context;
