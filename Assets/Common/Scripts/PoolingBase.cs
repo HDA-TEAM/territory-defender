@@ -25,8 +25,8 @@ public class PoolingBase : MonoBehaviour
     private GameObject InitObjectInstance()
     {
         GameObject instance = Instantiate(prefab);
-        instance.gameObject.transform.SetParent(parent.transform);
-        instance.gameObject.SetActive(false);
+        instance.transform.SetParent(parent.transform);
+        instance.SetActive(false);
         return instance;
     }
     public GameObject GetInstance()

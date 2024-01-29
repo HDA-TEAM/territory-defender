@@ -21,9 +21,9 @@ public class TroopTowerBehaviour : UnitBaseComponent
         {
             var ally = PoolingController.Instance.SpawnObject(UnitId.Ally, _unitBaseParent.gameObject.transform.position);
             Debug.LogError("Spawn pos : " + gameObject.transform.position);
+            
             _allyUnits.Add(ally.GetComponent<UnitBase>());
         }
-        
     }
 
     private void OnDisable()
