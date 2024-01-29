@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyDieState : CharacterDieState
 {
     private readonly BaseEnemyStateMachine _context;
+    private static readonly int IsDie = Animator.StringToHash("IsDie");
     public EnemyDieState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
@@ -11,7 +12,7 @@ public class EnemyDieState : CharacterDieState
     public override void EnterState()
     {
         Animator animator = _context.CharacterAnimator;
-        animator.SetBool("IsDie",true);
+        animator.SetBool(IsDie,true);
         _durationDie = animator.runtimeAnimatorController.animationClips[0].length;
     }
     public override void UpdateState()

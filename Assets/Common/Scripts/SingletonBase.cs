@@ -29,11 +29,12 @@ public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
             return instance;
         }
     }
-    // public void OnDestroy()
-    // {
-    //     Debug.Log("Gets destroyed");
-    //     applicationIsQuitting = true;
-    // }
+    public static bool IsAlive() => instance && !applicationIsQuitting;
+    public void OnDestroy()
+    {
+        Debug.Log("Gets destroyed");
+        applicationIsQuitting = true;
+    }
     public virtual void Awake ()
     {
         if (instance == null) {

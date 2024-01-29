@@ -4,12 +4,14 @@ public class CharacterAttackState : CharacterBaseState
 {
     protected float _cooldownNextAttack;
     protected float _attackDame;
+    private static readonly int IsAttack = Animator.StringToHash("IsAttack");
     public CharacterAttackState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
     }
     public override void EnterState()
     {
+        Context.CharacterAnimator.SetBool(IsAttack,true);
     }
     public override void UpdateState()
     {
@@ -22,7 +24,7 @@ public class CharacterAttackState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool("IsAttack",false);
+        Context.CharacterAnimator.SetBool(IsAttack,false);
     }
     public override void CheckSwitchState() {}
     public override void InitializeSubState() {}

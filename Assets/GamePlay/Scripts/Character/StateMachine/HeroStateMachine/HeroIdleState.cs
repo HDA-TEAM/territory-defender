@@ -39,6 +39,5 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
     }
 }

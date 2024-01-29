@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class UnitController : UnitBaseComponent
 {
-    private void OnEnable() => UnitManager.Instance.Subscribe(_unitBaseParent);
-    private void OnDisable() => UnitManager.Instance.UnSubscribe(_unitBaseParent);
+    private void OnEnable()
+    {
+        if (UnitManager.IsAlive())
+            UnitManager.Instance.Subscribe(_unitBaseParent);
+    }
+    private void OnDisable()
+    {
+        if (UnitManager.IsAlive())
+            UnitManager.Instance.UnSubscribe(_unitBaseParent);
+    }
     public virtual void UpdateStatus(List<UnitBase> targets)
     {
         
