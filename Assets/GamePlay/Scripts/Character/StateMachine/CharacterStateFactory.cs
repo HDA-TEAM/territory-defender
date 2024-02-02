@@ -72,6 +72,25 @@ public class HeroStateFactory : CharacterStateFactory
         return _states[characterState];
     }
 }
+public class AllyStateFactory : CharacterStateFactory
+{
+    private BaseAllyStateMachine _context;
+    private readonly Dictionary<CharacterState, CharacterBaseState> _states = new Dictionary<CharacterState, CharacterBaseState>();
+
+    public AllyStateFactory(BaseAllyStateMachine currentContext)
+    {
+        _context = currentContext;
+        _states[CharacterState.Die] = new AllyDieState(_context);
+        _states[CharacterState.Attacking] = new AllyAttackState(_context);
+        _states[CharacterState.Idle] = new AllyIdleState(_context);
+        _states[CharacterState.Moving] = new AllyMovingState(_context);
+    }
+
+    public CharacterBaseState GetState(CharacterState characterState)
+    {
+        return _states[characterState];
+    }
+}
 public class TowerStateFactory : CharacterStateFactory
 {
     private BaseTowerStateMachine _context;
