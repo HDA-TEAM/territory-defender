@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class CharacterStateMachine : UnitBaseComponent
 {
+    [SerializeField] private string _curStateLabel;
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
     [SerializeField] protected CharacterBaseState _currentState;
@@ -15,7 +16,11 @@ public class CharacterStateMachine : UnitBaseComponent
     #region Setter and getter
     public CharacterBaseState CurrentState
     {
-        set { _currentState = value;}
+        set
+        {
+            _currentState = value;
+            _curStateLabel = _currentState.ToString();
+        }
         get { return _currentState; }
     }
     public UnitBase CurrentTarget { get { return _curTarget; } }
