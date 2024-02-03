@@ -1,22 +1,16 @@
-using BrunoMikoski.AnimationSequencer;
-using Cysharp.Threading.Tasks;
 using SuperMaxim.Messaging;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UnitInformationPanel: MonoBehaviour
+public class UnitInformationPanel: SingletonBase<UnitInformationPanel>
 {
     [SerializeField] private Image _avatar;
     [SerializeField] private TextMeshProUGUI _txtName;
     // [SerializeField] private AnimationSequencerController _openAnim;
     // [SerializeField] private AnimationSequencerController _closeAnim;
     [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private UnitBase _curUnitBaseInfo;
     private bool _isShowing = false;
     
     public void Awake()
@@ -54,6 +48,7 @@ public class UnitInformationPanel: MonoBehaviour
 public struct ShowUnitInformationPayload
 {
     public Stats StatsData;
+    public UnitBase UnitBase;
 }
 public struct HideUnitInformationPayload
 {

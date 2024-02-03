@@ -60,5 +60,10 @@ public class BaseHeroStateMachine : CharacterStateMachine
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }
+    private void OnExecuteUserAction()
+    {
+        
+    }
     #endregion
+    
 }
