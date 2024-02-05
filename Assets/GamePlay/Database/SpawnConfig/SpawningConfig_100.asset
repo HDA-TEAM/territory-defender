@@ -12,26 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 531614a5309f47fca3737b286d1aa0aa, type: 3}
   m_Name: SpawningConfig_100
   m_EditorClassIdentifier: 
-  ChapterKey: 1
-  StageIdKey: 1
   RoundsInfo:
-  - TotalRoundTimeInSecond: 10
+  - TotalRoundTimeInSecond: 40
     WavesInfo:
     - StartSpawningTimeOfWaveInSecond: 0
       GroupsInfo:
       - StartSpawningTimeOfGroupInSecond: 0
         ObjectSpawn: 201
-        NumberSpawning: 3
+        NumberSpawning: 10
         RouteId: 0
       - StartSpawningTimeOfGroupInSecond: 1
         ObjectSpawn: 201
-        NumberSpawning: 3
+        NumberSpawning: 10
         RouteId: 1
-    - StartSpawningTimeOfWaveInSecond: 3
+    - StartSpawningTimeOfWaveInSecond: 40
       GroupsInfo:
       - StartSpawningTimeOfGroupInSecond: 0
         ObjectSpawn: 201
-        NumberSpawning: 3
+        NumberSpawning: 20
         RouteId: 0
   - TotalRoundTimeInSecond: 10
     WavesInfo:
