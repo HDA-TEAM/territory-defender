@@ -27,7 +27,6 @@ public class ItemTowerView : MonoBehaviour
     public void Setup(TowerComposite towerComposite,Action<ItemTowerView> onSelected)
     {
         TowerComposite = towerComposite;
-        
         _onSelected = onSelected;
 
         SetName(towerComposite.TowerId.ToString());
@@ -40,8 +39,6 @@ public class ItemTowerView : MonoBehaviour
         {
             _txtName.color = selectedColor; // Set to the color represented by the hex string
         }
-        
-        //Debug.Log("select tower... " + TowerComposite.Name);
         _onSelected?.Invoke(this);
     }
 
@@ -52,7 +49,6 @@ public class ItemTowerView : MonoBehaviour
         {
             _txtName.color = unSelectedColor;
         }
-        //Debug.Log("remove select... " + TowerComposite.Name);
     }
 
     private void SetName(string name)

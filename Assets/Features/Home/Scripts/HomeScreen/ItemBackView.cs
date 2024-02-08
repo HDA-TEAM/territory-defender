@@ -2,42 +2,34 @@ using BrunoMikoski.UIManager;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.UIInHomeScreen
+public class ItemBackView : MonoBehaviour
 {
-    public class ItemBackView : MonoBehaviour
+    [SerializeField] private Button _backButton;
+    
+    [SerializeField] private ListTowerViewModel _listTowerViewModel;
+    [SerializeField] private ListHeroViewModel _listHeroViewModel;
+    
+    private UIManagerStateMachine _stateMachine;
+    private void Start()
     {
-        [SerializeField] private Button _button;
-        
-        [SerializeField] private ListTowerViewModel _listTowerViewModel;
-        [SerializeField] private ListHeroViewModel _listHeroViewModel;
-        private void Start()
+        _stateMachine = new UIManagerStateMachine();
+        _backButton.onClick.AddListener(OnBackButtonPressed);
+    }
+
+    private void CloseIfPopup(PrefabUIWindow window)
+    {
+        if (window != null && window.Layer.Behaviour == UILayerBehaviour.Additive)
         {
-            _button.onClick.AddListener(SceneBackLoad);
-        }
-
-        private void SceneBackLoad()
-        {
-            GlobalUtility.ResetView(_listTowerViewModel, _listHeroViewModel);
-            Debug.Log("Back home....");
-            
-            if (UiWindowCollectionStatic.MasteryPagePopup.IsPopup)
-            {
-                UiWindowCollectionStatic.MasteryPagePopup.Close();
-            }
-
-            if (UiWindowCollectionStatic.QuestPopup.IsPopup)
-            {
-                UiWindowCollectionStatic.QuestPopup.Close();
-            }
-
-            if (UiWindowCollectionStatic.SettingPopup.IsPopup)
-            {
-                UiWindowCollectionStatic.SettingPopup.Close();
-            }
-
-            //TODO
-            UiWindowCollectionStatic.HomeMenuScreen.Open();
+            window.Close();
+            Debug.Log(window.name + " popup closed.");
         }
     }
+    
+    private void OnBackButtonPressed()
+    {
+        GlobalUtility.ResetView(_listTowerViewModel, _listHeroViewModel);
+        _stateMachine.BackPressed();
+    }
 }
+
 

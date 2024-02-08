@@ -1,69 +1,34 @@
-using BrunoMikoski.UIManager;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.UIInHomeScreen
+public class HomeMenuViewModel: MonoBehaviour
 {
-    public class HomeMenuViewModel: MonoBehaviour
+    [SerializeField] private Button _buttonShop;
+    [SerializeField] private Button _buttonHeroInfo;
+    [SerializeField] private Button _buttonDictionary;
+    [SerializeField] private Button _buttonHistory;
+    [SerializeField] private Button _buttonUpgradeTower;
+    [SerializeField] private Button _buttonSetting;
+    [SerializeField] private Button _buttonQuest;
+    [SerializeField] private List<Button> _buttonsStage;
+    
+    private UIManagerStateMachine _stateMachine;
+    private void Start()
     {
-        [SerializeField] private Button _buttonShop;
-        [SerializeField] private Button _buttonHeroInfo;
-        [SerializeField] private Button _buttonDictionary;
-        [SerializeField] private Button _buttonHistory;
-        [SerializeField] private Button _buttonUpgradeTower;
-        [SerializeField] private Button _buttonSetting;
-        [SerializeField] private Button _buttonQuest;
+        _stateMachine = new UIManagerStateMachine();
         
-        private void Start()
-        {
-            _buttonHeroInfo.onClick.AddListener(HeroInformationLoad);
-            _buttonShop.onClick.AddListener(ShopLoad);
-            _buttonDictionary.onClick.AddListener(DictionaryLoad);
-            _buttonHistory.onClick.AddListener(HistoryLoad);
-            _buttonUpgradeTower.onClick.AddListener(UpgradeTowerLoad);
-            _buttonSetting.onClick.AddListener(SettingLoad);
-            _buttonQuest.onClick.AddListener(QuestLoad);
-        }
-        
-        private void HeroInformationLoad()
-        {
-            UiWindowCollectionStatic.HeroesScreen.Open();
-            Debug.Log("Hero info is open");
-        }
-        
-        private void ShopLoad()
-        {
-            Debug.Log("Shop is open");
-        }
-        
-        private void DictionaryLoad()
-        {
-            UiWindowCollectionStatic.DictionaryScreen.Open();
-            Debug.Log("Dictionary is open");
-        }
-        
-        private void HistoryLoad()
-        {
-            UiWindowCollectionStatic.HistoryScreen.Open();
-            Debug.Log("History is open");
-        }
+        _buttonHeroInfo.onClick.AddListener(() => _stateMachine.ChangeState<HeroInfoState>());
+        _buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
+        _buttonDictionary.onClick.AddListener(() => _stateMachine.ChangeState<DictionaryState>());
+        _buttonHistory.onClick.AddListener(() => _stateMachine.ChangeState<HistoryState>());
+        _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeState<MasteryPageState>());
+        _buttonSetting.onClick.AddListener((() => _stateMachine.ChangeState<SettingState>()));
+        _buttonQuest.onClick.AddListener((() => _stateMachine.ChangeState<QuestState>()));
 
-        private void UpgradeTowerLoad()
-        { 
-            UiWindowCollectionStatic.MasteryPagePopup.Open();
-            Debug.Log("Upgrade tower is open");
-        }
-
-        private void SettingLoad()
+        foreach (var button in _buttonsStage)
         {
-            UiWindowCollectionStatic.SettingPopup.Open();
-            Debug.Log("Setting is open");
-        }
-
-        private void QuestLoad()
-        {
-            UiWindowCollectionStatic.QuestPopup.Open();
-            Debug.Log("Quest is open");
+            button.onClick.AddListener((() => _stateMachine.ChangeState<StageInfoState>()));
         }
     }
 }

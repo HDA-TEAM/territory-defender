@@ -1,19 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-
-public struct HeroComposite
-{
-    public string Name;
-    public string Level;
-    public string Hp;
-    public string Atk;
-    public string Def;
-    public string Range;
-    public Sprite Avatar;
-
-    public List<SkillDataSO> Skills;
-}
 public class ListHeroViewModel : MonoBehaviour
 {
     [Header("UI")]
@@ -112,7 +99,7 @@ public class ListHeroViewModel : MonoBehaviour
     }
     private void OnSkillSelected(ItemSkillView itemSkillView)
     {
-        foreach (ItemSkillView itemSkill in _itemSkillViews)
+        foreach (var itemSkill in _itemSkillViews)
         {
             _status = itemSkill.SkillDescribeButton() == itemSkillView ? true : false;
             itemSkill.DescribeSkillImage().gameObject.SetActive(_status);
@@ -145,5 +132,17 @@ public class ListHeroViewModel : MonoBehaviour
             // Additional setup for the first hero, if necessary
         }
     }
+}
 
+public struct HeroComposite
+{
+    public string Name;
+    public string Level;
+    public string Hp;
+    public string Atk;
+    public string Def;
+    public string Range;
+    public Sprite Avatar;
+
+    public List<SkillDataSO> Skills;
 }

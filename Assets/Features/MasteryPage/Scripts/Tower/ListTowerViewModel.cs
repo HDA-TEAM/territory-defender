@@ -22,19 +22,18 @@ public class ListTowerViewModel : MonoBehaviour
     private void Start()
     {
         _itemTowerViews[0].OnSelectedTower();
+        _preSelectedItem = _itemTowerViews[0];
     }
 
     private void Awake()
     {
         _towerComposites = new List<TowerComposite>();
-        
         UpdateData();
     }
 
     private void UpdateData()
     {
         List<CommonTowerSO> listTowerData = _commonTowerConfig.GetAllTowerData();
-        
         foreach (var towerDataSo in listTowerData)
         {
             _towerComposites.Add(
@@ -45,7 +44,6 @@ public class ListTowerViewModel : MonoBehaviour
                 }
             );
         }
-
         UpdateView();
     }
 
@@ -77,6 +75,8 @@ public class ListTowerViewModel : MonoBehaviour
         _preSelectedItem = itemTowerView;
         
         Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
+        
+        // Reset view of rune detail
         GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
         _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
     }
