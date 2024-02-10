@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
+
 public class ListHeroViewModel : MonoBehaviour
 {
     [Header("UI")]
@@ -12,8 +12,7 @@ public class ListHeroViewModel : MonoBehaviour
   
     [Header("Data"), Space(12)] 
     [SerializeField] private HeroDataAsset _heroDataAsset;
-
-    //[SerializeField] private List<OnClickHandle> _onClickHandles;
+    
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -92,7 +91,7 @@ public class ListHeroViewModel : MonoBehaviour
         // reset to Skill view when switch another hero
         if (_preSelectedSkillItem != null)
         {
-            _preSelectedSkillItem.ResetSkillViews();
+            _preSelectedSkillItem.ResetItemSkillView();
         }
         _listModeViewModel.ResetToSkillView(EHeroViewMode.Skill);
         _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
@@ -119,7 +118,7 @@ public class ListHeroViewModel : MonoBehaviour
         // Reset the selected skill
         if (_preSelectedSkillItem != null)
         {
-            _preSelectedSkillItem.ResetSkillViews(); // Assuming such a method exists
+            _preSelectedSkillItem.ResetItemSkillView(); // Assuming such a method exists
             _preSelectedSkillItem = null;
         }
 

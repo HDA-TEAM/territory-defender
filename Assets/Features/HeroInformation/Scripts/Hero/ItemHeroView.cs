@@ -18,7 +18,7 @@ public class ItemHeroView : MonoBehaviour
     private Action<ItemHeroView> _onSelected;
     
     private readonly string _hexSelectedColor = "#F3EF94";
-    private readonly string _hexDeselectedColor = "#323232";
+    private readonly string _hexDeselectedColor = "#383838";
     
     #region Core
     private void Awake()

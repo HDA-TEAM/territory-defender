@@ -23,12 +23,12 @@ public class ItemSkillView : MonoBehaviour
         _onSelected = onSelected;
     }
 
-    public void OnButtonClick()
+    private void OnButtonClick()
     {
        _onSelected?.Invoke(this);
     }
 
-    public void ResetSkillViews()
+    public void ResetItemSkillView()
     {
         _describeSkillImage.gameObject.SetActive(false);
     }
