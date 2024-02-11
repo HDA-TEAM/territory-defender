@@ -1757,6 +1757,7 @@ MonoBehaviour:
   _avatar: {fileID: 67541492}
   _txtName: {fileID: 1876819895}
   _canvasGroup: {fileID: 209926118}
+  _curUnitBaseInfo: {fileID: 0}
 --- !u!225 &209926118
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -12364,6 +12365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66c2812ad7834b56b3445fa1af05c8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _btn: {fileID: 2086096456}
 --- !u!1 &2091955493
 GameObject:
   m_ObjectHideFlags: 0

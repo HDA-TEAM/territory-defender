@@ -15,6 +15,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private TargetChallenging _targetChallenging;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
     [SerializeField] private UnitType _unitType;
+    [SerializeField] private UserActionController _userActionController;
     #endregion
     public enum UnitType
     {
@@ -29,7 +30,7 @@ public class UnitBase : MonoBehaviour
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
     public UnitType UnitTypeId() => _unitType;
-    
+    public UserActionController UserActionController() => _userActionController;
     // public DefenderDetecting DefenderDetecting() => _defenderDetecting;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;

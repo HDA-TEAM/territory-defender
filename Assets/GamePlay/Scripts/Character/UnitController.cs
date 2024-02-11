@@ -14,16 +14,16 @@ public class UnitController : UnitBaseComponent
     }
     public virtual void UpdateStatus(List<UnitBase> targets)
     {
-        
-        if (!CheckTargetAvailable())
+
+        if (!CheckSelfAvailableTargeting())
             return;
         float nearestUnit = float.MaxValue;
         UnitBase target = null;
         foreach (var unit in targets)
         {
             float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, this.gameObject);
-            
-            if ( betweenDistance < _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange))
+
+            if (betweenDistance < _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange))
             {
                 if (nearestUnit > betweenDistance)
                 {
@@ -32,7 +32,7 @@ public class UnitController : UnitBaseComponent
                 }
             }
         }
-        
+
         var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
         {
             Target = target,
@@ -40,7 +40,7 @@ public class UnitController : UnitBaseComponent
         };
         _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
     }
-    protected bool CheckTargetAvailable() => _unitBaseParent.CurrentTarget == null;
+    protected bool CheckSelfAvailableTargeting() => _unitBaseParent.CurrentTarget == null;
     // private Camera _camera;
     // private RaycastHit _raycastHit;
     // [SerializeField] private float _rayRadius;
@@ -49,21 +49,21 @@ public class UnitController : UnitBaseComponent
     // {
     //     _camera = Camera.main;
     // }
-    private void Update()   
+    private void Update()
     {
         // Detect enemies within the specified radius
-            // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _rayRadius, enemyLayer);
-            //
-            // // Iterate through the colliders and do something with each detected enemy
-            // foreach (Collider2D collider in colliders)
-            // {
-            //     // Check if the collider belongs to an enemy
-            //     if (collider.CompareTag("Ally"))
-            //     {
-            //         // Do something with the detected enemy, for example, print its name
-            //         Debug.Log("Detected enemy: " + collider.gameObject.name);
-            //     }
-            // }
+        // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _rayRadius, enemyLayer);
+        //
+        // // Iterate through the colliders and do something with each detected enemy
+        // foreach (Collider2D collider in colliders)
+        // {
+        //     // Check if the collider belongs to an enemy
+        //     if (collider.CompareTag("Ally"))
+        //     {
+        //         // Do something with the detected enemy, for example, print its name
+        //         Debug.Log("Detected enemy: " + collider.gameObject.name);
+        //     }
+        // }
     }
-    
+
 }
