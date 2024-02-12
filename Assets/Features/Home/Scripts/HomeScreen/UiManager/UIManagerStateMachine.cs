@@ -44,7 +44,6 @@ public class UIManagerStateMachine
             // Close the current popup
             _currentState.Exit();
             // Optionally, return to a specific state after closing a popup
-            //ChangeState<HomeScreenState>();
         }
         else if (_currentState is IUISceneState)
         {

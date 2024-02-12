@@ -27,7 +27,7 @@ namespace UI.UIInHomeScreen
 
         private void OnSelectedHero()
         {
-            Debug.Log("Stage " + StageComposite.StageType + " is opened");
+            //Debug.Log("Stage " + StageComposite.StageType + " is opened");
 
             _onSelected?.Invoke(this);
             _stateMachine.ChangeState<StageInfoState>();
@@ -35,7 +35,8 @@ namespace UI.UIInHomeScreen
 
         private void StageLoad(string name)
         { 
-            Debug.Log("Stage " + name + " is setting");
+            //TODO: Load Name for each Stage
+            //Debug.Log("Stage " + name + " is setting");
         }
     }
 }

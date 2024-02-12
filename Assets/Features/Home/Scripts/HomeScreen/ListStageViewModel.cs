@@ -28,7 +28,9 @@ public class ListStageViewModel : MonoBehaviour
             new StageComposite
             {
                 StageId = 1,
-                StageType = "normal"
+                StageStar = 2,
+                StageType = "normal",
+                StageName = "VUNG DAT DO"
             }
         );
         
@@ -36,7 +38,9 @@ public class ListStageViewModel : MonoBehaviour
             new StageComposite
             {
                 StageId = 2,
-                StageType = "boss"
+                StageStar = 0,
+                StageType = "boss",
+                StageName = "VUNG DAT DO BOSS"
             }
         );
         UpdateView();
@@ -67,6 +71,9 @@ public class ListStageViewModel : MonoBehaviour
 public struct StageComposite
 {
     public int StageId;
+    public int StageStar;
     public string StageType;
+    public string StageName;
+    public Sprite StageImage;
 }
 

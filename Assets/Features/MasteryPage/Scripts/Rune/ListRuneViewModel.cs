@@ -10,7 +10,7 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private List<ItemRuneView> _itemRuneViews;
     [SerializeField] private RuneDetailView _runeDetailView;
     [SerializeField] private ItemUpgradeRuneView _itemUpgradeRuneView;
-    [SerializeField] private StarView _starView;
+    [FormerlySerializedAs("_starView")] [SerializeField] private ItemStarView _itemStarView;
     [SerializeField] private ListTowerViewModel _listTowerViewModel;
     
     [Header("Data"), Space(12)]
@@ -47,8 +47,8 @@ public class ListRuneViewModel : MonoBehaviour
         if (_listTowerViewModel != null)
             _listTowerViewModel._onUpdateViewAction += UpdateView;
         
-        if (_starView != null)
-            _starView._onDataUpdated += UpdateData;
+        if (_itemStarView != null)
+            _itemStarView._onDataUpdated += UpdateData;
 
         if (_itemUpgradeRuneView != null)
             _onTowerDataUpdatedAction += UpdateData;
@@ -135,7 +135,7 @@ public class ListRuneViewModel : MonoBehaviour
             _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
         
             // Setup star view
-            _starView.Setup(_inventoryComposite);
+            _itemStarView.Setup(_inventoryComposite);
         
             // Rune avatar logic
             _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
@@ -174,7 +174,7 @@ public class ListRuneViewModel : MonoBehaviour
     
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
-        if (itemUpgradeRuneView == null || _preSelectedItem == null || _runeDataAsset == null || _starView == null)
+        if (itemUpgradeRuneView == null || _preSelectedItem == null || _runeDataAsset == null || _itemStarView == null)
         {
             Debug.LogError("One or more required objects are null.");
             return;

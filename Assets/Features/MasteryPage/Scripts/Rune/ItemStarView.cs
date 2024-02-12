@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-public class StarView : MonoBehaviour
+public class ItemStarView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _txtStarNumber;
 

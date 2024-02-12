@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,8 +6,8 @@ public class StageInfoViewModel : MonoBehaviour
 {
     [Header("UI")] 
     [SerializeField] private ItemPlayView _itemPlayView;
-
-    //[SerializeField] private ListStageViewModel _listStageViewModel;
+    [SerializeField] private List<ItemStageStarView> _itemStageStarViews;
+    
     [SerializeField] private GameModeViewModel _gameModeViewModel;
     // Internal
     private StageComposite _currentStage;
@@ -14,7 +15,7 @@ public class StageInfoViewModel : MonoBehaviour
     {
         GameEvents.OnStageSelected += HandleStageSelection;
         _itemPlayView.Setup(OnSelectedItemPlay);
-        UpdateData();
+        
     }
     private void OnDestroy()
     {
@@ -25,6 +26,7 @@ public class StageInfoViewModel : MonoBehaviour
     private void HandleStageSelection(StageComposite stage)
     {
         _currentStage = stage; // Store the selected stage
+        UpdateData();
     }
 
     private void UpdateData()
@@ -34,7 +36,15 @@ public class StageInfoViewModel : MonoBehaviour
 
     private void UpdateView()
     {
-        
+        // Fill the star result for that stage
+        for (int i = 0; i < _itemStageStarViews.Count; i++)
+        {
+            if (i < _currentStage.StageStar)
+                _itemStageStarViews[i].SetupYellowStar();
+            
+            else
+                _itemStageStarViews[i].SetupGrownStar();
+        }
     }
 
     private void OnSelectedItemPlay(ItemPlayView itemPlayView)
