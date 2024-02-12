@@ -20,7 +20,7 @@ public class ListHeroViewModel : MonoBehaviour
     private bool _status;
     private void Start()
     {
-        _itemHeroViews[0].OnSelectedHero();
+        OnSelectedItem(_itemHeroViews[0]);
     }
     private void Awake()
     {
@@ -84,6 +84,7 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedItem.RemoveSelected();
         
         _preSelectedItem = itemHeroView;
+        _preSelectedItem.OnSelectedHero();
 
         // Setup hero detail view
         _heroDetailView.Setup(itemHeroView.HeroComposite);
@@ -122,13 +123,11 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedSkillItem = null;
         }
 
-        // Optionally reset other UI elements
-
+        // Reset other UI elements
         // Select the first hero by default if the list is not empty
         if (_itemHeroViews != null)
         {
             _itemHeroViews[0].OnSelectedHero();
-            // Additional setup for the first hero, if necessary
         }
     }
 }

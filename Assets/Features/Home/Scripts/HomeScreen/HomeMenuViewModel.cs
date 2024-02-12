@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,9 +12,9 @@ public class HomeMenuViewModel: MonoBehaviour
     [SerializeField] private Button _buttonUpgradeTower;
     [SerializeField] private Button _buttonSetting;
     [SerializeField] private Button _buttonQuest;
-    [SerializeField] private List<Button> _buttonsStage;
-    
-    private UIManagerStateMachine _stateMachine;
+
+    // Internal
+    private static UIManagerStateMachine _stateMachine;
     private void Start()
     {
         _stateMachine = new UIManagerStateMachine();
@@ -25,10 +26,5 @@ public class HomeMenuViewModel: MonoBehaviour
         _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeState<MasteryPageState>());
         _buttonSetting.onClick.AddListener((() => _stateMachine.ChangeState<SettingState>()));
         _buttonQuest.onClick.AddListener((() => _stateMachine.ChangeState<QuestState>()));
-
-        foreach (var button in _buttonsStage)
-        {
-            button.onClick.AddListener((() => _stateMachine.ChangeState<StageInfoState>()));
-        }
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,27 +6,31 @@ namespace UI.UIInHomeScreen
 {
     public class ItemStageView : MonoBehaviour
     {
-        [SerializeField] private Button _button;
+        [SerializeField] private Button _btn;
 
+        // Internal
         private Action<ItemStageView> _onSelected;
-
+        private UIManagerStateMachine _stateMachine;
+        
         public StageComposite StageComposite;
-        private void Awake()
-        {
-            _button.onClick.AddListener(OnSelectedHero);
-        }
 
-        public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction)
+        public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction, UIManagerStateMachine stateMachine)
         {
             StageComposite = stageComposite;
-            StageLoad(stageComposite.Mode);
+            _onSelected = onAction;
+            _stateMachine = stateMachine; // Assign the state machine instance
+
+            StageLoad(stageComposite.StageType);
+            _btn.onClick.RemoveAllListeners();
+            _btn.onClick.AddListener(OnSelectedHero);
         }
 
         private void OnSelectedHero()
         {
-            Debug.Log("Stage " + StageComposite.Mode + " is opened");
+            Debug.Log("Stage " + StageComposite.StageType + " is opened");
 
             _onSelected?.Invoke(this);
+            _stateMachine.ChangeState<StageInfoState>();
         }
 
         private void StageLoad(string name)
