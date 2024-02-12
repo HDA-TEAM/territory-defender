@@ -10,7 +10,7 @@ namespace UI.UIInHomeScreen
 
         // Internal
         private Action<ItemStageView> _onSelected;
-        private UIManagerStateMachine _stateMachine;
+        private static UIManagerStateMachine _stateMachine;
         
         public StageComposite StageComposite;
 
@@ -21,14 +21,12 @@ namespace UI.UIInHomeScreen
             _stateMachine = stateMachine; // Assign the state machine instance
 
             StageLoad(stageComposite.StageType);
-            _btn.onClick.RemoveAllListeners();
+            //_btn.onClick.RemoveAllListeners();
             _btn.onClick.AddListener(OnSelectedHero);
         }
 
         private void OnSelectedHero()
         {
-            //Debug.Log("Stage " + StageComposite.StageType + " is opened");
-
             _onSelected?.Invoke(this);
             _stateMachine.ChangeState<StageInfoState>();
         }

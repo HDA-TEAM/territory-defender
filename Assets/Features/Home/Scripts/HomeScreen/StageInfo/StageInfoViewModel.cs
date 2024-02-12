@@ -6,16 +6,20 @@ public class StageInfoViewModel : MonoBehaviour
 {
     [Header("UI")] 
     [SerializeField] private ItemPlayView _itemPlayView;
+    [SerializeField] private ItemMasteryView _itemMasteryView;
     [SerializeField] private List<ItemStageStarView> _itemStageStarViews;
     
     [SerializeField] private GameModeViewModel _gameModeViewModel;
+    
     // Internal
     private StageComposite _currentStage;
+    private UIManagerStateMachine _stateMachine;
     private void Awake()
     {
         GameEvents.OnStageSelected += HandleStageSelection;
+        _stateMachine = new UIManagerStateMachine();
         _itemPlayView.Setup(OnSelectedItemPlay);
-        
+        _itemMasteryView.Setup(OnSelectedItemMastery);
     }
     private void OnDestroy()
     {
@@ -45,6 +49,12 @@ public class StageInfoViewModel : MonoBehaviour
             else
                 _itemStageStarViews[i].SetupGrownStar();
         }
+    }
+
+    private void OnSelectedItemMastery(ItemMasteryView itemMasteryView)
+    {
+        //Debug.Log("???????????????????");
+        _stateMachine.ChangeState<MasteryPageState>();
     }
 
     private void OnSelectedItemPlay(ItemPlayView itemPlayView)

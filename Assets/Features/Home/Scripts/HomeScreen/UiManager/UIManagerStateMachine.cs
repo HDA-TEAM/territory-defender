@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class UIManagerStateMachine
 {
-    
     private Dictionary<Type, UIState> _states = new Dictionary<Type, UIState>();
+    private static Stack<UIState> _popupStateStack = new Stack<UIState>();
     private static UIState _currentState;
     
     public UIManagerStateMachine()
+    {
+        InitializeStates();
+    }
+    private void InitializeStates()
     {
         // Pre-instantiate all state instances
         _states.Add(typeof(HomeScreenState), new HomeScreenState());
@@ -20,34 +24,60 @@ public class UIManagerStateMachine
         _states.Add(typeof(MasteryPageState), new MasteryPageState());
         _states.Add(typeof(SettingState), new SettingState());
         _states.Add(typeof(QuestState), new QuestState());
+        
+        _states.Add(typeof(StageInfoState), new StageInfoState());
     }
-
     public void ChangeState<T>() where T : UIState, new()
     {
-        _currentState?.Exit();
-
         var type = typeof(T);
-        if (!_states.TryGetValue(type, out UIState state))
+        if (!_states.TryGetValue(type, out UIState nextState))
+            return;
+        
+        if (_currentState == nextState)
         {
-            state = new T();
-            _states.Add(type, state);
+            return;
         }
 
-        _currentState = state;
-        Debug.Log(state);
+        _currentState?.Exit();
+        
+        if (nextState is IUIPopupState)
+        {
+            _popupStateStack.Push(nextState);
+        }
+        else
+        {
+            while (_popupStateStack.Count > 0)
+            {
+                _popupStateStack.Pop().Exit(); // Ensure all popups are closed before moving to a new non-popup state
+            }
+        }
+
+        _currentState = nextState;
         _currentState.Enter();
     }
     public void BackPressed()
     {
-        if (_currentState is IUIPopupState)
+        if (_currentState is IUIPopupState && _popupStateStack.Count > 0)
         {
-            // Close the current popup
+            // Close the current popup and remove it from the stack
             _currentState.Exit();
-            // Optionally, return to a specific state after closing a popup
+            _popupStateStack.Pop();
+
+            if (_popupStateStack.Count > 0)
+            {
+                // Return to the previous popup
+                _currentState = _popupStateStack.Peek();
+                _currentState.Enter();
+            }
+            else
+            {
+                // No popups left, return to the home screen or a suitable default state
+                ChangeState<HomeScreenState>();
+            }
         }
-        else if (_currentState is IUISceneState)
+        else
         {
-            // Return to Home Scene
+            // Optionally, handle back navigation for non-popup states
             ChangeState<HomeScreenState>();
         }
     }
