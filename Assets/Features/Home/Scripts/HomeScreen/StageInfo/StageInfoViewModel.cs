@@ -8,6 +8,7 @@ public class StageInfoViewModel : MonoBehaviour
     [SerializeField] private ItemPlayView _itemPlayView;
     [SerializeField] private ItemMasteryView _itemMasteryView;
     [SerializeField] private List<ItemStageStarView> _itemStageStarViews;
+    [SerializeField] private StageInfoDetailView _stageInfoDetailView;
     
     [SerializeField] private GameModeViewModel _gameModeViewModel;
     
@@ -49,11 +50,12 @@ public class StageInfoViewModel : MonoBehaviour
             else
                 _itemStageStarViews[i].SetupGrownStar();
         }
+        
+        _stageInfoDetailView.Setup(_currentStage);
     }
 
     private void OnSelectedItemMastery(ItemMasteryView itemMasteryView)
     {
-        //Debug.Log("???????????????????");
         _stateMachine.ChangeState<MasteryPageState>();
     }
 

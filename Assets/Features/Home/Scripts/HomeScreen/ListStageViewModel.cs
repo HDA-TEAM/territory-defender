@@ -30,7 +30,8 @@ public class ListStageViewModel : MonoBehaviour
                 StageId = 1,
                 StageStar = 2,
                 StageType = "normal",
-                StageName = "VUNG DAT DO"
+                StageName = "VUNG DAT DO",
+                //StageImage = "Assets/Features/Home/Textures/stage infor/hoa van copy 2.png"
             }
         );
         
