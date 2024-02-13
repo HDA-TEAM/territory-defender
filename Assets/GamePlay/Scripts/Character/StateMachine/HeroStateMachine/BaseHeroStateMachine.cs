@@ -6,7 +6,7 @@ public class BaseHeroStateMachine : CharacterStateMachine
     private bool _isAttack;
     private bool _isMovingToTarget;
     private UnitBase _target;
-    
+
     private bool _isDie;
 
     #region Event
@@ -60,6 +60,17 @@ public class BaseHeroStateMachine : CharacterStateMachine
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }
+    // protected override void OnEnable()
+    // {
+    //     base.OnEnable();
+    //     _unitBaseParent.OnTargetChanging += OnTargetChanging;
+    // }
+    // protected override void OnDisable()
+    // {
+    //     base.OnDisable();
+    //     _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+    //     
+    // }
     private void OnExecuteUserAction()
     {
         

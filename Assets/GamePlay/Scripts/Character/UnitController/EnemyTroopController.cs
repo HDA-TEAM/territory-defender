@@ -9,7 +9,7 @@ public class EnemyTroopController : UnitController
         
         if (!CheckSelfAvailableTargeting())
             return;
-        if (CheckInUserAction(_unitBaseParent.CurrentTarget))
+        if (CheckTargetInUserAction(_unitBaseParent.CurrentTarget))
         {
             var targetChangingComposite = new UnitBase.OnTargetChangingComposite
             {
@@ -19,7 +19,7 @@ public class EnemyTroopController : UnitController
             _unitBaseParent.OnTargetChanging?.Invoke(targetChangingComposite);
         }
     }
-    protected bool CheckInUserAction(UnitBase target)
+    private bool CheckTargetInUserAction(UnitBase target)
     {
         var userActionController = _unitBaseParent.UserActionController();
         if (userActionController)

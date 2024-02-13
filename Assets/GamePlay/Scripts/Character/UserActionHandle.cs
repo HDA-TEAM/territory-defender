@@ -16,7 +16,9 @@ public class UserActionHandle : SingletonBase<UserActionHandle>
     }
     private void OnClick()
     {
+        Debug.Log("UserActionHandle OnClick ");
         _onComplete?.Invoke();
+        _onComplete = null;
     }
     public void OnCompleteAction(Action onComplete)
     {

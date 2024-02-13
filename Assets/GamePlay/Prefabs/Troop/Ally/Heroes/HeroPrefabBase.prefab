@@ -310,6 +310,7 @@ MonoBehaviour:
   _targetChallenging: {fileID: 0}
   _unitShowingInformation: {fileID: 0}
   _unitType: 0
+  _userActionController: {fileID: 0}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -356,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
+  _curStateLabel: 
   _troopBehaviourType: 1
   _animator: {fileID: 6715228475396641559}
   _stats: {fileID: 11400000, guid: 17c65a71ad5114b419abb98691ee4299, type: 2}
@@ -390,6 +392,7 @@ GameObject:
   - component: {fileID: 7540019438310840715}
   - component: {fileID: 510507626384546894}
   - component: {fileID: 4078627628027769362}
+  - component: {fileID: 2909084853854028830}
   m_Layer: 0
   m_Name: Selection
   m_TagString: Untagged
@@ -506,6 +509,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2909084853854028830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3471298441881994424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c27147eacc34339838baffae255d442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
+  _userAction: 0
 --- !u!1 &4668294441519044016
 GameObject:
   m_ObjectHideFlags: 0
