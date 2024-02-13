@@ -1,8 +1,10 @@
 
+using SuperMaxim.Messaging;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
-public enum UserAction
+public enum EUserAction
 {
     None = 0,
     SetMovingPoint = 1,
@@ -10,25 +12,45 @@ public enum UserAction
 }
 public class UserActionController : UnitBaseComponent, IPointerClickHandler
 {
-    [SerializeField] private UserAction _userAction;
+    [SerializeField] private EUserAction _eUserAction;
+    public EUserAction CurUserAction { get { return _eUserAction; } }
+    public UserMovingHero UserMovingHero;
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("OnPointerClick");
-        UserActionHandle.Instance.OnCompleteAction(SetMovingPosition);
+        // UserActionHandle.Instance.OnCompleteAction(SetMovingPosition);
+        Messenger.Default.Publish(new HandleCancelRaycastPayload
+        {
+            IsOn = true,
+            callback = SetMovingPosition,
+        });
     }
     private void SetMovingPosition()
     {
-        _userAction = UserAction.SetMovingPoint;
+        _eUserAction = EUserAction.SetMovingPoint;
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log("SetMovingPosition"  +"mousePos");
+        Debug.Log("SetMovingPosition"  + mousePos);
+        UserMovingHero = new UserMovingHero(mousePos);
     }
     private void SetFinishedUserAction()
     {
-        _userAction = UserAction.None;
-
+        _eUserAction = EUserAction.None;
     }
     public bool IsInAction()
     {
-        return _userAction != UserAction.None;
+        return _eUserAction != EUserAction.None;
+    }
+}
+
+public class UserAction
+{
+    
+}
+public class UserMovingHero : UserAction
+{
+    public Vector3 DesPos;
+    public UserMovingHero(Vector3 des)
+    {
+        DesPos = des;
     }
 }
