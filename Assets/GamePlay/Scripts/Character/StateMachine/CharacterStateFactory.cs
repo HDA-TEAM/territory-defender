@@ -5,12 +5,13 @@ public enum CharacterState
 {
     Idle = 0,
     Moving = 1,
-    Attacking = 2,
-    Guarding = 3,
-    TakingDame = 4,
-    Die = 5,
-    Stun = 6,
-    Slow = 7
+    Approaching = 2,
+    Attacking = 3,
+    Guarding = 4,
+    TakingDame = 5,
+    Die = 6,
+    Stun = 7,
+    Slow = 8
 }
 
 public class CharacterStateFactory
@@ -64,7 +65,8 @@ public class HeroStateFactory : CharacterStateFactory
         _states[CharacterState.Die] = new HeroDieState(_context);
         _states[CharacterState.Attacking] = new HeroAttackState(_context);
         _states[CharacterState.Idle] = new HeroIdleState(_context);
-        _states[CharacterState.Moving] = new HeroApproachingState(_context);
+        _states[CharacterState.Moving] = new HeroMovingState(_context);
+        _states[CharacterState.Approaching] = new HeroApproachingState(_context);
     }
 
     public CharacterBaseState GetState(CharacterState characterState)

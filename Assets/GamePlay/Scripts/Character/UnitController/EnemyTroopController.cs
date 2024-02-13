@@ -6,7 +6,6 @@ public class EnemyTroopController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
-        
         if (!CheckSelfAvailableTargeting())
             return;
         if (CheckTargetInUserAction(_unitBaseParent.CurrentTarget))
@@ -21,9 +20,12 @@ public class EnemyTroopController : UnitController
     }
     private bool CheckTargetInUserAction(UnitBase target)
     {
-        var userActionController = _unitBaseParent.UserActionController();
+        if (target == null)
+            return false;
+        
+        var userActionController = target.UserActionController();
         if (userActionController)
-            return _unitBaseParent.UserActionController().IsInAction();
+            return target.UserActionController().IsInAction();
         return false;
     }
 

@@ -30,7 +30,10 @@ public class UnitBase : MonoBehaviour
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
     public UnitType UnitTypeId() => _unitType;
-    public UserActionController UserActionController() => _userActionController;
+    public UserActionController UserActionController()
+    {
+        return _userActionController;
+    }
     // public DefenderDetecting DefenderDetecting() => _defenderDetecting;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
