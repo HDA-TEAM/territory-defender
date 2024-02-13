@@ -69,7 +69,7 @@ public class UnitBase : MonoBehaviour
     {
         public UnitBase Target;
         public BeingTargetCommand BeingTargetCommand;
-        public UserAction UserAction;
+        public EUserAction EUserAction;
         public void SetDefault()
         {
             Target = null;

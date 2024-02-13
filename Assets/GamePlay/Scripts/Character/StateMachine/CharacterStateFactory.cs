@@ -64,7 +64,7 @@ public class HeroStateFactory : CharacterStateFactory
         _states[CharacterState.Die] = new HeroDieState(_context);
         _states[CharacterState.Attacking] = new HeroAttackState(_context);
         _states[CharacterState.Idle] = new HeroIdleState(_context);
-        _states[CharacterState.Moving] = new HeroMovingState(_context);
+        _states[CharacterState.Moving] = new HeroApproachingState(_context);
     }
 
     public CharacterBaseState GetState(CharacterState characterState)

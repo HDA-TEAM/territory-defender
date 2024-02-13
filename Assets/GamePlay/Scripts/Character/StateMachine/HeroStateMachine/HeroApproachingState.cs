@@ -1,16 +1,16 @@
-public class HeroMovingState : CharacterBaseState
+public class HeroApproachingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
-    public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
+    public HeroApproachingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
-        IsRootState = true; 
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool("IsMoving",true);
+        _context.CharacterAnimator.SetBool("IsMoving", true);
     }
     public override void UpdateState()
     {
@@ -19,10 +19,14 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool("IsMoving",false);
+        _context.CharacterAnimator.SetBool("IsMoving", false);
     }
     public override void CheckSwitchState()
     {
+        if (_context.UnitBaseParent().UserActionController().IsInAction())
+        {
+            
+        }
         if (_context.IsDie)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
@@ -38,7 +42,7 @@ public class HeroMovingState : CharacterBaseState
     #region Moving Logic
     private void PlayMoving()
     {
-        _context.transform.position =VectorUtility.Vector3MovingAToB(
+        _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
             _context.Target.transform.position,
             _movingSpeed);
