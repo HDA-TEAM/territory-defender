@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BaseEnemyStateMachine : CharacterStateMachine
 {
     [SerializeField] private LineRenderer _routeToGate;
-    [SerializeField] private InGameInventoryDataAsset _inGameInventoryDataAsset;
+    [FormerlySerializedAs("_inGameInventoryEvent")]
+    [FormerlySerializedAs("_inGameInventoryDataAsset")]
+    [SerializeField] private InGameInventoryRuntimeData _inGameInventoryRuntimeData;
     
     private EnemyStateFactory _factory;
     private int _currentIndexInRouteLine;
@@ -36,7 +39,7 @@ public class BaseEnemyStateMachine : CharacterStateMachine
             _isMovingToGate = true;
             _routeToGate = value; }}
     public int CurrentIndexInRouteLine { get { return _currentIndexInRouteLine;} set { _currentIndexInRouteLine = value; } }
-    public InGameInventoryDataAsset InGameInventoryData{ get { return _inGameInventoryDataAsset; } }
+    public InGameInventoryRuntimeData InGameInventoryData{ get { return _inGameInventoryRuntimeData; } }
     #endregion
     
     protected override void Awake()
