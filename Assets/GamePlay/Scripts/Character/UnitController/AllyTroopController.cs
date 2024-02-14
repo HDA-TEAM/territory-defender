@@ -6,6 +6,8 @@ public class AllyTroopController : UnitController
     {
         // if (!CheckTargetAvailable())
         //     return;
+        if (IsSelfInUserAction())
+            return;
         
         float nearestUnit = float.MaxValue;
         UnitBase target = null;
@@ -37,5 +39,12 @@ public class AllyTroopController : UnitController
             BeingTargetCommand = BeingTargetCommand.None
         };
         target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
+    }
+    private bool IsSelfInUserAction()
+    {
+        var userActionController = _unitBaseParent.UserActionController();
+        if (userActionController)
+            return userActionController.IsInAction();
+        return false;
     }
 }

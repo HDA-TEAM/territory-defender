@@ -28,6 +28,7 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
         _eUserAction = EUserAction.SetMovingPoint;
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Debug.Log("SetMovingPosition"  + mousePos);
+        UnitManager.Instance.ResetTarget(_unitBaseParent);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
         UserMovingHero = new UserMovingHero(mousePos);
     }
