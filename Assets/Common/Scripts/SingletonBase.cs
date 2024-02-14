@@ -29,6 +29,7 @@ public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
             return instance;
         }
     }
+    public static bool IsAlive() => instance && !applicationIsQuitting;
     public void OnDestroy()
     {
         Debug.Log("Gets destroyed");

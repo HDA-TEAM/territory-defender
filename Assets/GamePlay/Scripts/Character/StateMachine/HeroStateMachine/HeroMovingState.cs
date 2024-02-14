@@ -1,16 +1,20 @@
+using UnityEngine;
+
 public class HeroMovingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
+    private UserActionController _userActionController;
     public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
-        IsRootState = true; 
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
+        _userActionController = _context.UserActionController;
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool("IsMoving",true);
+        _context.CharacterAnimator.SetBool("IsMoving", true);
     }
     public override void UpdateState()
     {
@@ -19,15 +23,11 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool("IsMoving",false);
+        _context.CharacterAnimator.SetBool("IsMoving", false);
     }
     public override void CheckSwitchState()
     {
-        if (_context.IsDie)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
-        }
-        if (!_context.IsMovingToTarget)
+        if (!_context.UserActionController.IsInAction())
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
@@ -38,10 +38,18 @@ public class HeroMovingState : CharacterBaseState
     #region Moving Logic
     private void PlayMoving()
     {
-        _context.transform.position =VectorUtility.Vector3MovingAToB(
+        _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
-            _context.Target.transform.position,
+            _userActionController.UserMovingHero.DesPos,
             _movingSpeed);
+        CheckingReachedDestination();
+    }
+    private void CheckingReachedDestination()
+    {
+        if (VectorUtility.IsTwoPointReached(_context.transform.position,_userActionController.UserMovingHero.DesPos))
+        {
+            _userActionController.SetFinishedUserAction();
+        }
     }
     #endregion
 }

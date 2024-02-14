@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
 public enum UnitId
 {
     Ally = 100,
     Enemy = 200,
+    
     EnemyShieldMan = 201,
-    
-    
+
+    Tower = 300,
+
     //Projectile
-    
+    None = 0,
     Arrow = 1000,
     WaterBomb = 1001
 }

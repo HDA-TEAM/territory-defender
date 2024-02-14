@@ -1,22 +1,18 @@
-using BrunoMikoski.AnimationSequencer;
-using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using SuperMaxim.Messaging;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class UnitInformationPanel: MonoBehaviour
+public class UnitInformationPanel: SingletonBase<UnitInformationPanel>
 {
+    [SerializeField] private RectTransform _rectTransformBoard;
+    [SerializeField] private RectTransform _startPos;
+    [SerializeField] private RectTransform _endPos;
     [SerializeField] private Image _avatar;
     [SerializeField] private TextMeshProUGUI _txtName;
-    [SerializeField] private AnimationSequencerController _openAnim;
-    [SerializeField] private AnimationSequencerController _closeAnim;
     [SerializeField] private CanvasGroup _canvasGroup;
+    [SerializeField] private UnitBase _curUnitBaseInfo;
     private bool _isShowing = false;
     
     public void Awake()
@@ -33,8 +29,11 @@ public class UnitInformationPanel: MonoBehaviour
     private void ShowPanelInformation(ShowUnitInformationPayload payload)
     {
         _canvasGroup.alpha = 1;
-        if (!_isShowing)
-            _openAnim.Play();
+        _rectTransformBoard.DOAnchorPosY(_endPos.anchoredPosition.y, 0.5f); 
+        if (_isShowing)
+        {
+            _isShowing = false;
+        }
         _txtName.text = payload.StatsData.GetInformation(InformationId.Name);
         _isShowing = true;
     }
@@ -43,10 +42,7 @@ public class UnitInformationPanel: MonoBehaviour
         if (_isShowing)
         {
             _isShowing = false;
-            _closeAnim.Play(() =>
-            {
-                _canvasGroup.alpha = 0;
-            });
+            _rectTransformBoard.DOAnchorPosY(_startPos.anchoredPosition.y, 0.5f);
         }
         _isShowing = false;
     }
@@ -54,6 +50,7 @@ public class UnitInformationPanel: MonoBehaviour
 public struct ShowUnitInformationPayload
 {
     public Stats StatsData;
+    public UnitBase UnitBase;
 }
 public struct HideUnitInformationPayload
 {

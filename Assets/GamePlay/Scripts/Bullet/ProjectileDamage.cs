@@ -20,7 +20,7 @@ public class ProjectileDamage : ProjectileBaseComponent
             case EProjectileDealDamageType.Crowd:
                 {
                     var dealType = new DealCrowdDamage();
-                    dealType.SetUp(_affectRange, this.gameObject);
+                    dealType.SetUp(_affectRange, gameObject);
                     dealType.ApplyDealDamage(target,_dame);
                     return;
                 }

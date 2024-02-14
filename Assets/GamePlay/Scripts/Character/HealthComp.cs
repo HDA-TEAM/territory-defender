@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,15 +14,16 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private CanvasGroup _healthParentCanvasGroup;
 
     private float _preSliderValue = 1f; // always full heal
-
-    private void OnEnable()
-    {
-        UnitObserver.Instance.AddUnit(_unitBaseParent);
-    }
+    private Tween _tweenProgressHeal;
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsComp();
         _maxHeath = stats.GetStat(StatId.MaxHeal);
+        _currentHealth = _maxHeath;
+    }
+    private void OnEnable()
+    {
+        StatsUpdate();
     }
     private float CurrentHealth
     {
@@ -45,16 +45,17 @@ public class HealthComp : UnitBaseComponent
 
         ShowToastHitting(dame);
     }
-    private void SetHealthSlider()
+    private async void SetHealthSlider()
     {
         _healthParentCanvasGroup.alpha = 1;
         var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
         var duration = Math.Abs(_preSliderValue - sliderValue);
-        _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
+        _tweenProgressHeal = _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
         {
             _healthParentCanvasGroup.alpha = 0;
             _preSliderValue = sliderValue;
         });
+        await _tweenProgressHeal.AsyncWaitForCompletion();
     }
     private async void ShowToastHitting(float dame)
     {
@@ -67,7 +68,7 @@ public class HealthComp : UnitBaseComponent
     {
         // Notify for unit observer to remove it self
         _unitBaseParent.OnOutOfHeal?.Invoke(_unitBaseParent);
-        
+        // UnitManager.Instance.NotifyAllUnit(_unitBaseParent.gameObject.tag,_unitBaseParent);
         // Notify for state machine
         _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
     }

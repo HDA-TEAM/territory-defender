@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class HeroAttackState : CharacterAttackState
 {
     private readonly BaseHeroStateMachine _context;
@@ -14,6 +11,10 @@ public class HeroAttackState : CharacterAttackState
         if (_context.IsDie)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }
+        if (_context.UserActionController.IsInAction())
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
         else if (!_context.IsAttack || _context.IsDie)
         {

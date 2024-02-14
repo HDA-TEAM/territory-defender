@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: -866078463075045641}
   - component: {fileID: 5243910596837583625}
   - component: {fileID: 421500131297264376}
+  - component: {fileID: 5614043302446956692}
   m_Layer: 0
   m_Name: EnemyPrefabBase
   m_TagString: Enemy
@@ -302,14 +303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitController: {fileID: 5614043302446956692}
   _characterStateMachine: {fileID: 5243910596837583625}
-  _targetDetecting: {fileID: 0}
   _healthComp: {fileID: 3109024967751958898}
-  _attackingComp: {fileID: 1678257232}
   _checkingCombatJoinInComp: {fileID: 0}
   _unitStatsComp: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
   _enemyReachingDestination: {fileID: 0}
-  _targetChallenging: {fileID: 0}
+  _targetChallenging: {fileID: 421500131297264376}
+  _unitShowingInformation: {fileID: 0}
+  _unitType: 3
+  CurrentTarget: {fileID: 0}
 --- !u!114 &1678257232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,7 +327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   startAttackPoint: {fileID: 0}
-  attackingType: 1
+  _troopBehaviourType: 1
   attackingCooldown: 4
   attackingDamage: 20
   attackingRange: 1.5
@@ -375,12 +378,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
-  _attackingType: 0
+  _troopBehaviourType: 0
   _animator: {fileID: 6715228475396641559}
   _stats: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
   _projectileDataAsset: {fileID: 0}
   _projectileId: 0
   _curTarget: {fileID: 0}
+  _beingTargetCommand: 0
   _routeToGate: {fileID: 0}
   _inGameInventoryDataAsset: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
 --- !u!114 &421500131297264376
@@ -393,6 +397,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3d69da71cde494a8170bd7a3d35e763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
+--- !u!114 &5614043302446956692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ada11b13fb74fcea0383b7c01e6c4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
@@ -815,7 +832,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 13.2, y: 11.81}
+  m_Size: {x: 7.44, y: 9.62}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

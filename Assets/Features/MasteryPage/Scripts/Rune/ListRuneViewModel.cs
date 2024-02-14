@@ -108,9 +108,9 @@ public class ListRuneViewModel : MonoBehaviour
             });
         }
         // Load Star data
-        _inventoryComposite.Currency = _inventoryDataAsset.GetCurrencyValue();
-        _inventoryComposite.Life = _inventoryDataAsset.GetLifeValue();
-        _inventoryComposite.StarNumber = _inventoryDataAsset.GetStarValue();
+        _inventoryComposite.Currency = _inventoryRuntimeData.GetCurrencyValue();
+        _inventoryComposite.Life = _inventoryRuntimeData.GetLifeValue();
+        _inventoryComposite.StarNumber = _inventoryRuntimeData.GetStarValue();
 
         // Default setting
         if (_preTowerDataAssetComposite.RuneComposite == null)
@@ -182,7 +182,7 @@ public class ListRuneViewModel : MonoBehaviour
         _preSelectedUpgradeRuneView = itemUpgradeRuneView;
         
         //Conditions to upgrade any skill
-        if (_preSelectedItem.RuneComposite.Level <= _preSelectedItem.RuneComposite.MaxLevel  && _inventoryDataAsset.GetStarValue() > 0)
+        if (_preSelectedItem.RuneComposite.Level <= _preSelectedItem.RuneComposite.MaxLevel  && _inventoryRuntimeData.GetStarValue() > 0)
         {
             _preRuneSo = _runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
             
@@ -191,7 +191,7 @@ public class ListRuneViewModel : MonoBehaviour
                 _commonTowerConfig.UpdateTowerData(_preTowerDataAssetComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
             
                 // Subtract star number
-                _inventoryDataAsset.TryChangeStar(1);
+                _inventoryRuntimeData.TryChangeStar(1);
         
                 
                 Debug.Log("Upgrade rune successful....");

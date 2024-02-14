@@ -5,22 +5,36 @@ using UnityEngine.Serialization;
 public class UnitBase : MonoBehaviour
 {
     #region Component
+    [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
-    [SerializeField] private TargetDetecting _targetDetecting;
+    // [SerializeField] private DefenderDetecting _defenderDetecting;
     [SerializeField] private HealthComp _healthComp;
-    [SerializeField] private AttackingComp _attackingComp;
     [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
     [SerializeField] private Stats _unitStatsComp;
     [SerializeField] private EnemyReachingDestination _enemyReachingDestination;
     [SerializeField] private TargetChallenging _targetChallenging;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
+    [SerializeField] private UnitType _unitType;
+    [SerializeField] private UserActionController _userActionController;
     #endregion
-
+    public enum UnitType
+    {
+        Tower = 1,
+        Hero = 2,
+        Melee = 3,
+        Range = 4,
+        Mixed = 5,
+    }
     #region Access
+    public UnitController UnitController() => _unitController;
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
-    protected TargetDetecting TargetDetecting() => _targetDetecting;
     public HealthComp HealthComp() => _healthComp;
-    // public AttackingComp AttackingComp() => _attackingComp;
+    public UnitType UnitTypeId() => _unitType;
+    public UserActionController UserActionController()
+    {
+        return _userActionController;
+    }
+    // public DefenderDetecting DefenderDetecting() => _defenderDetecting;
     public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
     public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
     public TargetChallenging TargetChallengingComp() => _targetChallenging;
@@ -32,22 +46,40 @@ public class UnitBase : MonoBehaviour
     private void OnValidate()
     {
         _characterStateMachine ??= GetComponent<CharacterStateMachine>(); 
-        _targetDetecting ??= GetComponent<TargetDetecting>(); 
         _healthComp ??= GetComponent<HealthComp>(); 
         // _attackingComp ??= GetComponent<AttackingComp>();
         _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
     }
     #endregion
-
-
-
+    
+    public UnitState GetUnitState()
+    {
+        return UnitState.Free;
+    }
+    public enum UnitState
+    {
+        Free = 0
+    }
     #region Event
     public UnitBase CurrentTarget;
     public Action<UnitBase> OnOutOfHeal;
-    public Action<UnitBase> OnTargetChanging;
+    public Action<OnTargetChangingComposite> OnTargetChanging;
+    public Action OnRecheckTarget;
     public Action OnResetFindTarget;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
+    public struct OnTargetChangingComposite
+    {
+        public UnitBase Target;
+        public BeingTargetCommand BeingTargetCommand;
+        public EUserAction EUserAction;
+        public void SetDefault()
+        {
+            Target = null;
+            BeingTargetCommand = BeingTargetCommand.None;
+        }
+    }
+    
     #endregion
 }
 

@@ -28,17 +28,23 @@ public class HeroIdleState : CharacterBaseState
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
+        else if (_context.UserActionController.IsInAction())
+        {
+            if (_context.UserActionController.CurUserAction == EUserAction.SetMovingPoint)
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));   
+            }
+        }
         else if (_context.IsAttack)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
         }
         else if (_context.IsMovingToTarget)
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Approaching));
         }
     }
     public override void InitializeSubState()
     {
-        throw new System.NotImplementedException();
     }
 }

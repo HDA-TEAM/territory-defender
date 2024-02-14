@@ -1,10 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TroopTowerBehaviour : UnitBaseComponent
 {
-    private readonly int _maxAllyCount = 3;
+    private readonly int _maxAllyCount = 1;
     [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
     [SerializeField] private float _campingRange;
     [SerializeField] private Vector3 _campingPos;
@@ -21,9 +20,9 @@ public class TroopTowerBehaviour : UnitBaseComponent
         {
             var ally = PoolingController.Instance.SpawnObject(UnitId.Ally, _unitBaseParent.gameObject.transform.position);
             Debug.LogError("Spawn pos : " + gameObject.transform.position);
+            
             _allyUnits.Add(ally.GetComponent<UnitBase>());
         }
-        
     }
 
     private void OnDisable()

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PoolingBase : MonoBehaviour 
@@ -25,8 +24,8 @@ public class PoolingBase : MonoBehaviour
     private GameObject InitObjectInstance()
     {
         GameObject instance = Instantiate(prefab);
-        instance.gameObject.transform.SetParent(parent.transform);
-        instance.gameObject.SetActive(false);
+        instance.transform.SetParent(parent.transform);
+        instance.SetActive(false);
         return instance;
     }
     public GameObject GetInstance()

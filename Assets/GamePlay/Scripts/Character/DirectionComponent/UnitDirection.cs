@@ -16,14 +16,14 @@ public class UnitDirection : UnitBaseComponent
     {
         _localScaleX = _transform.localScale.x;
     } 
-    private void OnEnable()
-    {
-        _unitBaseParent.OnTargetChanging += OnTargetChanging;
-    }
-    private void OnDisable()
-    {
-        _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-    }
+    // private void OnEnable()
+    // {
+    //     _unitBaseParent.OnTargetChanging += OnTargetChanging;
+    // }
+    // private void OnDisable()
+    // {
+    //     _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+    // }
     #endregion
     #region Update data
     private void Update()

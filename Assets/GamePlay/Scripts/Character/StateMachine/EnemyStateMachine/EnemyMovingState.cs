@@ -1,7 +1,10 @@
+using UnityEngine;
+
 public class EnemyMovingState : CharacterBaseState
 {
     private readonly BaseEnemyStateMachine _context;
     private float _movingSpeed;
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     public EnemyMovingState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
@@ -9,6 +12,7 @@ public class EnemyMovingState : CharacterBaseState
     }
     public override void EnterState()
     {
+        _context.CharacterAnimator.SetBool(IsMoving,true);
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
     }
     public override void UpdateState()
@@ -18,6 +22,7 @@ public class EnemyMovingState : CharacterBaseState
     }
     public override void ExitState()
     {
+        _context.CharacterAnimator.SetBool(IsMoving,false);
     }
     public override void CheckSwitchState()
     {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyAttackState : CharacterAttackState
@@ -7,6 +6,20 @@ public class EnemyAttackState : CharacterAttackState
     public EnemyAttackState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         _context = currentContext;
+    }
+    public override void UpdateState()
+    {
+        var isInAttackRange = _context.CurrentTarget && GameObjectUtility.Distance2dOfTwoGameObject(_context.gameObject, _context.CurrentTarget.gameObject) < _context.CharacterStats.GetStat(StatId.AttackRange);
+        if (isInAttackRange)
+        {
+            _cooldownNextAttack -= Time.deltaTime;
+            _attackDame = Context.CharacterStats.GetStat(StatId.AttackDamage);
+        
+            CheckSwitchState();
+
+            HandleAttack();
+        }
+        CheckSwitchState();
     }
     public override void CheckSwitchState()
     {

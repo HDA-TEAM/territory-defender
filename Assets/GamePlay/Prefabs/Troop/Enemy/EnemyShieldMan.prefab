@@ -18,7 +18,11 @@ PrefabInstance:
     - target: {fileID: 1678257229, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: _targetChallenging
       value: 
-      objectReference: {fileID: 4692169886810705386}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035520470572084874, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a29ebf7311004ae9b12023af80621fe, type: 3}
     - target: {fileID: 1192807291828039942, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: m_Name
       value: EnemyShieldMan
@@ -100,6 +104,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5243910596837583625, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: _troopBehaviourType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243910596837583625, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: _projectileDataAsset
       value: 
       objectReference: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
@@ -130,15 +138,5 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1678257234, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
     - {fileID: 1678257232, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+    - {fileID: 421500131297264376, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
---- !u!114 &4692169886810705386 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 421500131297264376, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
-  m_PrefabInstance: {fileID: 4955252084277645074}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3d69da71cde494a8170bd7a3d35e763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

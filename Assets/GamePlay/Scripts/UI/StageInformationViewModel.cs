@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class StageInformationViewModel : MonoBehaviour
@@ -8,7 +9,7 @@ public class StageInformationViewModel : MonoBehaviour
     [SerializeField] private StageResourceView _stageResourceView;
 
     [Header("Data"), Space(12)] [SerializeField]
-    private InGameInventoryDataAsset _inventoryDataAsset;
+    private InGameInventoryRuntimeData _inventoryRuntimeData;
 
     // tool
     // hero skill or hero selection
@@ -19,21 +20,21 @@ public class StageInformationViewModel : MonoBehaviour
     }
     private void Awake()
     {
-        _inventoryDataAsset.RegisterLifeChange(OnInventoryChange);
-        _inventoryDataAsset.RegisterCurrencyChange(OnInventoryChange);
+        _inventoryRuntimeData.RegisterLifeChange(OnInventoryChange);
+        _inventoryRuntimeData.RegisterCurrencyChange(OnInventoryChange);
     }
     private void OnDestroy()
     {
-        _inventoryDataAsset.UnRegisterLifeChange(OnInventoryChange);
-        _inventoryDataAsset.UnRegisterCurrencyChange(OnInventoryChange);
+        _inventoryRuntimeData.UnRegisterLifeChange(OnInventoryChange);
+        _inventoryRuntimeData.UnRegisterCurrencyChange(OnInventoryChange);
     }
     private void OnInventoryChange(int fakeValue) => UpdateView();
     private void UpdateView()
     {
         _stageResourceView.Setup(new StageResource
         {
-            CurLife = _inventoryDataAsset.GetLifeValue(),
-            TotalCoin = _inventoryDataAsset.GetCurrencyValue(),
+            CurLife = _inventoryRuntimeData.GetLifeValue(),
+            TotalCoin = _inventoryRuntimeData.GetCurrencyValue(),
             CurWaveCount = 0,
             MaxWaveCount = 5,
         });
