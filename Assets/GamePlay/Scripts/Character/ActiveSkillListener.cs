@@ -1,7 +1,7 @@
-namespace GamePlay.Scripts.Character
+using UnityEngine;
+
+public class ActiveSkillListener : UnitBaseComponent
 {
-    public class ActiveSkillListener
-    {
-        
-    }
+    [SerializeField] private InGameSkillBase _inGameSkillBase;
+    
 }

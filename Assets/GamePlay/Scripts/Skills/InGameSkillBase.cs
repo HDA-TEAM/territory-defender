@@ -1,11 +1,6 @@
 using UnityEngine;
 
-public enum ESkillType
-{
-    EarthquakeStomp = 1
-    
-}
-public class InGameSkillBase : MonoBehaviour
+public class InGameSkillBase : ScriptableObject
 {
     public virtual void OnExecute()
     {

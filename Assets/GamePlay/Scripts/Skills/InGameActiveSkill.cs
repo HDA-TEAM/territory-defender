@@ -5,17 +5,19 @@ using UnityEngine.UI;
 public class InGameActiveSkill : MonoBehaviour
 {
     [SerializeField] private Button _btnUsingKill;
-    private Action _onClick;
+    private Action<ESkillId> _onClick;
+    private ESkillId _skillId;
     private void Awake()
     {
         _btnUsingKill.onClick.AddListener(OnClickUsingSkill);
     }
-    public void SetUpSkill(Action onUsingSkill)
+    public void SetUpSkill(ESkillId eSkillId,Action<ESkillId> onUsingSkill)
     {
+        _skillId = eSkillId;
         _onClick = onUsingSkill;
     }
     private void OnClickUsingSkill()
     {
-        _onClick?.Invoke();
+        _onClick?.Invoke(_skillId);
     }
 }
