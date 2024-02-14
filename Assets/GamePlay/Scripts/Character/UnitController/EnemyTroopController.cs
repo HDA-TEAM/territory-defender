@@ -1,13 +1,11 @@
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class EnemyTroopController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
-        if (!CheckSelfAvailableTargeting())
-            return;
+        // if (!CheckSelfAvailableTargeting())
+        //     return;
         if (CheckTargetInUserAction(_unitBaseParent.CurrentTarget))
         {
             var targetChangingComposite = new UnitBase.OnTargetChangingComposite

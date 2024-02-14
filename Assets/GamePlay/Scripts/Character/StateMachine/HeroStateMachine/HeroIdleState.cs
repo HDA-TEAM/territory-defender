@@ -41,7 +41,7 @@ public class HeroIdleState : CharacterBaseState
         }
         else if (_context.IsMovingToTarget)
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Approaching));
         }
     }
     public override void InitializeSubState()
