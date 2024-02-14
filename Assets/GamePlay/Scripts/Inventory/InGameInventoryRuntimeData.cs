@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InGameInventoryDataAsset", menuName = "ScriptableObject/DataAsset/InGameInventoryDataAsset")]
-public class InGameInventoryDataAsset : ScriptableObject
+[CreateAssetMenu(fileName = "InGameInventoryRuntimeData", menuName = "ScriptableObject/Data/InGameInventoryRuntimeData")]
+public class InGameInventoryRuntimeData : ScriptableObject
 {
     [SerializeField] private int _currency;
     [SerializeField] private int _life;

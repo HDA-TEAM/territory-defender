@@ -13,7 +13,7 @@ public enum UnitId
     Tower = 300,
 
     //Projectile
-    
+    None = 0,
     Arrow = 1000,
     WaterBomb = 1001
 }

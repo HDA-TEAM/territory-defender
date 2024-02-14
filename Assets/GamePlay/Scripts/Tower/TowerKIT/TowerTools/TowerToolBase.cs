@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum TowerToolType
 {
@@ -13,7 +14,7 @@ public abstract class TowerToolBase : MonoBehaviour
 {
     [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
     [SerializeField] protected TowerDataAsset _towerDataAsset;
-    [SerializeField] protected InGameInventoryDataAsset _inGameInventoryDataAsset;
+    [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
     [SerializeField] protected ConfirmHandle _confirmHandle;
     public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
     private void Start() => _confirmHandle.SetUpTool(Apply);

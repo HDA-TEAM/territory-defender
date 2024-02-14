@@ -1,7 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using System;
-using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +19,11 @@ public class HealthComp : UnitBaseComponent
     {
         var stats = _unitBaseParent.UnitStatsComp();
         _maxHeath = stats.GetStat(StatId.MaxHeal);
+        _currentHealth = _maxHeath;
+    }
+    private void OnEnable()
+    {
+        StatsUpdate();
     }
     private float CurrentHealth
     {

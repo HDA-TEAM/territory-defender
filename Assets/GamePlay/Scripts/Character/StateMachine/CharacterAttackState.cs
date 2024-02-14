@@ -28,11 +28,10 @@ public class CharacterAttackState : CharacterBaseState
     }
     public override void CheckSwitchState() {}
     public override void InitializeSubState() {}
-    private void HandleAttack()
+    protected void HandleAttack()
     {
         if (_cooldownNextAttack <= 0)
         {
-            Context.CharacterAnimator.SetBool("IsAttack",true);
             // Reset cooldown next attack time
             _cooldownNextAttack = Context.CharacterStats.GetStat(StatId.AttackSpeed);
             
@@ -44,7 +43,10 @@ public class CharacterAttackState : CharacterBaseState
                         
                         // Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
                         // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
-                       
+
+                        if (Context.CharacterProjectileIUnitId == UnitId.None)
+                        return;
+                        
                         var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId);
                         prjBase.GetProjectileMovement().GetLineRoute(Context.transform.position, EProjectileType.Arrow, Context.CurrentTarget);
                         return;

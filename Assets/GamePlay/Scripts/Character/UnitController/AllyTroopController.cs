@@ -38,5 +38,4 @@ public class AllyTroopController : UnitController
         };
         target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
     }
- 
 }

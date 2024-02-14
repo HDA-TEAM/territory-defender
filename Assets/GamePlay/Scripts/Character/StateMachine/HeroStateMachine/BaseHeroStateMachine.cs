@@ -6,7 +6,7 @@ public class BaseHeroStateMachine : CharacterStateMachine
     private bool _isAttack;
     private bool _isMovingToTarget;
     private UnitBase _target;
-    
+    private UserActionController _userActionController;
     private bool _isDie;
 
     #region Event
@@ -30,10 +30,11 @@ public class BaseHeroStateMachine : CharacterStateMachine
     public bool IsAttack { get { return _isAttack; } }
     public bool IsMovingToTarget { get { return _isMovingToTarget; } }
     public UnitBase Target { get { return _target; } }
-    
+    public UserActionController UserActionController { get { return _userActionController; } }
     #endregion
     protected override void Awake()
     {
+        _userActionController = _unitBaseParent.UserActionController();
         _factory = new HeroStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
@@ -60,5 +61,21 @@ public class BaseHeroStateMachine : CharacterStateMachine
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }
+    // protected override void OnEnable()
+    // {
+    //     base.OnEnable();
+    //     _unitBaseParent.OnTargetChanging += OnTargetChanging;
+    // }
+    // protected override void OnDisable()
+    // {
+    //     base.OnDisable();
+    //     _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+    //     
+    // }
+    private void OnExecuteUserAction()
+    {
+        
+    }
     #endregion
+    
 }

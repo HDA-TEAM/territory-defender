@@ -1,18 +1,14 @@
-using UnityEngine;
-
-public class HeroMovingState : CharacterBaseState
+public class HeroApproachingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
-    private UserActionController _userActionController;
-    public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
+    public HeroApproachingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
-        _userActionController = _context.UserActionController;
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
         _context.CharacterAnimator.SetBool("IsMoving", true);
     }
@@ -27,7 +23,15 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void CheckSwitchState()
     {
-        if (!_context.UserActionController.IsInAction())
+        if (_context.IsDie)
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+        }
+        if (_context.UserActionController.IsInAction())
+        {
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+        }
+        if (!_context.IsMovingToTarget)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
@@ -40,16 +44,8 @@ public class HeroMovingState : CharacterBaseState
     {
         _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
-            _userActionController.UserMovingHero.DesPos,
+            _context.Target.transform.position,
             _movingSpeed);
-        CheckingReachedDestination();
-    }
-    private void CheckingReachedDestination()
-    {
-        if (VectorUtility.IsTwoPointReached(_context.transform.position,_userActionController.UserMovingHero.DesPos))
-        {
-            _userActionController.SetFinishedUserAction();
-        }
     }
     #endregion
 }

@@ -2,6 +2,7 @@ using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum StageId
 {
@@ -16,7 +17,7 @@ public struct StageConfig
     public TowerKitSetConfig TowerKitSetConfig;
     public RouteSetConfig RouteSetConfig;
     public StageSpawningConfig StageSpawningConfig;
-    public InGameInventoryDataAsset InGameInventoryDataAsset;
+    public InGameInventoryRuntimeData _inGameInventoryRuntimeData;
 }
 
 // public abstract class LocalDataAssetBase{

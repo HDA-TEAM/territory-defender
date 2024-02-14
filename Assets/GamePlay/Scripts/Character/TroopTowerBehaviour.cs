@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TroopTowerBehaviour : UnitBaseComponent
 {
-    private readonly int _maxAllyCount = 3;
+    private readonly int _maxAllyCount = 1;
     [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
     [SerializeField] private float _campingRange;
     [SerializeField] private Vector3 _campingPos;

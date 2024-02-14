@@ -1,17 +1,18 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class InGameManager : MonoBehaviour
 {
     [Header("Data"), Space(12)] [SerializeField]
-    private InGameInventoryDataAsset _inventoryDataAsset;
+    private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private InGameResultsController _resultsController;
     private void Awake()
     {
-        _inventoryDataAsset.RegisterLifeChange(OnLifeChange);
+        _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
     }
     private void OnDestroy()
     {
-        _inventoryDataAsset.UnRegisterLifeChange(OnLifeChange);
+        _inventoryRuntimeData.UnRegisterLifeChange(OnLifeChange);
     }
     private void OnLifeChange(int life)
     {
