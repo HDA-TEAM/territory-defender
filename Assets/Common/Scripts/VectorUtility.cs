@@ -30,4 +30,9 @@ public static class VectorUtility
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         return angle;
     }
+    public static bool CheckLeftToRightDirection(Vector3 posA, Vector3 posB)
+    {
+        Vector3 direction = (posB - posA).normalized;
+        return direction.x >= 0;
+    }
 }
