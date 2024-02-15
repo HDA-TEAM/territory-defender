@@ -46,7 +46,6 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
         _eUserAction = EUserAction.UsingSkill;
         Debug.Log("Execute Skill");
         UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, new EarthquakeStompSkill());
-
     }
     public void SetFinishedUserAction()
     {
@@ -54,7 +53,7 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     }
     public bool IsInAction()
     {
-        return _eUserAction != EUserAction.None;
+        return _eUserAction != EUserAction.None || _eUserAction == EUserAction.UsingSkill;
     }
 }
 
