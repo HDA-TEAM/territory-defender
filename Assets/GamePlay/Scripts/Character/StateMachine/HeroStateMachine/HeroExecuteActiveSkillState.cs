@@ -1,28 +1,25 @@
 using UnityEngine;
 
-public class HeroApproachingState : CharacterBaseState
+public class HeroExecuteActiveSkillState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
-    private float _movingSpeed;
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    public HeroApproachingState(BaseHeroStateMachine currentContext) : base(currentContext)
+    private static readonly int IsPlayActiveSkill = Animator.StringToHash("IsPlayActiveSkill");
+    public HeroExecuteActiveSkillState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
-        _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool(IsMoving, true);
+        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
     }
     public override void UpdateState()
     {
-        PlayMoving();
         CheckSwitchState();
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsMoving, false);
+        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, false);
     }
     public override void CheckSwitchState()
     {
@@ -30,7 +27,7 @@ public class HeroApproachingState : CharacterBaseState
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
-        if (_context.UserActionController.IsInAction())
+        if (!_context.UserActionController.IsInAction())
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
@@ -42,13 +39,4 @@ public class HeroApproachingState : CharacterBaseState
     public override void InitializeSubState()
     {
     }
-    #region Moving Logic
-    private void PlayMoving()
-    {
-        _context.transform.position = VectorUtility.Vector3MovingAToB(
-            _context.transform.position,
-            _context.Target.transform.position,
-            _movingSpeed);
-    }
-    #endregion
 }

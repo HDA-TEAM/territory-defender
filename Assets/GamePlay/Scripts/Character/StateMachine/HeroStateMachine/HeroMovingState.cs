@@ -5,6 +5,7 @@ public class HeroMovingState : CharacterBaseState
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
     private UserActionController _userActionController;
+    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -14,7 +15,7 @@ public class HeroMovingState : CharacterBaseState
     {
         _userActionController = _context.UserActionController;
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool("IsMoving", true);
+        _context.CharacterAnimator.SetBool(IsMoving, true);
     }
     public override void UpdateState()
     {
@@ -23,7 +24,7 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool("IsMoving", false);
+        _context.CharacterAnimator.SetBool(IsMoving, false);
     }
     public override void CheckSwitchState()
     {

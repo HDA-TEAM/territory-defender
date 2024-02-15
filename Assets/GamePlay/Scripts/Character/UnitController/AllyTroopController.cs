@@ -44,7 +44,7 @@ public class AllyTroopController : UnitController
     {
         var userActionController = _unitBaseParent.UserActionController();
         if (userActionController)
-            return userActionController.IsInAction();
+            return userActionController.IsInAction() && userActionController.IsUserActionBlocked();
         return false;
     }
 }

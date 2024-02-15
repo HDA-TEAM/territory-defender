@@ -53,7 +53,11 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     }
     public bool IsInAction()
     {
-        return _eUserAction != EUserAction.None || _eUserAction == EUserAction.UsingSkill;
+        return _eUserAction != EUserAction.None;
+    }
+    public bool IsUserActionBlocked()
+    {
+        return _eUserAction == EUserAction.SetMovingPoint;
     }
 }
 
