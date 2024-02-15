@@ -23,7 +23,7 @@ public class EnemyTroopController : UnitController
         
         var userActionController = target.UserActionController();
         if (userActionController)
-            return userActionController.IsInAction() || userActionController.IsUserActionBlocked();
+            return userActionController.IsInAction() && userActionController.IsUserActionBlocked();
         return false;
     }
 
