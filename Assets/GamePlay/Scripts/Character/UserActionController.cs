@@ -46,8 +46,8 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     {
         _eUserAction = EUserAction.UsingSkill;
         Debug.Log("Execute Skill");
-        UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, new EarthquakeStompSkill());
-        _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
+        SkillDataSO skillConfig = _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
+        UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, skillConfig);
     }
     public void SetFinishedUserAction()
     {
