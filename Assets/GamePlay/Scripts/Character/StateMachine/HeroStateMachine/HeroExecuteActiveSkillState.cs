@@ -14,7 +14,9 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     public override void EnterState()
     {
         _isFinished = false;
-        _skillDuringTime = _context.CharacterAnimator.GetCurrentAnimatorClipInfo(0).Length;
+        _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
+        Debug.Log("_skillDuringTime " + _skillDuringTime);
+        Debug.Log("_skillDuringTime " +  _context.CharacterAnimator.GetCurrentAnimatorClipInfo(0).Length);
         _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
     }
     public override void UpdateState()
@@ -46,9 +48,14 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
         _skillDuringTime -= Time.deltaTime;
         if (_skillDuringTime <= 0)
         {
+            DealDame();
             _context.UserActionController.SetFinishedUserAction();
             _isFinished = true;
         }
+    }
+    private void DealDame()
+    {
+        
     }
     public override void InitializeSubState()
     {

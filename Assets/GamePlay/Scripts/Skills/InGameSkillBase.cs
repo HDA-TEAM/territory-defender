@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class InGameSkillBase : ScriptableObject
+public class InGameSkillBase : SkillDataSO
 {
     public virtual void OnExecute()
     {

@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abc189d1052493d939fe6d7230fde17, type: 3}
   m_Name: SummonElephant
   m_EditorClassIdentifier: 
-  _skillName: Summon Elephant
-  _skillText: Summon elephant to attack enemy
+  _statDict:
+    _serializedList:
+    - Key: 0
+      Value: 50
+    - Key: 2
+      Value: 2
+  _informationDict:
+    _serializedList:
+    - Key: 0
+      Value: Summon Elephant
+    - Key: 1
+      Value: Summon elephant to attack enemy
   _skillImage: {fileID: 21300000, guid: 96e962a1eff714a5aa8d62dc6644e72f, type: 3}
