@@ -15,6 +15,7 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     public EUserAction CurUserAction { get { return _eUserAction; } }
     public UserMovingHero UserMovingHero;
     public UserUsingHeroSkill UserUsingHeroSkill;
+    [SerializeField] private SkillsDataAsset _skillsDataAsset;
 
     private void OnEnable()
     {
@@ -46,6 +47,7 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
         _eUserAction = EUserAction.UsingSkill;
         Debug.Log("Execute Skill");
         UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, new EarthquakeStompSkill());
+        _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
     }
     public void SetFinishedUserAction()
     {
@@ -77,8 +79,8 @@ public class UserMovingHero : UserAction
 public class UserUsingHeroSkill : UserAction
 {
     public ESkillId SkillId;
-    public InGameSkillBase SkillConfig;
-    public UserUsingHeroSkill(ESkillId eSkillId, InGameSkillBase inGameSkillBase)
+    public SkillDataSO SkillConfig;
+    public UserUsingHeroSkill(ESkillId eSkillId, SkillDataSO inGameSkillBase)
     {
         SkillId = eSkillId;
         SkillConfig = inGameSkillBase;
