@@ -87,7 +87,7 @@ public class AllyStateFactory : CharacterStateFactory
         _states[CharacterState.Die] = new AllyDieState(_context);
         _states[CharacterState.Attacking] = new AllyAttackState(_context);
         _states[CharacterState.Idle] = new AllyIdleState(_context);
-        _states[CharacterState.Moving] = new AllyMovingState(_context);
+        _states[CharacterState.Moving] = new AllyApproachingState(_context);
     }
 
     public CharacterBaseState GetState(CharacterState characterState)

@@ -5,6 +5,7 @@ public class AllyIdleState : CharacterBaseState
 {
     private readonly BaseAllyStateMachine _context;
     private Vector3 _pos;
+    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public AllyIdleState(BaseAllyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -12,7 +13,7 @@ public class AllyIdleState : CharacterBaseState
     }
     public override void EnterState()
     {
-        Context.CharacterAnimator.SetBool("IsIdle", true);
+        Context.CharacterAnimator.SetBool(IsIdle, true);
     }
     public override void UpdateState()
     {
@@ -20,7 +21,7 @@ public class AllyIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool("IsIdle", false);
+        Context.CharacterAnimator.SetBool(IsIdle, false);
     }
     public override void CheckSwitchState()
     {
@@ -34,7 +35,7 @@ public class AllyIdleState : CharacterBaseState
         }
         else if (_context.IsMovingToTarget)
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));
+            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Approaching));
         }
     }
     public override void InitializeSubState()

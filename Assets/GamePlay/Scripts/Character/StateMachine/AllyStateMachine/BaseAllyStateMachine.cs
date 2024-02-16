@@ -44,10 +44,10 @@ public class BaseAllyStateMachine : CharacterStateMachine
         
         _target = composite.Target;
 
-        CheckingAttackOrMoving(_target);
+        CheckingAttackOrApproaching(_target);
     }
     #region Logic checking
-    private void CheckingAttackOrMoving(UnitBase target)
+    private void CheckingAttackOrApproaching(UnitBase target)
     {
         if (target == null)
         {
