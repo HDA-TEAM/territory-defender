@@ -18,7 +18,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
         // SetCampingPlace(Vector3.zero);
         for (int i = 0; i < _maxAllyCount; i++)
         {
-            var ally = PoolingController.Instance.SpawnObject(UnitId.Ally, _unitBaseParent.gameObject.transform.position);
+            var ally = PoolingController.Instance.SpawnObject(UnitId.AllyWarrior, _unitBaseParent.gameObject.transform.position);
             Debug.LogError("Spawn pos : " + gameObject.transform.position);
             
             _allyUnits.Add(ally.GetComponent<UnitBase>());

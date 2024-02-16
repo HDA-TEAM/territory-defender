@@ -65,7 +65,7 @@ public class DealSingleDamage : IProjectileDealDamageType
 {
     public void ApplyDealDamage(UnitBase mainTarget, float dame)
     {
-        if (mainTarget.HealthComp())
+        if (mainTarget &&mainTarget.HealthComp())
             mainTarget.HealthComp().PlayHurting(dame);
     }
 }

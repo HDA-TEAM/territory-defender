@@ -7,17 +7,17 @@ public class UnitManager : SingletonBase<UnitManager>
     [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
     public void Subscribe(UnitBase unitBase)
     {
-        if (unitBase.gameObject.CompareTag(UnitId.Enemy.ToString()))
+        if (unitBase.gameObject.CompareTag(UnitSideId.Enemy.ToString()))
             _unitEnemies.Add(unitBase);
-        else if (unitBase.gameObject.CompareTag(UnitId.Ally.ToString()) ||  unitBase.gameObject.CompareTag(UnitId.Tower.ToString()))
+        else if (unitBase.gameObject.CompareTag(UnitSideId.Ally.ToString()) ||  unitBase.gameObject.CompareTag(UnitSideId.Tower.ToString()))
             _unitAllys.Add(unitBase);
     }
     public void ResetTarget(UnitBase unitBase) => NotifyAllUnit(unitBase);
     public void UnSubscribe(UnitBase unitBase)
     {
-        if (unitBase.gameObject.CompareTag(UnitId.Enemy.ToString()) && _unitEnemies.Contains(unitBase))
+        if (unitBase.gameObject.CompareTag(UnitSideId.Enemy.ToString()) && _unitEnemies.Contains(unitBase))
             _unitEnemies.Remove(unitBase);
-        else if ((unitBase.gameObject.CompareTag(UnitId.Ally.ToString()) ||  unitBase.gameObject.CompareTag(UnitId.Tower.ToString())) 
+        else if ((unitBase.gameObject.CompareTag(UnitSideId.Ally.ToString()) ||  unitBase.gameObject.CompareTag(UnitSideId.Tower.ToString())) 
                  && _unitAllys.Contains(unitBase))
             _unitAllys.Remove(unitBase);
         NotifyAllUnit(unitBase);
