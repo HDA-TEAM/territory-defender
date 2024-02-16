@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ListHeroViewModel : MonoBehaviour
@@ -31,7 +32,8 @@ public class ListHeroViewModel : MonoBehaviour
     private void UpdateData()
     {
         List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
-
+        _heroComposites.Clear();
+        
         // Update data from list hero data to HeroComposite
         foreach (var heroDataSo in listHeroDataSo)
         {
@@ -44,13 +46,17 @@ public class ListHeroViewModel : MonoBehaviour
                     Atk = heroDataSo._stats.GetStat(StatId.AttackDamage).ToString(""),
                     Def = heroDataSo._stats.GetStat(StatId.Armour).ToString(""),
                     Range = heroDataSo._stats.GetStat(StatId.AttackRange).ToString("F2"),
-                    Avatar = heroDataSo._heroImage,
+                    Avatar = heroDataSo._imageHero,
+                    HeroChoose = heroDataSo._imageHeroChoose,
+                    HeroOwned = heroDataSo._imageHeroOwned,
                    
                     Skills = heroDataSo._heroSkills.GetAllSkillData()
                 }
             );
         }
         
+        //Debug.Log(_heroComposites.Count);
+        GameEvents.UpdateListCompositeData(_heroComposites.Cast<IComposite>().ToList());
         UpdateView();
     }
     private void UpdateView()
@@ -132,7 +138,7 @@ public class ListHeroViewModel : MonoBehaviour
     }
 }
 
-public struct HeroComposite
+public struct HeroComposite: IComposite
 {
     public string Name;
     public string Level;
@@ -141,6 +147,9 @@ public struct HeroComposite
     public string Def;
     public string Range;
     public Sprite Avatar;
-
+    public Sprite HeroChoose;
+    public Sprite HeroOwned;
+    
+    
     public List<SkillDataSO> Skills;
 }

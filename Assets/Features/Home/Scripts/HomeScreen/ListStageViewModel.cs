@@ -10,11 +10,13 @@ public class ListStageViewModel : MonoBehaviour
     [Header("UI")] 
     [SerializeField] private List<ItemStageView> _itemStageViews;
 
+    // Internal
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;
-    private static StageComposite _preStageComposite;
-    
     private UIManagerStateMachine _stateMachine;
+    
+    private static StageComposite _preStageComposite;
+
     private void Awake()
     {
         _stateMachine = new UIManagerStateMachine();
@@ -63,13 +65,13 @@ public class ListStageViewModel : MonoBehaviour
 
         _preSelectedStageView = itemStageView;
         
-        GameEvents.SelectStage(_preStageComposite);
+        GameEvents.SelectComposite(_preStageComposite);
     }
 
     public StageComposite GetStage() => _preStageComposite;
 }
 
-public struct StageComposite
+public struct StageComposite : IComposite
 {
     public int StageId;
     public int StageStar;

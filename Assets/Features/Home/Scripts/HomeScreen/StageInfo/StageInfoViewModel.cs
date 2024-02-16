@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +18,8 @@ public class StageInfoViewModel : MonoBehaviour
     private UIManagerStateMachine _stateMachine;
     private void Awake()
     {
-        GameEvents.OnStageSelected += HandleStageSelection;
+        GameEvents.OnCompositeSelected += HandleCompositeSelection;
+        
         _stateMachine = new UIManagerStateMachine();
         _itemPlayView.Setup(OnSelectedItemPlay);
         _itemMasteryView.Setup(OnSelectedItemMastery);
@@ -25,13 +27,16 @@ public class StageInfoViewModel : MonoBehaviour
     private void OnDestroy()
     {
         // Unsubscribe from the stage selection event
-        GameEvents.OnStageSelected -= HandleStageSelection;
+        GameEvents.OnCompositeSelected -= HandleCompositeSelection;
     }
     
-    private void HandleStageSelection(StageComposite stage)
+    private void HandleCompositeSelection(IComposite composite)
     {
-        _currentStage = stage; // Store the selected stage
-        UpdateData();
+        if (composite is StageComposite stage)
+        {
+            _currentStage = stage;
+            UpdateData();
+        }
     }
 
     private void UpdateData()
@@ -50,7 +55,7 @@ public class StageInfoViewModel : MonoBehaviour
             else
                 _itemStageStarViews[i].SetupGrownStar();
         }
-        
+
         _stageInfoDetailView.Setup(_currentStage);
     }
 

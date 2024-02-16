@@ -645,7 +645,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5071460150780925109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -754,9 +754,9 @@ MonoBehaviour:
   - {fileID: 8844754419555788606}
   _runeDetailView: {fileID: 7505075942688255521}
   _itemUpgradeRuneView: {fileID: 6335632413185824703}
-  _starView: {fileID: 3647299838282285556}
+  _itemStarView: {fileID: 3647299838282285556}
   _listTowerViewModel: {fileID: 2112815877278511160}
-  _inventoryDataAsset: {fileID: 11400000, guid: 00465d5a7f2764ec0a42daf0bf647b3c, type: 2}
+  _inventoryRuntimeData: {fileID: 11400000, guid: 00465d5a7f2764ec0a42daf0bf647b3c, type: 2}
   _commonTowerConfig: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
   _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
 --- !u!1 &4880375718204489336

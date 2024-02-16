@@ -14,7 +14,7 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private ListTowerViewModel _listTowerViewModel;
     
     [Header("Data"), Space(12)]
-    [SerializeField] private InGameInventoryDataAsset _inventoryDataAsset;
+    [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private CommonTowerConfig _commonTowerConfig;
     [SerializeField] private RuneDataAsset _runeDataAsset;
 
