@@ -14,22 +14,14 @@ public class TroopTowerBehaviour : UnitBaseComponent
     }
     private void OnEnable()
     {
-        //todo: Default camping at most nearest place on the route
-        SetCampingPlace(Vector3.zero);
         Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
         for (int i = 0; i < _maxAllyCount; i++)
         {
             var ally = PoolingController.Instance.SpawnObject(UnitId.AllyWarrior, parentPos);
-            Debug.LogError("Spawn pos : " + parentPos);
             _allyUnits.Add(ally.GetComponent<UnitBase>());
         }
         var campingPos = RouteSetController.Instance.GetNearestPosFromRoute(parentPos);
-        Debug.LogError("CampingPos : " + parentPos);
         SetCampingPlace(campingPos);
-    }
-    private void FindNearestCampingPlace()
-    {
-        
     }
     private void OnDisable()
     {
