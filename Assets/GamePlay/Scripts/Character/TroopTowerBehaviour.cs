@@ -29,7 +29,10 @@ public class TroopTowerBehaviour : UnitBaseComponent
     {
         foreach (var ally in _allyUnits)
         {
-            ally.gameObject.SetActive(false);
+            if (ally && ally.gameObject)
+            {
+                ally.gameObject.SetActive(false);
+            }
         }
     }
     public void SetCampingPlace(Vector3 campingPos)
