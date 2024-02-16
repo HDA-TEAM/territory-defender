@@ -14,6 +14,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
     }
     private void OnEnable()
     {
+        StatsUpdate();  
         Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
         for (int i = 0; i < _maxAllyCount; i++)
         {
@@ -33,13 +34,17 @@ public class TroopTowerBehaviour : UnitBaseComponent
             }
         }
     }
-    public void SetCampingPlace(Vector3 campingPos)
+    public void SetCampingPlace(Vector3 newCampingPos)
     {
-        _campingPos = campingPos;
+        Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
+        if (VectorUtility.Distance2dOfTwoPos(newCampingPos,parentPos) > _campingRange)
+            return;
+        
+        _campingPos = newCampingPos;
         foreach (var ally in _allyUnits)
         {
+            // Moving to camping pos
             ally.gameObject.transform.position = _campingPos;
-            Debug.LogError("Camping " + ally.gameObject.transform.position);
         }
     }
 }
