@@ -35,6 +35,7 @@ public class BaseAllyStateMachine : CharacterStateMachine
     #endregion
     protected override void Awake()
     {
+        base.Awake();
         _userActionController = _unitBaseParent.UserActionController();
         _factory = new AllyStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);

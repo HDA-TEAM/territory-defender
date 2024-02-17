@@ -1,7 +1,6 @@
 public class HeroMovingState : CharacterMovingState
 {
     private readonly BaseHeroStateMachine _context;
-    private UserActionHeroBaseController _userActionController;
     public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;

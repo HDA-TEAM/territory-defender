@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: _unitStatsComp
+      value: 
+      objectReference: {fileID: 11400000, guid: c2d703d63cf1249a3876069f273afbbc, type: 2}
+    - target: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: _characterStateMachine
       value: 
       objectReference: {fileID: -3654860125293801393}
@@ -63,6 +67,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4296595683639626517, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4296595683639626517, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6715228475396641559, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Controller
       value: 
@@ -96,7 +108,6 @@ MonoBehaviour:
   _curStateLabel: 
   _troopBehaviourType: 1
   _animator: {fileID: 831650938297046932}
-  _stats: {fileID: 11400000, guid: 17c65a71ad5114b419abb98691ee4299, type: 2}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 0
   _curTarget: {fileID: 0}

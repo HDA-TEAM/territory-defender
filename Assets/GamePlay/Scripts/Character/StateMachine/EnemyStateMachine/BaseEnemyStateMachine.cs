@@ -44,6 +44,7 @@ public class BaseEnemyStateMachine : CharacterStateMachine
     
     protected override void Awake()
     {
+        base.Awake();
         _factory = new EnemyStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
