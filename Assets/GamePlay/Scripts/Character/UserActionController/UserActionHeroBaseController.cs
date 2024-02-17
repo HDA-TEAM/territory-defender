@@ -4,7 +4,6 @@ using UnityEngine.EventSystems;
 
 public class UserActionHeroBaseController : UserActionController
 {
-    public UserMovingHero UserMovingHero;
     public UserUsingHeroSkill UserUsingHeroSkill;
 
     private void OnEnable()
@@ -30,7 +29,7 @@ public class UserActionHeroBaseController : UserActionController
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         UnitManager.Instance.ResetTarget(_unitBaseParent);
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
-        UserMovingHero = new UserMovingHero(mousePos);
+        UserMoveUnitToCampingPlace = new UserMoveUnitToCampingPlace(mousePos);
     }
     private void OnUsingSkill(UsingSkillPayload usingSkillPayload)
     {

@@ -44,7 +44,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
         foreach (var ally in _allyUnits)
         {
             // Moving to camping pos
-            ally.gameObject.transform.position = _campingPos;
+            ally.UserActionController().SetMovingPosition(_campingPos);
         }
     }
 }

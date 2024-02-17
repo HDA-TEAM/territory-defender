@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: _characterStateMachine
+      value: 
+      objectReference: {fileID: -3654860125293801393}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -63,5 +67,48 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 7cd43bccf3a594fb89ae635736101117, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 666001084183805972, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+--- !u!95 &831650938297046932 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6715228475396641559, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+  m_PrefabInstance: {fileID: 6249824922664305795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5059342621192615301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1192807291828039942, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+  m_PrefabInstance: {fileID: 6249824922664305795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3654860125293801393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059342621192615301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb258d9cd4164b47bbb62621e5747c22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 6249824920986069198}
+  _curStateLabel: 
+  _troopBehaviourType: 1
+  _animator: {fileID: 831650938297046932}
+  _stats: {fileID: 11400000, guid: 17c65a71ad5114b419abb98691ee4299, type: 2}
+  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
+  _projectileId: 0
+  _curTarget: {fileID: 0}
+  _beingTargetCommand: 0
+--- !u!114 &6249824920986069198 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+  m_PrefabInstance: {fileID: 6249824922664305795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059342621192615301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
