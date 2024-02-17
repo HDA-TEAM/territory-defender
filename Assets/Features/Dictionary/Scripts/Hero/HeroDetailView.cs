@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -42,12 +41,12 @@ public class HeroDetailView : MonoBehaviour, IHeroModePageView
         {
             if (i == 0)
             {
-                _txtPassiveSkillName.text = heroComposite.Skills[i]._skillName;
-                _txtPassiveSkillText.text = heroComposite.Skills[i]._skillText;
+                _txtPassiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
+                _txtPassiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
                 _imgPassiveSkill.sprite = heroComposite.Skills[i]._skillImage;
             } else {
-                _txtActiveSkillName.text = heroComposite.Skills[i]._skillName;
-                _txtActiveSkillText.text = heroComposite.Skills[i]._skillText;
+                _txtActiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
+                _txtActiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
                 _imgActiveSkill.sprite = heroComposite.Skills[i]._skillImage;
             }
         }

@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _transform: {fileID: 2125775758959885298}
+  _isLeftToRightDirection: 0
 --- !u!114 &666001084183805972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _eUserAction: 0
+  _skillsDataAsset: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
 --- !u!1 &4668294441519044016
 GameObject:
   m_ObjectHideFlags: 0

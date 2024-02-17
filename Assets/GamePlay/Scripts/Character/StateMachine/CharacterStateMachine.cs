@@ -45,6 +45,7 @@ public class CharacterStateMachine : UnitBaseComponent
         _unitBaseParent.OnRecheckTarget -= OnRecheckTarget;
         
     }
+    // Handle target is null
     private void OnRecheckTarget()
     {
         if (_curTarget == null || !_curTarget.gameObject.activeSelf)

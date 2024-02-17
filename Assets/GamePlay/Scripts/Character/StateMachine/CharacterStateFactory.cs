@@ -11,7 +11,8 @@ public enum CharacterState
     TakingDame = 5,
     Die = 6,
     Stun = 7,
-    Slow = 8
+    Slow = 8,
+    UsingSkill = 9,
 }
 
 public class CharacterStateFactory
@@ -67,6 +68,7 @@ public class HeroStateFactory : CharacterStateFactory
         _states[CharacterState.Idle] = new HeroIdleState(_context);
         _states[CharacterState.Moving] = new HeroMovingState(_context);
         _states[CharacterState.Approaching] = new HeroApproachingState(_context);
+        _states[CharacterState.UsingSkill] = new HeroExecuteActiveSkillState(_context);
     }
 
     public CharacterBaseState GetState(CharacterState characterState)

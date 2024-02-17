@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,7 @@ public class UnitManager : SingletonBase<UnitManager>
         else if (unitBase.gameObject.CompareTag(UnitId.Ally.ToString()) ||  unitBase.gameObject.CompareTag(UnitId.Tower.ToString()))
             _unitAllys.Add(unitBase);
     }
+    public void ResetTarget(UnitBase unitBase) => NotifyAllUnit(unitBase);
     public void UnSubscribe(UnitBase unitBase)
     {
         if (unitBase.gameObject.CompareTag(UnitId.Enemy.ToString()) && _unitEnemies.Contains(unitBase))
@@ -40,9 +40,14 @@ public class UnitManager : SingletonBase<UnitManager>
         UnitBase.OnTargetChangingComposite targetChangingComposite = new UnitBase.OnTargetChangingComposite();
         targetChangingComposite.SetDefault();
         foreach (var enemy in _unitEnemies)
-            enemy.OnTargetChanging?.Invoke(targetChangingComposite);
+        {
+            if (enemy.CurrentTarget == unitOut)
+                enemy.OnTargetChanging?.Invoke(targetChangingComposite);
+        }
+        
         foreach (var ally in _unitAllys)
-            ally.OnTargetChanging?.Invoke(targetChangingComposite);
+            if (ally.CurrentTarget == unitOut)
+                ally.OnTargetChanging?.Invoke(targetChangingComposite);
     }
     
 }

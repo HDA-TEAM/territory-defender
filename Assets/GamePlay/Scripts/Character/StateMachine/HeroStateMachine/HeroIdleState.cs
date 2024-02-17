@@ -4,7 +4,9 @@ using UnityEngine;
 public class HeroIdleState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
+    private UserActionController _userActionController;
     private Vector3 _pos;
+    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public HeroIdleState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -12,7 +14,8 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void EnterState()
     {
-        Context.CharacterAnimator.SetBool("IsIdle", true);
+        _userActionController = _context.UserActionController;
+        Context.CharacterAnimator.SetBool(IsIdle, true);
     }
     public override void UpdateState()
     {
@@ -20,7 +23,7 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool("IsIdle", false);
+        Context.CharacterAnimator.SetBool(IsIdle, false);
     }
     public override void CheckSwitchState()
     {
@@ -28,11 +31,20 @@ public class HeroIdleState : CharacterBaseState
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
-        else if (_context.UserActionController.IsInAction())
+        else if (_userActionController.IsInAction())
         {
-            if (_context.UserActionController.CurUserAction == EUserAction.SetMovingPoint)
+            switch (_userActionController.CurUserAction)
             {
-                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));   
+                case EUserAction.SetMovingPoint:
+                    {
+                        _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Moving));  
+                        break;
+                    }
+                case EUserAction.UsingSkill:
+                    {
+                        _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.UsingSkill));  
+                        break;
+                    }
             }
         }
         else if (_context.IsAttack)
