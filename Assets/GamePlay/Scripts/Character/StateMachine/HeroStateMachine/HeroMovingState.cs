@@ -4,7 +4,7 @@ public class HeroMovingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
-    private UserActionController _userActionController;
+    private UserActionHeroBaseController _userActionController;
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     public HeroMovingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
@@ -13,7 +13,7 @@ public class HeroMovingState : CharacterBaseState
     }
     public override void EnterState()
     {
-        _userActionController = _context.UserActionController;
+        _userActionController = _context.UserActionController as UserActionHeroBaseController;
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
         _context.CharacterAnimator.SetBool(IsMoving, true);
     }

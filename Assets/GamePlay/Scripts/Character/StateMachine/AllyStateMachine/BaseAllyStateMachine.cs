@@ -6,7 +6,7 @@ public class BaseAllyStateMachine : CharacterStateMachine
     private bool _isAttack;
     private bool _isMovingToTarget;
     private UnitBase _target;
-    
+
     private bool _isDie;
 
     #region Event

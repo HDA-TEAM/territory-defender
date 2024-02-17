@@ -61,21 +61,6 @@ public class BaseHeroStateMachine : CharacterStateMachine
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }
-    // protected override void OnEnable()
-    // {
-    //     base.OnEnable();
-    //     _unitBaseParent.OnTargetChanging += OnTargetChanging;
-    // }
-    // protected override void OnDisable()
-    // {
-    //     base.OnDisable();
-    //     _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-    //     
-    // }
-    private void OnExecuteUserAction()
-    {
-        
-    }
     #endregion
     
 }

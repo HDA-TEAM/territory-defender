@@ -5,7 +5,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private static readonly int IsPlayActiveSkill = Animator.StringToHash("IsPlayActiveSkill");
-    private UserActionController _userActionController;
+    private UserActionHeroBaseController _userActionController;
     private float _skillDuringTime;
     private bool _isFinished;
     public HeroExecuteActiveSkillState(BaseHeroStateMachine currentContext) : base(currentContext)
@@ -16,7 +16,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     public override void EnterState()
     {
         _isFinished = false;
-        _userActionController = _context.UserActionController;
+        _userActionController = _context.UserActionController as UserActionHeroBaseController;
         _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
         Debug.Log("_skillDuringTime " + _skillDuringTime);
         Debug.Log("_skillDuringTime " +  _context.CharacterAnimator.GetCurrentAnimatorClipInfo(0).Length);
