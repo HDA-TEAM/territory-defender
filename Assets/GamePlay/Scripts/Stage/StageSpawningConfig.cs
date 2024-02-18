@@ -72,7 +72,7 @@ public class StageSpawningConfig : ScriptableObject
     {
         [Header("Detail type of spawning objects config")]
         public float StartSpawningTimeOfGroupInSecond;
-        public UnitId ObjectSpawn;
+        public UnitId.Enemy ObjectSpawn;
         public int NumberSpawning;
         public int RouteId;
         public async void StartSpawning()
@@ -81,7 +81,7 @@ public class StageSpawningConfig : ScriptableObject
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(StageConsts.MinSpawningObjectIntervalInSecond));
 
-                GameObject go = PoolingController.Instance.SpawnObject(ObjectSpawn);
+                GameObject go = PoolingController.Instance.SpawnObject(ObjectSpawn.ToString());
 
                 Debug.Log("Spawning " + ObjectSpawn);
 

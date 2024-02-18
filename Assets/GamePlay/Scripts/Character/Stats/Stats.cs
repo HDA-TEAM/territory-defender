@@ -48,6 +48,7 @@ public enum InformationId
 {
     ///Common
     Name = 0,
+    Description = 1,
     
 }
 public enum StatId

@@ -77,4 +77,23 @@ public class RouteSetController : SingletonBase<RouteSetController>
         //                 0));
         // }
     }
+    public Vector3 GetNearestPosFromRoute(Vector3 posA)
+    {
+        float nearestDis = float.MaxValue;
+        Vector3 res = Vector3.zero;
+        foreach (var routeLineRender in _currentRouteLineRenders)
+        {
+            for (int i = 0; i < routeLineRender.positionCount; i++)
+            {
+                var curDis = VectorUtility.Distance2dOfTwoPos(posA, routeLineRender.GetPosition(i));
+                if (nearestDis > curDis)
+                {
+                    nearestDis = curDis;
+                    res = routeLineRender.GetPosition(i);
+                }
+                
+            }
+        }
+        return res;
+    }
 }

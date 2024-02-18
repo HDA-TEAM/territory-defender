@@ -34,6 +34,7 @@ public class BaseHeroStateMachine : CharacterStateMachine
     #endregion
     protected override void Awake()
     {
+        base.Awake();
         _userActionController = _unitBaseParent.UserActionController();
         _factory = new HeroStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);
@@ -60,21 +61,6 @@ public class BaseHeroStateMachine : CharacterStateMachine
         var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetStat(StatId.AttackRange);
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
-    }
-    // protected override void OnEnable()
-    // {
-    //     base.OnEnable();
-    //     _unitBaseParent.OnTargetChanging += OnTargetChanging;
-    // }
-    // protected override void OnDisable()
-    // {
-    //     base.OnDisable();
-    //     _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-    //     
-    // }
-    private void OnExecuteUserAction()
-    {
-        
     }
     #endregion
     

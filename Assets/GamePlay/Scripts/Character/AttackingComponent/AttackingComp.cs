@@ -16,7 +16,7 @@ public class AttackingComp : UnitBaseComponent
 
     [Header("Data"), Space(12)]
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
-    [SerializeField] private UnitId _projectileId;
+    [SerializeField] private UnitId.Projectile _projectileId;
 
     private bool isNeedToWaitCoolDownAttacking = false;
 
@@ -58,7 +58,7 @@ public class AttackingComp : UnitBaseComponent
                         Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
                         // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
                        
-                        var prjBase = _projectileDataAsset.GetProjectileBase(_projectileId);
+                        var prjBase = _projectileDataAsset.GetProjectileBase(_projectileId.ToString());
                         prjBase.GetProjectileMovement().GetLineRoute(startAttackPoint.position, EProjectileType.Arrow, target);
                         
                         await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));

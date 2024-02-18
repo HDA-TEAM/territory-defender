@@ -44,10 +44,10 @@ public class CharacterAttackState : CharacterBaseState
                         // Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
                         // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
 
-                        if (Context.CharacterProjectileIUnitId == UnitId.None)
+                        if (Context.CharacterProjectileIUnitId == UnitId.Projectile.None)
                         return;
                         
-                        var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId);
+                        var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId.ToString());
                         prjBase.GetProjectileMovement().GetLineRoute(Context.transform.position, EProjectileType.Arrow, Context.CurrentTarget);
                         return;
                     }

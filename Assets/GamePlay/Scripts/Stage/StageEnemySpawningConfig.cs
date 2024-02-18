@@ -1,7 +1,5 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "StageEnemySpawningConfig", menuName = "ScriptableObject/Database/Stage/SpawningConfigData")]
@@ -20,7 +18,7 @@ public class StageEnemySpawningConfig : ScriptableObject
     public struct GroupSpawning
     {
         public float StartSpawning;
-        public UnitId ObjectSpawn;
+        public UnitId.Enemy ObjectSpawn;
         public int RouteId;
         public int NumberSpawning;
     }
