@@ -156,7 +156,6 @@ GameObject:
   - component: {fileID: 6093051815202494014}
   - component: {fileID: 6093051815202494015}
   - component: {fileID: -7030754689199355094}
-  - component: {fileID: 3858257114877186647}
   - component: {fileID: 1069866960922029881}
   - component: {fileID: 2176556897988213634}
   - component: {fileID: 3298969290697362971}
@@ -286,19 +285,8 @@ MonoBehaviour:
   _targetChallenging: {fileID: 0}
   _unitShowingInformation: {fileID: 5838589748708221372}
   _unitType: 1
+  _userActionController: {fileID: 0}
   CurrentTarget: {fileID: 0}
---- !u!114 &3858257114877186647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6093051815202494009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4058b914e3d4cfb805de50ccec5135c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1069866960922029881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
   _transform: {fileID: 8934224768507753962}
+  _isLeftToRightDirection: 0
 --- !u!114 &2176556897988213634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,9 +328,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
+  _curStateLabel: 
   _troopBehaviourType: 0
   _animator: {fileID: 6093051815202494015}
-  _stats: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
   _curTarget: {fileID: 0}
@@ -357,7 +346,6 @@ GameObject:
   - component: {fileID: 9162032982623399802}
   - component: {fileID: 6643799260356660022}
   - component: {fileID: 1021085056082389208}
-  - component: {fileID: 7230033807750692009}
   m_Layer: 0
   m_Name: AttackComp
   m_TagString: Untagged
@@ -417,23 +405,3 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
---- !u!114 &7230033807750692009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6942991946045224393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitBaseParent: {fileID: -7030754689199355094}
-  startAttackPoint: {fileID: 8679165266974667951}
-  _troopBehaviourType: 0
-  attackingCooldown: 1
-  attackingDamage: 5
-  attackingRange: 5
-  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
-  _projectileId: 1000

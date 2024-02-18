@@ -7,12 +7,8 @@ public class UnitBase : MonoBehaviour
     #region Component
     [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
-    // [SerializeField] private DefenderDetecting _defenderDetecting;
     [SerializeField] private HealthComp _healthComp;
-    [SerializeField] private CheckingCombatJoinInComp _checkingCombatJoinInComp;
     [SerializeField] private Stats _unitStatsComp;
-    [SerializeField] private EnemyReachingDestination _enemyReachingDestination;
-    [SerializeField] private TargetChallenging _targetChallenging;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
     [SerializeField] private UnitType _unitType;
     [SerializeField] private UserActionController _userActionController;
@@ -34,10 +30,6 @@ public class UnitBase : MonoBehaviour
     {
         return _userActionController;
     }
-    // public DefenderDetecting DefenderDetecting() => _defenderDetecting;
-    public CheckingCombatJoinInComp CheckingCombatJoinIn() => _checkingCombatJoinInComp;
-    public EnemyReachingDestination EnemyReachingDestinationComp => _enemyReachingDestination;
-    public TargetChallenging TargetChallengingComp() => _targetChallenging;
     public UnitShowingInformation UnitShowingInformationComp() => _unitShowingInformation;
     public Stats UnitStatsComp() => _unitStatsComp;
     #endregion
@@ -47,8 +39,6 @@ public class UnitBase : MonoBehaviour
     {
         _characterStateMachine ??= GetComponent<CharacterStateMachine>(); 
         _healthComp ??= GetComponent<HealthComp>(); 
-        // _attackingComp ??= GetComponent<AttackingComp>();
-        _checkingCombatJoinInComp ??= GetComponent<CheckingCombatJoinInComp>();
     }
     #endregion
     
