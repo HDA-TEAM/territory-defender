@@ -7,13 +7,13 @@ public class AllyApproachingState : CharacterBaseState
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     public AllyApproachingState(BaseAllyStateMachine currentContext) : base(currentContext)
     {
-        IsRootState = true; 
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool(IsMoving,true);
+        _context.CharacterAnimator.SetBool(IsMoving, true);
     }
     public override void UpdateState()
     {
@@ -22,7 +22,7 @@ public class AllyApproachingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsMoving,false);
+        _context.CharacterAnimator.SetBool(IsMoving, false);
     }
     public override void CheckSwitchState()
     {
@@ -45,7 +45,7 @@ public class AllyApproachingState : CharacterBaseState
     #region Moving Logic
     private void PlayMoving()
     {
-        _context.transform.position =VectorUtility.Vector3MovingAToB(
+        _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
             _context.Target.transform.position,
             _movingSpeed);
