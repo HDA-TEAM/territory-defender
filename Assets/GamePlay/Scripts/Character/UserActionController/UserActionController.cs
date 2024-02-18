@@ -12,6 +12,7 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     [SerializeField] protected EUserAction _eUserAction;
     [SerializeField] protected SkillsDataAsset _skillsDataAsset;
     public EUserAction CurUserAction { get { return _eUserAction; } }
+    public UserMoveUnitToCampingPlace UserMoveUnitToCampingPlace;
     
     public virtual void OnPointerClick(PointerEventData eventData)
     {
@@ -19,6 +20,12 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     protected virtual void SetMovingPosition()
     {
         _eUserAction = EUserAction.SetMovingPoint;
+    }
+    public virtual void SetMovingPosition(Vector3 des)
+    {
+        _eUserAction = EUserAction.SetMovingPoint;
+        UnitManager.Instance.ResetTarget(_unitBaseParent);
+        UserMoveUnitToCampingPlace = new UserMoveUnitToCampingPlace(des);
     }
     
     public virtual void SetFinishedUserAction()
@@ -39,10 +46,10 @@ public class UserAction
 {
     
 }
-public class UserMovingHero : UserAction
+public class UserMoveUnitToCampingPlace : UserAction
 {
     public Vector3 DesPos;
-    public UserMovingHero(Vector3 des)
+    public UserMoveUnitToCampingPlace(Vector3 des)
     {
         DesPos = des;
     }

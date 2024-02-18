@@ -6,6 +6,7 @@ public class BaseAllyStateMachine : CharacterStateMachine
     private bool _isAttack;
     private bool _isMovingToTarget;
     private UnitBase _target;
+    private UserActionController _userActionController;
 
     private bool _isDie;
 
@@ -30,10 +31,12 @@ public class BaseAllyStateMachine : CharacterStateMachine
     public bool IsAttack { get { return _isAttack; } }
     public bool IsMovingToTarget { get { return _isMovingToTarget; } }
     public UnitBase Target { get { return _target; } }
-    
+    public UserActionController UserActionController { get { return _userActionController; } }
     #endregion
     protected override void Awake()
     {
+        base.Awake();
+        _userActionController = _unitBaseParent.UserActionController();
         _factory = new AllyStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();
