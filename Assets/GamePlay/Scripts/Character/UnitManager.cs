@@ -1,6 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum BeingTargetCommand
+{
+    None = 0,
+    Block = 1,
+    Attack = 2,
+}
 public class UnitManager : SingletonBase<UnitManager>
 {
     [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
