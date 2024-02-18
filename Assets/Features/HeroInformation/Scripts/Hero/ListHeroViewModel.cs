@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 public class ListHeroViewModel : MonoBehaviour
@@ -10,10 +11,11 @@ public class ListHeroViewModel : MonoBehaviour
     
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
-  
+
     [Header("Data"), Space(12)] 
-    [SerializeField] private HeroDataAsset _heroDataAsset;
-    
+    [SerializeField] private HeroDataManager _heroDataManager;
+
+    // SO ListCompositeSo
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -21,43 +23,28 @@ public class ListHeroViewModel : MonoBehaviour
     private bool _status;
     private void Start()
     {
+        UpdateData();
+        
         OnSelectedItem(_itemHeroViews[0]);
+        
     }
     private void Awake()
     {
-        _heroComposites = new List<HeroComposite>();
         
-        UpdateData();
     }
     private void UpdateData()
     {
-        List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
-        _heroComposites.Clear();
-        
-        // Update data from list hero data to HeroComposite
-        foreach (var heroDataSo in listHeroDataSo)
+        Debug.Log(_heroDataManager.HeroComposites.Count.ToString() + ">>>>>>>>>>>>>>>>");
+        if (_heroDataManager.HeroComposites != null)
         {
-            _heroComposites.Add(
-                new HeroComposite
-                {
-                    Name = heroDataSo._stats.GetInformation(InformationId.Name),
-                    Level = heroDataSo._stats.GetStat(StatId.Level).ToString(""),
-                    Hp = heroDataSo._stats.GetStat(StatId.MaxHeal).ToString(""),
-                    Atk = heroDataSo._stats.GetStat(StatId.AttackDamage).ToString(""),
-                    Def = heroDataSo._stats.GetStat(StatId.Armour).ToString(""),
-                    Range = heroDataSo._stats.GetStat(StatId.AttackRange).ToString("F2"),
-                    Avatar = heroDataSo._imageHero,
-                    HeroChoose = heroDataSo._imageHeroChoose,
-                    HeroOwned = heroDataSo._imageHeroOwned,
-                   
-                    Skills = heroDataSo._heroSkills.GetAllSkillData()
-                }
-            );
+            // Update data from list hero data to HeroComposite
+            _heroComposites = _heroDataManager.HeroComposites;
+            
+            UpdateView();
         }
         
-        //Debug.Log(_heroComposites.Count);
-        GameEvents.UpdateListCompositeData(_heroComposites.Cast<IComposite>().ToList());
-        UpdateView();
+        else Debug.Log("________________________");
+        
     }
     private void UpdateView()
     {

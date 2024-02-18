@@ -2,32 +2,50 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
+public struct ListCompositePayload
+{
+    public List<IComposite> Composites;
+}
+public class DataSO : ScriptableObject
+{
+    public Dictionary<EHeroId, HeroComposite> _heroChooseComposites;
+}
 public class ListHeroChooseViewModel : MonoBehaviour
 {
     [Header("UI")] 
     [SerializeField] private List<ItemHeroChooseView> _itemHeroChooseViews;
-    
-    private List<HeroComposite> _currentHero;
+    //SO ListCompositeSo : => data
+    private static List<IComposite> _currentHeroes;
     private void Awake()
     {
-        Debug.Log("<<<<<<<<<<<<<<<<");
-        GameEvents.OnListCompositeSelected += HandleHeroListUpdated;
+        Messenger.Default.Subscribe<ListCompositePayload>(Payload);
+        Debug.Log("???????????????????");
+        //GameEvents.OnListCompositeSelected += HandleHeroListUpdated;
+        //HandleHeroListUpdated(GameEvents.CurHeroComposite.Cast<IComposite>().ToList());
     }
-
-    void OnDisable()
+    
+    private void Payload(ListCompositePayload payload)
     {
-        GameEvents.OnListCompositeSelected -= HandleHeroListUpdated;
+        Debug.Log(">>>>>>>>>>>>>>>>>>>>>>");
+        _currentHeroes = payload.Composites.ToList();
+        UpdateData();
     }
-
-    private void HandleHeroListUpdated(List<IComposite> composites)
+    
+    private void OnDestroy()
     {
-        Debug.Log($"Received {composites.Count} composites.");
-        _currentHero = composites.OfType<HeroComposite>().ToList();
-
-        UpdateView();
+        Messenger.Default.Unsubscribe<ListCompositePayload>(Payload);
     }
+
+    // private void HandleHeroListUpdated(List<IComposite> composites)
+    // {
+    //     Debug.Log($"Received {composites.Count} composites.");
+    //     _currentHero = composites.OfType<HeroComposite>().ToList();
+    //
+    //     UpdateData();
+    // }
 
     private void UpdateData()
     {
@@ -37,11 +55,11 @@ public class ListHeroChooseViewModel : MonoBehaviour
     private void UpdateView()
     {
         //Debug.Log(_currentHero);
+        List<HeroComposite> heroComposites = _currentHeroes.OfType<HeroComposite>().ToList();
         for (int i = 0; i < _itemHeroChooseViews.Count; i++ ) 
         {
-            _itemHeroChooseViews[i].Setup(_currentHero[i], OnHeroChooseSelected);
+            _itemHeroChooseViews[i].Setup(heroComposites[i], OnHeroChooseSelected);
         }
-        
     }
 
     private void OnHeroChooseSelected(ItemHeroChooseView itemHeroChooseView)

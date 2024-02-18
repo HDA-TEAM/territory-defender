@@ -14,6 +14,7 @@ public enum EHeroId
     TrungTrac2 = 7
 }
 
+// Du lieu tho
 [CreateAssetMenu(fileName = "HeroDataAsset", menuName = "ScriptableObject/DataAsset/HeroDataAsset")]
 public class HeroDataAsset : ScriptableObject
 {
