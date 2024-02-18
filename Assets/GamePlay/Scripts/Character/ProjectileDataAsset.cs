@@ -22,7 +22,7 @@ public class ProjectileDataAsset : ScriptableObject
 {
     [SerializeField] private List<ProjectileBase> _projectileBases = new List<ProjectileBase>();
     // Get route between cur pos to target 
-    public ProjectileBase GetProjectileBase(UnitId unitId, int level = 1)
+    public ProjectileBase GetProjectileBase(string unitId, int level = 1)
     {
         var bullet = PoolingController.Instance.SpawnObject(unitId);
         return bullet.GetComponent<ProjectileBase>();
