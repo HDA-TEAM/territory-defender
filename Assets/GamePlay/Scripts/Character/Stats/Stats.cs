@@ -59,6 +59,7 @@ public enum StatId
     AttackRange = 2,
     DetectRange = 3,
     CampingRange = 4,
+    BuffRange = 4,
 
     /// Characteristic
     Level = 20,

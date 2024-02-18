@@ -1,6 +1,6 @@
 public class BaseTowerStateMachine : CharacterStateMachine
 {
-    public bool IsAttack { get; set; }
+    public bool IsAttack { get; private set; }
     
     private TowerStateFactory _factory;
 
