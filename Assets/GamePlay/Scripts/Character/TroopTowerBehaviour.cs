@@ -21,7 +21,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
         Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
         for (int i = 0; i < _maxAllyCount; i++)
         {
-            var ally = PoolingController.Instance.SpawnObject(UnitId.AllyWarrior, parentPos);
+            var ally = PoolingController.Instance.SpawnObject(UnitId.Ally.Warrior.ToString(), parentPos);
             _allyUnits.Add(ally.GetComponent<UnitBase>());
         }
         var campingPos = RouteSetController.Instance.GetNearestPosFromRoute(parentPos);

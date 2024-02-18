@@ -55,7 +55,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
         {
             await UniTask.Delay(TimeSpan.FromSeconds(_spawningEachObjectInterval));
 
-            GameObject go = PoolingController.Instance.SpawnObject(groupSpawning.ObjectSpawn);
+            GameObject go = PoolingController.Instance.SpawnObject(groupSpawning.ObjectSpawn.ToString());
 
             Debug.Log("Spawning " + groupSpawning.ObjectSpawn);
 

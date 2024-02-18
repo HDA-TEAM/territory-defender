@@ -1,37 +1,76 @@
 using AYellowpaper.SerializedCollections;
+using CustomInspector;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public enum UnitId
-{
-    AllyWarrior = 100,
-    EnemyShieldMan = 200,
-    
-    EnemyShieldMans = 201,
-    
-    //Hero
-    TrungTrac = 400,
-    Tower = 300,
+// public enum UnitId
+// {
+//     AllyWarrior = 100,
+//     EnemyShieldMan = 200,
+//     
+//     EnemyShieldMans = 201,
+//     
+//     //Hero
+//     TrungTrac = 400,
+//     Tower = 300,
+//
+//     //Projectile
+//     None = 0,
+//     Arrow = 1000,
+//     WaterBomb = 1001
+// }
+// public enum UnitSideId
+// {
+//     Ally = 1,
+//     Enemy = 2,
+//     Tower = 3,
+// }
 
-    //Projectile
-    None = 0,
-    Arrow = 1000,
-    WaterBomb = 1001
-}
 public enum UnitSideId
 {
     Ally = 1,
     Enemy = 2,
     Tower = 3,
+    Hero = 4,
+}
+
+public static class UnitId
+{
+    
+    public enum Ally
+    {
+        Warrior = 100,
+    }
+
+    public enum Enemy
+    {
+        ShieldMan = 200,
+    }
+
+    public enum Hero
+    {
+        TrungTrac = 400,
+    }
+
+    public enum Tower
+    {
+        WarriorTower = 300,
+    }
+    public enum Projectile
+    {
+        None = 1000,
+        Arrow = 1001,
+        WaterBomb = 1002,
+    }
 }
 
 public class PoolingController : SingletonBase<PoolingController>
 {
-    [SerializedDictionary("TowerId", "TowerType")]
-    [SerializeField] private SerializedDictionary<UnitId,GameObject> _dictPoolingPrefab = new SerializedDictionary<UnitId, GameObject>();
+    [SerializedDictionary("UnitId", "UnitPrefab")]
+    [SerializeField] private SerializedDictionary<string,GameObject> _dictPoolingPrefab = new SerializedDictionary<string, GameObject>();
     [SerializeField] private UnitPooling _poolingPrefab;
-    [SerializeField] private List<UnitPooling> poolingList;
-    private Dictionary<UnitId, PoolingBase> dictPooling = new Dictionary<UnitId, PoolingBase>();
+    private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
     public override void Awake()
     {
@@ -47,13 +86,14 @@ public class PoolingController : SingletonBase<PoolingController>
         //     dictPooling.Add(poolingComposite._objectType, pooling);
         // }
     }
-    private PoolingBase GetPooling(UnitId objectType)
+    private PoolingBase GetPooling(string objectType)
     {
-        dictPooling.TryGetValue(objectType, out PoolingBase poolingBase);
+        _dictPooling.TryGetValue(objectType, out PoolingBase poolingBase);
         return poolingBase;
     }
-    public GameObject SpawnObject(UnitId objectType, Vector3 position = new Vector3())
+    public GameObject SpawnObject(string objectType, Vector3 position = new Vector3())
     {
+        Debug.Log("objectType " + objectType);
         if (!IsPoolExist(objectType))
         {
             CreateNewPool(objectType);
@@ -63,17 +103,17 @@ public class PoolingController : SingletonBase<PoolingController>
         go.transform.position = new Vector3(position.x,position.y,0);
         return go;
     }
-    private bool IsPoolExist(UnitId objectType)
+    private bool IsPoolExist(string objectType)
     {
-        return dictPooling.ContainsKey(objectType);
+        return _dictPooling.ContainsKey(objectType);
     }
-    private void CreateNewPool(UnitId objectType)
+    private void CreateNewPool(string objectType)
     {
         _dictPoolingPrefab.TryGetValue(objectType, out GameObject prefab);
         UnitPooling unitPooling = Instantiate(_poolingPrefab);
         unitPooling.name = prefab.name + "Pooling";
         unitPooling.transform.SetParent(transform);
         unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
-        dictPooling.Add(objectType, unitPooling);
+        _dictPooling.Add(objectType, unitPooling);
     }
 }

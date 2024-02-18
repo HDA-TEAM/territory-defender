@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class AllyMovingState : CharacterMovingState
 {
     private readonly BaseAllyStateMachine _context;
