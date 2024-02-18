@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class AllyApproachingState : CharacterBaseState
+public class CharacterMovingState : CharacterBaseState
 {
-    private readonly BaseAllyStateMachine _context;
+    private readonly CharacterStateMachine _context;
     private float _movingSpeed;
+    protected UserActionController _userActionController;
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    public AllyApproachingState(BaseAllyStateMachine currentContext) : base(currentContext)
+    public CharacterMovingState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
         _context = currentContext;
@@ -24,21 +25,7 @@ public class AllyApproachingState : CharacterBaseState
     {
         _context.CharacterAnimator.SetBool(IsMoving, false);
     }
-    public override void CheckSwitchState()
-    {
-        if (_context.IsDie)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
-        }
-        if (_context.UserActionController.IsInAction())
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
-        }
-        if (!_context.IsMovingToTarget)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
-        }
-    }
+    public override void CheckSwitchState() { }
     public override void InitializeSubState()
     {
     }
@@ -47,8 +34,16 @@ public class AllyApproachingState : CharacterBaseState
     {
         _context.transform.position = VectorUtility.Vector3MovingAToB(
             _context.transform.position,
-            _context.Target.transform.position,
+            _userActionController.UserMoveUnitToCampingPlace.DesPos,
             _movingSpeed);
+        CheckingReachedDestination();
+    }
+    private void CheckingReachedDestination()
+    {
+        if (VectorUtility.IsTwoPointReached(_context.transform.position, _userActionController.UserMoveUnitToCampingPlace.DesPos))
+        {
+            _userActionController.SetFinishedUserAction();
+        }
     }
     #endregion
 }

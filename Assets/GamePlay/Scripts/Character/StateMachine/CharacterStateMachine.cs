@@ -6,7 +6,7 @@ public class CharacterStateMachine : UnitBaseComponent
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
     [SerializeField] protected CharacterBaseState _currentState;
-    [SerializeField] protected Stats _stats;
+    protected Stats _stats;
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId _projectileId;
     [SerializeField] private UnitBase _curTarget;
@@ -31,7 +31,10 @@ public class CharacterStateMachine : UnitBaseComponent
     
     // public bool IsAttack() => _isAttack;
     #endregion
-    protected virtual void Awake() {}
+    protected virtual void Awake()
+    {
+        _stats = _unitBaseParent.UnitStatsComp();
+    }
     protected void Update() => _currentState.UpdateStates();
 
     protected virtual void OnEnable()
