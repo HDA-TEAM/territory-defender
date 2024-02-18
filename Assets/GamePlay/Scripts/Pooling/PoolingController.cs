@@ -1,31 +1,6 @@
 using AYellowpaper.SerializedCollections;
-using CustomInspector;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-
-// public enum UnitId
-// {
-//     AllyWarrior = 100,
-//     EnemyShieldMan = 200,
-//     
-//     EnemyShieldMans = 201,
-//     
-//     //Hero
-//     TrungTrac = 400,
-//     Tower = 300,
-//
-//     //Projectile
-//     None = 0,
-//     Arrow = 1000,
-//     WaterBomb = 1001
-// }
-// public enum UnitSideId
-// {
-//     Ally = 1,
-//     Enemy = 2,
-//     Tower = 3,
-// }
 
 public enum UnitSideId
 {
@@ -37,7 +12,6 @@ public enum UnitSideId
 
 public static class UnitId
 {
-    
     public enum Ally
     {
         Warrior = 100,
