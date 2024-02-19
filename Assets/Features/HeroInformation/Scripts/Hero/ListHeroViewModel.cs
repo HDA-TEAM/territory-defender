@@ -13,7 +13,7 @@ public class ListHeroViewModel : MonoBehaviour
     [SerializeField] private ListModeViewModel _listModeViewModel;
 
     [Header("Data"), Space(12)] 
-    [SerializeField] private HeroDataManager _heroDataManager;
+    //[SerializeField] private HeroDataManager _heroDataManager;
 
     // SO ListCompositeSo
     // Internal
@@ -24,26 +24,33 @@ public class ListHeroViewModel : MonoBehaviour
     private void Start()
     {
         UpdateData();
+    
         
         OnSelectedItem(_itemHeroViews[0]);
-        
-    }
-    private void Awake()
-    {
-        
     }
     private void UpdateData()
     {
-        Debug.Log(_heroDataManager.HeroComposites.Count.ToString() + ">>>>>>>>>>>>>>>>");
-        if (_heroDataManager.HeroComposites != null)
+        // Access the singleton instance directly.
+        var heroDataManager = HeroDataManager.Instance;
+    
+        if (heroDataManager == null)
         {
-            // Update data from list hero data to HeroComposite
-            _heroComposites = _heroDataManager.HeroComposites;
-            
-            UpdateView();
+            Debug.LogError("HeroDataManager instance is not found.");
+            return;
         }
-        
-        else Debug.Log("________________________");
+
+        if (heroDataManager.HeroComposites == null)
+        {
+            Debug.LogError("HeroComposites is null in HeroDataManager.");
+            return;
+        }
+    
+        Debug.Log(heroDataManager.HeroComposites.Count + " heroes loaded.");
+    
+        // Update data from list hero data to HeroComposite
+        _heroComposites = heroDataManager.HeroComposites;
+    
+        UpdateView();
         
     }
     private void UpdateView()
