@@ -18,12 +18,18 @@ public class ItemHeroChooseView : MonoBehaviour
     {
         _onSelected = onAction;
         HeroComposite = heroComposite;
-        _imgHero.sprite = heroComposite.HeroChoose;
+        _imgHero.sprite = heroComposite.HeroOwned;
     }
 
     private void OnSelectedHeroChoose()
     {
+        _imgHero.sprite = HeroComposite.HeroChoose;
         _onSelected?.Invoke(this);
+    }
+
+    public void RemoveSelected()
+    {
+        _imgHero.sprite = HeroComposite.HeroOwned;
     }
     
 }

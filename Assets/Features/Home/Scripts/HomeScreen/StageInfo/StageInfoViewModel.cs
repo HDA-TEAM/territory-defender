@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,25 +11,27 @@ public class StageInfoViewModel : MonoBehaviour
     [SerializeField] private List<ItemStageStarView> _itemStageStarViews;
     [SerializeField] private StageInfoDetailView _stageInfoDetailView;
     
+    [Header("Data")]
     [SerializeField] private GameModeViewModel _gameModeViewModel;
-    
+    [SerializeField] private ListHeroChooseViewModel _heroChooseView;
     // Internal
     private StageComposite _currentStage;
     private UIManagerStateMachine _stateMachine;
+
     private void Awake()
     {
-        GameEvents.OnCompositeSelected += HandleCompositeSelection;
-        
         _stateMachine = new UIManagerStateMachine();
         _itemPlayView.Setup(OnSelectedItemPlay);
         _itemMasteryView.Setup(OnSelectedItemMastery);
+        
+        GameEvents.OnCompositeSelected += HandleCompositeSelection;
+        UpdateData();
     }
     private void OnDestroy()
     {
         // Unsubscribe from the stage selection event
         GameEvents.OnCompositeSelected -= HandleCompositeSelection;
     }
-    
     private void HandleCompositeSelection(IComposite composite)
     {
         if (composite is StageComposite stage)
@@ -38,7 +40,6 @@ public class StageInfoViewModel : MonoBehaviour
             UpdateData();
         }
     }
-
     private void UpdateData()
     {
         UpdateView();
@@ -55,7 +56,6 @@ public class StageInfoViewModel : MonoBehaviour
             else
                 _itemStageStarViews[i].SetupGrownStar();
         }
-
         _stageInfoDetailView.Setup(_currentStage);
     }
 
@@ -67,14 +67,16 @@ public class StageInfoViewModel : MonoBehaviour
     private void OnSelectedItemPlay(ItemPlayView itemPlayView)
     {
         GameMode currentGameMode = _gameModeViewModel.GetMode();
-        Debug.Log($"Stage: {_currentStage.StageId}, Type: {_currentStage.StageType}, Mode: {currentGameMode}");
+        HeroComposite heroBeChosen = _heroChooseView.GetHeroChoose();
         
-        //TODO: load the map is suitable with the (Stage, Mode)
-        LoadSceneBasedOnStageAndMode(_currentStage, currentGameMode);
+        //TODO: load the map is suitable with the (Stage, Mode, Hero Chosen)
+        LoadSceneBasedOnStageAndMode(_currentStage, currentGameMode, heroBeChosen);
     }
     
-    private void LoadSceneBasedOnStageAndMode(StageComposite stage, GameMode gameMode)
+    private void LoadSceneBasedOnStageAndMode(StageComposite stage, GameMode gameMode, HeroComposite hero)
     {
+        Debug.Log($"StageId: {stage.StageId}, StageType: {stage.StageType}, GameMode: {gameMode}, Hero : {hero.Name}");
+        
         int sceneIndex = DetermineSceneIndex(stage, gameMode);
         if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
         {
@@ -85,13 +87,11 @@ public class StageInfoViewModel : MonoBehaviour
             Debug.LogError($"Scene index out of range: {sceneIndex}. Ensure you have the correct scene setup in Build Settings.");
         }
     }
-
-    // Example logic to determine which scene to load based on the stage and game mode
+    
     private int DetermineSceneIndex(StageComposite stage, GameMode gameMode)
     {
-        // Implement your logic here to determine the scene index
-        // This is a placeholder return value. Replace it with your actual logic.
-        return 2; // Example scene index. Adjust based on your project's scenes setup.
+        //TODO: this function executive find the stats of stage depend on stageID, mode
+        return 2; // Example haven stage with index = 2
     }
 }
 

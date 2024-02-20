@@ -14,38 +14,29 @@ public class ListStageViewModel : MonoBehaviour
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;
     private UIManagerStateMachine _stateMachine;
-    
-    private static StageComposite _preStageComposite;
-
     private void Awake()
     {
         _stateMachine = new UIManagerStateMachine();
         _stageComposites = new List<StageComposite>();
+    }
+
+    private void Start()
+    {
         UpdateData();
     }
 
     private void UpdateData()
     {
-        _stageComposites.Add(
-            new StageComposite
-            {
-                StageId = 1,
-                StageStar = 2,
-                StageType = "normal",
-                StageName = "VUNG DAT DO",
-                //StageImage = "Assets/Features/Home/Textures/stage infor/hoa van copy 2.png"
-            }
-        );
+        // TODO: Run with data for testing, and it would be updated soon
+        var stageDataManager = StageDataManager.Instance;
+        if (stageDataManager == null) 
+            return;
+        if (stageDataManager.StageComposites == null) 
+            return;
         
-        _stageComposites.Add(
-            new StageComposite
-            {
-                StageId = 2,
-                StageStar = 0,
-                StageType = "boss",
-                StageName = "VUNG DAT DO BOSS"
-            }
-        );
+        // Update data for list StageComposite
+        _stageComposites = stageDataManager.StageComposites;
+        
         UpdateView();
     }
 
@@ -59,16 +50,11 @@ public class ListStageViewModel : MonoBehaviour
 
     private void OnStageSelected(ItemStageView itemStageView)
     {
-        _preStageComposite = itemStageView.StageComposite;
-        Debug.Log("Stage: " + _preStageComposite.StageId 
-                            + "StageType: " + _preStageComposite.StageType);
-
         _preSelectedStageView = itemStageView;
-        
-        GameEvents.SelectComposite(_preStageComposite);
-    }
 
-    public StageComposite GetStage() => _preStageComposite;
+        StageDataManager.Instance.CurrentStage = _preSelectedStageView.StageComposite;
+        GameEvents.SelectComposite(StageDataManager.Instance.CurrentStage);
+    }
 }
 
 public struct StageComposite : IComposite

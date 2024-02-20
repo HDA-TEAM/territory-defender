@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,8 +10,6 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
     public override void Awake()
     {
         base.Awake(); // Call the base to check singleton integrity
-
-        // Initialize HeroComposites
         LoadHeroData();
     }
 
@@ -20,19 +17,12 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
     {
         // Ensure HeroComposites is initialized
         if (HeroComposites == null)
-        {
             HeroComposites = new List<HeroComposite>();
-        }
-        else
-        {
-            HeroComposites.Clear();
-        }
-
+        
+        else HeroComposites.Clear();
+        
         if (_heroDataAsset == null)
-        {
-            Debug.LogWarning("HeroDataAsset is not assigned in the HeroDataManager.");
             return;
-        }
 
         List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
 
@@ -52,9 +42,6 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
                 Skills = heroDataSo._heroSkills.GetAllSkillData()
             });
         }
-
-        // Broadcast update
-        GameEvents.UpdateListCompositeData(HeroComposites.Cast<IComposite>().ToList());
     }
 }
 

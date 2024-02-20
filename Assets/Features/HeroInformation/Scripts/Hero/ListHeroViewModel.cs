@@ -12,10 +12,8 @@ public class ListHeroViewModel : MonoBehaviour
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
 
-    [Header("Data"), Space(12)] 
-    //[SerializeField] private HeroDataManager _heroDataManager;
-
-    // SO ListCompositeSo
+    [Header("Data"), Space(12)]
+    
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -24,8 +22,6 @@ public class ListHeroViewModel : MonoBehaviour
     private void Start()
     {
         UpdateData();
-    
-        
         OnSelectedItem(_itemHeroViews[0]);
     }
     private void UpdateData()
@@ -33,20 +29,9 @@ public class ListHeroViewModel : MonoBehaviour
         // Access the singleton instance directly.
         var heroDataManager = HeroDataManager.Instance;
     
-        if (heroDataManager == null)
-        {
-            Debug.LogError("HeroDataManager instance is not found.");
-            return;
-        }
+        if (heroDataManager == null) return;
+        if (heroDataManager.HeroComposites == null) return;
 
-        if (heroDataManager.HeroComposites == null)
-        {
-            Debug.LogError("HeroComposites is null in HeroDataManager.");
-            return;
-        }
-    
-        Debug.Log(heroDataManager.HeroComposites.Count + " heroes loaded.");
-    
         // Update data from list hero data to HeroComposite
         _heroComposites = heroDataManager.HeroComposites;
     

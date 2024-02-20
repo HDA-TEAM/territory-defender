@@ -37,20 +37,23 @@ public class HeroDetailView : MonoBehaviour, IHeroModePageView
         _txtRange.text = heroComposite.Range;
         _imgHero.sprite = heroComposite.Avatar;
 
-        for (int i = 0; i < heroComposite.Skills.Count; i++)
-        {
-            if (i == 0)
-            {
-                _txtPassiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
-                _txtPassiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
-                _imgPassiveSkill.sprite = heroComposite.Skills[i]._skillImage;
-            } else {
-                _txtActiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
-                _txtActiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
-                _imgActiveSkill.sprite = heroComposite.Skills[i]._skillImage;
-            }
-        }
-        
+        //TODO: implement Skill Description for each Hero
+        // if (heroComposite.Skills.Count > 3) 
+        // {
+        //     for (int i = 0; i < heroComposite.Skills.Count; i++)
+        //     {
+        //         if (i == 0)
+        //         {
+        //             _txtPassiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
+        //             _txtPassiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
+        //             _imgPassiveSkill.sprite = heroComposite.Skills[i]._skillImage;
+        //         } else {
+        //             _txtActiveSkillName.text = heroComposite.Skills[i].GetInformation(InformationId.Name);
+        //             _txtActiveSkillText.text = heroComposite.Skills[i].GetInformation(InformationId.Description);
+        //             _imgActiveSkill.sprite = heroComposite.Skills[i]._skillImage;
+        //         }
+        //     }
+        // }
     }
 
     public void PageSelected(bool isSelected)
