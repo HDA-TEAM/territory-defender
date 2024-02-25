@@ -24,6 +24,11 @@ public class ListHeroViewModel : MonoBehaviour
         UpdateData();
         OnSelectedItem(_itemHeroViews[0]);
     }
+    
+    private void OnDisable()
+    {
+        ResetView();
+    }
     private void UpdateData()
     {
         // Access the singleton instance directly.

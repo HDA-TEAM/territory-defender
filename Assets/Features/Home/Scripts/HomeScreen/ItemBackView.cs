@@ -5,10 +5,7 @@ using UnityEngine.UI;
 public class ItemBackView : MonoBehaviour
 {
     [SerializeField] private Button _backButton;
-    
-    [SerializeField] private ListTowerViewModel _listTowerViewModel;
-    [SerializeField] private ListHeroViewModel _listHeroViewModel;
-    
+
     private UIManagerStateMachine _stateMachine;
     private void Start()
     {
@@ -27,7 +24,6 @@ public class ItemBackView : MonoBehaviour
     
     private void OnBackButtonPressed()
     {
-        GlobalUtility.ResetView(_listTowerViewModel, _listHeroViewModel);
         _stateMachine.BackPressed();
     }
 }

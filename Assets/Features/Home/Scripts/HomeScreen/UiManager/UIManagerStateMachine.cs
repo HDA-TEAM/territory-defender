@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UIManagerStateMachine
 {
@@ -8,6 +7,8 @@ public class UIManagerStateMachine
     private static Stack<UIState> _popupStateStack = new Stack<UIState>();
     private static UIState _currentState;
     
+    // [SerializeField] private ListTowerViewModel _listTowerViewModel;
+    // [SerializeField] private ListHeroViewModel _listHeroViewModel;
     public UIManagerStateMachine()
     {
         InitializeStates();
@@ -80,5 +81,7 @@ public class UIManagerStateMachine
             // Optionally, handle back navigation for non-popup states
             ChangeState<HomeScreenState>();
         }
+        //Debug.Log("BACKKKKKKKK");
+        //GlobalUtility.ResetView(_listTowerViewModel, _listHeroViewModel);
     }
 }
