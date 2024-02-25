@@ -668,7 +668,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b80f5f39bf6476ab68f0e68ec9f4910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 6629436534197921939}
+  _backButton: {fileID: 6629436534197921939}
+  _listTowerViewModel: {fileID: 0}
+  _listHeroViewModel: {fileID: 0}
 --- !u!1 &6629436534312723337
 GameObject:
   m_ObjectHideFlags: 0

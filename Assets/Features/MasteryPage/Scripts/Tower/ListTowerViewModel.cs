@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ListTowerViewModel : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class ListTowerViewModel : MonoBehaviour
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
     [SerializeField] private ListRuneViewModel _listRuneViewModel;
     
+    [FormerlySerializedAs("_commonTowerDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
+    [SerializeField] private CommonTowerConfig _commonTowerConfig;
     
     public Action<TowerId> _onUpdateViewAction;
     
@@ -20,19 +22,18 @@ public class ListTowerViewModel : MonoBehaviour
     private void Start()
     {
         _itemTowerViews[0].OnSelectedTower();
+        _preSelectedItem = _itemTowerViews[0];
     }
 
     private void Awake()
     {
         _towerComposites = new List<TowerComposite>();
-        
         UpdateData();
     }
 
     private void UpdateData()
     {
-        List<CommonTowerSO> listTowerData = _commonTowerDataAsset.GetAllTowerData();
-        
+        List<CommonTowerSO> listTowerData = _commonTowerConfig.GetAllTowerData();
         foreach (var towerDataSo in listTowerData)
         {
             _towerComposites.Add(
@@ -43,7 +44,6 @@ public class ListTowerViewModel : MonoBehaviour
                 }
             );
         }
-
         UpdateView();
     }
 
@@ -75,6 +75,8 @@ public class ListTowerViewModel : MonoBehaviour
         _preSelectedItem = itemTowerView;
         
         Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
+        
+        // Reset view of rune detail
         GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
         _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
     }

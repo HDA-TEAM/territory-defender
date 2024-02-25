@@ -1002,7 +1002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b80f5f39bf6476ab68f0e68ec9f4910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _button: {fileID: 4463005905924556807}
+  _backButton: {fileID: 4463005905924556807}
+  _listTowerViewModel: {fileID: 0}
+  _listHeroViewModel: {fileID: 0}
 --- !u!1 &4463005905930880485
 GameObject:
   m_ObjectHideFlags: 0
