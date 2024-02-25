@@ -21,14 +21,14 @@ public class ListTowerViewModel : MonoBehaviour
     private ItemTowerView _preSelectedItem;
     private void Start()
     {
-        _itemTowerViews[0].OnSelectedTower();
-        _preSelectedItem = _itemTowerViews[0];
-    }
-
-    private void Awake()
-    {
         _towerComposites = new List<TowerComposite>();
         UpdateData();
+        OnSelectedItem(_itemTowerViews[0]);
+    }
+
+    private void OnDisable()
+    {
+        ResetView();
     }
 
     private void UpdateData()
@@ -102,6 +102,5 @@ public class ListTowerViewModel : MonoBehaviour
 public struct TowerComposite
 {
     public TowerId TowerId;
-    //public string Name;
     public List<RuneLevel> RuneLevels;
 }
