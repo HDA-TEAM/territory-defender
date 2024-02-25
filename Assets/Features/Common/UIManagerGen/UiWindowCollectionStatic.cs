@@ -27,6 +27,8 @@ namespace BrunoMikoski.UIManager
         private static BrunoMikoski.UIManager.PrefabUIWindow cachedSettingPopup;
         private static bool hasCachedQuestPopup;
         private static BrunoMikoski.UIManager.PrefabUIWindow cachedQuestPopup;
+        private static bool hasCachedStageInfoPopup;
+        private static BrunoMikoski.UIManager.PrefabUIWindow cachedStageInfoPopup;
         
         public static BrunoMikoski.UIManager.UIWindowCollection Values
         {
@@ -106,6 +108,16 @@ namespace BrunoMikoski.UIManager
                 if (!hasCachedQuestPopup)
                     hasCachedQuestPopup = Values.TryGetItemByGUID(new LongGuid(5527768265264538989, 2718580751215633570), out cachedQuestPopup);
                 return cachedQuestPopup;
+            }
+        }
+        
+        public static BrunoMikoski.UIManager.PrefabUIWindow StageInfoPopup
+        {
+            get
+            {
+                if (!hasCachedStageInfoPopup)
+                    hasCachedStageInfoPopup = Values.TryGetItemByGUID(new LongGuid(5545626547539530670, -8876783509672126047), out cachedStageInfoPopup);
+                return cachedStageInfoPopup;
             }
         }
         

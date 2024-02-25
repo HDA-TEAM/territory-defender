@@ -9,6 +9,7 @@ public class RuneDetailView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _txtRuneStacks;
 
     private int _additionAttribute;
+    
     #region Core
     public void Setup(RuneComposite runeComposite)
     {
@@ -20,9 +21,11 @@ public class RuneDetailView : MonoBehaviour
         _txtRuneStacks.text = "Level " + runeComposite.Level;
     }
 
-    public void UpdateCurrentLevel(RuneComposite runeComposite)
+    public void UpdateCurrentRuneData(RuneComposite runeComposite)
     {
-        Debug.Log(runeComposite.RuneId + "..." + runeComposite.Level + "..." );
+        _additionAttribute = runeComposite.Level * 10; 
+        _txtRuneDescribe.text = runeComposite.RuneId + " (+" + _additionAttribute + ")";
+
         _txtRuneStacks.text = "Level " + runeComposite.Level;
     }
 
