@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class StageDataManager : SingletonBase<StageDataManager>
 {
     public List<StageComposite> StageComposites { get; private set; }

@@ -1,31 +1,24 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ListTowerViewModel : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
     [SerializeField] private ListRuneViewModel _listRuneViewModel;
-    
-    [FormerlySerializedAs("_commonTowerDataAsset")]
-    [Header("Data"), Space(12)]
-    [SerializeField] private CommonTowerConfig _commonTowerConfig;
-    
+
     public Action<TowerId> _onUpdateViewAction;
     
+    // Internal
     private List<TowerComposite> _towerComposites;
-    private TowerComposite _towerComposite;
-    
+    //private TowerComposite _towerComposite;
     private ItemTowerView _preSelectedItem;
     private void Start()
     {
-        _towerComposites = new List<TowerComposite>();
         UpdateData();
-        OnSelectedItem(_itemTowerViews[0]);
+        _itemTowerViews[0].OnSelectedTower();
     }
-
     private void OnDisable()
     {
         ResetView();
@@ -33,17 +26,12 @@ public class ListTowerViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        List<CommonTowerSO> listTowerData = _commonTowerConfig.GetAllTowerData();
-        foreach (var towerDataSo in listTowerData)
-        {
-            _towerComposites.Add(
-                new TowerComposite
-                {
-                    TowerId = towerDataSo.GetTowerId(),
-                    RuneLevels = towerDataSo.GetAllRuneDatLevels(),
-                }
-            );
-        }
+        var towerDataManager = TowerDataManager.Instance;
+        
+        if (towerDataManager == null) return;
+        if (towerDataManager.TowerComposites == null) return;
+
+        _towerComposites = towerDataManager.TowerComposites;
         UpdateView();
     }
 
