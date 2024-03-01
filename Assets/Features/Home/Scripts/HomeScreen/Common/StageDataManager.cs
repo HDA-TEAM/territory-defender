@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 public class StageDataManager : SingletonBase<StageDataManager>
 {
     public List<StageComposite> StageComposites { get; private set; }
@@ -26,7 +25,6 @@ public class StageDataManager : SingletonBase<StageDataManager>
             {
                 StageId = 1,
                 StageStar = 2,
-                StageType = "normal",
                 StageName = "VUNG DAT DO",
             }
         );
@@ -36,7 +34,6 @@ public class StageDataManager : SingletonBase<StageDataManager>
             {
                 StageId = 2,
                 StageStar = 0,
-                StageType = "boss",
                 StageName = "VUNG DAT DO BOSS"
             }
         );
