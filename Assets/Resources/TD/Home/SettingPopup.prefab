@@ -599,10 +599,7 @@ GameObject:
   - component: {fileID: 4463005905412452072}
   - component: {fileID: 4463005905412452074}
   - component: {fileID: 4463005905412452075}
-  - component: {fileID: 6450725069408485066}
   - component: {fileID: 2387255585778434723}
-  - component: {fileID: 8013744416119866324}
-  - component: {fileID: -8169270843856541435}
   m_Layer: 5
   m_Name: SettingPopup
   m_TagString: Untagged
@@ -662,27 +659,6 @@ MonoBehaviour:
   _buttonMusic: {fileID: 691946797470671498}
   _buttonLanguage: {fileID: 691946796493845625}
   _buttonCommunity: {fileID: 691946796975370857}
---- !u!223 &6450725069408485066
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463005905412452071}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
 --- !u!225 &2387255585778434723
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -695,44 +671,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &8013744416119866324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463005905412452071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 503bbba32e8a4760973940693259ce93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cacheInterfacesInstance: 1
-  disableInteractionWhileTransitioning: 1
-  window:
-    collectionItemGUIDValueA: 4830521972365114707
-    collectionItemGUIDValueB: -2468276148933865851
-    collectionGUIDValueA: 5661902693059371451
-    collectionGUIDValueB: 5179766507890645133
-    itemLastKnownName: SettingPopup
-    collectionLastKnowName: UIWindowCollection
---- !u!114 &-8169270843856541435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463005905412452071}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &4463005905584850906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1003,8 +941,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 4463005905924556807}
-  _listTowerViewModel: {fileID: 0}
-  _listHeroViewModel: {fileID: 0}
 --- !u!1 &4463005905930880485
 GameObject:
   m_ObjectHideFlags: 0

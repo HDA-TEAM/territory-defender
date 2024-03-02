@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 703018978}
   - component: {fileID: 703018980}
   - component: {fileID: 703018979}
+  - component: {fileID: 703018981}
   m_Layer: 0
   m_Name: MainPageContainer
   m_TagString: Untagged
@@ -260,6 +261,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding: {x: 0, y: 0, z: 0, w: 0}
   m_Softness: {x: 0, y: 0}
+--- !u!114 &703018981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703018977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99312987e7db34b658d9bbac9087c645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasUi: {fileID: 1896122922}
 --- !u!1 &724738911
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +683,7 @@ GameObject:
   - component: {fileID: 2007741964}
   - component: {fileID: 2007741966}
   - component: {fileID: 2007741967}
+  - component: {fileID: 2007741968}
   m_Layer: 0
   m_Name: MainModalContainer
   m_TagString: Untagged
@@ -724,3 +739,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: MainModalContainer
   _overrideBackdropPrefab: {fileID: 0}
+--- !u!114 &2007741968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007741963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99312987e7db34b658d9bbac9087c645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasUi: {fileID: 724738913}
