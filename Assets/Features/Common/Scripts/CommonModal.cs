@@ -12,5 +12,5 @@ public class CommonModal : Modal
             btn.onClick.AddListener(PopModal);
         }
     }
-    private void PopModal() => HomeController.PopModal();
+    private void PopModal() => NavigatorController.PopModal();
 }

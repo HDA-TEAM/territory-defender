@@ -59,7 +59,8 @@ public class UIManagerStateMachine
         if (_currentState is IUIPopupState && _popupStateStack.Count > 0)
         {
             // Close the current popup and remove it from the stack
-            _currentState.Exit();
+            // _currentState.Exit();
+            NavigatorController.MainModalContainer.Pop(true);
             _popupStateStack.Pop();
 
             if (_popupStateStack.Count > 0)

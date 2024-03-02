@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 724738913}
   - component: {fileID: 724738912}
   m_Layer: 0
-  m_Name: ModelContainer
+  m_Name: ModalContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -338,7 +338,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &724738915
 RectTransform:
@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 2007741966}
   - component: {fileID: 2007741967}
   m_Layer: 0
-  m_Name: MainModelContainer
+  m_Name: MainModalContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -722,5 +722,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c190a022f83bddc4590f8df228968d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _name: MainModelContainer
+  _name: MainModalContainer
   _overrideBackdropPrefab: {fileID: 0}

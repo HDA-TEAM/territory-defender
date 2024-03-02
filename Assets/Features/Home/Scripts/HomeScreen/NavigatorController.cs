@@ -1,18 +1,16 @@
-using UnityEngine;
 using UnityScreenNavigator.Runtime.Core.Modal;
 using UnityScreenNavigator.Runtime.Core.Page;
 
-public class HomeController : SingletonBase<HomeController>
+public class NavigatorController : SingletonBase<NavigatorController>
 {
     private static PageContainer MainPageContainer => PageContainer.Find("MainPageContainer");
-    private static ModalContainer MainModalContainer => ModalContainer.Find("MainModalContainer");
+    public static ModalContainer MainModalContainer => ModalContainer.Find("MainModalContainer");
     private void Start()
     {
-        ApplicationStarted();
+        PushScreen();
     }
-    public static void ApplicationStarted()
+    public static void PushScreen()
     {
-        Debug.Log(MainPageContainer);
         MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, false);
     }
     public static void PopPage()
