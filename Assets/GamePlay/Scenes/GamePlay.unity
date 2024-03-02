@@ -9941,6 +9941,7 @@ GameObject:
   - component: {fileID: 1804081919}
   - component: {fileID: 1804081920}
   - component: {fileID: 1804081921}
+  - component: {fileID: 1804081922}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -10008,6 +10009,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   _enemySpawningFactory: {fileID: 1804081920}
+--- !u!114 &1804081922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804081916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f58f581b2c549cabb80e5ebf5c2777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hero: {fileID: 1930285427}
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0
@@ -10994,6 +11008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
+--- !u!1 &1930285427 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2488591404240547145, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
+  m_PrefabInstance: {fileID: 1930285426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1970671877 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6496181943433739409, guid: 8d2a45493611a432d9784628c56e9fcc, type: 3}
