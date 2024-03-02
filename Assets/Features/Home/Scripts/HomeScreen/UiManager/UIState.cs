@@ -1,4 +1,3 @@
-using BrunoMikoski.UIManager;
 using UnityEngine;
 
 public abstract class UIState
@@ -14,18 +13,17 @@ public class HomeScreenState : UIState, IUISceneState
 {
     public override void Enter()
     {
-        UiWindowCollectionStatic.HomeMenuScreen.Open();
+        NavigatorController.PushScreen();
         Debug.Log("Home Screen is open");
     }
 
     public override void Exit() { } // TODO: do sth when turn off the game
 }
-
 public class HeroInfoState : UIState, IUISceneState
 {
     public override void Enter()
     {
-        UiWindowCollectionStatic.HeroesScreen.Open();
+        NavigatorController.MainModalContainer.Push<HeroInformationPu>(ResourceKey.Prefabs.HeroInformationPu, true);
         Debug.Log("Hero info is open");
     }
 
@@ -49,8 +47,7 @@ public class DictionaryState : UIState, IUISceneState
 
     public override void Enter()
     {
-        Debug.Log("Dictionary is open");
-        UiWindowCollectionStatic.DictionaryScreen.Open();
+        NavigatorController.MainModalContainer.Push<DictionaryPu>(ResourceKey.Prefabs.DictionaryPu, true);
     }
 
     public override void Exit() {} //TODO
@@ -63,7 +60,7 @@ public class HistoryState : UIState, IUISceneState
     public override void Enter()
     {
         Debug.Log("History is open");
-        UiWindowCollectionStatic.HistoryScreen.Open();
+        NavigatorController.MainModalContainer.Push<HistoryPu>(ResourceKey.Prefabs.HistoryPu, true);
     } 
     public override void Exit() { } //TODO
 }
@@ -75,9 +72,12 @@ public class MasteryPageState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Mastery page is open");
-        UiWindowCollectionStatic.MasteryPagePopup.Open();
+        NavigatorController.MainModalContainer.Push<MasteryPu>(ResourceKey.Prefabs.MasteryPu, true);
     } 
-    public override void Exit() => UiWindowCollectionStatic.MasteryPagePopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.MasteryPagePopup.Close();
+    }
 }
 
 public class SettingState : UIState, IUIPopupState
@@ -87,9 +87,12 @@ public class SettingState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Setting is open");
-        UiWindowCollectionStatic.SettingPopup.Open();
+        NavigatorController.MainModalContainer.Push<CommonSettingPu>(ResourceKey.Prefabs.SettingPu, true);
     } 
-    public override void Exit() => UiWindowCollectionStatic.SettingPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.SettingPopup.Close();
+    }
 }
 
 public class QuestState : UIState, IUIPopupState
@@ -99,9 +102,12 @@ public class QuestState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Quest is open");
-        UiWindowCollectionStatic.QuestPopup.Open();
+        NavigatorController.MainModalContainer.Push<QuestPu>(ResourceKey.Prefabs.QuestPu, true);
     } 
-    public override void Exit() => UiWindowCollectionStatic.QuestPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.QuestPopup.Close();
+    }
 }
 
 public class StageInfoState : UIState, IUIPopupState
@@ -111,10 +117,13 @@ public class StageInfoState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Stage info is open");
-        UiWindowCollectionStatic.StageInfoPopup.Open();
+        NavigatorController.MainModalContainer.Push<StageInformationPu>(ResourceKey.Prefabs.StageInformationPu, true);
     } 
     
-    public override void Exit() => UiWindowCollectionStatic.StageInfoPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.StageInfoPopup.Close();
+    }
 }
 
 
