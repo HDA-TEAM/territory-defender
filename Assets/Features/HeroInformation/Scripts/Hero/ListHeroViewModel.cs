@@ -12,8 +12,6 @@ public class ListHeroViewModel : MonoBehaviour
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
 
-    [Header("Data"), Space(12)]
-    
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -23,6 +21,11 @@ public class ListHeroViewModel : MonoBehaviour
     {
         UpdateData();
         OnSelectedItem(_itemHeroViews[0]);
+    }
+    
+    private void OnDisable()
+    {
+        ResetView();
     }
     private void UpdateData()
     {
@@ -53,9 +56,7 @@ public class ListHeroViewModel : MonoBehaviour
                 {
                     itemSkill.Setup(OnSkillSelected);
                 }
-            } 
-            else 
-            {
+            } else {
                 _itemHeroViews[i].gameObject.SetActive(false);    
             }
         }

@@ -1,9 +1,5 @@
-
-using System;
 using System.Collections.Generic;
-using UI.UIInHomeScreen;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ListStageViewModel : MonoBehaviour
 {
@@ -61,7 +57,6 @@ public struct StageComposite : IComposite
 {
     public int StageId;
     public int StageStar;
-    public string StageType;
     public string StageName;
     public Sprite StageImage;
 }

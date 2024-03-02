@@ -75,7 +75,7 @@ public class StageInfoViewModel : MonoBehaviour
     
     private void LoadSceneBasedOnStageAndMode(StageComposite stage, GameMode gameMode, HeroComposite hero)
     {
-        Debug.Log($"StageId: {stage.StageId}, StageType: {stage.StageType}, GameMode: {gameMode}, Hero : {hero.Name}");
+        Debug.Log($"StageId: {stage.StageId}, GameMode: {gameMode}, Hero : {hero.Name}");
         
         int sceneIndex = DetermineSceneIndex(stage, gameMode);
         if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
