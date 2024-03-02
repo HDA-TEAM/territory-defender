@@ -87,7 +87,7 @@ public class SettingState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Setting is open");
-        // NavigatorController.MainModalContainer.Push<settingp>(ResourceKey.Prefabs.HistoryPu, true);
+        NavigatorController.MainModalContainer.Push<CommonSettingPu>(ResourceKey.Prefabs.SettingPu, true);
     } 
     public override void Exit()
     {
@@ -102,7 +102,7 @@ public class QuestState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Quest is open");
-        // NavigatorController.MainModalContainer.Push<HistoryPu>(ResourceKey.Prefabs.HistoryPu, true);
+        NavigatorController.MainModalContainer.Push<QuestPu>(ResourceKey.Prefabs.QuestPu, true);
     } 
     public override void Exit()
     {
