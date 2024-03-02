@@ -1,5 +1,6 @@
 using BrunoMikoski.UIManager;
 using UnityEngine;
+using UnityScreenNavigator.Runtime.Core.Page;
 
 public abstract class UIState
 {
@@ -20,7 +21,6 @@ public class HomeScreenState : UIState, IUISceneState
 
     public override void Exit() { } // TODO: do sth when turn off the game
 }
-
 public class HeroInfoState : UIState, IUISceneState
 {
     public override void Enter()

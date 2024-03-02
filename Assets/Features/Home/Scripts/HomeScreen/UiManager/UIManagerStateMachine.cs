@@ -14,7 +14,7 @@ public class UIManagerStateMachine
     private void InitializeStates()
     {
         // Pre-instantiate all state instances
-        _states.Add(typeof(HomeScreenState), new HomeScreenState());
+        // _states.Add(typeof(HomeScreenState), new HomeScreenState());
         _states.Add(typeof(HeroInfoState), new HeroInfoState());
         _states.Add(typeof(ShopState), new ShopState());
         _states.Add(typeof(DictionaryState), new DictionaryState());
