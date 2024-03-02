@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>
 {
+    [Header("Data"), Space(12)]
     [SerializeField] private HeroDataAsset _heroDataAsset;
     public List<HeroComposite> HeroComposites { get; private set; }
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UIManagerStateMachine
 {
@@ -15,7 +14,7 @@ public class UIManagerStateMachine
     private void InitializeStates()
     {
         // Pre-instantiate all state instances
-        _states.Add(typeof(HomeScreenState), new HomeScreenState());
+        // _states.Add(typeof(HomeScreenState), new HomeScreenState());
         _states.Add(typeof(HeroInfoState), new HeroInfoState());
         _states.Add(typeof(ShopState), new ShopState());
         _states.Add(typeof(DictionaryState), new DictionaryState());
@@ -60,7 +59,8 @@ public class UIManagerStateMachine
         if (_currentState is IUIPopupState && _popupStateStack.Count > 0)
         {
             // Close the current popup and remove it from the stack
-            _currentState.Exit();
+            // _currentState.Exit();
+            NavigatorController.PopModal();
             _popupStateStack.Pop();
 
             if (_popupStateStack.Count > 0)

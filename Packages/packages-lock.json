@@ -7,22 +7,6 @@
       "dependencies": {},
       "hash": "a786134e17ad4d30d8c3272d7625ef3e43afc7d5"
     },
-    "com.brunomikoski.scriptableobjectcollection": {
-      "version": "https://github.com/brunomikoski/ScriptableObjectCollection.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "6b7289a022c8072483360a13c5367f45a8c37b17"
-    },
-    "com.brunomikoski.uimanager": {
-      "version": "https://github.com/brunomikoski/UIManager.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.brunomikoski.scriptableobjectcollection": "2.0.3"
-      },
-      "hash": "1ec0db40076d2a5535a59d17fb3db46f21bc74e8"
-    },
     "com.coffee.ui-effect": {
       "version": "https://github.com/mob-sakai/UIEffect.git",
       "depth": 0,
@@ -36,6 +20,13 @@
       "source": "git",
       "dependencies": {},
       "hash": "f2773f585e762480c835ac718b82b87cb111e500"
+    },
+    "com.harumak.unityscreennavigator": {
+      "version": "https://github.com/Haruma-K/UnityScreenNavigator.git?path=/Assets/UnityScreenNavigator#1.6.7",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "a92007ab47c5ac69d1c2da28e5957f3834fb973a"
     },
     "com.unity.2d.animation": {
       "version": "7.0.7",
