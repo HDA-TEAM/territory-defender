@@ -1,6 +1,4 @@
-using BrunoMikoski.UIManager;
 using UnityEngine;
-using UnityScreenNavigator.Runtime.Core.Page;
 
 public abstract class UIState
 {
@@ -15,7 +13,7 @@ public class HomeScreenState : UIState, IUISceneState
 {
     public override void Enter()
     {
-        UiWindowCollectionStatic.HomeMenuScreen.Open();
+        HomeController.ApplicationStarted();
         Debug.Log("Home Screen is open");
     }
 
@@ -25,7 +23,7 @@ public class HeroInfoState : UIState, IUISceneState
 {
     public override void Enter()
     {
-        UiWindowCollectionStatic.HeroesScreen.Open();
+        // UiWindowCollectionStatic.HeroesScreen.Open();
         Debug.Log("Hero info is open");
     }
 
@@ -50,7 +48,7 @@ public class DictionaryState : UIState, IUISceneState
     public override void Enter()
     {
         Debug.Log("Dictionary is open");
-        UiWindowCollectionStatic.DictionaryScreen.Open();
+        // UiWindowCollectionStatic.DictionaryScreen.Open();
     }
 
     public override void Exit() {} //TODO
@@ -63,7 +61,7 @@ public class HistoryState : UIState, IUISceneState
     public override void Enter()
     {
         Debug.Log("History is open");
-        UiWindowCollectionStatic.HistoryScreen.Open();
+        // UiWindowCollectionStatic.HistoryScreen.Open();
     } 
     public override void Exit() { } //TODO
 }
@@ -75,9 +73,12 @@ public class MasteryPageState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Mastery page is open");
-        UiWindowCollectionStatic.MasteryPagePopup.Open();
+        // UiWindowCollectionStatic.MasteryPagePopup.Open();
     } 
-    public override void Exit() => UiWindowCollectionStatic.MasteryPagePopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.MasteryPagePopup.Close();
+    }
 }
 
 public class SettingState : UIState, IUIPopupState
@@ -87,9 +88,12 @@ public class SettingState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Setting is open");
-        UiWindowCollectionStatic.SettingPopup.Open();
+        // UiWindowCollectionStatic.SettingPopup.Open();
     } 
-    public override void Exit() => UiWindowCollectionStatic.SettingPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.SettingPopup.Close();
+    }
 }
 
 public class QuestState : UIState, IUIPopupState
@@ -99,9 +103,12 @@ public class QuestState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Quest is open");
-        UiWindowCollectionStatic.QuestPopup.Open();
+        // UiWindowCollectionStatic.QuestPopup.Open();
     } 
-    public override void Exit() => UiWindowCollectionStatic.QuestPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.QuestPopup.Close();
+    }
 }
 
 public class StageInfoState : UIState, IUIPopupState
@@ -111,10 +118,13 @@ public class StageInfoState : UIState, IUIPopupState
     public override void Enter()
     {
         Debug.Log("Stage info is open");
-        UiWindowCollectionStatic.StageInfoPopup.Open();
+        // UiWindowCollectionStatic.StageInfoPopup.Open();
     } 
     
-    public override void Exit() => UiWindowCollectionStatic.StageInfoPopup.Close();
+    public override void Exit()
+    {
+        // UiWindowCollectionStatic.StageInfoPopup.Close();
+    }
 }
 
 
