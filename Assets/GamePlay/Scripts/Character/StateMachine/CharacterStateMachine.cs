@@ -63,8 +63,8 @@ public class CharacterStateMachine : UnitBaseComponent
     
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
-        _unitBaseParent.CurrentTarget = _curTarget;
         _curTarget = composite.Target;
+        _unitBaseParent.CurrentTarget = _curTarget;
         _beingTargetCommand = composite.BeingTargetCommand;
     }
 }

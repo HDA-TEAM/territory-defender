@@ -4,8 +4,6 @@ public class AllyTroopController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
-        // if (!CheckTargetAvailable())
-        //     return;
         if (IsSelfInUserAction())
             return;
         
