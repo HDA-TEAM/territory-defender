@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class UIManagerStateMachine
 {
@@ -39,7 +40,7 @@ public class UIManagerStateMachine
 
         _currentState?.Exit();
         
-        if (nextState is IUIPopupState)
+        if (nextState is IUIModalState)
         {
             _popupStateStack.Push(nextState);
         }
@@ -50,17 +51,19 @@ public class UIManagerStateMachine
                 _popupStateStack.Pop().Exit(); // Ensure all popups are closed before moving to a new non-popup state
             }
         }
-
+       
         _currentState = nextState;
+        Debug.Log("Current pop up: " + _currentState);
         _currentState.Enter();
     }
     public void BackPressed()
     {
-        if (_currentState is IUIPopupState && _popupStateStack.Count > 0)
+        //NavigatorController.PopModal();
+        if (_currentState is IUIModalState && _popupStateStack.Count > 0)
         {
             // Close the current popup and remove it from the stack
-            // _currentState.Exit();
-            NavigatorController.PopModal();
+            _currentState.Exit();
+            
             _popupStateStack.Pop();
 
             if (_popupStateStack.Count > 0)

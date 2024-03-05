@@ -1,3 +1,4 @@
+using UnityEngine;
 using UnityScreenNavigator.Runtime.Core.Modal;
 using UnityScreenNavigator.Runtime.Core.Page;
 
@@ -11,7 +12,7 @@ public class NavigatorController : SingletonBase<NavigatorController>
     }
     public static void PushScreen()
     {
-        MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, false);
+        MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, true);
     }
     public static void PopPage()
     {
@@ -20,5 +21,10 @@ public class NavigatorController : SingletonBase<NavigatorController>
     public static void PopModal()
     {
         MainModalContainer.Pop(true);
+    }
+
+    public static void ShowMainModelContainer()
+    {
+        //Debug.Log(MainModalContainer);
     }
 }

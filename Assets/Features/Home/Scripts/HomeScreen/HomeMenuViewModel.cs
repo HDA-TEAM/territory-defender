@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HomeMenuViewModel: MonoBehaviour
 {
-    [SerializeField] private Button _buttonShop;
+    //[SerializeField] private Button _buttonShop;
     [SerializeField] private Button _buttonHeroInfo;
     [SerializeField] private Button _buttonDictionary;
     [SerializeField] private Button _buttonHistory;
@@ -20,7 +20,7 @@ public class HomeMenuViewModel: MonoBehaviour
         _stateMachine = new UIManagerStateMachine();
         
         _buttonHeroInfo.onClick.AddListener(() => _stateMachine.ChangeState<HeroInfoState>());
-        _buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
+        //_buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
         _buttonDictionary.onClick.AddListener(() => _stateMachine.ChangeState<DictionaryState>());
         _buttonHistory.onClick.AddListener(() => _stateMachine.ChangeState<HistoryState>());
         _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeState<MasteryPageState>());

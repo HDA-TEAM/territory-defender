@@ -5,21 +5,23 @@ public abstract class UIState
     public abstract void Enter();
     public abstract void Exit();
 }
-public interface IUIPopupState { }
+public interface IUIModalState { }
 
-public interface IUISceneState { }
+public interface IUIPageState { }
 
-public class HomeScreenState : UIState, IUISceneState
+public class HomeScreenState : UIState, IUIPageState
 {
     public override void Enter()
     {
+        //NavigatorController.PopModal();
+        
         NavigatorController.PushScreen();
         Debug.Log("Home Screen is open");
     }
 
     public override void Exit() { } // TODO: do sth when turn off the game
 }
-public class HeroInfoState : UIState, IUISceneState
+public class HeroInfoState : UIState, IUIModalState
 {
     public override void Enter()
     {
@@ -30,45 +32,45 @@ public class HeroInfoState : UIState, IUISceneState
     public override void Exit()
     {
         //TODO
+        NavigatorController.PopModal();
     } 
 }
 
-public class ShopState : UIState, IUISceneState
+public class ShopState : UIState, IUIModalState
 {
-    public ShopState() { }
-
     public override void Enter() => Debug.Log("Entering Shop State");
     public override void Exit() => Debug.Log("Exiting Shop State");
 }
 
-public class DictionaryState : UIState, IUISceneState
+public class DictionaryState : UIState, IUIModalState
 {
-    public DictionaryState() { }
-
     public override void Enter()
     {
         NavigatorController.MainModalContainer.Push<DictionaryPu>(ResourceKey.Prefabs.DictionaryPu, true);
     }
 
-    public override void Exit() {} //TODO
+    public override void Exit()
+    {
+        NavigatorController.PopModal();
+    } //TODO
 }
 
-public class HistoryState : UIState, IUISceneState
+public class HistoryState : UIState, IUIModalState
 {
-    public HistoryState() { }
-
     public override void Enter()
     {
         Debug.Log("History is open");
         NavigatorController.MainModalContainer.Push<HistoryPu>(ResourceKey.Prefabs.HistoryPu, true);
-    } 
-    public override void Exit() { } //TODO
+    }
+
+    public override void Exit()
+    {
+        NavigatorController.PopModal();
+    } //TODO
 }
 
-public class MasteryPageState : UIState, IUIPopupState
+public class MasteryPageState : UIState, IUIModalState
 {
-    public MasteryPageState() { }
-
     public override void Enter()
     {
         Debug.Log("Mastery page is open");
@@ -76,14 +78,12 @@ public class MasteryPageState : UIState, IUIPopupState
     } 
     public override void Exit()
     {
-        // UiWindowCollectionStatic.MasteryPagePopup.Close();
+        NavigatorController.PopModal();
     }
 }
 
-public class SettingState : UIState, IUIPopupState
+public class SettingState : UIState, IUIModalState
 {
-    public SettingState() { }
-
     public override void Enter()
     {
         Debug.Log("Setting is open");
@@ -91,14 +91,12 @@ public class SettingState : UIState, IUIPopupState
     } 
     public override void Exit()
     {
-        // UiWindowCollectionStatic.SettingPopup.Close();
+        NavigatorController.PopModal();
     }
 }
 
-public class QuestState : UIState, IUIPopupState
+public class QuestState : UIState, IUIModalState
 {
-    public QuestState() { }
-
     public override void Enter()
     {
         Debug.Log("Quest is open");
@@ -106,14 +104,12 @@ public class QuestState : UIState, IUIPopupState
     } 
     public override void Exit()
     {
-        // UiWindowCollectionStatic.QuestPopup.Close();
+        NavigatorController.PopModal();
     }
 }
 
-public class StageInfoState : UIState, IUIPopupState
+public class StageInfoState : UIState, IUIModalState
 {
-    public StageInfoState() {}
-
     public override void Enter()
     {
         Debug.Log("Stage info is open");
@@ -122,7 +118,7 @@ public class StageInfoState : UIState, IUIPopupState
     
     public override void Exit()
     {
-        // UiWindowCollectionStatic.StageInfoPopup.Close();
+        NavigatorController.PopModal();
     }
 }
 
