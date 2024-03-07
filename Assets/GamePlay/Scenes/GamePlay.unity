@@ -11083,6 +11083,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrungTracPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 2488591404240547145, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3424062353997457341, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -11125,11 +11129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8302291167350707342, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8302291167350707342, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

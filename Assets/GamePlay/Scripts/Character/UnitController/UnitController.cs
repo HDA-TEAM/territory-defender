@@ -54,6 +54,10 @@ public class UnitController : UnitBaseComponent
         UnitBase target = _unitBaseParent.CurrentTarget;
         return target != null && target.gameObject.activeSelf;
     }
+    protected bool IsUnitAvailable(UnitBase unitBase)
+    {
+        return unitBase != null && unitBase.gameObject.activeSelf;
+    }
     protected void SetDefaultState()
     {
         var targetChangingComposite = new UnitBase.OnTargetChangingComposite

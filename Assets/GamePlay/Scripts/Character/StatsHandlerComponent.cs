@@ -8,7 +8,10 @@ public class StatsHandlerComponent : UnitBaseComponent
     [SerializeField] private Stats _baseStats;
 
     #region Access
-    public BuffHandler BuffHandler() => _buffHandler;
+    public BuffHandler BuffHandler
+    {
+        get => _buffHandler ?? new BuffHandler(SynData);
+    }
     public Stats GetBaseStats() => _baseStats;
     #endregion
 
@@ -25,11 +28,13 @@ public class StatsHandlerComponent : UnitBaseComponent
     {
         if (_baseStats.IsStatExist(statId))
         {
+            var originVal = _baseStats.GetStat(statId);
             // Check buff
-            if (_buffHandler.IsExistBuffOrDeBuff())
+            if (_buffHandler != null &&  _buffHandler.IsExistBuffOrDeBuff())
             {
-                return _buffHandler.GetValueApplyBuff(statId, _baseStats.GetStat(statId));
+                return _buffHandler.GetValueApplyBuff(statId, originVal);
             }
+            return originVal;
         }
         return 0f;
     }

@@ -11,7 +11,7 @@ public class BuffTowerController : UnitController
 
             if (betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.BuffRange))
             {
-                unit.UnitStatsHandlerComp().BuffHandler().AddAttributeBuff(PrepareStatsBuff());
+                unit.UnitStatsHandlerComp().BuffHandler.AddAttributeBuff(PrepareStatsBuff());
             }
         }
     }
