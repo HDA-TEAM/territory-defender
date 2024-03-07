@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1175556067239573827, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175556067239573827, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: _userActionController
       value: 
@@ -59,6 +67,18 @@ PrefabInstance:
     - target: {fileID: 4286664783864283984, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Name
       value: TrungTracPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7160055862065391615, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693172422962068119, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693172422962068119, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 265673086395741768, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
