@@ -46,7 +46,7 @@ public class PoolingController : SingletonBase<PoolingController>
     [SerializeField] private UnitPooling _poolingPrefab;
     private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
-    public override void Awake()
+    protected override void Awake()
     {
         base.Awake();
         SetUp();

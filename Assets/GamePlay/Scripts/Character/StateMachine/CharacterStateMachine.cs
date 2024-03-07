@@ -5,11 +5,10 @@ public class CharacterStateMachine : UnitBaseComponent
     [SerializeField] private string _curStateLabel;
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
-    [SerializeField] protected CharacterBaseState _currentState;
+    protected CharacterBaseState _currentState;
     protected Stats _stats;
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId.Projectile _projectileId;
-    [SerializeField] private UnitBase _curTarget;
     [SerializeField] private BeingTargetCommand _beingTargetCommand;
     #region Setter and getter
     public CharacterBaseState CurrentState
@@ -21,7 +20,7 @@ public class CharacterStateMachine : UnitBaseComponent
         }
         get { return _currentState; }
     }
-    public UnitBase CurrentTarget { get { return _curTarget; } }
+    public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
     public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
     public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
     public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
@@ -31,7 +30,7 @@ public class CharacterStateMachine : UnitBaseComponent
     
     // public bool IsAttack() => _isAttack;
     #endregion
-    protected virtual void Awake()
+    protected override void Awake()
     {
         _stats = _unitBaseParent.UnitStatsComp();
     }
@@ -51,7 +50,7 @@ public class CharacterStateMachine : UnitBaseComponent
     // Handle target is null
     private void OnRecheckTarget()
     {
-        if (_curTarget == null || !_curTarget.gameObject.activeSelf)
+        if (CurrentTarget == null || !CurrentTarget.gameObject.activeSelf)
         {
             OnTargetChanging(new UnitBase.OnTargetChangingComposite()
             {
@@ -63,8 +62,7 @@ public class CharacterStateMachine : UnitBaseComponent
     
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
-        _curTarget = composite.Target;
-        _unitBaseParent.CurrentTarget = _curTarget;
+        _unitBaseParent.CurrentTarget = composite.Target;
         _beingTargetCommand = composite.BeingTargetCommand;
     }
 }

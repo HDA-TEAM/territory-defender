@@ -1,45 +1,45 @@
 using UnityEngine;
 
 public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
-    private static bool applicationIsQuitting = false;
-    private static T instance;
+    private static bool _applicationIsQuitting;
+    private static T _instance;
     public static T Instance {
         get {
             
             // When OnDestroy is calling, so we need to prevent create the second singleton instance
-            if (applicationIsQuitting)
+            if (_applicationIsQuitting)
                 return null;
 
             // If instance is exist
-            if (instance != null)
-                return instance;
+            if (_instance != null)
+                return _instance;
             
             // If instance is not exist, Try to find it
-            instance = FindObjectOfType<T> ();
-            if (instance != null)
-                return instance;
+            _instance = FindObjectOfType<T> ();
+            if (_instance != null)
+                return _instance;
             
             // If instance is not exist, and can't found it on scene, Create the new one
             GameObject obj = new GameObject
             {
                 name = typeof(T).Name,
             };
-            instance = obj.AddComponent<T>();
+            _instance = obj.AddComponent<T>();
             
-            return instance;
+            return _instance;
         }
     }
-    public static bool IsAlive() => instance && !applicationIsQuitting;
-    public void OnDestroy()
+    public static bool IsAlive() => _instance && !_applicationIsQuitting;
+    protected virtual void OnDestroy()
     {
         Debug.Log("Gets destroyed");
-        applicationIsQuitting = true;
+        _applicationIsQuitting = true;
     }
-    public virtual void Awake ()
+    protected virtual void Awake ()
     {
-        if (instance == null) {
-            instance = this as T;
-            DontDestroyOnLoad(this.gameObject);
+        if (_instance == null) {
+            _instance = this as T;
+            DontDestroyOnLoad(gameObject);
         } else {
             Destroy (gameObject);
         }

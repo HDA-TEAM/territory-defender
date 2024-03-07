@@ -83,11 +83,11 @@ public class UnitBaseComponent : MonoBehaviour
     {
         
     }
-    protected void Awake()
+    protected virtual void Awake()
     {
         _unitBaseParent.OnUpdateStats += StatsUpdate;
     }
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         _unitBaseParent.OnUpdateStats -= StatsUpdate;
     }

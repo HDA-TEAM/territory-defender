@@ -6,8 +6,9 @@ public class UserActionHandle : SingletonBase<UserActionHandle>
 {
     [SerializeField] private Button _btn;
     private Action _onComplete;
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _btn.onClick.AddListener(OnClick);
     }
     private void OnExecuteAction()

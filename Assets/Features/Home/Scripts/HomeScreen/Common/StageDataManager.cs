@@ -4,7 +4,7 @@ public class StageDataManager : SingletonBase<StageDataManager>
     public List<StageComposite> StageComposites { get; private set; }
     public StageComposite CurrentStage { get; set; }
 
-    public override void Awake()
+    protected override void Awake()
     {
         base.Awake();
         LoadStageData();
