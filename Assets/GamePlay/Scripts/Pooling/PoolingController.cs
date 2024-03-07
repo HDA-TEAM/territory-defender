@@ -12,6 +12,18 @@ public enum UnitSideId
 
 public static class UnitId
 {
+    public enum BaseId
+    {
+        Ally = 1,
+        Enemy = 2,
+        Hero = 3,
+        Tower = 4,
+    }
+
+    public static bool IsUnitInBaseId(string unitId, BaseId baseId)
+    {
+        return unitId == baseId.ToString();
+    }
     public enum Ally
     {
         Warrior = 100,

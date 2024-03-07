@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class UnitBase : MonoBehaviour
 {
     #region Component
+    [SerializeField] private List<UnitId.BaseId> _targetSideNeeding;
     [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
     [SerializeField] private HealthComp _healthComp;
