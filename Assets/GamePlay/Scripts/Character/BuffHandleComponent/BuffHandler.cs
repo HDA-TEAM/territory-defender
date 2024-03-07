@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 public enum BuffId
@@ -25,7 +26,12 @@ public class AttributeBuff : UnitBuffBase
 }
 public class BuffHandler
 {
+    public BuffHandler(Action synStat)
+    {
+        _onSynStat = synStat;
+    }
     private AttributeBuff _attributeBuff;
+    private Action _onSynStat;
     public bool IsExistBuffOrDeBuff() => _attributeBuff != null;
     public float GetValueApplyBuff(StatId statId, float originVal)
     {
@@ -39,6 +45,7 @@ public class BuffHandler
     public void AddAttributeBuff(AttributeBuff attributeBuff)
     {
         _attributeBuff = attributeBuff;
+        _onSynStat?.Invoke();
     }
     public void RemoveAttributeBuff()
     {

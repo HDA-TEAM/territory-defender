@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -866078463075045641}
   - component: {fileID: 5243910596837583625}
   - component: {fileID: 5614043302446956692}
+  - component: {fileID: -7222694771438399481}
   m_Layer: 0
   m_Name: EnemyPrefabBase
   m_TagString: Enemy
@@ -120,7 +121,7 @@ MonoBehaviour:
   _unitController: {fileID: 5614043302446956692}
   _characterStateMachine: {fileID: 5243910596837583625}
   _healthComp: {fileID: 3109024967751958898}
-  _unitStatsComp: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
+  _unitStatsComp: {fileID: -7222694771438399481}
   _unitShowingInformation: {fileID: 0}
   _unitType: 3
   _userActionController: {fileID: 0}
@@ -163,6 +164,7 @@ MonoBehaviour:
   _txtToast: {fileID: 8246120276934676148}
   _healthSlider: {fileID: 461077362757737223}
   _healthParentCanvasGroup: {fileID: 684844231185525892}
+  _unitDurationHealthChange: 2
 --- !u!114 &-866078463075045641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +214,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
+--- !u!114 &-7222694771438399481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67ec166af0b4934a9988e6ef74fba82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
+  _baseStats: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
 --- !u!1 &3524047006801495308
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ PrefabInstance:
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _unitStatsComp
       value: 
-      objectReference: {fileID: 11400000, guid: 4f411ff22f0894b7097ae7abfcdb902f, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _targetSideNeeding.Array.size
       value: 1
@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: _isTower
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7134561768570042230, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _baseStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f411ff22f0894b7097ae7abfcdb902f, type: 2}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_RootOrder
       value: 0

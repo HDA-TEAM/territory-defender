@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class StatsHandlerComponent : UnitBaseComponent
 {
-    private BuffHandler _buffHandler = new BuffHandler();
+    private Action _onSynStat;
+    private BuffHandler _buffHandler;
     [SerializeField] private Stats _baseStats;
 
     #region Access
@@ -12,9 +14,9 @@ public class StatsHandlerComponent : UnitBaseComponent
 
     private void Start()
     {
-        _buffHandler = new BuffHandler();
+        _buffHandler = new BuffHandler(SynData);
     }
-    public void SynData()
+    private void SynData()
     {
         _unitBaseParent.OnUpdateStats.Invoke();
     }
