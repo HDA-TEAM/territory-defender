@@ -20,10 +20,8 @@ public static class UnitId
         Tower = 4,
     }
 
-    public static bool IsUnitInBaseId(string unitId, BaseId baseId)
-    {
-        return unitId == baseId.ToString();
-    }
+    public static bool IsUnitInBaseId(int unitId, BaseId baseId) => unitId == (int)baseId;
+
     public enum Ally
     {
         Warrior = 100,

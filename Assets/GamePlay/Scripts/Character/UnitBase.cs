@@ -5,7 +5,7 @@ using UnityEngine;
 public class UnitBase : MonoBehaviour
 {
     #region Component
-    [SerializeField] private List<UnitId.BaseId> _targetSideNeeding;
+    [SerializeField] private List<UnitId.BaseId> _targetSidesNeeding;
     [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
     [SerializeField] private HealthComp _healthComp;
@@ -22,8 +22,10 @@ public class UnitBase : MonoBehaviour
         Range = 4,
         Mixed = 5,
     }
+    
     #region Access
     public UnitController UnitController() => _unitController;
+    public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
     public UnitType UnitTypeId() => _unitType;

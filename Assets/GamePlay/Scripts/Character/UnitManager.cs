@@ -38,9 +38,31 @@ public class UnitManager : SingletonBase<UnitManager>
     {
         ClearUnavailableUnit();
         foreach (var enemy in _unitEnemies)
-            enemy.UnitController().UpdateStatus(_unitAllys);
+        {
+            List<UnitBase> _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
+            enemy.UnitController().UpdateStatus(_unitsNeed);
+            
+        }
         foreach (var ally in _unitAllys)
-            ally.UnitController().UpdateStatus(_unitEnemies);
+        {
+            List<UnitBase> _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
+            ally.UnitController().UpdateStatus(_unitsNeed);
+        }
+    }
+    private List<UnitBase> GetUnitsNeed(UnitId.BaseId baseId)
+    {
+        switch (baseId)
+        {
+            case UnitId.BaseId.Ally:
+                {
+                    return _unitAllys;
+                }
+            case UnitId.BaseId.Enemy:
+                {
+                    return _unitEnemies;
+                }
+        }
+        return new List<UnitBase>();
     }
     // A de-active or unavailable unit will be remove
     private void ClearUnavailableUnit()

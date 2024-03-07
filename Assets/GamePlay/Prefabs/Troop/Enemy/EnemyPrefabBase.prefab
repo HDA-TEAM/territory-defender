@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetSideNeeding: 01000000
+  _targetSidesNeeding: 01000000
   _unitController: {fileID: 5614043302446956692}
   _characterStateMachine: {fileID: 5243910596837583625}
   _healthComp: {fileID: 3109024967751958898}
@@ -352,7 +352,7 @@ MonoBehaviour:
   attackingCooldown: 4
   attackingDamage: 20
   attackingRange: 1.5
-  _projectileDataAsset: {fileID: 0}
+  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 0
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -403,7 +403,7 @@ MonoBehaviour:
   _curStateLabel: 
   _troopBehaviourType: 0
   _animator: {fileID: 6715228475396641559}
-  _projectileDataAsset: {fileID: 0}
+  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 0
   _beingTargetCommand: 0
   _routeToGate: {fileID: 0}
