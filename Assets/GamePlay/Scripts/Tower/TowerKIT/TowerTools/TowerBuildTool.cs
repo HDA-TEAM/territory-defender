@@ -12,14 +12,14 @@ public class TowerBuildTool : TowerToolBase
     private bool CheckCurrencyIsEnough()
     {
         _towerCanBuild = _towerDataAsset.GetTowerType(_towerBuildId);
-        var towerStats = _towerCanBuild.UnitStatsComp();
-        return towerStats.GetStat(StatId.CoinNeedToBuild) <= _inGameInventoryRuntimeData.GetCurrencyValue();
+        var towerStats = _towerCanBuild.UnitStatsHandlerComp();
+        return towerStats.GetCurrentStatValue(StatId.CoinNeedToBuild) <= _inGameInventoryRuntimeData.GetCurrencyValue();
     }
     protected override void Apply()
     { 
         // Checked enough coin to build
         _inGameInventoryRuntimeData.TryChangeCurrency(
-            - (int)_towerCanBuild.UnitStatsComp().GetStat(StatId.CoinNeedToBuild));
+            - (int)_towerCanBuild.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild));
         
         GameObject tower = Instantiate(_towerCanBuild.gameObject);
         TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower, _towerBuildId);

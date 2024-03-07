@@ -59,7 +59,7 @@ public class BaseAllyStateMachine : CharacterStateMachine
             return;
         }
         
-        var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetStat(StatId.AttackRange);
+        var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetCurrentStatValue(StatId.AttackRange);
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }

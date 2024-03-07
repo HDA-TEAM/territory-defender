@@ -1,7 +1,5 @@
 using SuperMaxim.Messaging;
-using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class UnitShowingInformation : UnitBaseComponent, IPointerClickHandler
 {
@@ -13,7 +11,7 @@ public class UnitShowingInformation : UnitBaseComponent, IPointerClickHandler
     {
         Messenger.Default.Publish(new ShowUnitInformationPayload
         {
-            StatsData = _unitBaseParent.UnitStatsComp()
+            StatsData = _unitBaseParent.UnitStatsHandlerComp().GetBaseStats(),
         });
     }
 }

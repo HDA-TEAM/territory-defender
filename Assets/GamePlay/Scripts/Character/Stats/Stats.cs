@@ -17,6 +17,7 @@ public class Stats : ScriptableObject
         Debug.LogError($"No stat value found for key {statId} on {this.name}");
         return 0;
     }
+    public bool IsStatExist(StatId statId) => _statDict.ContainsKey(statId);
     public float GetStat(StatId statId, int level)
     {
         if (_statDict.TryGetValue(statId, out float res))
@@ -59,7 +60,7 @@ public enum StatId
     AttackRange = 2,
     DetectRange = 3,
     CampingRange = 4,
-    BuffRange = 4,
+    BuffRange = 5,
 
     /// Characteristic
     Level = 20,

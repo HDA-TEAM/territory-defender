@@ -30,7 +30,7 @@ public class UnitController : UnitBaseComponent
         {
             float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, gameObject);
 
-            if (betweenDistance < _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange))
+            if (betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.DetectRange))
             {
                 if (nearestUnit > betweenDistance)
                 {
@@ -47,7 +47,7 @@ public class UnitController : UnitBaseComponent
         };
         _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
     }
-    protected bool IsSelfAvailableTargeting() => _unitBaseParent.CurrentTarget == null;
+    private bool IsSelfAvailableTargeting() => _unitBaseParent.CurrentTarget == null;
 
     protected bool IsCurrentTargetAvailable()
     {

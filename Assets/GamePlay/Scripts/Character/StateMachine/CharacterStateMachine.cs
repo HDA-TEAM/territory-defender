@@ -6,7 +6,7 @@ public class CharacterStateMachine : UnitBaseComponent
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
     [SerializeField] protected Animator _animator;
     protected CharacterBaseState _currentState;
-    protected Stats _stats;
+    protected StatsHandlerComponent _stats;
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId.Projectile _projectileId;
     [SerializeField] private BeingTargetCommand _beingTargetCommand;
@@ -26,39 +26,37 @@ public class CharacterStateMachine : UnitBaseComponent
     public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
     public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
     public Animator CharacterAnimator { get { return _animator; } }
-    public Stats CharacterStats { get { return _stats; } }
+    public StatsHandlerComponent CharacterStats { get { return _stats; } }
     
     // public bool IsAttack() => _isAttack;
     #endregion
     protected override void Awake()
     {
-        _stats = _unitBaseParent.UnitStatsComp();
+        _stats = _unitBaseParent.UnitStatsHandlerComp();
     }
     protected void Update() => _currentState.UpdateStates();
 
     protected virtual void OnEnable()
     {
         _unitBaseParent.OnTargetChanging += OnTargetChanging;
-        _unitBaseParent.OnRecheckTarget += OnRecheckTarget;
     }
     protected virtual void OnDisable()
     {
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-        _unitBaseParent.OnRecheckTarget -= OnRecheckTarget;
         
     }
-    // Handle target is null
-    private void OnRecheckTarget()
-    {
-        if (CurrentTarget == null || !CurrentTarget.gameObject.activeSelf)
-        {
-            OnTargetChanging(new UnitBase.OnTargetChangingComposite()
-            {
-                Target = null,
-                BeingTargetCommand = BeingTargetCommand.None
-            });
-        }
-    }
+    // // Handle target is null
+    // private void OnRecheckTarget()
+    // {
+    //     if (CurrentTarget == null || !CurrentTarget.gameObject.activeSelf)
+    //     {
+    //         OnTargetChanging(new UnitBase.OnTargetChangingComposite()
+    //         {
+    //             Target = null,
+    //             BeingTargetCommand = BeingTargetCommand.None
+    //         });
+    //     }
+    // }
     
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {

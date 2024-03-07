@@ -34,9 +34,9 @@ public class AttackingComp : UnitBaseComponent
     #region Stats
     protected override void StatsUpdate()
     {
-        var stats = _unitBaseParent.UnitStatsComp();
-        attackingDamage = stats.GetStat(StatId.AttackDamage);
-        attackingRange = stats.GetStat(StatId.AttackRange);
+        var stats = _unitBaseParent.UnitStatsHandlerComp();
+        attackingDamage = stats.GetCurrentStatValue(StatId.AttackDamage);
+        attackingRange = stats.GetCurrentStatValue(StatId.AttackRange);
     }
     #endregion
     

@@ -9,7 +9,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
     [SerializeField] private HealthComp _healthComp;
-    [SerializeField] private Stats _unitStatsComp;
+    [SerializeField] private StatsHandlerComponent _unitStatsComp;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
     [SerializeField] private UnitType _unitType;
     [SerializeField] private UserActionController _userActionController;
@@ -34,7 +34,7 @@ public class UnitBase : MonoBehaviour
         return _userActionController;
     }
     public UnitShowingInformation UnitShowingInformationComp() => _unitShowingInformation;
-    public Stats UnitStatsComp() => _unitStatsComp;
+    public StatsHandlerComponent UnitStatsHandlerComp() => _unitStatsComp;
     #endregion
 
     #region Validate
@@ -57,8 +57,6 @@ public class UnitBase : MonoBehaviour
     public UnitBase CurrentTarget;
     public Action<UnitBase> OnOutOfHeal;
     public Action<OnTargetChangingComposite> OnTargetChanging;
-    public Action OnRecheckTarget;
-    public Action OnResetFindTarget;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
     public struct OnTargetChangingComposite
@@ -82,6 +80,8 @@ public class UnitBaseComponent : MonoBehaviour
     private void OnValidate() => _unitBaseParent ??= GetComponent<UnitBase>();
     
     public UnitBase UnitBaseParent()=> _unitBaseParent;
+    
+    // Auto call to syn data
     protected virtual void StatsUpdate()
     {
         

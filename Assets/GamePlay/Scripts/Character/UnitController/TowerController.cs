@@ -14,7 +14,7 @@ public class TowerController : UnitController
         {
             float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, this.gameObject);
             
-            if ( betweenDistance < _unitBaseParent.UnitStatsComp().GetStat(StatId.DetectRange))
+            if ( betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.DetectRange))
             {
                 if (nearestUnit > betweenDistance)
                 {

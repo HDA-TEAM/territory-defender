@@ -16,7 +16,7 @@ public class CharacterAttackState : CharacterBaseState
     public override void UpdateState()
     {
         _cooldownNextAttack -= Time.deltaTime;
-        _attackDame = Context.CharacterStats.GetStat(StatId.AttackDamage);
+        _attackDame = Context.CharacterStats.GetCurrentStatValue(StatId.AttackDamage);
         
         CheckSwitchState();
         
@@ -33,7 +33,7 @@ public class CharacterAttackState : CharacterBaseState
         if (_cooldownNextAttack <= 0)
         {
             // Reset cooldown next attack time
-            _cooldownNextAttack = Context.CharacterStats.GetStat(StatId.AttackSpeed);
+            _cooldownNextAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
             
             switch (Context.CharacterTroopBehaviourType)
             {
