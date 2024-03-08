@@ -7,7 +7,7 @@ public class UnitController : UnitBaseComponent
         if (UnitManager.IsAlive())
             UnitManager.Instance.Subscribe(_unitBaseParent);
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         if (UnitManager.IsAlive())
             UnitManager.Instance.UnSubscribe(_unitBaseParent);

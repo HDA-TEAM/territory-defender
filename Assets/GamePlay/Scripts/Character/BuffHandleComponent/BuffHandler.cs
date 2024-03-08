@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public enum BuffId
 {
@@ -16,7 +17,7 @@ public abstract class UnitBuffBase
 public class AttributeBuff : UnitBuffBase
 {
     public readonly float BuffPercent;
-    public List<StatId> StatsBuff;
+    public readonly List<StatId> StatsBuff;
     public AttributeBuff(List<StatId> statIds, float buffPercent)
     {
         BuffId = BuffId.Attribute;
@@ -31,14 +32,14 @@ public class BuffHandler
         _onSynStat = synStat;
     }
     private AttributeBuff _attributeBuff;
-    private Action _onSynStat;
+    private readonly Action _onSynStat;
     public bool IsExistBuffOrDeBuff() => _attributeBuff != null;
     public float GetValueApplyBuff(StatId statId, float originVal)
     {
         // Check this stat have been buffed
         if (_attributeBuff != null && _attributeBuff.StatsBuff.Contains(statId))
         {
-            return originVal + (originVal * _attributeBuff.BuffPercent / 100);
+            return originVal + (originVal * _attributeBuff.BuffPercent / 100f);
         } 
         return originVal;
     }
@@ -50,5 +51,6 @@ public class BuffHandler
     public void RemoveAttributeBuff()
     {
         _attributeBuff = null;
+        _onSynStat?.Invoke();
     }
 }
