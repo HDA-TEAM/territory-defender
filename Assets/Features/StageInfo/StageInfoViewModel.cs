@@ -81,6 +81,7 @@ public class StageInfoViewModel : MonoBehaviour
         if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             SceneManager.LoadScene(sceneIndex);
+            SceneManager.UnloadSceneAsync(0);
         }
         else
         {
@@ -91,7 +92,7 @@ public class StageInfoViewModel : MonoBehaviour
     private int DetermineSceneIndex(StageComposite stage, GameMode gameMode)
     {
         //TODO: this function executive find the stats of stage depend on stageID, mode
-        return 2; // Example haven stage with index = 2
+        return 1; // Example haven stage with index = 2
     }
 }
 
