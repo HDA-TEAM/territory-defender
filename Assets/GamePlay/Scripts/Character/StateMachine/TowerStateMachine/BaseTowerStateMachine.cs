@@ -5,14 +5,14 @@ public class BaseTowerStateMachine : CharacterStateMachine
     private TowerStateFactory _factory;
 
     #region Event
-    protected virtual void OnEnable()
-    {
-        base.OnEnable();
-    }
-    protected virtual void OnDisable()
-    {
-        base.OnDisable();
-    }
+    // protected virtual void OnEnable()
+    // {
+    //     base.OnEnable();
+    // }
+    // protected virtual void OnDisable()
+    // {
+    //     base.OnDisable();
+    // }
     
     #endregion
     

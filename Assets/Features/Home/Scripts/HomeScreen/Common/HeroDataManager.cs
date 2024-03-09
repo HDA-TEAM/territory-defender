@@ -8,7 +8,7 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
     [SerializeField] private HeroDataAsset _heroDataAsset;
     public List<HeroComposite> HeroComposites { get; private set; }
 
-    public override void Awake()
+    protected override void Awake()
     {
         base.Awake(); // Call the base to check singleton integrity
         LoadHeroData();

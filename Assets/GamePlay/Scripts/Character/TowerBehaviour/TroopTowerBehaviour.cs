@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,8 +11,8 @@ public class TroopTowerBehaviour : UnitBaseComponent
     [SerializeField] private Vector3 _campingPos;
     protected override void StatsUpdate()
     {
-        var stats = _unitBaseParent.UnitStatsComp();
-        _campingRange = stats.GetStat(StatId.CampingRange);
+        var stats = _unitBaseParent.UnitStatsHandlerComp();
+        _campingRange = stats.GetCurrentStatValue(StatId.CampingRange);
     }
     private void OnEnable()
     {

@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Unit stats")]
@@ -17,6 +18,7 @@ public class Stats : ScriptableObject
         Debug.LogError($"No stat value found for key {statId} on {this.name}");
         return 0;
     }
+    public bool IsStatExist(StatId statId) => _statDict.ContainsKey(statId);
     public float GetStat(StatId statId, int level)
     {
         if (_statDict.TryGetValue(statId, out float res))
@@ -26,7 +28,30 @@ public class Stats : ScriptableObject
         Debug.LogError($"No stat value found for key {statId} on {this.name} with level {level}");
         return 0;
     }
-
+    public List<StatId> GetStatsCanBuff()
+    {
+        List<StatId> statsCanBuff = new List<StatId>();
+        foreach (var statItem in _statDict)
+        {
+            switch (statItem.Key)
+            {
+                case StatId.Level:
+                case StatId.Exp:
+                case StatId.DropCoinWhenDie:
+                case StatId.CoinNeedToBuild:
+                case StatId.CoinNeedToUpgrade:
+                    {
+                        break;
+                    }
+                default:
+                    {
+                        statsCanBuff.Add(statItem.Key);
+                        break;
+                    }
+            }
+        }
+        return statsCanBuff;
+    }
     protected virtual float StatCalculatePerLevel(StatId statId, int level, float value)
     {
         return value;
@@ -59,7 +84,8 @@ public enum StatId
     AttackRange = 2,
     DetectRange = 3,
     CampingRange = 4,
-    BuffRange = 4,
+    BuffRange = 5,
+    BuffPercent = 6,
 
     /// Characteristic
     Level = 20,

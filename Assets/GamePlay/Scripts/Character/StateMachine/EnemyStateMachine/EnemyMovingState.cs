@@ -13,7 +13,7 @@ public class EnemyMovingState : CharacterBaseState
     public override void EnterState()
     {
         _context.CharacterAnimator.SetBool(IsMoving,true);
-        _movingSpeed = _context.CharacterStats.GetStat(StatId.MovementSpeed);
+        _movingSpeed = _context.CharacterStats.GetCurrentStatValue(StatId.MovementSpeed);
     }
     public override void UpdateState()
     {
@@ -69,7 +69,7 @@ public class EnemyMovingState : CharacterBaseState
     {
         // return pooling and status
         _context.InGameInventoryData.TryChangeLife(
-            - (int)_context.CharacterStats.GetStat(StatId.LifeReduce));
+            - (int)_context.CharacterStats.GetCurrentStatValue(StatId.LifeReduce));
         _context.UnitBaseParent().HealthComp().ResetState();
     }
     #endregion

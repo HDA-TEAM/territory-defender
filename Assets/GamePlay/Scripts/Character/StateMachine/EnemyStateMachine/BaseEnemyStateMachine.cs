@@ -15,12 +15,12 @@ public class BaseEnemyStateMachine : CharacterStateMachine
     private bool _isStopToAttack;
 
     #region Event
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
         base.OnEnable();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected virtual void OnDisable()
+    protected override void OnDisable()
     {
         base.OnDisable();
         _unitBaseParent.OnDie -= OnDie;

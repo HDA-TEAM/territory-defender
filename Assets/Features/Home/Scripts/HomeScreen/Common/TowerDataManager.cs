@@ -7,7 +7,7 @@ public class TowerDataManager : SingletonBase<TowerDataManager>
       [SerializeField] private CommonTowerConfig _commonTowerConfig;
       public List<TowerComposite> TowerComposites { get; private set; }
 
-      public override void Awake()
+      protected override void Awake()
       {
             base.Awake();
             LoadTowerData();
