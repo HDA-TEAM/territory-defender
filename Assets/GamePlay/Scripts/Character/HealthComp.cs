@@ -22,6 +22,13 @@ public class HealthComp : UnitBaseComponent
         _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
         _currentHealth = _maxHeath;
     }
+    protected override void BuffUpdate()
+    {
+        float curHealthUnit = _currentHealth / _maxHeath;
+        var stats = _unitBaseParent.UnitStatsHandlerComp();
+        _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
+        _currentHealth = curHealthUnit * _maxHeath;
+    }
     private void OnEnable()
     {
         StatsUpdate();

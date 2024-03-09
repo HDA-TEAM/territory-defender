@@ -21,7 +21,7 @@ public class StatsHandlerComponent : UnitBaseComponent
     }
     private void SynData()
     {
-        _unitBaseParent.OnUpdateStats.Invoke();
+        _unitBaseParent.OnUpdateBuffs?.Invoke();
     }
 
     public float GetCurrentStatValue(StatId statId)

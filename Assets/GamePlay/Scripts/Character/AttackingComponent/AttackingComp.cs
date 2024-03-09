@@ -34,6 +34,14 @@ public class AttackingComp : UnitBaseComponent
     #region Stats
     protected override void StatsUpdate()
     {
+        SynData();
+    }
+    protected override void BuffUpdate()
+    {
+        SynData();
+    }
+    private void SynData()
+    { 
         var stats = _unitBaseParent.UnitStatsHandlerComp();
         attackingDamage = stats.GetCurrentStatValue(StatId.AttackDamage);
         attackingRange = stats.GetCurrentStatValue(StatId.AttackRange);

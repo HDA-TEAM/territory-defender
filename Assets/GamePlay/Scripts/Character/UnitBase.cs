@@ -59,6 +59,7 @@ public class UnitBase : MonoBehaviour
     public Action<OnTargetChangingComposite> OnTargetChanging;
     public Action<bool> OnDie;
     public Action OnUpdateStats;
+    public Action OnUpdateBuffs;
     public struct OnTargetChangingComposite
     {
         public UnitBase Target;
@@ -74,7 +75,7 @@ public class UnitBase : MonoBehaviour
     #endregion
 }
 
-public class UnitBaseComponent : MonoBehaviour
+public abstract class UnitBaseComponent : MonoBehaviour
 {
     [SerializeField] protected UnitBase _unitBaseParent;
     private void OnValidate() => _unitBaseParent ??= GetComponent<UnitBase>();
@@ -82,16 +83,17 @@ public class UnitBaseComponent : MonoBehaviour
     public UnitBase UnitBaseParent()=> _unitBaseParent;
     
     // Auto call to syn data
-    protected virtual void StatsUpdate()
-    {
-        
-    }
+    protected virtual void StatsUpdate() {}
+    protected virtual void BuffUpdate() {}
+    
     protected virtual void Awake()
     {
+        _unitBaseParent.OnUpdateBuffs += BuffUpdate;
         _unitBaseParent.OnUpdateStats += StatsUpdate;
     }
     protected virtual void OnDestroy()
     {
+        _unitBaseParent.OnUpdateBuffs -= BuffUpdate;
         _unitBaseParent.OnUpdateStats -= StatsUpdate;
     }
 }
