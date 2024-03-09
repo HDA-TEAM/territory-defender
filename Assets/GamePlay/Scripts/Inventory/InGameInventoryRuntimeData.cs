@@ -21,7 +21,12 @@ public class InGameInventoryRuntimeData : ScriptableObject
     public void RegisterLifeChange(Action<int> action) => _onLifeChange += action;
     public void UnRegisterLifeChange(Action<int> action) => _onLifeChange -= action;
     #endregion
-    
+    public void InitData(StageInventory stageInventory)
+    {
+        _currency = stageInventory.Currency;
+        _life = stageInventory.MaxLife;
+        _star = stageInventory.StarClaimable;
+    }
     public void TryChangeCurrency(int value)
     {
         if (_currency > value)

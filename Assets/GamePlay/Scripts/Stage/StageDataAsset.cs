@@ -6,9 +6,9 @@ using UnityEngine.Serialization;
 
 public enum StageId
 {
-    CHAP_1_STAGE_0 = 100,
-    CHAP_1_STAGE_1 = 101,
-    CHAP_1_STAGE_2 = 102,
+    Chap1Stage0 = 100,
+    Chap1Stage1 = 101,
+    Chap1Stage2 = 102,
 }
 
 [Serializable]
@@ -34,7 +34,7 @@ public class StageDataAsset : ScriptableObject
     public StageId CurrentStageId() => _currentStageId;
 
     
-    public StageConfig GetStageConfig(StageId stageId = StageId.CHAP_1_STAGE_1)
+    public StageConfig GetStageConfig(StageId stageId = StageId.Chap1Stage1)
     {
         _stageDict.TryGetValue(_currentStageId, out StageConfig stageConfig);
         return stageConfig;

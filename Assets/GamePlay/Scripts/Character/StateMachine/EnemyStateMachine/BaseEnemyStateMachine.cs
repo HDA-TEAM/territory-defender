@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BaseEnemyStateMachine : CharacterStateMachine
 {
     [SerializeField] private LineRenderer _routeToGate;
-    [FormerlySerializedAs("_inGameInventoryEvent")]
-    [FormerlySerializedAs("_inGameInventoryDataAsset")]
     [SerializeField] private InGameInventoryRuntimeData _inGameInventoryRuntimeData;
     
     private EnemyStateFactory _factory;
