@@ -61,7 +61,7 @@ public class StageInfoViewModel : MonoBehaviour
 
     private void OnSelectedItemMastery(ItemMasteryView itemMasteryView)
     {
-        _stateMachine.ChangeState<MasteryPageState>();
+        _stateMachine.ChangeModalState<MasteryPageState>();
     }
 
     private void OnSelectedItemPlay(ItemPlayView itemPlayView)

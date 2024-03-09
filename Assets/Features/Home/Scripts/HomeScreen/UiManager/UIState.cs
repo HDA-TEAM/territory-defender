@@ -5,23 +5,24 @@ public abstract class UIState
     public abstract void Enter();
     public abstract void Exit();
 }
-public interface IUIModalState { }
+public interface IUIPopupState { }
+public interface IUISceneState { }
+public interface IUIScreenState { }
 
-public interface IUIPageState { }
-
-public class HomeScreenState : UIState, IUIPageState
+public class HomeScreenState : UIState, IUIScreenState
 {
     public override void Enter()
     {
-        //NavigatorController.PopModal();
-        
         NavigatorController.PushScreen();
         Debug.Log("Home Screen is open");
     }
 
-    public override void Exit() { } // TODO: do sth when turn off the game
+    public override void Exit()
+    {
+        NavigatorController.PopModal();
+    } // TODO: do sth when turn off the game
 }
-public class HeroInfoState : UIState, IUIModalState
+public class HeroInfoSceneState : UIState, IUISceneState
 {
     public override void Enter()
     {
@@ -36,13 +37,13 @@ public class HeroInfoState : UIState, IUIModalState
     } 
 }
 
-public class ShopState : UIState, IUIModalState
+public class ShopSceneState : UIState, IUISceneState
 {
     public override void Enter() => Debug.Log("Entering Shop State");
     public override void Exit() => Debug.Log("Exiting Shop State");
 }
 
-public class DictionaryState : UIState, IUIModalState
+public class DictionarySceneState : UIState, IUISceneState
 {
     public override void Enter()
     {
@@ -55,7 +56,7 @@ public class DictionaryState : UIState, IUIModalState
     } //TODO
 }
 
-public class HistoryState : UIState, IUIModalState
+public class HistoryState : UIState, IUIPopupState
 {
     public override void Enter()
     {
@@ -69,7 +70,7 @@ public class HistoryState : UIState, IUIModalState
     } //TODO
 }
 
-public class MasteryPageState : UIState, IUIModalState
+public class MasteryPageState : UIState, IUIPopupState
 {
     public override void Enter()
     {
@@ -82,7 +83,7 @@ public class MasteryPageState : UIState, IUIModalState
     }
 }
 
-public class SettingState : UIState, IUIModalState
+public class SettingState : UIState, IUIPopupState
 {
     public override void Enter()
     {
@@ -95,7 +96,7 @@ public class SettingState : UIState, IUIModalState
     }
 }
 
-public class QuestState : UIState, IUIModalState
+public class QuestState : UIState, IUIPopupState
 {
     public override void Enter()
     {
@@ -108,7 +109,7 @@ public class QuestState : UIState, IUIModalState
     }
 }
 
-public class StageInfoState : UIState, IUIModalState
+public class StageInfoState : UIState, IUIPopupState
 {
     public override void Enter()
     {

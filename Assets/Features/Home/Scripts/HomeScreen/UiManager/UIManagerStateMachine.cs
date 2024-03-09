@@ -15,32 +15,43 @@ public class UIManagerStateMachine
     private void InitializeStates()
     {
         // Pre-instantiate all state instances
-        // _states.Add(typeof(HomeScreenState), new HomeScreenState());
-        _states.Add(typeof(HeroInfoState), new HeroInfoState());
-        _states.Add(typeof(ShopState), new ShopState());
-        _states.Add(typeof(DictionaryState), new DictionaryState());
-        _states.Add(typeof(HistoryState), new HistoryState());
+        _states.Add(typeof(HomeScreenState), new HomeScreenState());
         
+        _states.Add(typeof(HeroInfoSceneState), new HeroInfoSceneState());
+        _states.Add(typeof(ShopSceneState), new ShopSceneState());
+        _states.Add(typeof(DictionarySceneState), new DictionarySceneState());
+        
+        _states.Add(typeof(HistoryState), new HistoryState());
         _states.Add(typeof(MasteryPageState), new MasteryPageState());
         _states.Add(typeof(SettingState), new SettingState());
         _states.Add(typeof(QuestState), new QuestState());
-        
         _states.Add(typeof(StageInfoState), new StageInfoState());
     }
-    public void ChangeState<T>() where T : UIState, new()
+
+    private void ChangePageState<T>() where T : UIState, new()
     {
         var type = typeof(T);
         if (!_states.TryGetValue(type, out UIState nextState))
             return;
         
         if (_currentState == nextState)
-        {
             return;
-        }
-
-        _currentState?.Exit();
         
-        if (nextState is IUIModalState)
+        _currentState = nextState;
+        _currentState.Enter();
+    }
+    
+    public void ChangeModalState<T>() where T : UIState, new()
+    {
+        var type = typeof(T);
+        if (!_states.TryGetValue(type, out UIState nextState))
+            return;
+        
+        if (_currentState == nextState)
+            return;
+        
+        _currentState?.Exit();
+        if (nextState is IUIPopupState)
         {
             _popupStateStack.Push(nextState);
         }
@@ -58,12 +69,10 @@ public class UIManagerStateMachine
     }
     public void BackPressed()
     {
-        //NavigatorController.PopModal();
-        if (_currentState is IUIModalState && _popupStateStack.Count > 0)
+        _currentState.Exit();
+        if (_currentState is IUIPopupState && _popupStateStack.Count > 0)
         {
             // Close the current popup and remove it from the stack
-            _currentState.Exit();
-            
             _popupStateStack.Pop();
 
             if (_popupStateStack.Count > 0)
@@ -75,13 +84,13 @@ public class UIManagerStateMachine
             else
             {
                 // No popups left, return to the home screen or a suitable default state
-                ChangeState<HomeScreenState>();
+                ChangePageState<HomeScreenState>();
             }
         }
         else
         {
             // Optionally, handle back navigation for non-popup states
-            ChangeState<HomeScreenState>();
+            ChangePageState<HomeScreenState>();
         }
     }
 }

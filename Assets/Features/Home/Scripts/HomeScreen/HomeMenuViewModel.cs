@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,12 +17,12 @@ public class HomeMenuViewModel: MonoBehaviour
     {
         _stateMachine = new UIManagerStateMachine();
         
-        _buttonHeroInfo.onClick.AddListener(() => _stateMachine.ChangeState<HeroInfoState>());
+        _buttonHeroInfo.onClick.AddListener(() => _stateMachine.ChangeModalState<HeroInfoSceneState>());
         //_buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
-        _buttonDictionary.onClick.AddListener(() => _stateMachine.ChangeState<DictionaryState>());
-        _buttonHistory.onClick.AddListener(() => _stateMachine.ChangeState<HistoryState>());
-        _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeState<MasteryPageState>());
-        _buttonSetting.onClick.AddListener((() => _stateMachine.ChangeState<SettingState>()));
-        _buttonQuest.onClick.AddListener((() => _stateMachine.ChangeState<QuestState>()));
+        _buttonDictionary.onClick.AddListener(() => _stateMachine.ChangeModalState<DictionarySceneState>());
+        _buttonHistory.onClick.AddListener(() => _stateMachine.ChangeModalState<HistoryState>());
+        _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeModalState<MasteryPageState>());
+        _buttonSetting.onClick.AddListener((() => _stateMachine.ChangeModalState<SettingState>()));
+        _buttonQuest.onClick.AddListener((() => _stateMachine.ChangeModalState<QuestState>()));
     }
 }

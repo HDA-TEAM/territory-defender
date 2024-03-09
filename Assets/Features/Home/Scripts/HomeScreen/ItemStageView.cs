@@ -26,7 +26,7 @@ public class ItemStageView : MonoBehaviour
     private void OnSelectedHero()
     {
         _onSelected?.Invoke(this);
-        _stateMachine.ChangeState<StageInfoState>();
+        _stateMachine.ChangeModalState<StageInfoState>();
     }
 
     private void StageLoad(int stageID)
