@@ -5,10 +5,6 @@ public class NavigatorController : SingletonBase<NavigatorController>
 {
     private static PageContainer MainPageContainer => PageContainer.Find("MainPageContainer");
     public static ModalContainer MainModalContainer => ModalContainer.Find("MainModalContainer");
-    private void Start()
-    {
-        PushScreen();
-    }
     public static void PushScreen()
     {
         MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, false);

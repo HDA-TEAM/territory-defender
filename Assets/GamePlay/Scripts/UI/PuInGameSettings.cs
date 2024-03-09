@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PuInGameSettings : MonoBehaviour
@@ -21,6 +22,14 @@ public class PuInGameSettings : MonoBehaviour
         {
             btnClose.onClick.AddListener(OnClose);
         }
+        _btnQuit.onClick.AddListener(OnClickQuit);
     }
     private void OnClose() => this.gameObject.SetActive(false);
+
+    private void OnClickQuit()
+    {
+        // Load scene home
+        SceneManager.LoadScene(0);
+        SceneManager.UnloadSceneAsync(1);
+    }
 }
