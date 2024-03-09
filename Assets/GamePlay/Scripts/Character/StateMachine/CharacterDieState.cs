@@ -3,7 +3,7 @@ using UnityEngine;
 public class CharacterDieState : CharacterBaseState
 {
     protected float _durationDie;
-    public CharacterDieState(CharacterStateMachine currentContext) : base(currentContext)
+    protected CharacterDieState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
     }

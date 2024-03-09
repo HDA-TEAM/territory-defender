@@ -11,8 +11,8 @@ public class TowerCampingTool : TowerToolBase
         if (TowerKitSetController.Instance.CurrentSelectedKit)
         {
             var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
-            var towerStats = unitBase.UnitStatsComp();
-            return towerStats.GetStat(StatId.CampingRange) > 0;
+            var towerStats = unitBase.UnitStatsHandlerComp();
+            return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
         }
         return true;
     }

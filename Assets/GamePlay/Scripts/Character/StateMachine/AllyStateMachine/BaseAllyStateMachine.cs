@@ -11,12 +11,12 @@ public class BaseAllyStateMachine : CharacterStateMachine
     private bool _isDie;
 
     #region Event
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
         base.OnEnable();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected virtual void OnDisable()
+    protected override void OnDisable()
     {
         base.OnDisable();
         _unitBaseParent.OnDie -= OnDie;
@@ -59,7 +59,7 @@ public class BaseAllyStateMachine : CharacterStateMachine
             return;
         }
         
-        var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetStat(StatId.AttackRange);
+        var isInAttackRange = GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject) < _stats.GetCurrentStatValue(StatId.AttackRange);
         _isAttack = isInAttackRange;
         _isMovingToTarget = !isInAttackRange;
     }

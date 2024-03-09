@@ -161,7 +161,7 @@ public class TowerKit : MonoBehaviour
     public void ActiveCampingMode()
     {
         
-        var rangeVal= _unitBase.UnitStatsComp().GetStat(StatId.CampingRange);
+        var rangeVal= _unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
         
         SetRangeOfTower(rangeVal);
 

@@ -12,6 +12,16 @@ public enum UnitSideId
 
 public static class UnitId
 {
+    public enum BaseId
+    {
+        Ally = 1,
+        Enemy = 2,
+        Hero = 3,
+        Tower = 4,
+    }
+
+    public static bool IsUnitInBaseId(int unitId, BaseId baseId) => unitId == (int)baseId;
+
     public enum Ally
     {
         Warrior = 100,
@@ -46,7 +56,7 @@ public class PoolingController : SingletonBase<PoolingController>
     [SerializeField] private UnitPooling _poolingPrefab;
     private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
-    public override void Awake()
+    protected override void Awake()
     {
         base.Awake();
         SetUp();
