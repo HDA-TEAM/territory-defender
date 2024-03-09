@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9162817489338520532}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -108,7 +107,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9162817489338520532}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -231,7 +229,6 @@ RectTransform:
   - {fileID: 9162817489922991206}
   - {fileID: 9162817488421669532}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -268,7 +265,7 @@ MonoBehaviour:
   _button: {fileID: 9162817488560842882}
   _defaultIcon: {fileID: 9162817489922991205}
   _spriteBlock: {fileID: 302624510, guid: 5793de93155e44b18ba37419aa564000, type: 3}
-  _blockMaterial: {fileID: 2100000, guid: 32bb184ecacd44689a4639476f013858, type: 2}
+  _blockMaterial: {fileID: 2100000, guid: 02c9d4a7161824e75a3227177b5f2299, type: 2}
 --- !u!1 &9162817489922991207
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +297,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9162817489338520532}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
