@@ -32,6 +32,7 @@ public class HealthComp : UnitBaseComponent
     private void OnEnable()
     {
         StatsUpdate();
+        _unitBaseParent.OnDie?.Invoke(false);
     }
     public void PlayHurting(float dame)
     {
