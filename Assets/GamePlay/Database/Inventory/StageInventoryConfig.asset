@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559dc2bf60fd4206a505269809e134cf, type: 3}
-  m_Name: InGameInventoryDataAsset
+  m_Script: {fileID: 11500000, guid: 13bfe3e56511049f495a62f939e65094, type: 3}
+  m_Name: StageInventoryConfig
   m_EditorClassIdentifier: 
-  _currency: 500
-  _life: 30
-  _star: 10000
+  _stageInventories:
+  - StageId: 100
+    Currency: 100
+    MaxLife: 20
+    StarClaimable: 3

@@ -91,6 +91,9 @@ public abstract class UnitBaseComponent : MonoBehaviour
         _unitBaseParent.OnUpdateBuffs += BuffUpdate;
         _unitBaseParent.OnUpdateStats += StatsUpdate;
     }
+    protected virtual void Start()
+    {
+    }
     protected virtual void OnDestroy()
     {
         _unitBaseParent.OnUpdateBuffs -= BuffUpdate;

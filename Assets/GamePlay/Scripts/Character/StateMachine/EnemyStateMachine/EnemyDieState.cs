@@ -25,14 +25,14 @@ public class EnemyDieState : CharacterDieState
         _context.CharacterAnimator.SetBool("IsDie",false);
         _context.gameObject.SetActive(false);
     }
-    public override void CheckSwitchState()
-    {
-        if (_durationDie <= 0)
-        {
-            _durationDie = 0;
-            ExitState();
-        }
-    }
+    // public override void CheckSwitchState()
+    // {
+    //     if (_durationDie <= 0)
+    //     {
+    //         _durationDie = 0;
+    //         ExitState();
+    //     }
+    // }
     public override void InitializeSubState()
     {
     }

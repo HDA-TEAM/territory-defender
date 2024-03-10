@@ -12,8 +12,9 @@ public class UnitDirection : UnitBaseComponent
 
 
     #region Core
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _localScaleX = _transform.localScale.x;
     }
     #endregion

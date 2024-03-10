@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class TowerSellingTool : TowerToolBase
 {
     protected override void Apply()

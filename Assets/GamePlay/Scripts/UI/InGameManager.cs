@@ -6,8 +6,10 @@ public class InGameManager : MonoBehaviour
     [Header("Data"), Space(12)] [SerializeField]
     private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private InGameResultsController _resultsController;
+    [SerializeField] private StageInventoryConfig _stageInventoryConfig;
     private void Awake()
     {
+        _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(StageId.Chap1Stage0));
         _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
     }
     private void OnDestroy()

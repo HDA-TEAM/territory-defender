@@ -15,8 +15,9 @@ public class StatsHandlerComponent : UnitBaseComponent
     public Stats GetBaseStats() => _baseStats;
     #endregion
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _buffHandler = new BuffHandler(SynData);
     }
     private void SynData()

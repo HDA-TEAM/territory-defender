@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
     public void StartGame()
     {
-        var spawningConfig = _enemySpawningFactory.FindSpawningConfig(StageId.CHAP_1_STAGE_1);
+        var spawningConfig = _enemySpawningFactory.FindSpawningConfig(StageId.Chap1Stage1);
         _enemySpawningFactory.StartSpawning(spawningConfig);
     }
 }

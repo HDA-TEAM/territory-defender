@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class BaseEnemyStateMachine : CharacterStateMachine
 {
     [SerializeField] private LineRenderer _routeToGate;
-    [FormerlySerializedAs("_inGameInventoryEvent")]
-    [FormerlySerializedAs("_inGameInventoryDataAsset")]
     [SerializeField] private InGameInventoryRuntimeData _inGameInventoryRuntimeData;
     
     private EnemyStateFactory _factory;
@@ -15,14 +12,14 @@ public class BaseEnemyStateMachine : CharacterStateMachine
     private bool _isStopToAttack;
 
     #region Event
-    protected override void OnEnable()
+    protected override void Start()
     {
-        base.OnEnable();
+        base.OnDestroy();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected override void OnDisable()
+    protected override void OnDestroy()
     {
-        base.OnDisable();
+        base.OnDestroy();
         _unitBaseParent.OnDie -= OnDie;
     }
     

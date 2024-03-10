@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterStateMachine : UnitBaseComponent
@@ -27,8 +28,6 @@ public class CharacterStateMachine : UnitBaseComponent
     public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
     public Animator CharacterAnimator { get { return _animator; } }
     public StatsHandlerComponent CharacterStats { get { return _stats; } }
-    
-    // public bool IsAttack() => _isAttack;
     #endregion
     protected override void Awake()
     {
@@ -43,7 +42,14 @@ public class CharacterStateMachine : UnitBaseComponent
     protected virtual void OnDisable()
     {
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-        
+    }
+    protected override void Start()
+    {
+        base.Start();
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
     }
     // // Handle target is null
     // private void OnRecheckTarget()
@@ -57,7 +63,7 @@ public class CharacterStateMachine : UnitBaseComponent
     //         });
     //     }
     // }
-    
+
     protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
     {
         _unitBaseParent.CurrentTarget = composite.Target;
