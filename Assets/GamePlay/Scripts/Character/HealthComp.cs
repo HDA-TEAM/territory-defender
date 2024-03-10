@@ -29,11 +29,7 @@ public class HealthComp : UnitBaseComponent
         _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
         _currentHealth = curHealthUnit * _maxHeath;
     }
-    private void OnEnable()
-    {
-        StatsUpdate();
-        _unitBaseParent.OnDie?.Invoke(false);
-    }
+    private void OnEnable() => StatsUpdate();
     public void PlayHurting(float dame)
     {
         _currentHealth -= dame;

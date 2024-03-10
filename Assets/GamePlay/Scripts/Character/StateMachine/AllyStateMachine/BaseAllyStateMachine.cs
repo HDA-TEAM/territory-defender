@@ -11,15 +11,21 @@ public class BaseAllyStateMachine : CharacterStateMachine
     private bool _isDie;
 
     #region Event
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.OnDestroy();
+        base.OnEnable();
+        SetDefaultStatus();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected override void OnDestroy()
+    protected override void OnDisable()
     {
-        base.OnDestroy();
+        base.OnDisable();
         _unitBaseParent.OnDie -= OnDie;
+    }
+    
+    protected override void SetDefaultStatus()
+    {
+        _isDie = false;
     }
     
     #endregion

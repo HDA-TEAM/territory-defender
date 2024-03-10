@@ -82,8 +82,6 @@ public class StageSpawningConfig : ScriptableObject
 
                 GameObject go = PoolingController.Instance.SpawnObject(ObjectSpawn.ToString());
 
-                Debug.Log("Spawning " + ObjectSpawn);
-
                 SetRoute(go);
                 UpdateStats(go);
             }
@@ -97,6 +95,7 @@ public class StageSpawningConfig : ScriptableObject
         private void UpdateStats(GameObject go)
         {
             go.TryGetComponent(out UnitBase component);
+            
             component.OnUpdateStats?.Invoke();
         }
     }

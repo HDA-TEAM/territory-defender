@@ -8,21 +8,31 @@ public class BaseEnemyStateMachine : CharacterStateMachine
     private EnemyStateFactory _factory;
     private int _currentIndexInRouteLine;
     private bool _isMovingToGate;
-    private bool _isDie;
+    public bool _isDie;
     private bool _isStopToAttack;
 
     #region Event
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.OnDestroy();
+        base.OnEnable();
+        SetDefaultStatus();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected override void OnDestroy()
+    protected override void OnDisable()
     {
-        base.OnDestroy();
+        base.OnDisable();
         _unitBaseParent.OnDie -= OnDie;
     }
-    
+    protected override void SetDefaultStatus()
+    {
+        _isDie = false;
+        _factory = new EnemyStateFactory(this);
+        _currentState = _factory.GetState(CharacterState.Idle);
+        _currentState.EnterState();
+        _isMovingToGate = true;
+        _isStopToAttack = false;
+    }
+
     #endregion
     private void OnDie(bool isDie) => _isDie = isDie;
     

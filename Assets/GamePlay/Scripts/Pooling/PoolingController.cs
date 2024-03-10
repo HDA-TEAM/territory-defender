@@ -77,13 +77,11 @@ public class PoolingController : SingletonBase<PoolingController>
     }
     public GameObject SpawnObject(string objectType, Vector3 position = new Vector3())
     {
-        Debug.Log("objectType " + objectType);
         if (!IsPoolExist(objectType))
-        {
             CreateNewPool(objectType);
-        }
+        
         GameObject go = GetPooling(objectType).GetInstance();
-        go.SetActive(transform);
+        go.SetActive(true);
         go.transform.position = new Vector3(position.x,position.y,0);
         return go;
     }

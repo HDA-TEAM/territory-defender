@@ -43,13 +43,9 @@ public class CharacterStateMachine : UnitBaseComponent
     {
         _unitBaseParent.OnTargetChanging -= OnTargetChanging;
     }
-    protected override void Start()
+    protected virtual void SetDefaultStatus()
     {
-        base.Start();
-    }
-    protected override void OnDestroy()
-    {
-        base.OnDestroy();
+         
     }
     // // Handle target is null
     // private void OnRecheckTarget()
