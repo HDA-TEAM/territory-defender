@@ -5,10 +5,9 @@ using UnityEngine.UI;
 public class ItemStageView : MonoBehaviour
 {
     [SerializeField] private Button _btn;
-
     // Internal
     private Action<ItemStageView> _onSelected;
-    private static UIManagerStateMachine _stateMachine;
+    //private static UIManagerStateMachine _stateMachine;
     
     public StageComposite StageComposite;
 
@@ -16,7 +15,7 @@ public class ItemStageView : MonoBehaviour
     {
         StageComposite = stageComposite;
         _onSelected = onAction;
-        _stateMachine = stateMachine; // Assign the state machine instance
+        // = stateMachine; // Assign the state machine instance
 
         StageLoad(stageComposite.StageId);
         //_btn.onClick.RemoveAllListeners();
@@ -25,8 +24,9 @@ public class ItemStageView : MonoBehaviour
 
     private void OnSelectedHero()
     {
+        var stateMachine = UIManagerStateMachine.Instance;   
         _onSelected?.Invoke(this);
-        _stateMachine.ChangeModalState<StageInfoState>();
+        stateMachine.ChangeModalState<StageInfoPuState>();
     }
 
     private void StageLoad(int stageID)

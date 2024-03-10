@@ -12,17 +12,16 @@ public class HomeMenuViewModel: MonoBehaviour
     [SerializeField] private Button _buttonQuest;
 
     // Internal
-    private static UIManagerStateMachine _stateMachine;
+    //private static UIManagerStateMachine _stateMachine;
     private void Start()
     {
-        _stateMachine = new UIManagerStateMachine();
-        
-        _buttonHeroInfo.onClick.AddListener(() => _stateMachine.ChangeModalState<HeroInfoSceneState>());
+        var stateMachine = UIManagerStateMachine.Instance;   
+        _buttonHeroInfo.onClick.AddListener(() => stateMachine.ChangeModalState<HeroInfoPuState>());
         //_buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
-        _buttonDictionary.onClick.AddListener(() => _stateMachine.ChangeModalState<DictionarySceneState>());
-        _buttonHistory.onClick.AddListener(() => _stateMachine.ChangeModalState<HistoryState>());
-        _buttonUpgradeTower.onClick.AddListener(() => _stateMachine.ChangeModalState<MasteryPageState>());
-        _buttonSetting.onClick.AddListener((() => _stateMachine.ChangeModalState<SettingState>()));
-        _buttonQuest.onClick.AddListener((() => _stateMachine.ChangeModalState<QuestState>()));
+        _buttonDictionary.onClick.AddListener(() => stateMachine.ChangeModalState<DictionaryPuState>());
+        _buttonHistory.onClick.AddListener(() => stateMachine.ChangeModalState<HistoryPuState>());
+        _buttonUpgradeTower.onClick.AddListener(() => stateMachine.ChangeModalState<MasteryPagePuState>());
+        _buttonSetting.onClick.AddListener((() => stateMachine.ChangeModalState<SettingPuState>()));
+        _buttonQuest.onClick.AddListener((() => stateMachine.ChangeModalState<QuestPuState>()));
     }
 }
