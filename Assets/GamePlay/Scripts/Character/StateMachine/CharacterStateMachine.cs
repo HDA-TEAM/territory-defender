@@ -28,7 +28,6 @@ public class CharacterStateMachine : UnitBaseComponent
     public Animator CharacterAnimator { get { return _animator; } }
     public StatsHandlerComponent CharacterStats { get { return _stats; } }
     
-    // public bool IsAttack() => _isAttack;
     #endregion
     protected override void Awake()
     {

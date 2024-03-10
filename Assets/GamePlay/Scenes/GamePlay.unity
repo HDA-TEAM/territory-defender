@@ -3505,8 +3505,8 @@ MonoBehaviour:
   - {fileID: 1406808290}
   - {fileID: 1878609234}
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
-  _currentStageId: 0
-  _routeSetConfig: {fileID: 0}
+  _currentStageId: 100
+  _routeSetConfig: {fileID: 11400000, guid: e1eded6cc7a48472e8f100ce576fe75f, type: 2}
 --- !u!4 &566878312
 Transform:
   m_ObjectHideFlags: 0
@@ -7666,7 +7666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _btnReplay: {fileID: 0}
-  _btnQuit: {fileID: 0}
+  _btnQuit: {fileID: 1618494665}
   _canvasGroup: {fileID: 0}
   _settingDataAsset: {fileID: 11400000, guid: a715273e6e2004f21ae4bde9d592b8af, type: 2}
 --- !u!1 &1356185394
@@ -10937,7 +10937,7 @@ MonoBehaviour:
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   CurrentSelectedKit: {fileID: 0}
-  _currentStageId: 0
+  _currentStageId: 100
   _towerKitSetConfig: {fileID: 11400000, guid: d254bb6c3c9a044238a8bcf816c4f6c4, type: 2}
 --- !u!1 &1917346677
 GameObject:
