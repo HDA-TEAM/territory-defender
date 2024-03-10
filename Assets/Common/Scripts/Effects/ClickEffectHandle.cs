@@ -20,7 +20,7 @@ public class ClickEffectHandle : MonoBehaviour
     }
     private void OnPlayClickEffect()
     {
-        var screenPos = transform.TransformPoint(Input.mousePosition);
+        var screenPos = Input.mousePosition;
         var worldPos = _camera.ScreenToWorldPoint(screenPos);
         _clickingEffect.transform.position = worldPos;
         _clickingEffect.Play();
