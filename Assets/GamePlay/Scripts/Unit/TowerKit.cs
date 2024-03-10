@@ -1,3 +1,4 @@
+using CustomInspector;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
@@ -29,6 +30,7 @@ public class TowerKit : MonoBehaviour
 
     [Header("Data"), Space(12)]
     [SerializeField] private TowerDataAsset _towerDataAsset;
+    [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
     [SerializeField] private TowerId _towerId;
     [SerializeField] private UnitBase _unitBase;
     // Internal
@@ -46,7 +48,8 @@ public class TowerKit : MonoBehaviour
         }
     }
     private GameObject _towerEntity;
-
+    [ReadOnly][SerializeField] private int _totalUsedCoin = 0;
+    
     // call back
     private Action<TowerKit> _onSelected;
 
@@ -81,7 +84,6 @@ public class TowerKit : MonoBehaviour
         _onSelected?.Invoke(this);
         TowerKitState = _towerEntity ? TowerKitState.ShowToolOfTowerExisted : TowerKitState.Building;
 
-        Debug.Log("Onclick");
         // Handle user want to cancel selection menu by canvas block raycast
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
@@ -136,6 +138,12 @@ public class TowerKit : MonoBehaviour
         _towerEntity = tower;
         _unitBase = _towerEntity.GetComponent<UnitBase>();
 
+        // Reduce coin in inventory
+        var coinNeedToBuild = (int)_unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
+        _inventoryRuntime.TryChangeCurrency(
+            - coinNeedToBuild);
+        _totalUsedCoin += coinNeedToBuild;
+        
         _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
         _towerEntity.transform.position = _spawnTowerHolder.transform.position;
         TowerKitState = TowerKitState.Hiding;
@@ -149,10 +157,12 @@ public class TowerKit : MonoBehaviour
     }
     public void SellingTower()
     {
-        //todo 
         // Logic get 30% coin used 
-        // UnitBase towerBase = _towerEntity.GetComponent<UnitBase>();
-        // towerBase.UnitStatsComp().GetStat(StatId.Armour
+        _totalUsedCoin = _totalUsedCoin * 30 / 100;
+        _inventoryRuntime.TryChangeCurrency(_totalUsedCoin);
+        
+        // reset Coin
+        _totalUsedCoin = 0;
 
         _unitBase = null;
         Destroy(_towerEntity);
@@ -173,7 +183,6 @@ public class TowerKit : MonoBehaviour
             // Set camping position
             var troopTowerBehaviour = _unitBase.GetComponent<TroopTowerBehaviour>();
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Debug.LogError("Camping position : " + mousePos);
             troopTowerBehaviour.SetCampingPlace(new Vector3(mousePos.x, mousePos.y,0));
             
             // Hiding select camping position
