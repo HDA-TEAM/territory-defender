@@ -67,4 +67,13 @@ public class UnitController : UnitBaseComponent
         };
         _unitBaseParent.OnTargetChanging?.Invoke(targetChangingComposite);
     }
+    protected void OnChangeTarget(UnitBase target, BeingTargetCommand beingTargetCommand)
+    {
+        var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+        {
+            Target = target,
+            BeingTargetCommand = BeingTargetCommand.None
+        };
+        _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
+    }
 }

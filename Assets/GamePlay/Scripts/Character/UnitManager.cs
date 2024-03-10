@@ -85,5 +85,4 @@ public class UnitManager : SingletonBase<UnitManager>
             if (ally.CurrentTarget == unitOut)
                 ally.OnTargetChanging?.Invoke(targetChangingComposite);
     }
-    
 }
