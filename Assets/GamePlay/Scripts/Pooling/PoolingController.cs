@@ -30,6 +30,7 @@ public static class UnitId
     public enum Enemy
     {
         ShieldMan = 200,
+        ArcherMan = 210,
     }
 
     public enum Hero
@@ -59,16 +60,6 @@ public class PoolingController : SingletonBase<PoolingController>
     protected override void Awake()
     {
         base.Awake();
-        SetUp();
-    }
-    private void SetUp()
-    {
-        // foreach (var pooling in poolingList)
-        // {
-        //     PoolingComposite poolingComposite = pooling.UnitPool;
-        //     pooling.InitPoolWithParam(poolingComposite.initNumber, poolingComposite.prefab, pooling.gameObject);
-        //     dictPooling.Add(poolingComposite._objectType, pooling);
-        // }
     }
     private PoolingBase GetPooling(string objectType)
     {

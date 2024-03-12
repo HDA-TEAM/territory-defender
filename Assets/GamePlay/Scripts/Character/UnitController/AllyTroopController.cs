@@ -37,8 +37,7 @@ public class AllyTroopController : UnitController
                 }
             }
         }
-        
-        
+
         _prevTarget = target;
         
         var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite

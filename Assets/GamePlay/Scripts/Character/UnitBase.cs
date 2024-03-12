@@ -11,24 +11,14 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private HealthComp _healthComp;
     [SerializeField] private StatsHandlerComponent _unitStatsComp;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
-    [SerializeField] private UnitType _unitType;
     [SerializeField] private UserActionController _userActionController;
     #endregion
-    public enum UnitType
-    {
-        Tower = 1,
-        Hero = 2,
-        Melee = 3,
-        Range = 4,
-        Mixed = 5,
-    }
-    
+
     #region Access
     public UnitController UnitController() => _unitController;
     public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;
     protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
-    public UnitType UnitTypeId() => _unitType;
     public UserActionController UserActionController()
     {
         return _userActionController;

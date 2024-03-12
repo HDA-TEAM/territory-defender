@@ -37,6 +37,7 @@ public class CharacterAttackState : CharacterBaseState
             
             switch (Context.CharacterTroopBehaviourType)
             {
+                case TroopBehaviourType.Ranger:
                 case TroopBehaviourType.Tower:
                     {
                         // Tower don't need to check distance, it always fire any target exist
@@ -52,7 +53,6 @@ public class CharacterAttackState : CharacterBaseState
                         return;
                     }
                 case TroopBehaviourType.Melee:
-                case TroopBehaviourType.Ranger:
                     {
                         // Need to check is in available attack range
                         // if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) < attackingRange)
