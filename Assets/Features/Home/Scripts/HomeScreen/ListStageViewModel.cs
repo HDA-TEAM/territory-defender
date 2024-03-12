@@ -26,7 +26,6 @@ public class ListStageViewModel : MonoBehaviour
         if (stageDataManager.StageComposites == null) 
             return;
         
-        //Debug.Log(stageDataManager.StageComposites[0].StageName);
         // Update data for list StageComposite
         _stageComposites = stageDataManager.StageComposites;
         
@@ -45,7 +44,6 @@ public class ListStageViewModel : MonoBehaviour
         _preSelectedStageView = itemStageView;
 
         StageDataManager.Instance.CurrentStage = _preSelectedStageView.StageComposite;
-        //GameEvents.SelectComposite(StageDataManager.Instance.CurrentStage);
     }
 }
 

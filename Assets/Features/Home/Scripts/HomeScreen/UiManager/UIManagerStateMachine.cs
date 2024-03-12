@@ -55,7 +55,7 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
             return;
         
         // Close the current state
-        _currentState?.Exit();
+        //_currentState?.Exit();
 
         if (nextState is IUIPopupState)
         {
