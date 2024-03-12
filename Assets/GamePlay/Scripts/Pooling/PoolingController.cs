@@ -31,6 +31,7 @@ public static class UnitId
     {
         ShieldMan = 200,
         ArcherMan = 210,
+        AssassinMan = 220,
     }
 
     public enum Hero
