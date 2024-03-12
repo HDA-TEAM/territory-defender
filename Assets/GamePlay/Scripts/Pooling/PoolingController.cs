@@ -37,6 +37,7 @@ public static class UnitId
     public enum Hero
     {
         TrungTrac = 400,
+        TrungNhi = 410,
     }
 
     public enum Tower
