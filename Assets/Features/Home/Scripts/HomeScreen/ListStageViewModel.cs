@@ -9,19 +9,14 @@ public class ListStageViewModel : MonoBehaviour
     // Internal
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;
-    //private UIManagerStateMachine _stateMachine;
     private void Awake()
     {
-        
-        //_stateMachine = new UIManagerStateMachine();
         _stageComposites = new List<StageComposite>();
     }
-
     private void Start()
     {
         UpdateData();
     }
-
     private void UpdateData()
     {
         // TODO: Run with data for testing, and it would be updated soon
@@ -31,13 +26,12 @@ public class ListStageViewModel : MonoBehaviour
         if (stageDataManager.StageComposites == null) 
             return;
         
-        Debug.Log(stageDataManager.StageComposites[0].StageId);
+        //Debug.Log(stageDataManager.StageComposites[0].StageName);
         // Update data for list StageComposite
         _stageComposites = stageDataManager.StageComposites;
         
         UpdateView();
     }
-
     private void UpdateView()
     {
         var stateMachine = UIManagerStateMachine.Instance;  
@@ -46,13 +40,12 @@ public class ListStageViewModel : MonoBehaviour
             _itemStageViews[i].Setup(_stageComposites[i], OnStageSelected, stateMachine);
         }
     }
-
     private void OnStageSelected(ItemStageView itemStageView)
     {
         _preSelectedStageView = itemStageView;
 
         StageDataManager.Instance.CurrentStage = _preSelectedStageView.StageComposite;
-        GameEvents.SelectComposite(StageDataManager.Instance.CurrentStage);
+        //GameEvents.SelectComposite(StageDataManager.Instance.CurrentStage);
     }
 }
 

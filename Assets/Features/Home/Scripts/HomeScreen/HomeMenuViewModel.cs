@@ -12,7 +12,6 @@ public class HomeMenuViewModel: MonoBehaviour
     [SerializeField] private Button _buttonQuest;
 
     // Internal
-    //private static UIManagerStateMachine _stateMachine;
     private void Start()
     {
         var stateMachine = UIManagerStateMachine.Instance;   

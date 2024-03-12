@@ -16,33 +16,18 @@ namespace Features.StageInfo
         [SerializeField] private GameModeViewModel _gameModeViewModel;
         [SerializeField] private ListHeroChooseViewModel _heroChooseView;
         // Internal
-        private StageComposite _currentStage;
-        private UIManagerStateMachine _stateMachine;
+        private static StageComposite _currentStage;
 
         private void Awake()
         {
-            _stateMachine = new UIManagerStateMachine();
             _itemPlayView.Setup(OnSelectedItemPlay);
             _itemMasteryView.Setup(OnSelectedItemMastery);
-        
-            GameEvents.OnCompositeSelected += HandleCompositeSelection;
+            
             UpdateData();
-        }
-        private void OnDestroy()
-        {
-            // Unsubscribe from the stage selection event
-            GameEvents.OnCompositeSelected -= HandleCompositeSelection;
-        }
-        private void HandleCompositeSelection(IComposite composite)
-        {
-            if (composite is StageComposite stage)
-            {
-                _currentStage = stage;
-                UpdateData();
-            }
         }
         private void UpdateData()
         {
+            _currentStage = StageDataManager.Instance.CurrentStage;
             UpdateView();
         }
 
@@ -62,7 +47,8 @@ namespace Features.StageInfo
 
         private void OnSelectedItemMastery(ItemMasteryView itemMasteryView)
         {
-            _stateMachine.ChangeModalState<MasteryPagePuState>();
+            var stateMachine = UIManagerStateMachine.Instance;
+            stateMachine.ChangeModalState<MasteryPagePuState>();
         }
 
         private void OnSelectedItemPlay(ItemPlayView itemPlayView)

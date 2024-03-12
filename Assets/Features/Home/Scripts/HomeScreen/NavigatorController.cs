@@ -3,7 +3,6 @@ using UnityScreenNavigator.Runtime.Core.Page;
 
 public static class NavigatorController 
 {
-    //private static UIManagerStateMachine _uiStateMachine;
     private static PageContainer MainPageContainer => PageContainer.Find("MainPageContainer");
     public static ModalContainer MainModalContainer => ModalContainer.Find("MainModalContainer");
     
