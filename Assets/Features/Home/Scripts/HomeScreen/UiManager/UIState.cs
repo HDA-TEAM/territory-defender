@@ -106,7 +106,6 @@ public class QuestPuState : UIState, IUIPopupState
         NavigatorController.PopModal();
     }
 }
-
 public class StageInfoPuState : UIState, IUIPopupState
 {
     public override void Enter()

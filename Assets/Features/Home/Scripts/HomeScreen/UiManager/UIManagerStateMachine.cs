@@ -18,33 +18,19 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
     private void InitializeStates()
     {
         // Pre-instantiate all state instances
+        // Setup Pages
         _states.Add(typeof(HomeScreenState), new HomeScreenState());
         
+        //Setup Modal
         _states.Add(typeof(HeroInfoPuState), new HeroInfoPuState());
         _states.Add(typeof(ShopPuState), new ShopPuState());
         _states.Add(typeof(DictionaryPuState), new DictionaryPuState());
-        
         _states.Add(typeof(HistoryPuState), new HistoryPuState());
         _states.Add(typeof(MasteryPagePuState), new MasteryPagePuState());
         _states.Add(typeof(SettingPuState), new SettingPuState());
         _states.Add(typeof(QuestPuState), new QuestPuState());
         _states.Add(typeof(StageInfoPuState), new StageInfoPuState());
     }
-
-    private void ChangePageState<T>() where T : UIState, new()
-    {
-        var type = typeof(T);
-        if (!_states.TryGetValue(type, out UIState nextState))
-            return;
-        
-        if (_currentState == nextState)
-            return;
-        
-        _currentState?.Exit();
-        _currentState = nextState;
-        _currentState.Enter();
-    }
-    
     public void ChangeModalState<T>() where T : UIState, new()
     {
         var type = typeof(T);
@@ -70,7 +56,6 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
         }
        
         _currentState = nextState;
-        Debug.Log("Current pop up: " + _currentState);
         _currentState.Enter();
     }
     public void BackPressed()
