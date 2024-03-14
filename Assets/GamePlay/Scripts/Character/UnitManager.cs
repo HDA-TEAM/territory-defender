@@ -84,5 +84,8 @@ public class UnitManager : SingletonBase<UnitManager>
         foreach (var ally in _unitAllys)
             if (ally.CurrentTarget == unitOut)
                 ally.OnTargetChanging?.Invoke(targetChangingComposite);
+
+        unitOut.CurrentTarget = null;
+        unitOut.OnTargetChanging?.Invoke(targetChangingComposite);
     }
 }

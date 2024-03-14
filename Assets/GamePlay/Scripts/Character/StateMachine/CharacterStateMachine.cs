@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-public class CharacterStateMachine : UnitBaseComponent
+public class  CharacterStateMachine : UnitBaseComponent
 {
     [SerializeField] private string _curStateLabel;
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;

@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface OnReviveUnit
+{
+    
+}
 public class TroopTowerBehaviour : UnitBaseComponent
 {
     // Default 3 units
@@ -36,6 +40,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
             }
         }
     }
+    // private void 
     public void SetCampingPlace(Vector3 newCampingPos)
     {
         Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
