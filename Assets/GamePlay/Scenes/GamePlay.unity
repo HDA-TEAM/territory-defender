@@ -3210,6 +3210,7 @@ GameObject:
   - component: {fileID: 498999955}
   - component: {fileID: 498999957}
   - component: {fileID: 498999958}
+  - component: {fileID: 498999959}
   m_Layer: 0
   m_Name: ObjHeroInfor
   m_TagString: Untagged
@@ -3258,6 +3259,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hero: {fileID: 1930285427}
+--- !u!114 &498999959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498999954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974952d73ae3c488298b1dc29702053e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hero: {fileID: 1930285428}
+  _cooldownRevive: 3
+  _imgHeroAvatarCooldown: {fileID: 1225975409}
+  _btnSelectHero: {fileID: 1225975408}
 --- !u!1 &511441677
 GameObject:
   m_ObjectHideFlags: 0
@@ -7337,14 +7354,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: a9e1ede2d57493f4fac0d33a09557ef0, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillAmount: 0
+  m_FillClockwise: 0
+  m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1225975410
@@ -9480,7 +9497,6 @@ GameObject:
   - component: {fileID: 1638581061}
   - component: {fileID: 1638581062}
   - component: {fileID: 1638581063}
-  - component: {fileID: 1638581064}
   m_Layer: 0
   m_Name: ObjSkill
   m_TagString: Untagged
@@ -9529,20 +9545,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSkill: {fileID: 511441682}
---- !u!114 &1638581064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638581060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 974952d73ae3c488298b1dc29702053e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hero: {fileID: 1930285428}
-  _cooldownRevive: 3
 --- !u!1 &1639319831
 GameObject:
   m_ObjectHideFlags: 0

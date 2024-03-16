@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 666001084183805972}
   - component: {fileID: 3682937682380316613}
   - component: {fileID: 5754424938950297562}
+  - component: {fileID: 7920704266535785964}
   m_Layer: 0
   m_Name: CommonAllyPrefabBase
   m_TagString: Ally
@@ -122,8 +123,8 @@ MonoBehaviour:
   _healthComp: {fileID: 3109024967751958898}
   _unitStatsComp: {fileID: 5754424938950297562}
   _unitShowingInformation: {fileID: 0}
-  _unitType: 0
   _userActionController: {fileID: 2909084853854028830}
+  _unitReviveHandler: {fileID: 7920704266535785964}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -205,6 +206,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _baseStats: {fileID: 11400000, guid: c2d703d63cf1249a3876069f273afbbc, type: 2}
+--- !u!114 &7920704266535785964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 296a1e28d60f46c08ead8756eace7cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
 --- !u!1 &3471298441881994424
 GameObject:
   m_ObjectHideFlags: 0

@@ -123,7 +123,6 @@ MonoBehaviour:
   _healthComp: {fileID: 3109024967751958898}
   _unitStatsComp: {fileID: -7222694771438399481}
   _unitShowingInformation: {fileID: 0}
-  _unitType: 3
   _userActionController: {fileID: 0}
   CurrentTarget: {fileID: 0}
 --- !u!114 &1678257232
@@ -178,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
-  _transform: {fileID: 2125775758959885298}
+  _transform: {fileID: 5332166029918990596}
   _isLeftToRightDirection: 0
 --- !u!114 &5243910596837583625
 MonoBehaviour:
@@ -201,6 +200,7 @@ MonoBehaviour:
   _beingTargetCommand: 0
   _routeToGate: {fileID: 0}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _isDie: 0
 --- !u!114 &5614043302446956692
 MonoBehaviour:
   m_ObjectHideFlags: 0

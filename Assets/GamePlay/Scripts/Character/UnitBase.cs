@@ -12,6 +12,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private StatsHandlerComponent _unitStatsComp;
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
     [SerializeField] private UserActionController _userActionController;
+    [SerializeField] private UnitReviveHandler _unitReviveHandler;
     #endregion
 
     #region Access
@@ -23,6 +24,7 @@ public class UnitBase : MonoBehaviour
     {
         return _userActionController;
     }
+    public UnitReviveHandler UnitReviveHandlerComp() => _unitReviveHandler;
     public UnitShowingInformation UnitShowingInformationComp() => _unitShowingInformation;
     public StatsHandlerComponent UnitStatsHandlerComp() => _unitStatsComp;
     #endregion
