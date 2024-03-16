@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GamePlay.Scripts.UI
+namespace GamePlay.Scripts.Menu
 {
     public class HeroItemBehaviour : MonoBehaviour
     {
