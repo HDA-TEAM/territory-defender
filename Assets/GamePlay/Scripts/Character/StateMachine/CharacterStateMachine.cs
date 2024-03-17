@@ -42,7 +42,7 @@ public class  CharacterStateMachine : UnitBaseComponent
     {
         _stats = _unitBaseParent.UnitStatsHandlerComp();
     }
-    protected void Update() => _currentState.UpdateStates();
+    public void UpdateStateMachine() => _currentState.UpdateStates();
 
     protected virtual void OnEnable()
     {

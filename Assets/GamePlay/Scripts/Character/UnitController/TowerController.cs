@@ -4,7 +4,7 @@ public class TowerController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
-        
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
         // if (!CheckTargetAvailable())
         //     return;
         

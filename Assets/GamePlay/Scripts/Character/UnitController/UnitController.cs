@@ -14,7 +14,7 @@ public class UnitController : UnitBaseComponent
     }
     public virtual void UpdateStatus(List<UnitBase> targets)
     {
-
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
         if (!IsSelfAvailableTargeting())
             return;
 
@@ -46,6 +46,7 @@ public class UnitController : UnitBaseComponent
             BeingTargetCommand = BeingTargetCommand.Block
         };
         _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
+        
     }
     private bool IsSelfAvailableTargeting() => _unitBaseParent.CurrentTarget == null;
 

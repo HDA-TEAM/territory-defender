@@ -26,6 +26,7 @@ public class UnitShowingInformation : UnitBaseComponent, IPointerClickHandler
         Messenger.Default.Publish(new ShowUnitInformationPayload
         {
             StatsData = _unitBaseParent.UnitStatsHandlerComp().GetBaseStats(),
+            UnitBase = _unitBaseParent
         });
     }
 }

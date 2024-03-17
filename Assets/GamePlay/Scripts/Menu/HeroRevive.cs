@@ -1,7 +1,6 @@
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using GamePlay.Scripts.Menu;
 using SuperMaxim.Messaging;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,27 +13,38 @@ public struct SelectHeroPayload
 {
     public UnitBase UnitBase;
 }
+
 public class HeroRevive : MonoBehaviour
 {
     [SerializeField] private UnitBase _hero;
     [SerializeField] private float _cooldownRevive;
-    [SerializeField] private Image _imgHeroAvatarCooldown;
-    [SerializeField] private Button _btnSelectHero;
+    [SerializeField] private HeroItemView _heroItemView;
     private bool _isCooldown;
-    private void Awake()
+    private void Start()
     {
         Messenger.Default.Subscribe<UnitRevivePayload>(OnReviveHero);
-        _btnSelectHero.onClick.AddListener(SelectHero);
+        Messenger.Default.Subscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
+        _heroItemView.Setup(new HeroItemViewComposite
+        {
+            HeroId = EHeroId.TrungTrac
+        }, SelectHero);
     }
     private void OnDestroy()
     {
         Messenger.Default.Unsubscribe<UnitRevivePayload>(OnReviveHero);
     }
+    private void OnCheckSelectingHero(ShowUnitInformationPayload payload)
+    {
+        if (payload.UnitBase != _hero)
+            _heroItemView.SetHeroSelected(false);
+    }
     private void SelectHero()
     {
-        if (_isCooldown == true)
+        if (_isCooldown)
             return;
-        
+
+        _heroItemView.SetHeroSelected(true);
+
         Messenger.Default.Publish(new SelectHeroPayload
         {
             UnitBase = _hero
@@ -44,17 +54,15 @@ public class HeroRevive : MonoBehaviour
     {
         if (unitRevivePayload.UnitBase == _hero)
         {
-            _imgHeroAvatarCooldown.fillAmount = 1f;
-            _imgHeroAvatarCooldown.raycastTarget = false;
             _isCooldown = true;
-            _imgHeroAvatarCooldown.DOFillAmount(0f,_cooldownRevive).OnComplete(
-                () =>
-                {
-                    _isCooldown = false;
-                    _hero.OnUpdateStats?.Invoke();
-                    _hero.gameObject.SetActive(true);
-                    _imgHeroAvatarCooldown.raycastTarget = true;
-                });
+            _heroItemView.SetHeroSelected(false);
+            _heroItemView.SetCooldownProcessing(_cooldownRevive, OnEndOfRevive);
         }
+    }
+    private void OnEndOfRevive()
+    {
+        _isCooldown = false;
+        _hero.OnUpdateStats?.Invoke();
+        _hero.gameObject.SetActive(true);
     }
 }

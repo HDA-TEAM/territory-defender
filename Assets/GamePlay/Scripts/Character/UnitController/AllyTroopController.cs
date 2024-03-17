@@ -6,6 +6,8 @@ public class AllyTroopController : UnitController
 
     public override void UpdateStatus(List<UnitBase> targets)
     {
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
+        
         if (IsSelfInUserAction())
         {
             _prevTarget = null;
@@ -46,7 +48,7 @@ public class AllyTroopController : UnitController
             BeingTargetCommand = BeingTargetCommand.Block
         };
         _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
-        
+
         if (!target) return;
         var attackTargetChangingComposite = new UnitBase.OnTargetChangingComposite
         {
@@ -54,6 +56,7 @@ public class AllyTroopController : UnitController
             BeingTargetCommand = BeingTargetCommand.None
         };
         target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
+        
     }
     private bool IsSelfInUserAction()
     {

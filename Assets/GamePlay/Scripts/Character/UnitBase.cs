@@ -18,7 +18,7 @@ public class UnitBase : MonoBehaviour
     #region Access
     public UnitController UnitController() => _unitController;
     public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;
-    protected CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
+    public CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public HealthComp HealthComp() => _healthComp;
     public UserActionController UserActionController()
     {
