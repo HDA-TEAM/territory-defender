@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1678257231}
   - component: {fileID: 1678257230}
   - component: {fileID: 1678257229}
-  - component: {fileID: 1678257232}
   - component: {fileID: 3109024967751958898}
   - component: {fileID: -866078463075045641}
   - component: {fileID: 5243910596837583625}
@@ -124,27 +123,8 @@ MonoBehaviour:
   _unitStatsComp: {fileID: -7222694771438399481}
   _unitShowingInformation: {fileID: 0}
   _userActionController: {fileID: 0}
+  _unitReviveHandler: {fileID: 0}
   CurrentTarget: {fileID: 0}
---- !u!114 &1678257232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192807291828039942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67410d0a637d4f8e85bfca6b20a79485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _unitBaseParent: {fileID: 1678257229}
-  startAttackPoint: {fileID: 0}
-  _troopBehaviourType: 1
-  attackingCooldown: 4
-  attackingDamage: 20
-  attackingRange: 1.5
-  _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
-  _projectileId: 0
 --- !u!114 &3109024967751958898
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class  CharacterStateMachine : UnitBaseComponent
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
     [SerializeField] private UnitId.Projectile _projectileId;
     [SerializeField] private BeingTargetCommand _beingTargetCommand;
+    [SerializeField] private Transform _startAttackPoint;
     #region Setter and getter
     public CharacterBaseState CurrentState
     {
@@ -19,6 +20,15 @@ public class  CharacterStateMachine : UnitBaseComponent
             _curStateLabel = _currentState.ToString();
         }
         get { return _currentState; }
+    }
+    public Transform StartAttackPoint
+    {
+        get
+        {
+            if (_startAttackPoint == null)
+                return transform;
+            return _startAttackPoint;
+        }
     }
     public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
     public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }

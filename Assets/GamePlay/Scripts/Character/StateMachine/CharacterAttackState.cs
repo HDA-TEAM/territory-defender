@@ -49,7 +49,7 @@ public class CharacterAttackState : CharacterBaseState
                         return;
                         
                         var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId.ToString());
-                        prjBase.GetProjectileMovement().GetLineRoute(Context.transform.position, EProjectileType.Arrow, Context.CurrentTarget);
+                        prjBase.GetProjectileMovement().GetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget);
                         return;
                     }
                 case TroopBehaviourType.Melee:

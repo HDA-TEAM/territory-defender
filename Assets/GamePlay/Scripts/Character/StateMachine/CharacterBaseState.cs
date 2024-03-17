@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public abstract class CharacterBaseState
 {
     private bool _isRootState = false;

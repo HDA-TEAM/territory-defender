@@ -1,6 +1,4 @@
 using DG.Tweening;
-using DG.Tweening.Core;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,13 +8,6 @@ public enum EProjectileType
     Arrow = 1,
     WaterBomb = 2,
 }
-
-// [Serializable]
-// public struct BulletComponent
-// {
-//     public BulletType BulletType;
-//     public GameObject prefab;
-// }
 
 [CreateAssetMenu(fileName = "ProjectileDataAsset", menuName = "ScriptableObject/Stage/ProjectileDataAsset")]
 public class ProjectileDataAsset : ScriptableObject
@@ -39,7 +30,13 @@ public class ProjectileDataAsset : ScriptableObject
 
 public interface IProjectileLineRoute
 {
-    void ApplyLineRoute(GameObject curWeapon, UnitBase target, AnimationCurve customCurve, float duration = 1f, TweenCallback callback = null);
+    void ApplyLineRoute(
+        GameObject curWeapon,
+        UnitBase target,
+        AnimationCurve customCurve,
+        float duration = 1f,
+        float unitHeight = 1,
+        TweenCallback callback = null);
 }
 // public class ArcRouteLine : WeaponLineRoute
 // {
@@ -84,15 +81,21 @@ public interface IProjectileLineRoute
 
 public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
 {
-    public void ApplyLineRoute(GameObject curWeapon, UnitBase target, AnimationCurve customCurve, float duration = 1f, TweenCallback callback = null)
+    public void ApplyLineRoute(
+        GameObject curWeapon,
+        UnitBase target,
+        AnimationCurve customCurve,
+        float duration = 1f,
+        float unitHeight = 1,
+        TweenCallback callback = null)
     {
         float t = 0f;
-        Vector3 prevBulletPos = curWeapon.transform.position;
         Vector3 startPos = curWeapon.transform.position;
-        Vector3 midPoint = (curWeapon.transform.position + target.transform.position) / 2f;
-        midPoint += Vector3.up;
+        Vector3 prevBulletPos = startPos;
+        Vector3 midPoint = (startPos + target.transform.position) / 2f;
+        midPoint += Vector3.up * unitHeight;
         DOTween.To(() => t, x => t = x, 1f, duration)
-            // .SetEase(customCurve)
+            .SetEase(customCurve)
             .OnUpdate(() =>
             {
 
@@ -109,7 +112,7 @@ public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
                 // Update the arrow's angle
                 float zAngle = VectorUtility.GetZAngleOfTwoPoint(prevBulletPos, newPosition);
                 curWeapon.transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
-                Debug.Log(newPosition + " " + curWeapon.transform.rotation.z);
+
                 //Update previous pos of bullet
                 prevBulletPos = newPosition;
 
