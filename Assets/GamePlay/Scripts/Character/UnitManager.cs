@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public enum BeingTargetCommand
@@ -36,17 +37,25 @@ public class UnitManager : SingletonBase<UnitManager>
     // Update units on map
     public void Update()
     {
-        ClearUnavailableUnit();
-        foreach (var enemy in _unitEnemies)
+        // Temp using try catch in here, to prevent show log err because list changing conflict
+        try
         {
-            List<UnitBase> _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
-            enemy.UnitController().UpdateStatus(_unitsNeed);
+            ClearUnavailableUnit();
+            foreach (var enemy in _unitEnemies)
+            {
+                List<UnitBase> _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
+                enemy.UnitController().UpdateStatus(_unitsNeed);
             
+            }
+            foreach (var ally in _unitAllys)
+            {
+                List<UnitBase> _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
+                ally.UnitController().UpdateStatus(_unitsNeed);
+            }
         }
-        foreach (var ally in _unitAllys)
+        catch (Exception e)
         {
-            List<UnitBase> _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
-            ally.UnitController().UpdateStatus(_unitsNeed);
+            throw;
         }
     }
     private List<UnitBase> GetUnitsNeed(UnitId.BaseId baseId)
