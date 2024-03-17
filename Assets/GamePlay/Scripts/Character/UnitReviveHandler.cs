@@ -8,6 +8,10 @@ public class UnitReviveHandler : UnitBaseComponent
     {
         _onRevive = onRevive;
     }
+    public void OnRemoveRevive()
+    {
+        _onRevive = null;
+    }
     public void OnDisable()
     {
         _onRevive?.Invoke(_unitBaseParent);
