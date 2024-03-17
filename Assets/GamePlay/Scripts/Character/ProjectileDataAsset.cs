@@ -88,8 +88,9 @@ public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
     {
         float t = 0f;
         Vector3 prevBulletPos = curWeapon.transform.position;
+        Vector3 startPos = curWeapon.transform.position;
         Vector3 midPoint = (curWeapon.transform.position + target.transform.position) / 2f;
-        midPoint += Vector3.up / 3;
+        midPoint += Vector3.up;
         DOTween.To(() => t, x => t = x, 1f, duration)
             // .SetEase(customCurve)
             .OnUpdate(() =>
@@ -98,7 +99,7 @@ public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
                 // Calculate the position of the arrow based on the Bezier curve equation.
                 Vector3 newPosition = CalculateBezierPoint(
                     t,
-                    curWeapon.transform.position,
+                    startPos,
                     midPoint,
                     target.transform.position
                 );
