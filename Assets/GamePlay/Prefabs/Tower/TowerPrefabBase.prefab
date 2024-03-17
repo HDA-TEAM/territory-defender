@@ -224,9 +224,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -278244207
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2070a87cf8174b65bdca4f503941ccd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -285,8 +285,8 @@ MonoBehaviour:
   _healthComp: {fileID: 0}
   _unitStatsComp: {fileID: 7134561768570042230}
   _unitShowingInformation: {fileID: 5838589748708221372}
-  _unitType: 1
   _userActionController: {fileID: 0}
+  _unitReviveHandler: {fileID: 0}
   CurrentTarget: {fileID: 0}
 --- !u!114 &1069866960922029881
 MonoBehaviour:
@@ -335,6 +335,7 @@ MonoBehaviour:
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
   _beingTargetCommand: 0
+  _startAttackPoint: {fileID: 0}
 --- !u!114 &7134561768570042230
 MonoBehaviour:
   m_ObjectHideFlags: 0
