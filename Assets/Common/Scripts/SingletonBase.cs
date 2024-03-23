@@ -32,7 +32,6 @@ public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
     public static bool IsAlive() => _instance && !_applicationIsQuitting;
     protected virtual void OnDestroy()
     {
-        Debug.Log("Gets destroyed");
         _applicationIsQuitting = true;
     }
     protected virtual void Awake ()
