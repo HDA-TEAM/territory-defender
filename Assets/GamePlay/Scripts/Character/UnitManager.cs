@@ -11,7 +11,7 @@ public class UnitManager : SingletonBase<UnitManager>
 {
     [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
     [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
-    
+    public bool IsInGameScene = true;
     // A active and available unit can be subscribe
     public void Subscribe(UnitBase unitBase)
     {
@@ -34,9 +34,16 @@ public class UnitManager : SingletonBase<UnitManager>
     // Reset single Unit from outside handle
     public void ResetTarget(UnitBase unitBase) => NotifyAllUnit(unitBase);
     
+    public void OnRestart()
+    {
+        Destroy(gameObject);
+    }
     // Update units on map
     public void Update()
     {
+        if (!IsInGameScene)
+            return;
+        
         // Temp using try catch in here, to prevent show log err because list changing conflict
         try
         {

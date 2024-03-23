@@ -59,9 +59,15 @@ public class PoolingController : SingletonBase<PoolingController>
     [SerializeField] private UnitPooling _poolingPrefab;
     private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
-    protected override void Awake()
+    public void OnRestart()
     {
-        base.Awake();
+        foreach (var pooling in _dictPooling)
+        {
+            PoolingBase removingPool = pooling.Value;
+            Destroy(removingPool.gameObject);    
+        }
+        _dictPooling.Clear();
+        Destroy(gameObject);
     }
     private PoolingBase GetPooling(string objectType)
     {

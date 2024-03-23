@@ -7,6 +7,7 @@ public class InGameManager : MonoBehaviour
     private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private InGameResultsController _resultsController;
     [SerializeField] private StageInventoryConfig _stageInventoryConfig;
+    public bool IsInGameScene = true;
     private void Awake()
     {
         _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(StageId.Chap1Stage0));
