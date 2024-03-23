@@ -17,8 +17,8 @@ public class HeroApproachingState : CharacterBaseState
     }
     public override void UpdateState()
     {
-        PlayMoving();
         CheckSwitchState();
+        PlayMoving();
     }
     public override void ExitState()
     {
