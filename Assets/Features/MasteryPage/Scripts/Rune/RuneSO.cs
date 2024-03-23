@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
+using Features.MasteryPage.Scripts.Rune;
 using Newtonsoft.Json;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,7 +18,8 @@ public class RuneSO : ScriptableObject
     public Sprite _avatarSelected;
     [JsonIgnore]
     public Sprite _avatarStarted;
-    
+
+    public List<EffectId> _effects;
     public RuneId GetRuneId() => _runeId;
 
 }

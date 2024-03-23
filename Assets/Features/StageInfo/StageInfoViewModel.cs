@@ -6,7 +6,7 @@ namespace Features.StageInfo
 {
     public class StageInfoViewModel : MonoBehaviour
     {
-        [Header("UI")] 
+        [Header("UI")]
         [SerializeField] private ItemPlayView _itemPlayView;
         [SerializeField] private ItemMasteryView _itemMasteryView;
         [SerializeField] private List<ItemStageStarView> _itemStageStarViews;

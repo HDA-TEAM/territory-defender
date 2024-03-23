@@ -70,6 +70,7 @@ public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultCu
     
     public void LoadData()
     {
+        Debug.Log(_filename);
         base.LoadData(_filename, out _model);
     }
 

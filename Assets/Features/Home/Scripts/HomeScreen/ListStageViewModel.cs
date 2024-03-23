@@ -47,6 +47,11 @@ public class ListStageViewModel : MonoBehaviour
     }
 }
 
+public interface IComposite
+{
+    // Common properties or methods for composites
+}
+
 public struct StageComposite : IComposite
 {
     public int StageId;

@@ -1,27 +1,22 @@
-
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Serialization;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public enum RuneId
 {
-    Attack = 1,
-    Defense = 10,
-    // Hp = 20,
-    // Control = 30
+    Red1 = 1,
+    
+    Yellow1 = 10,
+    
+    Purple1 = 20,
 }
 
 [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
 public class RuneDataAsset : ScriptableObject
 {
-   [SerializedDictionary("RuneId", "RuneDataSO")] [SerializeField]
-    private SerializedDictionary<RuneId, RuneSO> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneSO>();
+   [SerializedDictionary("RuneId", "RuneDataSO")] 
+   [SerializeField] private SerializedDictionary<RuneId, RuneSO> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneSO>();
 
     public RuneSO GetRune(RuneId runeId)
     {
