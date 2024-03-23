@@ -19,10 +19,10 @@ namespace Features.Home.Scripts.HomeScreen.Common
         protected override void Awake()
         {
             base.Awake();
-            LoadTowerRuneData();
+            GetTowerRuneData();
         }
 
-        private void LoadTowerRuneData()
+        public void GetTowerRuneData()
         {
             //Check and setup for Towers which had the rune
             if (TowerRuneComposites == null)

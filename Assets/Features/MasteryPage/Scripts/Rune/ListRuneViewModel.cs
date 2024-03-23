@@ -15,12 +15,9 @@ public class ListRuneViewModel : MonoBehaviour
     
     [Header("Data"), Space(12)]
     [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
-    //[SerializeField] private CommonTowerConfig _commonTowerConfig;
-    //[SerializeField] private RuneDataAsset _runeDataAsset;
 
     // Internal
     private List<RuneLevel> _runeLevels;
-    //private List<TowerComposite> _towerComposites;
     private List<TowerRuneComposite> _towerRuneComposites;
     
     private InventoryComposite _inventoryComposite;
@@ -45,20 +42,23 @@ public class ListRuneViewModel : MonoBehaviour
             _itemStarView._onDataUpdated += UpdateData;
 
         if (_itemUpgradeRuneView != null)
+        {
+            _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
+            RuneDataManager.Instance.GetTowerRuneData();
+            
             _onTowerDataUpdatedAction += UpdateData;
+        }
     }
     
     private void UpdateData()
     {
-        //_towerRuneComposites.Clear();
-        //_runeComposites.Clear();
         var towerRuneDataManager = RuneDataManager.Instance;
         
         if (towerRuneDataManager == null) return;
         if (towerRuneDataManager.TowerRuneComposites == null) return;
 
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
-        Debug.Log(_towerRuneComposites[0].RuneComposite[1].Level + " ??????????????????????");
+        Debug.Log(_towerRuneComposites[0].RuneComposite[0].Level + " ??????????????????????");
         
         // Load Star data
         _inventoryComposite.Currency = _inventoryRuntimeData.GetCurrencyValue();
@@ -128,15 +128,16 @@ public class ListRuneViewModel : MonoBehaviour
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
         var runeDataAsset = RuneDataManager.Instance.RuneDataAsset;
+        
         if (itemUpgradeRuneView == null || _preSelectedItem == null || runeDataAsset == null || _itemStarView == null)
         {
             Debug.LogError("One or more required objects are null.");
             return;
         }
         _preSelectedUpgradeRuneView = itemUpgradeRuneView;
-       
+
         //Conditions to upgrade any skill
-        if (_preSelectedItem.RuneComposite.Level <= _preSelectedItem.RuneComposite.MaxLevel  && _inventoryRuntimeData.GetStarValue() > 0)
+        if (_preSelectedItem.RuneComposite.Level < _preSelectedItem.RuneComposite.MaxLevel  && _inventoryRuntimeData.GetStarValue() > 0)
         {
             _preRuneSo = runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
             if (_preRuneSo != null)
@@ -153,6 +154,7 @@ public class ListRuneViewModel : MonoBehaviour
                 _onTowerDataUpdatedAction?.Invoke();
             }
         } else {
+            Debug.Log("?????????????? Wrong");
             CommonLog.LogError("Upgrade rune fail");
         }
     }

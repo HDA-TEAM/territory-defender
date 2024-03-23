@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using Features.MasteryPage.Scripts.Rune;
 using Newtonsoft.Json;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Rune", menuName = "Rune", order = 2)]
