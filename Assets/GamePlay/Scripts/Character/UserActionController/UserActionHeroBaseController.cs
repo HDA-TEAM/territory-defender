@@ -46,7 +46,6 @@ public class UserActionHeroBaseController : UserActionController
     private void OnUsingSkill(UsingSkillPayload usingSkillPayload)
     {
         _eUserAction = EUserAction.UsingSkill;
-        Debug.Log("Execute Skill");
         SkillDataSO skillConfig = _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
         UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, skillConfig);
     }

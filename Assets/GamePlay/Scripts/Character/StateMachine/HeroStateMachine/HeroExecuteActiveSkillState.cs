@@ -51,6 +51,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
         _skillDuringTime -= Time.deltaTime;
         if (_skillDuringTime <= 0)
         {
+            
             DealingDame();
             _context.UserActionController.SetFinishedUserAction();
             _isFinished = true;

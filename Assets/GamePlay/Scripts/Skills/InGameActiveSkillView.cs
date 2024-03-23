@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InGameActiveSkill : MonoBehaviour
+public class InGameActiveSkillView : MonoBehaviour
 {
     [SerializeField] private Button _btnUsingKill;
+    [SerializeField] private Image _imgSkillCooldown;
     private Action<ESkillId> _onClick;
     private ESkillId _skillId;
     private void Awake()
@@ -19,5 +20,9 @@ public class InGameActiveSkill : MonoBehaviour
     private void OnClickUsingSkill()
     {
         _onClick?.Invoke(_skillId);
+    }
+    public void SetSkillCooldown(bool isCooldown)
+    {
+        _imgSkillCooldown.gameObject.SetActive(isCooldown);
     }
 }
