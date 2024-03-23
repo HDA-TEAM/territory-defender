@@ -40,6 +40,7 @@ namespace GamePlay.Scripts.Menu
                 () =>
                 {
                     endOfCooldown?.Invoke();
+                    _imgHeroAvatarCooldown.raycastTarget = true;
                 });
         }
         public void SetHeroSelected(bool isSelected)

@@ -24,6 +24,7 @@ public class HeroRevive : MonoBehaviour
     {
         Messenger.Default.Subscribe<UnitRevivePayload>(OnReviveHero);
         Messenger.Default.Subscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
+        Messenger.Default.Subscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
         _heroItemView.Setup(new HeroItemViewComposite
         {
             HeroId = EHeroId.TrungTrac
@@ -32,6 +33,12 @@ public class HeroRevive : MonoBehaviour
     private void OnDestroy()
     {
         Messenger.Default.Unsubscribe<UnitRevivePayload>(OnReviveHero);
+        Messenger.Default.Unsubscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
+        Messenger.Default.Unsubscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
+    }
+    private void OnRemoveHeroSelected(HideUnitInformationPayload payload)
+    {
+        _heroItemView.SetHeroSelected(false);
     }
     private void OnCheckSelectingHero(ShowUnitInformationPayload payload)
     {
