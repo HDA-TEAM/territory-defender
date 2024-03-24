@@ -39,9 +39,6 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
         
         if (_currentState == nextState)
             return;
-        
-        // Close the current state
-        //_currentState?.Exit();
 
         if (nextState is IUIPopupState)
         {
@@ -64,12 +61,12 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
         {
             // Close the current popup and remove it from the stack
             _popupStateStack.Pop();
-
+            
             if (_popupStateStack.Count > 0)
             {
                 // Return to the previous popup
+                _currentState.Exit();
                 _currentState = _popupStateStack.Peek();
-                _currentState.Enter();
             }
             else
             {
@@ -77,17 +74,6 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
                 _currentState.Exit();
                 _currentState = null;
             }
-        }
-        // else
-        // {
-        //     _currentState = null;
-        // }
-        // else
-        // {
-        //     _currentState = null;
-        //     // Optionally, handle back navigation for non-popup states
-        //     //ChangePageState<HomeScreenState>();
-        //     _currentState.Exit();
-        // }
+        } 
     }
 }

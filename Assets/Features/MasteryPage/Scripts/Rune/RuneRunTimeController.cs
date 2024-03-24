@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 namespace Features.MasteryPage.Scripts.Rune
@@ -23,27 +22,7 @@ namespace Features.MasteryPage.Scripts.Rune
         
         public void ApplyRuneEffects(RuneComposite rune, UnitId.Tower tower)
         {
-            // foreach (Effect effect in _effects)
-            // {
-            //     // Assuming RuneComposite has a way to determine the relevant EffectStats
-            //     EffectStats stat = effect.GetEffect(rune.RuneId);
-            //     int effectValue = effect.GetEffectValue(stat);
-            //
-            //     // Apply the effect based on the stat
-            //     switch (stat)
-            //     {
-            //         case EffectStats.Cooldown:
-            //             // tower.Cooldown -= effectValue; // Assuming 'effectValue' is a reduction
-            //             break;
-            //         case EffectStats.Damage:
-            //             // tower.Damage += effectValue;
-            //             break;
-            //         case EffectStats.Crit:
-            //             // tower.CritChance += effectValue;
-            //             break;
-            //         // Handle other stats
-            //     }
-            // }
+            
         }
     }
 

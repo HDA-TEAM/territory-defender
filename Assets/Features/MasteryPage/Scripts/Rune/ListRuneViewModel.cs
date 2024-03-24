@@ -37,9 +37,6 @@ public class ListRuneViewModel : MonoBehaviour
         
         if (_listTowerViewModel != null)
             _listTowerViewModel._onUpdateViewAction += UpdateView;
-        
-        if (_itemStarView != null)
-            _itemStarView._onDataUpdated += UpdateData;
 
         if (_itemUpgradeRuneView != null)
         {
@@ -58,8 +55,7 @@ public class ListRuneViewModel : MonoBehaviour
         if (towerRuneDataManager.TowerRuneComposites == null) return;
 
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
-        Debug.Log(_towerRuneComposites[0].RuneComposite[0].Level + " ??????????????????????");
-        
+
         // Load Star data
         _inventoryComposite.Currency = _inventoryRuntimeData.GetCurrencyValue();
         _inventoryComposite.Life = _inventoryRuntimeData.GetLifeValue();
@@ -154,8 +150,8 @@ public class ListRuneViewModel : MonoBehaviour
                 _onTowerDataUpdatedAction?.Invoke();
             }
         } else {
-            Debug.Log("?????????????? Wrong");
-            CommonLog.LogError("Upgrade rune fail");
+            
+            Debug.Log("Upgrade rune fail");
         }
     }
     
