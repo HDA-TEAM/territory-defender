@@ -17,6 +17,8 @@ public class ListTowerViewModel : MonoBehaviour
     private void Start()
     {
         UpdateData();
+        
+        //Setup default state
         _itemTowerViews[0].OnSelectedTower();
     }
     private void OnDisable()
