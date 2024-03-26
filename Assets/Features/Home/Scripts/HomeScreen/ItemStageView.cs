@@ -1,10 +1,13 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemStageView : MonoBehaviour
 {
     [SerializeField] private Button _btn;
+    [SerializeField] private GameObject _imgFlag;
+    
     // Internal
     private Action<ItemStageView> _onSelected;
 
@@ -15,11 +18,15 @@ public class ItemStageView : MonoBehaviour
         StageComposite = stageComposite;
         _onSelected = onAction;
 
+        if (stageComposite.StageState)
+            _imgFlag.SetActive(true);
+                
+        
         StageLoad(stageComposite.StageId);
-        _btn.onClick.AddListener(OnSelectedHero);
+        _btn.onClick.AddListener(OnSelectedStage);
     }
 
-    private void OnSelectedHero()
+    private void OnSelectedStage()
     {
         var stateMachine = UIManagerStateMachine.Instance;   
         _onSelected?.Invoke(this);

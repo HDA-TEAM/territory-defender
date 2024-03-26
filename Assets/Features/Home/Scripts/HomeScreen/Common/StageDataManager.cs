@@ -26,15 +26,27 @@ public class StageDataManager : SingletonBase<StageDataManager>
                 StageId = 1,
                 StageStar = 2,
                 StageName = "VUNG DAT DO",
+                StageState = true,
             }
         );
         
         StageComposites.Add(
             new StageComposite
             {
-                StageId = 2,
+                StageId = 1,
+                StageStar = 1,
+                StageName = "VUNG DAT DO 2",
+                StageState = true,
+            }
+        );
+        
+        StageComposites.Add(
+            new StageComposite
+            {
+                StageId = 3,
                 StageStar = 0,
-                StageName = "VUNG DAT DO BOSS"
+                StageName = "VUNG DAT DO BOSS",
+                StageState = false,
             }
         );
     }

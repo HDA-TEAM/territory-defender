@@ -57,6 +57,7 @@ public struct StageComposite : IComposite
     public int StageId;
     public int StageStar;
     public string StageName;
+    public bool StageState;
     public Sprite StageImage;
 }
 
