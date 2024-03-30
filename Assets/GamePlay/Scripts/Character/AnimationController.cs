@@ -1,10 +1,20 @@
 using Animancer;
+using CustomInspector;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Character.StateMachine
 {
     public class AnimationController : UnitBaseComponent
     {
+#if UNITY_EDITOR
+        [Button(nameof(TestPlayClip))]
+        public AnimationClip _testClip;
+        public void TestPlayClip()
+        {
+            _animancerComponent.Stop();
+            _animancerComponent.Play(_testClip);
+        }
+#endif
         [SerializeField] private AnimancerComponent _animancerComponent;
         public AnimationClip MovingClip;
         public AnimationClip NormalAttackClip;
@@ -25,5 +35,5 @@ namespace GamePlay.Scripts.Character.StateMachine
             _animancerComponent.Stop();
         }
     }
-    
+
 }
