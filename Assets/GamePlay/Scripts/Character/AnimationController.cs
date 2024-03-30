@@ -16,10 +16,12 @@ namespace GamePlay.Scripts.Character.StateMachine
         }
 #endif
         [SerializeField] private AnimancerComponent _animancerComponent;
+        
         public AnimationClip MovingClip;
         public AnimationClip NormalAttackClip;
         public AnimationClip IdleClip;
         public AnimationClip DeadClip;
+        public AnimationClip FirstActiveSkillClip;
 
         public void PlayClip(AnimationClip animationClip)
         {
