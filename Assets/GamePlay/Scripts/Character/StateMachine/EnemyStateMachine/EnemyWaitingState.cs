@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
+
 public class EnemyWaitingState : CharacterBaseState
 {
     private readonly BaseEnemyStateMachine _context;

@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.StateMachine;
 using UnityEngine;
 
 public class BaseAllyStateMachine : CharacterStateMachine

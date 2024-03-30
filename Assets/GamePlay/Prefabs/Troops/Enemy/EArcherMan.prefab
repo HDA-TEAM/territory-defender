@@ -84,6 +84,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: DeadClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 38e10052065434befb08d3662a523096, type: 2}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: IdleClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: MovingClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 550861180c9d34ed3bb7b7017f135c90, type: 2}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: NormalAttackClip
+      value: 
+      objectReference: {fileID: 7400000, guid: bb1a6c46556d54422ab8b5f0ab29d456, type: 2}
     - target: {fileID: 3103099876386497845, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0

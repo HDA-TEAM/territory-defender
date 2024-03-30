@@ -16,6 +16,22 @@ PrefabInstance:
       propertyPath: _characterStateMachine
       value: 
       objectReference: {fileID: -3654860125293801393}
+    - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: DeadClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 31a917857d61b40f78f0bed70454076c, type: 2}
+    - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: IdleClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 851d8ab4d250f410ea9db86bc8ccd98a, type: 2}
+    - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: MovingClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 3dd79f74812a14e4fad371fa299556d9, type: 2}
+    - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: NormalAttackClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 31a917857d61b40f78f0bed70454076c, type: 2}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -89,11 +105,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -3654860125293801393}
   m_SourcePrefab: {fileID: 100100000, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
---- !u!95 &831650938297046932 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6715228475396641559, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
-  m_PrefabInstance: {fileID: 6249824922664305795}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1828466229329920857 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5754424938950297562, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
@@ -125,10 +136,11 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 6249824920986069198}
   _curStateLabel: 
   _troopBehaviourType: 1
-  _animator: {fileID: 831650938297046932}
+  _animationController: {fileID: 0}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
   _beingTargetCommand: 0
+  _startAttackPoint: {fileID: 0}
 --- !u!114 &6249824920986069198 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}

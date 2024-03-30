@@ -69,7 +69,7 @@ public class HeroRevive : MonoBehaviour
     private void OnEndOfRevive()
     {
         _isCooldown = false;
-        _hero.OnUpdateStats?.Invoke();
         _hero.gameObject.SetActive(true);
+        _hero.OnUpdateStats?.Invoke();
     }
 }

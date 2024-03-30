@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine;
+
 public class CharacterIdleState : CharacterBaseState
 {
     public CharacterIdleState(CharacterStateMachine currentContext) : base(currentContext)

@@ -1,3 +1,5 @@
+ using GamePlay.Scripts.Character.StateMachine;
+
  public class BaseHeroStateMachine : CharacterStateMachine
 {
     private HeroStateFactory _factory;
@@ -23,6 +25,8 @@
     protected override void SetDefaultStatus()
     {
         _isDie = false;
+        _currentState = _factory.GetState(CharacterState.Idle);
+        _currentState.EnterState();
     }
     
     #endregion

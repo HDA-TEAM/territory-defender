@@ -1,79 +1,81 @@
-using GamePlay.Scripts.Character.StateMachine;
 using UnityEngine;
 
-public class  CharacterStateMachine : UnitBaseComponent
+namespace GamePlay.Scripts.Character.StateMachine
 {
-    [SerializeField] private string _curStateLabel;
-    [SerializeField] protected TroopBehaviourType _troopBehaviourType;
-    [SerializeField] protected AnimationController _animationController;
-    protected CharacterBaseState _currentState;
-    protected StatsHandlerComponent _stats;
-    [SerializeField] private ProjectileDataAsset _projectileDataAsset;
-    [SerializeField] private UnitId.Projectile _projectileId;
-    [SerializeField] private BeingTargetCommand _beingTargetCommand;
-    [SerializeField] private Transform _startAttackPoint;
-    #region Setter and getter
-    public CharacterBaseState CurrentState
+    public class  CharacterStateMachine : UnitBaseComponent
     {
-        set
+        [SerializeField] private string _curStateLabel;
+        [SerializeField] protected TroopBehaviourType _troopBehaviourType;
+        [SerializeField] protected AnimationController _animationController;
+        protected CharacterBaseState _currentState;
+        protected StatsHandlerComponent _stats;
+        [SerializeField] private ProjectileDataAsset _projectileDataAsset;
+        [SerializeField] private UnitId.Projectile _projectileId;
+        [SerializeField] private BeingTargetCommand _beingTargetCommand;
+        [SerializeField] private Transform _startAttackPoint;
+        #region Setter and getter
+        public CharacterBaseState CurrentState
         {
-            _currentState = value;
-            _curStateLabel = _currentState.ToString();
+            set
+            {
+                _currentState = value;
+                _curStateLabel = _currentState.ToString();
+            }
+            get { return _currentState; }
         }
-        get { return _currentState; }
-    }
-    public Transform StartAttackPoint
-    {
-        get
+        public Transform StartAttackPoint
         {
-            if (_startAttackPoint == null)
-                return transform;
-            return _startAttackPoint;
+            get
+            {
+                if (_startAttackPoint == null)
+                    return transform;
+                return _startAttackPoint;
+            }
         }
-    }
-    public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
-    public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
-    public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
-    public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
-    public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
-    public AnimationController AnimationController { get { return _animationController; } }
-    public StatsHandlerComponent CharacterStats { get { return _stats; } }
-    #endregion
-    protected override void Awake()
-    {
-        _animationController = _unitBaseParent.AnimationController();
-        _stats = _unitBaseParent.UnitStatsHandlerComp();
-    }
-    public void UpdateStateMachine() => _currentState.UpdateStates();
+        public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
+        public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
+        public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
+        public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
+        public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
+        public AnimationController AnimationController { get { return _animationController; } }
+        public StatsHandlerComponent CharacterStats { get { return _stats; } }
+        #endregion
+        protected override void Awake()
+        {
+            _animationController = _unitBaseParent.AnimationController();
+            _stats = _unitBaseParent.UnitStatsHandlerComp();
+        }
+        public void UpdateStateMachine() => _currentState.UpdateStates();
 
-    protected virtual void OnEnable()
-    {
-        _unitBaseParent.OnTargetChanging += OnTargetChanging;
-    }
-    protected virtual void OnDisable()
-    {
-        _unitBaseParent.OnTargetChanging -= OnTargetChanging;
-    }
-    protected virtual void SetDefaultStatus()
-    {
+        protected virtual void OnEnable()
+        {
+            _unitBaseParent.OnTargetChanging += OnTargetChanging;
+        }
+        protected virtual void OnDisable()
+        {
+            _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+        }
+        protected virtual void SetDefaultStatus()
+        {
          
-    }
-    // // Handle target is null
-    // private void OnRecheckTarget()
-    // {
-    //     if (CurrentTarget == null || !CurrentTarget.gameObject.activeSelf)
-    //     {
-    //         OnTargetChanging(new UnitBase.OnTargetChangingComposite()
-    //         {
-    //             Target = null,
-    //             BeingTargetCommand = BeingTargetCommand.None
-    //         });
-    //     }
-    // }
+        }
+        // // Handle target is null
+        // private void OnRecheckTarget()
+        // {
+        //     if (CurrentTarget == null || !CurrentTarget.gameObject.activeSelf)
+        //     {
+        //         OnTargetChanging(new UnitBase.OnTargetChangingComposite()
+        //         {
+        //             Target = null,
+        //             BeingTargetCommand = BeingTargetCommand.None
+        //         });
+        //     }
+        // }
 
-    protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
-    {
-        _unitBaseParent.CurrentTarget = composite.Target;
-        _beingTargetCommand = composite.BeingTargetCommand;
+        protected virtual void OnTargetChanging(UnitBase.OnTargetChangingComposite composite)
+        {
+            _unitBaseParent.CurrentTarget = composite.Target;
+            _beingTargetCommand = composite.BeingTargetCommand;
+        }
     }
 }

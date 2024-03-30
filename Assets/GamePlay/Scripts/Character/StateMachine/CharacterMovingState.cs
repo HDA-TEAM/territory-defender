@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine;
+
 public class CharacterMovingState : CharacterBaseState
 {
     private readonly CharacterStateMachine _context;

@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine;
+
 public abstract class CharacterBaseState
 {
     private bool _isRootState = false;
