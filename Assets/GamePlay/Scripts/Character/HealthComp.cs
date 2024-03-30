@@ -13,7 +13,8 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private CanvasGroup _healthParentCanvasGroup;
     [SerializeField] private float _unitDurationHealthChange = 2f;
-    
+    private const float _minDurationShowToast = 0.5f;
+
     private Tween _tweenProgressHeal;
     protected override void StatsUpdate()
     {
@@ -33,7 +34,7 @@ public class HealthComp : UnitBaseComponent
     {
         _currentHealth -= dame;
         SetHealthSlider();
-        
+
         CheckDie();
 
         ShowToastHitting(dame);
@@ -43,6 +44,9 @@ public class HealthComp : UnitBaseComponent
         _healthParentCanvasGroup.alpha = 1;
         var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
         var duration = Math.Abs(_healthSlider.value - sliderValue) * _unitDurationHealthChange;
+        // ensuring minDurationShowToast 
+        duration = duration < _minDurationShowToast ? _minDurationShowToast : duration;
+        
         _tweenProgressHeal = _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
         {
             _healthParentCanvasGroup.alpha = 0;

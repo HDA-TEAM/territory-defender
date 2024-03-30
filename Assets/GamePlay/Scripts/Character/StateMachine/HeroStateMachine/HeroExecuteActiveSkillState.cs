@@ -18,8 +18,6 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
         _isFinished = false;
         _userActionController = _context.UserActionController as UserActionHeroBaseController;
         _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
-        Debug.Log("_skillDuringTime " + _skillDuringTime);
-        Debug.Log("_skillDuringTime " +  _context.CharacterAnimator.GetCurrentAnimatorClipInfo(0).Length);
         _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
     }
     public override void UpdateState()

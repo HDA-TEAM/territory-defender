@@ -13,6 +13,7 @@ public enum CharacterState
     Stun = 7,
     Slow = 8,
     UsingSkill = 9,
+    Waiting = 10,
 }
 
 public class CharacterStateFactory
@@ -45,6 +46,7 @@ public class EnemyStateFactory : CharacterStateFactory
         _states[CharacterState.Idle] = new EnemyIdleState(_context);
         _states[CharacterState.Die] = new EnemyDieState(_context);
         _states[CharacterState.Attacking] = new EnemyAttackState(_context);
+        _states[CharacterState.Waiting] = new EnemyWaitingState(_context);
         _states[CharacterState.Moving] = new EnemyMovingState(_context);
     }
 

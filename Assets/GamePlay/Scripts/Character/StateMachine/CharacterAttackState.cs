@@ -1,78 +1,96 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class CharacterAttackState : CharacterBaseState
 {
-    protected float _cooldownNextAttack;
-    protected float _attackDame;
+    private float _cooldownNextAttack;
+    private float _attackDame;
+    private float _onceNormalAttackDuringTime;
+    protected Sequence _attackSequence;
     private static readonly int IsAttack = Animator.StringToHash("IsAttack");
+    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     protected CharacterAttackState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
     }
+    
     public override void EnterState()
     {
-        Context.CharacterAnimator.SetBool(IsAttack,true);
+        // Song tu 50%
+        // thien binh 30%
+        // bao binh  50%
+        // nhan ma 30%
+        // cu giai 70%
+        _attackSequence = DOTween.Sequence();
+
+        _attackDame = Context.CharacterStats.GetCurrentStatValue(StatId.AttackDamage);
+        
+        // Reset cooldown next attack time
+        SetAttackAnim(true);
+        _cooldownNextAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
+        _onceNormalAttackDuringTime = Context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
+        
+        Debug.Log(Context.CharacterAnimator.runtimeAnimatorController.animationClips[0].name);
+        Debug.Log(_onceNormalAttackDuringTime);
+        HandleAttackProcessing();
     }
     public override void UpdateState()
     {
-        _cooldownNextAttack -= Time.deltaTime;
-        _attackDame = Context.CharacterStats.GetCurrentStatValue(StatId.AttackDamage);
-        
         CheckSwitchState();
-        
-        HandleAttack();
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool(IsAttack,false);
+        Context.CharacterAnimator.SetBool(IsAttack, false);
     }
-    public override void CheckSwitchState() {}
-    public override void InitializeSubState() {}
-    protected void HandleAttack()
+    public override void CheckSwitchState() { }
+    public override void InitializeSubState() { }
+    private void SetAttackAnim(bool isInAttack)
     {
-        if (_cooldownNextAttack <= 0)
+        Context.CharacterAnimator.SetBool(IsAttack, isInAttack);
+        Context.CharacterAnimator.SetBool(IsIdle, !isInAttack);
+    }
+    private void HandleAttackProcessing()
+    {
+        
+        Tween attackOnceTime = DOVirtual.DelayedCall(_onceNormalAttackDuringTime, () =>
         {
-            // Reset cooldown next attack time
-            _cooldownNextAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
-            
-            switch (Context.CharacterTroopBehaviourType)
-            {
-                case TroopBehaviourType.Ranger:
-                case TroopBehaviourType.Tower:
-                    {
-                        // Tower don't need to check distance, it always fire any target exist
-                        
-                        // Debug.Log("Target distance: " + GameObjectUtility.Distance2dOfTwoGameObject(gameObject, target.gameObject));
-                        // new CharacterAttackingFactory().GetAttackingStrategy(attackingType).PlayAttacking(target,attackingDamage);
+            SetAttackAnim(false);
+            PlayingAttackOnceTime();
+        }, ignoreTimeScale: false);
 
-                        if (Context.CharacterProjectileIUnitId == UnitId.Projectile.None)
-                        return;
-                        
-                        var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId.ToString());
-                        prjBase.GetProjectileMovement().GetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget);
-                        return;
-                    }
-                case TroopBehaviourType.Melee:
-                    {
-                        // Need to check is in available attack range
-                        // if (GameObjectUtility.Distance2dOfTwoGameObject(this.gameObject, target.gameObject) < attackingRange)
-                        //     return;
-                        
-                        // isNeedToWaitCoolDownAttacking = true;
+        Tween waitingNextAttack = DOVirtual.DelayedCall(_cooldownNextAttack, () =>  SetAttackAnim(true), ignoreTimeScale: false);
 
-                        new CharacterAttackingFactory().GetAttackingStrategy(TroopBehaviourType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame);
-                        // await UniTask.Delay(TimeSpan.FromSeconds(attackingCooldown));
-                        //
-                        // isNeedToWaitCoolDownAttacking = false;
+        _attackSequence.Append(attackOnceTime);
+        _attackSequence.Append(waitingNextAttack);
+
+        _attackSequence.SetLoops(-1);
+        _attackSequence.Play();
+    }
+    private void PlayingAttackOnceTime()
+    {
+        switch (Context.CharacterTroopBehaviourType)
+        {
+            case TroopBehaviourType.Ranger:
+            case TroopBehaviourType.Tower:
+                {
+                    // Tower don't need to check distance, it always fire any target exist
+                    if (Context.CharacterProjectileIUnitId == UnitId.Projectile.None)
                         return;
-                    }
-                default:
-                    {
-                        // isNeedToWaitCoolDownAttacking = true;
-                        return;
-                    }
-            }
+
+                    var prjBase = Context.CharacterProjectileDataAsset.GetProjectileBase(Context.CharacterProjectileIUnitId.ToString());
+                    prjBase.GetProjectileMovement().GetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget);
+                    return;
+                }
+            case TroopBehaviourType.Melee:
+                {
+                    new CharacterAttackingFactory().GetAttackingStrategy(TroopBehaviourType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame);
+
+                    return;
+                }
+            default:
+                {
+                    return;
+                }
         }
-
     }
 }
