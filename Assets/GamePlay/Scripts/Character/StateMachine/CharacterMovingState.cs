@@ -1,12 +1,9 @@
-using UnityEngine;
-
 public class CharacterMovingState : CharacterBaseState
 {
     private readonly CharacterStateMachine _context;
     private float _movingSpeed;
     protected UserActionController _userActionController;
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    public CharacterMovingState(CharacterStateMachine currentContext) : base(currentContext)
+    protected CharacterMovingState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
         _context = currentContext;
@@ -14,7 +11,7 @@ public class CharacterMovingState : CharacterBaseState
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetCurrentStatValue(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool(IsMoving, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.MovingClip);
     }
     public override void UpdateState()
     {
@@ -23,7 +20,6 @@ public class CharacterMovingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsMoving, false);
     }
     public override void CheckSwitchState() { }
     public override void InitializeSubState()

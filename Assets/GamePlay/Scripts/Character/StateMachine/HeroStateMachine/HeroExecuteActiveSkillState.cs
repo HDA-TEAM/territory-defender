@@ -17,8 +17,8 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     {
         _isFinished = false;
         _userActionController = _context.UserActionController as UserActionHeroBaseController;
-        _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
-        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
+        // _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
+        // _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
     }
     public override void UpdateState()
     {
@@ -27,7 +27,6 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, false);
     }
     public override void CheckSwitchState()
     {

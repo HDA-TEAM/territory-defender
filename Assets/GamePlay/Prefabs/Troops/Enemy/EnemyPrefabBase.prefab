@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 5243910596837583625}
   - component: {fileID: 5614043302446956692}
   - component: {fileID: -7222694771438399481}
+  - component: {fileID: 2788282517361800204}
+  - component: {fileID: 5104113961385751006}
   m_Layer: 0
   m_Name: EnemyPrefabBase
   m_TagString: Enemy
@@ -124,6 +126,7 @@ MonoBehaviour:
   _unitShowingInformation: {fileID: 0}
   _userActionController: {fileID: 0}
   _unitReviveHandler: {fileID: 0}
+  _animationController: {fileID: 2788282517361800204}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -174,13 +177,13 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 1678257229}
   _curStateLabel: 
   _troopBehaviourType: 0
-  _animator: {fileID: 6715228475396641559}
+  _animationController: {fileID: 0}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 0
   _beingTargetCommand: 0
+  _startAttackPoint: {fileID: 0}
   _routeToGate: {fileID: 0}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _isDie: 0
 --- !u!114 &5614043302446956692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,6 +211,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _baseStats: {fileID: 11400000, guid: 1db4b7672f31f40948626ac7e4fe93a5, type: 2}
+--- !u!114 &2788282517361800204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7fc061839f4cdd8153943f7a2c5b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
+  _animancerComponent: {fileID: 5104113961385751006}
+  MovingClip: {fileID: 0}
+  NormalAttackClip: {fileID: 0}
+  IdleClip: {fileID: 0}
+  DeadClip: {fileID: 0}
+--- !u!114 &5104113961385751006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 6715228475396641559}
+  _ActionOnDisable: 0
 --- !u!1 &3524047006801495308
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +469,7 @@ Animator:
   m_GameObject: {fileID: 5863931160695732911}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 403dc6acf07d14d7884e530df78285a0, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

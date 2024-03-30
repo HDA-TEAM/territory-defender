@@ -1,10 +1,11 @@
+using GamePlay.Scripts.Character.StateMachine;
 using UnityEngine;
 
 public class  CharacterStateMachine : UnitBaseComponent
 {
     [SerializeField] private string _curStateLabel;
     [SerializeField] protected TroopBehaviourType _troopBehaviourType;
-    [SerializeField] protected Animator _animator;
+    [SerializeField] protected AnimationController _animationController;
     protected CharacterBaseState _currentState;
     protected StatsHandlerComponent _stats;
     [SerializeField] private ProjectileDataAsset _projectileDataAsset;
@@ -35,11 +36,12 @@ public class  CharacterStateMachine : UnitBaseComponent
     public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
     public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
     public TroopBehaviourType CharacterTroopBehaviourType { get { return _troopBehaviourType; } }
-    public Animator CharacterAnimator { get { return _animator; } }
+    public AnimationController AnimationController { get { return _animationController; } }
     public StatsHandlerComponent CharacterStats { get { return _stats; } }
     #endregion
     protected override void Awake()
     {
+        _animationController = _unitBaseParent.AnimationController();
         _stats = _unitBaseParent.UnitStatsHandlerComp();
     }
     public void UpdateStateMachine() => _currentState.UpdateStates();

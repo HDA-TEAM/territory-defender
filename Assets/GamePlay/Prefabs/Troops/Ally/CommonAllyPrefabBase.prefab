@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 3682937682380316613}
   - component: {fileID: 5754424938950297562}
   - component: {fileID: 7920704266535785964}
+  - component: {fileID: 4242539180125077310}
+  - component: {fileID: 582174163768808235}
   m_Layer: 0
   m_Name: CommonAllyPrefabBase
   m_TagString: Ally
@@ -125,6 +127,7 @@ MonoBehaviour:
   _unitShowingInformation: {fileID: 0}
   _userActionController: {fileID: 2909084853854028830}
   _unitReviveHandler: {fileID: 7920704266535785964}
+  _animationController: {fileID: 582174163768808235}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -175,10 +178,11 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 1678257229}
   _curStateLabel: 
   _troopBehaviourType: 1
-  _animator: {fileID: 6715228475396641559}
+  _animationController: {fileID: 0}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
   _beingTargetCommand: 0
+  _startAttackPoint: {fileID: 0}
 --- !u!114 &3682937682380316613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +223,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
+--- !u!114 &4242539180125077310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 6715228475396641559}
+  _ActionOnDisable: 0
+--- !u!114 &582174163768808235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192807291828039942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7fc061839f4cdd8153943f7a2c5b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: 1678257229}
+  _animancerComponent: {fileID: 4242539180125077310}
+  MovingClip: {fileID: 0}
+  NormalAttackClip: {fileID: 0}
+  IdleClip: {fileID: 0}
+  DeadClip: {fileID: 0}
 --- !u!1 &3471298441881994424
 GameObject:
   m_ObjectHideFlags: 0
@@ -461,7 +497,7 @@ Animator:
   m_GameObject: {fileID: 5863931160695732911}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4722d95c7eccd4582a99cdd1d169342d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1,5 +1,4 @@
 using DG.Tweening;
-using UnityEngine;
 
 public class CharacterAttackState : CharacterBaseState
 {
@@ -7,8 +6,6 @@ public class CharacterAttackState : CharacterBaseState
     private float _attackDame;
     private float _onceNormalAttackDuringTime;
     protected Sequence _attackSequence;
-    private static readonly int IsAttack = Animator.StringToHash("IsAttack");
-    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     protected CharacterAttackState(CharacterStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -16,11 +13,6 @@ public class CharacterAttackState : CharacterBaseState
     
     public override void EnterState()
     {
-        // Song tu 50%
-        // thien binh 30%
-        // bao binh  50%
-        // nhan ma 30%
-        // cu giai 70%
         _attackSequence = DOTween.Sequence();
 
         _attackDame = Context.CharacterStats.GetCurrentStatValue(StatId.AttackDamage);
@@ -28,10 +20,8 @@ public class CharacterAttackState : CharacterBaseState
         // Reset cooldown next attack time
         SetAttackAnim(true);
         _cooldownNextAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
-        _onceNormalAttackDuringTime = Context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
+        _onceNormalAttackDuringTime = Context.AnimationController.NormalAttackClip.length;
         
-        Debug.Log(Context.CharacterAnimator.runtimeAnimatorController.animationClips[0].name);
-        Debug.Log(_onceNormalAttackDuringTime);
         HandleAttackProcessing();
     }
     public override void UpdateState()
@@ -40,14 +30,13 @@ public class CharacterAttackState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool(IsAttack, false);
+        Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
     }
     public override void CheckSwitchState() { }
     public override void InitializeSubState() { }
     private void SetAttackAnim(bool isInAttack)
     {
-        Context.CharacterAnimator.SetBool(IsAttack, isInAttack);
-        Context.CharacterAnimator.SetBool(IsIdle, !isInAttack);
+        Context.AnimationController.PlayClip(isInAttack ? Context.AnimationController.NormalAttackClip : Context.AnimationController.IdleClip);
     }
     private void HandleAttackProcessing()
     {

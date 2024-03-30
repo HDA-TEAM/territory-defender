@@ -1,6 +1,4 @@
- using UnityEngine;
-
-public class BaseHeroStateMachine : CharacterStateMachine
+ public class BaseHeroStateMachine : CharacterStateMachine
 {
     private HeroStateFactory _factory;
     private bool _isAttack;

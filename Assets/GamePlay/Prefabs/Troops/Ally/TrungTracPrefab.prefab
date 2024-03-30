@@ -16,6 +16,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: DeadClip
+      value: 
+      objectReference: {fileID: 7400000, guid: c248ad0bb2d8b445989e9e88368d1f7f, type: 2}
+    - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: IdleClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 4d6ac178d207840b99f1e048c2561cdc, type: 2}
+    - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: MovingClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 4690f997a41a14f1cbaa162caea0b78c, type: 2}
+    - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: NormalAttackClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 724ac035474e34ddea3caee64e05b3ff, type: 2}
     - target: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: _userActionController
       value: 

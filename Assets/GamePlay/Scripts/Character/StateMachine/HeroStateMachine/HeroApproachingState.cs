@@ -1,10 +1,7 @@
-using UnityEngine;
-
 public class HeroApproachingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
     private float _movingSpeed;
-    private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     public HeroApproachingState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -13,7 +10,7 @@ public class HeroApproachingState : CharacterBaseState
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetCurrentStatValue(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool(IsMoving, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.MovingClip);
     }
     public override void UpdateState()
     {
@@ -22,7 +19,6 @@ public class HeroApproachingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsMoving, false);
     }
     public override void CheckSwitchState()
     {

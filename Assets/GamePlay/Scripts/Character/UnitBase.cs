@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.StateMachine;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,14 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private UnitShowingInformation _unitShowingInformation;
     [SerializeField] private UserActionController _userActionController;
     [SerializeField] private UnitReviveHandler _unitReviveHandler;
+    [SerializeField] private AnimationController _animationController;
     #endregion
 
     #region Access
     public UnitController UnitController() => _unitController;
     public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;
     public CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
+    public AnimationController AnimationController() => _animationController;
     public HealthComp HealthComp() => _healthComp;
     public UserActionController UserActionController()
     {

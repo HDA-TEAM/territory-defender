@@ -6,7 +6,6 @@ public class AllyIdleState : CharacterBaseState
     private readonly BaseAllyStateMachine _context;
     private UserActionController _userActionController;
     private Vector3 _pos;
-    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public AllyIdleState(BaseAllyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -15,7 +14,7 @@ public class AllyIdleState : CharacterBaseState
     public override void EnterState()
     {
         _userActionController = _context.UserActionController;
-        Context.CharacterAnimator.SetBool(IsIdle, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
     }
     public override void UpdateState()
     {
@@ -23,7 +22,6 @@ public class AllyIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool(IsIdle, false);
     }
     public override void CheckSwitchState()
     {

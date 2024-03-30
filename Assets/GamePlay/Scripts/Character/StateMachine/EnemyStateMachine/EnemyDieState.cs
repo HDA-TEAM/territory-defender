@@ -1,9 +1,9 @@
+using GamePlay.Scripts.Character.StateMachine;
 using UnityEngine;
 
 public class EnemyDieState : CharacterDieState
 {
     private readonly BaseEnemyStateMachine _context;
-    private static readonly int IsDie = Animator.StringToHash("IsDie");
     public EnemyDieState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true; 
@@ -11,9 +11,9 @@ public class EnemyDieState : CharacterDieState
     }
     public override void EnterState()
     {
-        Animator animator = _context.CharacterAnimator;
-        animator.SetBool(IsDie,true);
-        _durationDie = animator.runtimeAnimatorController.animationClips[0].length;
+        AnimationClip deadClip = Context.AnimationController.DeadClip;
+        Context.AnimationController.PlayClip(deadClip);
+        _durationDie = deadClip.length;
     }
     public override void UpdateState()
     {
@@ -22,7 +22,7 @@ public class EnemyDieState : CharacterDieState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool("IsDie",false);
+        Context.AnimationController.StopAllClip();
         _context.gameObject.SetActive(false);
     }
     // public override void CheckSwitchState()

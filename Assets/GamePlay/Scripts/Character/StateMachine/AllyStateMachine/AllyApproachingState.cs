@@ -13,7 +13,7 @@ public class AllyApproachingState : CharacterBaseState
     public override void EnterState()
     {
         _movingSpeed = _context.CharacterStats.GetCurrentStatValue(StatId.MovementSpeed);
-        _context.CharacterAnimator.SetBool(IsMoving, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.MovingClip);
     }
     public override void UpdateState()
     {
@@ -22,7 +22,6 @@ public class AllyApproachingState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsMoving, false);
     }
     public override void CheckSwitchState()
     {

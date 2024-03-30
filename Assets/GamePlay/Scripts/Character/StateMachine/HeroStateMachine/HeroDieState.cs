@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.StateMachine;
 using SuperMaxim.Messaging;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class HeroDieState : CharacterDieState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool("IsDie",false);
+        Context.AnimationController.StopAllClip();
         Context.gameObject.SetActive(false);
         Messenger.Default.Publish(new UnitRevivePayload
         {

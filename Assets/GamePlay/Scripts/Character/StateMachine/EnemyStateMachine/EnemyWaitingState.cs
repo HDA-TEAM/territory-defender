@@ -1,10 +1,7 @@
-using UnityEngine;
-
 public class EnemyWaitingState : CharacterBaseState
 {
     private readonly BaseEnemyStateMachine _context;
     private bool _isInAttackRange;
-    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public EnemyWaitingState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -13,7 +10,7 @@ public class EnemyWaitingState : CharacterBaseState
     public override void EnterState()
     {
         _isInAttackRange = false;
-        Context.CharacterAnimator.SetBool(IsIdle, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
     }
     public override void UpdateState()
     {
@@ -22,7 +19,6 @@ public class EnemyWaitingState : CharacterBaseState
     
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool(IsIdle, false);
         _isInAttackRange = false;
     }
     public override void CheckSwitchState()

@@ -80,6 +80,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: DeadClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 1da81a95a397b4333842bf9ed4cd9b75, type: 2}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: IdleClip
+      value: 
+      objectReference: {fileID: 7400000, guid: b58bee0de32e648f3950722dd6f013c7, type: 2}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: MovingClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 856d8a85634484bc48fe75f9ebe7f24d, type: 2}
+    - target: {fileID: 2788282517361800204, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: NormalAttackClip
+      value: 
+      objectReference: {fileID: 7400000, guid: b553ed3df3f6c4805a0a4e9811857cbe, type: 2}
     - target: {fileID: 3103099876386497845, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -101,6 +117,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4296595683639626517, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009539803753560358, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009539803753560358, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
