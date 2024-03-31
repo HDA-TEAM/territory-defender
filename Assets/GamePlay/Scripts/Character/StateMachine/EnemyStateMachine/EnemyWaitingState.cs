@@ -3,7 +3,6 @@ using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 public class EnemyWaitingState : CharacterBaseState
 {
     private readonly BaseEnemyStateMachine _context;
-    private bool _isInAttackRange;
     public EnemyWaitingState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -11,7 +10,6 @@ public class EnemyWaitingState : CharacterBaseState
     }
     public override void EnterState()
     {
-        _isInAttackRange = false;
         Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
     }
     public override void UpdateState()
@@ -21,7 +19,6 @@ public class EnemyWaitingState : CharacterBaseState
     
     public override void ExitState()
     {
-        _isInAttackRange = false;
     }
     public override void CheckSwitchState()
     {
