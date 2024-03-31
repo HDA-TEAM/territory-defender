@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -58,7 +59,7 @@ public class UserMoveUnitToCampingPlace : UserAction
 public class UserUsingHeroSkill : UserAction
 {
     public ESkillId SkillId;
-    public SkillDataSO SkillConfig;
+    public readonly SkillDataSO SkillConfig;
     public UserUsingHeroSkill(ESkillId eSkillId, SkillDataSO inGameSkillBase)
     {
         SkillId = eSkillId;

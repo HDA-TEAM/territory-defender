@@ -4,7 +4,6 @@ using UnityEngine;
 public class HeroExecuteActiveSkillState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;
-    private static readonly int IsPlayActiveSkill = Animator.StringToHash("IsPlayActiveSkill");
     private UserActionHeroBaseController _userActionController;
     private float _skillDuringTime;
     private bool _isFinished;
@@ -17,10 +16,9 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     {
         _isFinished = false;
         _userActionController = _context.UserActionController as UserActionHeroBaseController;
-        _skillDuringTime = _context.CharacterAnimator.runtimeAnimatorController.animationClips[0].length;
-        Debug.Log("_skillDuringTime " + _skillDuringTime);
-        Debug.Log("_skillDuringTime " +  _context.CharacterAnimator.GetCurrentAnimatorClipInfo(0).Length);
-        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, true);
+        AnimationClip activeSkill = Context.AnimationController.FirstActiveSkillClip;
+        _skillDuringTime = activeSkill.length;
+        _context.AnimationController.PlayClip(activeSkill);
     }
     public override void UpdateState()
     {
@@ -29,7 +27,6 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
     }
     public override void ExitState()
     {
-        _context.CharacterAnimator.SetBool(IsPlayActiveSkill, false);
     }
     public override void CheckSwitchState()
     {
@@ -51,6 +48,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
         _skillDuringTime -= Time.deltaTime;
         if (_skillDuringTime <= 0)
         {
+
             DealingDame();
             _context.UserActionController.SetFinishedUserAction();
             _isFinished = true;
@@ -66,7 +64,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
             if (GameObjectUtility.Distance2dOfTwoGameObject(_context.gameObject, target) <= skillConfig.GetStat(StatId.AttackRange))
             {
                 var healComp = target.GetComponent<UnitBase>().HealthComp();
-                if(healComp) healComp.PlayHurting(skillConfig.GetStat(StatId.AttackDamage));
+                if (healComp) healComp.PlayHurting(skillConfig.GetStat(StatId.AttackDamage));
             }
         }
     }

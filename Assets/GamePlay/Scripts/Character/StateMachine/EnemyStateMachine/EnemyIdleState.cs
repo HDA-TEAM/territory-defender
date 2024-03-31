@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
+
 public class EnemyIdleState : CharacterBaseState
 {
     private readonly BaseEnemyStateMachine _context;
@@ -22,9 +24,16 @@ public class EnemyIdleState : CharacterBaseState
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
-        else if (_context.IsStopToAttack)
+        else if (_context.IsStopToAttackingOrWaiting())
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
+            if (_context.IsStopToWaiting)
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Waiting));
+            }
+            else
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Attacking));
+            }
         }
         else if (_context.IsMovingToGate)
         {

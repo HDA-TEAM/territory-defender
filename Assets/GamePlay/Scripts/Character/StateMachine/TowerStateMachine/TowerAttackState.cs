@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class TowerAttackState : CharacterAttackState
@@ -11,9 +11,13 @@ public class TowerAttackState : CharacterAttackState
     }
     public override void CheckSwitchState()
     {
+        bool isSwitch = false;
         if (!_context.IsAttack)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+            isSwitch = true;
         }
+        if(isSwitch)
+            _attackSequence.Kill();
     }
 }

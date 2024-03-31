@@ -1,37 +1,40 @@
 using UnityEngine;
 
-public class CharacterDieState : CharacterBaseState
+namespace GamePlay.Scripts.Character.StateMachine
 {
-    protected float _durationDie;
-    protected CharacterDieState(CharacterStateMachine currentContext) : base(currentContext)
+    public class CharacterDieState : CharacterBaseState
     {
-        IsRootState = true; 
-    }
-    public override void EnterState()
-    {
-        Animator animator = Context.CharacterAnimator;
-        animator.SetBool("IsDie",true);
-        _durationDie = animator.runtimeAnimatorController.animationClips[0].length;
-    }
-    public override void UpdateState()
-    {
-        _durationDie -= Time.deltaTime;
-        CheckSwitchState();
-    }
-    public override void ExitState()
-    {
-        Context.CharacterAnimator.SetBool("IsDie",false);
-        Context.gameObject.SetActive(false);
-    }
-    public override void CheckSwitchState()
-    {
-        if (_durationDie <= 0)
+        protected float _durationDie;
+        protected CharacterDieState(CharacterStateMachine currentContext) : base(currentContext)
         {
-            _durationDie = 0;
-            ExitState();
+            IsRootState = true; 
         }
-    }
-    public override void InitializeSubState()
-    {
+        public override void EnterState()
+        {
+            AnimationClip deadClip = Context.AnimationController.DeadClip;
+            _durationDie = deadClip.length;
+            Context.AnimationController.PlayClip(deadClip);
+        }
+        public override void UpdateState()
+        {
+            _durationDie -= Time.deltaTime;
+            CheckSwitchState();
+        }
+        public override void ExitState()
+        {
+            Context.AnimationController.StopAllClip();
+            Context.gameObject.SetActive(false);
+        }
+        public override void CheckSwitchState()
+        {
+            if (_durationDie <= 0)
+            {
+                _durationDie = 0;
+                ExitState();
+            }
+        }
+        public override void InitializeSubState()
+        {
+        }
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+using GamePlay.Scripts.Character.StateMachine;
 
 public abstract class CharacterBaseState
 {

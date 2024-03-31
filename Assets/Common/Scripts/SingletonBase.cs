@@ -6,9 +6,9 @@ public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
     public static T Instance {
         get {
             
-            // When OnDestroy is calling, so we need to prevent create the second singleton instance
-            if (_applicationIsQuitting)
-                return null;
+            // // When OnDestroy is calling, so we need to prevent create the second singleton instance
+            // if (_applicationIsQuitting)
+            //     return null;
 
             // If instance is exist
             if (_instance != null)
@@ -32,8 +32,8 @@ public class SingletonBase<T>: MonoBehaviour where T : MonoBehaviour{
     public static bool IsAlive() => _instance && !_applicationIsQuitting;
     protected virtual void OnDestroy()
     {
-        Debug.Log("Gets destroyed");
-        _applicationIsQuitting = true;
+        Debug.Log(name + "OnDestroy");
+        // _applicationIsQuitting = true;
     }
     protected virtual void Awake ()
     {

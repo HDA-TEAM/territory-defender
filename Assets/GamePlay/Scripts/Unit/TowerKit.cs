@@ -27,6 +27,7 @@ public class TowerKit : MonoBehaviour
     [SerializeField] private GameObject _towerUsingTool;
     [SerializeField] private GameObject _spawnTowerHolder;
     [SerializeField] private Button _btnRange;
+    [SerializeField] private SpriteRenderer _spiteFlag;
 
     [Header("Data"), Space(12)]
     [SerializeField] private TowerDataAsset _towerDataAsset;
@@ -98,18 +99,21 @@ public class TowerKit : MonoBehaviour
     private void SetMenuState()
     {
         _canvasGroupBtn.alpha = 0f;
+        _spiteFlag.gameObject.SetActive(false);
         _towerBuildTool.SetActive(false);
         _towerUsingTool.SetActive(false);
         switch (_towerKitState)
         {
             case TowerKitState.Default:
                 {
+                    _spiteFlag.gameObject.SetActive(true);
                     _canvasGroupBtn.alpha = 1f;
                     return;
                 }
             case TowerKitState.Building:
                 {
                     _canvasGroupBtn.alpha = 1f;
+                    _spiteFlag.gameObject.SetActive(true);
                     _towerBuildTool.SetActive(true);
                     return;
                 }
@@ -168,6 +172,11 @@ public class TowerKit : MonoBehaviour
         Destroy(_towerEntity);
         TowerKitState = TowerKitState.Default;
     }
+    public void SetFlagActive(bool isActive)
+    {
+        _btnRange.gameObject.SetActive(isActive);
+        _spiteFlag.gameObject.SetActive(isActive);
+    }
     public void ActiveCampingMode()
     {
         
@@ -176,7 +185,7 @@ public class TowerKit : MonoBehaviour
         SetRangeOfTower(rangeVal);
 
         TowerKitState = TowerKitState.Hiding;
-        _btnRange.gameObject.SetActive(true);
+        SetFlagActive(true);
 
         _btnRange.onClick.AddListener(() =>
         {
@@ -186,7 +195,7 @@ public class TowerKit : MonoBehaviour
             troopTowerBehaviour.SetCampingPlace(new Vector3(mousePos.x, mousePos.y,0));
             
             // Hiding select camping position
-            _btnRange.gameObject.SetActive(false);
+            SetFlagActive(false);
             TowerKitState = TowerKitState.Hiding;
             _btnRange.onClick.RemoveAllListeners();
         });

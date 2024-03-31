@@ -16,10 +16,14 @@ MonoBehaviour:
   WavesSpawning:
   - GroupsSpawning:
     - StartSpawning: 0
-      ObjectSpawn: 200
+      ObjectSpawn: 220
       RouteId: 1
       NumberSpawning: 2
-    - StartSpawning: 15
-      ObjectSpawn: 200
+    - StartSpawning: 0
+      ObjectSpawn: 220
       RouteId: 2
-      NumberSpawning: 10
+      NumberSpawning: 2
+    - StartSpawning: 2
+      ObjectSpawn: 220
+      RouteId: 0
+      NumberSpawning: 3

@@ -6,7 +6,6 @@ public class HeroIdleState : CharacterBaseState
     private readonly BaseHeroStateMachine _context;
     private UserActionController _userActionController;
     private Vector3 _pos;
-    private static readonly int IsIdle = Animator.StringToHash("IsIdle");
     public HeroIdleState(BaseHeroStateMachine currentContext) : base(currentContext)
     {
         IsRootState = true;
@@ -15,7 +14,7 @@ public class HeroIdleState : CharacterBaseState
     public override void EnterState()
     {
         _userActionController = _context.UserActionController;
-        Context.CharacterAnimator.SetBool(IsIdle, true);
+        Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
     }
     public override void UpdateState()
     {
@@ -23,7 +22,6 @@ public class HeroIdleState : CharacterBaseState
     }
     public override void ExitState()
     {
-        Context.CharacterAnimator.SetBool(IsIdle, false);
     }
     public override void CheckSwitchState()
     {

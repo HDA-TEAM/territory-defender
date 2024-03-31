@@ -20,10 +20,7 @@ public class StatsHandlerComponent : UnitBaseComponent
         base.Start();
         _buffHandler = new BuffHandler(SynData);
     }
-    private void SynData()
-    {
-        _unitBaseParent.OnUpdateBuffs?.Invoke();
-    }
+    private void SynData() => _unitBaseParent.OnUpdateBuffs?.Invoke();
 
     public float GetCurrentStatValue(StatId statId)
     {

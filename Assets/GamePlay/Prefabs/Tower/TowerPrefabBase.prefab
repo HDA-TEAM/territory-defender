@@ -161,6 +161,8 @@ GameObject:
   - component: {fileID: 2176556897988213634}
   - component: {fileID: 3298969290697362971}
   - component: {fileID: 7134561768570042230}
+  - component: {fileID: 6932382008918826447}
+  - component: {fileID: 1747842702292361965}
   m_Layer: 0
   m_Name: TowerPrefabBase
   m_TagString: Tower
@@ -224,9 +226,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -278244207
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a2070a87cf8174b65bdca4f503941ccd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -285,8 +287,9 @@ MonoBehaviour:
   _healthComp: {fileID: 0}
   _unitStatsComp: {fileID: 7134561768570042230}
   _unitShowingInformation: {fileID: 5838589748708221372}
-  _unitType: 1
   _userActionController: {fileID: 0}
+  _unitReviveHandler: {fileID: 0}
+  _animationController: {fileID: 1747842702292361965}
   CurrentTarget: {fileID: 0}
 --- !u!114 &1069866960922029881
 MonoBehaviour:
@@ -331,10 +334,11 @@ MonoBehaviour:
   _unitBaseParent: {fileID: -7030754689199355094}
   _curStateLabel: 
   _troopBehaviourType: 0
-  _animator: {fileID: 6093051815202494015}
+  _animationController: {fileID: 0}
   _projectileDataAsset: {fileID: 11400000, guid: 73875d59f98c74a53882a5201d4a7348, type: 2}
   _projectileId: 1000
   _beingTargetCommand: 0
+  _startAttackPoint: {fileID: 0}
 --- !u!114 &7134561768570042230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +353,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: -7030754689199355094}
   _baseStats: {fileID: 11400000, guid: 97bdb2aee95494619a64be707a8b375c, type: 2}
+--- !u!114 &6932382008918826447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ad50f81b1d25c441943c37a89ba23f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Animator: {fileID: 6093051815202494015}
+  _ActionOnDisable: 0
+--- !u!114 &1747842702292361965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7fc061839f4cdd8153943f7a2c5b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: -7030754689199355094}
+  _testClip: {fileID: 0}
+  _animancerComponent: {fileID: 6932382008918826447}
+  MovingClip: {fileID: 0}
+  NormalAttackClip: {fileID: 0}
+  IdleClip: {fileID: 0}
+  DeadClip: {fileID: 0}
+  FirstActiveSkillClip: {fileID: 0}
 --- !u!1 &6942991946045224393
 GameObject:
   m_ObjectHideFlags: 0
