@@ -16,6 +16,7 @@ public class UnitManager : SingletonBase<UnitManager>
     public bool IsInGameScene = true;
     private readonly List<Action> _onSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnSubscribeAction = new List<Action>();
+    private readonly List<Action> _onUnitOutAction = new List<Action>();
 
     // A active and available unit can be subscribe
     public void Subscribe(UnitBase unitBase)
@@ -45,12 +46,8 @@ public class UnitManager : SingletonBase<UnitManager>
     }
 
     // Reset single Unit from outside handle
-    public void ResetTarget(UnitBase unitBase) => NotifyAllUnit(unitBase);
-
-    public void OnRestart()
-    {
-        Destroy(gameObject);
-    }
+    public void ResetTarget(UnitBase unitBase) => _onUnitOutAction.Add(() => NotifyAllUnit(unitBase));
+    
     // Update units on map
     public void Update()
     {
@@ -97,6 +94,10 @@ public class UnitManager : SingletonBase<UnitManager>
     // Ensuring always exist single unit updating flow 
     private void SynRuntimeAction()
     {
+        foreach (var action in _onUnitOutAction)
+            action?.Invoke();
+        _onUnitOutAction.Clear();
+        
         foreach (var action in _onSubscribeAction)
             action?.Invoke();
         _onSubscribeAction.Clear();
@@ -123,5 +124,9 @@ public class UnitManager : SingletonBase<UnitManager>
 
         unitOut.CurrentTarget = null;
         unitOut.OnTargetChanging?.Invoke(targetChangingComposite);
+    }
+    public void OnRestart()
+    {
+        Destroy(gameObject);
     }
 }
