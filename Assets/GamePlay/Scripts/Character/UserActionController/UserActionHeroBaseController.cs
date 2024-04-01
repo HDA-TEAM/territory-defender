@@ -28,7 +28,6 @@ public class UserActionHeroBaseController : UserActionController
     }
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Select Unit");
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             IsOn = true,
