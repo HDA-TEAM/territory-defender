@@ -60,27 +60,38 @@ public class UnitManager : SingletonBase<UnitManager>
 
         foreach (var enemy in _unitEnemies)
         {
-            List<UnitBase> _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
+            _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
             enemy.UnitController().UpdateStatus(_unitsNeed);
         }
         foreach (var ally in _unitAllys)
         {
-            List<UnitBase> _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
+            _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
             ally.UnitController().UpdateStatus(_unitsNeed);
         }
     }
+    private List<UnitBase> _unitsNeed;
+    private readonly List<UnitBase> _allys = new List<UnitBase>();
     private List<UnitBase> GetUnitsNeed(UnitId.BaseId baseId)
     {
         switch (baseId)
         {
             case UnitId.BaseId.Ally:
                 {
-                    return _unitAllys;
+                    _allys.Clear();
+                    foreach (var unit in _unitAllys)
+                    {
+                        if (unit.CharacterStateMachine().CharacterTroopBehaviourType != TroopBehaviourType.Tower)
+                        {
+                            _allys.Add(unit);
+                        }
+                    }
+                    return _allys;
                 }
             case UnitId.BaseId.Enemy:
                 {
                     return _unitEnemies;
                 }
+
         }
         return new List<UnitBase>();
     }
