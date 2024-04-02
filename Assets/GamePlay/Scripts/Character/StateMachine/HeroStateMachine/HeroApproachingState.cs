@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class HeroApproachingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;

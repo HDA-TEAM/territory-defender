@@ -11,8 +11,8 @@ namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
         private int _currentIndexInRouteLine;
         private bool _isMovingToGate;
         private bool _isDie;
-        private bool _isStopToAttack;
-        private bool _isStopToWaiting;
+        protected bool _isStopToAttack;
+        protected bool _isStopToWaiting;
 
         #region Event
         protected override void OnEnable()
@@ -44,7 +44,7 @@ namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
         public bool IsStopToAttackingOrWaiting() => (_isStopToWaiting || _isStopToAttack) && !_isMovingToGate;
         public bool IsStopToAttack { get { return _isStopToAttack; } }
         public bool IsStopToWaiting { get { return _isStopToWaiting; } }
-        public void CheckAttackingOrWaiting()
+        public virtual void CheckAttackingOrWaiting()
         {
             _isStopToAttack = CurrentTarget && GameObjectUtility.Distance2dOfTwoGameObject(gameObject, CurrentTarget.gameObject) < CharacterStats.GetCurrentStatValue(StatId.AttackRange);
             _isStopToWaiting = !_isStopToAttack;
@@ -77,7 +77,7 @@ namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
 
             bool isTargetValid = composite.Target == null;
             _isMovingToGate = isTargetValid;
-            _isStopToWaiting = !isTargetValid;
+            CheckAttackingOrWaiting();
         }
 
     }
