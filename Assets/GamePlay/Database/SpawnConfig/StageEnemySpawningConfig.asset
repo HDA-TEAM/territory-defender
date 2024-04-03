@@ -27,3 +27,18 @@ MonoBehaviour:
       ObjectSpawn: 210
       RouteId: 0
       NumberSpawning: 3
+  TestWavesSpawning:
+  - GroupsSpawning:
+    - StartSpawning: 0
+      ObjectSpawn: 210
+      RouteId: 1
+      NumberSpawning: 2
+    - StartSpawning: 0
+      ObjectSpawn: 210
+      RouteId: 2
+      NumberSpawning: 2
+    - StartSpawning: 2
+      ObjectSpawn: 210
+      RouteId: 0
+      NumberSpawning: 3
+  _data: '[{"GroupsSpawning":[{"StartSpawning":0.0,"ObjectSpawn":200,"RouteId":1,"NumberSpawning":2},{"StartSpawning":0.0,"ObjectSpawn":220,"RouteId":2,"NumberSpawning":2},{"StartSpawning":2.0,"ObjectSpawn":210,"RouteId":0,"NumberSpawning":3}]}]'
