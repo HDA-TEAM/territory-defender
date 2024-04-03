@@ -4,8 +4,6 @@ public class ERangerTroopController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
-        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
-        
         if (CheckTargetInUserAction(_unitBaseParent.CurrentTarget) || !IsCurrentTargetAvailable())
             SetDefaultState();
             
@@ -26,6 +24,8 @@ public class ERangerTroopController : UnitController
         }
 
         OnChangeTarget(target, BeingTargetCommand.None);
+        
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
     }
     private bool CheckTargetInUserAction(UnitBase target)
     {

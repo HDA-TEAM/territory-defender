@@ -42,12 +42,7 @@ public class AllyTroopController : UnitController
 
         _prevTarget = target;
         
-        var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
-        {
-            Target = target,
-            BeingTargetCommand = BeingTargetCommand.Block
-        };
-        _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
+        OnChangeTarget(target, BeingTargetCommand.Block);
 
         if (target)
         {
