@@ -1,7 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "TowerKitSetConfig", menuName = "ScriptableObject/Database/Stage/TowerKitSetConfig")]
 public class TowerKitSetConfig : ScriptableObject
