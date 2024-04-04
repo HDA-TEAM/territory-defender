@@ -1,7 +1,10 @@
 using CustomInspector;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "RouteSetConfig", menuName = "ScriptableObject/Database/Stage/RouteSetConfig")]
@@ -9,7 +12,7 @@ public class RouteSetConfig : ScriptableObject
 {
     [Button("ParseToJson")]
     [SerializeField] private string _data;
-    
+
     private readonly Dictionary<StageId, List<List<Vector3>>> _routeSets = new Dictionary<StageId, List<List<Vector3>>>();
 
     private void ParseToJson()
@@ -22,7 +25,7 @@ public class RouteSetConfig : ScriptableObject
     }
     public void SaveToConfig(List<List<Vector3>> inputRouteSet, StageId stageId)
     {
-         
+
         if (!_routeSets.ContainsKey(stageId))
         {
             Debug.LogError($"No config found for key {stageId} on {name}");
@@ -32,6 +35,7 @@ public class RouteSetConfig : ScriptableObject
         {
             _routeSets[stageId] = inputRouteSet;
         }
+        EditorUtility.SetDirty(this);
     }
     public List<List<Vector3>> LoadFromConfig(StageId stageId)
     {
