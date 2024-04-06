@@ -1,47 +1,49 @@
-using CustomInspector;
+using AYellowpaper.SerializedCollections;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-using UnityEngine;
-
 [CreateAssetMenu(fileName = "RouteSetConfig", menuName = "ScriptableObject/Database/Stage/RouteSetConfig")]
 public class RouteSetConfig : ScriptableObject
 {
-    [Button("ParseToJson")]
-    [SerializeField] private string _data;
+    [SerializeField][SerializedDictionary("StageId", "RouteLineSet")]
+    private SerializedDictionary<StageId, RouteSet> _routeLineSets = new SerializedDictionary<StageId, RouteSet>();
 
-    private readonly Dictionary<StageId, List<List<Vector3>>> _routeSets = new Dictionary<StageId, List<List<Vector3>>>();
-
-    private void ParseToJson()
+    [Serializable]
+    public struct RouteSet
     {
-        _data = "";
-        foreach (var route in _routeSets)
-        {
-            _data += $"Id : {route.Key}  Count: {route.Value.Count}";
-        }
+        public List<RouteLine> RouteLines;
     }
-    public void SaveToConfig(List<List<Vector3>> inputRouteSet, StageId stageId)
+    [Serializable]
+    public struct RouteLine
+    {
+        public List<Vector3> PointSet;
+    }
+    public void SaveToConfig(RouteSet inputRouteSet, StageId stageId)
     {
 
-        if (!_routeSets.ContainsKey(stageId))
+        if (!_routeLineSets.ContainsKey(stageId))
         {
             Debug.LogError($"No config found for key {stageId} on {name}");
-            _routeSets.Add(stageId, inputRouteSet);
+            _routeLineSets.Add(stageId, inputRouteSet);
         }
         else
         {
-            _routeSets[stageId] = inputRouteSet;
+            _routeLineSets[stageId] = inputRouteSet;
         }
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
+#endif
     }
-    public List<List<Vector3>> LoadFromConfig(StageId stageId)
+    public RouteSet LoadFromConfig(StageId stageId)
     {
-        if (_routeSets.TryGetValue(stageId, out List<List<Vector3>> lineSet))
+        if (_routeLineSets.TryGetValue(stageId, out RouteSet lineSet))
             return lineSet;
         Debug.LogError($"No config found for key {stageId} on {name}");
-        return new List<List<Vector3>>();
+        return new RouteSet();
     }
 }

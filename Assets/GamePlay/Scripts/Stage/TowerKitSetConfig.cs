@@ -16,12 +16,15 @@ public class TowerKitSetConfig : ScriptableObject
         if (_towerKitLocations.ContainsKey(stageId))
         {
             _towerKitLocations[stageId] = towerKitPlaces;
-            EditorUtility.SetDirty(this);
-            return;
         }
-        Debug.LogError($"No config found for key {stageId} on {name}");
-        _towerKitLocations.TryAdd(stageId, towerKitPlaces);
+        else
+        {
+            Debug.LogError($"No config found for key {stageId} on {name}");
+            _towerKitLocations.TryAdd(stageId, towerKitPlaces);   
+        }
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
+#endif
     }
     public List<Vector3> LoadFromConfig(StageId stageId)
     {

@@ -38,30 +38,37 @@ public class RouteSetController : GamePlaySingletonBase<RouteSetController>
     
     private void SaveToConfig()
     {
-        List<List<Vector3>> lineRouteSet = new List<List<Vector3>>();
+        RouteSetConfig.RouteSet routeSet = new RouteSetConfig.RouteSet
+        {
+            RouteLines = new List<RouteSetConfig.RouteLine>(),
+        };
+
         for (int i = 0; i < _currentRouteLineRenders.Count; i++)
         {
             // Check if lineRender want to save
             if (!_currentRouteLineRenders[i].gameObject.activeSelf)
                 continue;
-
-            lineRouteSet.Add(new List<Vector3>());
+            
+            routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
+            {
+                PointSet = new List<Vector3>()
+            });
 
             for (int j = 0; j < _currentRouteLineRenders[i].positionCount; j++)
-                lineRouteSet[i].Add(_currentRouteLineRenders[i].GetPosition(j));
+                routeSet.RouteLines[i].PointSet.Add(_currentRouteLineRenders[i].GetPosition(j));
         }
 
-        _routeSetConfig.SaveToConfig(lineRouteSet, _currentStageId);
+        _routeSetConfig.SaveToConfig(routeSet, _currentStageId);
     }
 
     private void LoadFromConfig()
     {
-        List<List<Vector3>> lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
-
-        for (int i = 0; i < lineRouteSet.Count; i++)
+        RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
+        int lineCount = lineRouteSet.RouteLines.Count;
+        for (int i = 0; i < lineCount; i++)
         {
             // If route set config < total active routeSet on map
-            if (i >= lineRouteSet.Count)
+            if (i >= lineCount)
             {
                 _currentRouteLineRenders[i].gameObject.SetActive(false);
                 continue;
@@ -71,15 +78,15 @@ public class RouteSetController : GamePlaySingletonBase<RouteSetController>
             _currentRouteLineRenders[i].gameObject.SetActive(true);
 
             // Init lineRender max space
-            _currentRouteLineRenders[i].positionCount = lineRouteSet[i].Count;
+            _currentRouteLineRenders[i].positionCount = lineRouteSet.RouteLines[i].PointSet.Count;
 
             // Set position at each point in lineRender
             // z always zero
-            for (int j = 0; j < lineRouteSet[i].Count; j++)
+            for (int j = 0; j < lineRouteSet.RouteLines[i].PointSet.Count; j++)
                 _currentRouteLineRenders[i].SetPosition(j,
                     new Vector3(
-                        lineRouteSet[i][j].x,
-                        lineRouteSet[i][j].y,
+                        lineRouteSet.RouteLines[i].PointSet[j].x,
+                        lineRouteSet.RouteLines[i].PointSet[j].y,
                         0));
         }
     }
