@@ -1,5 +1,6 @@
 using CustomInspector;
 using Cysharp.Threading.Tasks;
+using System;
 using UnityEngine;
 
 namespace Common.Loading.Scripts
@@ -16,6 +17,11 @@ namespace Common.Loading.Scripts
         [SerializeField] private CommonLoadingGameToHome _gameToHomeCommonLoading;
 
         [SerializeField] private LoadingSceneModelView _loadingSceneModelView;
+
+        private void Start()
+        {
+            LoadingStartToHome();
+        }
         public void LoadingStartToHome()
         {
             _loadingSceneModelView.ShowLoadingScene();

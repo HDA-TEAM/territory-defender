@@ -13,13 +13,14 @@ public class TowerKitSetConfig : ScriptableObject
     private SerializedDictionary<StageId, List<Vector3>> _towerKitLocations = new SerializedDictionary<StageId, List<Vector3>>();
     public void SaveToConfig(List<Vector3> towerKitPlaces, StageId stageId)
     {
-        if (!_towerKitLocations.ContainsKey(stageId))
+        if (_towerKitLocations.ContainsKey(stageId))
         {
-            Debug.LogError($"No config found for key {stageId} on {name}");
+            _towerKitLocations[stageId] = towerKitPlaces;
+            EditorUtility.SetDirty(this);
             return;
         }
-        _towerKitLocations[stageId] = towerKitPlaces;
-        
+        Debug.LogError($"No config found for key {stageId} on {name}");
+        _towerKitLocations.TryAdd(stageId, towerKitPlaces);
         EditorUtility.SetDirty(this);
     }
     public List<Vector3> LoadFromConfig(StageId stageId)

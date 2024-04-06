@@ -14,7 +14,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
 {
     [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
     [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
-    private bool IsInGameScene = true;
+    
     private readonly List<Action> _onSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnitOutAction = new List<Action>();
@@ -52,7 +52,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     // Update units on map
     public void Update()
     {
-        if (!IsInGameScene)
+        if (!GameController.Instance.IsInGameScene)
             return;
 
         SynRuntimeAction();
@@ -139,11 +139,9 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     }
     public override void SetUpNewGame()
     {
-        IsInGameScene = true;
     }
     public override void ResetGame()
     {
-        IsInGameScene = false;
         Destroy(gameObject);
     }
 }

@@ -5,7 +5,6 @@ public class ClickEffectHandle : MonoBehaviour
     [SerializeField] private ParticleSystem _clickingEffect;
     private bool _isOnDown;
     private Camera _camera;
-    private void Awake() => _camera = Camera.main;
     private void Update()
     {
         switch (Input.anyKeyDown)
@@ -20,7 +19,10 @@ public class ClickEffectHandle : MonoBehaviour
     }
     private void OnPlayClickEffect()
     {
+        if (!GameController.Instance.IsInGameScene) return;
         var screenPos = Input.mousePosition;
+        if (_camera == null)
+            _camera = Camera.main;
         var worldPos = _camera.ScreenToWorldPoint(screenPos);
         _clickingEffect.transform.position = worldPos;
         _clickingEffect.Play();

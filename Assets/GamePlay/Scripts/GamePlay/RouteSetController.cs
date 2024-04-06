@@ -28,6 +28,10 @@ public class RouteSetController : GamePlaySingletonBase<RouteSetController>
     }
     private void Start()
     {
+        foreach (var lineRender in _currentRouteLineRenders)
+        {
+            lineRender.widthMultiplier = 0f;
+        }
         // _stageConfig = _stageDataAsset.GetStageConfig();
         // _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
     }
