@@ -6,7 +6,6 @@ namespace Common.Loading.Scripts
 {
     public class CommonLoadingScene : ScriptableObject
     {
-        public Action OnLoadingCompleted;
         public virtual void ReleaseResource()
         {
             

@@ -12,6 +12,7 @@ public class GameController : GamePlaySingletonBase<GameController>
     }
     public override void SetUpNewGame()
     {
+        _enemySpawningFactory.CancelSpawning();
         RouteSetController.Instance.SetUpNewGame();
         TowerKitSetController.Instance.SetUpNewGame();
         PoolingController.Instance.SetUpNewGame();

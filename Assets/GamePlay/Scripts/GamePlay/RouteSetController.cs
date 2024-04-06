@@ -28,7 +28,7 @@ public class RouteSetController : GamePlaySingletonBase<RouteSetController>
     }
     private void Start()
     {
-        _stageConfig = _stageDataAsset.GetStageConfig();
+        // _stageConfig = _stageDataAsset.GetStageConfig();
         // _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
     }
     

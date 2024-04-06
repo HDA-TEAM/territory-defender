@@ -82,7 +82,7 @@ public class TowerKitSetController : GamePlaySingletonBase<TowerKitSetController
     private void SetUpData()
     {
         // Loading position and place for each kit
-        _stageConfig = _stageDataAsset.GetStageConfig();
+        // _stageConfig = _stageDataAsset.GetStageConfig();
         // _stageConfig.TowerKitSetConfig.LoadTowerKitsPositionFromConfig(_currentTowerKits);
 
         // Setup callback when selected

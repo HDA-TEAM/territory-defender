@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,12 +28,7 @@ public class PuInGameSettings : MonoBehaviour
 
     private void OnClickQuit()
     {
-        // Load scene home
-        SceneManager.LoadScene(0);
-        SceneManager.UnloadSceneAsync(1);
-       
-        
-        GameController.Instance.ResetGame();
-
+        // Reset gameplay and Load scene home
+        LoadingSceneController.Instance.LoadingGameToHome();
     }
 }

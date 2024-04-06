@@ -29,8 +29,13 @@ namespace Common.Loading.Scripts
         }
         public void PlayDoFadeEffect(float startVal, float endVal, float duration)
         {
+            
             _canvasGroup.alpha = startVal;
             _canvasGroup.DOFade(endVal, duration);
+        }
+        public void SetupBlockRaycast(bool isTurnOn)
+        {
+            _canvasGroup.blocksRaycasts = isTurnOn;
         }
     }
 }

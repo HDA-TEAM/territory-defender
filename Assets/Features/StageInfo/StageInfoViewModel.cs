@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,8 +81,7 @@ public class StageInfoViewModel : MonoBehaviour
         int sceneIndex = DetermineSceneIndex(stage, gameMode);
         if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-            SceneManager.LoadScene(sceneIndex);
-            SceneManager.UnloadSceneAsync(0);
+            LoadingSceneController.Instance.LoadingHomeToGame();
         }
         else
         {

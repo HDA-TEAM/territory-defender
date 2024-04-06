@@ -296,7 +296,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!222 &989689623
 CanvasRenderer:
@@ -350,9 +350,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486932f5884b40a1959cbe83f5b8766b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startToHomeCommonLoading: {fileID: 0}
+  _startToHomeCommonLoading: {fileID: 11400000, guid: b347c26dc850241aba1e96205944a63c, type: 2}
   _homeToGameCommonLoading: {fileID: 11400000, guid: 6f151aac90df9431a845b8175b6d9fcf, type: 2}
-  _gameToHomeCommonLoading: {fileID: 0}
+  _gameToHomeCommonLoading: {fileID: 11400000, guid: 9d8b3acac01b141a29462586fcf97734, type: 2}
   _loadingSceneModelView: {fileID: 989689628}
 --- !u!114 &989689627
 MonoBehaviour:
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100%
+  m_text: 0%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
