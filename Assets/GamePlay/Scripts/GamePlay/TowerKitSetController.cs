@@ -1,3 +1,4 @@
+using CustomInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,14 +6,18 @@ using UnityEngine;
 
 public class TowerKitSetController : SingletonBase<TowerKitSetController>
 {
+    [Button("SaveToConfig")]
+    [Button("LoadFromConfig")]
+    [SerializeField] private StageId _currentStageId;
+
+    [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
     [SerializeField] private List<TowerKit> _currentTowerKits = new List<TowerKit>();
     [SerializeField] private StageDataAsset _stageDataAsset;
-    [SerializeField] private TowerDataAsset _towerDataAsset;
     public TowerKit CurrentSelectedKit;
     private TowerKit _preSelectedKit;
     private StageConfig _stageConfig;
     private Action _onSelected;
-    
+
     // public List<TowerKit> CurrentTowerKits
     // {
     //     get
@@ -33,27 +38,25 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
         base.Awake();
         SetUpData();
     }
-    [SerializeField] private StageId _currentStageId;
-    [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
-    [ContextMenu("SaveToConfig")]
     public void SaveToConfig()
     {
         List<Vector3> places = new List<Vector3>();
-        
+
         foreach (TowerKit tk in _currentTowerKits)
         {
             // Check if this Kit available to save
             if (tk.gameObject.activeSelf)
                 places.Add(tk.gameObject.transform.position);
         }
+
+        _towerKitSetConfig.SaveToConfig(places, _currentStageId);
         
-        _towerKitSetConfig.SaveToConfig(places,_currentStageId);
     }
-    [ContextMenu("LoadFromConfig")]
+
     public void LoadFromConfig()
     {
         var places = _towerKitSetConfig.LoadFromConfig(_currentStageId);
-        
+
         for (int i = 0; i < _currentTowerKits.Count; i++)
         {
             // If current kit exist on map > total places count in config
@@ -62,11 +65,11 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
                 _currentTowerKits[i].gameObject.SetActive(false);
                 continue;
             }
-            
+
             // Check if this Kit available to load
             if (!_currentTowerKits[i].gameObject.activeSelf)
                 _currentTowerKits[i].gameObject.SetActive(true);
-            
+
             // Save position of kit
             // Value of Z always zero
             _currentTowerKits[i].transform.position = new Vector3(
@@ -80,7 +83,7 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
         // Loading position and place for each kit
         _stageConfig = _stageDataAsset.GetStageConfig();
         // _stageConfig.TowerKitSetConfig.LoadTowerKitsPositionFromConfig(_currentTowerKits);
-        
+
         // Setup callback when selected
         foreach (TowerKit kit in _currentTowerKits)
         {

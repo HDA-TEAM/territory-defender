@@ -1,8 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public enum StageId
 {
@@ -19,11 +17,6 @@ public struct StageConfig
     public StageSpawningConfig StageSpawningConfig;
     public InGameInventoryRuntimeData _inGameInventoryRuntimeData;
 }
-
-// public abstract class LocalDataAssetBase{
-//     public abstract void SaveToConfig
-// }
-
 
 [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
 public class StageDataAsset : ScriptableObject

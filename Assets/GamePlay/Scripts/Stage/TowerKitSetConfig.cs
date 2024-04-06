@@ -1,5 +1,9 @@
 using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TowerKitSetConfig", menuName = "ScriptableObject/Database/Stage/TowerKitSetConfig")]
@@ -11,20 +15,18 @@ public class TowerKitSetConfig : ScriptableObject
     {
         if (!_towerKitLocations.ContainsKey(stageId))
         {
-            Debug.LogError($"No config found for key {stageId} on {this.name}");
+            Debug.LogError($"No config found for key {stageId} on {name}");
             return;
         }
-        
         _towerKitLocations[stageId] = towerKitPlaces;
+        
+        EditorUtility.SetDirty(this);
     }
     public List<Vector3> LoadFromConfig(StageId stageId)
     {
-        List<Vector3> places = new List<Vector3>();
-        if (!_towerKitLocations.TryGetValue(stageId, out places))
-        {
-            Debug.LogError($"No config found for key {stageId} on {this.name}");
-            return new List<Vector3>();
-        }
-        return places;
+        if (_towerKitLocations.TryGetValue(stageId, out List<Vector3> places))
+            return places;
+        Debug.LogError($"No config found for key {stageId} on {name}");
+        return new List<Vector3>();
     }
 }
