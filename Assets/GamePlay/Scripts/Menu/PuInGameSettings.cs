@@ -30,9 +30,9 @@ public class PuInGameSettings : MonoBehaviour
         // Load scene home
         SceneManager.LoadScene(0);
         SceneManager.UnloadSceneAsync(1);
-        UnitManager.Instance.IsInGameScene = false;
-        PoolingController.Instance.OnRestart();
-        UnitManager.Instance.OnRestart();
+       
+        
+        GameController.Instance.ResetGame();
 
     }
 }

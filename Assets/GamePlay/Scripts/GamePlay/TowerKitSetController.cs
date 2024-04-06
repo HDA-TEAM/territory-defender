@@ -1,10 +1,11 @@
 using CustomInspector;
+using GamePlay.Scripts.GamePlay;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TowerKitSetController : SingletonBase<TowerKitSetController>
+public class TowerKitSetController : GamePlaySingletonBase<TowerKitSetController>
 {
     [Button("SaveToConfig")]
     [Button("LoadFromConfig")]
@@ -98,5 +99,12 @@ public class TowerKitSetController : SingletonBase<TowerKitSetController>
         }
         CurrentSelectedKit = towerKit;
         _preSelectedKit = CurrentSelectedKit;
+    }
+    public override void SetUpNewGame()
+    {
+        LoadFromConfig();
+    }
+    public override void ResetGame()
+    {
     }
 }

@@ -1,8 +1,9 @@
 using CustomInspector;
+using GamePlay.Scripts.GamePlay;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RouteSetController : SingletonBase<RouteSetController>
+public class RouteSetController : GamePlaySingletonBase<RouteSetController>
 {
     [Button("SaveToConfig")]
     [Button("LoadFromConfig")]
@@ -98,4 +99,12 @@ public class RouteSetController : SingletonBase<RouteSetController>
         return res;
     }
 
+    public override void SetUpNewGame()
+    {
+        LoadFromConfig();
+    }
+    public override void ResetGame()
+    {
+        
+    }
 }
