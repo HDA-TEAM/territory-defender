@@ -27,10 +27,10 @@ public class GameController : GamePlaySingletonBase<GameController>
     public override void ResetGame()
     {
         IsInGameScene = false;
+        _enemySpawningFactory.CancelSpawning();
         // Stop update game first
         UnitManager.Instance.ResetGame();
         // remove all units
-        _enemySpawningFactory.CancelSpawning();
         PoolingController.Instance.ResetGame();
         RouteSetController.Instance.ResetGame();
         TowerKitSetController.Instance.ResetGame();

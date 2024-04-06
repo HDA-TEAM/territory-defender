@@ -39,8 +39,7 @@ public class RouteSetConfig : ScriptableObject
     }
     public List<List<Vector3>> LoadFromConfig(StageId stageId)
     {
-        List<List<Vector3>> lineSet = new List<List<Vector3>>();
-        if (_routeSets.TryGetValue(stageId, out lineSet))
+        if (_routeSets.TryGetValue(stageId, out List<List<Vector3>> lineSet))
             return lineSet;
         Debug.LogError($"No config found for key {stageId} on {name}");
         return new List<List<Vector3>>();

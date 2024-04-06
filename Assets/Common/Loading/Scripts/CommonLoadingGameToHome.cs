@@ -10,12 +10,12 @@ namespace Common.Loading.Scripts
     {
         public override async void StartLoading(Action onCompleted, IProgress<float> progress)
         {
+            GameController.Instance.ResetGame();
+            
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.Home);
             await SceneManager.LoadSceneAsync(sceneLoadingName);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
             // SceneManager.UnloadSceneAsync(SceneIdentified.GetScenePath(ESceneIdentified.GamePlay));
-            
-            GameController.Instance.ResetGame();
             
             for (int i = 0; i <= 10; i++)
             {
