@@ -6,19 +6,19 @@ using UnityEngine.UI;
 public class StageSuccessView : MonoBehaviour
 {
     [Header("UI")]
-    [SerializeField] private Button _btnReplay;
-    [SerializeField] private Button _btnQuit;
-    [SerializeField] private List<GameObject> _stars;
-    private Action _onClickQuit;
+    [SerializeField] private Button _btnRestart;
+    [SerializeField] private Button _btnContinue;
+    [SerializeField] private List<StarView> _stars;
+    private Action _onClickContinue;
     private void Awake()
     {
-        _btnQuit.onClick.AddListener(OnClickQuit);
+        _btnContinue.onClick.AddListener(OnClickContinue);
     }
-    private void OnClickQuit() => _onClickQuit?.Invoke();
+    private void OnClickContinue() => _onClickContinue?.Invoke();
 
     public void Setup(Action onClickQuit, int claimingStars)
     {
-        _onClickQuit = onClickQuit;
+        _onClickContinue = onClickQuit;
 
         SetStar(claimingStars);
 
@@ -26,6 +26,6 @@ public class StageSuccessView : MonoBehaviour
     private void SetStar(int claimingStars)
     {
         for (int i = 0; i < _stars.Count; i++)
-            _stars[i].SetActive(i < claimingStars);
+            _stars[i].SetIconStar(i < claimingStars);
     }
 }

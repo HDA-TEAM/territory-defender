@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.40255094, g: 0.21568628, b: 0.6784314, a: 1}
+      maxColor: {r: 0.66864616, g: 0.6784314, b: 0.21568628, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5111,7 +5111,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.5766687, g: 0.2235294, b: 1, a: 0.34901962}
+      maxColor: {r: 1, g: 0.9724246, b: 0.2235294, a: 0.34901962}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9797,7 +9797,7 @@ GameObject:
   - component: {fileID: 2319384772025575332}
   - component: {fileID: 6299362341641363023}
   m_Layer: 0
-  m_Name: Star hit
+  m_Name: StarHit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10010,8 +10010,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.57454306, g: 0.20392156, b: 1, a: 1}
-      maxColor: {r: 0.47564507, g: 0, b: 1, a: 1}
+      minColor: {r: 0.93963, g: 1, b: 0.20392156, a: 1}
+      maxColor: {r: 1, g: 0.94274926, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14908,7 +14908,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.53891367, g: 0.1372549, b: 1, a: 1}
+      maxColor: {r: 0.99797267, g: 1, b: 0.1372549, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

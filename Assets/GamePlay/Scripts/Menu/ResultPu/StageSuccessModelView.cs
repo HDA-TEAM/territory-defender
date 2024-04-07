@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using UnityEngine;
 
 public class StageSuccessModelView : MonoBehaviour
@@ -6,10 +7,11 @@ public class StageSuccessModelView : MonoBehaviour
     
     public void SetupView(int claimingStars)
     {
-        _stageSuccessView.Setup(OnClickQuit, claimingStars);
+        _stageSuccessView.Setup(OnClickContinue, claimingStars);
     }
-    private void OnClickQuit()
+    private void OnClickContinue()
     {
-
+        // Load scene home
+        LoadingSceneController.Instance.LoadingGameToHome();
     }
 }
