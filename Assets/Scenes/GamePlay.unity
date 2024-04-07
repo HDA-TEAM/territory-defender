@@ -1879,6 +1879,7 @@ GameObject:
   - component: {fileID: 370638849}
   - component: {fileID: 370638848}
   - component: {fileID: 370638847}
+  - component: {fileID: 370638850}
   m_Layer: 0
   m_Name: BtnSound
   m_TagString: Untagged
@@ -1989,6 +1990,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 370638845}
   m_CullTransparentMesh: 1
+--- !u!114 &370638850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 370638845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2221819286bf6411a8936704c19c22c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _btn: {fileID: 370638847}
+  _imgTurnOff: {fileID: 101294466}
 --- !u!1 &389960426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,6 +2303,7 @@ GameObject:
   - component: {fileID: 452058931}
   - component: {fileID: 452058930}
   - component: {fileID: 452058929}
+  - component: {fileID: 452058932}
   m_Layer: 0
   m_Name: BtnMusic
   m_TagString: Untagged
@@ -2398,6 +2414,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452058927}
   m_CullTransparentMesh: 1
+--- !u!114 &452058932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452058927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2221819286bf6411a8936704c19c22c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _btn: {fileID: 452058929}
+  _imgTurnOff: {fileID: 701570255}
 --- !u!1 &495614532
 GameObject:
   m_ObjectHideFlags: 0
@@ -7049,7 +7079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1639319832
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7120,8 +7150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6e976b432649475d829f4d12f774bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btnSound: {fileID: 370638847}
-  _btnMusic: {fileID: 452058929}
+  _btnSound: {fileID: 370638850}
+  _btnMusic: {fileID: 452058932}
   _btnReplay: {fileID: 1893869843}
   _btnQuit: {fileID: 1158055142}
   _btnCloses:
