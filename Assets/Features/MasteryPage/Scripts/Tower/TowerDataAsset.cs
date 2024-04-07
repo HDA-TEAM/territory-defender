@@ -6,8 +6,8 @@ using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "CommonTowerDataAsset", menuName = "ScriptableObject/DataAsset/CommonTowerDataAsset")]
-public class CommonTowerDataAsset : BaseDataAsset<TowerDataModel>
+[CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
+public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
     public void SaveTowers(SerializedDictionary<TowerId, CommonTowerSO> towerTypeDict)
     {

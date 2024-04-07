@@ -15,8 +15,8 @@ public enum EHeroId
 }
 
 // Du lieu tho
-[CreateAssetMenu(fileName = "HeroDataAsset", menuName = "ScriptableObject/DataAsset/HeroDataAsset")]
-public class HeroDataAsset : ScriptableObject
+[CreateAssetMenu(fileName = "HeroDataConfig", menuName = "ScriptableObject/Config/HeroDataConfig")]
+public class HeroDataConfig : ScriptableObject
 {
     [SerializedDictionary("HeroId", "HeroDataSO")]
     [SerializeField] private SerializedDictionary<EHeroId, HeroDataSO> _heroDataDict = new SerializedDictionary<EHeroId, HeroDataSO>();

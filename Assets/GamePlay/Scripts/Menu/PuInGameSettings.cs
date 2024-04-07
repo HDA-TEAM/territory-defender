@@ -25,7 +25,14 @@ public class PuInGameSettings : MonoBehaviour
         _btnQuit.onClick.AddListener(OnClickQuit);
     }
     private void OnClose() => this.gameObject.SetActive(false);
-
+    private void OnClickSound()
+    {
+        
+    }
+    private void OnClickMusic()
+    {
+        
+    }
     private void OnClickQuit()
     {
         // Reset gameplay and Load scene home

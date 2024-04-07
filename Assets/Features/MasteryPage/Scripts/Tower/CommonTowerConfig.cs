@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 [CreateAssetMenu(fileName = "CommonTowerConfig", menuName = "ScriptableObject/DataAsset/CommonTowerConfig")]
@@ -10,7 +11,8 @@ public class CommonTowerConfig : ScriptableObject
 {
     [SerializedDictionary("TowerId", "CommonTowerSO")] [SerializeField]
     private SerializedDictionary<TowerId, CommonTowerSO> _towerTypeDict = new SerializedDictionary<TowerId, CommonTowerSO>();
-    [SerializeField] private CommonTowerDataAsset _commonTowerDataAsset;
+    [FormerlySerializedAs("_commonTowerDataAsset")]
+    [SerializeField] private TowerDataAsset _towerDataAsset;
 
     //private TowerId _towerId;
     public CommonTowerSO GetTower(TowerId towerId)
@@ -51,7 +53,7 @@ public class CommonTowerConfig : ScriptableObject
                 AddRune(curTower, runeLevel);
             }
             
-            _commonTowerDataAsset.SaveTowers(_towerTypeDict);
+            _towerDataAsset.SaveTowers(_towerTypeDict);
         }
     }
     
@@ -92,7 +94,7 @@ public class CommonTowerConfig : ScriptableObject
 
     public TowerDataModel GetTowerDataAsset()
     {
-        return _commonTowerDataAsset.LoadTowers();
+        return _towerDataAsset.LoadTowers();
     }
 }
 

@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public struct UsingSkillPayload
 {
@@ -10,7 +11,8 @@ public struct UsingSkillPayload
 public class InGameSkillController : MonoBehaviour
 {
     [SerializeField] private InGameActiveSkillView _firstSkillView;
-    [SerializeField] private SkillsDataAsset _skillsDataAsset;
+    [FormerlySerializedAs("_skillsDataAsset")]
+    [SerializeField] private SkillsDataConfig _skillsDataConfig;
     private SkillDataSO _curSkillConfig;
     private bool _isCooldown = false;
     private void Awake()
@@ -23,7 +25,7 @@ public class InGameSkillController : MonoBehaviour
     private void SetUpSkill()
     {
         _firstSkillView.SetUpSkill(ESkillId.SummonElephant,ExecuteSkill);
-        _curSkillConfig = _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
+        _curSkillConfig = _skillsDataConfig.GetSkillDataById(ESkillId.SummonElephant);
     }
     private async void ExecuteSkill(ESkillId eSkillId)
     {

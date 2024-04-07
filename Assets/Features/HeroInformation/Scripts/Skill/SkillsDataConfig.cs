@@ -9,8 +9,8 @@ public enum ESkillId
     TurnTheWhip = 2,
 }
 
-[CreateAssetMenu(fileName = "SkillDataAsset", menuName = "ScriptableObject/DataAsset/SkillsDataAsset")]
-public class SkillsDataAsset : ScriptableObject
+[CreateAssetMenu(fileName = "SkillsDataConfig", menuName = "ScriptableObject/Config/SkillsDataConfig")]
+public class SkillsDataConfig : ScriptableObject
 {
     [SerializedDictionary("SkillId", "SkillDataSO")] 
     [SerializeField] private SerializedDictionary<ESkillId, SkillDataSO> _skillDataDict =

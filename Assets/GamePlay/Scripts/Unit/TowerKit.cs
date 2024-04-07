@@ -2,6 +2,7 @@ using CustomInspector;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public enum TowerKitState
@@ -29,8 +30,9 @@ public class TowerKit : MonoBehaviour
     [SerializeField] private Button _btnRange;
     [SerializeField] private SpriteRenderer _spiteFlag;
 
+    [FormerlySerializedAs("_towerDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private TowerDataAsset _towerDataAsset;
+    [SerializeField] private TowerDataConfig _towerDataConfig;
     [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
     [SerializeField] private TowerId _towerId;
     [SerializeField] private UnitBase _unitBase;

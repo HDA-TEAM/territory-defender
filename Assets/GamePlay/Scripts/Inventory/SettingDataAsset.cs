@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum ETimeScaleType
@@ -8,25 +9,64 @@ public enum ETimeScaleType
     Pause,
 }
 
-[CreateAssetMenu(fileName = "SettingDataAsset", menuName = "ScriptableObject/DataAsset/SettingDataAsset")]
-public class SettingDataAsset : ScriptableObject
+[Serializable]
+public struct SettingDataModel : IDefaultCustom
 {
-    [SerializeField] private bool _isMusicOn;
-    [SerializeField] private bool _isSoundOn;
-    [SerializeField] private ETimeScaleType _timeScale;
+    public bool IsMusicOn;
+    public bool IsSoundOn;
+    public ETimeScaleType TimeScale;
+    public bool IsEmpty()
+    {
+        return false;
+    }
+    public void SetDefault()
+    {
+        IsMusicOn = false;
+        IsSoundOn = false;
+    }
+}
+[CreateAssetMenu(fileName = "SettingDataAsset", menuName = "ScriptableObject/DataAsset/SettingDataAsset")]
+public class SettingDataAsset : BaseDataAsset<SettingDataModel>
+{
+    public bool IsMusicOn
+    {
+        get
+        {
+            return _model.IsMusicOn;
+        }
+        set
+        {
+            _model.IsMusicOn = value;
+            SaveData();
+        }
+    }
+    public bool IsSoundOn
+    {
+        get
+        {
+            return _model.IsSoundOn;
+        }
+        set
+        {
+            _model.IsSoundOn = value;
+            SaveData();
+        }
+    }
     [SerializeField] private ETimeScaleType _preTimeScale;
 
     public ETimeScaleType TimeScaleSetting
     {
         set
         {
-            _preTimeScale = _timeScale;
-            _timeScale = value;
-            Time.timeScale = ConvertTimeScaleValue(_timeScale);
+            
+            _preTimeScale = _model.TimeScale;
+            _model.TimeScale = value;
+            Time.timeScale = ConvertTimeScaleValue(_model.TimeScale);
+            SaveData();
         }
         get
         {
-            return _timeScale;
+            return _model.TimeScale;
         }
     }
     public ETimeScaleType PreTimeScaleSetting() => _preTimeScale;
@@ -43,7 +83,7 @@ public class SettingDataAsset : ScriptableObject
     }
     public ETimeScaleType GetNextTimeScaleValue()
     {
-        switch (_timeScale)
+        switch (_model.TimeScale)
         {
             case ETimeScaleType.Normal: return ETimeScaleType.Fast;
             case ETimeScaleType.Fast: return ETimeScaleType.VeryFast;
