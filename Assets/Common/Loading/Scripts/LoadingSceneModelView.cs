@@ -12,12 +12,11 @@ namespace Common.Loading.Scripts
         public void ShowLoadingScene()
         {
             _loadingSceneView.SetupBlockRaycast(true);
-            _loadingSceneView.UpdateProgressBar(0f, _durationPerUnitProgressBar);
+            _loadingSceneView.UpdateProgressBar(0f, 0f);
             _loadingSceneView.PlayDoFadeEffect(1f, 1f, _showLoadingSceneDuration);
         }
         public void HidingLoadingScene()
         {
-            Debug.Log("HidingLoadingScene");
             _loadingSceneView.PlayDoFadeEffect(1f, 0f, _hidingLoadingSceneDuration);
             _loadingSceneView.SetupBlockRaycast(false);
         }
