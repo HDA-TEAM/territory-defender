@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +14,15 @@ public class StarView : MonoBehaviour
     [SerializeField] private AnimationCurve _animationCurveRotate;
     [SerializeField] private AnimationCurve _animationCurveScale;
     [SerializeField] private ParticleSystem _hitEffect;
-    public void SetIconStar(bool isActive)
+    public async void SetIconStar(bool isActive, float delay)
     {
+        if (!isActive)
+        {
+            _iconStar.gameObject.SetActive(isActive);
+            return;
+        }
+        
+        await UniTask.Delay(TimeSpan.FromSeconds(delay));
         _iconStar.gameObject.SetActive(isActive);
         PlayAnimation();
     }

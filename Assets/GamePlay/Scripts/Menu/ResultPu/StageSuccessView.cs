@@ -9,6 +9,7 @@ public class StageSuccessView : MonoBehaviour
     [SerializeField] private Button _btnRestart;
     [SerializeField] private Button _btnContinue;
     [SerializeField] private List<StarView> _stars;
+    [SerializeField] private float _durationPerStarDelay;
     private Action _onClickContinue;
     private void Awake()
     {
@@ -26,6 +27,6 @@ public class StageSuccessView : MonoBehaviour
     private void SetStar(int claimingStars)
     {
         for (int i = 0; i < _stars.Count; i++)
-            _stars[i].SetIconStar(i < claimingStars);
+            _stars[i].SetIconStar(i < claimingStars, _durationPerStarDelay * i);
     }
 }

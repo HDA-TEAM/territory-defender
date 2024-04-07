@@ -94,7 +94,7 @@ MonoBehaviour:
   _startAnimPos: {fileID: 4708099107997171042}
   _originRotation: 0
   _startScale: 5
-  _durationRotate: 1
+  _durationRotate: 0.5
   _animationCurveRotate:
     serializedVersion: 2
     m_Curve:
@@ -228,16 +228,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 4708099107997171042}
     m_Modifications:
     - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -279,8 +287,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2160569506455484732, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Scale3D.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160569506455484732, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Scale3D.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2160569506455484732, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Scale3D.z
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2183654512933933930, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2319384772025575332, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: looping
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2319384772025575332, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
@@ -295,8 +319,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: StarHit
       objectReference: {fileID: 0}
+    - target: {fileID: 4535006216103734310, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4735727726380896768, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4735727726380896768, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6198657176310092093, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6198657176310092093, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
@@ -305,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6299362341641363023, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6299362341641363023, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_SortingLayer
@@ -328,6 +364,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7429146656636883265, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7429146656636883265, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
@@ -341,8 +381,8 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 2319384772025575332, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
   m_PrefabInstance: {fileID: 8597785315978247005}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8349178682168986275 stripped
-Transform:
+--- !u!224 &8349178682168986275 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 328558227413381630, guid: b5e6a86168af04e12a21cb7642b8fae5, type: 3}
   m_PrefabInstance: {fileID: 8597785315978247005}
   m_PrefabAsset: {fileID: 0}
