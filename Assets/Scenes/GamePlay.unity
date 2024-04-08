@@ -5343,8 +5343,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1804081921}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 1804081919}
+        m_TargetAssemblyTypeName: InGameStateController, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
@@ -8713,8 +8713,8 @@ GameObject:
   - component: {fileID: 1804081917}
   - component: {fileID: 1804081919}
   - component: {fileID: 1804081920}
-  - component: {fileID: 1804081921}
   - component: {fileID: 1804081923}
+  - component: {fileID: 1804081924}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -8751,9 +8751,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _resultsController: {fileID: 0}
+  _resultsController: {fileID: 1804081924}
   _stageInventoryConfig: {fileID: 11400000, guid: 94e3cd205209840fa9b4d374944ff88f, type: 2}
-  IsInGameScene: 1
+  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _enemySpawningFactory: {fileID: 1804081920}
+  IsInGameScene: 0
 --- !u!114 &1804081920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8771,21 +8773,6 @@ MonoBehaviour:
     - Key: 101
       Value: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
   _spawningEachObjectInterval: 1
---- !u!114 &1804081921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804081916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70e0e3363cc594e6e93a783ddecf4377, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
-  _enemySpawningFactory: {fileID: 1804081920}
-  IsInGameScene: 0
 --- !u!114 &1804081923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8799,6 +8786,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clickingEffect: {fileID: 4642848128347908919}
+--- !u!114 &1804081924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804081916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f478cd3351be4c3cb733e0d450498e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageSuccessPu: {fileID: 1848017266}
+  _stageFailedPu: {fileID: 1351077664}
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0
