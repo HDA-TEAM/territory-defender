@@ -98,6 +98,14 @@ public class PoolingController : GamePlaySingletonBase<PoolingController>
         unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
         _dictPooling.Add(objectType, unitPooling);
     }
+    public void ReturnPool(GameObject gameObject,UnitSideId sideId)
+    {
+        gameObject.SetActive(false);
+        if (sideId == UnitSideId.Enemy)
+        {
+            InGameStateController.Instance.CheckingStageSuccess();
+        }
+    }
     public override void SetUpNewGame()
     {
         

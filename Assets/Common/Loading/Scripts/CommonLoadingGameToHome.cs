@@ -10,7 +10,7 @@ namespace Common.Loading.Scripts
     {
         public override async void StartLoading(Action onCompleted, IProgress<float> progress)
         {
-            GameController.Instance.ResetGame();
+            InGameStateController.Instance.ResetGame();
             
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.Home);
             await SceneManager.LoadSceneAsync(sceneLoadingName);

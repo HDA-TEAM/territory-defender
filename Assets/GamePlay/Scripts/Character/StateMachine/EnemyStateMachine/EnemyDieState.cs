@@ -7,7 +7,7 @@ public class EnemyDieState : CharacterDieState
     private readonly BaseEnemyStateMachine _context;
     public EnemyDieState(BaseEnemyStateMachine currentContext) : base(currentContext)
     {
-        IsRootState = true; 
+        IsRootState = true;
         _context = currentContext;
     }
     public override void EnterState()
@@ -24,7 +24,7 @@ public class EnemyDieState : CharacterDieState
     public override void ExitState()
     {
         Context.AnimationController.StopAllClip();
-        _context.gameObject.SetActive(false);
+        PoolingController.Instance.ReturnPool(Context.gameObject, UnitSideId.Enemy);
     }
     // public override void CheckSwitchState()
     // {

@@ -11,6 +11,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
     [SerializedDictionary("StageId,StageConfig")]
     [SerializeField] private SerializedDictionary<StageId,StageEnemySpawningConfig> _stageEnemySpawningConfigs;
     [SerializeField] private float _spawningEachObjectInterval;
+
     private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     private StageEnemySpawningConfig _stageEnemySpawning;
 
@@ -30,8 +31,13 @@ public class StageEnemySpawningFactory : MonoBehaviour
         }
         return null;
     }
+
+    public int GetNumberOfUnitSpawningWithStageId(StageId stageId)
+    {
+       return FindSpawningConfig(stageId).GetTotalUnitsSpawning();
+    }
     
-    public async void StartSpawning(StageEnemySpawningConfig stageConfig)
+    public async void StartSpawning(StageEnemySpawningConfig stageConfig, Action onFinishedSpawning)
     {
         if (!stageConfig)
             return;
@@ -43,6 +49,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
             foreach (var waveSpawning in  stageConfig.WavesSpawning)
                 spawnTask.Add(StartSpawningWave(waveSpawning));
             await UniTask.WhenAll(spawnTask);
+            onFinishedSpawning?.Invoke();
         }
         catch (Exception e)
         {

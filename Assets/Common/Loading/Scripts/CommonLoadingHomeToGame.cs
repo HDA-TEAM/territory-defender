@@ -15,7 +15,7 @@ namespace Common.Loading.Scripts
              SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
             // SceneManager.UnloadSceneAsync(SceneIdentified.GetSceneName(ESceneIdentified.Home));
             
-            GameController.Instance.SetUpNewGame();
+            InGameStateController.Instance.SetUpNewGame();
             
             for (int i = 0; i <= 10; i++)
             {

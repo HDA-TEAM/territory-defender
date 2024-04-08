@@ -52,7 +52,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     // Update units on map
     public void Update()
     {
-        if (!GameController.Instance.IsInGameScene)
+        if (!InGameStateController.Instance.IsInGameScene)
             return;
 
         SynRuntimeAction();

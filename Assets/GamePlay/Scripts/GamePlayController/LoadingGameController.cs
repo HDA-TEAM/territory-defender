@@ -1,21 +1,33 @@
-using GamePlay.Scripts.GamePlay;
 using UnityEngine;
 
-public class GameController : GamePlaySingletonBase<GameController>
+public partial class InGameStateController 
 {
     [SerializeField] private StageDataAsset _stageDataAsset;
     [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
     public bool IsInGameScene;
-
+    private bool _isFinishSpawn;
+    private int _totalEnemySpawning;
     public void Start()
     {
+        _totalEnemySpawning = 0;
+        _isFinishSpawn = false;
         IsInGameScene = true;
     }
     public void StartGame()
     {
         var spawningConfig = _enemySpawningFactory.FindSpawningConfig(StageId.Chap1Stage1);
-        _enemySpawningFactory.StartSpawning(spawningConfig);
+        _totalEnemySpawning = spawningConfig.GetTotalUnitsSpawning();
+        _enemySpawningFactory.StartSpawning(spawningConfig,OnFinishedSpawning);
     }
+    private void OnFinishedSpawning()
+    {
+        _isFinishSpawn = true;
+    }
+    private bool IsStageSuccess()
+    {
+        return _isFinishSpawn && _totalEnemySpawning <= 0;
+    }
+    
     public override void SetUpNewGame()
     {
         IsInGameScene = true;
