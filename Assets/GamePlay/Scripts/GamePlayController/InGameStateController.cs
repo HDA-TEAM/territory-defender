@@ -4,9 +4,11 @@ using UnityEngine;
 
 public partial class InGameStateController : GamePlaySingletonBase<InGameStateController>
 {
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [Button("CheckingStageSuccess", usePropertyAsParameter: true)]
+    [SerializeField] private int _enemyDieTest;
     [Button("CheckingEndGame", usePropertyAsParameter: true)]
+    [SerializeField] private int _lifeTest;
 #endif
 
     [Header("Data"), Space(12)] [SerializeField]
