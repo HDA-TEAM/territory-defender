@@ -4231,7 +4231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &732491172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7091,7 +7091,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85.771484, y: -90.999985}
+  m_AnchoredPosition: {x: -13, y: -90.999985}
   m_SizeDelta: {x: 109, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1373971012
@@ -8800,6 +8800,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stageSuccessPu: {fileID: 1848017266}
   _stageFailedPu: {fileID: 1351077664}
+  _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _stageInventoryConfig: {fileID: 11400000, guid: 94e3cd205209840fa9b4d374944ff88f, type: 2}
 --- !u!1 &1805735707
 GameObject:
   m_ObjectHideFlags: 0
@@ -9179,8 +9181,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settingDataAsset: {fileID: 11400000, guid: a715273e6e2004f21ae4bde9d592b8af, type: 2}
-  _testClaimingStars: 1
   _stageSuccessModelView: {fileID: 1848017267}
+  _testClaimingStars: 1
 --- !u!114 &1848017267
 MonoBehaviour:
   m_ObjectHideFlags: 0

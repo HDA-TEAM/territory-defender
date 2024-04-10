@@ -1,16 +1,28 @@
+using CustomInspector;
 using GamePlay.Scripts.GamePlay;
 using UnityEngine;
 
 public partial class InGameStateController : GamePlaySingletonBase<InGameStateController>
 {
+    #if UNITY_EDITOR
+    [Button("CheckingStageSuccess", usePropertyAsParameter: true)]
+    [Button("CheckingEndGame", usePropertyAsParameter: true)]
+#endif
+
     [Header("Data"), Space(12)] [SerializeField]
     private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private GameResultHandler _resultsController;
     [SerializeField] private StageInventoryConfig _stageInventoryConfig;
+    
+    // Access
+    public StageId CurStageId { get; private set; }
+    public bool IsGamePlaying { get; private set; }
+    
     protected override void Awake()
     {
         base.Awake();
-        _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(StageId.Chap1Stage0));
+        CurStageId = StageId.Chap1Stage0;
+        _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(CurStageId));
         _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
     }
     protected override void OnDestroy()
@@ -21,6 +33,17 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
     {
         CheckingEndGame(life);
     }
+    
+    public void CheckingStageSuccess(int enemyDie = 1)
+    {
+        _totalEnemySpawning -= enemyDie;
+        if (IsStageSuccess())
+        {
+            Debug.Log("End StageSuccess");
+            IsGamePlaying = false;
+            _resultsController.ShowStageSuccessPu();
+        }
+    }
     private void CheckingEndGame(int life)
     {
         if (life <= 0)
@@ -28,18 +51,10 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
             //todo
             // notify game ended 
             // show results
-            Debug.Log("End game");
-            _resultsController.StageFailedPu().gameObject.SetActive(true);
+            IsGamePlaying = false;
+            Debug.Log("Stage Failed");
+            _resultsController.ShowStageFailedPu();
         }
     }
-    public void CheckingStageSuccess(int enemyDie = 1)
-    {
-        _totalEnemySpawning -= enemyDie;
-        if (IsStageSuccess())
-        {
-            Debug.Log("End StageSuccess");
-            _resultsController.StageSuccessPu().gameObject.SetActive(true);
-        }
-    }
-    
+
 }
