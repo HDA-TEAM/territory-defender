@@ -23,6 +23,7 @@ namespace GamePlay.Scripts.Character.StateMachine
         public override void ExitState()
         {
             Context.AnimationController.StopAllClip();
+            Context.gameObject.SetActive(false);
         }
         public override void CheckSwitchState()
         {
