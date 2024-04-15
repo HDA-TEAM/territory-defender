@@ -16,9 +16,9 @@ public partial class InGameStateController
     }
     public void StartGame()
     {
-        var spawningConfig = _enemySpawningFactory.FindSpawningConfig(StageId.Chap1Stage1);
+        var spawningConfig = _enemySpawningFactory.SpawningConfig.FindSpawningConfig(StageId.Chap1Stage1);
         _totalEnemySpawning = spawningConfig.GetTotalUnitsSpawning();
-        _enemySpawningFactory.StartSpawning(spawningConfig,OnFinishedSpawning);
+        _enemySpawningFactory.StartSpawning(StageId.Chap1Stage1,OnFinishedSpawning);
     }
     private void OnFinishedSpawning()
     {
