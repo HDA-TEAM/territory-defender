@@ -1,4 +1,3 @@
-using AYellowpaper.SerializedCollections;
 using CustomInspector;
 using Newtonsoft.Json;
 using System;
@@ -10,19 +9,10 @@ using UnityEngine.Scripting;
 [Serializable, Preserve]
 public class StageEnemySpawningConfig : ScriptableObject
 {
-    // [SerializedDictionary("StageId,SingleStageSpawningConfig")]
-    // [SerializeField] private SerializedDictionary<StageId,SingleStageSpawningConfig> _stageEnemySpawningConfigs;
-
     [SerializeField] private List<SingleStageSpawningConfig> _stageEnemySpawningConfigs;
     public SingleStageSpawningConfig FindSpawningConfig(StageId stageId)
     {
-        // if (_stageEnemySpawningConfigs.TryGetValue(stageId, out SingleStageSpawningConfig singleStageSpawningConfig))
-        // {
-        //     return singleStageSpawningConfig;
-        // }
-        // Debug.LogError("Not found Stage Spawning config");
-        _stageEnemySpawningConfigs.Find(stage => stage.StageId == stageId);
-        return null;
+        return _stageEnemySpawningConfigs.Find(stage => stage.StageId == stageId);
     }
 
     public int GetNumberOfUnitSpawningWithStageId(StageId stageId) => FindSpawningConfig(stageId).GetTotalUnitsSpawning();
@@ -39,14 +29,10 @@ public class StageEnemySpawningConfig : ScriptableObject
     public void ReadJsonData()
     {
         _stageEnemySpawningConfigs = JsonConvert.DeserializeObject<List<SingleStageSpawningConfig>>(_data);
-       _stageEnemySpawningConfigs.Clear();
-       foreach (var singleStage in singleStageSpawningConfigs)
-       {
-           _stageEnemySpawningConfigs.TryAdd(singleStage.StageId, singleStage);
-       }
     }
 #endif
 }
+
 [Serializable]
 public class SingleStageSpawningConfig
 {
