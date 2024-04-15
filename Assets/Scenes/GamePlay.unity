@@ -9494,11 +9494,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee448606cea3d42c5be7e35ed4c6bafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageEnemySpawningConfigs:
-    _serializedList:
-    - Key: 101
-      Value: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
   _spawningEachObjectInterval: 1
+  SpawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
 --- !u!114 &1804081923
 MonoBehaviour:
   m_ObjectHideFlags: 0

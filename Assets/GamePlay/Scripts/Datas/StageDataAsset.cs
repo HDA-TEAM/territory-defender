@@ -14,7 +14,6 @@ public struct StageConfig
 {
     public TowerKitSetConfig TowerKitSetConfig;
     public RouteSetConfig RouteSetConfig;
-    public StageSpawningConfig StageSpawningConfig;
     public InGameInventoryRuntimeData _inGameInventoryRuntimeData;
 }
 

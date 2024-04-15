@@ -1,4 +1,5 @@
 using CustomInspector;
+using GamePlay.Scripts.Datas.StageSpawning;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,10 +11,7 @@ using UnityEngine.Scripting;
 public class StageEnemySpawningConfig : ScriptableObject
 {
     [SerializeField] private List<SingleStageSpawningConfig> _stageEnemySpawningConfigs;
-    public SingleStageSpawningConfig FindSpawningConfig(StageId stageId)
-    {
-        return _stageEnemySpawningConfigs.Find(stage => stage.StageId == stageId);
-    }
+    public SingleStageSpawningConfig FindSpawningConfig(StageId stageId) => _stageEnemySpawningConfigs.Find(stage => stage.StageId == stageId);
 
     public int GetNumberOfUnitSpawningWithStageId(StageId stageId) => FindSpawningConfig(stageId).GetTotalUnitsSpawning();
 
@@ -23,18 +21,22 @@ public class StageEnemySpawningConfig : ScriptableObject
     [SerializeField] private string _data;
     public void ParseToJson()
     {
-        _data = JsonConvert.SerializeObject(_stageEnemySpawningConfigs);
+        List<StageParseData> parseData = StageParseDataAdapter.ParseDataToJson(_stageEnemySpawningConfigs);
+        
+        _data = JsonConvert.SerializeObject(parseData);
+        
         Debug.Log("ParseToJson " + _data);
     }
     public void ReadJsonData()
     {
-        _stageEnemySpawningConfigs = JsonConvert.DeserializeObject<List<SingleStageSpawningConfig>>(_data);
+        List<StageParseData> stageParseData = JsonConvert.DeserializeObject<List<StageParseData>>(_data);
+        _stageEnemySpawningConfigs = StageParseDataAdapter.ParseJsonToData(stageParseData);
     }
 #endif
 }
 
 [Serializable]
-public class SingleStageSpawningConfig
+public struct SingleStageSpawningConfig
 {
     public StageId StageId;
     public List<WaveSpawning> WavesSpawning;
