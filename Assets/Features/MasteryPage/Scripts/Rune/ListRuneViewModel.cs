@@ -34,6 +34,8 @@ public class ListRuneViewModel : MonoBehaviour
     {
         _inventoryComposite = new InventoryComposite();
         UpdateData();
+        _runeDetailView.gameObject.SetActive(true);
+        _runeDetailView.UpdateCurrentRuneData(_preTowerComposite.RuneComposite[0]);
         
         if (_listTowerViewModel != null)
             _listTowerViewModel._onUpdateViewAction += UpdateView;
@@ -112,7 +114,7 @@ public class ListRuneViewModel : MonoBehaviour
         if (_preSelectedItem == null)
         {
             _itemUpgradeRuneView.gameObject.SetActive(true);
-            _runeDetailView.gameObject.SetActive(true);
+            //_runeDetailView.gameObject.SetActive(true);
         }
         _preSelectedItem = itemRuneView;
         

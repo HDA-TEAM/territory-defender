@@ -6,10 +6,16 @@ using UnityEngine;
 public enum RuneId
 {
     Red1 = 1,
+    Red2 = 2,
+    Red3 = 3,
     
     Yellow1 = 10,
+    Yellow2 = 11,
+    Yellow3 = 12,
     
     Purple1 = 20,
+    Purple2 = 21,
+    Purple3 = 22
 }
 
 [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]

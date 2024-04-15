@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Features.MasteryPage.Scripts.Rune;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RuneDetailView : MonoBehaviour
 {

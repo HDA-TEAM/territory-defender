@@ -1,5 +1,5 @@
 using System;
-using Unity.VisualScripting;
+using Features.Home.Scripts.HomeScreen.InHomeMap;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +10,6 @@ public class ItemStageView : MonoBehaviour
     
     // Internal
     private Action<ItemStageView> _onSelected;
-
     public StageComposite StageComposite;
 
     public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction, UIManagerStateMachine stateMachine)
@@ -20,7 +19,6 @@ public class ItemStageView : MonoBehaviour
 
         if (stageComposite.StageState)
             _imgFlag.SetActive(true);
-                
         
         StageLoad(stageComposite.StageId);
         _btn.onClick.AddListener(OnSelectedStage);
@@ -30,6 +28,8 @@ public class ItemStageView : MonoBehaviour
     {
         var stateMachine = UIManagerStateMachine.Instance;   
         _onSelected?.Invoke(this);
+
+        HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
         stateMachine.ChangeModalState<StageInfoPuState>();
     }
 
