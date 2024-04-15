@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public enum EUserAction
 {
@@ -11,7 +12,8 @@ public enum EUserAction
 public class UserActionController : UnitBaseComponent, IPointerClickHandler
 {
     [SerializeField] protected EUserAction _eUserAction;
-    [SerializeField] protected SkillsDataAsset _skillsDataAsset;
+    [FormerlySerializedAs("_skillsDataAsset")]
+    [SerializeField] protected SkillsDataConfig _skillsDataConfig;
     public EUserAction CurUserAction { get { return _eUserAction; } }
     public UserMoveUnitToCampingPlace UserMoveUnitToCampingPlace;
     

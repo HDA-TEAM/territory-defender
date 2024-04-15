@@ -28,7 +28,6 @@ public class UserActionHeroBaseController : UserActionController
     }
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Select Unit");
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             IsOn = true,
@@ -46,7 +45,7 @@ public class UserActionHeroBaseController : UserActionController
     private void OnUsingSkill(UsingSkillPayload usingSkillPayload)
     {
         _eUserAction = EUserAction.UsingSkill;
-        SkillDataSO skillConfig = _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
+        SkillDataSO skillConfig = _skillsDataConfig.GetSkillDataById(ESkillId.SummonElephant);
         UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, skillConfig);
     }
 }

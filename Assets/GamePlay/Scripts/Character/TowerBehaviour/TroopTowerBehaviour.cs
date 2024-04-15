@@ -12,7 +12,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
     // Default 3 units
     private readonly int _maxAllyCount = 3;
     private readonly float _minPerUnitDistance = 0.5f;
-    private float _cooldownReviveUnit = 1f;
+    private readonly float _cooldownReviveUnit = 1f;
     [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
     [SerializeField] private float _campingRange;
     [SerializeField] private Vector3 _campingPos;
@@ -66,6 +66,7 @@ public class TroopTowerBehaviour : UnitBaseComponent
         
         // Spawning new unit from pool
         SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
+        
     }
     // private void 
     public void SetCampingPlace(Vector3 newCampingPos)

@@ -1,5 +1,4 @@
 using GamePlay.Scripts.Character.StateMachine;
-using UnityEngine;
 
 public class BaseAllyStateMachine : CharacterStateMachine
 {
@@ -27,6 +26,8 @@ public class BaseAllyStateMachine : CharacterStateMachine
     protected override void SetDefaultStatus()
     {
         _isDie = false;
+        _currentState = _factory.GetState(CharacterState.Idle);
+        _currentState.EnterState();
     }
     
     #endregion

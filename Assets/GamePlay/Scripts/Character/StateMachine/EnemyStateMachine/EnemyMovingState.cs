@@ -64,7 +64,7 @@ public class EnemyMovingState : CharacterBaseState
             _context.RouteToGate.GetPosition(_context.CurrentIndexInRouteLine),
             _movingSpeed);
     }
-    public void OnReachingDestination()
+    private void OnReachingDestination()
     {
         // return pooling and status
         _context.InGameInventoryData.TryChangeLife(

@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.GamePlay;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,14 +53,14 @@ public static class UnitId
     }
 }
 
-public class PoolingController : SingletonBase<PoolingController>
+public class PoolingController : GamePlaySingletonBase<PoolingController>
 {
     [SerializedDictionary("UnitId", "UnitPrefab")]
     [SerializeField] private SerializedDictionary<string,GameObject> _dictPoolingPrefab = new SerializedDictionary<string, GameObject>();
     [SerializeField] private UnitPooling _poolingPrefab;
     private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
-    public void OnRestart()
+    private void OnRestart()
     {
         foreach (var pooling in _dictPooling)
         {
@@ -96,5 +97,21 @@ public class PoolingController : SingletonBase<PoolingController>
         unitPooling.transform.SetParent(transform);
         unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
         _dictPooling.Add(objectType, unitPooling);
+    }
+    public void ReturnPool(GameObject gameObject,UnitSideId sideId)
+    {
+        gameObject.SetActive(false);
+        if (sideId == UnitSideId.Enemy)
+        {
+            InGameStateController.Instance.CheckingStageSuccess();
+        }
+    }
+    public override void SetUpNewGame()
+    {
+        
+    }
+    public override void ResetGame()
+    {
+        OnRestart();
     }
 }

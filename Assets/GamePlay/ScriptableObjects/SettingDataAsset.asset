@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce932683563445c7b4aeb096a71811c1, type: 3}
   m_Name: SettingDataAsset
   m_EditorClassIdentifier: 
-  _isMusicOn: 0
-  _isSoundOn: 0
-  _timeScale: 0
+  _filename: SettingDataAsset
+  _model:
+    IsMusicOn: 0
+    IsSoundOn: 0
+    TimeScale: 0
   _preTimeScale: 0

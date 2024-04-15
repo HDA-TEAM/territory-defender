@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class StageEnemySpawningFactory : MonoBehaviour
@@ -10,9 +11,14 @@ public class StageEnemySpawningFactory : MonoBehaviour
     [SerializedDictionary("StageId,StageConfig")]
     [SerializeField] private SerializedDictionary<StageId,StageEnemySpawningConfig> _stageEnemySpawningConfigs;
     [SerializeField] private float _spawningEachObjectInterval;
-    
+
+    private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
     private StageEnemySpawningConfig _stageEnemySpawning;
-    
+
+    public void CancelSpawning()
+    {
+        _cancellationTokenSource.Cancel();
+    }
     public StageEnemySpawningConfig FindSpawningConfig(StageId stageId)
     {
         if (_stageEnemySpawningConfigs.TryGetValue(stageId, out StageEnemySpawningConfig stageEnemySpawningConfig))
@@ -25,18 +31,31 @@ public class StageEnemySpawningFactory : MonoBehaviour
         }
         return null;
     }
+
+    public int GetNumberOfUnitSpawningWithStageId(StageId stageId)
+    {
+       return FindSpawningConfig(stageId).GetTotalUnitsSpawning();
+    }
     
-    public async void StartSpawning(StageEnemySpawningConfig stageConfig)
+    public async void StartSpawning(StageEnemySpawningConfig stageConfig, Action onFinishedSpawning)
     {
         if (!stageConfig)
             return;
+
         Debug.Log("Spawning Starting");
         List<UniTask> spawnTask = new List<UniTask>();
-        foreach (var waveSpawning in  stageConfig.WavesSpawning)
+        try
         {
-            spawnTask.Add(StartSpawningWave(waveSpawning));
+            foreach (var waveSpawning in  stageConfig.WavesSpawning)
+                spawnTask.Add(StartSpawningWave(waveSpawning));
+            await UniTask.WhenAll(spawnTask);
+            onFinishedSpawning?.Invoke();
         }
-        await UniTask.WhenAll(spawnTask);
+        catch (Exception e)
+        {
+            Debug.Log("Cancel spawning" + e);
+        }
+       
         Debug.Log("Spawning Ended");
     }
     private async UniTask StartSpawningWave(StageEnemySpawningConfig.WaveSpawning waveSpawning)
@@ -53,7 +72,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
         await UniTask.Delay(TimeSpan.FromSeconds(groupSpawning.StartSpawning));
         for (int i = 0; i < groupSpawning.NumberSpawning; i++)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(_spawningEachObjectInterval));
+            await UniTask.Delay(TimeSpan.FromSeconds(_spawningEachObjectInterval), cancellationToken: _cancellationTokenSource.Token);
 
             GameObject go = PoolingController.Instance.SpawnObject(groupSpawning.ObjectSpawn.ToString());
 

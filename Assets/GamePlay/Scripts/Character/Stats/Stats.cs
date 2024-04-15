@@ -2,7 +2,6 @@ using AYellowpaper.SerializedCollections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Unit stats")]
 public class Stats : ScriptableObject
 {
     [SerializedDictionary("StatId", "Value")]

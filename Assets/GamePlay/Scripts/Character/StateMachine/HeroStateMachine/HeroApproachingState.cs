@@ -26,11 +26,11 @@ public class HeroApproachingState : CharacterBaseState
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
         }
-        if (_context.UserActionController.IsInAction())
+        else if (_context.UserActionController.IsInAction())
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
-        if (!_context.IsMovingToTarget)
+        else if (!_context.IsMovingToTarget)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
         }
