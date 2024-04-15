@@ -13,14 +13,15 @@ public class HealthComp : UnitBaseComponent
     [SerializeField] private Slider _healthSlider;
     [SerializeField] private CanvasGroup _healthParentCanvasGroup;
     [SerializeField] private float _unitDurationHealthChange = 2f;
-    
-    private float _preSliderValue = 1f; // always full heal
+    private const float _minDurationShowToast = 0.5f;
+
     private Tween _tweenProgressHeal;
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsHandlerComp();
         _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
         _currentHealth = _maxHeath;
+        _healthSlider.value = 1f;
     }
     protected override void BuffUpdate()
     {
@@ -29,16 +30,11 @@ public class HealthComp : UnitBaseComponent
         _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
         _currentHealth = curHealthUnit * _maxHeath;
     }
-    private void OnEnable()
-    {
-        StatsUpdate();
-        _unitBaseParent.OnDie?.Invoke(false);
-    }
     public void PlayHurting(float dame)
     {
         _currentHealth -= dame;
         SetHealthSlider();
-        
+
         CheckDie();
 
         ShowToastHitting(dame);
@@ -47,11 +43,13 @@ public class HealthComp : UnitBaseComponent
     {
         _healthParentCanvasGroup.alpha = 1;
         var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
-        var duration = Math.Abs(_preSliderValue - sliderValue) * _unitDurationHealthChange;
+        var duration = Math.Abs(_healthSlider.value - sliderValue) * _unitDurationHealthChange;
+        // ensuring minDurationShowToast 
+        duration = duration < _minDurationShowToast ? _minDurationShowToast : duration;
+        
         _tweenProgressHeal = _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
         {
             _healthParentCanvasGroup.alpha = 0;
-            _preSliderValue = sliderValue;
         });
         await _tweenProgressHeal.AsyncWaitForCompletion();
     }

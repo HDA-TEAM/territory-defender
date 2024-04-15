@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.StateMachine;
+
 public class BaseTowerStateMachine : CharacterStateMachine
 {
     public bool IsAttack { get; private set; }
@@ -24,6 +26,7 @@ public class BaseTowerStateMachine : CharacterStateMachine
     protected override void Awake()
     {
         base.Awake();
+        
         _factory = new TowerStateFactory(this);
         _currentState = _factory.GetState(CharacterState.Idle);
         _currentState.EnterState();

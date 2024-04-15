@@ -2,45 +2,63 @@ using System.Collections.Generic;
 
 public class AllyTroopController : UnitController
 {
+    private UnitBase _prevTarget;
+
     public override void UpdateStatus(List<UnitBase> targets)
     {
+
         if (IsSelfInUserAction())
+        {
+            _prevTarget = null;
+            SetDefaultState();
+            _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
             return;
+        }
         
         float nearestUnit = float.MaxValue;
         UnitBase target = null;
-        foreach (var unit in targets)
+        
+        if (_prevTarget == _unitBaseParent.CurrentTarget && _prevTarget != null)
         {
-            float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, this.gameObject);
-            
-            if ( betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.DetectRange))
+            target = _prevTarget;
+        }
+        else
+        {
+            // Find new target
+            foreach (var unit in targets)
             {
-                if (nearestUnit > betweenDistance)
+                float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, gameObject);
+            
+                if (betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.DetectRange))
                 {
-                    nearestUnit = betweenDistance;
-                    target = unit;
+                    if (nearestUnit > betweenDistance)
+                    {
+                        nearestUnit = betweenDistance;
+                        target = unit;
+                    }
                 }
             }
         }
+
+        _prevTarget = target;
         
-        var defenderTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+        OnChangeTarget(target, BeingTargetCommand.Block);
+
+        if (target)
         {
-            Target = target,
-            BeingTargetCommand = BeingTargetCommand.Block
-        };
-        _unitBaseParent.OnTargetChanging?.Invoke(defenderTargetChangingComposite);
+            var attackTargetChangingComposite = new UnitBase.OnTargetChangingComposite
+            {
+                Target = _unitBaseParent,
+                BeingTargetCommand = BeingTargetCommand.None
+            };
+            target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
+        }
         
-        if (!target) return;
-        var attackTargetChangingComposite = new UnitBase.OnTargetChangingComposite
-        {
-            Target = _unitBaseParent,
-            BeingTargetCommand = BeingTargetCommand.None
-        };
-        target.OnTargetChanging?.Invoke(attackTargetChangingComposite);
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
     }
     private bool IsSelfInUserAction()
     {
-        var userActionController = _unitBaseParent.UserActionController();
+        UserActionController userActionController = _unitBaseParent.UserActionController();
         if (userActionController)
             return userActionController.IsInAction() && userActionController.IsUserActionBlocked();
         return false;

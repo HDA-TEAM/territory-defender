@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.GamePlay;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,11 +31,14 @@ public static class UnitId
     public enum Enemy
     {
         ShieldMan = 200,
+        ArcherMan = 210,
+        AssassinMan = 220,
     }
 
     public enum Hero
     {
         TrungTrac = 400,
+        TrungNhi = 410,
     }
 
     public enum Tower
@@ -49,26 +53,22 @@ public static class UnitId
     }
 }
 
-public class PoolingController : SingletonBase<PoolingController>
+public class PoolingController : GamePlaySingletonBase<PoolingController>
 {
     [SerializedDictionary("UnitId", "UnitPrefab")]
     [SerializeField] private SerializedDictionary<string,GameObject> _dictPoolingPrefab = new SerializedDictionary<string, GameObject>();
     [SerializeField] private UnitPooling _poolingPrefab;
     private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
-    protected override void Awake()
+    private void OnRestart()
     {
-        base.Awake();
-        SetUp();
-    }
-    private void SetUp()
-    {
-        // foreach (var pooling in poolingList)
-        // {
-        //     PoolingComposite poolingComposite = pooling.UnitPool;
-        //     pooling.InitPoolWithParam(poolingComposite.initNumber, poolingComposite.prefab, pooling.gameObject);
-        //     dictPooling.Add(poolingComposite._objectType, pooling);
-        // }
+        foreach (var pooling in _dictPooling)
+        {
+            PoolingBase removingPool = pooling.Value;
+            Destroy(removingPool.gameObject);    
+        }
+        _dictPooling.Clear();
+        Destroy(gameObject);
     }
     private PoolingBase GetPooling(string objectType)
     {
@@ -77,13 +77,11 @@ public class PoolingController : SingletonBase<PoolingController>
     }
     public GameObject SpawnObject(string objectType, Vector3 position = new Vector3())
     {
-        Debug.Log("objectType " + objectType);
         if (!IsPoolExist(objectType))
-        {
             CreateNewPool(objectType);
-        }
+        
         GameObject go = GetPooling(objectType).GetInstance();
-        go.SetActive(transform);
+        go.SetActive(true);
         go.transform.position = new Vector3(position.x,position.y,0);
         return go;
     }
@@ -99,5 +97,21 @@ public class PoolingController : SingletonBase<PoolingController>
         unitPooling.transform.SetParent(transform);
         unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
         _dictPooling.Add(objectType, unitPooling);
+    }
+    public void ReturnPool(GameObject gameObject,UnitSideId sideId)
+    {
+        gameObject.SetActive(false);
+        if (sideId == UnitSideId.Enemy)
+        {
+            InGameStateController.Instance.CheckingStageSuccess();
+        }
+    }
+    public override void SetUpNewGame()
+    {
+        
+    }
+    public override void ResetGame()
+    {
+        OnRestart();
     }
 }

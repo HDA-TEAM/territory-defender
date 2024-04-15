@@ -1,14 +1,22 @@
+using Cysharp.Threading.Tasks;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface OnReviveUnit
+{
+    
+}
 public class TroopTowerBehaviour : UnitBaseComponent
 {
     // Default 3 units
     private readonly int _maxAllyCount = 3;
     private readonly float _minPerUnitDistance = 0.5f;
+    private readonly float _cooldownReviveUnit = 1f;
     [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
     [SerializeField] private float _campingRange;
     [SerializeField] private Vector3 _campingPos;
+    private Vector3 _parentPos;
     protected override void StatsUpdate()
     {
         var stats = _unitBaseParent.UnitStatsHandlerComp();
@@ -17,36 +25,63 @@ public class TroopTowerBehaviour : UnitBaseComponent
     private void OnEnable()
     {
         StatsUpdate();
-        Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
+        _parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
         for (int i = 0; i < _maxAllyCount; i++)
         {
-            var ally = PoolingController.Instance.SpawnObject(UnitId.Ally.Warrior.ToString(), parentPos);
-            _allyUnits.Add(ally.GetComponent<UnitBase>());
+            SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
         }
-        var campingPos = RouteSetController.Instance.GetNearestPosFromRoute(parentPos);
+        var campingPos = RouteSetController.Instance.GetNearestPosFromRoute(_parentPos);
         SetCampingPlace(campingPos);
+    }
+    
+    /// Spawning new object from pool and set on revive for it
+    private void SpawnSingleUnit(string objectType)
+    {
+        var ally = PoolingController.Instance.SpawnObject(objectType, _parentPos);
+        UnitBase unitBase = ally.GetComponent<UnitBase>();
+        unitBase.UnitReviveHandlerComp().SetupRevive(OnWaitingToRevive);
+        unitBase.OnUpdateStats?.Invoke();
+        _allyUnits.Add(unitBase);
     }
     private void OnDisable()
     {
-        foreach (var ally in _allyUnits)
+        // When tower is remove, all unit which tower control should clear
+        foreach (UnitBase unitBase in _allyUnits)
         {
-            if (ally && ally.gameObject)
+            if (unitBase && unitBase.gameObject)
             {
-                ally.gameObject.SetActive(false);
+                // remove callback for reviving first
+                unitBase.UnitReviveHandlerComp().OnRemoveRevive();
+                // Return to pool
+                unitBase.gameObject.SetActive(false);
             }
         }
+
     }
+    private async void OnWaitingToRevive(UnitBase unitBase)
+    {
+        // remove old unit and returning it to the pool
+        _allyUnits.Remove(unitBase);
+        await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
+        
+        // Spawning new unit from pool
+        SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
+        
+    }
+    // private void 
     public void SetCampingPlace(Vector3 newCampingPos)
     {
+        // Get current tower pos on the map
         Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
         if (VectorUtility.Distance2dOfTwoPos(newCampingPos, parentPos) > _campingRange)
             return;
 
         _campingPos = newCampingPos;
+        
+        // Set camping pos for each unit
         for (int i = 0; i < _allyUnits.Count; i++)
         {
             Vector3 curUnitCampingPlace = GetCampingPlaceOffset(_maxAllyCount, i, _campingPos);
-            Debug.Log("curUnitCampingPlace" + curUnitCampingPlace);
             // Moving to camping pos
             _allyUnits[i].UserActionController().SetMovingPosition(curUnitCampingPlace);
         }

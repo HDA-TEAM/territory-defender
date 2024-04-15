@@ -1,4 +1,4 @@
-using UnityEngine;
+using GamePlay.Scripts.Character.StateMachine;
 
 public class BaseAllyStateMachine : CharacterStateMachine
 {
@@ -11,15 +11,23 @@ public class BaseAllyStateMachine : CharacterStateMachine
     private bool _isDie;
 
     #region Event
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.OnDestroy();
+        base.OnEnable();
+        SetDefaultStatus();
         _unitBaseParent.OnDie += OnDie;
     }
-    protected override void OnDestroy()
+    protected override void OnDisable()
     {
-        base.OnDestroy();
+        base.OnDisable();
         _unitBaseParent.OnDie -= OnDie;
+    }
+    
+    protected override void SetDefaultStatus()
+    {
+        _isDie = false;
+        _currentState = _factory.GetState(CharacterState.Idle);
+        _currentState.EnterState();
     }
     
     #endregion

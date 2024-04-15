@@ -4,6 +4,8 @@ public class EnemyTroopController : UnitController
 {
     public override void UpdateStatus(List<UnitBase> targets)
     {
+        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
+        
         if (CheckTargetInUserAction(_unitBaseParent.CurrentTarget) || !IsCurrentTargetAvailable())
             SetDefaultState();
     }

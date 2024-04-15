@@ -9,14 +9,25 @@ public class UserActionHeroBaseController : UserActionController
     private void OnEnable()
     {
         Messenger.Default.Subscribe<UsingSkillPayload>(OnUsingSkill);
+        Messenger.Default.Subscribe<SelectHeroPayload>(OnSelectHero);
     }
     private void OnDisable()
     {
         Messenger.Default.Unsubscribe<UsingSkillPayload>(OnUsingSkill); 
+        Messenger.Default.Unsubscribe<SelectHeroPayload>(OnSelectHero);
+    }
+    private void OnSelectHero(SelectHeroPayload payload)
+    {
+        if (payload.UnitBase != _unitBaseParent)
+            return;
+        Messenger.Default.Publish(new HandleCancelRaycastPayload
+        {
+            IsOn = true,
+            callback = SetMovingPosition,
+        });
     }
     public override void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Select Unit");
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             IsOn = true,
@@ -34,8 +45,7 @@ public class UserActionHeroBaseController : UserActionController
     private void OnUsingSkill(UsingSkillPayload usingSkillPayload)
     {
         _eUserAction = EUserAction.UsingSkill;
-        Debug.Log("Execute Skill");
-        SkillDataSO skillConfig = _skillsDataAsset.GetSkillDataById(ESkillId.SummonElephant);
+        SkillDataSO skillConfig = _skillsDataConfig.GetSkillDataById(ESkillId.SummonElephant);
         UserUsingHeroSkill = new UserUsingHeroSkill(ESkillId.SummonElephant, skillConfig);
     }
 }

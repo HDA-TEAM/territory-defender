@@ -1,0 +1,121 @@
+using CustomInspector;
+using GamePlay.Scripts.GamePlay;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class RouteSetController : GamePlaySingletonBase<RouteSetController>
+{
+    [Button("SaveToConfig")]
+    [Button("LoadFromConfig")]
+    [SerializeField] private StageId _currentStageId;
+    
+    [SerializeField] private List<LineRenderer> _currentRouteLineRenders = new List<LineRenderer>();
+    [SerializeField] private StageDataAsset _stageDataAsset;
+    [SerializeField] private RouteSetConfig _routeSetConfig;
+    
+    
+    private StageConfig _stageConfig;
+    public List<LineRenderer> CurrentRouteLineRenderers
+    {
+        get
+        {
+            return _currentRouteLineRenders;
+        }
+        set
+        {
+            _currentRouteLineRenders = value;
+        }
+    }
+    private void Start()
+    {
+        foreach (var lineRender in _currentRouteLineRenders)
+        {
+            lineRender.widthMultiplier = 0f;
+        }
+        // _stageConfig = _stageDataAsset.GetStageConfig();
+        // _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
+    }
+    
+    private void SaveToConfig()
+    {
+        RouteSetConfig.RouteSet routeSet = new RouteSetConfig.RouteSet
+        {
+            RouteLines = new List<RouteSetConfig.RouteLine>(),
+        };
+
+        for (int i = 0; i < _currentRouteLineRenders.Count; i++)
+        {
+            // Check if lineRender want to save
+            if (!_currentRouteLineRenders[i].gameObject.activeSelf)
+                continue;
+            
+            routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
+            {
+                PointSet = new List<Vector3>()
+            });
+
+            for (int j = 0; j < _currentRouteLineRenders[i].positionCount; j++)
+                routeSet.RouteLines[i].PointSet.Add(_currentRouteLineRenders[i].GetPosition(j));
+        }
+
+        _routeSetConfig.SaveToConfig(routeSet, _currentStageId);
+    }
+
+    private void LoadFromConfig()
+    {
+        RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
+        int lineCount = lineRouteSet.RouteLines.Count;
+        for (int i = 0; i < lineCount; i++)
+        {
+            // If route set config < total active routeSet on map
+            if (i >= lineCount)
+            {
+                _currentRouteLineRenders[i].gameObject.SetActive(false);
+                continue;
+            }
+
+            // Check if this lineRender available to save
+            _currentRouteLineRenders[i].gameObject.SetActive(true);
+
+            // Init lineRender max space
+            _currentRouteLineRenders[i].positionCount = lineRouteSet.RouteLines[i].PointSet.Count;
+
+            // Set position at each point in lineRender
+            // z always zero
+            for (int j = 0; j < lineRouteSet.RouteLines[i].PointSet.Count; j++)
+                _currentRouteLineRenders[i].SetPosition(j,
+                    new Vector3(
+                        lineRouteSet.RouteLines[i].PointSet[j].x,
+                        lineRouteSet.RouteLines[i].PointSet[j].y,
+                        0));
+        }
+    }
+    public Vector3 GetNearestPosFromRoute(Vector3 posA)
+    {
+        float nearestDis = float.MaxValue;
+        Vector3 res = Vector3.zero;
+        foreach (var routeLineRender in _currentRouteLineRenders)
+        {
+            for (int i = 0; i < routeLineRender.positionCount; i++)
+            {
+                var curDis = VectorUtility.Distance2dOfTwoPos(posA, routeLineRender.GetPosition(i));
+                if (nearestDis > curDis)
+                {
+                    nearestDis = curDis;
+                    res = routeLineRender.GetPosition(i);
+                }
+
+            }
+        }
+        return res;
+    }
+
+    public override void SetUpNewGame()
+    {
+        LoadFromConfig();
+    }
+    public override void ResetGame()
+    {
+        
+    }
+}

@@ -1,5 +1,3 @@
-using System;
-
 public class TowerIdleState : CharacterBaseState
 {
     private readonly BaseTowerStateMachine _context;

@@ -8,6 +8,6 @@ public class HeroDataSO : ScriptableObject
     public Sprite _imageHeroChoose;
     public Sprite _imageHeroOwned;
     
-    public SkillsDataAsset _heroSkills;
+    public SkillsDataConfig _heroSkills;
     public Stats _stats;
 }

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>
 {
+    [FormerlySerializedAs("_heroDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private HeroDataAsset _heroDataAsset;
+    [SerializeField] private HeroDataConfig _heroDataConfig;
     public List<HeroComposite> HeroComposites { get; private set; }
 
     protected override void Awake()
@@ -22,10 +24,10 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         
         else HeroComposites.Clear();
         
-        if (_heroDataAsset == null)
+        if (_heroDataConfig == null)
             return;
 
-        List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
+        List<HeroDataSO> listHeroDataSo = _heroDataConfig.GetAllHeroData();
 
         foreach (var heroDataSo in listHeroDataSo)
         {

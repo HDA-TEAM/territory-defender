@@ -1,3 +1,5 @@
+using DG.Tweening;
+
 public class HeroAttackState : CharacterAttackState
 {
     private readonly BaseHeroStateMachine _context;
@@ -7,18 +9,24 @@ public class HeroAttackState : CharacterAttackState
     }
     public override void CheckSwitchState()
     {
-        base.EnterState();
+        bool isSwitch = false;
         if (_context.IsDie)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+            isSwitch = true;
         }
         if (_context.UserActionController.IsInAction())
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+            isSwitch = true;
         }
-        else if (!_context.IsAttack || _context.IsDie)
+        else if (!_context.IsAttack)
         {
             _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+            isSwitch = true;
         }
+        if (isSwitch)
+            _attackSequence.Kill();
     }
+    
 }
