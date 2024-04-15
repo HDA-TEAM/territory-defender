@@ -77,22 +77,7 @@ public class StageInfoViewModel : MonoBehaviour
     private void LoadSceneBasedOnStageAndMode(StageComposite stage, GameMode gameMode, HeroComposite hero)
     {
         Debug.Log($"StageId: {stage.StageId}, GameMode: {gameMode}, Hero : {hero.Name}");
-        
-        int sceneIndex = DetermineSceneIndex(stage, gameMode);
-        if (sceneIndex >= 0 && sceneIndex < SceneManager.sceneCountInBuildSettings)
-        {
-            LoadingSceneController.Instance.LoadingHomeToGame();
-        }
-        else
-        {
-            Debug.LogError($"Scene index out of range: {sceneIndex}. Ensure you have the correct scene setup in Build Settings.");
-        }
-    }
-    
-    private int DetermineSceneIndex(StageComposite stage, GameMode gameMode)
-    {
-        //TODO: this function executive find the stats of stage depend on stageID, mode
-        return 1; // Example haven stage with index = 2
+        LoadingSceneController.Instance.LoadingHomeToGame();
     }
 }
 
