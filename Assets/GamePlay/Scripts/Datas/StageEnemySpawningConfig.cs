@@ -9,10 +9,33 @@ using UnityEngine.Scripting;
 [Serializable, Preserve]
 public class StageEnemySpawningConfig : ScriptableObject
 {
+    [SerializeField] private List<SingleStageSpawningConfig> _stageEnemySpawningConfigs;
+    public SingleStageSpawningConfig FindSpawningConfig(StageId stageId)
+    {
+        return _stageEnemySpawningConfigs.Find(stage => stage.StageId == stageId);
+    }
+
+    public int GetNumberOfUnitSpawningWithStageId(StageId stageId) => FindSpawningConfig(stageId).GetTotalUnitsSpawning();
+
 #if UNITY_EDITOR
     [Button("ParseToJson")]
-    [Button("ReadData")]
+    [Button("ReadJsonData")]
+    [SerializeField] private string _data;
+    public void ParseToJson()
+    {
+        _data = JsonConvert.SerializeObject(_stageEnemySpawningConfigs);
+        Debug.Log("ParseToJson " + _data);
+    }
+    public void ReadJsonData()
+    {
+        _stageEnemySpawningConfigs = JsonConvert.DeserializeObject<List<SingleStageSpawningConfig>>(_data);
+    }
 #endif
+}
+
+[Serializable]
+public class SingleStageSpawningConfig
+{
     public StageId StageId;
     public List<WaveSpawning> WavesSpawning;
     
@@ -43,18 +66,4 @@ public class StageEnemySpawningConfig : ScriptableObject
         }
         return total;
     }
-    
-    
-#if UNITY_EDITOR
-    public List<WaveSpawning> TestWavesSpawning;
-    [SerializeField] private string _data;
-    public void ParseToJson()
-    {
-        _data = JsonConvert.SerializeObject(WavesSpawning);
-    }
-    public void ReadData()
-    {
-        TestWavesSpawning = JsonConvert.DeserializeObject<List<WaveSpawning>>(_data);
-    }
-#endif
 }

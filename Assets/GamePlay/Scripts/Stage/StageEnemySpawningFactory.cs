@@ -8,45 +8,28 @@ using UnityEngine;
 
 public class StageEnemySpawningFactory : MonoBehaviour
 {
-    [SerializedDictionary("StageId,StageConfig")]
-    [SerializeField] private SerializedDictionary<StageId,StageEnemySpawningConfig> _stageEnemySpawningConfigs;
     [SerializeField] private float _spawningEachObjectInterval;
-
+    public StageEnemySpawningConfig SpawningConfig;
     private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
-    private StageEnemySpawningConfig _stageEnemySpawning;
+    private SingleStageSpawningConfig _curStageSpawningConfig;
 
     public void CancelSpawning()
     {
         _cancellationTokenSource.Cancel();
     }
-    public StageEnemySpawningConfig FindSpawningConfig(StageId stageId)
-    {
-        if (_stageEnemySpawningConfigs.TryGetValue(stageId, out StageEnemySpawningConfig stageEnemySpawningConfig))
-        {
-            return stageEnemySpawningConfig;
-        }
-        else
-        {
-            Debug.LogError("Not found Stage Spawning config");
-        }
-        return null;
-    }
-
-    public int GetNumberOfUnitSpawningWithStageId(StageId stageId)
-    {
-       return FindSpawningConfig(stageId).GetTotalUnitsSpawning();
-    }
+   
     
-    public async void StartSpawning(StageEnemySpawningConfig stageConfig, Action onFinishedSpawning)
+    public async void StartSpawning(StageId stageId, Action onFinishedSpawning)
     {
-        if (!stageConfig)
+        _curStageSpawningConfig = SpawningConfig.FindSpawningConfig(stageId);
+        if (_curStageSpawningConfig.WavesSpawning.Count <= 0)
             return;
 
         Debug.Log("Spawning Starting");
         List<UniTask> spawnTask = new List<UniTask>();
         try
         {
-            foreach (var waveSpawning in  stageConfig.WavesSpawning)
+            foreach (var waveSpawning in  _curStageSpawningConfig.WavesSpawning)
                 spawnTask.Add(StartSpawningWave(waveSpawning));
             await UniTask.WhenAll(spawnTask);
             onFinishedSpawning?.Invoke();
@@ -58,7 +41,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
        
         Debug.Log("Spawning Ended");
     }
-    private async UniTask StartSpawningWave(StageEnemySpawningConfig.WaveSpawning waveSpawning)
+    private async UniTask StartSpawningWave(SingleStageSpawningConfig.WaveSpawning waveSpawning)
     {
         List<UniTask> spawnTask = new List<UniTask>();
         foreach (var groupSpawning in  waveSpawning.GroupsSpawning)
@@ -67,7 +50,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
         }
         await UniTask.WhenAll(spawnTask);
     }
-    private async UniTask StartSpawningGroup(StageEnemySpawningConfig.GroupSpawning groupSpawning)
+    private async UniTask StartSpawningGroup(SingleStageSpawningConfig.GroupSpawning groupSpawning)
     {
         await UniTask.Delay(TimeSpan.FromSeconds(groupSpawning.StartSpawning));
         for (int i = 0; i < groupSpawning.NumberSpawning; i++)
