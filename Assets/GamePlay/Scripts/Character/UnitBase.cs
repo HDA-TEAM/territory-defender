@@ -6,6 +6,7 @@ using UnityEngine;
 public class UnitBase : MonoBehaviour
 {
     #region Component
+    [SerializeField] private UnitId.BaseId _unitSideId;
     [SerializeField] private List<UnitId.BaseId> _targetSidesNeeding;
     [SerializeField] private UnitController _unitController;
     [SerializeField] private CharacterStateMachine _characterStateMachine;
@@ -18,6 +19,7 @@ public class UnitBase : MonoBehaviour
     #endregion
 
     #region Access
+    public UnitId.BaseId UnitSide => _unitSideId;
     public UnitController UnitController() => _unitController;
     public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;
     public CharacterStateMachine CharacterStateMachine() => _characterStateMachine;

@@ -3,14 +3,6 @@ using GamePlay.Scripts.GamePlay;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnitSideId
-{
-    Ally = 1,
-    Enemy = 2,
-    Tower = 3,
-    Hero = 4,
-}
-
 public static class UnitId
 {
     public enum BaseId
@@ -98,10 +90,10 @@ public class PoolingController : GamePlaySingletonBase<PoolingController>
         unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
         _dictPooling.Add(objectType, unitPooling);
     }
-    public void ReturnPool(GameObject gameObject,UnitSideId sideId)
+    public void ReturnPool(GameObject gameObject,UnitId.BaseId sideId)
     {
         gameObject.SetActive(false);
-        if (sideId == UnitSideId.Enemy)
+        if (sideId == UnitId.BaseId.Enemy)
         {
             InGameStateController.Instance.CheckingStageSuccess();
         }
