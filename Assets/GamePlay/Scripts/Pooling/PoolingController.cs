@@ -12,7 +12,8 @@ public static class UnitId
         Hero = 3,
         Tower = 4,
     }
-
+    public static bool IsAllySide(BaseId baseId) => baseId is BaseId.Ally or BaseId.Hero or BaseId.Tower;
+    public static bool IsEnemySide(BaseId baseId) => baseId == BaseId.Enemy;
     public static bool IsUnitInBaseId(int unitId, BaseId baseId) => unitId == (int)baseId;
 
     public enum Ally

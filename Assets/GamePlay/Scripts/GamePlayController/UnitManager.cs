@@ -26,9 +26,9 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     }
     private void OnSubscribe(UnitBase unitBase)
     {
-        if (unitBase.UnitSide == UnitId.BaseId.Enemy)
+        if (UnitId.IsEnemySide(unitBase.UnitSide))
             _unitEnemies.Add(unitBase);
-        else if (unitBase.UnitSide == UnitId.BaseId.Ally || unitBase.UnitSide == UnitId.BaseId.Tower)
+        else if (UnitId.IsAllySide(unitBase.UnitSide))
             _unitAllys.Add(unitBase);
     }
     // A de-active or unavailable unit will be UnSubscribe
@@ -38,10 +38,9 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     }
     private void OnUnSubscribe(UnitBase unitBase)
     {
-        if (unitBase.UnitSide == UnitId.BaseId.Enemy && _unitEnemies.Contains(unitBase))
+        if (UnitId.IsEnemySide(unitBase.UnitSide) && _unitEnemies.Contains(unitBase))
             _unitEnemies.Remove(unitBase);
-        else if ((unitBase.UnitSide == UnitId.BaseId.Ally || unitBase.UnitSide == UnitId.BaseId.Tower)
-                 && _unitAllys.Contains(unitBase))
+        else if (UnitId.IsAllySide(unitBase.UnitSide) && _unitAllys.Contains(unitBase))
             _unitAllys.Remove(unitBase);
         NotifyAllUnit(unitBase);
     }
