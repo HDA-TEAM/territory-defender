@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace GamePlay.Scripts.Menu.UnitInformationPanel
 {
@@ -33,14 +34,51 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
     {
         public ShowStatsInformationComposite GetShowStatsInformation(Stats stats)
         {
-            throw new NotImplementedException();
+            ShowStatsInformationComposite statsInformationComposite = new ShowStatsInformationComposite();
+            List<ItemStatComposite> statComposites = new List<ItemStatComposite>
+            {
+                new ItemStatComposite
+                {
+                    StatId = StatId.MaxHeal,
+                    StatVal = stats.GetStat(StatId.MaxHeal).ToString(),
+                },
+                new ItemStatComposite
+                {
+                    StatId = StatId.AttackDamage,
+                    StatVal = stats.GetStat(StatId.AttackDamage).ToString(),
+                },
+                new ItemStatComposite
+                {
+                    StatId = StatId.AttackRange,
+                    StatVal = stats.GetStat(StatId.AttackRange).ToString(),
+                },
+            };
+            statsInformationComposite.Name = stats.GetInformation(InformationId.Name);
+            statsInformationComposite.StatComposites = statComposites;
+            return statsInformationComposite;
         }
     }
     public class TowerShowInformation : IShowUnitInformation
     {
         public ShowStatsInformationComposite GetShowStatsInformation(Stats stats)
         {
-            throw new NotImplementedException();
+            ShowStatsInformationComposite statsInformationComposite = new ShowStatsInformationComposite();
+            List<ItemStatComposite> statComposites = new List<ItemStatComposite>
+            {
+                new ItemStatComposite
+                {
+                    StatId = StatId.AttackDamage,
+                    StatVal = stats.GetStat(StatId.AttackDamage).ToString(),
+                },
+                new ItemStatComposite
+                {
+                    StatId = StatId.AttackRange,
+                    StatVal = stats.GetStat(StatId.AttackRange).ToString(),
+                },
+            };
+            statsInformationComposite.Name = stats.GetInformation(InformationId.Name);
+            statsInformationComposite.StatComposites = statComposites;
+            return statsInformationComposite;
         }
     }
 }

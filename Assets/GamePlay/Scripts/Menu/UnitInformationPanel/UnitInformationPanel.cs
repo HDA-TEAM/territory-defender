@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GamePlay.Scripts.Menu.UnitInformationPanel;
 using SuperMaxim.Messaging;
 using TMPro;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class UnitInformationPanel : MonoBehaviour
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private UnitBase _curUnitBaseInfo;
     [SerializeField] private float _showHidePanelDuration = 0.3f;
-    
+    [SerializeField] private ItemUnitStatListViewModel _unitStatListViewModel;
     
     private bool _isShowing = false;
 
@@ -36,7 +37,7 @@ public class UnitInformationPanel : MonoBehaviour
         _rectTransformBoard.DOAnchorPosY(_endPos.anchoredPosition.y, _showHidePanelDuration);
         if (_isShowing)
             _isShowing = false;
-        _txtName.text = payload.StatsData.GetInformation(InformationId.Name);
+        _unitStatListViewModel.SetupStats(payload.UnitBase.UnitStatsHandlerComp().GetShowStatsInformation());
         _isShowing = true;
     }
     private void HidePanelInformation(HideUnitInformationPayload payload)
@@ -52,7 +53,6 @@ public class UnitInformationPanel : MonoBehaviour
 
 public struct ShowUnitInformationPayload
 {
-    public Stats StatsData;
     public UnitBase UnitBase;
 }
 

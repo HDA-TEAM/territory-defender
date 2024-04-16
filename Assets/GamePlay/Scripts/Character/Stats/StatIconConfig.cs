@@ -1,9 +1,9 @@
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Character.StateMachine.Stats
 {
+    [CreateAssetMenu(fileName = "StatIconConfig", menuName = "ScriptableObject/StatIconConfig")]
     public class StatIconConfig : ScriptableObject
     {
         [SerializeField] [SerializedDictionary("StatId","StatIcon")]
