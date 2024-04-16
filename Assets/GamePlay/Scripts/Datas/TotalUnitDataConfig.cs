@@ -1,24 +1,20 @@
-using AYellowpaper.SerializedCollections;
 using System;
 using UnityEngine;
 
-[Serializable]
-public struct UnitDataComposite
+namespace GamePlay.Scripts.Datas
 {
-    public UnitBase UnitBase;
-} 
-
-[CreateAssetMenu(fileName = "UnitDataConfig", menuName = "ScriptableObject/Config/UnitDataConfig")]
-public class TotalUnitDataConfig : ScriptableObject
-{
-    [SerializeField] [SerializedDictionary("UnitId.Ally","UnitDataComposite")]
-    private SerializedDictionary<UnitId.Ally,UnitDataComposite> _allisData;
-
-    
-    
-    public UnitDataComposite GetUnitConfigByAllyId(UnitId.Ally unitId)
+    [Serializable]
+    public struct UnitDataComposite
     {
-        _allisData.TryGetValue(unitId, out UnitDataComposite unitDataComposite);
-        return unitDataComposite;
+        public UnitBase UnitBase;
+    } 
+
+    [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
+    public class TotalUnitDataConfig : ScriptableObject
+    {
+        [SerializeField] private TowerDataConfig _towerDataConfig;
+        [SerializeField] private AllyTroopsDataConfig _allyTroopsDataConfig;
+        [SerializeField] private EnemyDataConfig _enemyDataConfig;
+        [SerializeField] private InGameHeroDataConfig _heroDataConfig;
     }
 }
