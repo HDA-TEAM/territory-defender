@@ -1,4 +1,4 @@
-using GamePlay.Scripts.Character.StateMachine.Stats;
+using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;

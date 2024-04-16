@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlay;
 using System;
 using System.Collections.Generic;

@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using System;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class TowerBuildTool : TowerToolBase
     private bool CheckCurrencyIsEnough()
     {
         // Checked enough coin to build
-        _towerCanBuild = _towerDataConfig.GetTowerType(_towerBuildId);
+        _towerCanBuild = _towerDataConfig.GetUnitConfigById(_towerBuildId).UnitBase;
         var towerStats = _towerCanBuild.UnitStatsHandlerComp();
         return towerStats.GetCurrentStatValue(StatId.CoinNeedToBuild) <= _inGameInventoryRuntimeData.GetCurrencyValue();
     }

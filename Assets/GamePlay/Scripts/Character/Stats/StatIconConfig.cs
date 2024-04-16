@@ -1,7 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Character.StateMachine.Stats
+namespace GamePlay.Scripts.Character.Stats
 {
     [CreateAssetMenu(fileName = "StatIconConfig", menuName = "ScriptableObject/StatIconConfig")]
     public class StatIconConfig : ScriptableObject

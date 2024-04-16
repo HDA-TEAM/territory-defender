@@ -1,4 +1,5 @@
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
+using GamePlay.Scripts.Character.Stats;
 
 public class ERangerStateMachine : BaseEnemyStateMachine
 {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Menu.UnitInformationPanel
 {
-    public class ItemUnitStatListViewModel : MonoBehaviour
+    public class UnitShowInformationViewModel : MonoBehaviour
     {
         [SerializeField] private List<ItemUnitStatView> _unitStatViews;
         public void SetupStats(ShowStatsInformationComposite statInformationComposite)

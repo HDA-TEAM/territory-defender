@@ -1,4 +1,5 @@
 using CustomInspector;
+using GamePlay.Scripts.Character.Stats;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
@@ -29,10 +30,8 @@ public class TowerKit : MonoBehaviour
     [SerializeField] private GameObject _spawnTowerHolder;
     [SerializeField] private Button _btnRange;
     [SerializeField] private SpriteRenderer _spiteFlag;
-
-    [FormerlySerializedAs("_towerDataAsset")]
+    
     [Header("Data"), Space(12)]
-    [SerializeField] private TowerDataConfig _towerDataConfig;
     [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
     [SerializeField] private TowerId _towerId;
     [SerializeField] private UnitBase _unitBase;

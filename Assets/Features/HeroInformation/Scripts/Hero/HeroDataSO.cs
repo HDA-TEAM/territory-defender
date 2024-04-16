@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using UnityEngine;
 using UnityEngine.Serialization;
 
