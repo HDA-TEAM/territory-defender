@@ -36,7 +36,10 @@ public static class UnitId
 
     public enum Tower
     {
-        WarriorTower = 300,
+        ArcherTower = 300,
+        SpearTower = 310,
+        ElephantTower = 320,
+        DrumTower = 330
     }
     public enum Projectile
     {

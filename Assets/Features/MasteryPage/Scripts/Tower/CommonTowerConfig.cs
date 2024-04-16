@@ -11,12 +11,12 @@ using UnityEngine.Serialization;
 public class CommonTowerConfig : ScriptableObject
 {
     [SerializedDictionary("TowerId", "CommonTowerSO")] [SerializeField]
-    private SerializedDictionary<TowerId, CommonTowerSO> _towerTypeDict = new SerializedDictionary<TowerId, CommonTowerSO>();
+    private SerializedDictionary<UnitId.Tower, CommonTowerSO> _towerTypeDict = new SerializedDictionary<UnitId.Tower, CommonTowerSO>();
     [FormerlySerializedAs("_commonTowerDataAsset")]
     [SerializeField] private TowerDataAsset _towerDataAsset;
 
     //private TowerId _towerId;
-    public CommonTowerSO GetTower(TowerId towerId)
+    public CommonTowerSO GetTower(UnitId.Tower towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO tower);
         if (!tower)
@@ -32,7 +32,7 @@ public class CommonTowerConfig : ScriptableObject
         return _towerTypeDict.Values.ToList();
     }
 
-    public void UpdateTowerData(TowerId towerId, RuneComposite runeComposite)
+    public void UpdateTowerData(UnitId.Tower towerId, RuneComposite runeComposite)
     {
         _towerTypeDict.TryGetValue(towerId, out CommonTowerSO curTower);
         if (!curTower)

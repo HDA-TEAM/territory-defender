@@ -10,13 +10,13 @@ using UnityEngine.Serialization;
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
-    public void SaveTowers(SerializedDictionary<TowerId, CommonTowerSO> towerTypeDict)
+    public void SaveTowers(SerializedDictionary<UnitId.Tower, CommonTowerSO> towerTypeDict)
     {
         _model = ConvertToTowerDataModel(towerTypeDict);
         SaveData();
     }
 
-    private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<TowerId, CommonTowerSO> towerTypeDict)
+    private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<UnitId.Tower, CommonTowerSO> towerTypeDict)
     {
         var model = new TowerDataModel
         {
@@ -69,7 +69,7 @@ public struct TowerDataModel : IDefaultCustom
 [Serializable]
 public struct TowerSoSaver
 {
-    public TowerId TowerId;
+    public UnitId.Tower TowerId;
     public List<RuneLevel> RuneLevels;
 
 }

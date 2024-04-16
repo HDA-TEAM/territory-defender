@@ -9,7 +9,7 @@ public class ListTowerViewModel : MonoBehaviour
     [SerializeField] private List<ItemTowerView> _itemTowerViews;
     [SerializeField] private ListRuneViewModel _listRuneViewModel;
 
-    public Action<TowerId> _onUpdateViewAction;
+    public Action<UnitId.Tower> _onUpdateViewAction;
     
     // Internal
     private List<TowerComposite> _towerComposites;
@@ -90,6 +90,6 @@ public class ListTowerViewModel : MonoBehaviour
 
 public struct TowerComposite
 {
-    public TowerId TowerId;
+    public UnitId.Tower TowerId;
     public List<RuneLevel> RuneLevels;
 }

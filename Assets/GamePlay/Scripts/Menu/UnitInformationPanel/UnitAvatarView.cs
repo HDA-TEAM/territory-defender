@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Data;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,9 +9,11 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
     {
         [SerializeField] private Image _avatar;
         [SerializeField] private TextMeshProUGUI _txtName;
-        public void Setup()
+        [SerializeField] private TotalUnitDataConfig _totalUnitDataConfig;
+        public void Setup(ShowStatsInformationComposite statsInformationComposite)
         {
-            
+            _txtName.text = statsInformationComposite.Name;
+            Debug.Log(_totalUnitDataConfig.GetSingleUnitDataConfig(UnitId.Hero.TrungTrac.ToString()));
         }
     }
 }

@@ -6,8 +6,11 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
     public class UnitShowInformationViewModel : MonoBehaviour
     {
         [SerializeField] private List<ItemUnitStatView> _unitStatViews;
-        public void SetupStats(ShowStatsInformationComposite statInformationComposite)
+        [SerializeField] private UnitAvatarView _avatarView;
+        public void Setup(ShowStatsInformationComposite statInformationComposite)
         {
+            _avatarView.Setup(statInformationComposite);
+            
             int availableShowItem = _unitStatViews.Count < statInformationComposite.StatComposites.Count ? statInformationComposite.StatComposites.Count : _unitStatViews.Count;
             for (int i = 0; i < availableShowItem; i++)
             {
@@ -20,5 +23,6 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
                     _unitStatViews[i].gameObject.SetActive(false);
             }
         }
+        
     }
 }

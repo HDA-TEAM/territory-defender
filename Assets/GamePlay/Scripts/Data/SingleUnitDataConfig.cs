@@ -13,6 +13,10 @@ namespace GamePlay.Scripts.Data
         {
             _unitsData.TryGetValue(unitId, out UnitDataComposite unitDataComposite);
             return unitDataComposite;
-        }   
+        }
+        public bool IsExistUnit(T unitId)
+        {
+            return _unitsData.ContainsKey(unitId);
+        }
     }
 }

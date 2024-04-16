@@ -119,7 +119,7 @@ public class ListRuneViewModel : MonoBehaviour
         
         UpdateView(_preTowerDataAssetComposite.TowerId);
     }
-    private void UpdateView(TowerId towerId)
+    private void UpdateView(UnitId.Tower towerId)
     {
         var result = FindByTowerId(_towerDataAssetComposites, towerId);
         if (result.Equals(default(TowerDataAssetComposite)))
@@ -204,7 +204,7 @@ public class ListRuneViewModel : MonoBehaviour
         }
     }
     
-    private TowerDataAssetComposite FindByTowerId(List<TowerDataAssetComposite> list, TowerId towerId)
+    private TowerDataAssetComposite FindByTowerId(List<TowerDataAssetComposite> list, UnitId.Tower towerId)
     {
         foreach (var item in list)
         {
@@ -243,7 +243,7 @@ public struct InventoryComposite
 
 public struct TowerDataAssetComposite
 {
-    public TowerId TowerId;
+    public UnitId.Tower TowerId;
     public List<RuneComposite> RuneComposite;
 }
 

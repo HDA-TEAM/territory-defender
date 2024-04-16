@@ -8,10 +8,10 @@ using Path = System.IO.Path;
 [CreateAssetMenu(fileName = "CommonTowerSO", menuName = "ScriptableObject/DataAsset/CommonTowerSO")]
 public class CommonTowerSO : ScriptableObject
 {
-    public TowerId _towerId;
+    public UnitId.Tower _towerId;
     public List<RuneLevel> _runeLevels;
     
-    public TowerId GetTowerId()
+    public UnitId.Tower GetTowerId()
     {
         return _towerId;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TowerBuildTool : TowerToolBase
 {
-    [SerializeField] private TowerId _towerBuildId;
+    [SerializeField] private UnitId.Tower _towerBuildId;
     private UnitBase _towerCanBuild;
     protected void OnEnable()
     {

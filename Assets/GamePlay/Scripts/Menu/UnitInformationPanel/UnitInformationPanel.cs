@@ -8,9 +8,9 @@ public class UnitInformationPanel : MonoBehaviour
     [SerializeField] private RectTransform _rectTransformBoard;
     [SerializeField] private RectTransform _startPos;
     [SerializeField] private RectTransform _endPos;
-    
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _showHidePanelDuration = 0.3f;
+    
     [SerializeField] private UnitShowInformationViewModel _unitShowInformationViewModel;
     
     private bool _isShowing = false;
@@ -32,7 +32,7 @@ public class UnitInformationPanel : MonoBehaviour
         _rectTransformBoard.DOAnchorPosY(_endPos.anchoredPosition.y, _showHidePanelDuration);
         if (_isShowing)
             _isShowing = false;
-        _unitShowInformationViewModel.SetupStats(payload.UnitBase.UnitStatsHandlerComp().GetShowStatsInformation());
+        _unitShowInformationViewModel.Setup(payload.UnitBase.UnitStatsHandlerComp().GetShowStatsInformation());
         _isShowing = true;
     }
     private void HidePanelInformation(HideUnitInformationPayload payload)
