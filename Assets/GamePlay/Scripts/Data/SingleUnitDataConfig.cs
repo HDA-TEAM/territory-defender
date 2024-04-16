@@ -1,7 +1,8 @@
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.Datas;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Datas
+namespace GamePlay.Scripts.Data
 {
     public abstract class SingleUnitDataConfig<T> : ScriptableObject
     {

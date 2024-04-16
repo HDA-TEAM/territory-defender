@@ -1,5 +1,6 @@
 using CustomInspector;
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Data;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;

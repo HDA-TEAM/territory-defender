@@ -1,4 +1,5 @@
 using Common.Loading.Scripts;
+using GamePlay.Scripts.Data;
 using System;
 using UnityEngine;
 using UnityEngine.UI;

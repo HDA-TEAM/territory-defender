@@ -1,4 +1,5 @@
 using CustomInspector;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlay

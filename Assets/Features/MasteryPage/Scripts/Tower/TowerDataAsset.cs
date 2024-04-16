@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 

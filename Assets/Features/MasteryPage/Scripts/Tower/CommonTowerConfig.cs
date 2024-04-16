@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 

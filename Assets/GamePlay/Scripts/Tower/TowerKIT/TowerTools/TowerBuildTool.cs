@@ -1,4 +1,5 @@
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Data;
 using System;
 using UnityEngine;
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Datas
+namespace GamePlay.Scripts.Data
 {
     [Serializable]
     public struct UnitDataComposite
