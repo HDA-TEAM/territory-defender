@@ -20,20 +20,16 @@ namespace GamePlay.Scripts.Data
         #region Access
         public UnitDataComposite GetSingleUnitDataConfig(string key)
         {
-            var towerKey = Enum.Parse<UnitId.Tower>(key);
-            if (_towerDataConfig.IsExistUnit(towerKey))
+            if (Enum.TryParse(key, out UnitId.Tower towerKey))
                 return _towerDataConfig.GetUnitConfigById(towerKey);
             
-            var allyKey = Enum.Parse<UnitId.Ally>(key);
-            if (_allyTroopsDataConfig.IsExistUnit(allyKey))
+            if (Enum.TryParse(key, out UnitId.Ally allyKey))
                 return _allyTroopsDataConfig.GetUnitConfigById(allyKey);
             
-            var enemyKey = Enum.Parse<UnitId.Enemy>(key);
-            if (_enemyDataConfig.IsExistUnit(enemyKey))
+            if (Enum.TryParse(key, out UnitId.Enemy enemyKey))
                 return _enemyDataConfig.GetUnitConfigById(enemyKey);
             
-            var heroKey = Enum.Parse<UnitId.Hero>(key);
-            if (_heroDataConfig.IsExistUnit(heroKey))
+            if (Enum.TryParse(key, out UnitId.Hero heroKey))
                 return _heroDataConfig.GetUnitConfigById(heroKey);
 
             return new UnitDataComposite();

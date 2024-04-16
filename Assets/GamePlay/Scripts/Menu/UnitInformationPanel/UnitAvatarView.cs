@@ -13,7 +13,7 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
         public void Setup(ShowStatsInformationComposite statsInformationComposite)
         {
             _txtName.text = statsInformationComposite.Name;
-            Debug.Log(_totalUnitDataConfig.GetSingleUnitDataConfig(UnitId.Hero.TrungTrac.ToString()));
+            Debug.Log(_totalUnitDataConfig.GetSingleUnitDataConfig(UnitId.Hero.TrungTrac.ToString()).UnitBase.name);
         }
     }
 }
