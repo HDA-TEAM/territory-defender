@@ -9,6 +9,7 @@ public class Stats : ScriptableObject
     
     [SerializedDictionary("InformationId", "Value")]
     [SerializeField] private SerializedDictionary<InformationId, string> _informationDict = new SerializedDictionary<InformationId, string>();
+   
     #region Stats access
     public float GetStat(StatId statId)
     {
@@ -101,8 +102,6 @@ public enum StatId
     CoinNeedToBuild = 200,
     CoinNeedToUpgrade = 201,
     TimeToSpawnUnit = 202,
-
-
 }
 
 public enum TroopBehaviourType
