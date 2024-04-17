@@ -1,4 +1,5 @@
  using GamePlay.Scripts.Character.StateMachine;
+ using GamePlay.Scripts.Character.Stats;
 
  public class BaseHeroStateMachine : CharacterStateMachine
 {

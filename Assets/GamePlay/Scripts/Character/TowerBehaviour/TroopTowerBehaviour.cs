@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using GamePlay.Scripts.Character.Stats;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

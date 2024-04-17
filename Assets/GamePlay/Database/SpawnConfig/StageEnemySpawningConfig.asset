@@ -12,33 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb5a7f790e2444a697f5bc40b4b57d4, type: 3}
   m_Name: StageEnemySpawningConfig
   m_EditorClassIdentifier: 
-  StageId: 101
-  WavesSpawning:
-  - GroupsSpawning:
-    - StartSpawning: 0
-      ObjectSpawn: 200
-      RouteId: 1
-      NumberSpawning: 7
-    - StartSpawning: 0
-      ObjectSpawn: 220
-      RouteId: 2
-      NumberSpawning: 4
-    - StartSpawning: 2
-      ObjectSpawn: 210
-      RouteId: 0
-      NumberSpawning: 5
-  - GroupsSpawning:
-    - StartSpawning: 2
-      ObjectSpawn: 200
-      RouteId: 1
-      NumberSpawning: 7
-    - StartSpawning: 0
-      ObjectSpawn: 220
-      RouteId: 2
-      NumberSpawning: 4
-    - StartSpawning: 2
-      ObjectSpawn: 210
-      RouteId: 0
-      NumberSpawning: 5
-  TestWavesSpawning: {fileID: 0}
-  _data: '{"StageId":101,"WavesSpawning":[{"GroupsSpawning":[{"StartSpawning":0.0,"ObjectSpawn":200,"RouteId":1,"NumberSpawning":7},{"StartSpawning":0.0,"ObjectSpawn":220,"RouteId":2,"NumberSpawning":4},{"StartSpawning":2.0,"ObjectSpawn":210,"RouteId":0,"NumberSpawning":5}]},{"GroupsSpawning":[{"StartSpawning":0.0,"ObjectSpawn":200,"RouteId":1,"NumberSpawning":7},{"StartSpawning":0.0,"ObjectSpawn":220,"RouteId":2,"NumberSpawning":4},{"StartSpawning":2.0,"ObjectSpawn":210,"RouteId":0,"NumberSpawning":5}]}],"TestWavesSpawning":null,"name":"StageEnemySpawningConfig","hideFlags":0}'
+  _stageEnemySpawningConfigs:
+  - StageId: 100
+    WavesSpawning:
+    - GroupsSpawning:
+      - StartSpawning: 0
+        ObjectSpawn: 200
+        RouteId: 1
+        NumberSpawning: 1
+      - StartSpawning: 4
+        ObjectSpawn: 210
+        RouteId: 1
+        NumberSpawning: 2
+  - StageId: 101
+    WavesSpawning:
+    - GroupsSpawning:
+      - StartSpawning: 0
+        ObjectSpawn: 220
+        RouteId: 2
+        NumberSpawning: 4
+  _data: '[{"StageId":100,"WaveIndex":1,"StartSpawning":0.0,"ObjectSpawning":200,"RouteId":1,"NumberSpawning":1},{"StageId":100,"WaveIndex":1,"StartSpawning":4.0,"ObjectSpawning":210,"RouteId":1,"NumberSpawning":2},{"StageId":101,"WaveIndex":1,"StartSpawning":0.0,"ObjectSpawning":220,"RouteId":2,"NumberSpawning":4}]'

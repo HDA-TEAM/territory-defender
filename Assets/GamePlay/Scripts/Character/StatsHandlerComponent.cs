@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Menu.UnitInformationPanel;
 using System;
 using UnityEngine;
 
@@ -6,13 +8,17 @@ public class StatsHandlerComponent : UnitBaseComponent
     private Action _onSynStat;
     private BuffHandler _buffHandler;
     [SerializeField] private Stats _baseStats;
-
+    private ShowStatInformationSelector _statInformationSelector = new ShowStatInformationSelector();
     #region Access
     public BuffHandler BuffHandler
     {
         get => _buffHandler ?? new BuffHandler(SynData);
     }
     public Stats GetBaseStats() => _baseStats;
+    public ShowStatsInformationComposite GetShowStatsInformation()
+    {
+        return _statInformationSelector.GetShowUnitInformation(_unitBaseParent.UnitSide).GetShowStatsInformation(_baseStats);
+    }
     #endregion
 
     protected override void Start()

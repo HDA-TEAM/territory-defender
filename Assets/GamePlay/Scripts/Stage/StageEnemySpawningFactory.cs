@@ -1,6 +1,6 @@
-using AYellowpaper.SerializedCollections;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
+using GamePlay.Scripts.Data;
 using System;
 using System.Collections.Generic;
 using System.Threading;

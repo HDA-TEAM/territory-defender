@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Data;
 using System;
 using System.Collections.Generic;
 using Features.Home.Scripts.HomeScreen.Common;
@@ -79,7 +80,7 @@ public class ListRuneViewModel : MonoBehaviour
         
         UpdateView(_preTowerHasComposite.TowerId);
     }
-    private void UpdateView(TowerId towerId)
+    private void UpdateView(UnitId.Tower towerId)
     {
         var result = FindByTowerId(_towerRuneComposites, towerId);
         if (result.Equals(default(TowerHasRuneComposite)))
@@ -166,7 +167,8 @@ public class ListRuneViewModel : MonoBehaviour
         }
     }
     
-    private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, TowerId towerId)
+
+    private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
     {
         foreach (var item in list)
         {
@@ -206,7 +208,7 @@ public struct InventoryComposite
 
 public struct TowerHasRuneComposite
 {
-    public TowerId TowerId;
+    public UnitId.Tower TowerId;
     public List<RuneComposite> RuneComposite;
 }
 

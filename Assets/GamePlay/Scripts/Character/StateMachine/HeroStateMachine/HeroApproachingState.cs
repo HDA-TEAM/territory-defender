@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.Stats;
+
 public class HeroApproachingState : CharacterBaseState
 {
     private readonly BaseHeroStateMachine _context;

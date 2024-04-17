@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using UnityEngine;
 
 public class AllyApproachingState : CharacterBaseState

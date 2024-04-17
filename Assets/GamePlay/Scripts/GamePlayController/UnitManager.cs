@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlay;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
 {
     [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
     [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
-    
+
     private readonly List<Action> _onSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnitOutAction = new List<Action>();
@@ -26,9 +27,9 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     }
     private void OnSubscribe(UnitBase unitBase)
     {
-        if (unitBase.gameObject.CompareTag(UnitSideId.Enemy.ToString()))
+        if (UnitId.IsEnemySide(unitBase.UnitSide))
             _unitEnemies.Add(unitBase);
-        else if (unitBase.gameObject.CompareTag(UnitSideId.Ally.ToString()) || unitBase.gameObject.CompareTag(UnitSideId.Tower.ToString()))
+        else if (UnitId.IsAllySide(unitBase.UnitSide))
             _unitAllys.Add(unitBase);
     }
     // A de-active or unavailable unit will be UnSubscribe
@@ -38,17 +39,16 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     }
     private void OnUnSubscribe(UnitBase unitBase)
     {
-        if (unitBase.gameObject.CompareTag(UnitSideId.Enemy.ToString()) && _unitEnemies.Contains(unitBase))
+        if (UnitId.IsEnemySide(unitBase.UnitSide) && _unitEnemies.Contains(unitBase))
             _unitEnemies.Remove(unitBase);
-        else if ((unitBase.gameObject.CompareTag(UnitSideId.Ally.ToString()) || unitBase.gameObject.CompareTag(UnitSideId.Tower.ToString()))
-                 && _unitAllys.Contains(unitBase))
+        else if (UnitId.IsAllySide(unitBase.UnitSide) && _unitAllys.Contains(unitBase))
             _unitAllys.Remove(unitBase);
         NotifyAllUnit(unitBase);
     }
 
     // Reset single Unit from outside handle
     public void ResetTarget(UnitBase unitBase) => _onUnitOutAction.Add(() => NotifyAllUnit(unitBase));
-    
+
     // Update units on map
     public void Update()
     {
@@ -109,7 +109,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
         foreach (var action in _onUnitOutAction)
             action?.Invoke();
         _onUnitOutAction.Clear();
-        
+
         foreach (var action in _onSubscribeAction)
             action?.Invoke();
         _onSubscribeAction.Clear();

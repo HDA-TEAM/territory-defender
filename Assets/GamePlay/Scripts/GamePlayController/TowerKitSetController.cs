@@ -1,4 +1,5 @@
 using CustomInspector;
+using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using System;
 using System.Collections.Generic;

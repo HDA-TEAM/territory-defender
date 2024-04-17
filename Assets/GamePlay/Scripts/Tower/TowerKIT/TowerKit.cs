@@ -1,4 +1,6 @@
 using CustomInspector;
+using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Data;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
@@ -29,12 +31,10 @@ public class TowerKit : MonoBehaviour
     [SerializeField] private GameObject _spawnTowerHolder;
     [SerializeField] private Button _btnRange;
     [SerializeField] private SpriteRenderer _spiteFlag;
-
-    [FormerlySerializedAs("_towerDataAsset")]
+    
     [Header("Data"), Space(12)]
-    [SerializeField] private TowerDataConfig _towerDataConfig;
     [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
-    [SerializeField] private TowerId _towerId;
+    [SerializeField] private UnitId.Tower _towerId;
     [SerializeField] private UnitBase _unitBase;
     // Internal
     private TowerKitState _towerKitState;
@@ -57,7 +57,7 @@ public class TowerKit : MonoBehaviour
     private Action<TowerKit> _onSelected;
 
     #region Access
-    public TowerId GetTowerId() => _towerId;
+    public UnitId.Tower GetTowerId() => _towerId;
 
     public UnitBase GetUnitBase() => _unitBase;
     
@@ -138,7 +138,7 @@ public class TowerKit : MonoBehaviour
     {
         _onSelected = onSelected;
     }
-    public void SetTower(GameObject tower, TowerId towerId)
+    public void SetTower(GameObject tower, UnitId.Tower towerId)
     {
         _towerId = towerId;
         _towerEntity = tower;
