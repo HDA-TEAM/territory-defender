@@ -19,7 +19,7 @@ public class ListTowerViewModel : MonoBehaviour
         UpdateData();
         
         //Setup default state
-        _itemTowerViews[0].OnSelectedTower();
+        OnSelectedItem(_itemTowerViews[0]); 
     }
     private void OnDisable()
     {
@@ -63,6 +63,7 @@ public class ListTowerViewModel : MonoBehaviour
         }
 
         _preSelectedItem = itemTowerView;
+        _preSelectedItem.OnSelectedTower();
         
         Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
         

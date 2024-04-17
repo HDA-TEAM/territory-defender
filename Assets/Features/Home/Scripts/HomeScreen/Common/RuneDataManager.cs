@@ -10,7 +10,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         [SerializeField] private RuneDataAsset _runeDataAsset;
         [SerializeField] private CommonTowerConfig _commonTowerConfig;
 
-        public List<TowerRuneComposite> TowerRuneComposites { get; private set; }
+        public List<TowerHasRuneComposite> TowerRuneComposites { get; private set; }
         public CommonTowerConfig CommonTowerConfig => _commonTowerConfig;
         public RuneDataAsset RuneDataAsset => _runeDataAsset;
         
@@ -26,7 +26,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         {
             //Check and setup for Towers which had the rune
             if (TowerRuneComposites == null)
-                TowerRuneComposites = new List<TowerRuneComposite>();
+                TowerRuneComposites = new List<TowerHasRuneComposite>();
             else TowerRuneComposites.Clear();
             
             //Check and setup Runes
@@ -80,7 +80,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
                     }
                 }
                 
-                TowerRuneComposites.Add(new TowerRuneComposite
+                TowerRuneComposites.Add(new TowerHasRuneComposite
                 {
                     TowerId = towerSo.GetTowerId(),
                     RuneComposite = _runeComposites

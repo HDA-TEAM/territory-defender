@@ -18,10 +18,10 @@ public class ListRuneViewModel : MonoBehaviour
 
     // Internal
     private List<RuneLevel> _runeLevels;
-    private List<TowerRuneComposite> _towerRuneComposites;
+    private List<TowerHasRuneComposite> _towerRuneComposites;
     
     private InventoryComposite _inventoryComposite;
-    private TowerRuneComposite _preTowerComposite;
+    private TowerHasRuneComposite _preTowerHasComposite;
     private List<RuneSO> _runeSos;
     private RuneSO _preRuneSo;
     private ItemRuneView _preSelectedItem;
@@ -34,12 +34,14 @@ public class ListRuneViewModel : MonoBehaviour
     {
         _inventoryComposite = new InventoryComposite();
         UpdateData();
-        _runeDetailView.gameObject.SetActive(true);
-        _runeDetailView.UpdateCurrentRuneData(_preTowerComposite.RuneComposite[0]);
         
-        if (_listTowerViewModel != null)
-            _listTowerViewModel._onUpdateViewAction += UpdateView;
+        SetDefaultState();
 
+        if (_listTowerViewModel != null)
+        {
+            _listTowerViewModel._onUpdateViewAction += UpdateView;
+        }
+        
         if (_itemUpgradeRuneView != null)
         {
             _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
@@ -47,6 +49,14 @@ public class ListRuneViewModel : MonoBehaviour
             
             _onTowerDataUpdatedAction += UpdateData;
         }
+    }
+
+    private void SetDefaultState()
+    {
+        SetupRuneDetailView(true);
+        
+        _runeDetailView.UpdateCurrentRuneData(_itemRuneViews[0].RuneComposite);
+        OnSelectedRuneItem(_itemRuneViews[0]);
     }
     
     private void UpdateData()
@@ -64,21 +74,21 @@ public class ListRuneViewModel : MonoBehaviour
         _inventoryComposite.StarNumber = _inventoryRuntimeData.GetStarValue();
 
         // Default setting
-        if (_preTowerComposite.RuneComposite == null)
-            _preTowerComposite = _towerRuneComposites[0];
+        if (_preTowerHasComposite.RuneComposite == null)
+            _preTowerHasComposite = _towerRuneComposites[0];
         
-        UpdateView(_preTowerComposite.TowerId);
+        UpdateView(_preTowerHasComposite.TowerId);
     }
     private void UpdateView(TowerId towerId)
     {
         var result = FindByTowerId(_towerRuneComposites, towerId);
-        if (result.Equals(default(TowerRuneComposite)))
+        if (result.Equals(default(TowerHasRuneComposite)))
         {
             Debug.LogError("UpdateView: result is default, no update performed");
             return;
         }
         
-        _preTowerComposite = result;
+        _preTowerHasComposite = result;
         
         for (int runeIndex = 0; runeIndex < _itemRuneViews.Count; runeIndex++)
         {
@@ -98,11 +108,12 @@ public class ListRuneViewModel : MonoBehaviour
         // Update rune data when updated the level of that rune
         if (_runeDetailView != null && _preSelectedItem != null && _itemUpgradeRuneView != null)
         {
-            foreach (var runeComposite in _preTowerComposite.RuneComposite)
+            foreach (var runeComposite in _preTowerHasComposite.RuneComposite)
             {
                 if (runeComposite.RuneId == _preSelectedItem.RuneComposite.RuneId)
                 {
                     _runeDetailView.UpdateCurrentRuneData(runeComposite);
+                    //OnSelectedRuneItem();
                 }
             }
         }
@@ -110,7 +121,6 @@ public class ListRuneViewModel : MonoBehaviour
 
     private void OnSelectedRuneItem(ItemRuneView itemRuneView)
     {
-        SetupRuneDetailView(true);
         if (_preSelectedItem == null)
         {
             _itemUpgradeRuneView.gameObject.SetActive(true);
@@ -141,11 +151,10 @@ public class ListRuneViewModel : MonoBehaviour
             if (_preRuneSo != null)
             {
                 var commonTowerConfig = RuneDataManager.Instance.CommonTowerConfig;
-                commonTowerConfig.UpdateTowerData(_preTowerComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
+                commonTowerConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
             
                 // Subtract star number
                 _inventoryRuntimeData.TryChangeStar(1);
-        
                 
                 Debug.Log("Upgrade rune successful....");
                 
@@ -157,7 +166,7 @@ public class ListRuneViewModel : MonoBehaviour
         }
     }
     
-    private TowerRuneComposite FindByTowerId(List<TowerRuneComposite> list, TowerId towerId)
+    private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, TowerId towerId)
     {
         foreach (var item in list)
         {
@@ -168,7 +177,7 @@ public class ListRuneViewModel : MonoBehaviour
             }
         }
         Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
-        return default(TowerRuneComposite); 
+        return default(TowerHasRuneComposite); 
     }
 
     public void SetupRuneDetailView(bool flag)
@@ -195,7 +204,7 @@ public struct InventoryComposite
     public float StarNumber;
 }
 
-public struct TowerRuneComposite
+public struct TowerHasRuneComposite
 {
     public TowerId TowerId;
     public List<RuneComposite> RuneComposite;
