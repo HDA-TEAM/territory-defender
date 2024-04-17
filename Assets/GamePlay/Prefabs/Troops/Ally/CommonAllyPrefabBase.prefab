@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5162d0bad54a78acb16d0480d7749a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _unitSideId: 3
   _targetSidesNeeding: 02000000
   _unitController: {fileID: 3682937682380316613}
   _characterStateMachine: {fileID: 666001084183805972}
@@ -250,11 +251,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
+  _testClip: {fileID: 0}
   _animancerComponent: {fileID: 4242539180125077310}
   MovingClip: {fileID: 0}
   NormalAttackClip: {fileID: 0}
   IdleClip: {fileID: 0}
   DeadClip: {fileID: 0}
+  FirstActiveSkillClip: {fileID: 0}
 --- !u!1 &3471298441881994424
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _eUserAction: 0
-  _skillsDataAsset: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
+  _skillsDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
 --- !u!1 &5863931160695732911
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using GamePlay.Scripts.Character.Stats;
 using System;
 using TMPro;
 using UnityEngine;

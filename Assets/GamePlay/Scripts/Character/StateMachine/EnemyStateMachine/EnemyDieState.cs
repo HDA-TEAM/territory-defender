@@ -24,7 +24,7 @@ public class EnemyDieState : CharacterDieState
     public override void ExitState()
     {
         Context.AnimationController.StopAllClip();
-        PoolingController.Instance.ReturnPool(Context.gameObject, UnitSideId.Enemy);
+        PoolingController.Instance.ReturnPool(Context.gameObject, UnitId.BaseId.Enemy);
     }
     // public override void CheckSwitchState()
     // {

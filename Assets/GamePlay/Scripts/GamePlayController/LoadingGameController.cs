@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 

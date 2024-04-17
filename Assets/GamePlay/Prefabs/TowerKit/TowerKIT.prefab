@@ -353,10 +353,11 @@ MonoBehaviour:
   _towerUsingTool: {fileID: 6496181943433739409}
   _spawnTowerHolder: {fileID: 0}
   _btnRange: {fileID: 4455299563947938354}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _spiteFlag: {fileID: 0}
   _inventoryRuntime: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _towerId: 0
   _unitBase: {fileID: 0}
+  _totalUsedCoin: 0
 --- !u!1001 &118501955251462204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -531,10 +532,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 2789528972889128683}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 491974220771195605}
-  _towerBuildId: 40
+  _towerBuildId: 320
 --- !u!114 &491974220771195605 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 537853690581916393, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -575,10 +576,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 3697810427918902548}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 1383995823105728810}
-  _towerBuildId: 60
+  _towerBuildId: 330
 --- !u!114 &2789528972889128683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2815705469208010455, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -641,10 +642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 8865507410867492243}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 6587972564454838701}
-  _towerBuildId: 1
+  _towerBuildId: 300
 --- !u!224 &6832461592147819696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878341852308413580, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -696,10 +697,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 5482125966187145751}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 7814271628858601001}
-  _towerBuildId: 20
+  _towerBuildId: 310
 --- !u!114 &7814271628858601001 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7914194826880634389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -1001,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 2490724114247571215}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfig: {fileID: 0}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 213188994970276657}
 --- !u!114 &1285741066417378361 stripped

@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 public class GamePlayPopup : MonoBehaviour

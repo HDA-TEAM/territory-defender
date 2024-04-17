@@ -1,5 +1,6 @@
 using DG.Tweening;
 using GamePlay.Scripts.Character.StateMachine;
+using GamePlay.Scripts.Character.Stats;
 
 public class CharacterAttackState : CharacterBaseState
 {

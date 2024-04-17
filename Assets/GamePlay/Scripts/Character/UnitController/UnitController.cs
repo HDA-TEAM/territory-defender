@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
 
 public class UnitController : UnitBaseComponent

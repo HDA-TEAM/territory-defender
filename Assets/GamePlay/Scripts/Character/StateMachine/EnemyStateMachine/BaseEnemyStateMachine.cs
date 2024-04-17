@@ -1,3 +1,5 @@
+using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
