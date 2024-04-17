@@ -1,6 +1,7 @@
 using CustomInspector;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Tower.TowerKIT.PreviewUpgradeTooltip;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
@@ -32,7 +33,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private GameObject _spawnTowerHolder;
         [SerializeField] private Button _btnRange;
         [SerializeField] private SpriteRenderer _spiteFlag;
-    
+
+        [Header("Preview Tooltip"), Space(12)]
+        [SerializeField] private HandleShowUpgradeTooltip _showUpgradeTooltip;
+        
         [Header("Data"), Space(12)]
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
         [SerializeField] private UnitId.Tower _towerId;
@@ -148,6 +152,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         public void SetTower(GameObject tower, UnitId.Tower towerId)
         {
+            _showUpgradeTooltip.ShowTooltip(new PreviewUpgradeTooltipComposite());
             _towerId = towerId;
             _towerEntity = tower;
             _unitBase = _towerEntity.GetComponent<UnitBase>();
@@ -182,7 +187,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             Destroy(_towerEntity);
             TowerKitState = TowerKitState.Default;
         }
-        public void SetFlagActive(bool isActive)
+        private void SetFlagActive(bool isActive)
         {
             _btnRange.gameObject.SetActive(isActive);
             _spiteFlag.gameObject.SetActive(isActive);
