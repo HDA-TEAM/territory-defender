@@ -10,11 +10,14 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
         public void Setup(ShowStatsInformationComposite statInformationComposite)
         {
             _avatarView.Setup(statInformationComposite);
-            
-            int availableShowItem = _unitStatViews.Count < statInformationComposite.StatComposites.Count ? statInformationComposite.StatComposites.Count : _unitStatViews.Count;
-            for (int i = 0; i < availableShowItem; i++)
+            SetupStatsView(statInformationComposite);
+        }
+        private void SetupStatsView(ShowStatsInformationComposite statInformationComposite)
+        {
+            int availableShowItem = statInformationComposite.StatComposites.Count;
+            for (int i = 0; i < _unitStatViews.Count; i++)
             {
-                if (i < _unitStatViews.Count)
+                if (i < availableShowItem)
                 {
                     _unitStatViews[i].gameObject.SetActive(true);
                     _unitStatViews[i].Setup(statInformationComposite.StatComposites[i]);
@@ -23,6 +26,5 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
                     _unitStatViews[i].gameObject.SetActive(false);
             }
         }
-        
     }
 }
