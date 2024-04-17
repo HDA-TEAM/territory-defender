@@ -22,6 +22,7 @@ public class UserActionHeroBaseController : UserActionController
             return;
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
+            UnitSelectionShowType = EUnitSelectionShowType.ShowInformationPanelAndBlockRaycast,
             IsOn = true,
             callback = SetMovingPosition,
         });
