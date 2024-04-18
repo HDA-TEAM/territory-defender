@@ -14,10 +14,8 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageId _currentStageId;
     
         [SerializeField] private List<SingleRoute> _currentSingleRouteComposite = new List<SingleRoute>();
-        [SerializeField] private StageDataAsset _stageDataAsset;
         [SerializeField] private RouteSetConfig _routeSetConfig;
         [SerializeField] private CallWaveViewModel _callWaveViewModel;
-        private StageConfig _stageConfig;
         public List<SingleRoute> CurrentSingleRouteLineRenderers
         {
             get

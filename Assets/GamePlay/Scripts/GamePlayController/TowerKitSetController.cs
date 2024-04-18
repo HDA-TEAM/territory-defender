@@ -17,10 +17,8 @@ namespace GamePlay.Scripts.GamePlayController
 
         [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
         [SerializeField] private List<TowerKit> _currentTowerKits = new List<TowerKit>();
-        [SerializeField] private StageDataAsset _stageDataAsset;
         public TowerKit CurrentSelectedKit;
         private TowerKit _preSelectedKit;
-        private StageConfig _stageConfig;
         private Action _onSelected;
 
         // public List<TowerKit> CurrentTowerKits

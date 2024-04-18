@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
-    public abstract class DataConfigBase<Key,Val> : ScriptableObject
+    public abstract class DataConfigBase<TKey,TVal> : ScriptableObject
     {
-        [SerializeField] [SerializedDictionary("Key","Val")]
-        private SerializedDictionary<Key,Val> _unitsData;
+        [SerializeField] [SerializedDictionary("TKey","TVal")]
+        protected SerializedDictionary<TKey,TVal> _data;
         
-        public Val GetUnitConfigById(Key unitId)
+        public TVal GetUnitConfigById(TKey unitId)
         {
-            _unitsData.TryGetValue(unitId, out Val unitDataComposite);
+            _data.TryGetValue(unitId, out TVal unitDataComposite);
             return unitDataComposite;
         }
-        public bool IsExistUnit(Key unitId)
+        public bool IsExistUnit(TKey unitId)
         {
-            return _unitsData.ContainsKey(unitId);
+            return _data.ContainsKey(unitId);
         }
     }
 }
