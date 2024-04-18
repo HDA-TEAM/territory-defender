@@ -15,7 +15,7 @@ namespace GamePlay.Scripts.GamePlay
 
         public void ShowStageSuccessPu()
         {
-            StageId stageId = InGameStateController.Instance.CurStageId;
+            StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
             int maxLife = _stageInventoryConfig.GetStageInventory(stageId).MaxLife;
             int curLife = _inventoryRuntimeData.GetLifeValue();
             _stageSuccessPu.gameObject.SetActive(true);
