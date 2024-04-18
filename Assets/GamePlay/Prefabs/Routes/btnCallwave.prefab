@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8515694657299704713}
   - component: {fileID: 5364765575055740217}
   - component: {fileID: 7902343752871627106}
-  - component: {fileID: 1903680820145063828}
   - component: {fileID: 5170727088732327072}
   m_Layer: 0
   m_Name: btnCallwave
@@ -122,19 +121,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1903680820145063828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5442627984112807645}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e662e0688eca6430cbffc425c7dee25a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _callWaveView: {fileID: 5170727088732327072}
 --- !u!114 &5170727088732327072
 MonoBehaviour:
   m_ObjectHideFlags: 0

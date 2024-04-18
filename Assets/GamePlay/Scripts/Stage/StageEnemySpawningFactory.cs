@@ -68,10 +68,10 @@ public class StageEnemySpawningFactory : MonoBehaviour
         }
     }
     
-    private void SetRoute(GameObject go, int RouteId)
+    private void SetRoute(GameObject go, int routeId)
     {
         go.TryGetComponent(out BaseEnemyStateMachine component);
-        component.RouteToGate = RouteSetController.Instance.CurrentSingleRouteLineRenderers[RouteId].SingleLineRenderer;
+        component.RouteToGate = RouteSetController.Instance.CurrentSingleRouteLineRenderers[routeId].SingleLineRenderer;
         go.transform.position = component.RouteToGate.GetPosition(0);
     }
     private void UpdateStats(GameObject go)

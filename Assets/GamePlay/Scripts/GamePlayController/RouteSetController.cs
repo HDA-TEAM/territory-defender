@@ -16,7 +16,7 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private List<SingleRoute> _currentSingleRouteComposite = new List<SingleRoute>();
         [SerializeField] private StageDataAsset _stageDataAsset;
         [SerializeField] private RouteSetConfig _routeSetConfig;
-    
+        [SerializeField] private CallWaveViewModel _callWaveViewModel;
         private StageConfig _stageConfig;
         public List<SingleRoute> CurrentSingleRouteLineRenderers
         {
@@ -51,7 +51,7 @@ namespace GamePlay.Scripts.GamePlayController
                 // add RouteSetConfig.RouteLine
                 routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
                 {
-                    CallwaveButtonPos = _currentSingleRouteComposite[i].CallWaveViewModel.transform.position,
+                    CallwaveButtonPos = _currentSingleRouteComposite[i].CallWaveView.transform.position,
                     PointSet = new List<Vector3>()
                 });
 
@@ -64,6 +64,7 @@ namespace GamePlay.Scripts.GamePlayController
 
         private void LoadFromConfig()
         {
+            List<CallWaveView> callWaveViews = new List<CallWaveView>();
             RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
             int lineCount = lineRouteSet.RouteLines.Count;
             for (int i = 0; i < lineCount; i++)
@@ -76,8 +77,9 @@ namespace GamePlay.Scripts.GamePlayController
                 }
             
                 // Set call wave button pos
-                _currentSingleRouteComposite[i].CallWaveViewModel.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
-            
+                _currentSingleRouteComposite[i].CallWaveView.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
+                callWaveViews.Add(_currentSingleRouteComposite[i].CallWaveView);
+                
                 // Check if this lineRender available to save
                 _currentSingleRouteComposite[i].SingleLineRenderer.gameObject.SetActive(true);
 
@@ -93,6 +95,7 @@ namespace GamePlay.Scripts.GamePlayController
                             lineRouteSet.RouteLines[i].PointSet[j].y,
                             0));
             }
+            _callWaveViewModel.Setup(callWaveViews, _currentStageId);
         }
         public Vector3 GetNearestPosFromRoute(Vector3 posA)
         {

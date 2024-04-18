@@ -16,7 +16,11 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
     private InGameInventoryRuntimeData _inventoryRuntimeData;
     [SerializeField] private GameResultHandler _resultsController;
     [SerializeField] private StageInventoryConfig _stageInventoryConfig;
-    
+    [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
+
+    private bool _isFinishSpawn;
+    private int _totalEnemySpawning;
+
     // Access
     public StageId CurStageId { get; private set; }
     public bool IsGamePlaying { get; private set; }
@@ -28,6 +32,12 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
         _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(CurStageId));
         _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
     }
+    public void Start()
+    {
+        _totalEnemySpawning = 0;
+        _isFinishSpawn = false;
+        IsGamePlaying = true;
+    }
     protected override void OnDestroy()
     {
         _inventoryRuntimeData.UnRegisterLifeChange(OnLifeChange);
@@ -36,7 +46,10 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
     {
         CheckingEndGame(life);
     }
-    
+    private bool IsStageSuccess()
+    {
+        return _isFinishSpawn && _totalEnemySpawning <= 0;
+    }
     public void CheckingStageSuccess(int enemyDie = 1)
     {
         _totalEnemySpawning -= enemyDie;
@@ -59,5 +72,14 @@ public partial class InGameStateController : GamePlaySingletonBase<InGameStateCo
             _resultsController.ShowStageFailedPu();
         }
     }
-
+    public void StartGame()
+    {
+        var spawningConfig = _enemySpawningFactory.SpawningConfig.FindSpawningConfig(StageId.Chap1Stage0);
+        _totalEnemySpawning = spawningConfig.GetTotalUnitsSpawning();
+        _enemySpawningFactory.StartSpawning(StageId.Chap1Stage0,OnFinishedSpawning);
+    }
+    private void OnFinishedSpawning()
+    {
+        _isFinishSpawn = true;
+    }
 }

@@ -4,7 +4,7 @@ namespace GamePlay.Scripts.Route
 {
     public class SingleRoute : MonoBehaviour
     {
-        public CallWaveViewModel CallWaveViewModel; 
+        public CallWaveView CallWaveView; 
         public LineRenderer SingleLineRenderer;
     }
 }

@@ -3751,6 +3751,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566878312}
   - component: {fileID: 566878310}
+  - component: {fileID: 566878313}
   m_Layer: 0
   m_Name: RouteSet
   m_TagString: Untagged
@@ -3779,6 +3780,7 @@ MonoBehaviour:
   - {fileID: 179177064}
   _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   _routeSetConfig: {fileID: 11400000, guid: e1eded6cc7a48472e8f100ce576fe75f, type: 2}
+  _callWaveViewModel: {fileID: 566878313}
 --- !u!4 &566878312
 Transform:
   m_ObjectHideFlags: 0
@@ -3799,6 +3801,19 @@ Transform:
   - {fileID: 179177063}
   m_Father: {fileID: 1736963593}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &566878313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566878308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e662e0688eca6430cbffc425c7dee25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageEnemySpawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
 --- !u!1 &635046254
 GameObject:
   m_ObjectHideFlags: 0
@@ -9555,8 +9570,8 @@ MonoBehaviour:
   _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _resultsController: {fileID: 1804081924}
   _stageInventoryConfig: {fileID: 11400000, guid: 94e3cd205209840fa9b4d374944ff88f, type: 2}
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   _enemySpawningFactory: {fileID: 1804081920}
+  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
 --- !u!114 &1804081920
 MonoBehaviour:
   m_ObjectHideFlags: 0
