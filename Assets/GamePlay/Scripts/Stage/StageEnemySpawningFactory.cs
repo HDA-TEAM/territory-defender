@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -69,7 +70,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
     private void SetRoute(GameObject go, int RouteId)
     {
         go.TryGetComponent(out BaseEnemyStateMachine component);
-        component.RouteToGate = RouteSetController.Instance.CurrentRouteLineRenderers[RouteId];
+        component.RouteToGate = RouteSetController.Instance.CurrentSingleRouteLineRenderers[RouteId].SingleLineRenderer;
         go.transform.position = component.RouteToGate.GetPosition(0);
     }
     private void UpdateStats(GameObject go)
