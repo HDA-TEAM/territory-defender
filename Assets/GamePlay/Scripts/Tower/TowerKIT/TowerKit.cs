@@ -5,6 +5,7 @@ using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Tower.TowerKIT
@@ -35,7 +36,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private SpriteRenderer _spiteFlag;
 
         [Header("Preview Tooltip"), Space(12)]
-        [SerializeField] private HandleShowTooltip _showTooltip;
+        [SerializeField] private HandleTowerShowTooltip _towerShowTooltip;
         
         [Header("Data"), Space(12)]
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
@@ -110,7 +111,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _spiteFlag.gameObject.SetActive(false);
             _towerBuildTool.SetActive(false);
             _towerUsingTool.SetActive(false);
-            _showTooltip.HideAll();
+            _towerShowTooltip.HideAll();
             switch (_towerKitState)
             {
                 case TowerKitState.Default:
@@ -167,9 +168,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _towerEntity.transform.position = _spawnTowerHolder.transform.position;
             TowerKitState = TowerKitState.Hiding;
         }
-        public void ShowPreviewChanging(PreviewTooltipBase previewTooltipBase)
+        public void ShowPreviewChanging(TowerPreviewToolTipBase towerPreviewToolTipBase)
         {
-            _showTooltip.ShowTooltip(previewTooltipBase);
+            _towerShowTooltip.ShowTooltip(towerPreviewToolTipBase);
         }
         public void UpgradeTower()
         {

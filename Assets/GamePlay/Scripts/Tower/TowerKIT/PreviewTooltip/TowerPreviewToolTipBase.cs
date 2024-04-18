@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 {
-    public abstract class PreviewTooltipBase
+    public abstract class TowerPreviewToolTipBase
     {
         protected string _title;
         protected string _desc;
@@ -21,9 +21,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
         }
     }
 
-    public class PreviewBuiltTowerTooltip : PreviewTooltipBase
+    public class TowerPreviewBuiltTowerToolTip : TowerPreviewToolTipBase
     {
-        public PreviewBuiltTowerTooltip(TowerDataConfig towerDataConfig, UnitId.Tower towerId)
+        public TowerPreviewBuiltTowerToolTip(TowerDataConfig towerDataConfig, UnitId.Tower towerId)
         {
             StatsHandlerComponent towerStats = towerDataConfig.GetUnitConfigById(towerId).UnitBase.UnitStatsHandlerComp();
             _statComposites = towerStats.GetShowStatsInformation().StatComposites;
@@ -31,9 +31,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
             _title = towerStats.GetBaseStats().GetInformation(InformationId.Name);
         }
     }
-    public class PreviewSoldTooltipComposite : PreviewTooltipBase
+    public class TowerPreviewSoldToolTipComposite : TowerPreviewToolTipBase
     {
-        public PreviewSoldTooltipComposite(string price)
+        public TowerPreviewSoldToolTipComposite(string price)
         {
             _title = "SELL TOWER";
             _desc = $"SELL THIS TOWER AND GET A {price} COINS REFUND.";

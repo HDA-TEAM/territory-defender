@@ -27,7 +27,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         protected override void ShowPreviewChanging()
         {
             _towerKit.ShowPreviewChanging(
-                new PreviewBuiltTowerTooltip(_towerDataConfig, _towerBuildId)
+                new TowerPreviewBuiltTowerToolTip(_towerDataConfig, _towerBuildId)
             );
         }
     }

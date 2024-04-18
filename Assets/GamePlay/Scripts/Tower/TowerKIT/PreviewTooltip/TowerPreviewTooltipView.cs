@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 {
-    public class PreviewTooltipView : MonoBehaviour
+    public class TowerPreviewTooltipView : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _txtTitle;
         [SerializeField] private TextMeshProUGUI _txtDesc;

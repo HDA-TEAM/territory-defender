@@ -11,7 +11,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         protected override void ShowPreviewChanging()
         {
             _towerKit.ShowPreviewChanging(
-                new PreviewSoldTooltipComposite(_towerKit.GetSoldTowerCoin().ToString()
+                new TowerPreviewSoldToolTipComposite(_towerKit.GetSoldTowerCoin().ToString()
                 )
             );
         }
