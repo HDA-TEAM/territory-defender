@@ -357,7 +357,7 @@ MonoBehaviour:
   _spawnTowerHolder: {fileID: 0}
   _btnRange: {fileID: 4455299563947938354}
   _spiteFlag: {fileID: 0}
-  _showUpgradeTooltip: {fileID: 2354289473595426542}
+  _showTooltip: {fileID: 2354289473595426542}
   _inventoryRuntime: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _towerId: 0
   _unitBase: {fileID: 0}
@@ -374,8 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1919ce766494b06bc038a2a5876ecd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _previewUpgradeTooltipLeft: {fileID: 1046754264015362221}
-  _previewUpgradeTooltipRight: {fileID: 9176224190503364399}
+  _previewTooltipLeft: {fileID: 1046754264015362221}
+  _previewTooltipRight: {fileID: 9176224190503364399}
 --- !u!1001 &118501955251462204
 PrefabInstance:
   m_ObjectHideFlags: 0

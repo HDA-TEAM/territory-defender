@@ -2,23 +2,17 @@ using GamePlay.Scripts.Menu.UnitInformationPanel;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Tower.TowerKIT.PreviewUpgradeTooltip
+namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 {
-    public struct PreviewUpgradeTooltipComposite
-    {
-        public string Title;
-        public string Desc;
-        public List<ItemStatComposite> StatComposites;
-    }
 
     public class PreviewUpgradeTooltipViewModel : MonoBehaviour
     {
         [SerializeField] private PreviewUpgradeTooltipView _previewUpgradeTooltipView;
         [SerializeField] private List<ItemUnitStatView> _unitStatViews;
-        public void Setup(PreviewUpgradeTooltipComposite previewUpgradeTooltipComposite)
+        public void Setup(PreviewTooltipComposite previewTooltipComposite)
         {
-            _previewUpgradeTooltipView.Setup(previewUpgradeTooltipComposite);
-            SetupStatsView(previewUpgradeTooltipComposite.StatComposites);
+            _previewUpgradeTooltipView.Setup(previewTooltipComposite);
+            SetupStatsView(previewTooltipComposite.StatComposites);
         }
         private void SetupStatsView(List<ItemStatComposite> statComposites)
         {

@@ -1,4 +1,5 @@
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Tower.TowerKIT;
 using System;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -18,8 +19,12 @@ public abstract class TowerToolBase : MonoBehaviour
     [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
     [SerializeField] protected ConfirmHandle _confirmHandle;
     public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
-    private void Start() => _confirmHandle.SetUpTool(Apply);
-    protected virtual void Apply() {}
+    private void Start()
+    {
+        _confirmHandle.SetUpTool(ApplyTool, ShowPreviewChanging);
+    }
+    protected virtual void ShowPreviewChanging(){}
+    protected virtual void ApplyTool() {}
 }
 // public class TowerUpgradeTool : TowerToolBase
 // {

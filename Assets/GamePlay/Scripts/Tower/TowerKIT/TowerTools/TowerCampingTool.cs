@@ -17,7 +17,7 @@ public class TowerCampingTool : TowerToolBase
         }
         return true;
     }
-    protected override void Apply()
+    protected override void ApplyTool()
     {
         TowerKitSetController.Instance.CurrentSelectedKit.ActiveCampingMode();
     }

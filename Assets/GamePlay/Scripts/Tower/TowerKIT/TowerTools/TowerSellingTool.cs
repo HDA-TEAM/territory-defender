@@ -1,6 +1,6 @@
 public class TowerSellingTool : TowerToolBase
 {
-    protected override void Apply()
+    protected override void ApplyTool()
     {
         TowerKitSetController.Instance.CurrentSelectedKit.SellingTower();
     }
