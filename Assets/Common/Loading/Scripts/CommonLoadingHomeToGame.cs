@@ -14,7 +14,7 @@ namespace Common.Loading.Scripts
         Hard = 1,
         Evil = 2,
     }
-    
+    [Serializable]
     public struct StartStageComposite
     {
         public StageId StageId;

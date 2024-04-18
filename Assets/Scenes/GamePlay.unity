@@ -1918,6 +1918,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 566878312}
     m_Modifications:
+    - target: {fileID: 5210221496429909323, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5224411881897850041, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3778,7 +3782,6 @@ MonoBehaviour:
   - {fileID: 313114709}
   - {fileID: 415425532}
   - {fileID: 179177064}
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   _routeSetConfig: {fileID: 11400000, guid: e1eded6cc7a48472e8f100ce576fe75f, type: 2}
   _callWaveViewModel: {fileID: 566878313}
 --- !u!4 &566878312
@@ -8384,6 +8387,10 @@ PrefabInstance:
       propertyPath: m_Player.play
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5210221496429909323, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5224411881897850041, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9571,7 +9578,10 @@ MonoBehaviour:
   _resultsController: {fileID: 1804081924}
   _stageInventoryConfig: {fileID: 11400000, guid: 94e3cd205209840fa9b4d374944ff88f, type: 2}
   _enemySpawningFactory: {fileID: 1804081920}
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
+  _startStageComposite:
+    StageId: 100
+    HeroId: 400
+    StageDiff: 0
 --- !u!114 &1804081920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10584,7 +10594,6 @@ MonoBehaviour:
   - {fileID: 430941332}
   - {fileID: 915480451}
   - {fileID: 31342020}
-  _stageDataAsset: {fileID: 11400000, guid: 8e979f6ade5ce4b18bf27d9a789fde5b, type: 2}
   CurrentSelectedKit: {fileID: 0}
 --- !u!1001 &1930285426
 PrefabInstance:

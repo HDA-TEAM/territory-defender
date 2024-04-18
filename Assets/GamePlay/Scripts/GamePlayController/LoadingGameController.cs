@@ -1,10 +1,25 @@
 using Common.Loading.Scripts;
+using CustomInspector;
+using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
     public partial class InGameStateController 
     {
-        private StartStageComposite _startStageComposite;
+#if UNITY_EDITOR
+        public void SetUpTestNewGame(StartStageComposite startStageComposite)
+        {
+            _startStageComposite = startStageComposite;
+            IsGamePlaying = true;
+            RouteSetController.Instance.SetUpNewGame(startStageComposite);
+            TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
+            PoolingController.Instance.SetUpNewGame(startStageComposite);
+        }
+        [Button("SetUpTestNewGame",usePropertyAsParameter: true)]
+#endif
+       
+        [SerializeField] private StartStageComposite _startStageComposite;
+        
         public StartStageComposite StartStageComposite
         {
             get
