@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Data.StageSpawning;
 using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;

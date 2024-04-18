@@ -51,7 +51,7 @@ namespace GamePlay.Scripts.GamePlayController
                 // add RouteSetConfig.RouteLine
                 routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
                 {
-                    CallwaveButtonPos = _currentSingleRouteComposite[i].ButtonCallWave.transform.position,
+                    CallwaveButtonPos = _currentSingleRouteComposite[i].CallWaveViewModel.transform.position,
                     PointSet = new List<Vector3>()
                 });
 
@@ -76,7 +76,7 @@ namespace GamePlay.Scripts.GamePlayController
                 }
             
                 // Set call wave button pos
-                _currentSingleRouteComposite[i].ButtonCallWave.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
+                _currentSingleRouteComposite[i].CallWaveViewModel.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
             
                 // Check if this lineRender available to save
                 _currentSingleRouteComposite[i].SingleLineRenderer.gameObject.SetActive(true);
