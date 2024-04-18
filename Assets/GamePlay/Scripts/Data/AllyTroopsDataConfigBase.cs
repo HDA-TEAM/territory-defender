@@ -1,3 +1,4 @@
+using Common.Scripts;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data

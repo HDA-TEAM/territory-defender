@@ -1,3 +1,4 @@
+using Common.Scripts;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
@@ -5,10 +6,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface OnReviveUnit
-{
-    
-}
 public class TroopTowerBehaviour : UnitBaseComponent
 {
     // Default 3 units

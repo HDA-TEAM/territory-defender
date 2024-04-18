@@ -7,6 +7,13 @@ using UnityEngine.Scripting;
 
 namespace GamePlay.Scripts.Data
 {
+    public enum StageId
+    {
+        Chap1Stage0 = 100,
+        Chap1Stage1 = 101,
+        Chap1Stage2 = 102,
+    }
+    
     [Serializable,Preserve]
     public struct StageConfig
     {

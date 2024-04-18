@@ -1,6 +1,7 @@
+using Common.Loading.Scripts;
+using Common.Scripts;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Data
 {
@@ -13,13 +14,9 @@ namespace GamePlay.Scripts.Data
     [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
     public class TotalUnitDataConfig : ScriptableObject
     {
-        [FormerlySerializedAs("_towerDataConfig")]
         [SerializeField] private TowerDataConfigBase _towerDataConfigBase;
-        [FormerlySerializedAs("_allyTroopsDataConfig")]
         [SerializeField] private AllyTroopsDataConfigBase _allyTroopsDataConfigBase;
-        [FormerlySerializedAs("_enemyDataConfig")]
         [SerializeField] private EnemyDataConfigBase _enemyDataConfigBase;
-        [FormerlySerializedAs("_heroDataConfig")]
         [SerializeField] private InGameHeroDataConfigBase _heroDataConfigBase;
 
         #region Access

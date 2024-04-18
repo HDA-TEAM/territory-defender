@@ -1,8 +1,7 @@
-
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
-using GamePlay.Scripts.Data;
+using Common.Scripts;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -53,11 +52,11 @@ public class CommonTowerConfig : ScriptableObject
                 // RuneId does not exist, add a new rune
                 AddRune(curTower, runeLevel);
             }
-            
+
             _towerDataAsset.SaveTowers(_towerTypeDict);
         }
     }
-    
+
     private void AddRune(CommonTowerSO towerSo, RuneLevel runeLevel)
     {
         if (towerSo._runeLevels == null)
@@ -77,7 +76,7 @@ public class CommonTowerConfig : ScriptableObject
         towerSo._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
     }
 
-    
+
     private void UpdateRune(CommonTowerSO towerSo, int index)
     {
         if (towerSo._runeLevels == null || index < 0 || index >= towerSo._runeLevels.Count)
@@ -88,7 +87,7 @@ public class CommonTowerConfig : ScriptableObject
 
         // Increment the level of the existing rune
         RuneLevel existingRuneLevel = towerSo._runeLevels[index];
-        existingRuneLevel.Level++;  // Increment the level by 1
+        existingRuneLevel.Level++; // Increment the level by 1
         towerSo._runeLevels[index] = existingRuneLevel;
     }
 
@@ -98,4 +97,3 @@ public class CommonTowerConfig : ScriptableObject
         return _towerDataAsset.LoadTowers();
     }
 }
-

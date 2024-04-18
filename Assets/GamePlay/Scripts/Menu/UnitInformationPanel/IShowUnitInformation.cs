@@ -1,5 +1,5 @@
+using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
-using System;
 using System.Collections.Generic;
 
 namespace GamePlay.Scripts.Menu.UnitInformationPanel

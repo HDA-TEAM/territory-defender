@@ -1,11 +1,8 @@
-
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using AYellowpaper.SerializedCollections;
-using GamePlay.Scripts.Data;
+using Common.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : BaseDataAsset<TowerDataModel>
@@ -38,7 +35,7 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 
         return model;
     }
-    
+
     public TowerDataModel LoadTowers()
     {
         LoadData(); // Load the data from json file into _model
@@ -47,7 +44,7 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 }
 
 [Serializable]
-public struct TowerDataModel : IDefaultCustom
+public struct TowerDataModel : IDefaultDataModel
 {
     public List<TowerSoSaver> TowerList;
     public bool IsEmpty()
@@ -79,11 +76,10 @@ public struct RuneLevel
 {
     public RuneId RuneId;
     public int Level;
-    
+
     public RuneLevel(RuneId runeId, int level)
     {
         RuneId = runeId;
         Level = level;
     }
 }
-

@@ -12,7 +12,7 @@ namespace GamePlay.Scripts.Data
     }
 
     [Serializable]
-    public struct SettingDataModel : IDefaultCustom
+    public struct SettingDataModel : IDefaultDataModel
     {
         public bool IsMusicOn;
         public bool IsSoundOn;

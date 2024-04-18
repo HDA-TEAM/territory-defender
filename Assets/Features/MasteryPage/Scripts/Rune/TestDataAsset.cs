@@ -21,7 +21,7 @@ public class TestDataAsset : BaseDataAsset<TestDataModel>
 }
 
 [Serializable]
-public struct TestDataModel : IDefaultCustom
+public struct TestDataModel : IDefaultDataModel
 {
     public int LoginDay;
     public bool IsEmpty()

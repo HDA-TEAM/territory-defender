@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
@@ -102,7 +103,7 @@ namespace GamePlay.Scripts.GamePlayController
             CurrentSelectedKit = towerKit;
             _preSelectedKit = CurrentSelectedKit;
         }
-        public override void SetUpNewGame()
+        public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
             LoadFromConfig();
         }

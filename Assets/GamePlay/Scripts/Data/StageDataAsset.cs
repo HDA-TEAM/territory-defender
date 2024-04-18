@@ -1,14 +1,17 @@
-using AYellowpaper.SerializedCollections;
-using System;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
-    public enum StageId
+
+    public struct StageDataModel : IDefaultDataModel
     {
-        Chap1Stage0 = 100,
-        Chap1Stage1 = 101,
-        Chap1Stage2 = 102,
+        public bool IsEmpty()
+        {
+            return false;
+        }
+        public void SetDefault()
+        {
+        }
     }
     
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]

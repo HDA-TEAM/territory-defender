@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
@@ -115,7 +116,7 @@ namespace GamePlay.Scripts.GamePlayController
             return res;
         }
 
-        public override void SetUpNewGame()
+        public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
             LoadFromConfig();
         }

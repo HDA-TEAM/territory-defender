@@ -1,3 +1,5 @@
+using Common.Loading.Scripts;
+using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlay;
 using System;
@@ -137,7 +139,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
         unitOut.CurrentTarget = null;
         unitOut.OnTargetChanging?.Invoke(targetChangingComposite);
     }
-    public override void SetUpNewGame()
+    public override void SetUpNewGame(StartStageComposite startStageComposite)
     {
     }
     public override void ResetGame()
