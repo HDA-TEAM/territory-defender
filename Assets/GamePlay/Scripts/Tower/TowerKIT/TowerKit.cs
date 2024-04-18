@@ -178,12 +178,14 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             // _towerEntity.transform.position = _spawnTowerHolder.transform.position;
             // TowerKitState = TowerKitState.Hiding;
         }
-        public void SellingTower()
+        public int GetSoldTowerCoin()
         {
             // Logic get 30% coin used 
-            _totalUsedCoin = _totalUsedCoin * 30 / 100;
-            _inventoryRuntime.TryChangeCurrency(_totalUsedCoin);
-        
+            return _totalUsedCoin * 30 / 100;
+        }
+        public void SellingTower()
+        {
+            _inventoryRuntime.TryChangeCurrency(GetSoldTowerCoin());
             // reset Coin
             _totalUsedCoin = 0;
 

@@ -1,7 +1,19 @@
-public class TowerSellingTool : TowerToolBase
+using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
+
+namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
 {
-    protected override void ApplyTool()
+    public class TowerSellingTool : TowerToolBase
     {
-        TowerKitSetController.Instance.CurrentSelectedKit.SellingTower();
+        protected override void ApplyTool()
+        {
+            _towerKit.SellingTower();
+        }
+        protected override void ShowPreviewChanging()
+        {
+            _towerKit.ShowPreviewChanging(
+                new PreviewSoldTooltipComposite(_towerKit.GetSoldTowerCoin().ToString()
+                )
+            );
+        }
     }
 }

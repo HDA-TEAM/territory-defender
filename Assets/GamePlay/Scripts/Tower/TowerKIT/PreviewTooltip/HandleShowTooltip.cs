@@ -4,8 +4,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 {
     public class HandleShowTooltip : MonoBehaviour
     {
-        [SerializeField] private PreviewUpgradeTooltipViewModel _previewTooltipLeft;
-        [SerializeField] private PreviewUpgradeTooltipViewModel _previewTooltipRight;
+        [SerializeField] private PreviewTooltipViewModel _previewTooltipLeft;
+        [SerializeField] private PreviewTooltipViewModel _previewTooltipRight;
         public void ShowTooltip(PreviewTooltipBase previewTooltipBase)
         {
             PreviewTooltipComposite previewTooltipComposite = previewTooltipBase.GetPreviewTooltipComposite();

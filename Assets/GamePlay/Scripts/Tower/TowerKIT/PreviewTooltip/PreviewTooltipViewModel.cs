@@ -5,17 +5,20 @@ using UnityEngine;
 namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 {
 
-    public class PreviewUpgradeTooltipViewModel : MonoBehaviour
+    public class PreviewTooltipViewModel : MonoBehaviour
     {
-        [SerializeField] private PreviewUpgradeTooltipView _previewUpgradeTooltipView;
+        [SerializeField] private PreviewTooltipView _previewTooltipView;
         [SerializeField] private List<ItemUnitStatView> _unitStatViews;
         public void Setup(PreviewTooltipComposite previewTooltipComposite)
         {
-            _previewUpgradeTooltipView.Setup(previewTooltipComposite);
+            _previewTooltipView.Setup(previewTooltipComposite);
             SetupStatsView(previewTooltipComposite.StatComposites);
         }
         private void SetupStatsView(List<ItemStatComposite> statComposites)
         {
+            if (statComposites == null)
+                return;
+            
             int availableShowItem = statComposites.Count;
             for (int i = 0; i < _unitStatViews.Count; i++)
             {

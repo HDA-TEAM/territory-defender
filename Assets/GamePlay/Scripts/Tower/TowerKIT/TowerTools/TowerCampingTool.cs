@@ -1,24 +1,26 @@
 using GamePlay.Scripts.Character.Stats;
-using UnityEngine;
 
-public class TowerCampingTool : TowerToolBase
+namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
 {
-    protected void OnEnable()
+    public class TowerCampingTool : TowerToolBase
     {
-        _towerToolStatusHandle.SetUp(IsTroopTower() ? TowerTooltatus.Available : TowerTooltatus.Block);
-    }
-    private bool IsTroopTower()
-    {
-        if (TowerKitSetController.Instance.CurrentSelectedKit)
+        protected void OnEnable()
         {
-            var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
-            var towerStats = unitBase.UnitStatsHandlerComp();
-            return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
+            _towerToolStatusHandle.SetUp(IsTroopTower() ? TowerTooltatus.Available : TowerTooltatus.Block);
         }
-        return true;
-    }
-    protected override void ApplyTool()
-    {
-        TowerKitSetController.Instance.CurrentSelectedKit.ActiveCampingMode();
+        private bool IsTroopTower()
+        {
+            if (TowerKitSetController.Instance.CurrentSelectedKit)
+            {
+                var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
+                var towerStats = unitBase.UnitStatsHandlerComp();
+                return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
+            }
+            return true;
+        }
+        protected override void ApplyTool()
+        {
+            TowerKitSetController.Instance.CurrentSelectedKit.ActiveCampingMode();
+        }
     }
 }

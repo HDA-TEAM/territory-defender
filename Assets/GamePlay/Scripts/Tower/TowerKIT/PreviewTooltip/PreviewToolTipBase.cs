@@ -36,7 +36,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
         public PreviewSoldTooltipComposite(string price)
         {
             _title = "SELL TOWER";
-            _desc = $"SELL THIS TOWER AND GET A {price} COINS REFUND";
+            _desc = $"SELL THIS TOWER AND GET A {price} COINS REFUND.";
             _statComposites = null;
         }
     }

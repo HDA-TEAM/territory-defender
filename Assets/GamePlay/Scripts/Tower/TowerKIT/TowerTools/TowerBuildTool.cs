@@ -22,11 +22,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         protected override void ApplyTool()
         {
             GameObject tower = Instantiate(_towerCanBuild.gameObject);
-            TowerKitSetController.Instance.CurrentSelectedKit.SetTower(tower, _towerBuildId);
+            _towerKit.SetTower(tower, _towerBuildId);
         }
         protected override void ShowPreviewChanging()
         {
-            TowerKitSetController.Instance.CurrentSelectedKit.ShowPreviewChanging(
+            _towerKit.ShowPreviewChanging(
                 new PreviewBuiltTowerTooltip(_towerDataConfig, _towerBuildId)
             );
         }

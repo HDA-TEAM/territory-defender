@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Tower.TowerKIT.TowerTools;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
 {
     public class TowerToolController : MonoBehaviour
     {
+        [SerializeField] private TowerKit _towerKit;
         [SerializeField] private List<TowerToolBase> _towerToolBases;
         [SerializeField] private List<ConfirmHandle> _confirmHandles;
         public ConfirmHandle CurrentConfirmHandle;
@@ -22,9 +24,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         private void Start()
         {
             foreach (var confirmHandle in _confirmHandles)
-            {
                 confirmHandle.SetUpSelected(SetCurrentSelectedConfirm);
-            }
+            foreach (var towerToolBase in _towerToolBases)
+                towerToolBase.SetUp(_towerKit);
         }
         private void SetCurrentSelectedConfirm(ConfirmHandle confirmHandle)
         {
