@@ -5,14 +5,14 @@ namespace Features.MasteryPage.Scripts.Rune
     public enum EffectId
     {
         //Red rune effect
-        Cooldown = 1,
+        Pierce = 1,
         Damage = 2,
         Crit = 3,
         
         //Yellow rune effect
         AttackSpeed = 11,
         Ranged = 12,
-        Pierce = 13,
+        Cooldown = 13,
         
         //Purple rune effect
         Hp = 21,

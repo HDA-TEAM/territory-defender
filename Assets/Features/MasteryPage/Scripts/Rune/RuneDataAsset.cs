@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using Features.MasteryPage.Scripts.Rune;
 using UnityEngine;
 
 public enum RuneId
@@ -13,31 +14,31 @@ public enum RuneId
     Yellow2 = 11,
     Yellow3 = 12,
     
-    Purple1 = 20,
-    Purple2 = 21,
-    Purple3 = 22
+    Green1 = 20,
+    Green2 = 21,
+    Green3 = 22
 }
 
 [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
 public class RuneDataAsset : ScriptableObject
 {
    [SerializedDictionary("RuneId", "RuneDataSO")] 
-   [SerializeField] private SerializedDictionary<RuneId, RuneSO> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneSO>();
+   [SerializeField] private SerializedDictionary<RuneId, RuneDataConfig> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataConfig>();
 
-    public RuneSO GetRune(RuneId runeId)
+    public RuneDataConfig GetRune(RuneId runeId)
     {
-        if (_masteryPageDataDict.TryGetValue(runeId, out RuneSO runeDataSo))
+        if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataConfig runeDataSo))
             return runeDataSo;
             
         Debug.LogError($"No rune value found for key {runeId} on ");
         return null;
     }
-    public List<RuneSO> GetAllRuneData()
+    public List<RuneDataConfig> GetAllRuneData()
     {
         return _masteryPageDataDict.Values.ToList();
     }
 
-    public void RuneUpdate(RuneSO runeSo)
+    public void RuneUpdate(RuneDataConfig runeDataConfig)
     {
     }
 

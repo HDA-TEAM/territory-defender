@@ -23,8 +23,8 @@ public class ListRuneViewModel : MonoBehaviour
     
     private InventoryComposite _inventoryComposite;
     private TowerHasRuneComposite _preTowerHasComposite;
-    private List<RuneSO> _runeSos;
-    private RuneSO _preRuneSo;
+    private List<RuneDataConfig> _runeSos;
+    private RuneDataConfig _preRuneDataConfig;
     private ItemRuneView _preSelectedItem;
     private ItemUpgradeRuneView _preSelectedUpgradeRuneView;
     
@@ -114,7 +114,6 @@ public class ListRuneViewModel : MonoBehaviour
                 if (runeComposite.RuneId == _preSelectedItem.RuneComposite.RuneId)
                 {
                     _runeDetailView.UpdateCurrentRuneData(runeComposite);
-                    //OnSelectedRuneItem();
                 }
             }
         }
@@ -124,8 +123,7 @@ public class ListRuneViewModel : MonoBehaviour
     {
         if (_preSelectedItem == null)
         {
-            _itemUpgradeRuneView.gameObject.SetActive(true);
-            //_runeDetailView.gameObject.SetActive(true);
+            // Do something
         }
         _preSelectedItem = itemRuneView;
         
@@ -148,10 +146,10 @@ public class ListRuneViewModel : MonoBehaviour
         //Conditions to upgrade any skill
         if (_preSelectedItem.RuneComposite.Level < _preSelectedItem.RuneComposite.MaxLevel  && _inventoryRuntimeData.GetStarValue() > 0)
         {
-            _preRuneSo = runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
-            if (_preRuneSo != null)
+            _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneView.RuneComposite.RuneId);
+            if (_preRuneDataConfig != null)
             {
-                var commonTowerConfig = RuneDataManager.Instance.CommonTowerConfig;
+                var commonTowerConfig = RuneDataManager.Instance.TowerRuneDataConfig;
                 commonTowerConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneView.RuneComposite);
             
                 // Subtract star number
@@ -166,7 +164,6 @@ public class ListRuneViewModel : MonoBehaviour
             Debug.Log("Upgrade rune fail");
         }
     }
-    
 
     private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
     {

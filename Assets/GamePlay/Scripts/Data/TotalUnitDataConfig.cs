@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Data
 {
@@ -7,7 +8,7 @@ namespace GamePlay.Scripts.Data
     public struct UnitDataComposite
     {
         public UnitBase UnitBase;
-    } 
+    }
 
     [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
     public class TotalUnitDataConfig : ScriptableObject
