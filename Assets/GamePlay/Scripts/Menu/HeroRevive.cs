@@ -1,8 +1,6 @@
-using DG.Tweening;
 using GamePlay.Scripts.Menu;
 using SuperMaxim.Messaging;
 using UnityEngine;
-using UnityEngine.UI;
 
 public struct UnitRevivePayload
 {

@@ -8,7 +8,7 @@ public class StatsHandlerComponent : UnitBaseComponent
     private Action _onSynStat;
     private BuffHandler _buffHandler;
     [SerializeField] private Stats _baseStats;
-    private ShowStatInformationSelector _statInformationSelector = new ShowStatInformationSelector();
+    private readonly ShowStatInformationSelector _statInformationSelector = new ShowStatInformationSelector();
     #region Access
     public BuffHandler BuffHandler
     {

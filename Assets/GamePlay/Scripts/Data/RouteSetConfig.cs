@@ -20,6 +20,7 @@ namespace GamePlay.Scripts.Data
         [Serializable]
         public struct RouteLine
         {
+            public Vector3 CallwaveButtonPos;
             public List<Vector3> PointSet;
         }
         public void SaveToConfig(RouteSet inputRouteSet, StageId stageId)

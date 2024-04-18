@@ -16,8 +16,18 @@ public class HandleCancelRaycast : MonoBehaviour
     }
     private void OnHandleCancelRaycast(HandleCancelRaycastPayload payload)
     {
-        _callback += payload.callback;
+        _callback = payload.callback;
         _canvasGroup.blocksRaycasts = payload.IsOn;
+        
+        if (payload.UnitSelectionShowType == EUnitSelectionShowType.OnlyBlockRaycast)
+        {
+            // Hiding Information panel
+            Messenger.Default.Publish(new HideUnitInformationPayload());
+        }
+        else if (payload.UnitSelectionShowType == EUnitSelectionShowType.HidingAll)
+        {
+            OnClose();
+        }
     }
     private void OnDestroy() => Messenger.Default.Unsubscribe<HandleCancelRaycastPayload>(OnHandleCancelRaycast);
     private void OnClose()
@@ -30,8 +40,24 @@ public class HandleCancelRaycast : MonoBehaviour
     }
 }
 
+public enum EUnitSelectionToken
+{
+    None = 0,
+    NeedToTriggerAction = 1,
+    CanBeOverride = 2,
+}
+public enum EUnitSelectionShowType
+{
+    None = 0,
+    OnlyShowInformationPanel = 1,
+    OnlyBlockRaycast = 2,
+    ShowInformationPanelAndBlockRaycast = 3,
+    HidingAll = 4,
+}
 public struct HandleCancelRaycastPayload
 {
+    public EUnitSelectionToken UnitSelectionToken;
+    public EUnitSelectionShowType UnitSelectionShowType;
     public bool IsOn;
     public Action callback;
 }

@@ -1,26 +1,35 @@
 using GamePlay.Scripts.Data;
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public enum TowerToolType
+namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
 {
-    Build = 10,
-    Upgrade = 20,
-    Sold = 30,
-    Guarding = 40,
-}
+    public enum TowerToolType
+    {
+        Build = 10,
+        Upgrade = 20,
+        Sold = 30,
+        Guarding = 40,
+    }
 
-public abstract class TowerToolBase : MonoBehaviour
-{
-    [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
-    [SerializeField] protected TowerDataConfig _towerDataConfig;
-    [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
-    [SerializeField] protected ConfirmHandle _confirmHandle;
-    public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
-    private void Start() => _confirmHandle.SetUpTool(Apply);
-    protected virtual void Apply() {}
-}
+    public abstract class TowerToolBase : MonoBehaviour
+    {
+        [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
+        [SerializeField] protected TowerDataConfig _towerDataConfig;
+        [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
+        [SerializeField] protected ConfirmHandle _confirmHandle;
+        protected TowerKit _towerKit;
+        public void SetUp(TowerKit towerKit)
+        {
+            _towerKit = towerKit;
+        }
+        public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
+        private void Start()
+        {
+            _confirmHandle.SetUpTool(ApplyTool, ShowPreviewChanging);
+        }
+        protected virtual void ShowPreviewChanging(){}
+        protected virtual void ApplyTool() {}
+    }
 // public class TowerUpgradeTool : TowerToolBase
 // {
 //     [SerializeField] private TowerId _towerBuildId;
@@ -30,3 +39,4 @@ public abstract class TowerToolBase : MonoBehaviour
 //         _towerDataAsset.CurrentSelectedTowerKit.BuildTowerBase(towerBase);
 //     }
 // }
+}
