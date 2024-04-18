@@ -1,7 +1,6 @@
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlayController;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public partial class InGameStateController 
 {

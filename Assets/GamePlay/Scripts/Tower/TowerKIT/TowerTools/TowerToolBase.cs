@@ -1,5 +1,6 @@
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
 {
@@ -14,7 +15,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
     public abstract class TowerToolBase : MonoBehaviour
     {
         [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
-        [SerializeField] protected TowerDataConfig _towerDataConfig;
+        [FormerlySerializedAs("_towerDataConfig")]
+        [SerializeField] protected TowerDataConfigBase _towerDataConfigBase;
         [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
         [SerializeField] protected ConfirmHandle _confirmHandle;
         protected TowerKit _towerKit;

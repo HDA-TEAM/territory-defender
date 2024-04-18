@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Data
 {
@@ -12,54 +13,58 @@ namespace GamePlay.Scripts.Data
     [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
     public class TotalUnitDataConfig : ScriptableObject
     {
-        [SerializeField] private TowerDataConfig _towerDataConfig;
-        [SerializeField] private AllyTroopsDataConfig _allyTroopsDataConfig;
-        [SerializeField] private EnemyDataConfig _enemyDataConfig;
-        [SerializeField] private InGameHeroDataConfig _heroDataConfig;
+        [FormerlySerializedAs("_towerDataConfig")]
+        [SerializeField] private TowerDataConfigBase _towerDataConfigBase;
+        [FormerlySerializedAs("_allyTroopsDataConfig")]
+        [SerializeField] private AllyTroopsDataConfigBase _allyTroopsDataConfigBase;
+        [FormerlySerializedAs("_enemyDataConfig")]
+        [SerializeField] private EnemyDataConfigBase _enemyDataConfigBase;
+        [FormerlySerializedAs("_heroDataConfig")]
+        [SerializeField] private InGameHeroDataConfigBase _heroDataConfigBase;
 
         #region Access
         public UnitDataComposite GetSingleUnitDataConfig(string key)
         {
             if (Enum.TryParse(key, out UnitId.Tower towerKey))
-                return _towerDataConfig.GetUnitConfigById(towerKey);
+                return _towerDataConfigBase.GetUnitConfigById(towerKey);
             
             if (Enum.TryParse(key, out UnitId.Ally allyKey))
-                return _allyTroopsDataConfig.GetUnitConfigById(allyKey);
+                return _allyTroopsDataConfigBase.GetUnitConfigById(allyKey);
             
             if (Enum.TryParse(key, out UnitId.Enemy enemyKey))
-                return _enemyDataConfig.GetUnitConfigById(enemyKey);
+                return _enemyDataConfigBase.GetUnitConfigById(enemyKey);
             
             if (Enum.TryParse(key, out UnitId.Hero heroKey))
-                return _heroDataConfig.GetUnitConfigById(heroKey);
+                return _heroDataConfigBase.GetUnitConfigById(heroKey);
 
             return new UnitDataComposite();
         }
-        public TowerDataConfig TowerDataConfig
+        public TowerDataConfigBase TowerDataConfigBase
         {
             get
             {
-                return _towerDataConfig;
+                return _towerDataConfigBase;
             }
         }
-        public AllyTroopsDataConfig AllyTroopsDataConfig
+        public AllyTroopsDataConfigBase AllyTroopsDataConfigBase
         {
             get
             {
-                return _allyTroopsDataConfig;
+                return _allyTroopsDataConfigBase;
             }
         }
-        public EnemyDataConfig EnemyDataConfig
+        public EnemyDataConfigBase EnemyDataConfigBase
         {
             get
             {
-                return _enemyDataConfig;
+                return _enemyDataConfigBase;
             }
         }
-        public InGameHeroDataConfig HeroDataConfig
+        public InGameHeroDataConfigBase HeroDataConfigBase
         {
             get
             {
-                return _heroDataConfig;
+                return _heroDataConfigBase;
             }
         }
         
