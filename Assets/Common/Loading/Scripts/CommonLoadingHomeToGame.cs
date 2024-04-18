@@ -1,6 +1,7 @@
 using Common.Scripts;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -35,7 +36,7 @@ namespace Common.Loading.Scripts
              SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
             // SceneManager.UnloadSceneAsync(SceneIdentified.GetSceneName(ESceneIdentified.Home));
             
-            GamePlay.Scripts.GamePlayController.InGameStateController.Instance.SetUpNewGame(_curStartStageComposite);
+            InGameStateController.Instance.SetUpNewGame(_curStartStageComposite);
             
             for (int i = 0; i <= 10; i++)
             {

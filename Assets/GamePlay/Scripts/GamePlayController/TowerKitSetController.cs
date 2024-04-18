@@ -22,21 +22,7 @@ namespace GamePlay.Scripts.GamePlayController
         private TowerKit _preSelectedKit;
         private Action _onSelected;
 
-        // public List<TowerKit> CurrentTowerKits
-        // {
-        //     get
-        //     {
-        //         return _currentTowerKits;
-        //     } 
-        //     set
-        //     {
-        //         _currentTowerKits = value;
-        //     }
-        // }
-        private void Reset()
-        {
-            _currentTowerKits = GetComponentsInChildren<TowerKit>().ToList();
-        }
+        private void Reset() => _currentTowerKits = GetComponentsInChildren<TowerKit>().ToList();
         protected override void Awake()
         {
             base.Awake();
@@ -84,10 +70,6 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void SetUpData()
         {
-            // Loading position and place for each kit
-            // _stageConfig = _stageDataAsset.GetStageConfig();
-            // _stageConfig.TowerKitSetConfig.LoadTowerKitsPositionFromConfig(_currentTowerKits);
-
             // Setup callback when selected
             foreach (TowerKit kit in _currentTowerKits)
             {
@@ -105,6 +87,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
+            _currentStageId = startStageComposite.StageId;
             LoadFromConfig();
         }
         public override void ResetGame()

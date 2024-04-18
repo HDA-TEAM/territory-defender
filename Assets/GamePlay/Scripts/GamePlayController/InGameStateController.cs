@@ -26,7 +26,7 @@ namespace GamePlay.Scripts.GamePlayController
         // Access
         public StageId CurStageId { get; private set; }
         public bool IsGamePlaying { get; private set; }
-    
+
         protected override void Awake()
         {
             base.Awake();
@@ -74,11 +74,11 @@ namespace GamePlay.Scripts.GamePlayController
                 _resultsController.ShowStageFailedPu();
             }
         }
-        public void StartGame()
+        public void StartSpawning()
         {
-            var spawningConfig = _enemySpawningFactory.SpawningConfig.FindSpawningConfig(StageId.Chap1Stage0);
+            var spawningConfig = _enemySpawningFactory.SpawningConfig.FindSpawningConfig(_startStageComposite.StageId);
             _totalEnemySpawning = spawningConfig.GetTotalUnitsSpawning();
-            _enemySpawningFactory.StartSpawning(StageId.Chap1Stage0,OnFinishedSpawning);
+            _enemySpawningFactory.StartSpawning(_startStageComposite.StageId, OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
         {

@@ -30,8 +30,6 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 lineRender.SingleLineRenderer.widthMultiplier = 0f;
             }
-            // _stageConfig = _stageDataAsset.GetStageConfig();
-            // _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
         }
     
         private void SaveToConfig()
@@ -118,6 +116,7 @@ namespace GamePlay.Scripts.GamePlayController
 
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
+            _currentStageId = startStageComposite.StageId;
             LoadFromConfig();
         }
         public override void ResetGame()
