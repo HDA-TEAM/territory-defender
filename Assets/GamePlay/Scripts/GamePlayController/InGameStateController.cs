@@ -9,8 +9,7 @@ namespace GamePlay.Scripts.GamePlayController
     public partial class InGameStateController : GamePlaySingletonBase<InGameStateController>
     {
 #if UNITY_EDITOR
-        [Button("CheckingStageSuccess", usePropertyAsParameter: true)]
-        [SerializeField] private int _enemyDieTest;
+        [Button("CheckingStageSuccess")]
         [Button("CheckingEndGame", usePropertyAsParameter: true)]
         [SerializeField] private int _lifeTest;
 #endif
@@ -21,8 +20,7 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
 
-        private bool _isFinishSpawn;
-        private int _totalEnemySpawning;
+        public bool IsFinishSpawn;
 
         // Access
         public StageId CurStageId { get; private set; }
@@ -37,8 +35,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public void Start()
         {
-            _totalEnemySpawning = 0;
-            _isFinishSpawn = false;
+            IsFinishSpawn = false;
             IsGamePlaying = true;
         }
         protected override void OnDestroy()
@@ -49,19 +46,15 @@ namespace GamePlay.Scripts.GamePlayController
         {
             CheckingEndGame(life);
         }
-        private bool IsStageSuccess()
+        // private bool IsStageSuccess()
+        // {
+        //     return IsFinishSpawn;
+        // }
+        public void CheckingStageSuccess()
         {
-            return _isFinishSpawn && _totalEnemySpawning <= 0;
-        }
-        public void CheckingStageSuccess(int enemyDie = 1)
-        {
-            _totalEnemySpawning -= enemyDie;
-            if (IsStageSuccess())
-            {
-                Debug.Log("End StageSuccess");
-                IsGamePlaying = false;
-                _resultsController.ShowStageSuccessPu();
-            }
+            Debug.Log("End StageSuccess");
+            IsGamePlaying = false;
+            _resultsController.ShowStageSuccessPu();
         }
         private void CheckingEndGame(int life)
         {
@@ -77,13 +70,11 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public void StartSpawning()
         {
-            var spawningConfig = _enemySpawningFactory.SpawningConfig.FindSpawningConfig(_startStageComposite.StageId);
-            _totalEnemySpawning = spawningConfig.GetTotalUnitsSpawning();
             _enemySpawningFactory.StartSpawning(_startStageComposite.StageId, OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
         {
-            _isFinishSpawn = true;
+            IsFinishSpawn = true;
         }
     }
 }

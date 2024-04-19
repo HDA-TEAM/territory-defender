@@ -2,6 +2,7 @@ using Common.Loading.Scripts;
 using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -54,9 +55,13 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     // Update units on map
     public void Update()
     {
-        if (!GamePlay.Scripts.GamePlayController.InGameStateController.Instance.IsGamePlaying)
+        if (!InGameStateController.Instance.IsGamePlaying)
             return;
 
+        if (InGameStateController.Instance.IsFinishSpawn && _unitEnemies.Count == 0)
+        {
+            InGameStateController.Instance.CheckingStageSuccess();
+        }
         SynRuntimeAction();
 
         ClearUnavailableUnit();

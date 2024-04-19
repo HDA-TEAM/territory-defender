@@ -55,10 +55,10 @@ namespace GamePlay.Scripts.GamePlayController
         public void ReturnPool(GameObject gameObject,UnitId.BaseId sideId)
         {
             gameObject.SetActive(false);
-            if (sideId == UnitId.BaseId.Enemy)
-            {
-                InGameStateController.Instance.CheckingStageSuccess();
-            }
+            // if (sideId == UnitId.BaseId.Enemy)
+            // {
+            //     InGameStateController.Instance.CheckingStageSuccess();
+            // }
         }
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
