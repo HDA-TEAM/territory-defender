@@ -81,7 +81,14 @@ public class StageEnemySpawningFactory : MonoBehaviour
                 OnEarlyCallWave = OnEarlyCallWave,
             });
         }
-        await UniTask.Delay(TimeSpan.FromSeconds(_perWaveInterval), cancellationToken: _cancellationTokenEarlyCallWave.Token);  
+        
+        try
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(_perWaveInterval), cancellationToken: _cancellationTokenEarlyCallWave.Token);  
+        }
+        catch (Exception)
+        {
+        }
 
     }
     private void OnEarlyCallWave()
