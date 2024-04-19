@@ -8,7 +8,7 @@ namespace GamePlay.Scripts.Data
         [SerializeField] [SerializedDictionary("TKey","TVal")]
         protected SerializedDictionary<TKey,TVal> _data;
         
-        public TVal GetUnitConfigById(TKey unitId)
+        public TVal GeConfigByKey(TKey unitId)
         {
             _data.TryGetValue(unitId, out TVal unitDataComposite);
             return unitDataComposite;

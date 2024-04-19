@@ -26,7 +26,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
     {
         public TowerPreviewBuiltTowerToolTip(TowerDataConfigBase towerDataConfigBase, UnitId.Tower towerId)
         {
-            StatsHandlerComponent towerStats = towerDataConfigBase.GetUnitConfigById(towerId).UnitBase.UnitStatsHandlerComp();
+            StatsHandlerComponent towerStats = towerDataConfigBase.GeConfigByKey(towerId).UnitBase.UnitStatsHandlerComp();
             _statComposites = towerStats.GetShowStatsInformation().StatComposites;
             _desc = towerStats.GetBaseStats().GetInformation(InformationId.Description);
             _title = towerStats.GetBaseStats().GetInformation(InformationId.Name);
