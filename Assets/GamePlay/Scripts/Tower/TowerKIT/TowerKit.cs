@@ -7,7 +7,6 @@ using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Tower.TowerKIT
@@ -44,6 +43,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
         [SerializeField] private UnitId.Tower _towerId;
         [SerializeField] private UnitBase _unitBase;
+        
+        [Header("Sounds"), Space(12)]
+        [SerializeField] private AudioClip _audioClipOpenKit;
         // Internal
         private TowerKitState _towerKitState;
         private TowerKitState TowerKitState
@@ -127,6 +129,12 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                         _canvasGroupBtn.alpha = 1f;
                         _spiteFlag.gameObject.SetActive(true);
                         _towerBuildTool.SetActive(true);
+                        
+                        Messenger.Default.Publish(new AudioPlayOneShotPayload
+                        {
+                            AudioClip = _audioClipOpenKit,
+                        });
+                        
                         return;
                     }
                 case TowerKitState.ShowToolOfTowerExisted:
@@ -135,6 +143,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                     
                         _unitBase.UnitShowingInformationComp().ShowUnitInformation();
 
+                        Messenger.Default.Publish(new AudioPlayOneShotPayload
+                        {
+                            AudioClip = _audioClipOpenKit,
+                        });
+                        
                         return;
                     }
                 case TowerKitState.Hiding:

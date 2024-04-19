@@ -703,9 +703,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 5167779956753391543}
-  _towerDataAsset: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameInventoryRuntimeData: {fileID: 0}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 8426426970130226305}
+  _audioClipSold: {fileID: 8300000, guid: 358a1488f4fdb4bd2aa4ead58f57491e, type: 3}
 --- !u!1001 &2284220571135081516
 PrefabInstance:
   m_ObjectHideFlags: 0

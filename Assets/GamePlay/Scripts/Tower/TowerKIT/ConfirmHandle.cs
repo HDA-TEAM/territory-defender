@@ -1,3 +1,5 @@
+using Common.Scripts;
+using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +16,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private Button _button; 
         [SerializeField] private Image _defaultIcon;
         [SerializeField] private Image _acceptedIcon;
+        [Header("Sounds"),Space(12)]
+        [SerializeField] private AudioClip _audioClipCheck;
         private ConfirmStatus _confirmStatus;
         private Action _onApplyTool;
         private Action _onPreviewChanging;
@@ -57,6 +61,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _confirmStatus = ConfirmStatus.WaitingConfirm;
             _acceptedIcon.gameObject.SetActive(true);
             _defaultIcon.gameObject.SetActive(false);
+            
+            Messenger.Default.Publish(new AudioPlayOneShotPayload
+            {
+                AudioClip = _audioClipCheck,
+            });
         }
         private void OnAccepted() => _onApplyTool?.Invoke();
         public void ResetToDefault()

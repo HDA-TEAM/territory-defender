@@ -1,3 +1,4 @@
+using Common.Scripts;
 using DG.Tweening;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.Data.StageSpawning;
@@ -17,6 +18,10 @@ namespace GamePlay.Scripts.Route
     public class CallWaveViewModel : MonoBehaviour
     {
         [SerializeField] private StageEnemySpawningConfig _stageEnemySpawningConfig;
+        
+        [Header("Sounds"), Space(12)]
+        [SerializeField] private AudioClip _audioClipCallWave;
+        
         private List<CallWaveView> _callWaveViews;
         private StageId _stageId;
         private Action _onEarlyCallWave;
@@ -55,7 +60,12 @@ namespace GamePlay.Scripts.Route
         private void OnClickCallWave(int routeId)
         {
             Debug.Log("Route id click " + routeId);
-
+            
+            Messenger.Default.Publish(new AudioPlayOneShotPayload
+            {
+                AudioClip = _audioClipCallWave,
+            });
+            
             _onEarlyCallWave?.Invoke();
             
             HidingAllCallWaveButton();  

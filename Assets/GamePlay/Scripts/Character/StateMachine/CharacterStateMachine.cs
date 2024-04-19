@@ -15,6 +15,11 @@ namespace GamePlay.Scripts.Character.StateMachine
         [SerializeField] private UnitId.Projectile _projectileId;
         [SerializeField] private BeingTargetCommand _beingTargetCommand;
         [SerializeField] private Transform _startAttackPoint;
+        
+        [Header("Sounds"),Space(12)]
+        [SerializeField] private AudioClip _audioClipAttack;
+        [SerializeField] private AudioClip _audioClipDeath;
+        
         #region Setter and getter
         public CharacterBaseState CurrentState
         {
@@ -34,6 +39,8 @@ namespace GamePlay.Scripts.Character.StateMachine
                 return _startAttackPoint;
             }
         }
+        public AudioClip AudioClipAttack { get { return _audioClipAttack; } }
+        public AudioClip AudioClipDeath { get { return _audioClipDeath; } }
         public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
         public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
         public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }

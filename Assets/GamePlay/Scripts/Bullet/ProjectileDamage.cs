@@ -1,3 +1,5 @@
+using Common.Scripts;
+using SuperMaxim.Messaging;
 using System.Linq;
 using UnityEngine;
 
@@ -13,8 +15,15 @@ public class ProjectileDamage : ProjectileBaseComponent
     [SerializeField] private float _dame;
     [SerializeField] private float _affectRange;
     [SerializeField] private EProjectileDealDamageType _dealDamageType;
+    [Header("Sounds"),Space(12)]
+    [SerializeField] private AudioClip _audioClipHit;
+    
     public void DealDamage(UnitBase target)
     {
+        Messenger.Default.Publish(new AudioPlayOneShotPayload
+        {
+            AudioClip = _audioClipHit,
+        });
         switch (_dealDamageType)
         {
             case EProjectileDealDamageType.Crowd:

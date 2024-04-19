@@ -1,3 +1,4 @@
+using Common.Scripts;
 using DG.Tweening;
 using GamePlay.Scripts.Menu.UnitInformationPanel;
 using SuperMaxim.Messaging;
@@ -10,6 +11,8 @@ public class UnitInformationPanel : MonoBehaviour
     [SerializeField] private RectTransform _endPos;
     [SerializeField] private CanvasGroup _canvasGroup;
     [SerializeField] private float _showHidePanelDuration = 0.3f;
+    [Header("Sounds"), Space(12)]
+    [SerializeField] private AudioClip _audioClipSelection;
     
     [SerializeField] private UnitShowInformationViewModel _unitShowInformationViewModel;
     
@@ -28,6 +31,11 @@ public class UnitInformationPanel : MonoBehaviour
 
     private void ShowPanelInformation(ShowUnitInformationPayload payload)
     {
+        Messenger.Default.Publish(new AudioPlayOneShotPayload
+        {
+            AudioClip = _audioClipSelection,
+        });
+        
         _canvasGroup.alpha = 1;
         _rectTransformBoard.DOAnchorPosY(_endPos.anchoredPosition.y, _showHidePanelDuration);
         if (_isShowing)

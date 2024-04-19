@@ -2,6 +2,7 @@ using Common.Scripts;
 using DG.Tweening;
 using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.Stats;
+using SuperMaxim.Messaging;
 
 public class CharacterAttackState : CharacterBaseState
 {
@@ -60,6 +61,11 @@ public class CharacterAttackState : CharacterBaseState
     }
     private void PlayingAttackOnceTime()
     {
+        Messenger.Default.Publish(new AudioPlayOneShotPayload
+        {
+            AudioClip = Context.AudioClipAttack,
+        });
+
         switch (Context.CharacterTroopBehaviourType)
         {
             case TroopBehaviourType.Ranger:

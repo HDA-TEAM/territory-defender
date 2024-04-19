@@ -361,6 +361,7 @@ MonoBehaviour:
   _inventoryRuntime: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _towerId: 0
   _unitBase: {fileID: 0}
+  _audioClipOpenKit: {fileID: 8300000, guid: 969efda4c43e74552bd74b0ae69dc36b, type: 3}
   _totalUsedCoin: 0
 --- !u!114 &2354289473595426542
 MonoBehaviour:
@@ -550,10 +551,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 2789528972889128683}
-  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 491974220771195605}
   _towerBuildId: 320
+  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
 --- !u!114 &491974220771195605 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 537853690581916393, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -594,10 +596,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 3697810427918902548}
-  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 1383995823105728810}
   _towerBuildId: 330
+  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
 --- !u!114 &2789528972889128683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2815705469208010455, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -660,10 +663,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 8865507410867492243}
-  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 6587972564454838701}
   _towerBuildId: 300
+  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
 --- !u!224 &6832461592147819696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878341852308413580, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -716,10 +720,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 5482125966187145751}
-  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 7814271628858601001}
   _towerBuildId: 310
+  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
 --- !u!114 &7814271628858601001 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7914194826880634389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -1403,7 +1408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerToolStatusHandle: {fileID: 2490724114247571215}
-  _towerDataConfig: {fileID: 0}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
   _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _confirmHandle: {fileID: 213188994970276657}
 --- !u!114 &1285741066417378361 stripped
