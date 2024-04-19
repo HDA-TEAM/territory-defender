@@ -5,7 +5,6 @@ using UnityEngine.EventSystems;
 public class UserActionHeroBaseController : UserActionController
 {
     public UserUsingHeroSkill UserUsingHeroSkill;
-
     private void OnEnable()
     {
         Messenger.Default.Subscribe<UsingSkillPayload>(OnUsingSkill);
@@ -20,6 +19,7 @@ public class UserActionHeroBaseController : UserActionController
     {
         if (payload.UnitBase != _unitBaseParent)
             return;
+        
         Messenger.Default.Publish(new HandleCancelRaycastPayload
         {
             UnitSelectionShowType = EUnitSelectionShowType.ShowInformationPanelAndBlockRaycast,

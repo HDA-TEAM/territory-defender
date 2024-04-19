@@ -1,6 +1,6 @@
+using Common.Scripts;
 using GamePlay.Scripts.Character.StateMachine;
 using SuperMaxim.Messaging;
-using UnityEngine;
 
 public class HeroDieState : CharacterDieState
 {
@@ -11,6 +11,11 @@ public class HeroDieState : CharacterDieState
     }
     public override void ExitState()
     {
+        Messenger.Default.Publish(new AudioPlayOneShotPayload
+        {
+            AudioClip = Context.AudioClipDeath,
+        });
+        
         Context.AnimationController.StopAllClip();
         Context.gameObject.SetActive(false);
         Messenger.Default.Publish(new UnitRevivePayload

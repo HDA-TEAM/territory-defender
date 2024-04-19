@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2508194330368455234, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: _audioClipAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f267466123e04d5b872fcbebec78767, type: 3}
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: DeadClip
       value: 
@@ -128,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 3604273176490995714}
   _eUserAction: 0
-  _skillsDataAsset: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
+  _skillsDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
 --- !u!114 &3604273176490995714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}

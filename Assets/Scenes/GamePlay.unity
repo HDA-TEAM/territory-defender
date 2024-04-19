@@ -1614,6 +1614,7 @@ MonoBehaviour:
   _endPos: {fileID: 1296957206}
   _canvasGroup: {fileID: 209926118}
   _showHidePanelDuration: 0.3
+  _audioClipSelection: {fileID: 8300000, guid: 969efda4c43e74552bd74b0ae69dc36b, type: 3}
   _unitShowInformationViewModel: {fileID: 1228252023}
 --- !u!225 &209926118
 CanvasGroup:
@@ -3817,6 +3818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stageEnemySpawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
+  _audioClipCallWave: {fileID: 8300000, guid: 91118e6ec85b64994b59ef1b8773bc32, type: 3}
 --- !u!1 &635046254
 GameObject:
   m_ObjectHideFlags: 0
@@ -4929,7 +4931,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 10.8}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &780973150
@@ -9400,12 +9402,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531730935f247f087c5003a74b39756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyDieTest: 0
   _lifeTest: 0
   _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _resultsController: {fileID: 1804081924}
   _stageDataConfig: {fileID: 11400000, guid: 07af98a6585604eeab6da17b8d21fe0d, type: 2}
   _enemySpawningFactory: {fileID: 1804081920}
+  IsFinishSpawn: 0
   _startStageComposite:
     StageId: 100
     HeroId: 400

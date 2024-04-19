@@ -1,3 +1,5 @@
+using Common.Scripts;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Character.StateMachine
@@ -22,6 +24,11 @@ namespace GamePlay.Scripts.Character.StateMachine
         }
         public override void ExitState()
         {
+            Messenger.Default.Publish(new AudioPlayOneShotPayload
+            {
+                AudioClip = Context.AudioClipDeath,
+            });
+            
             Context.AnimationController.StopAllClip();
             Context.gameObject.SetActive(false);
         }

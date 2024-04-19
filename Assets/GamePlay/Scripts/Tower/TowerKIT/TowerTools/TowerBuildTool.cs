@@ -1,6 +1,7 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
@@ -8,6 +9,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
     public class TowerBuildTool : TowerToolBase
     {
         [SerializeField] private UnitId.Tower _towerBuildId;
+        
+        [Header("Sounds"), Space(12)]
+        [SerializeField] private AudioClip _audioClipBuilding;
+        
         private UnitBase _towerCanBuild;
         protected void OnEnable()
         {
@@ -24,6 +29,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         {
             GameObject tower = Instantiate(_towerCanBuild.gameObject);
             _towerKit.SetTower(tower, _towerBuildId);
+            
+            Messenger.Default.Publish(new AudioPlayOneShotPayload
+            {
+                AudioClip = _audioClipBuilding,
+            });
         }
         protected override void ShowPreviewChanging()
         {
