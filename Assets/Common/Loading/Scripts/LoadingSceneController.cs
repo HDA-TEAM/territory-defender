@@ -1,4 +1,6 @@
+using Common.Scripts;
 using Cysharp.Threading.Tasks;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace Common.Loading.Scripts
@@ -11,13 +13,22 @@ namespace Common.Loading.Scripts
         [SerializeField] private CommonLoadingGameToHome _gameToHomeCommonLoading;
 
         [SerializeField] private LoadingSceneModelView _loadingSceneModelView;
-
+        
+        [Header("Sounds"), Space(12)]
+        [SerializeField] private AudioClip _audioClipBMGHome;
+        [SerializeField] private AudioClip _audioClipBMGGamePlay;
+        
         private void Start()
         {
             LoadingStartToHome();
         }
-        public void LoadingStartToHome()
+        private void LoadingStartToHome()
         {
+            Messenger.Default.Publish(new AudioPlayLoopPayload
+            {
+                AudioClip = _audioClipBMGHome
+            });
+            
             _loadingSceneModelView.ShowLoadingScene();
             
             var progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
@@ -26,6 +37,11 @@ namespace Common.Loading.Scripts
         }
         public void LoadingGameToHome()
         {
+            Messenger.Default.Publish(new AudioPlayLoopPayload
+            {
+                AudioClip = _audioClipBMGHome
+            });
+            
             _loadingSceneModelView.ShowLoadingScene();
             
             var progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
@@ -35,6 +51,11 @@ namespace Common.Loading.Scripts
         
         public void LoadingHomeToGame(StartStageComposite startStageComposite)
         {
+            Messenger.Default.Publish(new AudioPlayLoopPayload
+            {
+                AudioClip = _audioClipBMGGamePlay,
+            });
+            
             _loadingSceneModelView.ShowLoadingScene();
             
             var progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
