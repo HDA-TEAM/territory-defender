@@ -21,7 +21,7 @@ public class ItemHeroChooseView : MonoBehaviour
         _imgHero.sprite = heroComposite.HeroOwned;
     }
 
-    private void OnSelectedHeroChoose()
+    public void OnSelectedHeroChoose()
     {
         _imgHero.sprite = HeroComposite.HeroChoose;
         _onSelected?.Invoke(this);

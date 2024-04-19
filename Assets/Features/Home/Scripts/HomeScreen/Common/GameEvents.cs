@@ -21,8 +21,5 @@ public static class GameEvents // SO
     }
 }
 
-public interface IComposite
-{
-    // Common properties or methods for composites
-}
+
 

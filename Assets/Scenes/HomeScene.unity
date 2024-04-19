@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 79665024}
   - component: {fileID: 79665025}
   - component: {fileID: 79665026}
+  - component: {fileID: 79665028}
   m_Layer: 0
   m_Name: GameObjectManager
   m_TagString: Untagged
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5424418a80954b88b9e6b7268676579f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heroDataAsset: {fileID: 11400000, guid: 784600e1af4334f049c57b9feccd4023, type: 2}
+  _heroDataConfig: {fileID: 11400000, guid: 784600e1af4334f049c57b9feccd4023, type: 2}
 --- !u!114 &79665025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +196,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79665028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79665022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a19db0d4d404e968073dc2a430e4e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
+  _commonTowerConfig: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
 --- !u!1 &703018977
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212944545}
-  - component: {fileID: 1212944546}
+  - component: {fileID: 1212944547}
   m_Layer: 0
   m_Name: HomeController
   m_TagString: Untagged
@@ -407,7 +422,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1212944546
+--- !u!114 &1212944547
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -416,7 +431,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1212944544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760cf1bccf2e748ec95461330850c369, type: 3}
+  m_Script: {fileID: 11500000, guid: c499636d180943bba7984a71cad345a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1377834145
@@ -804,6 +819,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasUi: {fileID: 724738913}
+--- !u!1 &2057929934
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2057929936}
+  - component: {fileID: 2057929935}
+  m_Layer: 0
+  m_Name: testFont
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2057929935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057929934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5691bfc2ce4a4353897e5750292fd058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newFontAsset: {fileID: 11400000, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
+--- !u!4 &2057929936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057929934}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5741694, y: 7.328277, z: 89.76052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -815,3 +875,4 @@ SceneRoots:
   - {fileID: 724738915}
   - {fileID: 1212944545}
   - {fileID: 1400750849}
+  - {fileID: 2057929936}

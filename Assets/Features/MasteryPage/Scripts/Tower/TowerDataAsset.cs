@@ -1,19 +1,22 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Common.Scripts;
+using Features.MasteryPage.Scripts.Tower;
+using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
+using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
-    public void SaveTowers(SerializedDictionary<UnitId.Tower, CommonTowerSO> towerTypeDict)
+    public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
         _model = ConvertToTowerDataModel(towerTypeDict);
         SaveData();
     }
 
-    private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<UnitId.Tower, CommonTowerSO> towerTypeDict)
+    private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
         var model = new TowerDataModel
         {
