@@ -12,7 +12,8 @@ namespace GamePlay.Scripts.Route
         [SerializeField] private AnimationCurve _animationCurve;
         [SerializeField] private float _animationDuration;
 
-        private Action _onCallWave;
+        private Action<int> _onCallWave;
+        private int _curRouteIndex;
         private void Start()
         {
             _btnCallWave.onClick.AddListener(OnClickCallWave);
@@ -23,11 +24,12 @@ namespace GamePlay.Scripts.Route
         }
         private void OnClickCallWave()
         {
-            _onCallWave?.Invoke();
+            _onCallWave?.Invoke(_curRouteIndex);
         }
-        public void Setup(Action onCallWave)
+        public void Setup(Action<int> onCallWave, int index)
         {
             _onCallWave = onCallWave;
+            _curRouteIndex = index;
         }
     }
 }

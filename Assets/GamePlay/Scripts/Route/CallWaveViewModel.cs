@@ -1,5 +1,6 @@
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.Data.StageSpawning;
+using GamePlay.Scripts.GamePlayController;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,14 +20,18 @@ namespace GamePlay.Scripts.Route
             SetupClickCallWaveButton(callWaveViews);
             ShowCallWaveButton();
         }
-        private void OnClickCallWave()
+        private void OnClickCallWave(int routeId)
         {
+            Debug.Log("Route id click " + routeId);
             
+            InGameStateController.Instance.StartSpawning();
+            HidingAllCallWaveButton();  
         }
         private void SetupClickCallWaveButton(List<CallWaveView> callWaveViews)
         {
+            int routeId = 0;
             foreach (var callWaveView in callWaveViews)
-                callWaveView.Setup(OnClickCallWave);
+                callWaveView.Setup(OnClickCallWave, routeId++);
         }
         private void HidingAllCallWaveButton()
         {
