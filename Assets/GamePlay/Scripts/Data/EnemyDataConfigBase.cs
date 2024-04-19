@@ -1,10 +1,10 @@
-using GamePlay.Scripts.Datas;
+using Common.Scripts;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
     [CreateAssetMenu(fileName = "EnemyDataConfig", menuName = "ScriptableObject/Common/Configs/EnemyDataConfig")]
-    public class EnemyDataConfig: SingleUnitDataConfig<UnitId.Enemy>
+    public class EnemyDataConfigBase: DataConfigBase<UnitId.Enemy,UnitDataComposite>
     {
     }
 }

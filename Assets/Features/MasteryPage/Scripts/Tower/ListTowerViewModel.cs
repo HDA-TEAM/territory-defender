@@ -1,4 +1,4 @@
-using GamePlay.Scripts.Data;
+using Common.Scripts;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,7 @@ public class ListTowerViewModel : MonoBehaviour
     [SerializeField] private ListRuneViewModel _listRuneViewModel;
 
     public Action<UnitId.Tower> _onUpdateViewAction;
-    
+
     // Internal
     private List<TowerComposite> _towerComposites;
     //private TowerComposite _towerComposite;
@@ -28,7 +28,7 @@ public class ListTowerViewModel : MonoBehaviour
     private void UpdateData()
     {
         var towerDataManager = TowerDataManager.Instance;
-        
+
         if (towerDataManager == null) return;
         if (towerDataManager.TowerComposites == null) return;
 
@@ -43,10 +43,12 @@ public class ListTowerViewModel : MonoBehaviour
             if (i < _towerComposites.Count)
             {
                 // Setup hero property
-                _itemTowerViews[i].Setup(_towerComposites[i],OnSelectedItem);  
+                _itemTowerViews[i].Setup(_towerComposites[i], OnSelectedItem);
                 _itemTowerViews[i].gameObject.SetActive(true);
-            } else {
-                _itemTowerViews[i].gameObject.SetActive(false); 
+            }
+            else
+            {
+                _itemTowerViews[i].gameObject.SetActive(false);
             }
         }
     }
@@ -55,21 +57,21 @@ public class ListTowerViewModel : MonoBehaviour
     {
         //Prevent multiple clicks
         if (_preSelectedItem == itemTowerView) return;
-        
+
         if (_preSelectedItem != null)
         {
             _preSelectedItem.RemoveSelected();
         }
 
         _preSelectedItem = itemTowerView;
-        
+
         Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
-        
+
         // Reset view of rune detail
         GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
         _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
     }
-    
+
     public void ResetView()
     {
         // Reset the selection state

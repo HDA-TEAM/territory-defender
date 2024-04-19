@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a89a60f9e7349989a8047a3c6f2f6b3, type: 3}
   m_Name: TotalUnitDataConfig
   m_EditorClassIdentifier: 
-  _towerDataConfig: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _allyTroopsDataConfig: {fileID: 11400000, guid: 5d6da90b0570d48d380ba116e8d61fa4, type: 2}
-  _enemyDataConfig: {fileID: 11400000, guid: 4db6666d52c634e94b5a9a69ed5ea2b1, type: 2}
-  _heroDataConfig: {fileID: 11400000, guid: 5d04d11bf739148c284bf3799ca05c56, type: 2}
+  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _allyTroopsDataConfigBase: {fileID: 11400000, guid: 5d6da90b0570d48d380ba116e8d61fa4, type: 2}
+  _enemyDataConfigBase: {fileID: 11400000, guid: 4db6666d52c634e94b5a9a69ed5ea2b1, type: 2}
+  _heroDataConfigBase: {fileID: 11400000, guid: 5d04d11bf739148c284bf3799ca05c56, type: 2}

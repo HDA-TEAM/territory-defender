@@ -1,5 +1,8 @@
+using Common.Loading.Scripts;
+using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +58,10 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
         if (!InGameStateController.Instance.IsGamePlaying)
             return;
 
+        if (InGameStateController.Instance.IsFinishSpawn && _unitEnemies.Count == 0)
+        {
+            InGameStateController.Instance.CheckingStageSuccess();
+        }
         SynRuntimeAction();
 
         ClearUnavailableUnit();
@@ -137,7 +144,7 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
         unitOut.CurrentTarget = null;
         unitOut.OnTargetChanging?.Invoke(targetChangingComposite);
     }
-    public override void SetUpNewGame()
+    public override void SetUpNewGame(StartStageComposite startStageComposite)
     {
     }
     public override void ResetGame()

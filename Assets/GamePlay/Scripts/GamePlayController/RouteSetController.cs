@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
@@ -14,10 +15,8 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageId _currentStageId;
     
         [SerializeField] private List<SingleRoute> _currentSingleRouteComposite = new List<SingleRoute>();
-        [SerializeField] private StageDataAsset _stageDataAsset;
         [SerializeField] private RouteSetConfig _routeSetConfig;
         [SerializeField] private CallWaveViewModel _callWaveViewModel;
-        private StageConfig _stageConfig;
         public List<SingleRoute> CurrentSingleRouteLineRenderers
         {
             get
@@ -31,8 +30,6 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 lineRender.SingleLineRenderer.widthMultiplier = 0f;
             }
-            // _stageConfig = _stageDataAsset.GetStageConfig();
-            // _currentRouteLineRenders = _stageConfig.RouteSetConfig.LoadFromConfig(_currentRouteLineRenders);
         }
     
         private void SaveToConfig()
@@ -117,8 +114,9 @@ namespace GamePlay.Scripts.GamePlayController
             return res;
         }
 
-        public override void SetUpNewGame()
+        public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
+            _currentStageId = startStageComposite.StageId;
             LoadFromConfig();
         }
         public override void ResetGame()

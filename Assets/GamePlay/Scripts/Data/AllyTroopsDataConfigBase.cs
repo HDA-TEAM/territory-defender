@@ -1,10 +1,10 @@
-using GamePlay.Scripts.Datas;
+using Common.Scripts;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
     [CreateAssetMenu(fileName = "AllyTroopsDataConfig", menuName = "ScriptableObject/Common/Configs/AllyTroopsDataConfig")]
-    public class AllyTroopsDataConfig: SingleUnitDataConfig<UnitId.Ally>
+    public class AllyTroopsDataConfigBase: DataConfigBase<UnitId.Ally,UnitDataComposite>
     {
     }
 }

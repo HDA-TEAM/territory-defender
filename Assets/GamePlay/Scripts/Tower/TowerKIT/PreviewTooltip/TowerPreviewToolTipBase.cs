@@ -1,3 +1,4 @@
+using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.Menu.UnitInformationPanel;
@@ -23,9 +24,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
 
     public class TowerPreviewBuiltTowerToolTip : TowerPreviewToolTipBase
     {
-        public TowerPreviewBuiltTowerToolTip(TowerDataConfig towerDataConfig, UnitId.Tower towerId)
+        public TowerPreviewBuiltTowerToolTip(TowerDataConfigBase towerDataConfigBase, UnitId.Tower towerId)
         {
-            StatsHandlerComponent towerStats = towerDataConfig.GetUnitConfigById(towerId).UnitBase.UnitStatsHandlerComp();
+            StatsHandlerComponent towerStats = towerDataConfigBase.GeConfigByKey(towerId).UnitBase.UnitStatsHandlerComp();
             _statComposites = towerStats.GetShowStatsInformation().StatComposites;
             _desc = towerStats.GetBaseStats().GetInformation(InformationId.Description);
             _title = towerStats.GetBaseStats().GetInformation(InformationId.Name);

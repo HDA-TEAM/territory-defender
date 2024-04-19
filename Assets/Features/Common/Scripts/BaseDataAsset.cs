@@ -2,13 +2,13 @@ using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
-public interface IDefaultCustom
+public interface IDefaultDataModel
 {
     public bool IsEmpty();
     public void SetDefault();
 }
 
-public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
+public class DataAsset<T> : ScriptableObject where T: struct, IDefaultDataModel
 {
     // Check file exist function
     private bool IsFileExist(string filePath)
@@ -57,7 +57,7 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultCustom
     }
     
 }
-public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultCustom // Model
+public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultDataModel // Model
 {
     [SerializeField] private string _filename;
     [SerializeField] protected T _model;

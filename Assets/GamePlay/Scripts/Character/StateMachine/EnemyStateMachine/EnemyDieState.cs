@@ -1,5 +1,7 @@
+using Common.Scripts;
 using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
+using GamePlay.Scripts.GamePlayController;
 using UnityEngine;
 
 public class EnemyDieState : CharacterDieState

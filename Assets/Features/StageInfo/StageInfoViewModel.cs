@@ -1,4 +1,6 @@
 using Common.Loading.Scripts;
+using Common.Scripts;
+using GamePlay.Scripts.Data;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -77,7 +79,12 @@ public class StageInfoViewModel : MonoBehaviour
     private void LoadSceneBasedOnStageAndMode(StageComposite stage, GameMode gameMode, HeroComposite hero)
     {
         Debug.Log($"StageId: {stage.StageId}, GameMode: {gameMode}, Hero : {hero.Name}");
-        LoadingSceneController.Instance.LoadingHomeToGame();
+        LoadingSceneController.Instance.LoadingHomeToGame(new StartStageComposite
+        {
+            StageId = StageId.Chap1Stage0,
+            StageDiff = StageDiff.Normal,
+            HeroId = UnitId.Hero.TrungTrac,
+        });
     }
 }
 

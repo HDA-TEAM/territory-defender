@@ -39,12 +39,12 @@ namespace Common.Loading.Scripts
             _gameToHomeCommonLoading.StartLoading(_loadingSceneModelView.HidingLoadingScene, progress: progress);
         }
         
-        public void LoadingHomeToGame()
+        public void LoadingHomeToGame(StartStageComposite startStageComposite)
         {
             _loadingSceneModelView.ShowLoadingScene();
             
             var progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
-            
+            _homeToGameCommonLoading.SetStageInformation(startStageComposite);
             _homeToGameCommonLoading.StartLoading(_loadingSceneModelView.HidingLoadingScene, progress: progress);
         }
     }
