@@ -1,8 +1,8 @@
-using CustomInspector;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.GamePlay;
 using UnityEngine;
 
-namespace GamePlay.Scripts.GamePlay
+namespace GamePlay.Scripts.Menu.ResultPu
 {
     public class GameResultHandler : MonoBehaviour
     {
@@ -11,12 +11,12 @@ namespace GamePlay.Scripts.GamePlay
         [SerializeField] private StageSuccessPu _stageSuccessPu;
         [SerializeField] private StageFailedPu _stageFailedPu;
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
-        [SerializeField] private StageInventoryConfig _stageInventoryConfig;
+        [SerializeField] private StageDataConfig _stageDataConfig;
 
         public void ShowStageSuccessPu()
         {
             StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
-            int maxLife = _stageInventoryConfig.GetStageInventory(stageId).MaxLife;
+            int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
             int curLife = _inventoryRuntimeData.GetLifeValue();
             _stageSuccessPu.gameObject.SetActive(true);
 

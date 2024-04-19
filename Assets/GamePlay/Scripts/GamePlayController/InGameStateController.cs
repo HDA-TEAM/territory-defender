@@ -1,6 +1,7 @@
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.Menu.ResultPu;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
@@ -17,7 +18,7 @@ namespace GamePlay.Scripts.GamePlayController
         [Header("Data"), Space(12)] [SerializeField]
         private InGameInventoryRuntimeData _inventoryRuntimeData;
         [SerializeField] private GameResultHandler _resultsController;
-        [SerializeField] private StageInventoryConfig _stageInventoryConfig;
+        [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
 
         private bool _isFinishSpawn;
@@ -31,7 +32,7 @@ namespace GamePlay.Scripts.GamePlayController
         {
             base.Awake();
             CurStageId = StageId.Chap1Stage0;
-            _inventoryRuntimeData.InitData(_stageInventoryConfig.GetStageInventory(CurStageId));
+            _inventoryRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
             _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
         }
         public void Start()
