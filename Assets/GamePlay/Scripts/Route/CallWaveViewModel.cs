@@ -21,12 +21,14 @@ namespace GamePlay.Scripts.Route
         private StageId _stageId;
         private Action _onEarlyCallWave;
         private Tween _tweenAutoHidingCallWave;
-        private void Start()
+        private void Awake()
         {
             Messenger.Default.Subscribe<PrepareCallWaveButtonPayload>(PrepareShowCallWave);
         }
         private void OnDestroy()
         {
+            if (_tweenAutoHidingCallWave != null)
+                _tweenAutoHidingCallWave.Kill();
             Messenger.Default.Unsubscribe<PrepareCallWaveButtonPayload>(PrepareShowCallWave);
         }
         public void Setup(List<CallWaveView> callWaveViews, StageId stageId)

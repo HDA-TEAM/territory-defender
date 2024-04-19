@@ -37,6 +37,7 @@ namespace GamePlay.Scripts.GamePlayController
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
             PoolingController.Instance.SetUpNewGame(startStageComposite);
+            _enemySpawningFactory.SetUpNewGame(startStageComposite);
         }
         public override void ResetGame()
         {

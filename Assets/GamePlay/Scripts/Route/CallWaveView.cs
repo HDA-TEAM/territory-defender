@@ -14,13 +14,18 @@ namespace GamePlay.Scripts.Route
 
         private Action<int> _onCallWave;
         private int _curRouteIndex;
+        private Tween _tweenScale;
         private void Start()
         {
             _btnCallWave.onClick.AddListener(OnClickCallWave);
-            DOVirtual.Float(0f, 1f, _animationDuration, (t) =>
+            _tweenScale = DOVirtual.Float(0f, 1f, _animationDuration, (t) =>
             {
                 _btnCallWave.transform.localScale = Vector3.one * t;
             }).SetEase(_animationCurve).SetLoops(-1);
+        }
+        private void OnDestroy()
+        {
+            _tweenScale.Kill();
         }
         private void OnClickCallWave()
         {
