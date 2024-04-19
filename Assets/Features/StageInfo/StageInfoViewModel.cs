@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Common.Loading.Scripts;
+using Common.Scripts;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 public class StageInfoViewModel : MonoBehaviour
