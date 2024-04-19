@@ -1,16 +1,10 @@
-using CustomInspector;
 using Cysharp.Threading.Tasks;
-using System;
 using UnityEngine;
 
 namespace Common.Loading.Scripts
 {
     public class LoadingSceneController : SingletonBase<LoadingSceneController>
     {
-        [Button("LoadingStartToHome")]
-        [Button("LoadingHomeToGame")]
-        [Button("LoadingGameToHome")]
-        
         [Header("Loading scene")]
         [SerializeField] private CommonLoadingStartToHome _startToHomeCommonLoading;
         [SerializeField] private CommonLoadingHomeToGame _homeToGameCommonLoading;
