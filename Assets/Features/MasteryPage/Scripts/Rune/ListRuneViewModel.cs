@@ -31,19 +31,22 @@ public class ListRuneViewModel : MonoBehaviour
     
     //Action
     private Action _onTowerDataUpdatedAction;
-    
+
     private void Start()
     {
         _inventoryComposite = new InventoryComposite();
         UpdateData();
         
-        SetDefaultState();
-
+        SetupRuneDetailView(true);
+        
+        // Handle Tower changed
         if (_listTowerViewModel != null)
         {
+            //SetDefaultState();
             _listTowerViewModel._onUpdateViewAction += UpdateView;
         }
         
+        // Handle upgrade rune clicking
         if (_itemUpgradeRuneView != null)
         {
             _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
@@ -55,12 +58,11 @@ public class ListRuneViewModel : MonoBehaviour
 
     private void SetDefaultState()
     {
-        SetupRuneDetailView(true);
-        
-        _runeDetailView.UpdateCurrentRuneData(_itemRuneViews[0].RuneComposite);
+        _preSelectedUpgradeRuneView = null;
         OnSelectedRuneItem(_itemRuneViews[0]);
+        _itemUpgradeRuneView.Setup(_preSelectedItem.RuneComposite, OnSelectedUpgradeRuneItem);
     }
-    
+
     private void UpdateData()
     {
         var towerRuneDataManager = RuneDataManager.Instance;
@@ -108,7 +110,7 @@ public class ListRuneViewModel : MonoBehaviour
         }
 
         // Update rune data when updated the level of that rune
-        if (_runeDetailView != null && _preSelectedItem != null && _itemUpgradeRuneView != null)
+        if (_runeDetailView != null && _preSelectedItem != null && _preSelectedUpgradeRuneView != null)
         {
             foreach (var runeComposite in _preTowerHasComposite.RuneComposite)
             {
@@ -116,7 +118,11 @@ public class ListRuneViewModel : MonoBehaviour
                 {
                     _runeDetailView.UpdateCurrentRuneData(runeComposite);
                 }
+                
             }
+        } else {
+            // Handle to set rune status to default when clicking other tower
+            SetDefaultState();
         }
     }
 
