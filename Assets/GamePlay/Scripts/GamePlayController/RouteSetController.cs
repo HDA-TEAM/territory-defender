@@ -64,7 +64,7 @@ namespace GamePlay.Scripts.GamePlayController
             List<CallWaveView> callWaveViews = new List<CallWaveView>();
             RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
             int lineCount = lineRouteSet.RouteLines.Count;
-            for (int i = 0; i < lineCount; i++)
+            for (int i = 0; i < _currentSingleRouteComposite.Count; i++)
             {
                 // If route set config < total active routeSet on map
                 if (i >= lineCount)
