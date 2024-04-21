@@ -13,12 +13,13 @@ public class ListTowerViewModel : MonoBehaviour
 
     // Internal
     private List<TowerComposite> _towerComposites;
-    //private TowerComposite _towerComposite;
     private ItemTowerView _preSelectedItem;
     private void Start()
     {
         UpdateData();
-        _itemTowerViews[0].OnSelectedTower();
+        
+        //Setup default state
+        OnSelectedItem(_itemTowerViews[0]); 
     }
     private void OnDisable()
     {
@@ -64,11 +65,12 @@ public class ListTowerViewModel : MonoBehaviour
         }
 
         _preSelectedItem = itemTowerView;
-
+        _preSelectedItem.OnSelectedTower();
+        
         Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
 
         // Reset view of rune detail
-        GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
+        //GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
         _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
     }
 

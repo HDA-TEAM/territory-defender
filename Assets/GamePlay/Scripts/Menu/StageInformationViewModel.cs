@@ -1,8 +1,6 @@
 using GamePlay.Scripts.Data;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 public class StageInformationViewModel : MonoBehaviour
 {
