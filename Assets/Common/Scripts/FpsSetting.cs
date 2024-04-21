@@ -1,10 +1,9 @@
 using UnityEngine;
 
 public class FpsSetting : MonoBehaviour
-{
-    void Start()
+{ 
+    private void Start()
     {
         Application.targetFrameRate = 60;
     }
-
 }
