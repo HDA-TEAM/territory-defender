@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
@@ -92,6 +93,11 @@ public class TowerRuneDataConfig : ScriptableObject
         RuneLevel existingRuneLevel = towerDataConfig._runeLevels[index];
         existingRuneLevel.Level++;  // Increment the level by 1
         towerDataConfig._runeLevels[index] = existingRuneLevel;
+    }
+
+    private void ResetRune(TowerDataConfig towerDataConfig)
+    {
+        
     }
 
 
