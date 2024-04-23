@@ -60,6 +60,14 @@ PrefabInstance:
       value: Archer
       objectReference: {fileID: 0}
     - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _projectileId
+      value: 1001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _audioClipAttack
+      value: 
+      objectReference: {fileID: 8300000, guid: d0b220b8bd7344fc99daf1c7874aca68, type: 3}
+    - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _startAttackPoint
       value: 
       objectReference: {fileID: 4968504722749880728}
