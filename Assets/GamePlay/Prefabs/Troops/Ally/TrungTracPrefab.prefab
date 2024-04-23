@@ -40,6 +40,22 @@ PrefabInstance:
       propertyPath: FirstActiveSkillClip
       value: 
       objectReference: {fileID: 7400000, guid: eeb8dbbe7a1df4c7480388913e627760, type: 2}
+    - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_Size.x
+      value: 3.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_Size.y
+      value: 2.682656
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 423699641, guid: 19754286380fc40f6b42b4ceac655797, type: 3}
+    - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: _userActionController
       value: 
@@ -104,6 +120,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8557316177088831809, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4722d95c7eccd4582a99cdd1d169342d, type: 2}
     m_RemovedComponents:
     - {fileID: 265673086395741768, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
     m_RemovedGameObjects: []
