@@ -114,6 +114,14 @@ PrefabInstance:
       propertyPath: IdleClip
       value: 
       objectReference: {fileID: 7400000, guid: 0b5e4070bbefc47e2bc8e39a14a37963, type: 2}
+    - target: {fileID: 1747842702292361965, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: NormalAttackClip
+      value: 
+      objectReference: {fileID: 7400000, guid: 0b5e4070bbefc47e2bc8e39a14a37963, type: 2}
+    - target: {fileID: 2125136474907751404, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _projectileId
       value: 1000
@@ -128,16 +136,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Size.x
-      value: 1.5
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Size.y
-      value: 1.74
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 95b1af72b375a448188a82cd9820881a, type: 3}
+      objectReference: {fileID: -297516846, guid: 6a3174a2aa8af4dfebff34e3be2317f5, type: 3}
+    - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494015, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Controller
       value: 
@@ -156,11 +168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.03
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.z
