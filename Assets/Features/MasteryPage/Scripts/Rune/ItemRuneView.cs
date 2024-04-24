@@ -34,7 +34,7 @@ public class ItemRuneView : MonoBehaviour
 
     public void SetRuneLevel(RuneComposite runeComposite)
     {
-        _txtRuneStacks.text = "Level " + runeComposite.Level;
+        _txtRuneStacks.text = runeComposite.Level.ToString();
     }
 
     public void SetAvatarRune(Sprite spriteImg)

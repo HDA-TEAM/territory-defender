@@ -13,12 +13,16 @@ public class ListHeroChooseViewModel : MonoBehaviour
     private void Start()
     {
         UpdateData();
+        
+        //Setup default state
+        _itemHeroChooseViews[0].OnSelectedHeroChoose();
     }
     
     private void UpdateData()
     {
         var heroDataManager = HeroDataManager.Instance;
         _currentHeroes = heroDataManager.HeroComposites;
+
         UpdateView();
     }
 
