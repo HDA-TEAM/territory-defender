@@ -11,7 +11,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
     {
         [Header("Data"), Space(12)]
         [SerializeField] private RuneDataAsset _runeDataAsset;
-        [FormerlySerializedAs("_commonTowerConfig")] [SerializeField] private TowerRuneDataConfig _towerRuneDataConfig;
+        [SerializeField] private TowerRuneDataConfig _towerRuneDataConfig;
 
         public List<TowerHasRuneComposite> TowerRuneComposites { get; private set; }
         public TowerRuneDataConfig TowerRuneDataConfig => _towerRuneDataConfig;

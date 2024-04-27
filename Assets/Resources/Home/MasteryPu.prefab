@@ -2723,6 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f2c59dfcdf40e2891816c39e704c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _listTowerViewModel: {fileID: 2112815877278511160}
   _itemRuneViews:
   - {fileID: 3001253364433171673}
   - {fileID: 7731260818311861915}
@@ -2733,10 +2734,10 @@ MonoBehaviour:
   - {fileID: 6674341368545024}
   - {fileID: 3927652957603479811}
   - {fileID: 9028636570446536231}
-  _runeDetailView: {fileID: 7505075942688255521}
   _itemUpgradeRuneView: {fileID: 6335632413185824703}
+  _itemResetRuneView: {fileID: 1532692180825555403}
   _itemStarView: {fileID: 3647299838282285556}
-  _listTowerViewModel: {fileID: 2112815877278511160}
+  _runeDetailView: {fileID: 7505075942688255521}
   _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
 --- !u!1 &4805857425401921849
 GameObject:

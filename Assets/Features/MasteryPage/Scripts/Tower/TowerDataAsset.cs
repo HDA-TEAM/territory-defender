@@ -33,7 +33,6 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
                 model.TowerList.Add(towerSoSaver);
             }
         }
-
         return model;
     }
 

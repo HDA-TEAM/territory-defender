@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
+using Features.MasteryPage.Scripts.RuneDetailView;
 using UnityEngine;
 
 public class ListRuneViewModel : MonoBehaviour
@@ -41,6 +42,7 @@ public class ListRuneViewModel : MonoBehaviour
     
     //Action
     private Action _onTowerDataUpdatedAction;
+    private Action _onTowerRuneResetAction;
 
     private void Start()
     {
@@ -52,7 +54,6 @@ public class ListRuneViewModel : MonoBehaviour
         // Handle Tower changed
         if (_listTowerViewModel != null)
         {
-            //SetDefaultState();
             _listTowerViewModel._onUpdateViewAction += UpdateView;
         }
         
@@ -64,13 +65,26 @@ public class ListRuneViewModel : MonoBehaviour
             
             _onTowerDataUpdatedAction += UpdateData;
         }
+        
+        // Handle reset rune clicking
+        if (_itemResetRuneView != null)
+        {
+            _onTowerRuneResetAction += RuneDataManager.Instance.GetTowerRuneData;
+            RuneDataManager.Instance.GetTowerRuneData();
+            
+            _onTowerRuneResetAction += UpdateData;
+        }
     }
 
     private void SetDefaultState()
     {
+        _preSelectedResetRuneItem = null;
         _preSelectedUpgradeRuneItem = null;
+        
         OnSelectedRuneItem(_itemRuneViews[0]);
+        
         _itemUpgradeRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedUpgradeRuneItem);
+        _itemResetRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedResetRuneItem);
     }
 
     private void UpdateData()
@@ -147,6 +161,7 @@ public class ListRuneViewModel : MonoBehaviour
         // Setup rune view
         _runeDetailView.Setup(_preSelectedRuneItem.RuneComposite);
         _itemUpgradeRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedUpgradeRuneItem);
+        _itemResetRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedResetRuneItem);
     }
     
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
@@ -166,8 +181,8 @@ public class ListRuneViewModel : MonoBehaviour
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
             {
-                var commonTowerConfig = RuneDataManager.Instance.TowerRuneDataConfig;
-                commonTowerConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
+                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
+                towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
                 // Subtract star number
                 _inventoryRuntimeData.TryChangeStar(1);
@@ -194,10 +209,21 @@ public class ListRuneViewModel : MonoBehaviour
         _preSelectedResetRuneItem = itemResetRuneView;
         if (_preSelectedRuneItem.RuneComposite.Level > 0)
         {
-            //_preRuneDataConfig = RuneDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
+            _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
+            if (_preRuneDataConfig != null)
+            {
+                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
+                towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
+            
+                // Return star number after reset
+                _inventoryRuntimeData.TryRefundStar(towerRuneDataConfig._returnStar);
+                
+                Debug.Log("Upgrade rune successful....");
+                
+                _onTowerRuneResetAction?.Invoke();
+            }
         }
     }
-
     private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
     {
         foreach (var item in list)
@@ -211,11 +237,11 @@ public class ListRuneViewModel : MonoBehaviour
         Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
         return default(TowerHasRuneComposite); 
     }
-
     public void SetupRuneDetailView(bool flag)
     {
         _runeDetailView.gameObject.SetActive(flag);
         _itemUpgradeRuneView.gameObject.SetActive(flag);
+        _itemResetRuneView.gameObject.SetActive(flag);
     }
 }
 public struct RuneComposite

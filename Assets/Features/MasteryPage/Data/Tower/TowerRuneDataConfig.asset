@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: beed9b66779449009cb2ff91f8db2c76, type: 3}
-  m_Name: CommonTowerConfig
+  m_Name: TowerRuneDataConfig
   m_EditorClassIdentifier: 
   _towerTypeDict:
     _serializedList:
@@ -22,4 +22,5 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 0f53710b0a46e4fe49a85af47a78afec, type: 2}
     - Key: 330
       Value: {fileID: 11400000, guid: 9f39b640eb6ac41fda78229104115dc7, type: 2}
-  _towerDataAsset: {fileID: 11400000, guid: cbe5eb5c34f5842599d4001f063bc79f, type: 2}
+  _towerDataAsset: {fileID: 11400000, guid: 6055a43f998d1420bbbd78009543a064, type: 2}
+  _returnStar: 0
