@@ -808,7 +808,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
   m_sharedMaterial: {fileID: -3163399200741351937, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e047e12ad8c8c477f995df50d9fa919d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb62dd788847492787d16d97230cb82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1586,7 +1586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29e0d312afa1470982c6e9f9cb2d414f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btnUpgradeRune: {fileID: 7208521313383814197}
+  _btn: {fileID: 7208521313383814197}
+  _txtName: {fileID: 8974187316958266271}
 --- !u!1 &6556284379454270780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,7 +1653,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
   m_sharedMaterial: {fileID: -3163399200741351937, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
@@ -2300,7 +2301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 584241f844bb14a51a10c1b355e77f56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8fb62dd788847492787d16d97230cb82, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2366,7 +2367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfec63bd9964c069b338de351bb6947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _btnResetRune: {fileID: 5279763233794785051}
+  _btn: {fileID: 5279763233794785051}
+  _txtName: {fileID: 6149988857878291031}
 --- !u!1 &8090540425800558761
 GameObject:
   m_ObjectHideFlags: 0

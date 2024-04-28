@@ -61,7 +61,7 @@ public class ListRuneViewModel : MonoBehaviour
         if (_itemUpgradeRuneView != null)
         {
             _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
-            RuneDataManager.Instance.GetTowerRuneData();
+            //RuneDataManager.Instance.GetTowerRuneData();
             
             _onTowerDataUpdatedAction += UpdateData;
         }
@@ -70,7 +70,7 @@ public class ListRuneViewModel : MonoBehaviour
         if (_itemResetRuneView != null)
         {
             _onTowerRuneResetAction += RuneDataManager.Instance.GetTowerRuneData;
-            RuneDataManager.Instance.GetTowerRuneData();
+            //RuneDataManager.Instance.GetTowerRuneData();
             
             _onTowerRuneResetAction += UpdateData;
         }
@@ -142,7 +142,6 @@ public class ListRuneViewModel : MonoBehaviour
                 {
                     _runeDetailView.UpdateCurrentRuneData(runeComposite);
                 }
-                
             }
         } else {
             // Handle to set rune status to default when clicking other tower
@@ -163,7 +162,7 @@ public class ListRuneViewModel : MonoBehaviour
         _itemUpgradeRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedUpgradeRuneItem);
         _itemResetRuneView.Setup(_preSelectedRuneItem.RuneComposite, OnSelectedResetRuneItem);
     }
-    
+
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
         var runeDataAsset = RuneDataManager.Instance.RuneDataAsset;
