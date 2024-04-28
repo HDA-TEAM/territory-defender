@@ -4,6 +4,7 @@ using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
+using GamePlay.Scripts.Tower.TowerKIT.TowerTools;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
@@ -33,9 +34,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private GameObject _towerBuildTool;
         [SerializeField] private GameObject _towerUsingTool;
         [SerializeField] private GameObject _spawnTowerHolder;
-        [SerializeField] private Button _btnRange;
         [SerializeField] private SpriteRenderer _spiteFlag;
 
+        [Header("Preview Tooltip"), Space(12)]
+        [SerializeField] private TowerCampingSelection _towerCampingSelection;
+        
         [Header("Preview Tooltip"), Space(12)]
         [SerializeField] private HandleTowerShowTooltip _towerShowTooltip;
         
@@ -211,35 +214,32 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         private void SetFlagActive(bool isActive)
         {
-            _btnRange.gameObject.SetActive(isActive);
             _spiteFlag.gameObject.SetActive(isActive);
         }
         public void ActiveCampingMode()
         {
         
             var rangeVal= _unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
-        
-            SetRangeOfTower(rangeVal);
 
             TowerKitState = TowerKitState.Hiding;
             SetFlagActive(true);
-
-            _btnRange.onClick.AddListener(() =>
-            {
-                // Set camping position
-                var troopTowerBehaviour = _unitBase.GetComponent<TroopTowerBehaviour>();
-                var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                troopTowerBehaviour.SetCampingPlace(new Vector3(mousePos.x, mousePos.y,0));
             
-                // Hiding select camping position
-                SetFlagActive(false);
-                TowerKitState = TowerKitState.Hiding;
-                _btnRange.onClick.RemoveAllListeners();
-            });
+            _towerCampingSelection.gameObject.SetActive(true);
+            _towerCampingSelection.SetUp(rangeVal, OnSelectCampingPlace);
         }
-        private void SetRangeOfTower(float range)
+        private void OnSelectCampingPlace()
         {
-            _btnRange.image.rectTransform.sizeDelta = new Vector2(range * 2, range * 2);
+            var troopTowerBehaviour = _unitBase.GetComponent<TroopTowerBehaviour>();
+            var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            var campingPos = new Vector3(mousePos.x, mousePos.y,0);
+
+            troopTowerBehaviour.SetCampingPlace(campingPos);
+            _towerCampingSelection.SetFlagCampingPos(campingPos);
+            
+            // Hiding select camping position
+            SetFlagActive(false);
+            TowerKitState = TowerKitState.Hiding;
         }
     }
 }
