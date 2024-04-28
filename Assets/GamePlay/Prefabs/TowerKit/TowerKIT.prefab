@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 091aeb5cc8179a94a93d8b8fc3420add, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7464b212c811e40498861f3e3db30071, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -401,6 +401,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: _towerKit
+      value: 
+      objectReference: {fileID: 2030117108}
+    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: _towerToolBases.Array.data[0]
+      value: 
+      objectReference: {fileID: 6744289846265658732}
+    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: _towerToolBases.Array.data[1]
+      value: 
+      objectReference: {fileID: 2117454944}
+    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: _towerToolBases.Array.data[2]
+      value: 
+      objectReference: {fileID: 2117454943}
+    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
+      propertyPath: _towerToolBases.Array.data[3]
+      value: 
+      objectReference: {fileID: 2117454942}
     - target: {fileID: 6878341851810413604, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
       propertyPath: m_Name
       value: Tools
@@ -517,9 +537,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6878341852308413581, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6744289846265658733}
     - targetCorrespondingSourceObject: {fileID: 6878341852060447389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6744289846265658732}
@@ -678,30 +695,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6878341852308413581, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
   m_PrefabInstance: {fileID: 118501955251462204}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6744289846265658733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832461592147819697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8031999b77de749009693cfe7507c9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerKit: {fileID: 2030117108}
-  _towerToolBases:
-  - {fileID: 6744289846265658732}
-  - {fileID: 2117454944}
-  - {fileID: 2117454943}
-  - {fileID: 2117454942}
-  _confirmHandles:
-  - {fileID: 6587972564454838701}
-  - {fileID: 491974220771195605}
-  - {fileID: 1383995823105728810}
-  - {fileID: 7814271628858601001}
-  CurrentConfirmHandle: {fileID: 0}
 --- !u!1 &7623810353359367461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7523324720798616857, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -1365,16 +1358,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8504424395307449551, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
+      propertyPath: _towerKit
+      value: 
+      objectReference: {fileID: 2030117108}
+    - target: {fileID: 8504424395307449551, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
+      propertyPath: _towerToolBases.Array.data[1]
+      value: 
+      objectReference: {fileID: 4480031518938950942}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3180346054578500385, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 506246015}
-    - targetCorrespondingSourceObject: {fileID: 3180346054578500385, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6394022393207852737}
     - targetCorrespondingSourceObject: {fileID: 8163978382351769485, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4480031518938950942}
@@ -1422,28 +1417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1378895483893015365 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7288823997352815861, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1589972732339235433 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6923579826607023577, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 744076076c7d432fae32f06b64bea92c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2490724114247571215 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6094809073040103615, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
@@ -1465,113 +1438,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3180346054578500385, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
   m_PrefabInstance: {fileID: 8504424394869428144}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &506246015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6496181943433739409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8031999b77de749009693cfe7507c9a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerKit: {fileID: 2030117108}
-  _towerToolBases:
-  - {fileID: 1589972732339235433}
-  _confirmHandles:
-  - {fileID: 9036198015728701514}
-  - {fileID: 1285741066417378361}
-  - {fileID: 213188994970276657}
-  - {fileID: 1378895483893015365}
-  CurrentConfirmHandle: {fileID: 0}
---- !u!114 &6394022393207852737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6496181943433739409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animationSteps:
-  - rid: 7982686534885703682
-  updateType: 0
-  timeScaleIndependent: 0
-  autoplayMode: 1
-  startPaused: 0
-  playbackSpeed: 1
-  playType: 0
-  loops: 0
-  loopType: 0
-  autoKill: 1
-  onStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onFinishedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onProgressEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  progress: -1
-  references:
-    version: 2
-    RefIds:
-    - rid: 7982686534885703682
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 0
-        target: {fileID: 6496181943433739409}
-        duration: 0.5
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686534885703683
-        - rid: 7982686534885703684
-    - rid: 7982686534885703683
-      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 1
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        scale: {x: 0, y: 0, z: 0}
-        axisConstraint: 0
-    - rid: 7982686534885703684
-      type: {class: ScaleDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 0
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        scale: {x: 1, y: 1, z: 1}
-        axisConstraint: 0
---- !u!114 &9036198015728701514 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 820445500330385402, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
