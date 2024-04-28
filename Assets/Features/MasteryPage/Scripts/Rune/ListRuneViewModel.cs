@@ -140,6 +140,7 @@ public class ListRuneViewModel : MonoBehaviour
             {
                 if (runeComposite.RuneId == _preSelectedRuneItem.RuneComposite.RuneId)
                 {
+                    _itemUpgradeRuneView.Setup(runeComposite, OnSelectedUpgradeRuneItem);
                     _runeDetailView.UpdateCurrentRuneData(runeComposite);
                 }
             }
@@ -217,11 +218,12 @@ public class ListRuneViewModel : MonoBehaviour
                 // Return star number after reset
                 _inventoryRuntimeData.TryRefundStar(towerRuneDataConfig._returnStar);
                 
-                Debug.Log("Upgrade rune successful....");
+                Debug.Log("Upgrade rune successful".ToUpper());
                 
                 _onTowerRuneResetAction?.Invoke();
             }
         }
+        else Debug.Log("CANNOT RESET THIS RUNE");
     }
     private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
     {
