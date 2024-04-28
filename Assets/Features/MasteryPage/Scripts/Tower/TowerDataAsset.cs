@@ -10,6 +10,7 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
     public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
+        Debug.Log("SaveTowers");
         _model = ConvertToTowerDataModel(towerTypeDict);
         SaveData();
     }

@@ -23,7 +23,7 @@ namespace _ZZ
                 if (newFontAsset != null) text.font = newFontAsset;
                 EditorUtility.SetDirty(text);
             }
-            Debug.Log("Customized properties applied to all TMP texts.");
+            //Debug.Log("Customized properties applied to all TMP texts.");
         }
     }
 }

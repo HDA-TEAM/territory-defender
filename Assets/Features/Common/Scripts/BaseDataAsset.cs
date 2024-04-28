@@ -24,6 +24,7 @@ public class DataAsset<T> : ScriptableObject where T: struct, IDefaultDataModel
     {
         string filePath = GetFilePath(filename);
 
+        Debug.Log(filePath);
         // TODO
         // if (!IsFileExist(filePath))
         // {

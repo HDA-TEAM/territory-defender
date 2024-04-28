@@ -49,6 +49,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             {
                 _runeComposites = new List<RuneComposite>();
 
+                // Include default data for each rune
                 foreach (var runeSo in listRuneSos)
                 {
                     _runeComposites.Add(new RuneComposite
