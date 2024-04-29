@@ -43,14 +43,9 @@ public class ListRuneViewModel : MonoBehaviour
     //Action
     private Action _onTowerDataUpdatedAction;
     private Action _onTowerRuneResetAction;
-
-    private void Start()
+    
+    private void SubscribeEvents()
     {
-        _inventoryComposite = new InventoryComposite();
-        UpdateData();
-        
-        SetupRuneDetailView(true);
-        
         // Handle Tower changed
         if (_listTowerViewModel != null)
         {
@@ -61,8 +56,6 @@ public class ListRuneViewModel : MonoBehaviour
         if (_itemUpgradeRuneView != null)
         {
             _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
-            //RuneDataManager.Instance.GetTowerRuneData();
-            
             _onTowerDataUpdatedAction += UpdateData;
         }
         
@@ -70,12 +63,36 @@ public class ListRuneViewModel : MonoBehaviour
         if (_itemResetRuneView != null)
         {
             _onTowerRuneResetAction += RuneDataManager.Instance.GetTowerRuneData;
-            //RuneDataManager.Instance.GetTowerRuneData();
-            
             _onTowerRuneResetAction += UpdateData;
         }
     }
 
+    private void UnsubscribeEvents()
+    {
+        if (_listTowerViewModel != null)
+        {
+            _listTowerViewModel._onUpdateViewAction -= UpdateView;
+        }
+        if (_itemUpgradeRuneView != null)
+        {
+            _onTowerDataUpdatedAction -= RuneDataManager.Instance.GetTowerRuneData;
+            _onTowerDataUpdatedAction -= UpdateData;
+        }
+        if (_itemResetRuneView != null)
+        {
+            _onTowerRuneResetAction -= RuneDataManager.Instance.GetTowerRuneData;
+            _onTowerRuneResetAction -= UpdateData;
+        }
+    }
+    private void Start()
+    {
+        _inventoryComposite = new InventoryComposite();
+        UpdateData();
+        SetupRuneDetailView(true);
+    
+        UnsubscribeEvents(); // Ensure there are no duplicates
+        SubscribeEvents();
+    }
     private void SetDefaultState()
     {
         _preSelectedResetRuneItem = null;
@@ -227,16 +244,17 @@ public class ListRuneViewModel : MonoBehaviour
     }
     private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
     {
-        foreach (var item in list)
+        TowerHasRuneComposite foundItem = list.Find(item => item.TowerId == towerId);
+        if (foundItem.RuneComposite != null)
         {
-            if (item.TowerId == towerId)
-            {
-                Debug.Log($"FindByTowerId: Found match for TowerId {towerId}");
-                return item;
-            }
+            Debug.Log($"FindByTowerId: Found match for TowerId {towerId}");
+            return foundItem;
         }
-        Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
-        return default(TowerHasRuneComposite); 
+        else
+        {
+            Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
+            return default(TowerHasRuneComposite);
+        }
     }
     public void SetupRuneDetailView(bool flag)
     {

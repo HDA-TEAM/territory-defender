@@ -43,7 +43,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             // Load Rune data into each Tower
             List<RuneDataConfig> listRuneSos = _runeDataAsset.GetAllRuneData();
             List<TowerDataConfig> listTowerDataAsset = _towerRuneDataConfig.GetAllTowerData();
-            TowerDataModel loadedTowerData = _towerRuneDataConfig.GetTowerDataAsset();
+            List<TowerSoSaver> loadedTowerData = _towerRuneDataConfig.GetTowerDataAsset();
             
             foreach (var towerSo in listTowerDataAsset)
             {
@@ -64,13 +64,13 @@ namespace Features.Home.Scripts.HomeScreen.Common
                     });
                 }
 
-                if (loadedTowerData.TowerList != null) // Check if json is new created or null
+                if (loadedTowerData != null) // Check if json is new created or null
                 {
                     // Find the corresponding TowerSoSaver in loadedTowerData
-                    int towerSoSaverIndex = loadedTowerData.TowerList.FindIndex(t => t.TowerId == towerSo.GetTowerId());
+                    int towerSoSaverIndex = loadedTowerData.FindIndex(t => t.TowerId == towerSo.GetTowerId());
                     if (towerSoSaverIndex != -1)
                     {
-                        TowerSoSaver towerSoSaver = loadedTowerData.TowerList[towerSoSaverIndex];
+                        TowerSoSaver towerSoSaver = loadedTowerData[towerSoSaverIndex];
                         foreach (var runeLevel in towerSoSaver.RuneLevels)
                         {
                             int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel.RuneId);

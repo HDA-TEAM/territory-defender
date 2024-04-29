@@ -122,11 +122,11 @@ public class TowerRuneDataConfig : ScriptableObject
         towerDataConfig._runeLevels[index] = currentRuneLevel;
 
         towerDataConfig._runeLevels.RemoveAt(index);
-       // towerDataConfig.Remove()
+       
         // Optionally save changes to disk or server
         _towerDataAsset.SaveTowers(_towerTypeDict);
     }
-    public TowerDataModel GetTowerDataAsset()
+    public List<TowerSoSaver> GetTowerDataAsset()
     {
         return _towerDataAsset.LoadTowers();
     }
