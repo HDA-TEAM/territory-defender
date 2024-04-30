@@ -36,7 +36,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private GameObject _spawnTowerHolder;
         [SerializeField] private SpriteRenderer _spiteFlag;
 
-        [Header("Preview Tooltip"), Space(12)]
+        [Header("Tower Camping Selection"), Space(12)]
         [SerializeField] private TowerCampingSelection _towerCampingSelection;
         
         [Header("Preview Tooltip"), Space(12)]
