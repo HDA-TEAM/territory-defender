@@ -22,6 +22,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
             _imgRangeCamping.enabled = true;
             _imgFlag.gameObject.SetActive(false);
             _onSelectCampingPlace = onSelectCampingPlace;
+            
+            // todo get real range
+            range *= 50;
             SetRangeOfTower(range);
         }
         
@@ -38,7 +41,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         }
         public void SetFlagCampingPos(Vector3 campingPos)
         {
-            _imgFlag.rectTransform.anchoredPosition = campingPos;
+            _imgFlag.transform.position = campingPos;
         }
         private async void PlaySetCampingFlagAnim()
         {
