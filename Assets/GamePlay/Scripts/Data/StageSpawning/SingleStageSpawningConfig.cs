@@ -1,4 +1,5 @@
 using Common.Scripts;
+using GamePlay.Scripts.Route.PreviewCallWaveTooltip;
 using System;
 using System.Collections.Generic;
 using UnityEngine.Scripting;
@@ -10,11 +11,38 @@ namespace GamePlay.Scripts.Data.StageSpawning
     {
         public StageId StageId;
         public List<WaveSpawning> WavesSpawning;
-    
+
         [Serializable, Preserve]
         public struct WaveSpawning
         {
             public List<GroupSpawning> GroupsSpawning;
+            public List<SingleUnitPreviewComposite> GetPreviewUnits()
+            {
+                Dictionary<UnitId.Enemy, int> unitPreviewDict = new Dictionary<UnitId.Enemy, int>();
+                foreach (var groupSpawning in GroupsSpawning)
+                {
+                    if (unitPreviewDict.ContainsKey(groupSpawning.ObjectSpawn))
+                    {
+                        unitPreviewDict[groupSpawning.ObjectSpawn] += groupSpawning.NumberSpawning;
+                    }
+                    else
+                    {
+                        unitPreviewDict.TryAdd(groupSpawning.ObjectSpawn, groupSpawning.NumberSpawning);
+                    }
+                }
+                List<SingleUnitPreviewComposite> unitPreviewComposites = new List<SingleUnitPreviewComposite>();
+                foreach (var unit in unitPreviewDict)
+                {
+                    unitPreviewComposites.Add(
+                        new SingleUnitPreviewComposite
+                        {
+                            Amount = unit.Value,
+                            EnemyId = unit.Key,
+                        }
+                    );
+                }
+                return unitPreviewComposites;
+            }
             public List<int> GetRoutesHasSpawningInThisWave()
             {
                 List<int> routesHasSpawning = new List<int>();

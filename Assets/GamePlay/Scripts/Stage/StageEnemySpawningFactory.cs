@@ -23,7 +23,7 @@ public class StageEnemySpawningFactory : MonoBehaviour
 
     public void SetUpNewGame(StartStageComposite startStageComposite)
     {
-        Messenger.Default.Publish(new PrepareCallWaveButtonPayload
+        Messenger.Default.Publish(new PrepareNextWavePayload
             {
                 DurationEarlyCallWaveAvailable = 0f,
                 WaveIndex = 0,
@@ -74,7 +74,8 @@ public class StageEnemySpawningFactory : MonoBehaviour
         if (waveIndex < _maxWave - 2)
         {
             Debug.Log("Prepare next wave" + waveIndex + 1);
-            Messenger.Default.Publish(new PrepareCallWaveButtonPayload
+            
+            Messenger.Default.Publish(new PrepareNextWavePayload
             {
                 DurationEarlyCallWaveAvailable = _perWaveInterval,
                 WaveIndex = waveIndex + 1,

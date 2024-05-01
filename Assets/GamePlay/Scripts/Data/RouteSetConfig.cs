@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using GamePlay.Scripts.Route.PreviewCallWaveTooltip;
 using System;
 using System.Collections.Generic;
 using UnityEditor;
@@ -15,6 +16,7 @@ namespace GamePlay.Scripts.Data
         [Serializable]
         public struct RouteSet
         {
+            public ECallWaveUnitPreviewDirectionType ECallWaveUnitPreviewDirectionType;
             public List<RouteLine> RouteLines;
         }
         [Serializable]

@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Route.PreviewCallWaveTooltip;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Route
@@ -6,5 +7,6 @@ namespace GamePlay.Scripts.Route
     {
         public CallWaveView CallWaveView; 
         public LineRenderer SingleLineRenderer;
+        public HandleSingleCallWaveShowTooltip HandleSingleCallWaveShowTooltip;
     }
 }
