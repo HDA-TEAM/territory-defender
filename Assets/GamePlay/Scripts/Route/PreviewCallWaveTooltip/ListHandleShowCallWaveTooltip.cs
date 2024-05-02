@@ -27,6 +27,7 @@ namespace GamePlay.Scripts.Route.PreviewCallWaveTooltip
             _handleSingleCallWaveShowTooltips[routeId].ShowTooltip(
                 new CallWavePreviewUnitComposite
                 {
+                    DirectionType = _handleSingleCallWaveShowTooltips[routeId].ECallWaveUnitPreviewDirectionType,
                     UnitPreviewComposites = _enemySpawningConfig.FindSpawningConfig(stageId).WavesSpawning[waveId].GetPreviewUnits(),
                 });
         }
