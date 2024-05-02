@@ -27,7 +27,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         public void Reset() => _confirmHandle = gameObject.GetComponent<ConfirmHandle>();
         private void Start()
         {
-            _confirmHandle.SetUpTool(ApplyTool, ShowPreviewChanging);
+            _confirmHandle.SetUp(ApplyTool, ShowPreviewChanging);
         }
         protected virtual void ShowPreviewChanging(){}
         protected virtual void ApplyTool() {}

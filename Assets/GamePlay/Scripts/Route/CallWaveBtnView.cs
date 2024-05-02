@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Route
 {
-    public class CallWaveView : MonoBehaviour
+    public class CallWaveBtnView : MonoBehaviour
     {
         [SerializeField]
         private Button _btnCallWave;

@@ -51,7 +51,7 @@ namespace GamePlay.Scripts.GamePlayController
                 // add RouteSetConfig.RouteLine
                 routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
                 {
-                    CallwaveButtonPos = _currentSingleRouteComposite[i].CallWaveView.transform.position,
+                    CallwaveButtonPos = _currentSingleRouteComposite[i]._callWaveBtnView.transform.position,
                     PointSet = new List<Vector3>()
                 });
 
@@ -64,7 +64,7 @@ namespace GamePlay.Scripts.GamePlayController
 
         private void LoadFromConfig()
         {
-            List<CallWaveView> callWaveViews = new List<CallWaveView>();
+            List<CallWaveBtnView> callWaveViews = new List<CallWaveBtnView>();
             List <HandleSingleCallWaveShowTooltip> handleSingleCallWaveShowTooltips = new List<HandleSingleCallWaveShowTooltip>();
             RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
             int lineCount = lineRouteSet.RouteLines.Count;
@@ -78,8 +78,8 @@ namespace GamePlay.Scripts.GamePlayController
                 }
             
                 // Set call wave button pos
-                _currentSingleRouteComposite[i].CallWaveView.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
-                callWaveViews.Add(_currentSingleRouteComposite[i].CallWaveView);
+                _currentSingleRouteComposite[i]._callWaveBtnView.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos; 
+                callWaveViews.Add(_currentSingleRouteComposite[i]._callWaveBtnView);
                 
                 handleSingleCallWaveShowTooltips[i].ECallWaveUnitPreviewDirectionType = _currentSingleRouteComposite[i].HandleSingleCallWaveShowTooltip.ECallWaveUnitPreviewDirectionType; 
                 handleSingleCallWaveShowTooltips.Add(_currentSingleRouteComposite[i].HandleSingleCallWaveShowTooltip);

@@ -10,6 +10,7 @@ namespace GamePlay.Scripts.Route.PreviewCallWaveTooltip
         [SerializeField] private TextMeshProUGUI _txtAmount;
 
         private static readonly string AmountPattern = $"x {0}";
+        
         public void Setup(SingleUnitPreviewComposite statPreviewUpgradeTooltipComposite)
         {
             _imgAvatar.sprite = statPreviewUpgradeTooltipComposite.SpriteAvatar;

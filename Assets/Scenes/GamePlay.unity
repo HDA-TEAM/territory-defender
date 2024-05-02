@@ -8278,6 +8278,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 566878312}
     m_Modifications:
+    - target: {fileID: 206007489566620532, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
+      propertyPath: ECallWaveUnitPreviewDirectionType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 440773044906074845, guid: 589c88f7adce64311aa0843b53a54b0f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
