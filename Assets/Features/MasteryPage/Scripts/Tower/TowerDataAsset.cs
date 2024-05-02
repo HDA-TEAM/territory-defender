@@ -16,31 +16,28 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 
     private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
-        var model = new TowerDataModel
-        {
-            TowerList = new List<TowerSoSaver>()
-        };
-
+        List<TowerSoSaver> newTowerList = new List<TowerSoSaver>(); // Create a new list for towers
         foreach (var kvp in towerTypeDict)
         {
-            if (kvp.Value != null && kvp.Value._runeLevels != null && kvp.Value._runeLevels.Count > 0)
+            if (kvp.Value != null && kvp.Value._runeLevels is { Count: > 0 })
             {
                 var towerSoSaver = new TowerSoSaver
                 {
                     TowerId = kvp.Key,
                     RuneLevels = kvp.Value._runeLevels
                 };
-                model.TowerList.Add(towerSoSaver);
+                newTowerList.Add(towerSoSaver); // Add to the new list
             }
         }
+        _model.TowerList = newTowerList; // Update the model's TowerList only, without overwriting the entire model
 
-        return model;
+        return _model;
     }
 
-    public TowerDataModel LoadTowers()
+    public List<TowerSoSaver> LoadTowers()
     {
         LoadData(); // Load the data from json file into _model
-        return _model;
+        return _model.TowerList;
     }
 }
 
@@ -48,19 +45,23 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 public struct TowerDataModel : IDefaultDataModel
 {
     public List<TowerSoSaver> TowerList;
+
     public bool IsEmpty()
     {
-        return TowerList == null || TowerList.Count == 0;
+        return (TowerList == null || TowerList.Count == 0);
     }
 
     public void SetDefault()
     {
-        TowerSoSaver towerSoSaver = new TowerSoSaver()
+        // Ensure defaults are set for both lists
+        TowerList = new List<TowerSoSaver>
         {
-            TowerId = 0,
-            RuneLevels = new List<RuneLevel>()
+            new TowerSoSaver
+            {
+                TowerId = 0, // Default Tower ID
+                RuneLevels = new List<RuneLevel>() // Default empty rune levels
+            }
         };
-        TowerList = new List<TowerSoSaver> { towerSoSaver };
     }
 }
 
