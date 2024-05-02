@@ -3,6 +3,7 @@ using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace GamePlay.Scripts.Tower.TowerKIT
 {
@@ -21,7 +22,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         private ConfirmStatus _confirmStatus;
         private Action _onApply;
         private Action _onPreviewChanging;
-        private Action<ConfirmHandle> _callbackSelected;
+        private Action<Object> _callbackSelected;
 
         #region Core
         private void Start() => _button.onClick.AddListener(OnClick);
@@ -31,7 +32,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _onApply = onApply;
             _onPreviewChanging = onPreviewChanging;
         }
-        public void SetUpSelected(Action<ConfirmHandle> callback) => _callbackSelected = callback;
+        public void SetUpSelected(Action<Object> callback) => _callbackSelected = callback;
     
         #endregion
     
