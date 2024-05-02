@@ -1,4 +1,5 @@
 using Common.Scripts;
+using GamePlay.Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,20 +13,23 @@ namespace GamePlay.Scripts.Route.PreviewCallWaveTooltip
         TopSide = 2,
         DownSide = 3,
     }
+
     public struct CallWavePreviewUnitComposite
     {
         public ECallWaveUnitPreviewDirectionType DirectionType;
         public List<SingleUnitPreviewComposite> UnitPreviewComposites;
     }
+
     public struct SingleUnitPreviewComposite
     {
-        public Sprite SpriteAvatar;
         public UnitId.Enemy EnemyId;
         public int Amount;
     }
+
     public class CallWavePreviewTooltipViewModel : MonoBehaviour
     {
         [SerializeField] private List<SingleUnitCallWavePreviewTooltipView> _unitCallWavePreviewViews;
+        [SerializeField] private EnemyDataConfigBase _enemyDataConfigBase;
         public void Setup(CallWavePreviewUnitComposite callWavePreviewUnitComposite)
         {
             SetupViews(callWavePreviewUnitComposite.UnitPreviewComposites);
@@ -38,8 +42,9 @@ namespace GamePlay.Scripts.Route.PreviewCallWaveTooltip
                 if (i < availableShowItem)
                 {
                     _unitCallWavePreviewViews[i].gameObject.SetActive(true);
-                    
-                    _unitCallWavePreviewViews[i].Setup(unitPreviewComposites[i]);
+
+                    var avatar = _enemyDataConfigBase.GeConfigByKey(unitPreviewComposites[i].EnemyId).UnitSprites;
+                    _unitCallWavePreviewViews[i].Setup(avatar.AvatarIcon, unitPreviewComposites[i].Amount);
                 }
                 else
                     _unitCallWavePreviewViews[i].gameObject.SetActive(false);
