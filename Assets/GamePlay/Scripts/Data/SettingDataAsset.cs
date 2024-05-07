@@ -1,3 +1,4 @@
+using Common.Scripts.Datas;
 using System;
 using UnityEngine;
 

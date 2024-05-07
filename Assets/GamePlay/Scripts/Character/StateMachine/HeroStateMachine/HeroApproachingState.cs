@@ -1,3 +1,4 @@
+using Common.Scripts.Utilities;
 using GamePlay.Scripts.Character.Stats;
 
 public class HeroApproachingState : CharacterBaseState

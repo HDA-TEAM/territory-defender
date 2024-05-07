@@ -1,4 +1,6 @@
-public static class ResourceKey
+namespace Common.Scripts.Navigator
+{
+    public static class ResourceKey
     {
         public static class Prefabs
         {
@@ -16,3 +18,4 @@ public static class ResourceKey
         {
         }
     }
+}

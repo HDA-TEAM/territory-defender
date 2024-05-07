@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameObjectUtility
+public abstract class GameObjectUtility
 {
     public static float Distance2dOfTwoGameObject(GameObject goA, GameObject goB)
     {

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts;
+using Common.Scripts.Datas;
 using UnityEngine;
 using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 

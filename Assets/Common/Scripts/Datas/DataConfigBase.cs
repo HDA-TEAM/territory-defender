@@ -1,7 +1,7 @@
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Data
+namespace Common.Scripts.Datas
 {
     public abstract class DataConfigBase<TKey,TVal> : ScriptableObject
     {
