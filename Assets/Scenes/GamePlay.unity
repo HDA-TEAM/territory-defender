@@ -6946,7 +6946,7 @@ SpriteRenderer:
   m_SortingLayerID: -1050798135
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17c882d7dbd69462cb5fafafa8ca5a9a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70a9682c0b94643a7af4b3c3a2137b86, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7007,7 +7007,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.2, y: 12.3}
+    oldSize: {x: 19.2, y: 14.4}
     newSize: {x: 19.2, y: 12.3}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7251,124 +7251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSteps:
-  - rid: 7982686491512668185
-  - rid: 7982686491512668177
-  - rid: 7982686491512668183
-  updateType: 0
-  timeScaleIndependent: 1
-  autoplayMode: 1
-  startPaused: 0
-  playbackSpeed: 1
-  playType: 0
-  loops: 0
-  loopType: 0
-  autoKill: 1
-  onStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onFinishedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onProgressEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  progress: -1
-  references:
-    version: 2
-    RefIds:
-    - rid: 7982686491512668177
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 1
-        target: {fileID: 1036453538}
-        duration: 0.35
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668179
-        - rid: 7982686491512668180
-    - rid: 7982686491512668179
-      type: {class: RectTransformSizeDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 1
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        sizeDelta: {x: 0, y: 0}
-        axisConstraint: 0
-    - rid: 7982686491512668180
-      type: {class: RectTransformSizeDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 0
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        sizeDelta: {x: 668, y: 836}
-        axisConstraint: 0
-    - rid: 7982686491512668183
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 0
-        target: {fileID: 2067516518}
-        duration: 0.1
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668184
-    - rid: 7982686491512668184
-      type: {class: FadeCanvasGroupDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 0
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        alpha: 1
-    - rid: 7982686491512668185
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 0
-        target: {fileID: 2067516518}
-        duration: 0.75
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668186
-    - rid: 7982686491512668186
-      type: {class: FadeCanvasGroupDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 1
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        alpha: 0
 --- !u!114 &1351077662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10164,124 +10046,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c10d422b52559da41aa9676770a8fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationSteps:
-  - rid: 7982686491512668185
-  - rid: 7982686491512668177
-  - rid: 7982686491512668183
-  updateType: 0
-  timeScaleIndependent: 1
-  autoplayMode: 1
-  startPaused: 0
-  playbackSpeed: 1
-  playType: 0
-  loops: 0
-  loopType: 0
-  autoKill: 1
-  onStartEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onFinishedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onProgressEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  progress: -1
-  references:
-    version: 2
-    RefIds:
-    - rid: 7982686491512668177
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 1
-        target: {fileID: 421674912}
-        duration: 0.35
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668179
-        - rid: 7982686491512668180
-    - rid: 7982686491512668179
-      type: {class: RectTransformSizeDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 1
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        sizeDelta: {x: 0, y: 0}
-        axisConstraint: 0
-    - rid: 7982686491512668180
-      type: {class: RectTransformSizeDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 0
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        sizeDelta: {x: 668, y: 836}
-        axisConstraint: 0
-    - rid: 7982686491512668183
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 0
-        target: {fileID: 940576047}
-        duration: 0.1
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668184
-    - rid: 7982686491512668184
-      type: {class: FadeCanvasGroupDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 0
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        alpha: 1
-    - rid: 7982686491512668185
-      type: {class: DOTweenAnimationStep, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        delay: 0
-        flowType: 0
-        target: {fileID: 940576047}
-        duration: 0.75
-        loopCount: 0
-        loopType: 0
-        actions:
-        - rid: 7982686491512668186
-    - rid: 7982686491512668186
-      type: {class: FadeCanvasGroupDOTweenAction, ns: BrunoMikoski.AnimationSequencer, asm: BrunoMikoski.AnimationSequencer}
-      data:
-        direction: 1
-        ease:
-          ease: 7
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-        isRelative: 0
-        alpha: 0
 --- !u!1 &1647892339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8701790987077287295, guid: 35ca8b4066b2e41b0a01080c683d8fd6, type: 3}
