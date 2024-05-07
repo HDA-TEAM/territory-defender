@@ -9,15 +9,19 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
     {
         [SerializeField] private TowerPreviewTooltipView _towerPreviewTooltipView;
         [SerializeField] private List<ItemUnitStatView> _unitStatViews;
-        public void Setup(PreviewTooltipComposite previewTooltipComposite)
+        public void Setup(StatPreviewTooltipComposite statPreviewTooltipComposite)
         {
-            _towerPreviewTooltipView.Setup(previewTooltipComposite);
-            SetupStatsView(previewTooltipComposite.StatComposites);
+            _towerPreviewTooltipView.Setup(statPreviewTooltipComposite);
+            SetupStatsView(statPreviewTooltipComposite.StatComposites);
         }
         private void SetupStatsView(List<ItemStatComposite> statComposites)
         {
             if (statComposites == null)
+            {
+                foreach (var view in _unitStatViews)
+                    view.gameObject.SetActive(false);
                 return;
+            }
             
             int availableShowItem = statComposites.Count;
             for (int i = 0; i < _unitStatViews.Count; i++)

@@ -40,6 +40,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c7cb4cf85057f4ae0a42156069bb039b, type: 3}
+    - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1192807291828039942, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Name
       value: AllyWarriorPrefab
@@ -99,7 +103,7 @@ PrefabInstance:
     - target: {fileID: 6715228475396641559, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7cd43bccf3a594fb89ae635736101117, type: 2}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 666001084183805972, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
     m_RemovedGameObjects: []

@@ -7,10 +7,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
     {
         [SerializeField] private TextMeshProUGUI _txtTitle;
         [SerializeField] private TextMeshProUGUI _txtDesc;
-        public void Setup(PreviewTooltipComposite previewUpgradeTooltipComposite)
+        public void Setup(StatPreviewTooltipComposite statPreviewUpgradeTooltipComposite)
         {
-            _txtTitle.text = previewUpgradeTooltipComposite.Title;
-            _txtDesc.text = previewUpgradeTooltipComposite.Desc;
+            _txtTitle.text = statPreviewUpgradeTooltipComposite.Title;
+            _txtDesc.text = statPreviewUpgradeTooltipComposite.Desc;
         }
     }
 }

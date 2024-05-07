@@ -8,16 +8,16 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
         [SerializeField] private TowerPreviewTooltipViewModel _towerPreviewTooltipRight;
         public void ShowTooltip(TowerPreviewToolTipBase towerPreviewToolTipBase)
         {
-            PreviewTooltipComposite previewTooltipComposite = towerPreviewToolTipBase.GetPreviewTooltipComposite();
+            StatPreviewTooltipComposite statPreviewTooltipComposite = towerPreviewToolTipBase.GetPreviewTooltipComposite();
             bool isLeftOfMap = VectorUtility.CheckLeftToRightDirection(Vector3.zero, transform.position);
             if (isLeftOfMap)
             {
-                _towerPreviewTooltipLeft.Setup(previewTooltipComposite);
+                _towerPreviewTooltipLeft.Setup(statPreviewTooltipComposite);
                 _towerPreviewTooltipLeft.gameObject.SetActive(true);
             }
             else
             {
-                _towerPreviewTooltipRight.Setup(previewTooltipComposite);
+                _towerPreviewTooltipRight.Setup(statPreviewTooltipComposite);
                 _towerPreviewTooltipRight.gameObject.SetActive(true);
             }
         }
