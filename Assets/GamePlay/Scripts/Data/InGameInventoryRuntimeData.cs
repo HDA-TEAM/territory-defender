@@ -44,7 +44,12 @@ namespace GamePlay.Scripts.Data
         public void TryChangeStar(int starNumber)
         {
             _star -= starNumber;
-            Debug.Log("Subtract star");
+            //Debug.Log("Subtract star");
+        }
+
+        public void TryRefundStar(int starNumber)
+        {
+            _star += starNumber;
         }
     }
 }
