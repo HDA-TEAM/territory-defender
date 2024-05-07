@@ -11,9 +11,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
         protected string _title;
         protected string _desc;
         protected List<ItemStatComposite> _statComposites;
-        public PreviewTooltipComposite GetPreviewTooltipComposite()
+        public StatPreviewTooltipComposite GetPreviewTooltipComposite()
         {
-            return new PreviewTooltipComposite
+            return new StatPreviewTooltipComposite
             {
                 Title = _title,
                 Desc = _desc,
@@ -41,7 +41,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip
             _statComposites = null;
         }
     }
-    public struct PreviewTooltipComposite 
+    public struct StatPreviewTooltipComposite 
     {
         public string Title;
         public string Desc;

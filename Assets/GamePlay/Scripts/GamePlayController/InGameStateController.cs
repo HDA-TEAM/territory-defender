@@ -12,6 +12,7 @@ namespace GamePlay.Scripts.GamePlayController
         [Button("CheckingStageSuccess")]
         [Button("CheckingEndGame", usePropertyAsParameter: true)]
         [SerializeField] private int _lifeTest;
+        [SerializeField] private bool _isFastSetupStageForTest;
 #endif
 
         [Header("Data"), Space(12)] [SerializeField]
@@ -37,6 +38,13 @@ namespace GamePlay.Scripts.GamePlayController
         {
             IsFinishSpawn = false;
             IsGamePlaying = true;
+            
+#if UNITY_EDITOR
+            if (_isFastSetupStageForTest)
+            {
+                SetUpTestNewGame(_startStageComposite);
+            }
+#endif
         }
         protected override void OnDestroy()
         {

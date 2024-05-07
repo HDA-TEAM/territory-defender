@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
-    public partial class InGameStateController 
+    public partial class InGameStateController
     {
+        [SerializeField] private MapController _mapController;
 #if UNITY_EDITOR
         public void SetUpTestNewGame(StartStageComposite startStageComposite)
         {
             _startStageComposite = startStageComposite;
             IsGamePlaying = true;
+            _mapController.SetUpNewGame(startStageComposite);
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
             PoolingController.Instance.SetUpNewGame(startStageComposite);
@@ -34,6 +36,7 @@ namespace GamePlay.Scripts.GamePlayController
         {
             _startStageComposite = startStageComposite;
             IsGamePlaying = true;
+            _mapController.SetUpNewGame(startStageComposite);
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
             PoolingController.Instance.SetUpNewGame(startStageComposite);

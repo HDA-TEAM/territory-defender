@@ -8,14 +8,14 @@ namespace GamePlay.Scripts.Data
         [SerializeField] [SerializedDictionary("TKey","TVal")]
         protected SerializedDictionary<TKey,TVal> _data;
         
-        public TVal GeConfigByKey(TKey unitId)
+        public TVal GeConfigByKey(TKey keyId)
         {
-            _data.TryGetValue(unitId, out TVal unitDataComposite);
+            _data.TryGetValue(keyId, out TVal unitDataComposite);
             return unitDataComposite;
         }
-        public bool IsExistUnit(TKey unitId)
+        public bool IsExist(TKey keyId)
         {
-            return _data.ContainsKey(unitId);
+            return _data.ContainsKey(keyId);
         }
     }
 }

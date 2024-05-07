@@ -1,8 +1,6 @@
-using Common.Loading.Scripts;
 using Common.Scripts;
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Data
 {
@@ -10,8 +8,14 @@ namespace GamePlay.Scripts.Data
     public struct UnitDataComposite
     {
         public UnitBase UnitBase;
+        public UnitSprites UnitSprites;
     }
 
+    [Serializable]
+    public struct UnitSprites
+    {
+        public Sprite AvatarIcon;
+    }
     [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
     public class TotalUnitDataConfig : ScriptableObject
     {

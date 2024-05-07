@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GamePlay.Scripts.Data
 {
     [CreateAssetMenu(fileName = "AllyTroopsDataConfig", menuName = "ScriptableObject/Common/Configs/AllyTroopsDataConfig")]
-    public class AllyTroopsDataConfigBase: DataConfigBase<UnitId.Ally,UnitDataComposite>
+    public class AllyTroopsDataConfigBase: UnitDataConfigBase<UnitId.Ally,UnitDataComposite>
     {
     }
 }

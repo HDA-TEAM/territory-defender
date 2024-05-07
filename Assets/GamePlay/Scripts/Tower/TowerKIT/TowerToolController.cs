@@ -10,8 +10,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private TowerKit _towerKit;
         [SerializeField] private List<TowerToolBase> _towerToolBases;
         [SerializeField] private List<ConfirmHandle> _confirmHandles;
-        public ConfirmHandle CurrentConfirmHandle;
-        private ConfirmHandle _preConfirmHandle;
+        public Object CurrentConfirmHandle;
+        private Object _preConfirmHandle;
         private void Reset()
         {
             _towerToolBases.Clear();
@@ -28,11 +28,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             foreach (var towerToolBase in _towerToolBases)
                 towerToolBase.SetUp(_towerKit);
         }
-        private void SetCurrentSelectedConfirm(ConfirmHandle confirmHandle)
+        private void SetCurrentSelectedConfirm(Object confirmHandle)
         {
             if (_preConfirmHandle != null && _preConfirmHandle != confirmHandle)
             {
-                _preConfirmHandle.ResetToDefault();
+                ((ConfirmHandle)_preConfirmHandle).ResetToDefault();
             }
             CurrentConfirmHandle = confirmHandle;
             _preConfirmHandle = CurrentConfirmHandle;

@@ -11,17 +11,13 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         }
         private bool IsTroopTower()
         {
-            if (TowerKitSetController.Instance.CurrentSelectedKit)
-            {
-                var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
-                var towerStats = unitBase.UnitStatsHandlerComp();
-                return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
-            }
-            return true;
+            var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
+            var towerStats = unitBase.UnitStatsHandlerComp();
+            return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
         }
         protected override void ApplyTool()
         {
-            TowerKitSetController.Instance.CurrentSelectedKit.ActiveCampingMode();
+            _towerKit.ActiveCampingMode();
         }
     }
 }

@@ -3,6 +3,7 @@ using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace GamePlay.Scripts.Tower.TowerKIT
 {
@@ -19,19 +20,19 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [Header("Sounds"),Space(12)]
         [SerializeField] private AudioClip _audioClipCheck;
         private ConfirmStatus _confirmStatus;
-        private Action _onApplyTool;
+        private Action _onApply;
         private Action _onPreviewChanging;
-        private Action<ConfirmHandle> _callbackSelected;
+        private Action<Object> _callbackSelected;
 
         #region Core
         private void Start() => _button.onClick.AddListener(OnClick);
         public void OnEnable() => ResetToDefault();
-        public void SetUpTool(Action onApplyTool, Action onPreviewChanging)
+        public void SetUp(Action onApply, Action onPreviewChanging)
         {
-            _onApplyTool = onApplyTool;
+            _onApply = onApply;
             _onPreviewChanging = onPreviewChanging;
         }
-        public void SetUpSelected(Action<ConfirmHandle> callback) => _callbackSelected = callback;
+        public void SetUpSelected(Action<Object> callback) => _callbackSelected = callback;
     
         #endregion
     
@@ -67,7 +68,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                 AudioClip = _audioClipCheck,
             });
         }
-        private void OnAccepted() => _onApplyTool?.Invoke();
+        private void OnAccepted() => _onApply?.Invoke();
         public void ResetToDefault()
         {
             _confirmStatus = ConfirmStatus.None;

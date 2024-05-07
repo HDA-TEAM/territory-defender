@@ -5,7 +5,6 @@ using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Tower.TowerKIT;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
@@ -18,11 +17,11 @@ namespace GamePlay.Scripts.GamePlayController
 
         [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
         [SerializeField] private List<TowerKit> _currentTowerKits = new List<TowerKit>();
+        [SerializeField] private List<GameObject> _currentObjectTowers = new List<GameObject>();
         public TowerKit CurrentSelectedKit;
         private TowerKit _preSelectedKit;
         private Action _onSelected;
 
-        private void Reset() => _currentTowerKits = GetComponentsInChildren<TowerKit>().ToList();
         protected override void Awake()
         {
             base.Awake();
@@ -32,11 +31,11 @@ namespace GamePlay.Scripts.GamePlayController
         {
             List<Vector3> places = new List<Vector3>();
 
-            foreach (TowerKit tk in _currentTowerKits)
+            foreach (GameObject towerObj in _currentObjectTowers)
             {
                 // Check if this Kit available to save
-                if (tk.gameObject.activeSelf)
-                    places.Add(tk.gameObject.transform.position);
+                if (towerObj.activeSelf)
+                    places.Add(towerObj.transform.position);
             }
 
             _towerKitSetConfig.SaveToConfig(places, _currentStageId);
@@ -47,22 +46,22 @@ namespace GamePlay.Scripts.GamePlayController
         {
             var places = _towerKitSetConfig.LoadFromConfig(_currentStageId);
 
-            for (int i = 0; i < _currentTowerKits.Count; i++)
+            for (int i = 0; i < _currentObjectTowers.Count; i++)
             {
                 // If current kit exist on map > total places count in config
                 if (i >= places.Count)
                 {
-                    _currentTowerKits[i].gameObject.SetActive(false);
+                    _currentObjectTowers[i].SetActive(false);
                     continue;
                 }
 
                 // Check if this Kit available to load
-                if (!_currentTowerKits[i].gameObject.activeSelf)
-                    _currentTowerKits[i].gameObject.SetActive(true);
+                if (!_currentObjectTowers[i].activeSelf)
+                    _currentObjectTowers[i].SetActive(true);
 
                 // Save position of kit
                 // Value of Z always zero
-                _currentTowerKits[i].transform.position = new Vector3(
+                _currentObjectTowers[i].transform.position = new Vector3(
                     places[i].x,
                     places[i].y,
                     0);

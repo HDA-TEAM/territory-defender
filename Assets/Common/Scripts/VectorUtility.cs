@@ -39,4 +39,9 @@ public static class VectorUtility
         Vector3 direction = (posB - posA).normalized;
         return direction.x >= 0;
     }
+    public static bool CheckTopToDownDirection(Vector3 posA, Vector3 posB)
+    {
+        Vector3 direction = (posB - posA).normalized;
+        return direction.y >= 0;
+    }
 }
