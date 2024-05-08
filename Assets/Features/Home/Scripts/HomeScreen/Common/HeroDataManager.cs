@@ -31,6 +31,7 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         {
             HeroComposites.Add(new HeroComposite
             {
+                HeroId = heroDataSo._heroId,
                 Name = heroDataSo._stats.GetInformation(InformationId.Name),
                 Level = heroDataSo._stats.GetStat(StatId.Level).ToString(),
                 Hp = heroDataSo._stats.GetStat(StatId.MaxHeal).ToString(),

@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dfdc630a2dd4ddabb5662538a43a4de, type: 3}
   m_Name: HeroesDataConfig
   m_EditorClassIdentifier: 
+  _data:
+    _serializedList: []
   _heroDataDict:
     _serializedList:
-    - Key: 1
+    - Key: 400
       Value: {fileID: 11400000, guid: 3c50fce94eb914c4b95c90450d66a55b, type: 2}
-    - Key: 2
+    - Key: 410
       Value: {fileID: 11400000, guid: 08a74927440124b01a4919b7f63ca0af, type: 2}
+  _dataString: 

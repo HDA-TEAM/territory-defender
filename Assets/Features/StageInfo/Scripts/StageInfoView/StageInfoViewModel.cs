@@ -70,7 +70,7 @@ public class StageInfoViewModel : MonoBehaviour
             // Demo
             StageId = StageId.Chap1Stage0,
             StageDiff = StageDiff.Normal,
-            HeroId = UnitId.Hero.TrungTrac,
+            HeroId = hero.HeroId,
         });
     }
 }
