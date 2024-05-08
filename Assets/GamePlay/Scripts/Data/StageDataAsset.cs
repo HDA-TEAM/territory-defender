@@ -1,13 +1,18 @@
+using CustomInspector;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
+    [Serializable]
     public struct StagePassed
     {
         public int TotalStar;
         public StageId StageId;
     }
+
+    [Serializable]
     public struct StageDataModel : IDefaultDataModel
     {
         public List<StagePassed> ListStagePassed;
@@ -20,7 +25,7 @@ namespace GamePlay.Scripts.Data
             ListStagePassed = new List<StagePassed>();
         }
     }
-    
+
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
     public class StageDataAsset : BaseDataAsset<StageDataModel>
     {
@@ -31,9 +36,13 @@ namespace GamePlay.Scripts.Data
                 return _model.ListStagePassed ?? (_model.ListStagePassed = new List<StagePassed>());
             }
         }
+#if UNITY_EDITOR
+        [Button("AddStagePassed", usePropertyAsParameter: true)]
+        [SerializeField] private StagePassed TestStagePassed;
+#endif
         public void AddStagePassed(StagePassed stagePassed)
         {
-            _model.ListStagePassed.Add(stagePassed);
+            ListStagePassed.Add(stagePassed);
             SaveData();
         }
     }
