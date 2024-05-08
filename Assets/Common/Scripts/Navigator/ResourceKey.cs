@@ -13,9 +13,13 @@ namespace Common.Scripts.Navigator
             public const string QuestPu = "Home/QuestPu";
             public const string SettingPu = "Home/SettingPu";
         }
-
-        public static class Textures
+        public static class InGame
         {
+            public const string StageSuccessPu = "GamePlay/StageSuccessPu";
+            public const string InGameStageScreen = "GamePlay/InGameStageScreen";
+            public const string StageFailPu = "GamePlay/StageFailPu";
+            public const string InGameSettingsPu = "GamePlay/InGameSettingsPu";
         }
+
     }
 }
