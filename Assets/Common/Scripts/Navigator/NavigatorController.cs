@@ -5,7 +5,7 @@ using UnityScreenNavigator.Runtime.Core.Page;
 public static class NavigatorController
 {
     private static PageContainer _mainPageContainer;
-    private static PageContainer MainPageContainer
+    public static PageContainer MainPageContainer
     {
         get
         {
