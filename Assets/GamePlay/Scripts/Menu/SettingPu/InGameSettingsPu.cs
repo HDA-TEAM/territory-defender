@@ -10,7 +10,9 @@ public class InGameSettingsPu : CommonModal
     [SerializeField] private ButtonSettingView _btnSound;
     [SerializeField] private ButtonSettingView _btnMusic;
     [SerializeField] private Button _btnQuit;
-    [Header("Data"), Space(12)] [SerializeField] private SettingDataAsset _settingDataAsset;
+    
+    [Header("Data"), Space(12)] 
+    [SerializeField] private SettingDataAsset _settingDataAsset;
 
     private void OnEnable()
     {
@@ -18,14 +20,15 @@ public class InGameSettingsPu : CommonModal
         SetupView();
     }
     private void OnDisable() => _settingDataAsset.TimeScaleSetting = _settingDataAsset.PreTimeScaleSetting();
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         _btnQuit.onClick.AddListener(OnClickQuit);
         
         _btnSound.Setup(OnClickSound);
         _btnMusic.Setup(OnClickMusic);
     }
-    private void OnClose() => gameObject.SetActive(false);
 
     private void SetupView()
     {
