@@ -17,5 +17,6 @@ namespace GamePlay.Scripts.Data
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
     public class StageDataAsset : ScriptableObject
     {
+        
     }
 }

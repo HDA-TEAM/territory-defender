@@ -67,6 +67,7 @@ public class StageInfoViewModel : MonoBehaviour
         Debug.Log($"StageId: {stage.StageId}, GameMode: {gameMode}, Hero : {hero.Name}");
         LoadingSceneController.Instance.LoadingHomeToGame(new StartStageComposite
         {
+            // Demo
             StageId = StageId.Chap1Stage0,
             StageDiff = StageDiff.Normal,
             HeroId = UnitId.Hero.TrungTrac,

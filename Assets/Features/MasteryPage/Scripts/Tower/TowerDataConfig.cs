@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.MasteryPage.Scripts.Tower
 {
-    [CreateAssetMenu(fileName = "CommonTowerSO", menuName = "ScriptableObject/DataAsset/CommonTowerSO")]
+    [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/DataAsset/TowerDataConfig")]
     public class TowerDataConfig : ScriptableObject
     {
         public UnitId.Tower _towerId;

@@ -1,12 +1,9 @@
 using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>
 {
-    [FormerlySerializedAs("_heroDataAsset")]
     [Header("Data"), Space(12)]
     [SerializeField] private HeroDataConfig _heroDataConfig;
     public List<HeroComposite> HeroComposites { get; private set; }
