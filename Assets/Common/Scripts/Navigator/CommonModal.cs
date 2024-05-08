@@ -7,13 +7,13 @@ namespace Common.Scripts.Navigator
     public class CommonModal : Modal
     {
         [SerializeField] private Button[] _btnCloses;
-        private void Awake()
+        protected virtual void Awake()
         {
             foreach (var btn in _btnCloses)
             {
                 btn.onClick.AddListener(PopModal);
             }
         }
-        private void PopModal() => NavigatorController.PopModal();
+        protected virtual void PopModal() => NavigatorController.PopModal();
     }
 }
