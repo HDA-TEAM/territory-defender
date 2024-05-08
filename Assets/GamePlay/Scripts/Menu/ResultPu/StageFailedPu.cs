@@ -1,8 +1,9 @@
 using Common.Loading.Scripts;
+using Common.Scripts.Navigator;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StageFailedPu : GamePlayPopup
+public class StageFailedPu : CommonModal
 {
     [Header("UI")]
     [SerializeField] private Button _btnReplay;
