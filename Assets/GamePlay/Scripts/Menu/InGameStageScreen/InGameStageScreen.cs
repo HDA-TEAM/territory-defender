@@ -1,15 +1,21 @@
+using Common.Scripts.Navigator;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityScreenNavigator.Runtime.Core.Page;
 
-public class InGameStageScreen : Page
+namespace GamePlay.Scripts.Menu.InGameStageScreen
 {
-    [SerializeField] private Button _btnSetting;
-    [SerializeField] private GameObject _puSetting;
-
-    private void Awake()
+    public class InGameStageScreen : Page
     {
-        _btnSetting.onClick.AddListener(() => _puSetting.SetActive(true));
+        [SerializeField] private Button _btnSetting;
+
+        private void Awake()
+        {
+            _btnSetting.onClick.AddListener(OnClickSetting);
+        }
+        private void OnClickSetting()
+        {
+            NavigatorController.MainModalContainer.Push<InGameSettingsPu>(ResourceKey.InGame.InGameSettingsPu, playAnimation: true);
+        }
     }
 }
-
