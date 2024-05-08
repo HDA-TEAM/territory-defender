@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityScreenNavigator.Runtime.Core.Page;
 
-public class InGameStageScreen : MonoBehaviour
+public class InGameStageScreen : Page
 {
     [SerializeField] private Button _btnSetting;
     [SerializeField] private GameObject _puSetting;
