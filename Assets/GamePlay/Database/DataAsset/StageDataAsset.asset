@@ -12,12 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5945db153ae94fbfa32b38f87faac399, type: 3}
   m_Name: StageDataAsset
   m_EditorClassIdentifier: 
-  _currentStageId: 100
-  _stageDict:
-    _serializedList:
-    - Key: 100
-      Value:
-        TowerKitSetConfig: {fileID: 11400000, guid: d254bb6c3c9a044238a8bcf816c4f6c4, type: 2}
-        RouteSetConfig: {fileID: 11400000, guid: e1eded6cc7a48472e8f100ce576fe75f, type: 2}
-        StageSpawningConfig: {fileID: 11400000, guid: c103f56b949164b5d873f21fa5aeb7e5, type: 2}
-        _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _filename: StageDataAsset
