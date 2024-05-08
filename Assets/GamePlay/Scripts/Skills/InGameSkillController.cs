@@ -11,8 +11,9 @@ public struct UsingSkillPayload
 public class InGameSkillController : MonoBehaviour
 {
     [SerializeField] private InGameActiveSkillView _firstSkillView;
+    [FormerlySerializedAs("_skillsDataConfig")]
     [FormerlySerializedAs("_skillsDataAsset")]
-    [SerializeField] private SkillsDataConfig _skillsDataConfig;
+    [SerializeField] private SkillDataConfig _skillDataConfig;
     private SkillDataSO _curSkillConfig;
     private bool _isCooldown = false;
     private void Awake()
@@ -25,7 +26,7 @@ public class InGameSkillController : MonoBehaviour
     private void SetUpSkill()
     {
         _firstSkillView.SetUpSkill(ESkillId.SummonElephant,ExecuteSkill);
-        _curSkillConfig = _skillsDataConfig.GetSkillDataById(ESkillId.SummonElephant);
+        _curSkillConfig = _skillDataConfig.GetSkillDataById(ESkillId.SummonElephant);
     }
     private async void ExecuteSkill(ESkillId eSkillId)
     {

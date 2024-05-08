@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Features.MasteryPage.Scripts.Rune
 {
-    [CreateAssetMenu(fileName = "Rune", menuName = "Rune", order = 2)]
+    [CreateAssetMenu(fileName = "Rune", menuName = "ScriptableObject/Data/Rune")]
     public class RuneDataConfig : ScriptableObject
     {
         [SerializeField]

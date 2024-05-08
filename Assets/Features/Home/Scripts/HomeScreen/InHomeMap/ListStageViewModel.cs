@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 public class ListStageViewModel : MonoBehaviour
@@ -54,7 +55,7 @@ public interface IComposite
 
 public struct StageComposite : IComposite
 {
-    public int StageId;
+    public StageId StageId;
     public int StageStar;
     public string StageName;
     public bool StageState;

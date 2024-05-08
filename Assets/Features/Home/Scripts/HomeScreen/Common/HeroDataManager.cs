@@ -1,11 +1,12 @@
 using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
+using Features.HeroInformation;
 using UnityEngine;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>
 {
     [Header("Data"), Space(12)]
-    [SerializeField] private HeroDataConfig _heroDataConfig;
+    [SerializeField] private HeroDataAsset _heroDataAsset;
     public List<HeroComposite> HeroComposites { get; private set; }
 
     protected override void Awake()
@@ -22,13 +23,15 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         
         else HeroComposites.Clear();
         
-        if (_heroDataConfig == null)
+        if (_heroDataAsset == null)
             return;
 
-        List<HeroDataSO> listHeroDataSo = _heroDataConfig.GetAllHeroData();
+        List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
 
+        
         foreach (var heroDataSo in listHeroDataSo)
         {
+            Debug.Log(listHeroDataSo[0]._heroId + "....HeroDataSO");
             HeroComposites.Add(new HeroComposite
             {
                 HeroId = heroDataSo._heroId,
@@ -41,7 +44,7 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
                 Avatar = heroDataSo._imageHero,
                 HeroChoose = heroDataSo._imageHeroChoose,
                 HeroOwned = heroDataSo._imageHeroOwned,
-                Skills = heroDataSo._heroSkills.GetAllSkillData()
+                Skills = heroDataSo._heroSkill.GetAllSkillData()
             });
         }
     }

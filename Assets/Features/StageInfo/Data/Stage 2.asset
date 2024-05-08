@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9a9d90529c7149bda1b60f41e3b75e9, type: 3}
-  m_Name: TrungNhiSO
+  m_Script: {fileID: 11500000, guid: e5f199052dde40dfa30b64cfe8b137ff, type: 3}
+  m_Name: Stage 2
   m_EditorClassIdentifier: 
-  attackRange: 0
-  health: 0
-  movementSpeed: 0
-  attackSpeed: 0
-  attackDame: 0
-  isAttackState: 0
+  _stageId: 102
+  _stageStar: 0
+  _stageName: Vung Dat Do Boss
+  _stageState: 0

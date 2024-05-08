@@ -1,5 +1,6 @@
 using System;
 using Features.Home.Scripts.HomeScreen.InHomeMap;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +34,7 @@ public class ItemStageView : MonoBehaviour
         stateMachine.ChangeModalState<StageInfoPuState>();
     }
 
-    private void StageLoad(int stageID)
+    private void StageLoad(StageId stageID)
     { 
         //TODO: Load Name for each Stage
         //Debug.Log("Stage " + stageID + " is setting");
