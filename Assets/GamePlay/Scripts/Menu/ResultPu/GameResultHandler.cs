@@ -13,24 +13,25 @@ namespace GamePlay.Scripts.Menu.ResultPu
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
         [SerializeField] private StageDataConfig _stageDataConfig;
 
-        private int _curClaimStarsCount;
-        public void ShowStageSuccessPu()
+        public async void ShowStageSuccessPu()
         {
             StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
             int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
             int curLife = _inventoryRuntimeData.GetLifeValue();
 
-            _curClaimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);
-            
-            
-            NavigatorController.MainModalContainer.Push<StageSuccessPu>(
+            int curClaimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);
+
+            StageSuccessPu stageSuccessPu = null;
+            await NavigatorController.MainModalContainer.Push<StageSuccessPu>(
                 ResourceKey.InGame.StageSuccessPu, 
                 playAnimation: true,
-                onLoad: OnLoad);
-        }
-        private void OnLoad((string modalId, StageSuccessPu modal) obj)
-        {
-            obj.modal.SetupData(_curClaimStarsCount);
+                onLoad: x =>
+                {
+                    stageSuccessPu = x.modal;
+                });
+            
+            if (stageSuccessPu)
+                stageSuccessPu.SetupData(curClaimStarsCount);
         }
         public void ShowStageFailedPu()
         {
