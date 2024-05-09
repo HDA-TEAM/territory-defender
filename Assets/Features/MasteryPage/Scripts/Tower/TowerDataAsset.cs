@@ -11,12 +11,6 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
     public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
-        _model = ConvertToTowerDataModel(towerTypeDict);
-        SaveData();
-    }
-
-    private TowerDataModel ConvertToTowerDataModel(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
-    {
         List<TowerSoSaver> newTowerList = new List<TowerSoSaver>(); // Create a new list for towers
         foreach (var kvp in towerTypeDict)
         {
@@ -31,10 +25,9 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
             }
         }
         _model.TowerList = newTowerList; // Update the model's TowerList only, without overwriting the entire model
-
-        return _model;
+        SaveData();
     }
-
+    
     public List<TowerSoSaver> LoadTowers()
     {
         LoadData(); // Load the data from json file into _model

@@ -1,4 +1,6 @@
 using System;
+using Features.Home.Scripts.HomeScreen.InHomeMap;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,11 +36,10 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
             stateMachine.ChangeModalState<StageInfoPuState>();
         }
 
-        private void StageLoad(int stageID)
-        { 
-            //TODO: Load Name for each Stage
-            //Debug.Log("Stage " + stageID + " is setting");
-        }
+    private void StageLoad(StageId stageID)
+    { 
+        //TODO: Load Name for each Stage
+        //Debug.Log("Stage " + stageID + " is setting");
     }
 }
 
