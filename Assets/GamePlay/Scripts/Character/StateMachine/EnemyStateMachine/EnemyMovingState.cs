@@ -69,7 +69,7 @@ public class EnemyMovingState : CharacterBaseState
     private void OnReachingDestination()
     {
         // return pooling and status
-        _context.InGameInventoryData.TryChangeLife(
+        _context.InGameResourceData.TryChangeLife(
             - (int)_context.CharacterStats.GetCurrentStatValue(StatId.LifeReduce));
         _context.UnitBaseParent().HealthComp().ResetState();
     }

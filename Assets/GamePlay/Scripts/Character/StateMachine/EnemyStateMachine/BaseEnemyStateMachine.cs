@@ -1,13 +1,15 @@
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
 {
     public class BaseEnemyStateMachine : CharacterStateMachine
     {
         [SerializeField] private LineRenderer _routeToGate;
-        [SerializeField] private InGameInventoryRuntimeData _inGameInventoryRuntimeData;
+        [FormerlySerializedAs("_inGameInventoryRuntimeData")]
+        [SerializeField] private InGameResourceRuntimeData _inGameResourceRuntimeData;
 
         private EnemyStateFactory _factory;
         private int _currentIndexInRouteLine;
@@ -63,7 +65,7 @@ namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
             }
         }
         public int CurrentIndexInRouteLine { get { return _currentIndexInRouteLine; } set { _currentIndexInRouteLine = value; } }
-        public InGameInventoryRuntimeData InGameInventoryData { get { return _inGameInventoryRuntimeData; } }
+        public InGameResourceRuntimeData InGameResourceData { get { return _inGameResourceRuntimeData; } }
         #endregion
 
         protected override void Awake()

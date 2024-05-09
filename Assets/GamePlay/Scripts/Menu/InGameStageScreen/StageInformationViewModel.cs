@@ -1,5 +1,6 @@
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Menu.InGameStageScreen
 {
@@ -12,8 +13,9 @@ namespace GamePlay.Scripts.Menu.InGameStageScreen
         [Header("UI")]
         [SerializeField] private StageResourceView _stageResourceView;
 
+        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
-        private InGameInventoryRuntimeData _inventoryRuntimeData;
+        private InGameResourceRuntimeData _resourceRuntimeData;
 
         // tool
         // hero skill or hero selection
@@ -24,21 +26,21 @@ namespace GamePlay.Scripts.Menu.InGameStageScreen
         }
         private void Awake()
         {
-            _inventoryRuntimeData.RegisterLifeChange(OnInventoryChange);
-            _inventoryRuntimeData.RegisterCurrencyChange(OnInventoryChange);
+            _resourceRuntimeData.RegisterLifeChange(OnInventoryChange);
+            _resourceRuntimeData.RegisterCurrencyChange(OnInventoryChange);
         }
         private void OnDestroy()
         {
-            _inventoryRuntimeData.UnRegisterLifeChange(OnInventoryChange);
-            _inventoryRuntimeData.UnRegisterCurrencyChange(OnInventoryChange);
+            _resourceRuntimeData.UnRegisterLifeChange(OnInventoryChange);
+            _resourceRuntimeData.UnRegisterCurrencyChange(OnInventoryChange);
         }
         private void OnInventoryChange(int fakeValue) => UpdateView();
         private void UpdateView()
         {
             _stageResourceView.Setup(new StageResource
             {
-                CurLife = _inventoryRuntimeData.GetLifeValue(),
-                TotalCoin = _inventoryRuntimeData.GetCurrencyValue(),
+                CurLife = _resourceRuntimeData.GetLifeValue(),
+                TotalCoin = _resourceRuntimeData.GetCurrencyValue(),
                 CurWaveCount = 0,
                 MaxWaveCount = 5,
             });

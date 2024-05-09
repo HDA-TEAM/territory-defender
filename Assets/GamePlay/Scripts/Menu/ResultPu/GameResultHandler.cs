@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Menu.ResultPu
 {
@@ -10,14 +11,15 @@ namespace GamePlay.Scripts.Menu.ResultPu
     {
         private readonly CalculateStageSuccessRewarding _calculateStageSuccess = new CalculateStageSuccessRewarding();
 
-        [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
+        [FormerlySerializedAs("_inventoryRuntimeData")]
+        [SerializeField] private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private StageDataConfig _stageDataConfig;
 
         public async void ShowStageSuccessPu()
         {
             StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
             int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
-            int curLife = _inventoryRuntimeData.GetLifeValue();
+            int curLife = _resourceRuntimeData.GetLifeValue();
 
             int curClaimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);
 

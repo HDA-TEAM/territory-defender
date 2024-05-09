@@ -17,7 +17,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         [SerializeField] protected TowerToolStatusHandle _towerToolStatusHandle;
         [FormerlySerializedAs("_towerDataConfig")]
         [SerializeField] protected TowerDataConfigBase _towerDataConfigBase;
-        [SerializeField] protected InGameInventoryRuntimeData _inGameInventoryRuntimeData;
+        [FormerlySerializedAs("_inGameInventoryRuntimeData")]
+        [SerializeField] protected InGameResourceRuntimeData _inGameResourceRuntimeData;
         [SerializeField] protected ConfirmHandle _confirmHandle;
         protected TowerKit _towerKit;
         public void SetUp(TowerKit towerKit)

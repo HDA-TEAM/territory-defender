@@ -8,6 +8,7 @@ using GamePlay.Scripts.Tower.TowerKIT.TowerTools;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Tower.TowerKIT
@@ -42,8 +43,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [Header("Preview Tooltip"), Space(12)]
         [SerializeField] private HandleTowerShowTooltip _towerShowTooltip;
         
+        [FormerlySerializedAs("_inventoryRuntime")]
         [Header("Data"), Space(12)]
-        [SerializeField] private InGameInventoryRuntimeData _inventoryRuntime;
+        [SerializeField] private InGameResourceRuntimeData _resourceRuntime;
         [SerializeField] private UnitId.Tower _towerId;
         [SerializeField] private UnitBase _unitBase;
         
@@ -178,7 +180,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
 
             // Reduce coin in inventory
             var coinNeedToBuild = (int)_unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
-            _inventoryRuntime.TryChangeCurrency(
+            _resourceRuntime.TryChangeCurrency(
                 - coinNeedToBuild);
             _totalUsedCoin += coinNeedToBuild;
         
@@ -204,7 +206,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         public void SellingTower()
         {
-            _inventoryRuntime.TryChangeCurrency(GetSoldTowerCoin());
+            _resourceRuntime.TryChangeCurrency(GetSoldTowerCoin());
             // reset Coin
             _totalUsedCoin = 0;
 

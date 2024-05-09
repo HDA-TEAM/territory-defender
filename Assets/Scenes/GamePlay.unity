@@ -4842,11 +4842,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lifeTest: 0
   _isFastSetupStageForTest: 1
-  _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _resourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _resultsController: {fileID: 1804081924}
   _stageDataConfig: {fileID: 11400000, guid: 07af98a6585604eeab6da17b8d21fe0d, type: 2}
   _enemySpawningFactory: {fileID: 1804081920}
-  IsFinishSpawn: 0
   _mapController: {fileID: 1271352675}
   _startStageComposite:
     StageId: 100
@@ -4892,7 +4891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f478cd3351be4c3cb733e0d450498e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _resourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _stageDataConfig: {fileID: 11400000, guid: 07af98a6585604eeab6da17b8d21fe0d, type: 2}
 --- !u!1 &1822553083 stripped
 GameObject:

@@ -3,16 +3,14 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "InGameInventoryRuntimeData", menuName = "ScriptableObject/Data/InGameInventoryRuntimeData")]
-    public class InGameInventoryRuntimeData : ScriptableObject
+    [CreateAssetMenu(fileName = "InGameResourceRuntimeData", menuName = "ScriptableObject/Data/InGameResourceRuntimeData")]
+    public class InGameResourceRuntimeData : ScriptableObject
     {
         [SerializeField] private int _currency;
         [SerializeField] private int _life;
-        [SerializeField] private int _star;
     
         public int GetCurrencyValue() => _currency;
         public int GetLifeValue() => _life;
-        public int GetStarValue() => _star;
     
         #region Callback
         private Action<int> _onCurrencyChange;
@@ -39,17 +37,6 @@ namespace GamePlay.Scripts.Data
             if (_life > value)
                 _life += value;
             _onLifeChange?.Invoke(_life);
-        }
-    
-        public void TryChangeStar(int starNumber)
-        {
-            _star -= starNumber;
-            //Debug.Log("Subtract star");
-        }
-
-        public void TryRefundStar(int starNumber)
-        {
-            _star += starNumber;
         }
     }
 }

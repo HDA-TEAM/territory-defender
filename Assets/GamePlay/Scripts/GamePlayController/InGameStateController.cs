@@ -3,6 +3,7 @@ using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.GamePlayController
 {
@@ -15,8 +16,9 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private bool _isFastSetupStageForTest;
 #endif
 
+        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
-        private InGameInventoryRuntimeData _inventoryRuntimeData;
+        private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private GameResultHandler _resultsController;
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
@@ -31,8 +33,8 @@ namespace GamePlay.Scripts.GamePlayController
             base.Awake();
             CurStageId = StageId.Chap1Stage0;
 
-            _inventoryRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
-            _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
+            _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
+            _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
         public void Start()
         {
@@ -53,7 +55,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         protected override void OnDestroy()
         {
-            _inventoryRuntimeData.UnRegisterLifeChange(OnLifeChange);
+            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
         }
         private void OnLifeChange(int life)
         {
