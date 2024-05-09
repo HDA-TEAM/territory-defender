@@ -30,8 +30,7 @@ namespace GamePlay.Scripts.GamePlayController
                 return _startStageComposite;
             }
         }
-
-
+        
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
             _startStageComposite = startStageComposite;
