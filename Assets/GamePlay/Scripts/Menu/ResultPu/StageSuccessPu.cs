@@ -1,16 +1,11 @@
+using Common.Scripts.Navigator;
 using CustomInspector;
 using UnityEngine;
 
-public class StageSuccessPu : GamePlayPopup
+public class StageSuccessPu : CommonModal
 {
     [SerializeField] private StageSuccessModelView _stageSuccessModelView;
-
-    protected override void OnEnable()
-    {
-    }
-    protected override void OnDisable()
-    {
-    }
+    
     public void SetupData(int claimingStars)
     {
         _stageSuccessModelView.SetupView(claimingStars);

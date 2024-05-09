@@ -1,3 +1,5 @@
+using Common.Scripts.Navigator;
+using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using UnityEngine;
@@ -8,24 +10,32 @@ namespace GamePlay.Scripts.Menu.ResultPu
     {
         private readonly CalculateStageSuccessRewarding _calculateStageSuccess = new CalculateStageSuccessRewarding();
 
-        [SerializeField] private StageSuccessPu _stageSuccessPu;
-        [SerializeField] private StageFailedPu _stageFailedPu;
         [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
         [SerializeField] private StageDataConfig _stageDataConfig;
 
-        public void ShowStageSuccessPu()
+        public async void ShowStageSuccessPu()
         {
             StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
             int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
             int curLife = _inventoryRuntimeData.GetLifeValue();
-            _stageSuccessPu.gameObject.SetActive(true);
 
-            int claimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);
-            _stageSuccessPu.SetupData(claimStarsCount);
+            int curClaimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);
+
+            StageSuccessPu stageSuccessPu = null;
+            await NavigatorController.MainModalContainer.Push<StageSuccessPu>(
+                ResourceKey.InGame.StageSuccessPu, 
+                playAnimation: true,
+                onLoad: x =>
+                {
+                    stageSuccessPu = x.modal;
+                });
+            
+            if (stageSuccessPu)
+                stageSuccessPu.SetupData(curClaimStarsCount);
         }
         public void ShowStageFailedPu()
-        { 
-            _stageFailedPu.gameObject.SetActive(true);
+        {
+            NavigatorController.MainModalContainer.Push<StageFailedPu>(ResourceKey.InGame.StageFailPu, playAnimation: true);
         }
     }
 }

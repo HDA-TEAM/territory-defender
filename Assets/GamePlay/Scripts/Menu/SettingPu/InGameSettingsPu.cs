@@ -1,19 +1,18 @@
 using Common.Loading.Scripts;
+using Common.Scripts.Navigator;
 using GamePlay.Scripts.Data;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PuInGameSettings : MonoBehaviour
+public class InGameSettingsPu : CommonModal
 {
     [Header("UI")]
     [SerializeField] private ButtonSettingView _btnSound;
     [SerializeField] private ButtonSettingView _btnMusic;
-    [SerializeField] private Button _btnReplay;
     [SerializeField] private Button _btnQuit;
-    [SerializeField] private Button[] _btnCloses;
-    [SerializeField] private CanvasGroup _canvasGroup;
-    [Header("Data"), Space(12)] [SerializeField] private SettingDataAsset _settingDataAsset;
+    
+    [Header("Data"), Space(12)] 
+    [SerializeField] private SettingDataAsset _settingDataAsset;
 
     private void OnEnable()
     {
@@ -21,17 +20,15 @@ public class PuInGameSettings : MonoBehaviour
         SetupView();
     }
     private void OnDisable() => _settingDataAsset.TimeScaleSetting = _settingDataAsset.PreTimeScaleSetting();
-    private void Awake()
+    protected override void Awake()
     {
-        foreach (var btnClose in _btnCloses)
-            btnClose.onClick.AddListener(OnClose);
+        base.Awake();
         
         _btnQuit.onClick.AddListener(OnClickQuit);
         
         _btnSound.Setup(OnClickSound);
         _btnMusic.Setup(OnClickMusic);
     }
-    private void OnClose() => gameObject.SetActive(false);
 
     private void SetupView()
     {

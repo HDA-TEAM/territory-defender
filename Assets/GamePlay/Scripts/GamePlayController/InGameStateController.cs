@@ -20,17 +20,17 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private GameResultHandler _resultsController;
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
-
-        public bool IsFinishSpawn;
-
         // Access
         public StageId CurStageId { get; private set; }
         public bool IsGamePlaying { get; private set; }
+
+        private bool IsFinishSpawn;
 
         protected override void Awake()
         {
             base.Awake();
             CurStageId = StageId.Chap1Stage0;
+
             _inventoryRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
             _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
         }
@@ -38,13 +38,18 @@ namespace GamePlay.Scripts.GamePlayController
         {
             IsFinishSpawn = false;
             IsGamePlaying = true;
-            
+
 #if UNITY_EDITOR
             if (_isFastSetupStageForTest)
-            {
                 SetUpTestNewGame(_startStageComposite);
-            }
 #endif
+        }
+        private void Update()
+        {
+            if (UnitManager.Instance.IsEmptyActiveEnemy
+                && IsGamePlaying
+                && IsFinishSpawn)
+                CheckingStageSuccess();
         }
         protected override void OnDestroy()
         {
@@ -58,7 +63,7 @@ namespace GamePlay.Scripts.GamePlayController
         // {
         //     return IsFinishSpawn;
         // }
-        public void CheckingStageSuccess()
+        private void CheckingStageSuccess()
         {
             Debug.Log("End StageSuccess");
             IsGamePlaying = false;

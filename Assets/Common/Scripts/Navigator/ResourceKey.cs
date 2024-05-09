@@ -1,4 +1,6 @@
-public static class ResourceKey
+namespace Common.Scripts.Navigator
+{
+    public static class ResourceKey
     {
         public static class Prefabs
         {
@@ -11,8 +13,13 @@ public static class ResourceKey
             public const string QuestPu = "Home/QuestPu";
             public const string SettingPu = "Home/SettingPu";
         }
-
-        public static class Textures
+        public static class InGame
         {
+            public const string StageSuccessPu = "GamePlay/StageSuccessPu";
+            public const string InGameStageScreen = "GamePlay/InGameStageScreen";
+            public const string StageFailPu = "GamePlay/StageFailPu";
+            public const string InGameSettingsPu = "GamePlay/InGameSettingsPu";
         }
+
     }
+}

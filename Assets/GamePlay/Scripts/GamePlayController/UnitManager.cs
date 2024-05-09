@@ -22,7 +22,10 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
     private readonly List<Action> _onSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnSubscribeAction = new List<Action>();
     private readonly List<Action> _onUnitOutAction = new List<Action>();
+    private List<UnitBase> _unitsNeed;
+    private readonly List<UnitBase> _allys = new List<UnitBase>();
 
+    public bool IsEmptyActiveEnemy { get; private set; }
     // A active and available unit can be subscribe
     public void Subscribe(UnitBase unitBase)
     {
@@ -58,10 +61,8 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
         if (!InGameStateController.Instance.IsGamePlaying)
             return;
 
-        if (InGameStateController.Instance.IsFinishSpawn && _unitEnemies.Count == 0)
-        {
-            InGameStateController.Instance.CheckingStageSuccess();
-        }
+        IsEmptyActiveEnemy = _unitEnemies.Count == 0;
+
         SynRuntimeAction();
 
         ClearUnavailableUnit();
@@ -77,8 +78,6 @@ public class UnitManager : GamePlaySingletonBase<UnitManager>
             ally.UnitController().UpdateStatus(_unitsNeed);
         }
     }
-    private List<UnitBase> _unitsNeed;
-    private readonly List<UnitBase> _allys = new List<UnitBase>();
     private List<UnitBase> GetUnitsNeed(UnitId.BaseId baseId)
     {
         switch (baseId)

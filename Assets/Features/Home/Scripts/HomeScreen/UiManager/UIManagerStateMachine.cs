@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
 {
-    private Dictionary<Type, UIState> _states = new Dictionary<Type, UIState>();
-    private static Stack<UIState> _popupStateStack = new Stack<UIState>();
+    private readonly Dictionary<Type, UIState> _states = new Dictionary<Type, UIState>();
+    private static readonly Stack<UIState> _popupStateStack = new Stack<UIState>();
     private static UIState _currentState;
     
     private void Start()

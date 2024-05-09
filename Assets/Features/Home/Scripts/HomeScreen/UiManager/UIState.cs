@@ -1,3 +1,4 @@
+using Common.Scripts.Navigator;
 using UnityEngine;
 
 public abstract class UIState
