@@ -6,6 +6,7 @@ using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.RuneDetailView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ListRuneViewModel : MonoBehaviour
 {
@@ -20,8 +21,9 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private ItemStarView _itemStarView;
     [SerializeField] private RuneDetailView _runeDetailView;
     
+    [FormerlySerializedAs("_inventoryRuntimeData")]
     [Header("Data"), Space(12)]
-    [SerializeField] private InGameInventoryRuntimeData _inventoryRuntimeData;
+    [SerializeField] private InGameResourceRuntimeData _resourceRuntimeData;
 
     // INTERNAL
     private List<RuneLevel> _runeLevels;
@@ -114,9 +116,10 @@ public class ListRuneViewModel : MonoBehaviour
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
 
         // Load Star data
-        _inventoryComposite.Currency = _inventoryRuntimeData.GetCurrencyValue();
-        _inventoryComposite.Life = _inventoryRuntimeData.GetLifeValue();
-        _inventoryComposite.StarNumber = _inventoryRuntimeData.GetStarValue();
+        // Todo get data from inventory data
+        // _inventoryComposite.Currency = _resourceRuntimeData.GetCurrencyValue();
+        // _inventoryComposite.Life = _resourceRuntimeData.GetLifeValue();
+        // _inventoryComposite.StarNumber = _resourceRuntimeData.GetStarValue();
 
         // Default setting
         if (_preTowerHasComposite.RuneComposite == null)
@@ -193,7 +196,10 @@ public class ListRuneViewModel : MonoBehaviour
         _preSelectedUpgradeRuneItem = itemUpgradeRuneView;
 
         //Conditions to upgrade any skill
-        if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel  && _inventoryRuntimeData.GetStarValue() > 0)
+        if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel  
+            // Todo get data from inventory data
+            // && _resourceRuntimeData.GetStarValue() > 0
+            )
         {
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
@@ -202,7 +208,8 @@ public class ListRuneViewModel : MonoBehaviour
                 towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
                 // Subtract star number
-                _inventoryRuntimeData.TryChangeStar(1);
+                // Todo get data from inventory data
+                // _resourceRuntimeData.TryChangeStar(1);
                 
                 Debug.Log("Upgrade rune successful....");
                 
@@ -233,7 +240,8 @@ public class ListRuneViewModel : MonoBehaviour
                 towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
             
                 // Return star number after reset
-                _inventoryRuntimeData.TryRefundStar(towerRuneDataConfig._returnStar);
+                // Todo get data from inventory data
+                // _resourceRuntimeData.TryRefundStar(towerRuneDataConfig._returnStar);
                 
                 Debug.Log("Upgrade rune successful".ToUpper());
                 

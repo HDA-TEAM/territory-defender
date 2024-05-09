@@ -3,16 +3,14 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Data
 {
-    [CreateAssetMenu(fileName = "InGameInventoryRuntimeData", menuName = "ScriptableObject/Data/InGameInventoryRuntimeData")]
-    public class InGameInventoryRuntimeData : ScriptableObject
+    [CreateAssetMenu(fileName = "InGameResourceRuntimeData", menuName = "ScriptableObject/Data/InGameResourceRuntimeData")]
+    public class InGameResourceRuntimeData : ScriptableObject
     {
         [SerializeField] private int _currency;
         [SerializeField] private int _life;
-        [SerializeField] private int _star;
     
         public int GetCurrencyValue() => _currency;
         public int GetLifeValue() => _life;
-        public int GetStarValue() => _star;
     
         #region Callback
         private Action<int> _onCurrencyChange;
@@ -22,6 +20,9 @@ namespace GamePlay.Scripts.Data
     
         public void RegisterLifeChange(Action<int> action) => _onLifeChange += action;
         public void UnRegisterLifeChange(Action<int> action) => _onLifeChange -= action;
+        //
+        // public void RegisterWaveChange(Action<int,int> action) => _onWaveChange += action;
+        // public void UnRegisterWaveChange(Action<int,int> action) => _onWaveChange -= action;
         #endregion
         public void InitData(StageConfig stageInventory)
         {
@@ -40,16 +41,9 @@ namespace GamePlay.Scripts.Data
                 _life += value;
             _onLifeChange?.Invoke(_life);
         }
-    
-        public void TryChangeStar(int starNumber)
-        {
-            _star -= starNumber;
-            //Debug.Log("Subtract star");
-        }
-
-        public void TryRefundStar(int starNumber)
-        {
-            _star += starNumber;
-        }
+        // public void OnChangeWave(int curWave, int maxWave)
+        // {
+        //     _onCurrencyChange?.Invoke(_currency);
+        // }
     }
 }

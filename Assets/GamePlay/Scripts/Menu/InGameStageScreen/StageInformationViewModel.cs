@@ -1,20 +1,21 @@
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Stage;
+using SuperMaxim.Messaging;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Menu.InGameStageScreen
 {
-    public struct StageResourcePayload
-    {
-        
-    }
     public class StageInformationViewModel : MonoBehaviour
     {
         [Header("UI")]
         [SerializeField] private StageResourceView _stageResourceView;
 
+        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
-        private InGameInventoryRuntimeData _inventoryRuntimeData;
+        private InGameResourceRuntimeData _resourceRuntimeData;
 
+        private UpdateWavePayload _updateWavePayload;
         // tool
         // hero skill or hero selection
     
@@ -24,23 +25,30 @@ namespace GamePlay.Scripts.Menu.InGameStageScreen
         }
         private void Awake()
         {
-            _inventoryRuntimeData.RegisterLifeChange(OnInventoryChange);
-            _inventoryRuntimeData.RegisterCurrencyChange(OnInventoryChange);
+            Messenger.Default.Subscribe<UpdateWavePayload>(OnWaveChange);
+            _resourceRuntimeData.RegisterLifeChange(OnInventoryChange);
+            _resourceRuntimeData.RegisterCurrencyChange(OnInventoryChange);
         }
         private void OnDestroy()
         {
-            _inventoryRuntimeData.UnRegisterLifeChange(OnInventoryChange);
-            _inventoryRuntimeData.UnRegisterCurrencyChange(OnInventoryChange);
+            Messenger.Default.Unsubscribe<UpdateWavePayload>(OnWaveChange);
+            _resourceRuntimeData.UnRegisterLifeChange(OnInventoryChange);
+            _resourceRuntimeData.UnRegisterCurrencyChange(OnInventoryChange);
         }
         private void OnInventoryChange(int fakeValue) => UpdateView();
+        private void OnWaveChange(UpdateWavePayload updateWavePayload)
+        {
+            _updateWavePayload = updateWavePayload;
+            UpdateView();
+        }
         private void UpdateView()
         {
             _stageResourceView.Setup(new StageResource
             {
-                CurLife = _inventoryRuntimeData.GetLifeValue(),
-                TotalCoin = _inventoryRuntimeData.GetCurrencyValue(),
-                CurWaveCount = 0,
-                MaxWaveCount = 5,
+                CurLife = _resourceRuntimeData.GetLifeValue(),
+                TotalCoin = _resourceRuntimeData.GetCurrencyValue(),
+                CurWaveCount = _updateWavePayload.CurWave,
+                MaxWaveCount = _updateWavePayload.MaxWave,
             });
         }
     }

@@ -2,7 +2,9 @@ using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
+using GamePlay.Scripts.Stage;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.GamePlayController
 {
@@ -15,8 +17,9 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private bool _isFastSetupStageForTest;
 #endif
 
+        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
-        private InGameInventoryRuntimeData _inventoryRuntimeData;
+        private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private GameResultHandler _resultsController;
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
@@ -31,8 +34,8 @@ namespace GamePlay.Scripts.GamePlayController
             base.Awake();
             CurStageId = StageId.Chap1Stage0;
 
-            _inventoryRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
-            _inventoryRuntimeData.RegisterLifeChange(OnLifeChange);
+            _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
+            _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
         public void Start()
         {
@@ -53,7 +56,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         protected override void OnDestroy()
         {
-            _inventoryRuntimeData.UnRegisterLifeChange(OnLifeChange);
+            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
         }
         private void OnLifeChange(int life)
         {
@@ -71,7 +74,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void CheckingEndGame(int life)
         {
-            if (life <= 0)
+            if (life <= 0 && IsGamePlaying)
             {
                 //todo
                 // notify game ended 
@@ -83,7 +86,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public void StartSpawning()
         {
-            _enemySpawningFactory.StartSpawning(_startStageComposite.StageId, OnFinishedSpawning);
+            _enemySpawningFactory.StartSpawning(OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
         {
