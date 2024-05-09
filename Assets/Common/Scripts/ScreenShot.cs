@@ -1,14 +1,18 @@
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class ScreenShot : MonoBehaviour
 {
-    public KeyCode screenShotButton;
+    public KeyCode ScreenShotButton;
+    private int _index;
     void Update()
     {
-        if (Input.GetKeyDown(screenShotButton))
+        if (Input.GetKeyDown(ScreenShotButton))
         {
-            ScreenCapture.CaptureScreenshot("screenshot.png");
+            ScreenCapture.CaptureScreenshot($"screenshot{_index++}.png");
             Debug.Log("A screenshot was taken!");
         }
     }
 }
+#endif
+
