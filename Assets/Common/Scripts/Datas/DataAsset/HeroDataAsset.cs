@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts;
+using Common.Scripts.Datas;
 using UnityEngine;
 
 namespace Features.HeroInformation

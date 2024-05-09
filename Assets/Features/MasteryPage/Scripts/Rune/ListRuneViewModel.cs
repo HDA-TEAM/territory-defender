@@ -20,8 +20,7 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private ItemResetRuneView _itemResetRuneView;
     [SerializeField] private ItemStarView _itemStarView;
     [SerializeField] private RuneDetailView _runeDetailView;
-    
-    [FormerlySerializedAs("_inventoryRuntimeData")]
+
     [Header("Data"), Space(12)]
     [SerializeField] private InGameResourceRuntimeData _resourceRuntimeData;
 

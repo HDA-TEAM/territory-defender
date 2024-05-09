@@ -39,12 +39,10 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 public struct TowerDataModel : IDefaultDataModel
 {
     public List<TowerSoSaver> TowerList;
-
     public bool IsEmpty()
     {
         return (TowerList == null || TowerList.Count == 0);
     }
-
     public void SetDefault()
     {
         // Ensure defaults are set for both lists

@@ -15,6 +15,14 @@ MonoBehaviour:
   _filename: StageDataAsset
   _model:
     ListStagePassed: []
+  _stageDataDict:
+    _serializedList:
+    - Key: 100
+      Value: {fileID: 11400000, guid: f8feae28041054c40943a2c676e6a04b, type: 2}
+    - Key: 101
+      Value: {fileID: 11400000, guid: 08591116cce974601a1de5d0f724bb04, type: 2}
+    - Key: 102
+      Value: {fileID: 11400000, guid: deeabef2759cf49ecb70aa4668a05191, type: 2}
   TestStagePassed:
-    TotalStar: 3
-    StageId: 100
+    TotalStar: 0
+    StageId: 0
