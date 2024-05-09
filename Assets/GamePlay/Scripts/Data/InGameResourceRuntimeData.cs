@@ -20,6 +20,9 @@ namespace GamePlay.Scripts.Data
     
         public void RegisterLifeChange(Action<int> action) => _onLifeChange += action;
         public void UnRegisterLifeChange(Action<int> action) => _onLifeChange -= action;
+        //
+        // public void RegisterWaveChange(Action<int,int> action) => _onWaveChange += action;
+        // public void UnRegisterWaveChange(Action<int,int> action) => _onWaveChange -= action;
         #endregion
         public void InitData(StageConfig stageInventory)
         {
@@ -38,5 +41,9 @@ namespace GamePlay.Scripts.Data
                 _life += value;
             _onLifeChange?.Invoke(_life);
         }
+        // public void OnChangeWave(int curWave, int maxWave)
+        // {
+        //     _onCurrencyChange?.Invoke(_currency);
+        // }
     }
 }

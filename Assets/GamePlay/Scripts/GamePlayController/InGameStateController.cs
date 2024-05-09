@@ -2,6 +2,7 @@ using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
+using GamePlay.Scripts.Stage;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -73,7 +74,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void CheckingEndGame(int life)
         {
-            if (life <= 0)
+            if (life <= 0 && IsGamePlaying)
             {
                 //todo
                 // notify game ended 
@@ -85,7 +86,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public void StartSpawning()
         {
-            _enemySpawningFactory.StartSpawning(_startStageComposite.StageId, OnFinishedSpawning);
+            _enemySpawningFactory.StartSpawning(OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
         {
