@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b80403d30c8294b698b099a0e9259e9f, type: 3}
+  m_Name: BackDropFadeInTransitionAnimation
+  m_EditorClassIdentifier: 
+  _delay: 0
+  _duration: 0.25
+  _isJoin: 0
+  _easeScaleType: 27
+  _easeAlphaType: 12
+  _beforeAlignment: 4
+  _afterAlignment: 4
+  _beforeScale: {x: 0.5, y: 0.5, z: 0.5}
+  _afterScale: {x: 1, y: 1, z: 1}
+  _beforeAlpha: 0
+  _afterAlpha: 1
+  _animationScaleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _isUseAnimationScaleCurve: 0
+  _isUseAnimationAlphaCurve: 0
+  _animationAlphaCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
