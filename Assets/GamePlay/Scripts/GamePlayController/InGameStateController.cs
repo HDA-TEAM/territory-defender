@@ -32,9 +32,6 @@ namespace GamePlay.Scripts.GamePlayController
         protected override void Awake()
         {
             base.Awake();
-            CurStageId = StageId.Chap1Stage0;
-
-            _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(CurStageId));
             _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
         public void Start()
@@ -46,6 +43,8 @@ namespace GamePlay.Scripts.GamePlayController
             if (_isFastSetupStageForTest)
                 SetUpTestNewGame(_startStageComposite);
 #endif
+
+            _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(_startStageComposite.StageId));
         }
         private void Update()
         {
