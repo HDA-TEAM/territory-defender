@@ -172,8 +172,17 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         {
             _onSelected = onSelected;
         }
+        private void CheckAndRemoveExistTower()
+        {
+            if (!_towerEntity)
+                return;
+            
+            Destroy(_towerEntity);
+        }
         public void SetTower(GameObject tower, UnitId.Tower towerId)
         {
+            CheckAndRemoveExistTower();
+            
             _towerId = towerId;
             _towerEntity = tower;
             _unitBase = _towerEntity.GetComponent<UnitBase>();

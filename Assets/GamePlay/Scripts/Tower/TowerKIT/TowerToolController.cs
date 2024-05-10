@@ -21,7 +21,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                 towerToolBase.Reset();
             _confirmHandles = gameObject.GetComponentsInChildren<ConfirmHandle>().ToList();
         }
-        private void Start()
+        private void Awake()
         {
             foreach (var confirmHandle in _confirmHandles)
                 confirmHandle.SetUpSelected(SetCurrentSelectedConfirm);
