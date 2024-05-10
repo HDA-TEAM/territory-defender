@@ -35,9 +35,17 @@ public static class UnitId
     public enum Tower
     {
         ArcherTower = 300,
+        MarksmanTower = 301,
+        SharpShooterTower = 302,
         SpearTower = 310,
+        PikeTower = 311,
+        MasterTower = 312,
         ElephantTower = 320,
-        DrumTower = 330
+        WarElephantTower = 321,
+        ArmoredElephantTower = 322,
+        DrumTower = 330,
+        WarDrumTower = 331,
+        MasterDrumTower = 332,
     }
     public enum Projectile
     {
