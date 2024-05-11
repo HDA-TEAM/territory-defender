@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class TowerDataManager : SingletonBase<TowerDataManager>
 {

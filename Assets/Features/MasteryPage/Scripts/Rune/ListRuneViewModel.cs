@@ -2,6 +2,7 @@ using Common.Scripts;
 using GamePlay.Scripts.Data;
 using System;
 using System.Collections.Generic;
+using Common.Scripts.Datas.DataAsset;
 using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.RuneDetailView;
@@ -20,16 +21,16 @@ public class ListRuneViewModel : MonoBehaviour
     [SerializeField] private ItemResetRuneView _itemResetRuneView;
     [SerializeField] private ItemStarView _itemStarView;
     [SerializeField] private RuneDetailView _runeDetailView;
-
+    
     [Header("Data"), Space(12)]
-    [SerializeField] private InGameResourceRuntimeData _resourceRuntimeData;
+    [SerializeField] private InventoryDataAsset _inventoryDataAsset;
 
     // INTERNAL
     private List<RuneLevel> _runeLevels;
     
     // Composite
     private List<TowerHasRuneComposite> _towerRuneComposites;
-    private InventoryComposite _inventoryComposite;
+    private List<InventoryComposite> _inventoryComposites;
     private TowerHasRuneComposite _preTowerHasComposite;
     
     // Config
@@ -87,7 +88,7 @@ public class ListRuneViewModel : MonoBehaviour
     }
     private void Start()
     {
-        _inventoryComposite = new InventoryComposite();
+        _inventoryComposites = new List<InventoryComposite>();
         UpdateData();
         SetupRuneDetailView(true);
     
@@ -116,10 +117,16 @@ public class ListRuneViewModel : MonoBehaviour
 
         // Load Star data
         // Todo get data from inventory data
-        // _inventoryComposite.Currency = _resourceRuntimeData.GetCurrencyValue();
-        // _inventoryComposite.Life = _resourceRuntimeData.GetLifeValue();
-        // _inventoryComposite.StarNumber = _resourceRuntimeData.GetStarValue();
 
+        _inventoryComposites = new List<InventoryComposite>();
+        for (int i = 0; i < _inventoryDataAsset.InventoryDatas.Count; i++)
+        {
+            InventoryComposite tmpInventoryComposite = new InventoryComposite
+            {
+                Type = _inventoryDataAsset.InventoryDatas[i].InventoryType,
+                Amount = _inventoryDataAsset.InventoryDatas[i].Amount,
+            };
+        }
         // Default setting
         if (_preTowerHasComposite.RuneComposite == null)
             _preTowerHasComposite = _towerRuneComposites[0];
@@ -143,7 +150,7 @@ public class ListRuneViewModel : MonoBehaviour
             _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
         
             // Setup star view
-            _itemStarView.Setup(_inventoryComposite);
+            _itemStarView.Setup(_inventoryComposites[0]);
         
             // Rune avatar logic
             _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
@@ -283,9 +290,8 @@ public struct RuneComposite
 
 public struct InventoryComposite
 {
-    public float Currency;
-    public float Life;
-    public float StarNumber;
+    public InventoryType Type;
+    public int Amount;
 }
 
 public struct TowerHasRuneComposite

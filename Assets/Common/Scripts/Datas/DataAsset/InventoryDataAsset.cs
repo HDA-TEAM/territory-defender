@@ -1,33 +1,48 @@
 using System;
 using System.Collections.Generic;
-using GamePlay.Scripts.Data;
 using UnityEngine;
 
 namespace Common.Scripts.Datas.DataAsset
 {
-    [Serializable]
-    public struct CurrentInventory
+    public enum InventoryType
     {
-        public int Star;
+        Star =  1,
+        TalentPoint = 2,
+        GoldenCoin = 3,
+        SliverCoin = 4,
+    }
+    [Serializable]
+    public struct InventoryData
+    {
+        public InventoryType InventoryType;
+        public int Amount;
     }
     
     [Serializable]
     public struct InventoryDataModel : IDefaultDataModel
     {
-        public List<CurrentInventory> ListInventory;
+        public List<InventoryData> ListInventoryData;
         public bool IsEmpty()
         {
             return false;
         }
         public void SetDefault()
         {
-            ListInventory = new List<CurrentInventory>();
+            ListInventoryData = new List<InventoryData>();
         }
     }
     
-    [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/Database/Stage/InventoryDataAsset")]
+    [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : BaseDataAsset<InventoryDataModel>
     {
-        
+        //[SerializedDictionary("StageId", "StageDataSO")] [SerializeField]
+        //private SerializedDictionary<InventoryType, int>
+            //_inventoryDataDict = new SerializedDictionary<InventoryType, int>();
+
+        public List<InventoryData> InventoryDatas;
+        public List<InventoryData> GetAllStageData()
+        {
+            return InventoryDatas;
+        }
     }
 }
