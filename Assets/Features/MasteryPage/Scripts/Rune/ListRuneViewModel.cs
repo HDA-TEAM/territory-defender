@@ -34,7 +34,7 @@ public class ListRuneViewModel : MonoBehaviour
     // Composite
     private List<TowerHasRuneComposite> _towerRuneComposites;
     private TowerHasRuneComposite _preTowerHasComposite;
-    private InventoryComposite _starInventory;
+    private InventoryComposite _talentPointInventory;
     
     // Config
     private List<RuneDataConfig> _runeSos;
@@ -91,7 +91,7 @@ public class ListRuneViewModel : MonoBehaviour
     }
     private void Start()
     {
-        _starInventory = new InventoryComposite();
+        _talentPointInventory = new InventoryComposite();
         UpdateData();
         SetupRuneDetailView(true);
     
@@ -118,11 +118,11 @@ public class ListRuneViewModel : MonoBehaviour
 
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
         
-        // Retrieve the inventory data for 'Star' type
-        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.TotalStar);
+        // Retrieve the inventory data for 'Talent Point' type
+        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.TalentPoint);
 
         // Update the _starInventory
-        _starInventory = new InventoryComposite
+        _talentPointInventory = new InventoryComposite
         {
             Type = _inventoryData.InventoryType,
             Amount = _inventoryData.Amount,
@@ -150,8 +150,8 @@ public class ListRuneViewModel : MonoBehaviour
             // Setup rune view
             _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
         
-            // Setup star view
-            _itemStarView.Setup(_starInventory);
+            // Setup Talent Point view
+            _itemStarView.Setup(_talentPointInventory);
         
             // Rune avatar logic
             _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
@@ -204,7 +204,7 @@ public class ListRuneViewModel : MonoBehaviour
 
         //Conditions to upgrade any skill
         if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
-            && _starInventory.Amount > 0)
+            && _talentPointInventory.Amount > 0)
         {
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
@@ -212,8 +212,8 @@ public class ListRuneViewModel : MonoBehaviour
                 var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
                 towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
-                // Get data from inventory data & Subtract star number
-                _inventoryDataAsset.AmountDataChange(_starInventory.Type, -1);
+                // Get data from inventory data & Subtract Talent Point number
+                _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, -1);
                 Debug.Log("Upgrade rune successful....");
                 
                 _onTowerDataUpdatedAction?.Invoke();
@@ -242,8 +242,8 @@ public class ListRuneViewModel : MonoBehaviour
                 var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
                 towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
                 
-                // Get data from inventory data & Return star number after reset
-                _inventoryDataAsset.AmountDataChange(_starInventory.Type, towerRuneDataConfig._returnStar);
+                // Get data from inventory data & Return Talent Point number after reset
+                _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, towerRuneDataConfig._returnStar);
 
                 Debug.Log("Upgrade rune successful".ToUpper());
                 
