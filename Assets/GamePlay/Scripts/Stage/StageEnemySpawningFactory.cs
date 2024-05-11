@@ -136,7 +136,7 @@ namespace GamePlay.Scripts.Stage
         private void SetRoute(GameObject go, int routeId)
         {
             go.TryGetComponent(out BaseEnemyStateMachine component);
-            component.RouteToGate = RouteSetController.Instance.CurrentSingleRouteLineRenderers[routeId].SingleLineRenderer;
+            component.RouteToGate = RouteSetController.Instance.ActiveSingleRouteLineRenderers[routeId].SingleLineRenderer;
             go.transform.position = component.RouteToGate.GetPosition(0);
         }
         private void UpdateStats(GameObject go)

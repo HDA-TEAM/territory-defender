@@ -490,22 +490,6 @@ PrefabInstance:
       propertyPath: _towerKit
       value: 
       objectReference: {fileID: 2030117108}
-    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      propertyPath: _towerToolBases.Array.data[0]
-      value: 
-      objectReference: {fileID: 6744289846265658732}
-    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      propertyPath: _towerToolBases.Array.data[1]
-      value: 
-      objectReference: {fileID: 2117454944}
-    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      propertyPath: _towerToolBases.Array.data[2]
-      value: 
-      objectReference: {fileID: 2117454943}
-    - target: {fileID: 6646617090931547473, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      propertyPath: _towerToolBases.Array.data[3]
-      value: 
-      objectReference: {fileID: 2117454942}
     - target: {fileID: 6878341851928845448, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -617,155 +601,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6878341852060447389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6744289846265658732}
-    - targetCorrespondingSourceObject: {fileID: 201042051929545189, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2117454944}
-    - targetCorrespondingSourceObject: {fileID: 1670019084828082714, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2117454943}
-    - targetCorrespondingSourceObject: {fileID: 7523324720798616857, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2117454942}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
---- !u!1 &247484987142502873 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 201042051929545189, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2117454944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247484987142502873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerToolStatusHandle: {fileID: 2789528972889128683}
-  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _confirmHandle: {fileID: 491974220771195605}
-  _towerBuildId: 320
-  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
---- !u!114 &491974220771195605 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 537853690581916393, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247484987142502873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1383995823105728810 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1338114691056304406, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623575586926420518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1623575586926420518 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1670019084828082714, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2117454943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623575586926420518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerToolStatusHandle: {fileID: 3697810427918902548}
-  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _confirmHandle: {fileID: 1383995823105728810}
-  _towerBuildId: 330
-  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
---- !u!114 &2789528972889128683 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2815705469208010455, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247484987142502873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3697810427918902548 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3671632269361317160, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623575586926420518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5482125966187145751 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5598374987736304171, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623810353359367461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6587972564454838701 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6541529869743452561, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832461591857861281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &6832461591857861281 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6878341852060447389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6744289846265658732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832461591857861281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerToolStatusHandle: {fileID: 8865507410867492243}
-  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _confirmHandle: {fileID: 6587972564454838701}
-  _towerBuildId: 300
-  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
 --- !u!224 &6832461592147819696 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6878341852308413580, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
@@ -776,51 +613,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6878341852308413581, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
   m_PrefabInstance: {fileID: 118501955251462204}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7623810353359367461 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7523324720798616857, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2117454942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623810353359367461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f099ab09ac644f8950dd70140fdf0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerToolStatusHandle: {fileID: 5482125966187145751}
-  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _confirmHandle: {fileID: 7814271628858601001}
-  _towerBuildId: 310
-  _audioClipBuilding: {fileID: 8300000, guid: 75418413e42f447a6b125a5d25efb0c6, type: 3}
---- !u!114 &7814271628858601001 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7914194826880634389, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623810353359367461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8865507410867492243 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8839894139310601647, guid: 5f3efb0f0c6cc46319c9d6db12f2bd4e, type: 3}
-  m_PrefabInstance: {fileID: 118501955251462204}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6832461591857861281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1157110933467474214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1207,30 +999,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6744289845074533784}
     m_Modifications:
-    - target: {fileID: 192254536500891166, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 192254536500891166, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071337119792884550, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071337120375446774, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_Name
-      value: TowerTool
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071337121009436080, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900553160081274806, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_Name
-      value: Tools
-      objectReference: {fileID: 0}
     - target: {fileID: 3180346053454252910, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1388,10 +1156,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6923579826607023577, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: _confirmHandle
-      value: 
-      objectReference: {fileID: 1285741066417378361}
-    - target: {fileID: 6923579826607023577, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: _inGameInventoryRuntimeData
       value: 
       objectReference: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
@@ -1399,88 +1163,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: TowerTool
       objectReference: {fileID: 0}
-    - target: {fileID: 7092887832666232965, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_Name
-      value: TowerTool
-      objectReference: {fileID: 0}
     - target: {fileID: 7871412371293221445, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8163978382351769485, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: m_Name
-      value: TowerTool
       objectReference: {fileID: 0}
     - target: {fileID: 8504424395307449551, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
       propertyPath: _towerKit
       value: 
       objectReference: {fileID: 2030117108}
-    - target: {fileID: 8504424395307449551, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      propertyPath: _towerToolBases.Array.data[1]
-      value: 
-      objectReference: {fileID: 4480031518938950942}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8163978382351769485, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4480031518938950942}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
---- !u!114 &213188994970276657 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8426426970130226305, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525109128110035005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &525109128110035005 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8163978382351769485, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4480031518938950942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525109128110035005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82221f9cb2c4e7c93c67b8f52aa3884, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerToolStatusHandle: {fileID: 2490724114247571215}
-  _towerDataConfigBase: {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
-  _confirmHandle: {fileID: 213188994970276657}
---- !u!114 &1285741066417378361 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7481066523254807433, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e41984a708b845e9bd9b96b8acdacbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2490724114247571215 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6094809073040103615, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}
-  m_PrefabInstance: {fileID: 8504424394869428144}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 525109128110035005}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2282bc39ba524e67a109ab3fdef2ca34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6496181943433739408 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3180346054578500384, guid: a3692cb061c6d4bbcbe020ff2f9ac576, type: 3}

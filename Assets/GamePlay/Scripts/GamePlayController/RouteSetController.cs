@@ -17,13 +17,14 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageId _currentStageId;
 
         [SerializeField] private List<SingleRoute> _currentSingleRouteComposite = new List<SingleRoute>();
+        [SerializeField] private List<SingleRoute> _activeSingleRouteComposite;
         [SerializeField] private RouteSetConfig _routeSetConfig;
         [SerializeField] private CallWaveListViewModel _callWaveListViewModel;
-        public List<SingleRoute> CurrentSingleRouteLineRenderers
+        public List<SingleRoute> ActiveSingleRouteLineRenderers
         {
             get
             {
-                return _currentSingleRouteComposite;
+                return _activeSingleRouteComposite;
             }
         }
         private void Start()
@@ -99,22 +100,31 @@ namespace GamePlay.Scripts.GamePlayController
                             lineRouteSet.RouteLines[i].PointSet[j].y,
                             0));
             }
+            BuildActiveRoute();
             _callWaveListViewModel.Setup(callWaveViews, handleSingleCallWaveShowTooltips, _currentStageId);
         }
-        public Vector3 GetNearestPosFromRoute(Vector3 posA)
+        private void BuildActiveRoute()
+        {
+            _activeSingleRouteComposite = new List<SingleRoute>();
+            foreach (var tSingleRoute in _currentSingleRouteComposite)
+            {
+                if (tSingleRoute.gameObject.activeSelf)
+                    _activeSingleRouteComposite.Add(tSingleRoute);
+            }
+        }
+        public Vector3 GetNearestPosFromRoute(Vector3 posInput)
         {
             float nearestDis = float.MaxValue;
             Vector3 res = Vector3.zero;
-            foreach (var routeLineRender in _currentSingleRouteComposite)
+            foreach (SingleRoute routeLineRender in ActiveSingleRouteLineRenderers)
             {
                 for (int i = 0; i < routeLineRender.SingleLineRenderer.positionCount; i++)
                 {
-                    var curDis = VectorUtility.Distance2dOfTwoPos(posA, routeLineRender.SingleLineRenderer.GetPosition(i));
-                    if (nearestDis > curDis)
-                    {
-                        nearestDis = curDis;
-                        res = routeLineRender.SingleLineRenderer.GetPosition(i);
-                    }
+                    float curDis = VectorUtility.Distance2dOfTwoPos(posInput, routeLineRender.SingleLineRenderer.GetPosition(i));
+                    if (!(nearestDis > curDis))
+                        continue;
+                    nearestDis = curDis;
+                    res = routeLineRender.SingleLineRenderer.GetPosition(i);
 
                 }
             }

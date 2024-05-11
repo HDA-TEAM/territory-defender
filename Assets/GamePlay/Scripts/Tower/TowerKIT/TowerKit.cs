@@ -1,6 +1,7 @@
 using Common.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Character.TowerBehaviour;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
@@ -172,12 +173,22 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         {
             _onSelected = onSelected;
         }
+        private void CheckAndRemoveExistTower()
+        {
+            if (!_towerEntity)
+                return;
+            
+            Destroy(_towerEntity);
+        }
         public void SetTower(GameObject tower, UnitId.Tower towerId)
         {
+            CheckAndRemoveExistTower();
+            
             _towerId = towerId;
             _towerEntity = tower;
             _unitBase = _towerEntity.GetComponent<UnitBase>();
-
+            _unitBase.TowerBehaviourBase().Setup(this);
+            
             // Reduce coin in inventory
             var coinNeedToBuild = (int)_unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
             _resourceRuntime.TryChangeCurrency(

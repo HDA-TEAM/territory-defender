@@ -2,7 +2,9 @@ using AYellowpaper.SerializedCollections;
 using Common.Loading.Scripts;
 using Common.Scripts;
 using Common.Scripts.Pooler;
+using CustomInspector;
 using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.Pooling;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +12,10 @@ namespace GamePlay.Scripts.GamePlayController
 {
     public class PoolingController : GamePlaySingletonBase<PoolingController>
     {
+        [Button("OnBuildPools")]
+        [SerializeField] private UnitPoolBuilding _unitPoolBuilding;
         [SerializedDictionary("UnitId", "UnitPrefab")]
-        [SerializeField] private SerializedDictionary<string,GameObject> _dictPoolingPrefab = new SerializedDictionary<string, GameObject>();
+        [SerializeField] private SerializedDictionary<string, GameObject> _dictPoolingPrefab = new SerializedDictionary<string, GameObject>();
         [SerializeField] private UnitPooling _poolingPrefab;
         private readonly Dictionary<string, PoolingBase> _dictPooling = new Dictionary<string, PoolingBase>();
 
@@ -20,7 +24,7 @@ namespace GamePlay.Scripts.GamePlayController
             foreach (var pooling in _dictPooling)
             {
                 PoolingBase removingPool = pooling.Value;
-                Destroy(removingPool.gameObject);    
+                Destroy(removingPool.gameObject);
             }
             _dictPooling.Clear();
             Destroy(gameObject);
@@ -34,10 +38,10 @@ namespace GamePlay.Scripts.GamePlayController
         {
             if (!IsPoolExist(objectType))
                 CreateNewPool(objectType);
-        
+
             GameObject go = GetPooling(objectType).GetInstance();
             go.SetActive(true);
-            go.transform.position = new Vector3(position.x,position.y,0);
+            go.transform.position = new Vector3(position.x, position.y, 0);
             return go;
         }
         private bool IsPoolExist(string objectType)
@@ -50,10 +54,10 @@ namespace GamePlay.Scripts.GamePlayController
             UnitPooling unitPooling = Instantiate(_poolingPrefab);
             unitPooling.name = prefab.name + "Pooling";
             unitPooling.transform.SetParent(transform);
-            unitPooling.InitPoolWithParam(3,prefab, unitPooling.gameObject);
+            unitPooling.InitPoolWithParam(3, prefab, unitPooling.gameObject);
             _dictPooling.Add(objectType, unitPooling);
         }
-        public void ReturnPool(GameObject gameObject,UnitId.BaseId sideId)
+        public void ReturnPool(GameObject gameObject, UnitId.BaseId sideId)
         {
             gameObject.SetActive(false);
             // if (sideId == UnitId.BaseId.Enemy)
@@ -63,11 +67,18 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
-        
+
         }
         public override void ResetGame()
         {
             OnRestart();
         }
+
+#if UNITY_EDITOR
+        private void OnBuildPools()
+        {
+            _dictPoolingPrefab = _unitPoolBuilding.BuildPoolingDictionary();
+        }
+#endif
     }
 }
