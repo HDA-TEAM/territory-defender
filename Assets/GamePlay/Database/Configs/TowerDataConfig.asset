@@ -34,14 +34,44 @@ MonoBehaviour:
         UnitBase: {fileID: 6134854703462656619, guid: bec350b583a294ccfabd62cc12ce47de, type: 3}
         UnitSprites:
           AvatarIcon: {fileID: 0}
-    - Key: 320
+    - Key: 311
       Value:
-        UnitBase: {fileID: 2888971610469964476, guid: ea30b22bf15fb4c3e90ce94f91dc1cac, type: 3}
+        UnitBase: {fileID: 6134854703462656619, guid: 0ff008847f36e4623b2d609563db75a0, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 312
+      Value:
+        UnitBase: {fileID: 6134854703462656619, guid: 0561a118362614997baa4a0e8d925dc3, type: 3}
         UnitSprites:
           AvatarIcon: {fileID: 0}
     - Key: 330
       Value:
         UnitBase: {fileID: 6134854703462656619, guid: 3b659556518134bee890f765e9863261, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 331
+      Value:
+        UnitBase: {fileID: 6134854703462656619, guid: 71b279995be3a44668fc65fc9ae1d024, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 332
+      Value:
+        UnitBase: {fileID: 6134854703462656619, guid: f4e13ceb896fa4078a3223b332085187, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 320
+      Value:
+        UnitBase: {fileID: 2888971610469964476, guid: ea30b22bf15fb4c3e90ce94f91dc1cac, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 321
+      Value:
+        UnitBase: {fileID: 2888971610469964476, guid: a7ee1a28805da40f1b28f86797b6ac3e, type: 3}
+        UnitSprites:
+          AvatarIcon: {fileID: 0}
+    - Key: 322
+      Value:
+        UnitBase: {fileID: 2888971610469964476, guid: ca300f80618ac46078810418374f8558, type: 3}
         UnitSprites:
           AvatarIcon: {fileID: 0}
   _nextAvailableUpgradeTowers:
@@ -51,3 +81,15 @@ MonoBehaviour:
         Value: 2d010000
       - Key: 301
         Value: 2e010000
+      - Key: 310
+        Value: 37010000
+      - Key: 311
+        Value: 38010000
+      - Key: 320
+        Value: 41010000
+      - Key: 321
+        Value: 42010000
+      - Key: 330
+        Value: 4b010000
+      - Key: 331
+        Value: 4c010000
