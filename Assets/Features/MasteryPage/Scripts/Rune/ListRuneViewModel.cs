@@ -28,10 +28,13 @@ public class ListRuneViewModel : MonoBehaviour
     // INTERNAL
     private List<RuneLevel> _runeLevels;
     
+    // Data Asset
+    private InventoryData _inventoryData;
+    
     // Composite
     private List<TowerHasRuneComposite> _towerRuneComposites;
-    private List<InventoryComposite> _inventoryComposites;
     private TowerHasRuneComposite _preTowerHasComposite;
+    private InventoryComposite _starInventory;
     
     // Config
     private List<RuneDataConfig> _runeSos;
@@ -45,7 +48,7 @@ public class ListRuneViewModel : MonoBehaviour
     //Action
     private Action _onTowerDataUpdatedAction;
     private Action _onTowerRuneResetAction;
-    
+
     private void SubscribeEvents()
     {
         // Handle Tower changed
@@ -88,7 +91,7 @@ public class ListRuneViewModel : MonoBehaviour
     }
     private void Start()
     {
-        _inventoryComposites = new List<InventoryComposite>();
+        _starInventory = new InventoryComposite();
         UpdateData();
         SetupRuneDetailView(true);
     
@@ -114,19 +117,17 @@ public class ListRuneViewModel : MonoBehaviour
         if (towerRuneDataManager.TowerRuneComposites == null) return;
 
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
+        
+        // Retrieve the inventory data for 'Star' type
+        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.Star);
 
-        // Load Star data
-        // Todo get data from inventory data
-
-        _inventoryComposites = new List<InventoryComposite>();
-        for (int i = 0; i < _inventoryDataAsset.InventoryDatas.Count; i++)
+        // Update the _starInventory
+        _starInventory = new InventoryComposite
         {
-            InventoryComposite tmpInventoryComposite = new InventoryComposite
-            {
-                Type = _inventoryDataAsset.InventoryDatas[i].InventoryType,
-                Amount = _inventoryDataAsset.InventoryDatas[i].Amount,
-            };
-        }
+            Type = _inventoryData.InventoryType,
+            Amount = _inventoryData.Amount,
+        };
+        
         // Default setting
         if (_preTowerHasComposite.RuneComposite == null)
             _preTowerHasComposite = _towerRuneComposites[0];
@@ -150,7 +151,7 @@ public class ListRuneViewModel : MonoBehaviour
             _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
         
             // Setup star view
-            _itemStarView.Setup(_inventoryComposites[0]);
+            _itemStarView.Setup(_starInventory);
         
             // Rune avatar logic
             _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
@@ -202,10 +203,8 @@ public class ListRuneViewModel : MonoBehaviour
         _preSelectedUpgradeRuneItem = itemUpgradeRuneView;
 
         //Conditions to upgrade any skill
-        if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel  
-            // Todo get data from inventory data
-            // && _resourceRuntimeData.GetStarValue() > 0
-            )
+        if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
+            && _starInventory.Amount > 0)
         {
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
@@ -213,10 +212,8 @@ public class ListRuneViewModel : MonoBehaviour
                 var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
                 towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
-                // Subtract star number
-                // Todo get data from inventory data
-                // _resourceRuntimeData.TryChangeStar(1);
-                
+                // Get data from inventory data & Subtract star number
+                _inventoryDataAsset.AmountDataChange(_starInventory.Type, -1);
                 Debug.Log("Upgrade rune successful....");
                 
                 _onTowerDataUpdatedAction?.Invoke();
@@ -244,11 +241,10 @@ public class ListRuneViewModel : MonoBehaviour
             {
                 var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
                 towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
-            
-                // Return star number after reset
-                // Todo get data from inventory data
-                // _resourceRuntimeData.TryRefundStar(towerRuneDataConfig._returnStar);
                 
+                // Get data from inventory data & Return star number after reset
+                _inventoryDataAsset.AmountDataChange(_starInventory.Type, towerRuneDataConfig._returnStar);
+
                 Debug.Log("Upgrade rune successful".ToUpper());
                 
                 _onTowerRuneResetAction?.Invoke();

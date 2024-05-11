@@ -16,6 +16,19 @@ namespace Common.Scripts.Datas.DataAsset
     {
         public InventoryType InventoryType;
         public int Amount;
+
+        #region MyRegion
+        private Action<int> _onAmountChange;
+        
+        public void RegisterAmountChange(Action<int> action) => _onAmountChange += action;
+        public void UnRegisterAmountChange(Action<int> action) => _onAmountChange -= action;
+        public void NotifyAmountChange() => _onAmountChange?.Invoke(this.Amount);
+        #endregion
+        
+        public void TryChangeAmount(int amount)
+        {
+            this.Amount += amount;
+        }
     }
     
     [Serializable]
@@ -35,11 +48,28 @@ namespace Common.Scripts.Datas.DataAsset
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : BaseDataAsset<InventoryDataModel>
     {
-        //[SerializedDictionary("StageId", "StageDataSO")] [SerializeField]
-        //private SerializedDictionary<InventoryType, int>
-            //_inventoryDataDict = new SerializedDictionary<InventoryType, int>();
-
         public List<InventoryData> InventoryDatas;
+        
+        public void AmountDataChange(InventoryType type, int amountChange)
+        {
+            for (int i = 0; i < InventoryDatas.Count; i++)
+            {
+                if (InventoryDatas[i].InventoryType == type)
+                {
+                    InventoryData updatedInventory = InventoryDatas[i];
+                    updatedInventory.Amount += amountChange;
+                    InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
+
+                    // If there's a callback registered, call it
+                    updatedInventory.NotifyAmountChange();
+                    break;
+                }
+            }
+        }
+        public InventoryData GetInventoryDataByType(InventoryType type)
+        {
+            return InventoryDatas.Find(data => data.InventoryType == type);
+        }
         public List<InventoryData> GetAllStageData()
         {
             return InventoryDatas;
