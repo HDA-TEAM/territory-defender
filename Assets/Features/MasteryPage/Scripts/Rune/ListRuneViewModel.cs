@@ -119,7 +119,7 @@ public class ListRuneViewModel : MonoBehaviour
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
         
         // Retrieve the inventory data for 'Star' type
-        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.Star);
+        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.TotalStar);
 
         // Update the _starInventory
         _starInventory = new InventoryComposite
