@@ -1,6 +1,7 @@
 using Common.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Character.TowerBehaviour;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
