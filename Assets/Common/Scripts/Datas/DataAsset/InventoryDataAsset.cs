@@ -6,10 +6,10 @@ namespace Common.Scripts.Datas.DataAsset
 {
     public enum InventoryType
     {
-        Star =  1,
-        TalentPoint = 2,
-        GoldenCoin = 3,
-        SliverCoin = 4,
+        TotalStar =  1, // Total Star of all Stage are conquered
+        TalentPoint = 2, // Point use to upgrade Rune
+        GoldenCoin = 3, // Can be placed when purchase
+        SliverCoin = 4, // Can be placed after complete each Stage
     }
     [Serializable]
     public struct InventoryData
@@ -17,9 +17,10 @@ namespace Common.Scripts.Datas.DataAsset
         public InventoryType InventoryType;
         public int Amount;
 
-        #region MyRegion
+        #region Callback
         private Action<int> _onAmountChange;
         
+        // TODO: check event inside struct, maybe it not run when create new struct
         public void RegisterAmountChange(Action<int> action) => _onAmountChange += action;
         public void UnRegisterAmountChange(Action<int> action) => _onAmountChange -= action;
         public void NotifyAmountChange() => _onAmountChange?.Invoke(this.Amount);
