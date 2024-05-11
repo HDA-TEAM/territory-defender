@@ -17,7 +17,7 @@ namespace GamePlay.Scripts.Menu.ResultPu
 
         public async void ShowStageSuccessPu()
         {
-            StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
+            StageId stageId = GamePlayController.InGameStateController.Instance.StartStageComposite.StageId;
             int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
             int curLife = _resourceRuntimeData.GetLifeValue();
 
@@ -33,7 +33,11 @@ namespace GamePlay.Scripts.Menu.ResultPu
                 });
             
             if (stageSuccessPu)
-                stageSuccessPu.SetupData(curClaimStarsCount);
+                stageSuccessPu.SetupData(new StagePassed
+                {
+                    StageId = stageId,
+                    TotalStar = curClaimStarsCount,
+                });
         }
         public void ShowStageFailedPu()
         {

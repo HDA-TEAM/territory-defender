@@ -24,7 +24,6 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
         // Access
-        public StageId CurStageId { get; private set; }
         public bool IsGamePlaying { get; private set; }
 
         private bool IsFinishSpawn;
@@ -61,10 +60,6 @@ namespace GamePlay.Scripts.GamePlayController
         {
             CheckingEndGame(life);
         }
-        // private bool IsStageSuccess()
-        // {
-        //     return IsFinishSpawn;
-        // }
         private void CheckingStageSuccess()
         {
             Debug.Log("End StageSuccess");

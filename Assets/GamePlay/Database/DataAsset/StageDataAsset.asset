@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: StageDataAsset
   _model:
-    ListStagePassed: []
+    ListStagePassed:
+    - TotalStar: 3
+      StageId: 100
   TestStagePassed:
     TotalStar: 3
     StageId: 100
