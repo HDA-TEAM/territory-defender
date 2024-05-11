@@ -11,6 +11,8 @@ public struct UsingSkillPayload
 public class InGameSkillController : MonoBehaviour
 {
     [SerializeField] private InGameActiveSkillView _firstSkillView;
+    [FormerlySerializedAs("_skillsDataConfig")]
+    [FormerlySerializedAs("_skillsDataAsset")]
     [SerializeField] private SkillDataConfig _skillDataConfig;
     private SkillDataSO _curSkillConfig;
     private bool _isCooldown = false;
