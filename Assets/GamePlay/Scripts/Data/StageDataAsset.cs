@@ -2,6 +2,10 @@ using Common.Scripts.Datas;
 using CustomInspector;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using AYellowpaper.SerializedCollections;
+using Features.MasteryPage.Scripts.Rune;
+using Features.StageInfo.Scripts.StageInfoView;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
@@ -30,6 +34,13 @@ namespace GamePlay.Scripts.Data
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
     public class StageDataAsset : BaseDataAsset<StageDataModel>
     {
+        [SerializedDictionary("StageId", "StageDataSO")] 
+        [SerializeField] private SerializedDictionary<StageId, StageDataSO> _stageDataDict = new SerializedDictionary<StageId, StageDataSO>();
+        
+        public List<StageDataSO> GetAllStageData()
+        {
+            return _stageDataDict.Values.ToList();
+        }
         public List<StagePassed> ListStagePassed
         {
             get
