@@ -95,6 +95,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1946039289128508180}
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _towerBehaviourBase
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _targetSideNeeding.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -132,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
-      value: DrumTower
+      value: WarDrumTower
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Size.x
@@ -209,6 +213,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1069866960922029881, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
     - {fileID: 2176556897988213634, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+    - {fileID: 8006952559431401800, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}

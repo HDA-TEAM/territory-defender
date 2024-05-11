@@ -17,6 +17,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _towerBehaviourBase
+      value: 
+      objectReference: {fileID: 9152599273965634502}
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _targetSideNeeding.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -42,7 +46,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
-      value: SpearTower
+      value: PikeTower
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Size.x
@@ -56,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: df1317d909da445049f597c1efd56c7e, type: 3}
+    - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494015, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -119,6 +127,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7126902680260101256, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
     - {fileID: 1069866960922029881, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+    - {fileID: 8006952559431401800, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

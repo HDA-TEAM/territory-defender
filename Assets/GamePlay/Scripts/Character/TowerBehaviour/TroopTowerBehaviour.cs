@@ -1,13 +1,15 @@
 using Common.Scripts;
 using Common.Scripts.Utilities;
 using Cysharp.Threading.Tasks;
+using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
+using GamePlay.Scripts.Tower.TowerKIT;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TroopTowerBehaviour : UnitBaseComponent
+public class TroopTowerBehaviour : TowerBehaviourBase
 {
     // Default 3 units
     private readonly int _maxAllyCount = 3;
@@ -25,15 +27,22 @@ public class TroopTowerBehaviour : UnitBaseComponent
     private void OnEnable()
     {
         StatsUpdate();
-        _parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
+    }
+    public override void Setup(TowerKit towerKit)
+    {
+        base.Setup(towerKit);
+        _parentPos = _towerKit.transform.position;
+        Debug.Log("transform.position " + this.transform.position);
         for (int i = 0; i < _maxAllyCount; i++)
         {
             SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
         }
+        Debug.Log("_parentPos " + _parentPos);
         var campingPos = RouteSetController.Instance.GetNearestPosFromRoute(_parentPos);
+        Debug.Log("campingPos " + campingPos);
         SetCampingPlace(campingPos);
     }
-    
+
     /// Spawning new object from pool and set on revive for it
     private void SpawnSingleUnit(string objectType)
     {
@@ -63,21 +72,21 @@ public class TroopTowerBehaviour : UnitBaseComponent
         // remove old unit and returning it to the pool
         _allyUnits.Remove(unitBase);
         await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
-        
+
         // Spawning new unit from pool
         SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
-        
+
     }
     // private void 
     public void SetCampingPlace(Vector3 newCampingPos)
     {
         // Get current tower pos on the map
-        Vector3 parentPos = TowerKitSetController.Instance.CurrentSelectedKit.transform.position;
+        Vector3 parentPos = _towerKit.transform.position;
         if (VectorUtility.Distance2dOfTwoPos(newCampingPos, parentPos) > _campingRange)
             return;
 
         _campingPos = newCampingPos;
-        
+
         // Set camping pos for each unit
         for (int i = 0; i < _allyUnits.Count; i++)
         {
@@ -91,6 +100,6 @@ public class TroopTowerBehaviour : UnitBaseComponent
         float startDegree = -90; // Ensure first unit will be create at bottom middle place
         float curDegree = (360f * index / maxNumber) + startDegree;
         float curRadian = curDegree * Mathf.Deg2Rad;
-        return startPos +  new Vector3(_minPerUnitDistance * Mathf.Cos(curRadian), _minPerUnitDistance * Mathf.Sin(curRadian), 0f);
+        return startPos + new Vector3(_minPerUnitDistance * Mathf.Cos(curRadian), _minPerUnitDistance * Mathf.Sin(curRadian), 0f);
     }
 }

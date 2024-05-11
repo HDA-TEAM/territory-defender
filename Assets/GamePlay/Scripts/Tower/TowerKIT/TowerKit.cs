@@ -186,7 +186,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _towerId = towerId;
             _towerEntity = tower;
             _unitBase = _towerEntity.GetComponent<UnitBase>();
-
+            _unitBase.TowerBehaviourBase().Setup(this);
+            
             // Reduce coin in inventory
             var coinNeedToBuild = (int)_unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
             _resourceRuntime.TryChangeCurrency(

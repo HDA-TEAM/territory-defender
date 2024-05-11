@@ -1,5 +1,6 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character.StateMachine;
+using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,7 @@ public class UnitBase : MonoBehaviour
     [SerializeField] private UserActionController _userActionController;
     [SerializeField] private UnitReviveHandler _unitReviveHandler;
     [SerializeField] private AnimationController _animationController;
+    [SerializeField] private TowerBehaviourBase _towerBehaviourBase;
     #endregion
 
     #region Access
@@ -26,10 +28,8 @@ public class UnitBase : MonoBehaviour
     public CharacterStateMachine CharacterStateMachine() => _characterStateMachine;
     public AnimationController AnimationController() => _animationController;
     public HealthComp HealthComp() => _healthComp;
-    public UserActionController UserActionController()
-    {
-        return _userActionController;
-    }
+    public UserActionController UserActionController() => _userActionController;
+    public TowerBehaviourBase TowerBehaviourBase() => _towerBehaviourBase;
     public UnitReviveHandler UnitReviveHandlerComp() => _unitReviveHandler;
     public UnitShowingInformation UnitShowingInformationComp() => _unitShowingInformation;
     public StatsHandlerComponent UnitStatsHandlerComp() => _unitStatsComp;

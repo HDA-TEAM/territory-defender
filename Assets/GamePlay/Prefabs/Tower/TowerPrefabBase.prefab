@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 7134561768570042230}
   - component: {fileID: 6932382008918826447}
   - component: {fileID: 1747842702292361965}
+  - component: {fileID: 8006952559431401800}
   m_Layer: 0
   m_Name: TowerPrefabBase
   m_TagString: Tower
@@ -237,7 +238,7 @@ SpriteRenderer:
   m_Size: {x: 79, y: 118.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!222 &6093051815202494014
@@ -291,6 +292,7 @@ MonoBehaviour:
   _userActionController: {fileID: 0}
   _unitReviveHandler: {fileID: 0}
   _animationController: {fileID: 1747842702292361965}
+  _towerBehaviourBase: {fileID: 8006952559431401800}
   CurrentTarget: {fileID: 0}
 --- !u!114 &1069866960922029881
 MonoBehaviour:
@@ -340,6 +342,8 @@ MonoBehaviour:
   _projectileId: 1000
   _beingTargetCommand: 0
   _startAttackPoint: {fileID: 0}
+  _audioClipAttack: {fileID: 0}
+  _audioClipDeath: {fileID: 0}
 --- !u!114 &7134561768570042230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +392,19 @@ MonoBehaviour:
   IdleClip: {fileID: 0}
   DeadClip: {fileID: 0}
   FirstActiveSkillClip: {fileID: 0}
+--- !u!114 &8006952559431401800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6093051815202494009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c41da8ad1e046efa5967aa967f7d411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unitBaseParent: {fileID: -7030754689199355094}
 --- !u!1 &6942991946045224393
 GameObject:
   m_ObjectHideFlags: 0
