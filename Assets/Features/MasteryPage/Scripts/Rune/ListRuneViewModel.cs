@@ -1,5 +1,4 @@
 using Common.Scripts;
-using GamePlay.Scripts.Data;
 using System;
 using System.Collections.Generic;
 using Common.Scripts.Datas.DataAsset;
@@ -7,7 +6,6 @@ using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.RuneDetailView;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ListRuneViewModel : MonoBehaviour
 {
