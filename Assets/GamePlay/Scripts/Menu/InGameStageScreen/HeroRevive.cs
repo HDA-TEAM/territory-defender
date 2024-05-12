@@ -1,3 +1,4 @@
+using Common.Scripts;
 using GamePlay.Scripts.Menu;
 using SuperMaxim.Messaging;
 using UnityEngine;
@@ -25,7 +26,7 @@ public class HeroRevive : MonoBehaviour
         Messenger.Default.Subscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
         _heroItemView.Setup(new HeroItemViewComposite
         {
-            HeroId = EHeroId.TrungTrac
+            HeroId = UnitId.Hero.TrungTrac
         }, SelectHero);
     }
     private void OnDestroy()

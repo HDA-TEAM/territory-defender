@@ -12,8 +12,9 @@ public enum EUserAction
 public class UserActionController : UnitBaseComponent, IPointerClickHandler
 {
     [SerializeField] protected EUserAction _eUserAction;
+    [FormerlySerializedAs("_skillsDataConfig")]
     [FormerlySerializedAs("_skillsDataAsset")]
-    [SerializeField] protected SkillsDataConfig _skillsDataConfig;
+    [SerializeField] protected SkillDataConfig _skillDataConfig;
     public EUserAction CurUserAction { get { return _eUserAction; } }
     public UserMoveUnitToCampingPlace UserMoveUnitToCampingPlace;
     

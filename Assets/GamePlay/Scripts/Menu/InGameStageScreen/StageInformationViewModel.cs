@@ -10,8 +10,7 @@ namespace GamePlay.Scripts.Menu.InGameStageScreen
     {
         [Header("UI")]
         [SerializeField] private StageResourceView _stageResourceView;
-
-        [FormerlySerializedAs("_inventoryRuntimeData")]
+        
         [Header("Data"), Space(12)] [SerializeField]
         private InGameResourceRuntimeData _resourceRuntimeData;
 

@@ -1,6 +1,12 @@
 using System.Collections.Generic;
+using Features.StageInfo.Scripts.StageInfoView;
+using GamePlay.Scripts.Data;
+using UnityEngine;
+
 public class StageDataManager : SingletonBase<StageDataManager>
 {
+    [Header("Data"), Space(12)] [SerializeField]
+    private StageDataAsset _stageDataAsset;
     public List<StageComposite> StageComposites { get; private set; }
     public StageComposite CurrentStage { get; set; }
 
@@ -18,37 +24,23 @@ public class StageDataManager : SingletonBase<StageDataManager>
         else StageComposites.Clear();
         
         // TODO 1: Add 1 condition to check if StageDataAsset == null
-            
+        if (_stageDataAsset == null)
+            return;
+        
         // TODO 2: Implement 2 stage example for test in StageInfo feature
-        StageComposites.Add(
-            new StageComposite
+        List<StageDataSO> listStageDataSo = _stageDataAsset.GetAllStageData();
+
+        foreach (var stageDataSo in listStageDataSo)
+        {
+            StageComposites.Add(new StageComposite
             {
-                StageId = 1,
-                StageStar = 2,
-                StageName = "VUNG DAT DO",
-                StageState = true,
-            }
-        );
-        
-        StageComposites.Add(
-            new StageComposite
-            {
-                StageId = 1,
-                StageStar = 1,
-                StageName = "VUNG DAT DO 2",
-                StageState = true,
-            }
-        );
-        
-        StageComposites.Add(
-            new StageComposite
-            {
-                StageId = 3,
-                StageStar = 0,
-                StageName = "VUNG DAT DO BOSS",
-                StageState = false,
-            }
-        );
+                StageId = stageDataSo._stageId,
+                StageStar = stageDataSo._stageStar,
+                StageName = stageDataSo._stageName.ToUpper(),
+                StageState = stageDataSo._stageState,
+                
+            });
+        }
     }
     
 }

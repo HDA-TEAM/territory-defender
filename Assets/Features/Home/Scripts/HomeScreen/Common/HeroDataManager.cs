@@ -1,14 +1,12 @@
 using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
-using System.Linq;
+using Features.HeroInformation;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>
 {
-    [FormerlySerializedAs("_heroDataAsset")]
     [Header("Data"), Space(12)]
-    [SerializeField] private HeroDataConfig _heroDataConfig;
+    [SerializeField] private HeroDataAsset _heroDataAsset;
     public List<HeroComposite> HeroComposites { get; private set; }
 
     protected override void Awake()
@@ -25,25 +23,28 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         
         else HeroComposites.Clear();
         
-        if (_heroDataConfig == null)
+        if (_heroDataAsset == null)
             return;
 
-        List<HeroDataSO> listHeroDataSo = _heroDataConfig.GetAllHeroData();
+        List<HeroDataSO> listHeroDataSo = _heroDataAsset.GetAllHeroData();
 
-        foreach (var heroDataSo in listHeroDataSo)
+        
+        foreach (var item in listHeroDataSo)
         {
+            Debug.Log(listHeroDataSo[0]._heroId + "....HeroDataSO");
             HeroComposites.Add(new HeroComposite
             {
-                Name = heroDataSo._stats.GetInformation(InformationId.Name),
-                Level = heroDataSo._stats.GetStat(StatId.Level).ToString(),
-                Hp = heroDataSo._stats.GetStat(StatId.MaxHeal).ToString(),
-                Atk = heroDataSo._stats.GetStat(StatId.AttackDamage).ToString(),
-                Def = heroDataSo._stats.GetStat(StatId.Armour).ToString(),
-                Range = heroDataSo._stats.GetStat(StatId.AttackRange).ToString("F2"),
-                Avatar = heroDataSo._imageHero,
-                HeroChoose = heroDataSo._imageHeroChoose,
-                HeroOwned = heroDataSo._imageHeroOwned,
-                Skills = heroDataSo._heroSkills.GetAllSkillData()
+                HeroId = item._heroId,
+                Name = item._stats.GetInformation(InformationId.Name),
+                Level = item._stats.GetStat(StatId.Level).ToString(),
+                Hp = item._stats.GetStat(StatId.MaxHeal).ToString(),
+                Atk = item._stats.GetStat(StatId.AttackDamage).ToString(),
+                Def = item._stats.GetStat(StatId.Armour).ToString(),
+                Range = item._stats.GetStat(StatId.AttackRange).ToString("F2"),
+                Avatar = item._imageHero,
+                HeroChoose = item._imageHeroChoose,
+                HeroOwned = item._imageHeroOwned,
+                Skills = item._heroSkill.GetAllSkillData()
             });
         }
     }

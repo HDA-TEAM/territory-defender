@@ -10,7 +10,7 @@ public class ItemStarView : MonoBehaviour
 
     public void Setup(InventoryComposite starComposite)
     {
-        _txtStarNumber.text = starComposite.StarNumber.ToString("");
+        _txtStarNumber.text = starComposite.Amount.ToString("");
     }
 
     

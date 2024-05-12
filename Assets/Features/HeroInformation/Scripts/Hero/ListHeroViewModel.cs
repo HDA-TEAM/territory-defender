@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Common.Scripts;
 using SuperMaxim.Messaging;
 using UnityEngine;
 
@@ -120,6 +121,7 @@ public class ListHeroViewModel : MonoBehaviour
 
 public struct HeroComposite: IComposite
 {
+    public UnitId.Hero HeroId;
     public string Name;
     public string Level;
     public string Hp;

@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System;
+using Common.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ namespace GamePlay.Scripts.Menu
 {
     public struct HeroItemViewComposite
     {
-        public EHeroId HeroId;
+        public UnitId.Hero HeroId;
     }
 
     public class HeroItemView : MonoBehaviour
