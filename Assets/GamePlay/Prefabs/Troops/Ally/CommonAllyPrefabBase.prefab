@@ -129,6 +129,7 @@ MonoBehaviour:
   _userActionController: {fileID: 2909084853854028830}
   _unitReviveHandler: {fileID: 7920704266535785964}
   _animationController: {fileID: 582174163768808235}
+  _towerBehaviourBase: {fileID: 0}
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -406,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 1678257229}
   _eUserAction: 0
-  _skillsDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
+  _skillDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
 --- !u!1 &5863931160695732911
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +490,7 @@ SpriteRenderer:
   m_Size: {x: 13.2, y: 11.81}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &6715228475396641559
