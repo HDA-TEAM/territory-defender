@@ -2,25 +2,28 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemPlayView : MonoBehaviour
+namespace Features.StageInfo.Scripts.StageInfoView
 {
-    [SerializeField] private Button _btnPlay;
-
-    // Internal
-    private Action<ItemPlayView> _onSelected;
-    private void Awake()
+    public class ItemPlayView : MonoBehaviour
     {
-        _btnPlay.onClick.AddListener(OnButtonPlayClick);
-    }
+        [SerializeField] private Button _btnPlay;
+
+        // Internal
+        private Action<ItemPlayView> _onSelected;
+        private void Awake()
+        {
+            _btnPlay.onClick.AddListener(OnButtonPlayClick);
+        }
     
-    public void Setup(Action<ItemPlayView> onAction)
-    {
-        _onSelected = onAction;
-    }
+        public void Setup(Action<ItemPlayView> onAction)
+        {
+            _onSelected = onAction;
+        }
 
-    private void OnButtonPlayClick()
-    {
-        _onSelected?.Invoke(this);
+        private void OnButtonPlayClick()
+        {
+            _onSelected?.Invoke(this);
+        }
     }
 }
 
