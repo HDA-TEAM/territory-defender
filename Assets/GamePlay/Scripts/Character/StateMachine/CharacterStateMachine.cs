@@ -64,6 +64,7 @@ namespace GamePlay.Scripts.Character.StateMachine
         protected virtual void OnDisable()
         {
             _unitBaseParent.OnTargetChanging -= OnTargetChanging;
+            _currentState.ExitState();
         }
         protected virtual void SetDefaultStatus()
         {

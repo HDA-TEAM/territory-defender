@@ -46,13 +46,13 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void OnRestart()
         {
-            foreach (var pooling in _dictPooling)
-            {
-                PoolingBase removingPool = pooling.Value;
-                Destroy(removingPool.gameObject);
-            }
-            _dictPooling.Clear();
-            Destroy(gameObject);
+            // foreach (var pooling in _dictPooling)
+            // {
+            //     PoolingBase removingPool = pooling.Value;
+            //     Destroy(removingPool.gameObject);
+            // }
+            // _dictPooling.Clear();
+            // Destroy(gameObject);
         }
         private PoolingBase GetPooling(string objectType)
         {

@@ -61,7 +61,8 @@ namespace GamePlay.Scripts.Character
             _txtToast.gameObject.SetActive(true);
             _txtToast.text = ((int)dame).ToString();
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
-            _txtToast.gameObject.SetActive(false);
+            if (_txtToast)
+                _txtToast.gameObject.SetActive(false);
         }
         private void CheckDie()
         {
@@ -71,7 +72,10 @@ namespace GamePlay.Scripts.Character
             // Notify for state machine
             _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
         }
-        private void OnDisable() => _tweenProgressHeal.Kill();
+        private void OnDisable()
+        {
+            _tweenProgressHeal.Kill();
+        }
         public void ResetState()
         {
             gameObject.SetActive(false);

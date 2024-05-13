@@ -39,6 +39,7 @@ namespace GamePlay.Scripts.Character.StateMachine
         }
         public override void ExitState()
         {
+            _attackSequence.Kill();
             Context.AnimationController.PlayClip(Context.AnimationController.IdleClip);
         }
         public override void CheckSwitchState() { }

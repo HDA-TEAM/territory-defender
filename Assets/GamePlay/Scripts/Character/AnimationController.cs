@@ -2,7 +2,7 @@ using Animancer;
 using CustomInspector;
 using UnityEngine;
 
-namespace GamePlay.Scripts.Character.StateMachine
+namespace GamePlay.Scripts.Character
 {
     public class AnimationController : UnitBaseComponent
     {
