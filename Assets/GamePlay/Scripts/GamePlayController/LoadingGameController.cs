@@ -1,5 +1,7 @@
 using Common.Loading.Scripts;
 using CustomInspector;
+using GamePlay.Scripts.GamePlay;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
@@ -12,7 +14,11 @@ namespace GamePlay.Scripts.GamePlayController
         {
             _startStageComposite = startStageComposite;
             IsGamePlaying = true;
-            _mapController.SetUpNewGame(startStageComposite);
+            
+            Messenger.Default.Publish(new SetUpNewGamePayload
+            {
+                StartStageComposite = startStageComposite,
+            });
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
             PoolingController.Instance.SetUpNewGame(startStageComposite);
@@ -35,7 +41,12 @@ namespace GamePlay.Scripts.GamePlayController
         {
             _startStageComposite = startStageComposite;
             IsGamePlaying = true;
-            _mapController.SetUpNewGame(startStageComposite);
+
+            Messenger.Default.Publish(new SetUpNewGamePayload
+            {
+                StartStageComposite = startStageComposite,
+            });
+            
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
             PoolingController.Instance.SetUpNewGame(startStageComposite);
