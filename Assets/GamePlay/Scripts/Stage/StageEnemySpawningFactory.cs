@@ -23,13 +23,14 @@ namespace GamePlay.Scripts.Stage
         [SerializeField] private float _perWaveInterval = 10f;
         [SerializeField] private float _spawningEachObjectInterval;
         [SerializeField] private StageEnemySpawningConfig _spawningConfig;
-        private readonly CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private CancellationTokenSource _cancellationTokenSource;
         private readonly CancellationTokenSource _cancellationTokenEarlyCallWave = new CancellationTokenSource();
         private SingleStageSpawningConfig _curStageSpawningConfig;
         private int _maxWave;
 
         public void SetUpNewGame(StartStageComposite startStageComposite)
         {
+            _cancellationTokenSource = new CancellationTokenSource();
             _curStageSpawningConfig = _spawningConfig.FindSpawningConfig(startStageComposite.StageId);
             _maxWave = _curStageSpawningConfig.WavesSpawning.Count;
             
