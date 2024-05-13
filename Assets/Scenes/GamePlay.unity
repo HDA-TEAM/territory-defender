@@ -4881,6 +4881,7 @@ MonoBehaviour:
   _perWaveInterval: 10
   _spawningEachObjectInterval: 1
   _spawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
+  _routeSetController: {fileID: 566878310}
 --- !u!114 &1804081923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4982,7 +4983,7 @@ MonoBehaviour:
   - {fileID: 147908779}
   - {fileID: 1616519534}
   - {fileID: 1822553083}
-  CurrentSelectedKit: {fileID: 0}
+  _currentSelectedKit: {fileID: 0}
 --- !u!1 &1921123578
 GameObject:
   m_ObjectHideFlags: 0

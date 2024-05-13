@@ -8,7 +8,6 @@ namespace GamePlay.Scripts.GamePlayController
 {
     public partial class InGameStateController
     {
-        [SerializeField] private MapController _mapController;
 #if UNITY_EDITOR
         public void SetUpTestNewGame(StartStageComposite startStageComposite)
         {

@@ -17,7 +17,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         // Default 3 units
         private readonly int _maxAllyCount = 3;
         private readonly float _minPerUnitDistance = 0.5f;
-        private readonly float _cooldownReviveUnit = 1f;
+        [SerializeField] private float _cooldownReviveUnit;
         [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
         [SerializeField] private float _campingRange;
         [SerializeField] private Vector3 _campingPos;
@@ -25,6 +25,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         protected override void StatsUpdate()
         {
             var stats = _unitBaseParent.UnitStatsHandlerComp();
+            _cooldownReviveUnit = stats.GetCurrentStatValue(StatId.TimeToRevive);
             _campingRange = stats.GetCurrentStatValue(StatId.CampingRange);
         }
         private void OnEnable()
@@ -52,10 +53,12 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         /// Spawning new object from pool and set on revive for it
         private void SpawnSingleUnit(GameObject objectSpawned)
         {
-            objectSpawned.SetActive(true);
+            
             UnitBase unitBase = objectSpawned.GetComponent<UnitBase>();
             unitBase.UnitReviveHandlerComp().SetupRevive(OnWaitingToRevive);
             unitBase.OnUpdateStats?.Invoke();
+            objectSpawned.transform.position = _towerKit.transform.position;
+            objectSpawned.SetActive(true);
             _allyUnits.Add(unitBase);
         }
         private void OnDisable()
