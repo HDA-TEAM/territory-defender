@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class InitHomeScreen : MonoBehaviour
 {
-    // private void Start()
-    // {
-    //     NavigatorController.PushScreen();
-    // }
+    private void Start()
+    {
+        UIManagerStateMachine.Instance.Init();
+    }
 }

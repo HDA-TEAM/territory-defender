@@ -7,7 +7,7 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
     private static readonly Stack<UIState> _popupStateStack = new Stack<UIState>();
     private static UIState _currentState;
     
-    private void Start()
+    public void Init()
     {
         InitializeStates();
         _states.TryGetValue(typeof(HomeScreenState), out UIState uiState);
@@ -18,6 +18,7 @@ public class UIManagerStateMachine : SingletonBase<UIManagerStateMachine>
     {
         // Pre-instantiate all state instances
         // Setup Pages
+        _states.Clear();
         _states.Add(typeof(HomeScreenState), new HomeScreenState());
         
         //Setup Modal
