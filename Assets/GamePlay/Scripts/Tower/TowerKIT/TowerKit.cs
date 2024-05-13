@@ -78,7 +78,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         public UnitBase GetUnitBase() => _unitBase;
     
         #endregion
-    
+
+        private TowerKitSetController _towerKitSetController;
         private void Start()
         {
             TowerKitState = TowerKitState.Default;
@@ -86,7 +87,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         private void OnSelected()
         {
-            if (TowerKitSetController.Instance.CurrentSelectedKit == this 
+            if (_towerKitSetController.IsCurrentSelectedKit(this)
                 && (TowerKitState == TowerKitState.ShowToolOfTowerExisted || TowerKitState == TowerKitState.Building))
             {
                 // reset state
@@ -169,9 +170,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                 default: throw new ArgumentOutOfRangeException();
             }
         }
-        public void Setup(Action<TowerKit> onSelected)
+        public void Setup(Action<TowerKit> onSelected, TowerKitSetController towerKitSetController)
         {
             _onSelected = onSelected;
+            _towerKitSetController = towerKitSetController;
         }
         private void CheckAndRemoveExistTower()
         {
