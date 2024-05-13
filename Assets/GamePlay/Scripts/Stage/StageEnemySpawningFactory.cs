@@ -125,9 +125,16 @@ namespace GamePlay.Scripts.Stage
             {
                 await UniTask.Delay(TimeSpan.FromSeconds(_spawningEachObjectInterval), cancellationToken: _cancellationTokenSource.Token);
 
-                GameObject go = PoolingController.Instance.SpawnObject(groupSpawning.ObjectSpawn.ToString());
+                GameObject go = null;
 
-                //  Debug.Log("Spawning " + groupSpawning.ObjectSpawn);
+                Messenger.Default.Publish(new OnSpawnObjectPayload
+                {
+                    ActiveAtSpawning = false,
+                    ObjectType = groupSpawning.ObjectSpawn.ToString(),
+                    OnSpawned = spawnedObject => go = spawnedObject,
+                });
+
+                await UniTask.WaitUntil(() => go != null);
 
                 SetRoute(go, groupSpawning.RouteId);
                 UpdateStats(go);
@@ -139,6 +146,7 @@ namespace GamePlay.Scripts.Stage
             go.TryGetComponent(out BaseEnemyStateMachine component);
             component.RouteToGate = RouteSetController.Instance.ActiveSingleRouteLineRenderers[routeId].SingleLineRenderer;
             go.transform.position = component.RouteToGate.GetPosition(0);
+            go.SetActive(true);
         }
         private void UpdateStats(GameObject go)
         {

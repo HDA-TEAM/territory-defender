@@ -16,17 +16,10 @@ public class ProjectileDataAsset : ScriptableObject
 {
     [SerializeField] private List<ProjectileBase> _projectileBases = new List<ProjectileBase>();
     // Get route between cur pos to target 
-    public ProjectileBase GetProjectileBase(string unitId, int level = 1)
-    {
-        var bullet = PoolingController.Instance.SpawnObject(unitId);
-        return bullet.GetComponent<ProjectileBase>();
-    }
-
-    // [SerializeField] private AnimationCurve bowAttackCurve;
-    // public void GetLineRoute(Vector2 posSpawn, BulletType bulletType,UnitBase target)
+    // public ProjectileBase GetProjectileBase(string unitId, int level = 1)
     // {
-    //     var bullet = PoolingController.Instance.SpawnObject(UnitId.ArrowBullet,posSpawn);
-    //     new ProjectileTrajectoryRouteLine().ApplyLineRoute(bullet, target, bowAttackCurve);
+    //     var bullet = PoolingController.Instance.SpawnObject(unitId);
+    //     return bullet.GetComponent<ProjectileBase>();
     // }
 }
 

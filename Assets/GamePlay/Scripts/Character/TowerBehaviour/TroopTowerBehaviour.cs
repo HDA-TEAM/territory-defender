@@ -5,6 +5,7 @@ using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Tower.TowerKIT;
+using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,16 +36,21 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             base.Setup(towerKit);
             _parentPos = _towerKit.transform.position;
             for (int i = 0; i < _maxAllyCount; i++)
-                SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
+                Messenger.Default.Publish(new OnSpawnObjectPayload
+                {
+                    ActiveAtSpawning = false,
+                    ObjectType = UnitId.Ally.Warrior.ToString(),
+                    OnSpawned = SpawnSingleUnit,
+                });
             Vector3 campingPos = RouteSetController.Instance.GetNearestPosFromRoute(_parentPos);
             SetCampingPlace(campingPos);
         }
 
         /// Spawning new object from pool and set on revive for it
-        private void SpawnSingleUnit(string objectType)
+        private void SpawnSingleUnit(GameObject objectSpawned)
         {
-            GameObject ally = PoolingController.Instance.SpawnObject(objectType, _parentPos);
-            UnitBase unitBase = ally.GetComponent<UnitBase>();
+            objectSpawned.SetActive(true);
+            UnitBase unitBase = objectSpawned.GetComponent<UnitBase>();
             unitBase.UnitReviveHandlerComp().SetupRevive(OnWaitingToRevive);
             unitBase.OnUpdateStats?.Invoke();
             _allyUnits.Add(unitBase);
@@ -70,8 +76,12 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
 
             // Spawning new unit from pool
-            SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
-
+            Messenger.Default.Publish(new OnSpawnObjectPayload
+            {
+                ActiveAtSpawning = false,
+                ObjectType = UnitId.Ally.Warrior.ToString(),
+                OnSpawned = SpawnSingleUnit,
+            });
         }
         // private void 
         public void SetCampingPlace(Vector3 newCampingPos)

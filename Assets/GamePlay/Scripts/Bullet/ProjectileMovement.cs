@@ -11,7 +11,7 @@ public class ProjectileMovement : ProjectileBaseComponent
 
     private UnitBase _target;
     // Get route between cur pos to target 
-    public void GetLineRoute(Vector2 posSpawn, EProjectileType bulletType, UnitBase target)
+    public void SetLineRoute(Vector2 posSpawn, EProjectileType bulletType, UnitBase target)
     {
         _target = target;
         transform.position = posSpawn;

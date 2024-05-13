@@ -33,15 +33,15 @@ namespace GamePlay.Scripts.GamePlayController
             base.Awake();
             _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
-        public void Start()
+        private void Init()
         {
             IsFinishSpawn = false;
             IsGamePlaying = true;
 
-#if UNITY_EDITOR
-            if (_isFastSetupStageForTest)
-                SetUpTestNewGame(_startStageComposite);
-#endif
+// #if UNITY_EDITOR
+//             if (_isFastSetupStageForTest)
+//                 SetUpTestNewGame(_startStageComposite);
+// #endif
 
             _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(_startStageComposite.StageId));
         }

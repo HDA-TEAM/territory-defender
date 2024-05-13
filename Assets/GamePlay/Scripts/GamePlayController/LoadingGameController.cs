@@ -21,7 +21,6 @@ namespace GamePlay.Scripts.GamePlayController
             });
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
-            PoolingController.Instance.SetUpNewGame(startStageComposite);
             _enemySpawningFactory.SetUpNewGame(startStageComposite);
         }
         [Button("SetUpTestNewGame",usePropertyAsParameter: true)]
@@ -39,8 +38,9 @@ namespace GamePlay.Scripts.GamePlayController
         
         public override void SetUpNewGame(StartStageComposite startStageComposite)
         {
+            Init();
+            
             _startStageComposite = startStageComposite;
-            IsGamePlaying = true;
 
             Messenger.Default.Publish(new SetUpNewGamePayload
             {
@@ -49,7 +49,6 @@ namespace GamePlay.Scripts.GamePlayController
             
             RouteSetController.Instance.SetUpNewGame(startStageComposite);
             TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
-            PoolingController.Instance.SetUpNewGame(startStageComposite);
             _enemySpawningFactory.SetUpNewGame(startStageComposite);
         }
         public override void ResetGame()
@@ -59,7 +58,6 @@ namespace GamePlay.Scripts.GamePlayController
             // Stop update game first
             UnitManager.Instance.ResetGame();
             // remove all units
-            PoolingController.Instance.ResetGame();
             RouteSetController.Instance.ResetGame();
             TowerKitSetController.Instance.ResetGame();
         }
