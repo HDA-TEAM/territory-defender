@@ -46,7 +46,8 @@ namespace GamePlay.Scripts.Character
         {
             _healthParentCanvasGroup.alpha = 1;
             var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
-            var duration = Math.Abs(_healthSlider.value - sliderValue) * _unitDurationHealthChange;
+            // var duration = Math.Abs(_healthSlider.value - sliderValue) * _unitDurationHealthChange;
+            var duration = _unitDurationHealthChange;
             // ensuring minDurationShowToast 
             duration = duration < MinDurationShowToast ? MinDurationShowToast : duration;
         
