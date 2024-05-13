@@ -1,4 +1,3 @@
-
 using System.Collections.Generic;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.Tower;
@@ -11,10 +10,10 @@ namespace Features.Home.Scripts.HomeScreen.Common
     {
         [Header("Data"), Space(12)]
         [SerializeField] private RuneDataAsset _runeDataAsset;
-        [SerializeField] private TowerRuneDataConfig _towerRuneDataConfig;
+        [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
 
         public List<TowerHasRuneComposite> TowerRuneComposites { get; private set; }
-        public TowerRuneDataConfig TowerRuneDataConfig => _towerRuneDataConfig;
+        public TowerRuneDataAsset TowerRuneDataAsset => _towerRuneDataAsset;
         public RuneDataAsset RuneDataAsset => _runeDataAsset;
         
         private List<RuneComposite> _runeComposites;
@@ -42,8 +41,8 @@ namespace Features.Home.Scripts.HomeScreen.Common
             
             // Load Rune data into each Tower
             List<RuneDataConfig> listRuneSos = _runeDataAsset.GetAllRuneData();
-            List<TowerDataConfig> listTowerDataAsset = _towerRuneDataConfig.GetAllTowerData();
-            List<TowerSoSaver> loadedTowerData = _towerRuneDataConfig.GetTowerDataAsset();
+            List<TowerDataConfig> listTowerDataAsset = _towerRuneDataAsset.GetAllTowerData();
+            List<TowerSoSaver> loadedTowerData = _towerRuneDataAsset.GetTowerDataAsset();
             
             foreach (var towerSo in listTowerDataAsset)
             {

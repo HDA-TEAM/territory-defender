@@ -25,6 +25,7 @@ public class ListRuneViewModel : MonoBehaviour
 
     // INTERNAL
     private List<RuneLevel> _runeLevels;
+    private int _totalTalentPoint;
     
     // Data Asset
     private InventoryData _inventoryData;
@@ -89,7 +90,10 @@ public class ListRuneViewModel : MonoBehaviour
     }
     private void Start()
     {
+        // Update talent point amount before get that data
+        //_inventoryDataAsset.UpdateTalentPointAmount();
         _talentPointInventory = new InventoryComposite();
+        
         UpdateData();
         SetupRuneDetailView(true);
     
@@ -115,14 +119,14 @@ public class ListRuneViewModel : MonoBehaviour
         if (towerRuneDataManager.TowerRuneComposites == null) return;
 
         _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
-        
+
         // Retrieve the inventory data for 'Talent Point' type
-        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.TalentPoint);
+        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.CurrentTalentPoint);
 
         // Update the _starInventory
         _talentPointInventory = new InventoryComposite
         {
-            Type = _inventoryData.InventoryType,
+            Type =  _inventoryData.InventoryType,
             Amount = _inventoryData.Amount,
         };
         
@@ -207,7 +211,7 @@ public class ListRuneViewModel : MonoBehaviour
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
             {
-                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
+                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataAsset;
                 towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
                 // Get data from inventory data & Subtract Talent Point number
@@ -237,14 +241,13 @@ public class ListRuneViewModel : MonoBehaviour
             _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
             {
-                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataConfig;
-                towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
+                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataAsset;
+                towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId);
                 
                 // Get data from inventory data & Return Talent Point number after reset
                 _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, towerRuneDataConfig._returnStar);
 
-                Debug.Log("Upgrade rune successful".ToUpper());
-                
+                Debug.Log("Reset rune successful".ToUpper());
                 _onTowerRuneResetAction?.Invoke();
             }
         }

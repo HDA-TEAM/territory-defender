@@ -4,12 +4,11 @@ using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 
 
-[CreateAssetMenu(fileName = "TowerRuneDataConfig", menuName = "ScriptableObject/DataAsset/TowerRuneDataConfig")]
-public class TowerRuneDataConfig : ScriptableObject
+[CreateAssetMenu(fileName = "TowerRuneDataAsset", menuName = "ScriptableObject/DataAsset/TowerRuneDataAsset")]
+public class TowerRuneDataAsset : ScriptableObject
 {
     [SerializedDictionary("TowerId", "TowerDataConfig")] [SerializeField]
     private SerializedDictionary<UnitId.Tower, TowerDataConfig> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataConfig>();
@@ -17,7 +16,6 @@ public class TowerRuneDataConfig : ScriptableObject
 
     public int _returnStar;
     
-    //private TowerId _towerId;
     public TowerDataConfig GetTower(UnitId.Tower towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out TowerDataConfig tower);
@@ -94,7 +92,7 @@ public class TowerRuneDataConfig : ScriptableObject
         towerDataConfig._runeLevels[index] = currentRuneLevel;
     }
     
-    public void ResetRuneLevel(UnitId.Tower towerId, RuneComposite runeComposite)
+    public void ResetRuneLevel(UnitId.Tower towerId)
     {
         // Attempt to get the tower configuration
         if (!_towerTypeDict.TryGetValue(towerId, out TowerDataConfig towerDataConfig))
@@ -103,27 +101,23 @@ public class TowerRuneDataConfig : ScriptableObject
             return;
         }
 
-        // Find the index of the rune to be reset
-        int index = towerDataConfig._runeLevels.FindIndex(r => r.RuneId == runeComposite.RuneId);
-        if (index == -1)
+        _returnStar = 0;
+        
+        for (int i = 0; i < towerDataConfig._runeLevels.Count; i++)
         {
-            Debug.LogError("RuneId not found for reset");
-            return;
+            RuneLevel rune = towerDataConfig._runeLevels[i];
+            if (towerDataConfig._runeLevels[i].Level > 0)
+            {
+                _returnStar += rune.Level;
+                rune.Level = 0;
+                towerDataConfig._runeLevels[i] = rune;
+            }
         }
-
-        // Get the current rune level
-        RuneLevel currentRuneLevel = towerDataConfig._runeLevels[index];
-
-        // Calculate the stars to return based on the current rune level
-        _returnStar = currentRuneLevel.Level;
-
-        // Reset the rune level to 0
-        currentRuneLevel.Level = 0;
-        towerDataConfig._runeLevels[index] = currentRuneLevel;
-
-        towerDataConfig._runeLevels.RemoveAt(index);
-       
-        // Optionally save changes to disk or server
+        
+        // Remove all runes with level
+        towerDataConfig._runeLevels.RemoveAll(rune => rune.Level == 0);
+        
+        // Save changes to disk or server
         _towerDataAsset.SaveTowers(_towerTypeDict);
     }
     public List<TowerSoSaver> GetTowerDataAsset()

@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
 namespace Common.Scripts.Datas.DataAsset
 {
     public enum InventoryType
     {
-        TotalStar =  1, // Total Star of all Stage are conquered
-        TalentPoint = 2, // Point use to upgrade Rune
-        GoldenCoin = 3, // Can be placed when purchase
-        SliverCoin = 4, // Can be placed after complete each Stage
+        TotalStar   = 1, // Total Star of all Stage are conquered
+        CurrentTalentPoint = 2, // Point use to upgrade Rune
+        GoldenCoin  = 3, // Can be placed when purchase
+        SliverCoin  = 4, // Can be placed after complete each Stage
     }
     [Serializable]
     public struct InventoryData
@@ -49,8 +50,35 @@ namespace Common.Scripts.Datas.DataAsset
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : BaseDataAsset<InventoryDataModel>
     {
-        public List<InventoryData> InventoryDatas;
+        [SerializeField] private StageDataAsset _stageDataAsset;
         
+        public List<InventoryData> InventoryDatas;
+
+        public void UpdateTalentPointAmount()
+        {
+            // Update talent point base on data in json
+        }
+        public int CalculatorTotalTalentPoint()
+        {
+            int totalStar = _stageDataAsset.GetTotalStar();
+            // for (int i = 0; i < InventoryDatas.Count; i++)
+            // {
+            //     if (InventoryDatas[i].InventoryType == InventoryType.CurrentTalentPoint)
+            //     {
+            //         InventoryData updatedInventory = InventoryDatas[i];
+            //         
+            //         // Talent point = total star * coefficient
+            //         updatedInventory.Amount = (int)(totalStar * 1.5);
+            //         InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
+            //
+            //         // If there's a callback registered, call it
+            //         updatedInventory.NotifyAmountChange();
+            //         break;
+            //     }
+            // }
+            // Total Talent point = total star * coefficient
+            return (int)(totalStar * 1.5);
+        }
         public void AmountDataChange(InventoryType type, int amountChange)
         {
             for (int i = 0; i < InventoryDatas.Count; i++)

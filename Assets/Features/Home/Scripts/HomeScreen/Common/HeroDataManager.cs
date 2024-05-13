@@ -31,7 +31,6 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         
         foreach (var item in listHeroDataSo)
         {
-            Debug.Log(listHeroDataSo[0]._heroId + "....HeroDataSO");
             HeroComposites.Add(new HeroComposite
             {
                 HeroId = item._heroId,

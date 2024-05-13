@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TowerDataManager : SingletonBase<TowerDataManager>
 {
+      [FormerlySerializedAs("_towerRuneDataConfig")]
       [Header("Data"), Space(12)]
-      [SerializeField] private TowerRuneDataConfig _towerRuneDataConfig;
+      [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
       public List<TowerComposite> TowerComposites { get; private set; }
 
       protected override void Awake()
@@ -20,10 +22,10 @@ public class TowerDataManager : SingletonBase<TowerDataManager>
 
             else TowerComposites.Clear();
             
-            if (_towerRuneDataConfig == null)
+            if (_towerRuneDataAsset == null)
                   return;
             
-            List<TowerDataConfig> listTowerData = _towerRuneDataConfig.GetAllTowerData();
+            List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerData();
             foreach (var towerDataSo in listTowerData)
             {
                   TowerComposites.Add(
