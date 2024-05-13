@@ -4,7 +4,6 @@ using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
 using GamePlay.Scripts.Stage;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.GamePlayController
 {
@@ -17,7 +16,6 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private bool _isFastSetupStageForTest;
 #endif
 
-        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
         private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private GameResultHandler _resultsController;
@@ -25,7 +23,7 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
         // Access
         public bool IsGamePlaying { get; private set; }
-
+        public bool IsEmptyActiveEnemy;
         private bool IsFinishSpawn;
 
         protected override void Awake()
@@ -47,7 +45,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void Update()
         {
-            if (UnitManager.Instance.IsEmptyActiveEnemy
+            if (IsEmptyActiveEnemy
                 && IsGamePlaying
                 && IsFinishSpawn)
                 CheckingStageSuccess();

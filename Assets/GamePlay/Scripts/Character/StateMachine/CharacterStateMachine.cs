@@ -1,5 +1,6 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.GamePlayController;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Character.StateMachine

@@ -4731,6 +4731,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1782090751}
   - component: {fileID: 1782090752}
+  - component: {fileID: 1782090753}
   m_Layer: 0
   m_Name: PoolingContainer
   m_TagString: Untagged
@@ -4807,6 +4808,22 @@ MonoBehaviour:
     - Key: Arrow
       Value: {fileID: 4282071385477853601, guid: aa41697b25e414a7492eff1c158438e6, type: 3}
   _poolingPrefab: {fileID: 2560214941297080020, guid: 9c0349b651da345afb5139a3db1f4c3a, type: 3}
+--- !u!114 &1782090753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782090750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee448606cea3d42c5be7e35ed4c6bafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _perWaveInterval: 10
+  _spawningEachObjectInterval: 1
+  _spawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
+  _routeSetController: {fileID: 566878310}
 --- !u!1 &1804081916
 GameObject:
   m_ObjectHideFlags: 0
@@ -4817,7 +4834,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1804081917}
   - component: {fileID: 1804081919}
-  - component: {fileID: 1804081920}
   - component: {fileID: 1804081923}
   - component: {fileID: 1804081924}
   m_Layer: 0
@@ -4860,28 +4876,12 @@ MonoBehaviour:
   _resourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
   _resultsController: {fileID: 1804081924}
   _stageDataConfig: {fileID: 11400000, guid: 07af98a6585604eeab6da17b8d21fe0d, type: 2}
-  _enemySpawningFactory: {fileID: 1804081920}
-  _mapController: {fileID: 0}
+  _enemySpawningFactory: {fileID: 1782090753}
+  IsEmptyActiveEnemy: 0
   _startStageComposite:
     StageId: 100
     HeroId: 400
     StageDiff: 0
---- !u!114 &1804081920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1804081916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee448606cea3d42c5be7e35ed4c6bafe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _perWaveInterval: 10
-  _spawningEachObjectInterval: 1
-  _spawningConfig: {fileID: 11400000, guid: 211d4d84cc8a64556b9154fa701ecc64, type: 2}
-  _routeSetController: {fileID: 566878310}
 --- !u!114 &1804081923
 MonoBehaviour:
   m_ObjectHideFlags: 0

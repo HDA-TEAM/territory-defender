@@ -1,6 +1,8 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
+using GamePlay.Scripts.Character.UnitController;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

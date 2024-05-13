@@ -47,7 +47,7 @@ namespace GamePlay.Scripts.GamePlayController
         {
             IsGamePlaying = false;
             // Stop update game first
-            UnitManager.Instance.ResetGame();
+            // UnitManager.Instance.ResetGame();
             // remove all units
             Messenger.Default.Publish(new ResetGamePayload());
         }
