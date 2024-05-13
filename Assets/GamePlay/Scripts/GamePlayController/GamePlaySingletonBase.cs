@@ -32,7 +32,7 @@ namespace GamePlay.Scripts.GamePlay
             Messenger.Default.Unsubscribe<SetUpNewGamePayload>(OnSetupNewGame);
             Messenger.Default.Unsubscribe<ResetGamePayload>(OnResetGame);
         }
-        protected virtual void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload) { }
-        protected virtual void OnResetGame(ResetGamePayload resetGamePayload) { }
+        protected abstract void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload);
+        protected abstract void OnResetGame(ResetGamePayload resetGamePayload);
     }
 }
