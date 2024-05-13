@@ -105,6 +105,8 @@ namespace GamePlay.Scripts.Character.StateMachine
         private void SetUpProjectile(GameObject projectile)
         {
             ProjectileBase prjBase = projectile.GetComponent<ProjectileBase>();
+            var dameComp = prjBase.GetComponent<ProjectileDamage>();
+            dameComp.Setup(Context.UnitBaseParent().UnitStatsHandlerComp().GetCurrentStatValue(StatId.AttackDamage));
             prjBase.GetProjectileMovement().SetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget);
             projectile.SetActive(true);
         }
