@@ -19,8 +19,6 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 StartStageComposite = startStageComposite,
             });
-            RouteSetController.Instance.SetUpNewGame(startStageComposite);
-            _enemySpawningFactory.SetUpNewGame(startStageComposite);
         }
         [Button("SetUpTestNewGame",usePropertyAsParameter: true)]
 #endif
@@ -45,18 +43,13 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 StartStageComposite = startStageComposite,
             });
-            
-            RouteSetController.Instance.SetUpNewGame(startStageComposite);
-            _enemySpawningFactory.SetUpNewGame(startStageComposite);
         }
         public override void ResetGame()
         {
             IsGamePlaying = false;
-            _enemySpawningFactory.CancelSpawning();
             // Stop update game first
             UnitManager.Instance.ResetGame();
             // remove all units
-            RouteSetController.Instance.ResetGame();
             Messenger.Default.Publish(new ResetGamePayload());
         }
     }

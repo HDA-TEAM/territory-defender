@@ -2,6 +2,7 @@ using Common.Loading.Scripts;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 using GamePlay.Scripts.Data.StageSpawning;
+using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Route;
 using SuperMaxim.Messaging;
@@ -18,37 +19,18 @@ namespace GamePlay.Scripts.Stage
         public int MaxWave;
     }
 
-    public class StageEnemySpawningFactory : MonoBehaviour
+    public class StageEnemySpawningFactory : GamePlayMainFlowBase
     {
         [SerializeField] private float _perWaveInterval = 10f;
         [SerializeField] private float _spawningEachObjectInterval;
         [SerializeField] private StageEnemySpawningConfig _spawningConfig;
+        [SerializeField] private RouteSetController _routeSetController;
         private CancellationTokenSource _cancellationTokenSource;
         private readonly CancellationTokenSource _cancellationTokenEarlyCallWave = new CancellationTokenSource();
         private SingleStageSpawningConfig _curStageSpawningConfig;
         private int _maxWave;
 
-        public void SetUpNewGame(StartStageComposite startStageComposite)
-        {
-            _cancellationTokenSource = new CancellationTokenSource();
-            _curStageSpawningConfig = _spawningConfig.FindSpawningConfig(startStageComposite.StageId);
-            _maxWave = _curStageSpawningConfig.WavesSpawning.Count;
-            
-            Messenger.Default.Publish(new UpdateWavePayload()
-            {
-                CurWave = 0,
-                MaxWave = _maxWave,
-            });
-            
-            Messenger.Default.Publish(new PrepareNextWavePayload
-            {
-                DurationEarlyCallWaveAvailable = 0f,
-                WaveIndex = 0,
-                OnEarlyCallWave = InGameStateController.Instance.StartSpawning,
-            });
-        }
-    
-        public void CancelSpawning()
+        private void CancelSpawning()
         {
             _cancellationTokenSource.Cancel();
         }
@@ -68,7 +50,7 @@ namespace GamePlay.Scripts.Stage
                         CurWave = waveIndex + 1,
                         MaxWave = _maxWave,
                     });
-                    
+
                     SingleStageSpawningConfig.WaveSpawning waveSpawning = _curStageSpawningConfig.WavesSpawning[waveIndex];
                     await StartSpawningWave(waveSpawning, waveIndex);
                 }
@@ -94,7 +76,7 @@ namespace GamePlay.Scripts.Stage
             if (waveIndex < _maxWave - 2)
             {
                 Debug.Log("Prepare next wave" + waveIndex + 1);
-            
+
                 Messenger.Default.Publish(new PrepareNextWavePayload
                 {
                     DurationEarlyCallWaveAvailable = _perWaveInterval,
@@ -102,10 +84,10 @@ namespace GamePlay.Scripts.Stage
                     OnEarlyCallWave = OnEarlyCallWave,
                 });
             }
-        
+
             try
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_perWaveInterval), cancellationToken: _cancellationTokenEarlyCallWave.Token);  
+                await UniTask.Delay(TimeSpan.FromSeconds(_perWaveInterval), cancellationToken: _cancellationTokenEarlyCallWave.Token);
             }
             catch (Exception)
             {
@@ -144,7 +126,7 @@ namespace GamePlay.Scripts.Stage
         private void SetRoute(GameObject go, int routeId)
         {
             go.TryGetComponent(out BaseEnemyStateMachine component);
-            component.RouteToGate = RouteSetController.Instance.ActiveSingleRouteLineRenderers[routeId].SingleLineRenderer;
+            component.RouteToGate = _routeSetController.ActiveSingleRouteLineRenderers[routeId].SingleLineRenderer;
             go.transform.position = component.RouteToGate.GetPosition(0);
             go.SetActive(true);
         }
@@ -152,6 +134,29 @@ namespace GamePlay.Scripts.Stage
         {
             go.TryGetComponent(out UnitBase component);
             component.OnUpdateStats?.Invoke();
+        }
+        protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
+        {
+            _cancellationTokenSource = new CancellationTokenSource();
+            _curStageSpawningConfig = _spawningConfig.FindSpawningConfig(setUpNewGamePayload.StartStageComposite.StageId);
+            _maxWave = _curStageSpawningConfig.WavesSpawning.Count;
+
+            Messenger.Default.Publish(new UpdateWavePayload()
+            {
+                CurWave = 0,
+                MaxWave = _maxWave,
+            });
+
+            Messenger.Default.Publish(new PrepareNextWavePayload
+            {
+                DurationEarlyCallWaveAvailable = 0f,
+                WaveIndex = 0,
+                OnEarlyCallWave = InGameStateController.Instance.StartSpawning,
+            });
+        }
+        protected override void OnResetGame(ResetGamePayload resetGamePayload)
+        {
+            CancelSpawning();
         }
     }
 }

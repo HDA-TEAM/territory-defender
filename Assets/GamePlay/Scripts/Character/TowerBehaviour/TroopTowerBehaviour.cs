@@ -42,8 +42,11 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
                     ObjectType = UnitId.Ally.Warrior.ToString(),
                     OnSpawned = SpawnSingleUnit,
                 });
-            Vector3 campingPos = RouteSetController.Instance.GetNearestPosFromRoute(_parentPos);
-            SetCampingPlace(campingPos);
+            Messenger.Default.Publish(new OnGetNearestPosFromRoutePayload
+            {
+                PosInput = _parentPos,
+                OnCalculateSuccess = SetCampingPlace,
+            });
         }
 
         /// Spawning new object from pool and set on revive for it
