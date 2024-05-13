@@ -19,7 +19,11 @@ namespace GamePlay.Scripts.Projectile
         [SerializeField] private EProjectileDealDamageType _dealDamageType;
         [Header("Sounds"),Space(12)]
         [SerializeField] private AudioClip _audioClipHit;
-    
+
+        public void Setup(float dame)
+        {
+            _dame = dame;
+        }
         public void DealDamage(UnitBase target)
         {
             Messenger.Default.Publish(new AudioPlayOneShotPayload
