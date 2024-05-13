@@ -1,6 +1,7 @@
 using Common.Loading.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.Route;
 using SuperMaxim.Messaging;
 using UnityEngine;
 
@@ -31,25 +32,21 @@ namespace GamePlay.Scripts.GamePlayController
                 return _startStageComposite;
             }
         }
-        
-        public override void SetUpNewGame(StartStageComposite startStageComposite)
+       
+        protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
             Init();
-            
-            _startStageComposite = startStageComposite;
-
-            Messenger.Default.Publish(new SetUpNewGamePayload
+            _startStageComposite = setUpNewGamePayload.StartStageComposite;
+            Messenger.Default.Publish(new PrepareNextWavePayload
             {
-                StartStageComposite = startStageComposite,
+                DurationEarlyCallWaveAvailable = 0f,
+                WaveIndex = 0,
+                OnEarlyCallWave = StartSpawning,
             });
         }
-        public override void ResetGame()
+        protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {
             IsGamePlaying = false;
-            // Stop update game first
-            // UnitManager.Instance.ResetGame();
-            // remove all units
-            Messenger.Default.Publish(new ResetGamePayload());
         }
     }
 }

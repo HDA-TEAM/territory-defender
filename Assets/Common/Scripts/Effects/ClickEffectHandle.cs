@@ -19,7 +19,6 @@ public class ClickEffectHandle : MonoBehaviour
     }
     private void OnPlayClickEffect()
     {
-        if (!GamePlay.Scripts.GamePlayController.InGameStateController.Instance.IsGamePlaying) return;
         var screenPos = Input.mousePosition;
         if (_camera == null)
             _camera = Camera.main;

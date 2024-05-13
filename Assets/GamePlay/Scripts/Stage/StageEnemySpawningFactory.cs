@@ -146,13 +146,6 @@ namespace GamePlay.Scripts.Stage
                 CurWave = 0,
                 MaxWave = _maxWave,
             });
-
-            Messenger.Default.Publish(new PrepareNextWavePayload
-            {
-                DurationEarlyCallWaveAvailable = 0f,
-                WaveIndex = 0,
-                OnEarlyCallWave = InGameStateController.Instance.StartSpawning,
-            });
         }
         protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {

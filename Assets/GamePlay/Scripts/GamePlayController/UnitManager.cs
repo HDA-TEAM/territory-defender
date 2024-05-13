@@ -34,13 +34,13 @@ namespace GamePlay.Scripts.GamePlayController
     {
         [SerializeField] private List<UnitBase> _unitAllys = new List<UnitBase>();
         [SerializeField] private List<UnitBase> _unitEnemies = new List<UnitBase>();
-
+        [SerializeField] private InGameStateController _inGameStateController;
         private readonly List<Action> _onSubscribeAction = new List<Action>();
         private readonly List<Action> _onUnSubscribeAction = new List<Action>();
         private readonly List<Action> _onUnitOutAction = new List<Action>();
         private List<UnitBase> _unitsNeed;
         private readonly List<UnitBase> _allys = new List<UnitBase>();
-
+        public bool IsEmptyActiveEnemy { get; protected set; }
         protected override void Awake()
         {
             base.Awake();
@@ -82,10 +82,10 @@ namespace GamePlay.Scripts.GamePlayController
         // Update units on map
         private void Update()
         {
-            if (!InGameStateController.Instance.IsGamePlaying)
+            if (!_inGameStateController.IsGamePlaying)
                 return;
 
-            InGameStateController.Instance.IsEmptyActiveEnemy = _unitEnemies.Count == 0;
+            IsEmptyActiveEnemy = _unitEnemies.Count == 0;
 
             SynRuntimeAction();
 

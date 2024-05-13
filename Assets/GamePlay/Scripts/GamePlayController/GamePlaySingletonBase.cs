@@ -1,6 +1,5 @@
 using Common.Loading.Scripts;
 using SuperMaxim.Messaging;
-using System;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlay

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
-    public partial class InGameStateController : GamePlaySingletonBase<InGameStateController>
+    public partial class InGameStateController : GamePlayMainFlowBase
     {
 #if UNITY_EDITOR
         [Button("CheckingStageSuccess")]
@@ -21,9 +21,9 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private GameResultHandler _resultsController;
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
+        [SerializeField] private UnitManager _unitManager;
         // Access
         public bool IsGamePlaying { get; private set; }
-        public bool IsEmptyActiveEnemy;
         private bool IsFinishSpawn;
 
         protected override void Awake()
@@ -31,6 +31,12 @@ namespace GamePlay.Scripts.GamePlayController
             base.Awake();
             _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
+        }
+       
         private void Init()
         {
             IsFinishSpawn = false;
@@ -45,14 +51,10 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void Update()
         {
-            if (IsEmptyActiveEnemy
+            if (_unitManager.IsEmptyActiveEnemy
                 && IsGamePlaying
                 && IsFinishSpawn)
                 CheckingStageSuccess();
-        }
-        protected override void OnDestroy()
-        {
-            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
         }
         private void OnLifeChange(int life)
         {
@@ -62,7 +64,7 @@ namespace GamePlay.Scripts.GamePlayController
         {
             Debug.Log("End StageSuccess");
             IsGamePlaying = false;
-            _resultsController.ShowStageSuccessPu();
+            _resultsController.ShowStageSuccessPu(_startStageComposite);
         }
         private void CheckingEndGame(int life)
         {
@@ -78,6 +80,7 @@ namespace GamePlay.Scripts.GamePlayController
         }
         public void StartSpawning()
         {
+            
             _enemySpawningFactory.StartSpawning(OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
