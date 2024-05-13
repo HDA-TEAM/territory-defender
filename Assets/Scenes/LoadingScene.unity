@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 989689628}
   - component: {fileID: 989689627}
   m_Layer: 0
-  m_Name: UICanvas
+  m_Name: UILoadingCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -589,7 +589,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!222 &989689623
 CanvasRenderer:
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Player:
     play: 1
     initialPlayDelay: 0
-    duration: 2
+    duration: 4
     loop: 1
     loopDelay: 0
     updateMode: 0
