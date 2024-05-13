@@ -35,8 +35,8 @@ namespace GamePlay.Scripts.GamePlayController
        
         protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
-            Init();
             _startStageComposite = setUpNewGamePayload.StartStageComposite;
+            Init();
             Messenger.Default.Publish(new PrepareNextWavePayload
             {
                 DurationEarlyCallWaveAvailable = 0f,

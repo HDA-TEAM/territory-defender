@@ -78,9 +78,8 @@ namespace GamePlay.Scripts.GamePlayController
                 _resultsController.ShowStageFailedPu();
             }
         }
-        public void StartSpawning()
+        private void StartSpawning()
         {
-            
             _enemySpawningFactory.StartSpawning(OnFinishedSpawning);
         }
         private void OnFinishedSpawning()
