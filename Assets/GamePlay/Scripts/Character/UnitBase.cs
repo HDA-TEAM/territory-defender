@@ -1,4 +1,5 @@
 using Common.Scripts;
+using GamePlay.Scripts.Character;
 using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
 using GamePlay.Scripts.Character.UnitController;

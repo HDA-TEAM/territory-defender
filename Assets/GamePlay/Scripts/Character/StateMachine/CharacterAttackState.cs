@@ -3,6 +3,7 @@ using DG.Tweening;
 using GamePlay.Scripts.Character.AttackingComponent;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
+using GamePlay.Scripts.Projectile;
 using SuperMaxim.Messaging;
 using UnityEngine;
 
