@@ -44,6 +44,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ff28278d6954f4927b15588ffce06b29, type: 2}
     - target: {fileID: 1678257229, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
+      propertyPath: UnitId
+      value: ArcherMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678257229, guid: 6a1c4cbaee83f43769b329149fd3150e, type: 3}
       propertyPath: _unitType
       value: 4
       objectReference: {fileID: 0}
@@ -294,7 +298,7 @@ MonoBehaviour:
   _audioClipAttack: {fileID: 8300000, guid: d0b220b8bd7344fc99daf1c7874aca68, type: 3}
   _audioClipDeath: {fileID: 0}
   _routeToGate: {fileID: 0}
-  _inGameInventoryRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
+  _inGameResourceRuntimeData: {fileID: 11400000, guid: a5553fc9f50244e7aabe8da7c03576ce, type: 2}
 --- !u!114 &1477791455161754905
 MonoBehaviour:
   m_ObjectHideFlags: 0
