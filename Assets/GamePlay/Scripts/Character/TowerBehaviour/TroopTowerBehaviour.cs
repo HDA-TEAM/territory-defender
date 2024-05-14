@@ -32,9 +32,17 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         {
             StatsUpdate();
         }
+        public override void ShowTool()
+        {
+            _towerKit.TowerRangingHandler().SetShowRanging(false);
+        }
         public override void Setup(TowerKit towerKit)
         {
-            base.Setup(towerKit);
+            _towerKit = towerKit;
+            
+            var rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
+            towerKit.TowerRangingHandler().SetUp(rangeVal);
+            
             _parentPos = _towerKit.transform.position;
             for (int i = 0; i < _maxAllyCount; i++)
                 Messenger.Default.Publish(new OnSpawnObjectPayload
