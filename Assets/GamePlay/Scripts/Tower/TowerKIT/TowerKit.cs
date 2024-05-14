@@ -123,6 +123,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         {
             _canvasGroupBtn.alpha = 0f;
             _spiteFlag.gameObject.SetActive(false);
+            _towerRangingHandler.SetShowRanging(false);
             _towerBuildTool.SetActive(false);
             _towerUsingTool.SetActive(false);
             _towerShowTooltip.HideAll();
@@ -235,6 +236,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             SetFlagActive(true);
             
             _towerCampingSelection.gameObject.SetActive(true);
+            // Hiding select camping position
+            SetFlagActive(false);
+            
             _towerCampingSelection.SetUp(OnSelectCampingPlace);
         }
         private void OnSelectCampingPlace()
@@ -247,8 +251,6 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             troopTowerBehaviour.SetCampingPlace(campingPos);
             _towerCampingSelection.SetFlagCampingPos(campingPos);
             
-            // Hiding select camping position
-            SetFlagActive(false);
             TowerKitState = TowerKitState.Hiding;
         }
     }
