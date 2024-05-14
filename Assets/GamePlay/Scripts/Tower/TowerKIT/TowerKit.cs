@@ -224,6 +224,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT
 
             _unitBase = null;
             Destroy(_towerEntity);
+
+            // Hiding tower info
+            Messenger.Default.Publish(new HideUnitInformationPayload());
+            
             TowerKitState = TowerKitState.Default;
         }
         private void SetFlagActive(bool isActive)
