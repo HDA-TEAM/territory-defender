@@ -53,8 +53,8 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         /// Spawning new object from pool and set on revive for it
         private void SpawnSingleUnit(GameObject objectSpawned)
         {
-            
             UnitBase unitBase = objectSpawned.GetComponent<UnitBase>();
+            unitBase.UnitStatsHandlerComp().ReplaceBaseStats(_unitBaseParent.UnitStatsHandlerComp().GetBaseStats());
             unitBase.UnitReviveHandlerComp().SetupRevive(OnWaitingToRevive);
             unitBase.OnUpdateStats?.Invoke();
             objectSpawned.transform.position = _towerKit.transform.position;

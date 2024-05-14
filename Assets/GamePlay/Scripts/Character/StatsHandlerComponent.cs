@@ -19,6 +19,10 @@ public class StatsHandlerComponent : UnitBaseComponent
     {
         return _statInformationSelector.GetShowUnitInformation(_unitBaseParent.UnitSide).GetShowStatsInformation(_baseStats);
     }
+    public void ReplaceBaseStats(Stats stats)
+    {
+        _baseStats = stats;
+    }
     #endregion
 
     protected override void Start()

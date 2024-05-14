@@ -23,8 +23,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
             _imgFlag.gameObject.SetActive(false);
             _onSelectCampingPlace = onSelectCampingPlace;
             
-            // todo get real range
-            range *= 50;
+            //  scale of base transform = 0.01, so need to convert real world space = 1
+            range *= 100;
+            
             SetRangeOfTower(range);
         }
         
