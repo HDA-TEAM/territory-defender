@@ -16,14 +16,14 @@ namespace Common.Scripts
 
         public enum Ally
         {
-            Warrior = 100,
+            Warrior = 101,
         }
 
         public enum Enemy
         {
-            ShieldMan = 200,
-            ArcherMan = 210,
-            AssassinMan = 220,
+            ShieldMan = 201,
+            ArcherMan = 211,
+            AssassinMan = 221,
         }
 
         public enum Hero
@@ -32,24 +32,58 @@ namespace Common.Scripts
             TrungNhi = 410,
         }
 
-        public enum Tower
+        #region Tower
+        public static TowerType GetTowerType(Tower tower)
+        {
+            switch (tower)
+            {
+                case Tower.ArcherTower:
+                case Tower.MarksmanTower:
+                case Tower.SharpShooterTower: return TowerType.ArcherTower;
+
+                case Tower.SpearTower:
+                case Tower.PikeTower:
+                case Tower.MasterTower: return TowerType.SpearTower;
+
+                case Tower.ElephantTower:
+                case Tower.WarElephantTower:
+                case Tower.ArmoredElephantTower: return TowerType.ElephantTower;
+
+                case Tower.DrumTower:
+                case Tower.WarDrumTower:
+                case Tower.MasterDrumTower: return TowerType.DrumTower;
+
+                default: return TowerType.ArcherTower;
+            }
+        }
+
+        public enum TowerType
         {
             ArcherTower = 300,
-            MarksmanTower = 301,
-            SharpShooterTower = 302,
-            
             SpearTower = 310,
-            PikeTower = 311,
-            MasterTower = 312,
-            
             ElephantTower = 320,
-            WarElephantTower = 321,
-            ArmoredElephantTower = 322,
-            
             DrumTower = 330,
-            WarDrumTower = 331,
-            MasterDrumTower = 332,
         }
+
+        public enum Tower
+        {
+            ArcherTower = 301,
+            MarksmanTower = 302,
+            SharpShooterTower = 303,
+
+            SpearTower = 311,
+            PikeTower = 312,
+            MasterTower = 313,
+
+            ElephantTower = 321,
+            WarElephantTower = 322,
+            ArmoredElephantTower = 323,
+
+            DrumTower = 331,
+            WarDrumTower = 332,
+            MasterDrumTower = 333,
+        }
+        #endregion
 
         public enum Projectile
         {
@@ -58,5 +92,4 @@ namespace Common.Scripts
             WaterBomb = 1002,
         }
     }
-
 }
