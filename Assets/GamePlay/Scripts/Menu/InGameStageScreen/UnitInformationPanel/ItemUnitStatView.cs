@@ -8,6 +8,7 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
 {
     public struct ShowStatsInformationComposite
     {
+        public UnitBase UnitBase;
         public string Name;
         public List<ItemStatComposite> StatComposites;
     }

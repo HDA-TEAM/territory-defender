@@ -17,7 +17,9 @@ public class StatsHandlerComponent : UnitBaseComponent
     public Stats GetBaseStats() => _baseStats;
     public ShowStatsInformationComposite GetShowStatsInformation()
     {
-        return _statInformationSelector.GetShowUnitInformation(_unitBaseParent.UnitSide).GetShowStatsInformation(_baseStats);
+        ShowStatsInformationComposite statsInformationComposite = _statInformationSelector.GetShowUnitInformation(_unitBaseParent.UnitSide).GetShowStatsInformation(_baseStats);
+        statsInformationComposite.UnitBase = _unitBaseParent;
+        return statsInformationComposite;
     }
     public void ReplaceBaseStats(Stats stats)
     {
