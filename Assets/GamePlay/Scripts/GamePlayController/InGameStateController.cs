@@ -42,10 +42,10 @@ namespace GamePlay.Scripts.GamePlayController
             IsFinishSpawn = false;
             IsGamePlaying = true;
 
-// #if UNITY_EDITOR
-//             if (_isFastSetupStageForTest)
-//                 SetUpTestNewGame(_startStageComposite);
-// #endif
+#if UNITY_EDITOR
+            if (_isFastSetupStageForTest)
+                SetUpTestNewGame(_startStageComposite);
+#endif
 
             _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(_startStageComposite.StageId));
         }
