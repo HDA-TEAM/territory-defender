@@ -39,6 +39,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: UnitId
+      value: ArcherTower
+      objectReference: {fileID: 0}
     - target: {fileID: 1069866960922029881, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _transform
       value: 
@@ -73,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 4968504722749880728}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
-      value: BowTower
+      value: ArcherTower
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Size.x
