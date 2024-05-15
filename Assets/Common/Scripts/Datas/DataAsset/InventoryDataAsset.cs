@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Common.Scripts.Datas.DataAsset
 {
     public enum InventoryType
     {
         TotalStar   = 1, // Total Star of all Stage are conquered
-        CurrentTalentPoint = 2, // Point use to upgrade Rune
+        TalentPoint = 2, // Available Point can be used to upgrade Runes
         GoldenCoin  = 3, // Can be placed when purchase
         SliverCoin  = 4, // Can be placed after complete each Stage
     }
@@ -36,14 +37,14 @@ namespace Common.Scripts.Datas.DataAsset
     [Serializable]
     public struct InventoryDataModel : IDefaultDataModel
     {
-        public List<InventoryData> ListInventoryData;
+        public List<InventoryData> ListInventoryDataSaver;
         public bool IsEmpty()
         {
             return false;
         }
         public void SetDefault()
         {
-            ListInventoryData = new List<InventoryData>();
+            ListInventoryDataSaver = new List<InventoryData>();
         }
     }
     
@@ -91,6 +92,8 @@ namespace Common.Scripts.Datas.DataAsset
 
                     // If there's a callback registered, call it
                     updatedInventory.NotifyAmountChange();
+                    
+                    SaveInventoryData(updatedInventory);
                     break;
                 }
             }
@@ -102,6 +105,31 @@ namespace Common.Scripts.Datas.DataAsset
         public List<InventoryData> GetAllStageData()
         {
             return InventoryDatas;
+        }
+
+        public void SaveInventoryData(InventoryData inventoryData)
+        {
+            List<InventoryData> newTowerList = new List<InventoryData>();
+            foreach (var data in InventoryDatas)
+            {
+                if (data.InventoryType == inventoryData.InventoryType)
+                {
+                    var newInventoryData = new InventoryData()
+                    {
+                        InventoryType = data.InventoryType,
+                        Amount = data.Amount
+                    };
+                    newTowerList.Add(newInventoryData); 
+                }
+            }
+            _model.ListInventoryDataSaver = newTowerList;
+            SaveData();
+        }
+
+        public void GetInventoryData()
+        {
+            LoadData();
+            InventoryDatas = _model.ListInventoryDataSaver ?? new List<InventoryData>();
         }
     }
 }

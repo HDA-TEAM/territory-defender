@@ -25,7 +25,7 @@ public class TowerDataManager : SingletonBase<TowerDataManager>
             if (_towerRuneDataAsset == null)
                   return;
             
-            List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerData();
+            List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerDataConfig();
             foreach (var towerDataSo in listTowerData)
             {
                   TowerComposites.Add(

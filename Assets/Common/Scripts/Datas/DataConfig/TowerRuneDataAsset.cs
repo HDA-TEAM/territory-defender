@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 
@@ -14,6 +15,7 @@ public class TowerRuneDataAsset : ScriptableObject
     private SerializedDictionary<UnitId.Tower, TowerDataConfig> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataConfig>();
     [SerializeField] private TowerDataAsset _towerDataAsset;
 
+    [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
     public int _returnStar;
     
     public TowerDataConfig GetTower(UnitId.Tower towerId)
@@ -27,7 +29,7 @@ public class TowerRuneDataAsset : ScriptableObject
         return tower;
     }
 
-    public List<TowerDataConfig> GetAllTowerData()
+    public List<TowerDataConfig> GetAllTowerDataConfig()
     {
         return _towerTypeDict.Values.ToList();
     }
@@ -62,6 +64,7 @@ public class TowerRuneDataAsset : ScriptableObject
     {
         if (towerDataConfig._runeLevels == null)
         {
+            Debug.Log("First time......"); // No join
             towerDataConfig._runeLevels = new List<RuneLevel>();
         }
 
@@ -73,6 +76,10 @@ public class TowerRuneDataAsset : ScriptableObject
         };
         towerDataConfig._runeLevels.Add(newRune);
 
+        // foreach (var item in towerDataConfig._runeLevels)
+        // {
+        //     Debug.Log("ID: "+ item.RuneId + "..." + item.Level);
+        // }
         // Optionally, sort the RuneLevels list by RuneId
         towerDataConfig._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
     }
@@ -120,8 +127,32 @@ public class TowerRuneDataAsset : ScriptableObject
         // Save changes to disk or server
         _towerDataAsset.SaveTowers(_towerTypeDict);
     }
-    public List<TowerSoSaver> GetTowerDataAsset()
+    private void LoadTowerRuneDataFromSavers(List<TowerDataSaver> towerDataSavers)
     {
-        return _towerDataAsset.LoadTowers();
+        //_towerTypeDict.Clear(); // Clear existing data
+
+        foreach (var saver in towerDataSavers)
+        {
+            if (!_towerTypeDict.ContainsKey(saver.TowerId))
+            {
+                // Create a new TowerDataConfig instance and initialize it
+                TowerDataConfig config = ScriptableObject.CreateInstance<TowerDataConfig>();
+                config.Initialize(saver.RuneLevels);
+                _towerTypeDict.Add(saver.TowerId, config);
+            }
+        }
+    }
+    public void UpdateTowerDataConfig()
+    {
+        // TODO: load TowerDataConfig data
+        var towerSavers = _towerDataAsset.GetTowers();  // Retrieve the list of TowerDataSaver from the asset
+
+        if (towerSavers.Count > 0)
+        {
+            Debug.Log("Exist towerSavers");
+        }
+        
+        LoadTowerRuneDataFromSavers(towerSavers);  
+       // return _towerDataAsset.GetTowers();
     }
 }

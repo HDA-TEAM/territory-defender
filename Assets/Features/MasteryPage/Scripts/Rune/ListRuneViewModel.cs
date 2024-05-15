@@ -5,6 +5,7 @@ using Common.Scripts.Datas.DataAsset;
 using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.RuneDetailView;
+using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
 
 public class ListRuneViewModel : MonoBehaviour
@@ -22,7 +23,8 @@ public class ListRuneViewModel : MonoBehaviour
     
     [Header("Data"), Space(12)]
     [SerializeField] private InventoryDataAsset _inventoryDataAsset;
-
+    [SerializeField] private TowerRuneDataController _towerRuneDataController;
+    
     // INTERNAL
     private List<RuneLevel> _runeLevels;
     private int _totalTalentPoint;
@@ -31,8 +33,8 @@ public class ListRuneViewModel : MonoBehaviour
     private InventoryData _inventoryData;
     
     // Composite
-    private List<TowerHasRuneComposite> _towerRuneComposites;
-    private TowerHasRuneComposite _preTowerHasComposite;
+    private List<TowerRuneComposite> _towerRuneComposites;
+    private TowerRuneComposite _preTowerComposite;
     private InventoryComposite _talentPointInventory;
     
     // Config
@@ -56,19 +58,20 @@ public class ListRuneViewModel : MonoBehaviour
             _listTowerViewModel._onUpdateViewAction += UpdateView;
         }
         
-        // Handle upgrade rune clicking
-        if (_itemUpgradeRuneView != null)
-        {
-            _onTowerDataUpdatedAction += RuneDataManager.Instance.GetTowerRuneData;
-            _onTowerDataUpdatedAction += UpdateData;
-        }
-        
-        // Handle reset rune clicking
-        if (_itemResetRuneView != null)
-        {
-            _onTowerRuneResetAction += RuneDataManager.Instance.GetTowerRuneData;
-            _onTowerRuneResetAction += UpdateData;
-        }
+        //TODO
+        // // Handle upgrade rune clicking
+        // if (_itemUpgradeRuneView != null)
+        // {
+        //     _onTowerDataUpdatedAction += TowerRuneDataController.InitializeTowerRuneData();
+        //     _onTowerDataUpdatedAction += UpdateData;
+        // }
+        //
+        // // Handle reset rune clicking
+        // if (_itemResetRuneView != null)
+        // {
+        //     _onTowerRuneResetAction += TowerRuneDataController.Instance.InitializeTowerRuneData;
+        //     _onTowerRuneResetAction += UpdateData;
+        // }
     }
 
     private void UnsubscribeEvents()
@@ -77,21 +80,33 @@ public class ListRuneViewModel : MonoBehaviour
         {
             _listTowerViewModel._onUpdateViewAction -= UpdateView;
         }
-        if (_itemUpgradeRuneView != null)
-        {
-            _onTowerDataUpdatedAction -= RuneDataManager.Instance.GetTowerRuneData;
-            _onTowerDataUpdatedAction -= UpdateData;
-        }
-        if (_itemResetRuneView != null)
-        {
-            _onTowerRuneResetAction -= RuneDataManager.Instance.GetTowerRuneData;
-            _onTowerRuneResetAction -= UpdateData;
-        }
+        
+        //TODO
+        // if (_itemUpgradeRuneView != null)
+        // {
+        //     _onTowerDataUpdatedAction -= TowerRuneDataController.Instance.InitializeTowerRuneData;
+        //     _onTowerDataUpdatedAction -= UpdateData;
+        // }
+        // if (_itemResetRuneView != null)
+        // {
+        //     _onTowerRuneResetAction -= TowerRuneDataController.Instance.InitializeTowerRuneData;
+        //     _onTowerRuneResetAction -= UpdateData;
+        // }
     }
     private void Start()
     {
+        if (_towerRuneDataController == null)
+        {
+            Debug.LogError("TowerRuneDataController is not set");
+            return;
+        }
+        
+        ITowerRune initStrategy = new InitTowerRuneState();
+        _towerRuneDataController.SetStrategy(initStrategy);
+        _towerRuneDataController.ExecuteStrategy();
+        
         // Update talent point amount before get that data
-        //_inventoryDataAsset.UpdateTalentPointAmount();
+        _inventoryDataAsset.GetInventoryData();
         _talentPointInventory = new InventoryComposite();
         
         UpdateData();
@@ -113,15 +128,18 @@ public class ListRuneViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        var towerRuneDataManager = RuneDataManager.Instance;
+        var towerRuneComposites = TowerRuneDataController.TowerRuneComposites;
         
-        if (towerRuneDataManager == null) return;
-        if (towerRuneDataManager.TowerRuneComposites == null) return;
-
-        _towerRuneComposites = towerRuneDataManager.TowerRuneComposites;
+        if (towerRuneComposites == null) return;
+        
+        //TODO
+        //if (towerRuneComposites == null) return;
+        
+         _towerRuneComposites = towerRuneComposites;
+         Debug.Log(_towerRuneComposites[0].RuneComposite.Count + ".._towerRuneComposites[0].RuneComposite.Count");
 
         // Retrieve the inventory data for 'Talent Point' type
-        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.CurrentTalentPoint);
+        _inventoryData = _inventoryDataAsset.GetInventoryDataByType(InventoryType.TalentPoint);
 
         // Update the _starInventory
         _talentPointInventory = new InventoryComposite
@@ -131,22 +149,22 @@ public class ListRuneViewModel : MonoBehaviour
         };
         
         // Default setting
-        if (_preTowerHasComposite.RuneComposite == null)
-            _preTowerHasComposite = _towerRuneComposites[0];
+        if (_preTowerComposite.RuneComposite == null)
+            _preTowerComposite = _towerRuneComposites[0];
         
-        UpdateView(_preTowerHasComposite.TowerId);
+        UpdateView(_preTowerComposite.TowerId);
     }
     private void UpdateView(UnitId.Tower towerId)
     {
         var result = FindByTowerId(_towerRuneComposites, towerId);
-        if (result.Equals(default(TowerHasRuneComposite)))
+        if (result.Equals(default(TowerRuneComposite)))
         {
             Debug.LogError("UpdateView: result is default, no update performed");
             return;
         }
         
-        _preTowerHasComposite = result;
-        
+        _preTowerComposite = result;
+        Debug.Log(result.RuneComposite.Count + "...RuneComposite.Count");
         for (int runeIndex = 0; runeIndex < _itemRuneViews.Count; runeIndex++)
         {
             // Setup rune view
@@ -165,7 +183,7 @@ public class ListRuneViewModel : MonoBehaviour
         // Update rune data when updated the level of that rune
         if (_runeDetailView != null && _preSelectedRuneItem != null && _preSelectedUpgradeRuneItem != null)
         {
-            foreach (var runeComposite in _preTowerHasComposite.RuneComposite)
+            foreach (var runeComposite in _preTowerComposite.RuneComposite)
             {
                 if (runeComposite.RuneId == _preSelectedRuneItem.RuneComposite.RuneId)
                 {
@@ -195,67 +213,74 @@ public class ListRuneViewModel : MonoBehaviour
 
     private void OnSelectedUpgradeRuneItem(ItemUpgradeRuneView itemUpgradeRuneView)
     {
-        var runeDataAsset = RuneDataManager.Instance.RuneDataAsset;
+        _towerRuneDataController.SetStrategy(new UpgradeTowerRuneState());
+        _towerRuneDataController.ExecuteStrategy();
+        //var runeDataAsset = TowerRuneDataController.Instance.RuneDataAsset;
         
-        if (itemUpgradeRuneView == null || _preSelectedRuneItem == null || runeDataAsset == null || _itemStarView == null)
-        {
-            Debug.LogError("One or more required objects are null.");
-            return;
-        }
-        _preSelectedUpgradeRuneItem = itemUpgradeRuneView;
-
-        //Conditions to upgrade any skill
-        if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
-            && _talentPointInventory.Amount > 0)
-        {
-            _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
-            if (_preRuneDataConfig != null)
-            {
-                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataAsset;
-                towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
-            
-                // Get data from inventory data & Subtract Talent Point number
-                _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, -1);
-                Debug.Log("Upgrade rune successful....");
-                
-                _onTowerDataUpdatedAction?.Invoke();
-            }
-        } else {
-            
-            Debug.Log("Upgrade rune fail");
-        }
+        //TODO
+        // if (itemUpgradeRuneView == null || _preSelectedRuneItem == null || runeDataAsset == null || _itemStarView == null)
+        // {
+        //     Debug.LogError("One or more required objects are null.");
+        //     return;
+        // }
+        // _preSelectedUpgradeRuneItem = itemUpgradeRuneView;
+        //
+        // //Conditions to upgrade any skill
+        // if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
+        //     && _talentPointInventory.Amount > 0)
+        // {
+        //     _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
+        //     if (_preRuneDataConfig != null)
+        //     {
+        //         var towerRuneDataConfig = TowerRuneDataController.Instance.TowerRuneDataAsset;
+        //         towerRuneDataConfig.UpdateTowerData(_preTowerComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
+        //     
+        //         // Get data from inventory data & Subtract Talent Point number
+        //         _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, -1);
+        //         Debug.Log("Upgrade rune successful....");
+        //         
+        //         _onTowerDataUpdatedAction?.Invoke();
+        //     }
+        // } else {
+        //     
+        //     Debug.Log("Upgrade rune fail");
+        // }
     }
 
     private void OnSelectedResetRuneItem(ItemResetRuneView itemResetRuneView)
     {
-        var runeDataAsset = RuneDataManager.Instance.RuneDataAsset;
-        if (itemResetRuneView == null || _preSelectedRuneItem == null)
-        {
-            Debug.LogError("One or more required objects are null.");
-            return;
-        }
-
-        _preSelectedResetRuneItem = itemResetRuneView;
-        if (_preSelectedRuneItem.RuneComposite.Level > 0)
-        {
-            _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
-            if (_preRuneDataConfig != null)
-            {
-                var towerRuneDataConfig = RuneDataManager.Instance.TowerRuneDataAsset;
-                towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId);
-                
-                // Get data from inventory data & Return Talent Point number after reset
-                _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, towerRuneDataConfig._returnStar);
-
-                Debug.Log("Reset rune successful".ToUpper());
-                _onTowerRuneResetAction?.Invoke();
-            }
-        }
-        else Debug.Log("CANNOT RESET THIS RUNE");
+        //var runeDataAsset = TowerRuneDataController.Instance.RuneDataAsset;
+        _towerRuneDataController.SetStrategy(new ResetTowerRuneState());
+        _towerRuneDataController.ExecuteStrategy();
+        
+        //TODO
+        // if (itemResetRuneView == null || _preSelectedRuneItem == null)
+        // {
+        //     Debug.LogError("One or more required objects are null.");
+        //     return;
+        // }
+        //
+        // _preSelectedResetRuneItem = itemResetRuneView;
+        // if (_preSelectedRuneItem.RuneComposite.Level > 0)
+        // {
+        //     _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
+        //     if (_preRuneDataConfig != null)
+        //     {
+        //         var towerRuneDataConfig = TowerRuneDataController.Instance.TowerRuneDataAsset;
+        //         towerRuneDataConfig.ResetRuneLevel(_preTowerComposite.TowerId);
+        //         
+        //         // Get data from inventory data & Return Talent Point number after reset
+        //         _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, towerRuneDataConfig._returnStar);
+        //
+        //         Debug.Log("Reset rune successful".ToUpper());
+        //         _onTowerRuneResetAction?.Invoke();
+        //     }
+        // }
+        // else Debug.Log("CANNOT RESET THIS RUNE");
     }
-    private TowerHasRuneComposite FindByTowerId(List<TowerHasRuneComposite> list, UnitId.Tower towerId)
+    private TowerRuneComposite FindByTowerId(List<TowerRuneComposite> list, UnitId.Tower towerId)
     {
-        TowerHasRuneComposite foundItem = list.Find(item => item.TowerId == towerId);
+        TowerRuneComposite foundItem = list.Find(item => item.TowerId == towerId);
         if (foundItem.RuneComposite != null)
         {
             Debug.Log($"FindByTowerId: Found match for TowerId {towerId}");
@@ -264,7 +289,7 @@ public class ListRuneViewModel : MonoBehaviour
         else
         {
             Debug.Log($"FindByTowerId: No match found for TowerId {towerId}, returning default");
-            return default(TowerHasRuneComposite);
+            return default(TowerRuneComposite);
         }
     }
     public void SetupRuneDetailView(bool flag)
@@ -291,7 +316,7 @@ public struct InventoryComposite
     public int Amount;
 }
 
-public struct TowerHasRuneComposite
+public struct TowerRuneComposite
 {
     public UnitId.Tower TowerId;
     public List<RuneComposite> RuneComposite;

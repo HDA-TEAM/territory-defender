@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: InventoryDataAsset
   _model:
-    ListInventoryData: []
+    ListInventoryDataSaver:
+    - InventoryType: 2
+      Amount: 9
   _stageDataAsset: {fileID: 11400000, guid: a5ed3e7e2e3ad447e95f9f42f34d16b0, type: 2}
   InventoryDatas:
   - InventoryType: 2
-    Amount: 10
+    Amount: 9

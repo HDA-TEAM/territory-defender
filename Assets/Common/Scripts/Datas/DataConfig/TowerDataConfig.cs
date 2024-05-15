@@ -9,7 +9,10 @@ namespace Features.MasteryPage.Scripts.Tower
     {
         public UnitId.Tower _towerId;
         public List<RuneLevel> _runeLevels;
-    
+        public void Initialize(List<RuneLevel> runeLevels)
+        {
+            _runeLevels = new List<RuneLevel>(runeLevels);
+        }
         public UnitId.Tower GetTowerId()
         {
             return _towerId;
