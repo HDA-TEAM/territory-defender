@@ -121,7 +121,10 @@ public class ListRuneViewModel : MonoBehaviour
 
     private void UpdateData()
     {
-        _towerRuneDataController.InitializeTowerRuneData();
+        // Set strategy based on game state or other conditions
+        _towerRuneDataController.SetStrategy(new InitTowerRuneStrategy());
+        _towerRuneDataController.ExecuteStrategy();
+        
         var towerRuneComposites = _towerRuneDataController.TowerRuneComposites;
 
         if (towerRuneComposites == null)
@@ -224,7 +227,10 @@ public class ListRuneViewModel : MonoBehaviour
              _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
              if (_preRuneDataConfig != null)
              {
-                 _towerRuneDataController.UpgradeTowerRuneData(_preTowerComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
+                 // To update rune data
+                 _towerRuneDataController.SetStrategy(new UpdateTowerRuneStrategy(_preTowerComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite));
+                 _towerRuneDataController.ExecuteStrategy();
+
                  // Get data from inventory data & Subtract Talent Point number
                  _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, -1);
                  Debug.Log("Upgrade rune successful....");
@@ -252,8 +258,9 @@ public class ListRuneViewModel : MonoBehaviour
             _preRuneDataConfig =_towerRuneDataController. _runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
             if (_preRuneDataConfig != null)
             {
-                //var towerRuneDataConfig = TowerRuneDataController.Instance.TowerRuneDataAsset;
-                _towerRuneDataController.ResetTowerRuneData(_preTowerComposite.TowerId);
+                // To reset rune data
+                _towerRuneDataController.SetStrategy(new ResetTowerRuneStrategy(_preTowerComposite.TowerId));
+                _towerRuneDataController.ExecuteStrategy();
                 
                 // Get data from inventory data & Return Talent Point number after reset
                 _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, _towerRuneDataController.GetReturnStar());

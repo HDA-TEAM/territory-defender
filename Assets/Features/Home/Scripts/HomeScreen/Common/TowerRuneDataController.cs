@@ -16,7 +16,22 @@ namespace Features.Home.Scripts.HomeScreen.Common
         public RuneDataAsset _runeDataAsset;
         public List<TowerRuneComposite> TowerRuneComposites { get; private set; }
         private List<RuneComposite> _runeComposites;
+        
+        private ITowerRune _currentStrategy;
 
+        public void SetStrategy(ITowerRune strategy)
+        {
+            _currentStrategy = strategy;
+        }
+
+        public void ExecuteStrategy()
+        {
+            _currentStrategy?.Execute(this);
+        }
+        public int GetReturnStar()
+        {
+            return _towerRuneDataAsset._returnStar;
+        }
         public void InitializeTowerRuneData()
         {
             //Check and setup for Towers which had the rune
@@ -31,9 +46,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             
             // Load Rune data into each Tower
             List<RuneDataConfig> listRuneSos = _runeDataAsset.GetAllRuneData();
-            //_towerRuneDataAsset.UpdateTowerDataConfig();
             List<TowerDataConfig> towerDataConfigs = _towerRuneDataAsset.GetAllTowerDataConfig();
-            
             List<TowerDataSaver> loadedTowerData = _towerRuneDataAsset._towerDataAsset.GetTowers();
             
             foreach (var towerSo in towerDataConfigs)
@@ -84,71 +97,6 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 });
             }
         }
-
-        public int GetReturnStar()
-        {
-            return _towerRuneDataAsset._returnStar;
-        }
-        // public void InitializeTowerRuneData()
-        // {
-        //     // Debug.Log("Initializing Tower Rune Data");
-        //     //
-        //     // //Check and setup for Towers which had the rune
-        //     // if (TowerRuneComposites == null)
-        //     //     TowerRuneComposites = new List<TowerRuneComposite>();
-        //     // else TowerRuneComposites.Clear();
-        //     //
-        //     // //Check and setup Runes
-        //     // if (_runeComposites == null)
-        //     //     _runeComposites = new List<RuneComposite>();
-        //     // else _runeComposites.Clear();
-        //     //
-        //     // // if (_runeDataAsset == null)
-        //     // //     return;
-        //     //
-        //     //
-        //     // //_towerRuneDataAsset.UpdateTowerDataConfig();
-        //     //
-        //     // //List<TowerDataSaver> loadedTowerData = _towerRuneDataAsset.UpdateTowerDataConfig();
-        //     //
-        //     // // TODO: A lot of bug and that logic need to be changed all
-        //     // // Use Strategy to N state:
-        //     // // maybe 3 state of TowerRune: InitTowerRune, UpgradeTowerRune, ResetTowerRune
-        //     //
-        //     // List<RuneDataConfig> listRuneSos = _runeDataAsset.GetAllRuneData();
-        //     // List<TowerDataConfig> towerDataConfigs = _towerRuneDataAsset.GetAllTowerDataConfig();
-        //     //
-        //     // int i = 0;
-        //     // foreach (var towerSo in towerDataConfigs)
-        //     // {
-        //     //     // if (loadedTowerData != null) // Check if json is new created or null
-        //     //     // {
-        //     //     //     // Find the corresponding TowerSoSaver in loadedTowerData
-        //     //     //     int towerSoSaverIndex = loadedTowerData.FindIndex(t => t.TowerId == towerSo.GetTowerId());
-        //     //     //     if (towerSoSaverIndex != -1)
-        //     //     //     {
-        //     //     //         TowerDataSaver towerDataSaver = loadedTowerData[towerSoSaverIndex];
-        //     //     //         foreach (var runeLevel in towerDataSaver.RuneLevels)
-        //     //     //         {
-        //     //     //             int runeCompositeIndex = _runeComposites.FindIndex(rc => rc.RuneId == runeLevel.RuneId);
-        //     //     //             if (runeCompositeIndex != -1)
-        //     //     //             {
-        //     //     //                 RuneComposite temp = _runeComposites[runeCompositeIndex];
-        //     //     //                 temp.Level = runeLevel.Level;
-        //     //     //                 _runeComposites[runeCompositeIndex] = temp;
-        //     //     //             }
-        //     //     //         }
-        //     //     //     }
-        //     //     // }
-        //     //
-        //     //     TowerRuneComposites.Add(new TowerRuneComposite
-        //     //     {
-        //     //         TowerId = towerSo.GetTowerId(),
-        //     //         RuneComposite = _runeComposites
-        //     //     });
-        //     // }
-        // }
-
         public void UpgradeTowerRuneData(UnitId.Tower towerId, RuneComposite runeComposite)
         {
             _towerRuneDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataConfig curTower);

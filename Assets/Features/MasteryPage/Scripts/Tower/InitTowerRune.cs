@@ -3,30 +3,16 @@ using UnityEngine;
 
 namespace Features.MasteryPage.Scripts.Tower
 {
-    public sealed class InitTowerRuneState : ITowerRune
+    public interface ITowerRune
     {
-        public void TowerRuneExecute()
+        void Execute(TowerRuneDataController controller);
+    }
+    
+    public sealed class InitTowerRuneStrategy : ITowerRune
+    {
+        public void Execute(TowerRuneDataController controller)
         {
-            Debug.Log("Executing InitTowerRuneState");
-            // Implementation for initializing tower rune data
-            
+            controller.InitializeTowerRuneData();
         }
     }
-    // public sealed class UpgradeTowerRuneState : ITowerRune
-    // {
-    //     public void TowerRuneExecute(TowerRuneDataController controller)
-    //     {
-    //         // Implementation for upgrading tower rune data
-    //         controller.UpgradeTowerRuneData();
-    //     }
-    // }
-    //
-    // public sealed class ResetTowerRuneState : ITowerRune
-    // {
-    //     public void TowerRuneExecute(TowerRuneDataController controller)
-    //     {
-    //         // Implementation for resetting tower rune data
-    //         controller.ResetTowerRuneData();
-    //     }
-    // }
 }
