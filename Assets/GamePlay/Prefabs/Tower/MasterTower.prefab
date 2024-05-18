@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: UnitId
+      value: MasterTower
+      objectReference: {fileID: 0}
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _unitStatsComp
       value: 
       objectReference: {fileID: 2904208394307622455}
@@ -153,6 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitBaseParent: {fileID: 6134854703462656619}
+  _cooldownReviveUnit: 0
   _allyUnits: []
   _campingRange: 0
   _campingPos: {x: 0, y: 0, z: 0}

@@ -1,3 +1,4 @@
+using GamePlay.Scripts.GamePlayController;
 using SuperMaxim.Messaging;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -39,7 +40,10 @@ public class UserActionHeroBaseController : UserActionController
     {
         base.SetMovingPosition();
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        UnitManager.Instance.ResetTarget(_unitBaseParent);
+        Messenger.Default.Publish(new OnUnitResetTargetPayload()
+        {
+            Unit = _unitBaseParent,
+        });
         mousePos = new Vector3(mousePos.x, mousePos.y, 0);
         UserMoveUnitToCampingPlace = new UserMoveUnitToCampingPlace(mousePos);
     }

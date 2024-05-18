@@ -1,22 +1,24 @@
 using Common.Loading.Scripts;
 using CustomInspector;
+using GamePlay.Scripts.GamePlay;
+using GamePlay.Scripts.Route;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
     public partial class InGameStateController
     {
-        [SerializeField] private MapController _mapController;
 #if UNITY_EDITOR
         public void SetUpTestNewGame(StartStageComposite startStageComposite)
         {
             _startStageComposite = startStageComposite;
             IsGamePlaying = true;
-            _mapController.SetUpNewGame(startStageComposite);
-            RouteSetController.Instance.SetUpNewGame(startStageComposite);
-            TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
-            PoolingController.Instance.SetUpNewGame(startStageComposite);
-            _enemySpawningFactory.SetUpNewGame(startStageComposite);
+            
+            Messenger.Default.Publish(new SetUpNewGamePayload
+            {
+                StartStageComposite = startStageComposite,
+            });
         }
         [Button("SetUpTestNewGame",usePropertyAsParameter: true)]
 #endif
@@ -30,27 +32,21 @@ namespace GamePlay.Scripts.GamePlayController
                 return _startStageComposite;
             }
         }
-        
-        public override void SetUpNewGame(StartStageComposite startStageComposite)
+       
+        protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
-            _startStageComposite = startStageComposite;
-            IsGamePlaying = true;
-            _mapController.SetUpNewGame(startStageComposite);
-            RouteSetController.Instance.SetUpNewGame(startStageComposite);
-            TowerKitSetController.Instance.SetUpNewGame(startStageComposite);
-            PoolingController.Instance.SetUpNewGame(startStageComposite);
-            _enemySpawningFactory.SetUpNewGame(startStageComposite);
+            _startStageComposite = setUpNewGamePayload.StartStageComposite;
+            Init();
+            Messenger.Default.Publish(new PrepareNextWavePayload
+            {
+                DurationEarlyCallWaveAvailable = 0f,
+                WaveIndex = 0,
+                OnEarlyCallWave = StartSpawning,
+            });
         }
-        public override void ResetGame()
+        protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {
             IsGamePlaying = false;
-            _enemySpawningFactory.CancelSpawning();
-            // Stop update game first
-            UnitManager.Instance.ResetGame();
-            // remove all units
-            PoolingController.Instance.ResetGame();
-            RouteSetController.Instance.ResetGame();
-            TowerKitSetController.Instance.ResetGame();
         }
     }
 }

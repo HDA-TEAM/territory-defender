@@ -1,6 +1,9 @@
 using Common.Scripts;
+using GamePlay.Scripts.Character;
 using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
+using GamePlay.Scripts.Character.UnitController;
+using GamePlay.Scripts.GamePlayController;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +25,7 @@ public class UnitBase : MonoBehaviour
     #endregion
 
     #region Access
+    public string UnitId;
     public UnitId.BaseId UnitSide => _unitSideId;
     public UnitController UnitController() => _unitController;
     public List<UnitId.BaseId> TargetSideNeeding() => _targetSidesNeeding;

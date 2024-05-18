@@ -1,3 +1,5 @@
+using GamePlay.Scripts.GamePlayController;
+using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,7 +30,10 @@ public class UserActionController : UnitBaseComponent, IPointerClickHandler
     public virtual void SetMovingPosition(Vector3 des)
     {
         _eUserAction = EUserAction.SetMovingPoint;
-        UnitManager.Instance.ResetTarget(_unitBaseParent);
+        Messenger.Default.Publish(new OnUnitResetTargetPayload()
+        {
+            Unit = _unitBaseParent,
+        });
         UserMoveUnitToCampingPlace = new UserMoveUnitToCampingPlace(des);
     }
     

@@ -1,18 +1,23 @@
 using Common.Scripts.Navigator;
 using CustomInspector;
+using GamePlay.Scripts.Data;
 using UnityEngine;
 
-public class StageSuccessPu : CommonModal
+namespace GamePlay.Scripts.Menu.ResultPu
 {
-    [SerializeField] private StageSuccessModelView _stageSuccessModelView;
-    
-    public void SetupData(int claimingStars)
+    public class StageSuccessPu : CommonModal
     {
-        _stageSuccessModelView.SetupView(claimingStars);
-    }
+        [SerializeField] private StageSuccessModelView _stageSuccessModelView;
+        [SerializeField] private StageDataAsset _stageDataAsset;
+        public void SetupData(StagePassed stagePassed)
+        {
+            _stageDataAsset.AddStagePassed(stagePassed);
+            _stageSuccessModelView.SetupView(stagePassed.TotalStar);
+        }
     
 #if UNITY_EDITOR
-    [Button("SetupData", usePropertyAsParameter: true)]
-    [SerializeField] private int _testClaimingStars;
+        [Button("SetupData", usePropertyAsParameter: true)]
+        [SerializeField] private StagePassed _testStagePassed;
 #endif
+    }
 }

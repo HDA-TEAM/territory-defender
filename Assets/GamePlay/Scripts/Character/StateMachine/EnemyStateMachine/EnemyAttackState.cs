@@ -1,4 +1,5 @@
 using DG.Tweening;
+using GamePlay.Scripts.Character.StateMachine;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 
 public class EnemyAttackState : CharacterAttackState

@@ -4,11 +4,10 @@ using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
 using GamePlay.Scripts.Stage;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.GamePlayController
 {
-    public partial class InGameStateController : GamePlaySingletonBase<InGameStateController>
+    public partial class InGameStateController : GamePlayMainFlowBase
     {
 #if UNITY_EDITOR
         [Button("CheckingStageSuccess")]
@@ -17,16 +16,14 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private bool _isFastSetupStageForTest;
 #endif
 
-        [FormerlySerializedAs("_inventoryRuntimeData")]
         [Header("Data"), Space(12)] [SerializeField]
         private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private GameResultHandler _resultsController;
         [SerializeField] private StageDataConfig _stageDataConfig;
         [SerializeField] private StageEnemySpawningFactory _enemySpawningFactory;
+        [SerializeField] private UnitManager _unitManager;
         // Access
-        public StageId CurStageId { get; private set; }
         public bool IsGamePlaying { get; private set; }
-
         private bool IsFinishSpawn;
 
         protected override void Awake()
@@ -34,7 +31,13 @@ namespace GamePlay.Scripts.GamePlayController
             base.Awake();
             _resourceRuntimeData.RegisterLifeChange(OnLifeChange);
         }
-        public void Start()
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
+        }
+       
+        private void Init()
         {
             IsFinishSpawn = false;
             IsGamePlaying = true;
@@ -48,28 +51,20 @@ namespace GamePlay.Scripts.GamePlayController
         }
         private void Update()
         {
-            if (UnitManager.Instance.IsEmptyActiveEnemy
+            if (_unitManager.IsEmptyActiveEnemy
                 && IsGamePlaying
                 && IsFinishSpawn)
                 CheckingStageSuccess();
-        }
-        protected override void OnDestroy()
-        {
-            _resourceRuntimeData.UnRegisterLifeChange(OnLifeChange);
         }
         private void OnLifeChange(int life)
         {
             CheckingEndGame(life);
         }
-        // private bool IsStageSuccess()
-        // {
-        //     return IsFinishSpawn;
-        // }
         private void CheckingStageSuccess()
         {
             Debug.Log("End StageSuccess");
             IsGamePlaying = false;
-            _resultsController.ShowStageSuccessPu();
+            _resultsController.ShowStageSuccessPu(_startStageComposite);
         }
         private void CheckingEndGame(int life)
         {
@@ -83,7 +78,7 @@ namespace GamePlay.Scripts.GamePlayController
                 _resultsController.ShowStageFailedPu();
             }
         }
-        public void StartSpawning()
+        private void StartSpawning()
         {
             _enemySpawningFactory.StartSpawning(OnFinishedSpawning);
         }

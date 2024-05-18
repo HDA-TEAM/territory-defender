@@ -1,7 +1,8 @@
 using Common.Scripts;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
-using GamePlay.Scripts.GamePlayController;
+using GamePlay.Scripts.GamePlay;
+using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -34,9 +35,11 @@ namespace Common.Loading.Scripts
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.GamePlay);
             await SceneManager.LoadSceneAsync(sceneLoadingName);
              SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
-            // SceneManager.UnloadSceneAsync(SceneIdentified.GetSceneName(ESceneIdentified.Home));
-            
-            InGameStateController.Instance.SetUpNewGame(_curStartStageComposite);
+
+            Messenger.Default.Publish(new SetUpNewGamePayload
+            {
+                StartStageComposite = _curStartStageComposite,
+            });
             
             for (int i = 0; i <= 10; i++)
             {

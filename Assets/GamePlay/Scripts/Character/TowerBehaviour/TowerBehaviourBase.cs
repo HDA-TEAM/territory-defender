@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Tower.TowerKIT;
 
 namespace GamePlay.Scripts.Character.StateMachine.TowerBehaviour
@@ -8,6 +9,13 @@ namespace GamePlay.Scripts.Character.StateMachine.TowerBehaviour
         public virtual void Setup(TowerKit towerKit)
         {
             _towerKit = towerKit;
+            
+            var rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.AttackRange);
+            towerKit.TowerRangingHandler().SetUp(rangeVal);
+        }
+        public virtual void ShowTool()
+        {
+            _towerKit.TowerRangingHandler().SetShowRanging(true);
         }
         
     }

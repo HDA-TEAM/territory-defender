@@ -5,6 +5,7 @@ using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
 using GamePlay.Scripts.Tower.TowerKIT;
+using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         // Default 3 units
         private readonly int _maxAllyCount = 3;
         private readonly float _minPerUnitDistance = 0.5f;
-        private readonly float _cooldownReviveUnit = 1f;
+        [SerializeField] private float _cooldownReviveUnit;
         [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
         [SerializeField] private float _campingRange;
         [SerializeField] private Vector3 _campingPos;
@@ -24,29 +25,48 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         protected override void StatsUpdate()
         {
             var stats = _unitBaseParent.UnitStatsHandlerComp();
+            _cooldownReviveUnit = stats.GetCurrentStatValue(StatId.TimeToRevive);
             _campingRange = stats.GetCurrentStatValue(StatId.CampingRange);
         }
         private void OnEnable()
         {
             StatsUpdate();
         }
+        public override void ShowTool()
+        {
+            _towerKit.TowerRangingHandler().SetShowRanging(false);
+        }
         public override void Setup(TowerKit towerKit)
         {
-            base.Setup(towerKit);
+            _towerKit = towerKit;
+            
+            var rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
+            towerKit.TowerRangingHandler().SetUp(rangeVal);
+            
             _parentPos = _towerKit.transform.position;
             for (int i = 0; i < _maxAllyCount; i++)
-                SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
-            Vector3 campingPos = RouteSetController.Instance.GetNearestPosFromRoute(_parentPos);
-            SetCampingPlace(campingPos);
+                Messenger.Default.Publish(new OnSpawnObjectPayload
+                {
+                    ActiveAtSpawning = false,
+                    ObjectType = UnitId.Ally.Warrior.ToString(),
+                    OnSpawned = SpawnSingleUnit,
+                });
+            Messenger.Default.Publish(new OnGetNearestPosFromRoutePayload
+            {
+                PosInput = _parentPos,
+                OnCalculateSuccess = SetCampingPlace,
+            });
         }
 
         /// Spawning new object from pool and set on revive for it
-        private void SpawnSingleUnit(string objectType)
+        private void SpawnSingleUnit(GameObject objectSpawned)
         {
-            GameObject ally = PoolingController.Instance.SpawnObject(objectType, _parentPos);
-            UnitBase unitBase = ally.GetComponent<UnitBase>();
+            UnitBase unitBase = objectSpawned.GetComponent<UnitBase>();
+            unitBase.UnitStatsHandlerComp().ReplaceBaseStats(_unitBaseParent.UnitStatsHandlerComp().GetBaseStats());
             unitBase.UnitReviveHandlerComp().SetupRevive(OnWaitingToRevive);
             unitBase.OnUpdateStats?.Invoke();
+            objectSpawned.transform.position = _towerKit.transform.position;
+            objectSpawned.SetActive(true);
             _allyUnits.Add(unitBase);
         }
         private void OnDisable()
@@ -70,8 +90,12 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
 
             // Spawning new unit from pool
-            SpawnSingleUnit(UnitId.Ally.Warrior.ToString());
-
+            Messenger.Default.Publish(new OnSpawnObjectPayload
+            {
+                ActiveAtSpawning = false,
+                ObjectType = UnitId.Ally.Warrior.ToString(),
+                OnSpawned = SpawnSingleUnit,
+            });
         }
         // private void 
         public void SetCampingPlace(Vector3 newCampingPos)

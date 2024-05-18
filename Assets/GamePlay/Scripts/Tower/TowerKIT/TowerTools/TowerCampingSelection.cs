@@ -7,30 +7,20 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
 {
     public class TowerCampingSelection : MonoBehaviour
     {
-        [SerializeField] private Image _imgRangeCamping;
         [SerializeField] private Button _clickButton;
-        [SerializeField] private float _durationFlaggingAnim;
         [SerializeField] private Image _imgFlag;
+        [SerializeField] private float _durationFlaggingAnim;
         private Action _onSelectCampingPlace;
 
         private void Awake()
         {
             _clickButton.onClick.AddListener(OnClickSelectCampingPlace);
         }
-        public void SetUp(float range, Action onSelectCampingPlace)
+        public void SetUp(Action onSelectCampingPlace)
         {
-            _imgRangeCamping.enabled = true;
+            _clickButton.image.enabled = true;
             _imgFlag.gameObject.SetActive(false);
             _onSelectCampingPlace = onSelectCampingPlace;
-            
-            // todo get real range
-            range *= 50;
-            SetRangeOfTower(range);
-        }
-        
-        private void SetRangeOfTower(float range)
-        {
-            _clickButton.image.rectTransform.sizeDelta = new Vector2(range * 2, range * 2);
         }
         private void OnClickSelectCampingPlace()
         {
@@ -45,7 +35,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         }
         private async void PlaySetCampingFlagAnim()
         {
-            _imgRangeCamping.enabled = false;
+            _clickButton.image.enabled = false;
             _imgFlag.gameObject.SetActive(true);
             await UniTask.Delay(TimeSpan.FromSeconds(_durationFlaggingAnim));
             _imgFlag.gameObject.SetActive(false);

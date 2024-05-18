@@ -1,4 +1,6 @@
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Character.UnitController;
+using GamePlay.Scripts.GamePlayController;
 using System.Collections.Generic;
 
 public class ERangerTroopController : UnitController

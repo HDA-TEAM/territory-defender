@@ -68,8 +68,7 @@ namespace Features.StageInfo.Scripts.StageInfoView
             Debug.Log($"StageId: {stage.StageId}, GameMode: {gameMode}, Hero : {hero.Name}");
             LoadingSceneController.Instance.LoadingHomeToGame(new StartStageComposite
             {
-                // Demo
-                StageId = StageId.Chap1Stage0,
+                StageId = stage.StageId,
                 StageDiff = StageDiff.Normal,
                 HeroId = hero.HeroId,
             });

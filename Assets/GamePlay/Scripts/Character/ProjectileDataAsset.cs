@@ -1,45 +1,39 @@
 using Common.Scripts.Utilities;
 using DG.Tweening;
-using GamePlay.Scripts.GamePlayController;
+using GamePlay.Scripts.Projectile;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public enum EProjectileType
+namespace GamePlay.Scripts.Character
 {
-    Arrow = 1,
-    WaterBomb = 2,
-}
-
-[CreateAssetMenu(fileName = "ProjectileDataAsset", menuName = "ScriptableObject/Stage/ProjectileDataAsset")]
-public class ProjectileDataAsset : ScriptableObject
-{
-    [SerializeField] private List<ProjectileBase> _projectileBases = new List<ProjectileBase>();
-    // Get route between cur pos to target 
-    public ProjectileBase GetProjectileBase(string unitId, int level = 1)
+    public enum EProjectileType
     {
-        var bullet = PoolingController.Instance.SpawnObject(unitId);
-        return bullet.GetComponent<ProjectileBase>();
+        Arrow = 1,
+        WaterBomb = 2,
     }
 
-    // [SerializeField] private AnimationCurve bowAttackCurve;
-    // public void GetLineRoute(Vector2 posSpawn, BulletType bulletType,UnitBase target)
-    // {
-    //     var bullet = PoolingController.Instance.SpawnObject(UnitId.ArrowBullet,posSpawn);
-    //     new ProjectileTrajectoryRouteLine().ApplyLineRoute(bullet, target, bowAttackCurve);
-    // }
-}
+    [CreateAssetMenu(fileName = "ProjectileDataAsset", menuName = "ScriptableObject/Stage/ProjectileDataAsset")]
+    public class ProjectileDataAsset : ScriptableObject
+    {
+        [SerializeField] private List<ProjectileBase> _projectileBases = new List<ProjectileBase>();
+        // Get route between cur pos to target 
+        // public ProjectileBase GetProjectileBase(string unitId, int level = 1)
+        // {
+        //     var bullet = PoolingController.Instance.SpawnObject(unitId);
+        //     return bullet.GetComponent<ProjectileBase>();
+        // }
+    }
 
-public interface IProjectileLineRoute
-{
-    void ApplyLineRoute(
-        GameObject curWeapon,
-        UnitBase target,
-        AnimationCurve customCurve,
-        float duration = 1f,
-        float unitHeight = 1,
-        TweenCallback callback = null);
-}
+    public interface IProjectileLineRoute
+    {
+        Tween ApplyLineRoute(
+            GameObject curWeapon,
+            UnitBase target,
+            AnimationCurve customCurve,
+            float duration = 1f,
+            float unitHeight = 1,
+            TweenCallback callback = null);
+    }
 // public class ArcRouteLine : WeaponLineRoute
 // {
 //     public Tween ApplyLineRoute(UnitBase curWeapon,UnitBase target)
@@ -81,56 +75,57 @@ public interface IProjectileLineRoute
 //     }
 // }
 
-public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
-{
-    public void ApplyLineRoute(
-        GameObject curWeapon,
-        UnitBase target,
-        AnimationCurve customCurve,
-        float duration = 1f,
-        float unitHeight = 1,
-        TweenCallback callback = null)
+    public class ProjectileTrajectoryRouteLine : IProjectileLineRoute
     {
-        float t = 0f;
-        Vector3 startPos = curWeapon.transform.position;
-        Vector3 prevBulletPos = startPos;
-        Vector3 midPoint = (startPos + target.transform.position) / 2f;
-        midPoint += Vector3.up * unitHeight;
-        DOTween.To(() => t, x => t = x, 1f, duration)
-            .SetEase(customCurve)
-            .OnUpdate(() =>
-            {
+        public Tween ApplyLineRoute(
+            GameObject curWeapon,
+            UnitBase target,
+            AnimationCurve customCurve,
+            float duration = 1f,
+            float unitHeight = 1,
+            TweenCallback callback = null)
+        {
+            float t = 0f;
+            Vector3 startPos = curWeapon.transform.position;
+            Vector3 prevBulletPos = startPos;
+            Vector3 midPoint = (startPos + target.transform.position) / 2f;
+            midPoint += Vector3.up * unitHeight;
+            return DOTween.To(() => t, x => t = x, 1f, duration)
+                .SetEase(customCurve)
+                .OnUpdate(() =>
+                {
 
-                // Calculate the position of the arrow based on the Bezier curve equation.
-                Vector3 newPosition = CalculateBezierPoint(
-                    t,
-                    startPos,
-                    midPoint,
-                    target.transform.position
-                );
-                // Update the arrow's position.
-                curWeapon.transform.position = newPosition;
+                    // Calculate the position of the arrow based on the Bezier curve equation.
+                    Vector3 newPosition = CalculateBezierPoint(
+                        t,
+                        startPos,
+                        midPoint,
+                        target.transform.position
+                    );
+                    // Update the arrow's position.
+                    curWeapon.transform.position = newPosition;
 
-                // Update the arrow's angle
-                float zAngle = VectorUtility.GetZAngleOfTwoPoint(prevBulletPos, newPosition);
-                curWeapon.transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
+                    // Update the arrow's angle
+                    float zAngle = VectorUtility.GetZAngleOfTwoPoint(prevBulletPos, newPosition);
+                    curWeapon.transform.rotation = Quaternion.Euler(0f, 0f, zAngle);
 
-                //Update previous pos of bullet
-                prevBulletPos = newPosition;
+                    //Update previous pos of bullet
+                    prevBulletPos = newPosition;
 
-            })
-            .OnComplete(callback);
-    }
+                })
+                .OnComplete(callback);
+        }
 
-    private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
-    {
-        // Bezier curve equation: B(t) = (1-t)^2 * P0 + 2 * (1-t) * t * P1 + t^2 * P2
-        float u = 1f - t;
-        float tt = t * t;
-        float uu = u * u;
-        Vector3 p = uu * p0; // (1-t)^2 * P0
-        p += 2f * u * t * p1; // 2 * (1-t) * t * P1
-        p += tt * p2; // t^2 * P2
-        return p;
+        private Vector3 CalculateBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
+        {
+            // Bezier curve equation: B(t) = (1-t)^2 * P0 + 2 * (1-t) * t * P1 + t^2 * P2
+            float u = 1f - t;
+            float tt = t * t;
+            float uu = u * u;
+            Vector3 p = uu * p0; // (1-t)^2 * P0
+            p += 2f * u * t * p1; // 2 * (1-t) * t * P1
+            p += tt * p2; // t^2 * P2
+            return p;
+        }
     }
 }
