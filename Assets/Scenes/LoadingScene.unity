@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 989689628}
   - component: {fileID: 989689627}
   m_Layer: 0
-  m_Name: UICanvas
+  m_Name: UILoadingCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -744,7 +744,7 @@ MonoBehaviour:
   m_Player:
     play: 1
     initialPlayDelay: 0
-    duration: 2
+    duration: 4
     loop: 1
     loopDelay: 0
     updateMode: 0

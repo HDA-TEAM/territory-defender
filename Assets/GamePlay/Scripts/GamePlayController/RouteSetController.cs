@@ -1,21 +1,26 @@
-using Common.Loading.Scripts;
 using Common.Scripts.Utilities;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Route;
 using GamePlay.Scripts.Route.PreviewCallWaveTooltip;
+using SuperMaxim.Messaging;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
-    public class RouteSetController : GamePlaySingletonBase<RouteSetController>
+    public struct OnGetNearestPosFromRoutePayload
+    {
+        public Vector3 PosInput;
+        public Action<Vector3> OnCalculateSuccess;
+    }
+    public class RouteSetController : GamePlayMainFlowBase
     {
         [Button("SaveToConfig")]
         [Button("LoadFromConfig")]
         [SerializeField] private StageId _currentStageId;
-
         [SerializeField] private List<SingleRoute> _currentSingleRouteComposite = new List<SingleRoute>();
         [SerializeField] private List<SingleRoute> _activeSingleRouteComposite;
         [SerializeField] private RouteSetConfig _routeSetConfig;
@@ -27,6 +32,18 @@ namespace GamePlay.Scripts.GamePlayController
                 return _activeSingleRouteComposite;
             }
         }
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            Messenger.Default.Subscribe<OnGetNearestPosFromRoutePayload>(GetNearestPosFromRoute);
+        }
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            Messenger.Default.Unsubscribe<OnGetNearestPosFromRoutePayload>(GetNearestPosFromRoute);
+        }
+        
         private void Start()
         {
             foreach (var lineRender in _currentSingleRouteComposite)
@@ -112,7 +129,7 @@ namespace GamePlay.Scripts.GamePlayController
                     _activeSingleRouteComposite.Add(tSingleRoute);
             }
         }
-        public Vector3 GetNearestPosFromRoute(Vector3 posInput)
+        private void GetNearestPosFromRoute(OnGetNearestPosFromRoutePayload payload)
         {
             float nearestDis = float.MaxValue;
             Vector3 res = Vector3.zero;
@@ -120,7 +137,7 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 for (int i = 0; i < routeLineRender.SingleLineRenderer.positionCount; i++)
                 {
-                    float curDis = VectorUtility.Distance2dOfTwoPos(posInput, routeLineRender.SingleLineRenderer.GetPosition(i));
+                    float curDis = VectorUtility.Distance2dOfTwoPos(payload.PosInput, routeLineRender.SingleLineRenderer.GetPosition(i));
                     if (!(nearestDis > curDis))
                         continue;
                     nearestDis = curDis;
@@ -128,17 +145,15 @@ namespace GamePlay.Scripts.GamePlayController
 
                 }
             }
-            return res;
+            payload.OnCalculateSuccess?.Invoke(res);
         }
-
-        public override void SetUpNewGame(StartStageComposite startStageComposite)
+        protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
-            _currentStageId = startStageComposite.StageId;
+            _currentStageId = setUpNewGamePayload.StartStageComposite.StageId;
             LoadFromConfig();
         }
-        public override void ResetGame()
+        protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {
-
         }
     }
 }

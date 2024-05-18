@@ -61,9 +61,20 @@ namespace GamePlay.Scripts.Data
         [Button("AddStagePassed", usePropertyAsParameter: true)]
         [SerializeField] private StagePassed TestStagePassed;
 #endif
-        public void AddStagePassed(StagePassed stagePassed)
+        public void AddStagePassed(StagePassed newStagePassed)
         {
-            ListStagePassed.Add(stagePassed);
+            StagePassed existStagePassed = ListStagePassed.Find((stage) => stage.StageId == newStagePassed.StageId);
+            // not existStagePassed
+            if (existStagePassed.TotalStar == 0)
+                ListStagePassed.Add(newStagePassed);
+            // Compare lager
+            else if (existStagePassed.TotalStar < newStagePassed.TotalStar)
+            {
+                ListStagePassed.Remove(existStagePassed);
+                ListStagePassed.Add(newStagePassed);
+            }
+            else
+                return;
             SaveData();
         }
     }

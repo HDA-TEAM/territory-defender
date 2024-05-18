@@ -1,4 +1,3 @@
-using Common.Loading.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
@@ -9,7 +8,7 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
 {
-    public class TowerKitSetController : GamePlaySingletonBase<TowerKitSetController>
+    public class TowerKitSetController : GamePlayMainFlowBase
     {
         [Button("SaveToConfig")]
         [Button("LoadFromConfig")]
@@ -18,7 +17,7 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private TowerKitSetConfig _towerKitSetConfig;
         [SerializeField] private List<TowerKit> _currentTowerKits = new List<TowerKit>();
         [SerializeField] private List<GameObject> _currentObjectTowers = new List<GameObject>();
-        public TowerKit CurrentSelectedKit;
+        [SerializeField] private TowerKit _currentSelectedKit;
         private TowerKit _preSelectedKit;
         private Action _onSelected;
 
@@ -72,7 +71,7 @@ namespace GamePlay.Scripts.GamePlayController
             // Setup callback when selected
             foreach (TowerKit kit in _currentTowerKits)
             {
-                kit.Setup(SetCurrentSelectedKit);
+                kit.Setup(SetCurrentSelectedKit, this);
             }
         }
         private void SetCurrentSelectedKit(TowerKit towerKit)
@@ -81,15 +80,16 @@ namespace GamePlay.Scripts.GamePlayController
             {
                 _preSelectedKit.OnCancelMenu();
             }
-            CurrentSelectedKit = towerKit;
-            _preSelectedKit = CurrentSelectedKit;
+            _currentSelectedKit = towerKit;
+            _preSelectedKit = _currentSelectedKit;
         }
-        public override void SetUpNewGame(StartStageComposite startStageComposite)
+        public bool IsCurrentSelectedKit(TowerKit towerKit) => towerKit == _currentSelectedKit;
+        protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
-            _currentStageId = startStageComposite.StageId;
+            _currentStageId = setUpNewGamePayload.StartStageComposite.StageId;
             LoadFromConfig();
         }
-        public override void ResetGame()
+        protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {
         }
     }

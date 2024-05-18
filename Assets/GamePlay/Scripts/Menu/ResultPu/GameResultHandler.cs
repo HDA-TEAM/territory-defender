@@ -1,3 +1,4 @@
+using Common.Loading.Scripts;
 using Common.Scripts.Navigator;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
@@ -10,14 +11,12 @@ namespace GamePlay.Scripts.Menu.ResultPu
     public class GameResultHandler : MonoBehaviour
     {
         private readonly CalculateStageSuccessRewarding _calculateStageSuccess = new CalculateStageSuccessRewarding();
-
-        [FormerlySerializedAs("_inventoryRuntimeData")]
         [SerializeField] private InGameResourceRuntimeData _resourceRuntimeData;
         [SerializeField] private StageDataConfig _stageDataConfig;
 
-        public async void ShowStageSuccessPu()
+        public async void ShowStageSuccessPu(StartStageComposite startStageComposite)
         {
-            StageId stageId = GamePlayController.InGameStateController.Instance.CurStageId;
+            StageId stageId = startStageComposite.StageId;
             int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
             int curLife = _resourceRuntimeData.GetLifeValue();
 
@@ -33,7 +32,11 @@ namespace GamePlay.Scripts.Menu.ResultPu
                 });
             
             if (stageSuccessPu)
-                stageSuccessPu.SetupData(curClaimStarsCount);
+                stageSuccessPu.SetupData(new StagePassed
+                {
+                    StageId = stageId,
+                    TotalStar = curClaimStarsCount,
+                });
         }
         public void ShowStageFailedPu()
         {

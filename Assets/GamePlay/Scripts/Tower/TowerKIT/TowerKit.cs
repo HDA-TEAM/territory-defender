@@ -39,6 +39,9 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [SerializeField] private SpriteRenderer _spiteFlag;
 
         [Header("Tower Camping Selection"), Space(12)]
+        [SerializeField] private TowerRangingHandler _towerRangingHandler;
+        
+        [Header("Tower Camping Selection"), Space(12)]
         [SerializeField] private TowerCampingSelection _towerCampingSelection;
         
         [Header("Preview Tooltip"), Space(12)]
@@ -74,11 +77,12 @@ namespace GamePlay.Scripts.Tower.TowerKIT
 
         #region Access
         public UnitId.Tower GetTowerId() => _towerId;
-
+        public TowerRangingHandler TowerRangingHandler() => _towerRangingHandler;
         public UnitBase GetUnitBase() => _unitBase;
     
         #endregion
-    
+
+        private TowerKitSetController _towerKitSetController;
         private void Start()
         {
             TowerKitState = TowerKitState.Default;
@@ -86,7 +90,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         private void OnSelected()
         {
-            if (TowerKitSetController.Instance.CurrentSelectedKit == this 
+            if (_towerKitSetController.IsCurrentSelectedKit(this)
                 && (TowerKitState == TowerKitState.ShowToolOfTowerExisted || TowerKitState == TowerKitState.Building))
             {
                 // reset state
@@ -119,6 +123,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         {
             _canvasGroupBtn.alpha = 0f;
             _spiteFlag.gameObject.SetActive(false);
+            _towerRangingHandler.SetShowRanging(false);
             _towerBuildTool.SetActive(false);
             _towerUsingTool.SetActive(false);
             _towerShowTooltip.HideAll();
@@ -146,7 +151,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                 case TowerKitState.ShowToolOfTowerExisted:
                     {
                         _towerUsingTool.SetActive(true);
-                    
+                        
+                        _unitBase.TowerBehaviourBase().ShowTool();
                         _unitBase.UnitShowingInformationComp().ShowUnitInformation();
 
                         Messenger.Default.Publish(new AudioPlayOneShotPayload
@@ -158,6 +164,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                     }
                 case TowerKitState.Hiding:
                     {
+                        _towerRangingHandler.SetShowRanging(false);
                         Messenger.Default.Publish(new HandleCancelRaycastPayload
                         {
                             UnitSelectionShowType = EUnitSelectionShowType.HidingAll,
@@ -169,9 +176,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                 default: throw new ArgumentOutOfRangeException();
             }
         }
-        public void Setup(Action<TowerKit> onSelected)
+        public void Setup(Action<TowerKit> onSelected, TowerKitSetController towerKitSetController)
         {
             _onSelected = onSelected;
+            _towerKitSetController = towerKitSetController;
         }
         private void CheckAndRemoveExistTower()
         {
@@ -203,13 +211,6 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         {
             _towerShowTooltip.ShowTooltip(towerPreviewToolTipBase);
         }
-        public void UpgradeTower()
-        {
-            // _towerEntity = tp;
-            // _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
-            // _towerEntity.transform.position = _spawnTowerHolder.transform.position;
-            // TowerKitState = TowerKitState.Hiding;
-        }
         public int GetSoldTowerCoin()
         {
             // Logic get 30% coin used 
@@ -223,6 +224,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT
 
             _unitBase = null;
             Destroy(_towerEntity);
+
+            // Hiding tower info
+            Messenger.Default.Publish(new HideUnitInformationPayload());
+            
             TowerKitState = TowerKitState.Default;
         }
         private void SetFlagActive(bool isActive)
@@ -231,14 +236,14 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         public void ActiveCampingMode()
         {
-        
-            var rangeVal= _unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
-
             TowerKitState = TowerKitState.Hiding;
             SetFlagActive(true);
             
             _towerCampingSelection.gameObject.SetActive(true);
-            _towerCampingSelection.SetUp(rangeVal, OnSelectCampingPlace);
+            // Hiding select camping position
+            SetFlagActive(false);
+            
+            _towerCampingSelection.SetUp(OnSelectCampingPlace);
         }
         private void OnSelectCampingPlace()
         {
@@ -250,8 +255,6 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             troopTowerBehaviour.SetCampingPlace(campingPos);
             _towerCampingSelection.SetFlagCampingPos(campingPos);
             
-            // Hiding select camping position
-            SetFlagActive(false);
             TowerKitState = TowerKitState.Hiding;
         }
     }

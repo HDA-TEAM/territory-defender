@@ -11,7 +11,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         }
         private bool IsTroopTower()
         {
-            var unitBase = TowerKitSetController.Instance.CurrentSelectedKit.GetUnitBase();
+            var unitBase = _towerKit.GetUnitBase();
             var towerStats = unitBase.UnitStatsHandlerComp();
             return towerStats.GetCurrentStatValue(StatId.CampingRange) > 0;
         }

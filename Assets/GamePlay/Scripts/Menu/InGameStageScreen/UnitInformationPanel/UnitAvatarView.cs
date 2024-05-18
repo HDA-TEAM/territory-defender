@@ -1,4 +1,3 @@
-using Common.Scripts;
 using GamePlay.Scripts.Data;
 using TMPro;
 using UnityEngine;
@@ -14,7 +13,7 @@ namespace GamePlay.Scripts.Menu.UnitInformationPanel
         public void Setup(ShowStatsInformationComposite statsInformationComposite)
         {
             _txtName.text = statsInformationComposite.Name;
-            UnitDataComposite unitDataComposite = _totalUnitDataConfig.GetSingleUnitDataConfig(UnitId.Hero.TrungTrac.ToString());
+            UnitDataComposite unitDataComposite = _totalUnitDataConfig.GetSingleUnitDataConfig(statsInformationComposite.UnitBase.UnitId);
             if (unitDataComposite.UnitSprites.AvatarIcon)
             {
                 _avatar.sprite = unitDataComposite.UnitSprites.AvatarIcon;

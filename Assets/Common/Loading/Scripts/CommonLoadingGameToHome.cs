@@ -1,4 +1,6 @@
 using Cysharp.Threading.Tasks;
+using GamePlay.Scripts.GamePlay;
+using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,13 +12,13 @@ namespace Common.Loading.Scripts
     {
         public override async void StartLoading(Action onCompleted, IProgress<float> progress)
         {
-            GamePlay.Scripts.GamePlayController.InGameStateController.Instance.ResetGame();
-            
+            Messenger.Default.Publish(new ResetGamePayload());
+
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.Home);
             await SceneManager.LoadSceneAsync(sceneLoadingName);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
             // SceneManager.UnloadSceneAsync(SceneIdentified.GetScenePath(ESceneIdentified.GamePlay));
-            
+
             for (int i = 0; i <= 10; i++)
             {
                 progress.Report(i * 0.1f);

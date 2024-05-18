@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Character.UnitController;
 using System.Collections.Generic;
 
 public class EnemyTroopController : UnitController
