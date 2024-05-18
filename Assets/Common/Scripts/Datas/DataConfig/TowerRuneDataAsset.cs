@@ -11,9 +11,9 @@ using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 [CreateAssetMenu(fileName = "TowerRuneDataAsset", menuName = "ScriptableObject/DataAsset/TowerRuneDataAsset")]
 public class TowerRuneDataAsset : ScriptableObject
 {
-    [SerializedDictionary("TowerId", "TowerDataConfig")] [SerializeField]
-    private SerializedDictionary<UnitId.Tower, TowerDataConfig> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataConfig>();
-    [SerializeField] private TowerDataAsset _towerDataAsset;
+    [SerializedDictionary("TowerId", "TowerDataConfig")] 
+    public SerializedDictionary<UnitId.Tower, TowerDataConfig> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataConfig>();
+    public TowerDataAsset _towerDataAsset;
 
     [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
     public int _returnStar;
@@ -83,8 +83,6 @@ public class TowerRuneDataAsset : ScriptableObject
         // Optionally, sort the RuneLevels list by RuneId
         towerDataConfig._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
     }
-
-    
     private void UpgradeRune(TowerDataConfig towerDataConfig, int index)
     {
         if (towerDataConfig._runeLevels == null || index < 0 || index >= towerDataConfig._runeLevels.Count)

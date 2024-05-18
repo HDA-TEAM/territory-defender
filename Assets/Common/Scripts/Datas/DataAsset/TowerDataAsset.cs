@@ -11,6 +11,7 @@ public class TowerDataAsset : BaseDataAsset<TowerDataModel>
 {
     public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
+        Debug.Log("SaveTowers");
         List<TowerDataSaver> newTowerList = new List<TowerDataSaver>(); // Create a new list for towers
         foreach (var kvp in towerTypeDict)
         {
