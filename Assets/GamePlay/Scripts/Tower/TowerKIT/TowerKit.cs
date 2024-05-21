@@ -4,6 +4,7 @@ using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Character.TowerBehaviour;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlayController;
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using GamePlay.Scripts.Tower.TowerKIT.PreviewTooltip;
 using GamePlay.Scripts.Tower.TowerKIT.TowerTools;
 using SuperMaxim.Messaging;

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GamePlay.Scripts.Menu.UnitInformationPanel
+namespace GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel
 {
     public struct ShowStatsInformationComposite
     {
