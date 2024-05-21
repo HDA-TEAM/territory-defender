@@ -14,19 +14,15 @@ namespace Common.Loading.Scripts
             foreach (var localData in _localDataList)
             {
                 localData.LoadData();
-                Debug.Log("Load " + localData.name);
                 await UniTask.WaitUntil(localData.IsDoneLoadData);
-                Debug.Log("Done Load " + localData.name);
             }
         }
         private async UniTask LoadingScene()
         {
-            Debug.Log("LoadingScene ");
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.Home);
             await SceneManager.LoadSceneAsync(sceneLoadingName, LoadSceneMode.Single);
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
             await UniTask.WaitUntil(() => SceneManager.GetActiveScene().name == sceneLoadingName);
-            Debug.Log("Done LoadingScene ");
         }
         public override async void StartLoading(Action onCompleted, IProgress<float> progress)
         {
