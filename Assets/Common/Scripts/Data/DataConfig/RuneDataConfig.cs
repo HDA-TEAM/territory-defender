@@ -1,15 +1,17 @@
-using System.Collections.Generic;
+using Common.Scripts.Data.DataAsset;
+using Features.MasteryPage.Scripts.Rune;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Features.MasteryPage.Scripts.Rune
+namespace Common.Scripts.Data.DataConfig
 {
     [CreateAssetMenu(fileName = "Rune", menuName = "ScriptableObject/Data/Rune")]
     public class RuneDataConfig : ScriptableObject
     {
         [SerializeField]
         private RuneId _runeId;
-    
+
         public string _name;
         public int _maxLevel;
         [JsonIgnore]
@@ -18,7 +20,9 @@ namespace Features.MasteryPage.Scripts.Rune
         public Sprite _avatarStarted;
 
         public List<EffectId> _effects;
-        public RuneId GetRuneId() => _runeId;
-
+        public RuneId GetRuneId()
+        {
+            return _runeId;
+        }
     }
 }

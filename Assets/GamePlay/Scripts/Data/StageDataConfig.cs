@@ -1,4 +1,4 @@
-using Common.Scripts.Datas;
+using Common.Scripts.Data.DataConfig;
 using CustomInspector;
 using Newtonsoft.Json;
 using System;

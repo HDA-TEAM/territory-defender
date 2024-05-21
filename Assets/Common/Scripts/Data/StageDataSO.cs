@@ -1,7 +1,7 @@
 using GamePlay.Scripts.Data;
 using UnityEngine;
 
-namespace Features.StageInfo.Scripts.StageInfoView
+namespace Common.Scripts.Data
 {
     [CreateAssetMenu(fileName = "Stage", menuName = "ScriptableObject/Data/Stage")]
     public class StageDataSO : ScriptableObject

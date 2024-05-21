@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 
-namespace Common.Scripts.Datas
+namespace Common.Scripts.Data.DataAsset
 {
     public interface IDefaultDataModel
     {

@@ -1,12 +1,10 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AYellowpaper.SerializedCollections;
-using Common.Scripts;
-using Common.Scripts.Datas;
 using UnityEngine;
 
-namespace Features.HeroInformation
+namespace Common.Scripts.Data.DataAsset
 {
     [Serializable]
     public struct HeroDataModel : IDefaultDataModel

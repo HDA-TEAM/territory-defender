@@ -1,4 +1,4 @@
-using Common.Scripts.Datas;
+using Common.Scripts.Data.DataAsset;
 using System;
 using UnityEngine;
 

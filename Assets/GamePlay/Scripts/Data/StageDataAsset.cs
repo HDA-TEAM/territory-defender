@@ -1,9 +1,10 @@
-using Common.Scripts.Datas;
 using CustomInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using Common.Scripts.Data;
+using Common.Scripts.Data.DataAsset;
 using Features.MasteryPage.Scripts.Rune;
 using Features.StageInfo.Scripts.StageInfoView;
 using UnityEngine;

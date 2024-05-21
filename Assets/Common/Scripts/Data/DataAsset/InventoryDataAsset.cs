@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Common.Scripts.Datas.DataAsset
+namespace Common.Scripts.Data.DataAsset
 {
     public enum InventoryType
     {
