@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Common.Scripts.Data.DataAsset
 {
     [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
-    public class TowerDataAsset : BaseDataAsset<TowerDataModel>
+    public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     {
         public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
         {

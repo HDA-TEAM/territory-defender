@@ -21,7 +21,7 @@ namespace Common.Scripts.Data.DataAsset
     }
     
     [CreateAssetMenu(fileName = "HeroDataAsset", menuName = "ScriptableObject/DataAsset/HeroDataAsset")]
-    public class HeroDataAsset : BaseDataAsset<HeroDataModel>
+    public class HeroDataAsset : LocalDataAsset<HeroDataModel>
     {
         [SerializedDictionary("HeroId", "HeroDataSO")]
         [SerializeField] private SerializedDictionary<UnitId.Hero, HeroDataSO> _heroDataDict = new SerializedDictionary<UnitId.Hero, HeroDataSO>();

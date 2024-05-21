@@ -33,7 +33,7 @@ namespace GamePlay.Scripts.Data
     }
 
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
-    public class StageDataAsset : BaseDataAsset<StageDataModel>
+    public class StageDataAsset : LocalDataAsset<StageDataModel>
     {
         [SerializedDictionary("StageId", "StageDataSO")] 
         [SerializeField] private SerializedDictionary<StageId, StageDataSO> _stageDataDict = new SerializedDictionary<StageId, StageDataSO>();

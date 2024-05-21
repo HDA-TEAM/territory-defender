@@ -47,7 +47,7 @@ namespace Common.Scripts.Data.DataAsset
     }
     
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
-    public class InventoryDataAsset : BaseDataAsset<InventoryDataModel>
+    public class InventoryDataAsset : LocalDataAsset<InventoryDataModel>
     {
         public List<InventoryData> InventoryDatas;
         
