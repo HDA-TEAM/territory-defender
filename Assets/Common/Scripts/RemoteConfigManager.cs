@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class RemoteConfigManager : SingletonBase<RemoteConfigManager>
+public class RemoteConfigManager : MonoBehaviour
 {
     #region Remote keys
 
@@ -20,12 +20,12 @@ public class RemoteConfigManager : SingletonBase<RemoteConfigManager>
     {
         FetchDataAsync();
     }
-    public Task FetchDataAsync() {
+    private void FetchDataAsync() {
         Debug.Log("Fetching data...");
         Task fetchTask =
             FirebaseRemoteConfig.DefaultInstance.FetchAsync(
                 TimeSpan.Zero);
-        return fetchTask.ContinueWithOnMainThread(FetchComplete);
+        fetchTask.ContinueWithOnMainThread(FetchComplete);
     }
     private void FetchComplete(Task fetchTask) {
         if (!fetchTask.IsCompleted) {

@@ -1,8 +1,10 @@
+using Common.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using GamePlay.Scripts.Menu.ResultPu;
 using GamePlay.Scripts.Stage;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace GamePlay.Scripts.GamePlayController
@@ -48,6 +50,11 @@ namespace GamePlay.Scripts.GamePlayController
 #endif
             StageConfig stageConfig = _stageDataConfig.GeConfigByKey(_startStageComposite.StageId);
             _resourceRuntimeData.InitData(stageConfig);
+
+            Messenger.Default.Publish(new StageStartPayload
+            {
+                StageId = _startStageComposite.StageId,
+            });
         }
         private void Update()
         {
