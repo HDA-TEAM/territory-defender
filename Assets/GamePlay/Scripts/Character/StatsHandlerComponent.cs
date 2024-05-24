@@ -1,4 +1,5 @@
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using GamePlay.Scripts.Menu.UnitInformationPanel;
 using System;
 using UnityEngine;

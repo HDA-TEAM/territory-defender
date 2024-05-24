@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemBackView : MonoBehaviour
+namespace Common.Scripts
 {
-    [SerializeField] private Button _backButton;
-    
-    private void Start()
+    public class ItemBackView : MonoBehaviour
     {
-        _backButton.onClick.AddListener(OnBackButtonPressed);
-    }
+        [SerializeField] private Button _backButton;
     
-    private void OnBackButtonPressed()
-    {
-        var stateMachine = UIManagerStateMachine.Instance;   
-        stateMachine.BackPressed();
+        private void Start()
+        {
+            _backButton.onClick.AddListener(OnBackButtonPressed);
+        }
+    
+        private void OnBackButtonPressed()
+        {
+            var stateMachine = UIManagerStateMachine.Instance;   
+            stateMachine.BackPressed();
+        }
     }
 }
 

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public abstract class GameObjectUtility
+namespace Common.Scripts.Utilities
 {
-    public static float Distance2dOfTwoGameObject(GameObject goA, GameObject goB)
+    public abstract class GameObjectUtility
     {
-        return Vector2.Distance(goA.transform.position, goB.transform.position);
+        public static float Distance2dOfTwoGameObject(GameObject goA, GameObject goB)
+        {
+            return Vector2.Distance(goA.transform.position, goB.transform.position);
+        }
     }
 }

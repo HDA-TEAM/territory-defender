@@ -1,4 +1,5 @@
 using Common.Scripts;
+using Common.Scripts.Data.DataAsset;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

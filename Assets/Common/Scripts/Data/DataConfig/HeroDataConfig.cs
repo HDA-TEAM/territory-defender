@@ -1,11 +1,11 @@
-using Common.Scripts;
-using Common.Scripts.Datas;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HeroDataConfig", menuName = "ScriptableObject/Config/HeroDataConfig")]
-public class HeroDataConfig : DataConfigBase<UnitId.Hero,HeroDataConfig>
+namespace Common.Scripts.Data.DataConfig
 {
-    
+    [CreateAssetMenu(fileName = "HeroDataConfig", menuName = "ScriptableObject/Config/HeroDataConfig")]
+    public class HeroDataConfig : DataConfigBase<UnitId.Hero, HeroDataConfig>
+    {
+
 // #if UNITY_EDITOR
 //     [Button("ParseToJson")]
 //     [Button("ReadJsonData")]
@@ -26,4 +26,5 @@ public class HeroDataConfig : DataConfigBase<UnitId.Hero,HeroDataConfig>
 //     //     }
 //     // }
 // #endif
+    }
 }

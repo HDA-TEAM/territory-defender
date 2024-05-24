@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using SuperMaxim.Messaging;
 using UnityEngine.EventSystems;
 

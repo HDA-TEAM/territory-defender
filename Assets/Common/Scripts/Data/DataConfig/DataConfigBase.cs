@@ -1,13 +1,13 @@
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace Common.Scripts.Datas
+namespace Common.Scripts.Data.DataConfig
 {
-    public abstract class DataConfigBase<TKey,TVal> : ScriptableObject
+    public abstract class DataConfigBase<TKey, TVal> : ScriptableObject
     {
-        [SerializeField] [SerializedDictionary("TKey","TVal")]
-        protected SerializedDictionary<TKey,TVal> _data;
-        
+        [SerializeField] [SerializedDictionary("TKey", "TVal")]
+        protected SerializedDictionary<TKey, TVal> _data;
+
         public TVal GeConfigByKey(TKey keyId)
         {
             _data.TryGetValue(keyId, out TVal unitDataComposite);

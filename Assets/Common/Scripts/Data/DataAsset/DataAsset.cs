@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using System.IO;
 using UnityEngine;
 
-namespace Common.Scripts.Datas
+namespace Common.Scripts.Data.DataAsset
 {
     public interface IDefaultDataModel
     {
@@ -10,8 +10,37 @@ namespace Common.Scripts.Datas
         public void SetDefault();
     }
 
-    public class DataAsset<T> : ScriptableObject where T: struct, IDefaultDataModel
+    public abstract class DataAsset : ScriptableObject
     {
+        protected bool _isDoneLoadData;
+        protected abstract void SaveData();
+
+        public abstract void LoadData();
+
+        public abstract bool IsDoneLoadData();
+    }
+
+    public abstract class LocalDataAsset<T> : DataAsset where T : struct, IDefaultDataModel
+    {
+        [SerializeField] private string _filename;
+        [SerializeField] protected T _model;
+
+        protected override void SaveData()
+        {
+            SaveLocalData(_filename, _model);
+        }
+
+        public override void LoadData()
+        {
+            LoadLocalData(_filename, out _model);
+        }
+
+        public override bool IsDoneLoadData()
+        {
+            return _isDoneLoadData;
+        }
+
+
         // Check file exist function
         private bool IsFileExist(string filePath)
         {
@@ -22,23 +51,23 @@ namespace Common.Scripts.Datas
         {
             return Path.Combine(Application.persistentDataPath, filename);
         }
-        protected void SaveData(string filename, T model)
+        private void SaveLocalData(string filename, T model)
         {
             string filePath = GetFilePath(filename);
-        
-            // TODO
-            // if (!IsFileExist(filePath))
-            // {
-            //     model = new T();
-            //     model.SetDefault();
-            // }
-        
+
+            if (!IsFileExist(filePath))
+            {
+                model = new T();
+                model.SetDefault();
+            }
+
             string data = JsonConvert.SerializeObject(model);
             File.WriteAllText(filePath, data);
         }
-    
-        protected void LoadData(string filename, out T model)
+
+        private void LoadLocalData(string filename, out T model)
         {
+            _isDoneLoadData = false;
             string filePath = GetFilePath(filename);
 
             if (IsFileExist(filePath))
@@ -56,24 +85,7 @@ namespace Common.Scripts.Datas
                 model = new T();
                 model.SetDefault();
             }
+            _isDoneLoadData = true;
         }
-    
-    }
-    public abstract class BaseDataAsset<T>: DataAsset<T> where T: struct, IDefaultDataModel // Model
-    {
-        [SerializeField] private string _filename;
-        [SerializeField] protected T _model;
-    
-    
-        protected void SaveData()
-        {
-            base.SaveData(_filename, _model);
-        }
-    
-        public void LoadData()
-        {
-            base.LoadData(_filename, out _model);
-        }
-
     }
 }

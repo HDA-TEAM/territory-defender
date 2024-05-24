@@ -1,12 +1,10 @@
+using AYellowpaper.SerializedCollections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AYellowpaper.SerializedCollections;
-using Common.Scripts;
-using Common.Scripts.Datas;
 using UnityEngine;
 
-namespace Features.HeroInformation
+namespace Common.Scripts.Data.DataAsset
 {
     [Serializable]
     public struct HeroDataModel : IDefaultDataModel
@@ -23,7 +21,7 @@ namespace Features.HeroInformation
     }
     
     [CreateAssetMenu(fileName = "HeroDataAsset", menuName = "ScriptableObject/DataAsset/HeroDataAsset")]
-    public class HeroDataAsset : BaseDataAsset<HeroDataModel>
+    public class HeroDataAsset : LocalDataAsset<HeroDataModel>
     {
         [SerializedDictionary("HeroId", "HeroDataSO")]
         [SerializeField] private SerializedDictionary<UnitId.Hero, HeroDataSO> _heroDataDict = new SerializedDictionary<UnitId.Hero, HeroDataSO>();
