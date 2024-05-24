@@ -1,4 +1,5 @@
 using GamePlay.Scripts.Character.StateMachine;
+using GamePlay.Scripts.Character.StateMachine.AllyStateMachine;
 using GamePlay.Scripts.Character.StateMachine.EnemyStateMachine;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.NCalc;
