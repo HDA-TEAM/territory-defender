@@ -28,6 +28,8 @@ namespace GamePlay.Scripts.Data
         {
             _currency = stageInventory.StartCoin;
             _life = stageInventory.MaxHealth;
+            _onCurrencyChange?.Invoke(_currency);
+            _onLifeChange?.Invoke(_life);
         }
         public void TryChangeCurrency(int value)
         {

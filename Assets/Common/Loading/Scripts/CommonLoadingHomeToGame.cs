@@ -39,6 +39,7 @@ namespace Common.Loading.Scripts
             
             await UniTask.WaitUntil(() => SceneManager.GetActiveScene().name == sceneLoadingName);
             
+            Debug.Log("SetUpNewGamePayload " + _curStartStageComposite.StageId);
             Messenger.Default.Publish(new SetUpNewGamePayload
             {
                 StartStageComposite = _curStartStageComposite,
