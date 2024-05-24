@@ -52,7 +52,6 @@ public class RemoteConfigManager : SingletonBase<RemoteConfigManager>
                     catch (Exception e)
                     {
                         Debug.LogError(e);
-                        throw;
                     }
                     Debug.Log($"Remote data loaded and ready for use. Last fetch time {info.FetchTime}.");
                 });

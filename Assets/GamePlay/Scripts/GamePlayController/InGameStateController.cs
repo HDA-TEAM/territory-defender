@@ -46,8 +46,8 @@ namespace GamePlay.Scripts.GamePlayController
             if (_isFastSetupStageForTest)
                 SetUpTestNewGame(_startStageComposite);
 #endif
-
-            _resourceRuntimeData.InitData(_stageDataConfig.GeConfigByKey(_startStageComposite.StageId));
+            StageConfig stageConfig = _stageDataConfig.GeConfigByKey(_startStageComposite.StageId);
+            _resourceRuntimeData.InitData(stageConfig);
         }
         private void Update()
         {
