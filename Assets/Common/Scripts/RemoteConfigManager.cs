@@ -1,4 +1,3 @@
-using Common.Scripts;
 using Firebase.Extensions;
 using Firebase.RemoteConfig;
 using GamePlay.Scripts.Data;
