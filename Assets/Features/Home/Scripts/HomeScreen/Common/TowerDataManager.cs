@@ -1,5 +1,6 @@
+using Common.Scripts;
+using Common.Scripts.Data.DataConfig;
 using System.Collections.Generic;
-using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
 
 public class TowerDataManager : SingletonBase<TowerDataManager>

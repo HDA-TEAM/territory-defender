@@ -1,6 +1,7 @@
 using Common.Scripts;
 using Cysharp.Threading.Tasks;
 using SuperMaxim.Messaging;
+using System;
 using UnityEngine;
 
 namespace Common.Loading.Scripts
@@ -31,7 +32,7 @@ namespace Common.Loading.Scripts
             
             _loadingSceneModelView.ShowLoadingScene();
             
-            var progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
+            IProgress<float> progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
             
             _startToHomeCommonLoading.StartLoading(_loadingSceneModelView.HidingLoadingScene, progress: progress);
         }

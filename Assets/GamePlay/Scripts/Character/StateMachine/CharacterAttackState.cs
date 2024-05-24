@@ -23,12 +23,14 @@ namespace GamePlay.Scripts.Character.StateMachine
         public override void EnterState()
         {
             _attackSequence = DOTween.Sequence();
-
             _attackDame = Context.CharacterStats.GetCurrentStatValue(StatId.AttackDamage);
 
             // Reset cooldown next attack time
             SetAttackAnim(true);
-            _cooldownNextAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
+            float originAttack = Context.CharacterStats.GetCurrentStatValue(StatId.AttackSpeed);
+            if (originAttack <= 0)
+                originAttack = 1;
+            _cooldownNextAttack = 1 / originAttack;
             _onceNormalAttackDuringTime = Context.AnimationController.NormalAttackClip.length;
 
             HandleAttackProcessing();
@@ -80,7 +82,7 @@ namespace GamePlay.Scripts.Character.StateMachine
                         // Tower don't need to check distance, it always fire any target exist
                         if (Context.CharacterProjectileIUnitId == UnitId.Projectile.None)
                             return;
-                    
+
                         Messenger.Default.Publish(new OnSpawnObjectPayload
                         {
                             ActiveAtSpawning = false,

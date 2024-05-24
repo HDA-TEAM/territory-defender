@@ -1,32 +1,34 @@
 using DG.Tweening;
-using GamePlay.Scripts.Character.StateMachine;
 
-public class AllyAttackState : CharacterAttackState
+namespace GamePlay.Scripts.Character.StateMachine.AllyStateMachine
 {
-    private readonly BaseAllyStateMachine _context;
-    public AllyAttackState(BaseAllyStateMachine currentContext) : base(currentContext)
+    public class AllyAttackState : CharacterAttackState
     {
-        _context = currentContext;
-    }
-    public override void CheckSwitchState()
-    {
-        bool isSwitch = false;
-        if (_context.IsDie)
+        private readonly BaseAllyStateMachine _context;
+        public AllyAttackState(BaseAllyStateMachine currentContext) : base(currentContext)
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
-            isSwitch = true;
+            _context = currentContext;
         }
-        if (_context.UserActionController.IsInAction())
+        public override void CheckSwitchState()
         {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
-            isSwitch = true;
+            bool isSwitch = false;
+            if (_context.IsDie)
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Die));
+                isSwitch = true;
+            }
+            if (_context.UserActionController.IsInAction())
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+                isSwitch = true;
+            }
+            else if (!_context.IsAttack || _context.IsDie)
+            {
+                _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
+                isSwitch = true;
+            }
+            if (isSwitch)
+                _attackSequence.Kill();
         }
-        else if (!_context.IsAttack || _context.IsDie)
-        {
-            _context.CurrentState.SwitchState(_context.StateFactory.GetState(CharacterState.Idle));
-            isSwitch = true;
-        }
-        if (isSwitch)
-            _attackSequence.Kill();
     }
 }

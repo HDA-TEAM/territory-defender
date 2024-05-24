@@ -1,44 +1,46 @@
-using Common.Scripts.Navigator;
 using UnityScreenNavigator.Runtime.Core.Modal;
 using UnityScreenNavigator.Runtime.Core.Page;
 
-public static class NavigatorController
+namespace Common.Scripts.Navigator
 {
-    private static PageContainer _mainPageContainer;
-    public static PageContainer MainPageContainer
+    public static class NavigatorController
     {
-        get
+        private static PageContainer _mainPageContainer;
+        public static PageContainer MainPageContainer
         {
-            if (_mainPageContainer == null)
-                _mainPageContainer = PageContainer.Find("MainPageContainer");
-            return _mainPageContainer;
+            get
+            {
+                if (_mainPageContainer == null)
+                    _mainPageContainer = PageContainer.Find("MainPageContainer");
+                return _mainPageContainer;
+            }
         }
-    }
-    private static ModalContainer _mainModalContainer;
-    public static ModalContainer MainModalContainer
-    {
-        get
+        private static ModalContainer _mainModalContainer;
+        public static ModalContainer MainModalContainer
         {
-            if (_mainModalContainer == null)
-                _mainModalContainer = ModalContainer.Find("MainModalContainer");
-            return _mainModalContainer;
+            get
+            {
+                if (_mainModalContainer == null)
+                    _mainModalContainer = ModalContainer.Find("MainModalContainer");
+                return _mainModalContainer;
+            }
         }
-    }
 
-    public static void PushScreen()
-    {
-        MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, true);
-    }
-    public static void PopPage()
-    {
-        MainPageContainer.Pop(true);
-    }
-    public static void PopModal()
-    {
-        MainModalContainer.Pop(true);
-    }
-    public static void PopAllModal()
-    {
-        MainModalContainer.Pop(true,MainModalContainer.OrderedModalIds.Count);
+        public static void PushScreen()
+        {
+            MainPageContainer.Push<HomePage>(ResourceKey.Prefabs.HomeScreen, true);
+        }
+        public static void PopPage()
+        {
+            MainPageContainer.Pop(true);
+        }
+        public static void PopModal()
+        {
+            MainModalContainer.Pop(true);
+        }
+        public static void PopAllModal()
+        {
+            MainModalContainer.Pop(true,MainModalContainer.OrderedModalIds.Count);
+        }
     }
 }

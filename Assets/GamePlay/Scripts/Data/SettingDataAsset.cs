@@ -1,4 +1,4 @@
-using Common.Scripts.Datas;
+using Common.Scripts.Data.DataAsset;
 using System;
 using UnityEngine;
 
@@ -29,7 +29,7 @@ namespace GamePlay.Scripts.Data
         }
     }
     [CreateAssetMenu(fileName = "SettingDataAsset", menuName = "ScriptableObject/DataAsset/SettingDataAsset")]
-    public class SettingDataAsset : BaseDataAsset<SettingDataModel>
+    public class SettingDataAsset : LocalDataAsset<SettingDataModel>
     {
         public bool IsMusicOn
         {

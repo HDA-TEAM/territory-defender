@@ -1,3 +1,4 @@
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using GamePlay.Scripts.Menu.UnitInformationPanel;
 using System.Collections.Generic;
 using UnityEngine;

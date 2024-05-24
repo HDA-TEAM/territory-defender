@@ -4,6 +4,7 @@ using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
 using SuperMaxim.Messaging;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,22 +31,40 @@ namespace Common.Loading.Scripts
         {
             _curStartStageComposite = startStageComposite;
         }
-        public override async void StartLoading(Action onCompleted, IProgress<float> progress)
+        private async UniTask LoadingScene()
         {
             string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.GamePlay);
             await SceneManager.LoadSceneAsync(sceneLoadingName);
-             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
-
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
+            
+            await UniTask.WaitUntil(() => SceneManager.GetActiveScene().name == sceneLoadingName);
+            
+            Debug.Log("SetUpNewGamePayload " + _curStartStageComposite.StageId);
             Messenger.Default.Publish(new SetUpNewGamePayload
             {
                 StartStageComposite = _curStartStageComposite,
             });
-            
-            for (int i = 0; i <= 10; i++)
+        }
+        public override async void StartLoading(Action onCompleted, IProgress<float> progress)
+        {
+            _progress = progress;
+            _loadingSteps = new List<LoadingStep>
             {
-                progress.Report(i * 0.1f);
-                await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
-            }
+                new LoadingStep
+                {
+                    Percent = 0.9f,
+                    OnAction = LoadingScene,
+                    MinDelayNextStepDuration = 0.4f,
+                },
+                new LoadingStep
+                {
+                    Percent = 0.1f,
+                    OnAction = () => new UniTask(),
+                    MinDelayNextStepDuration = 0.1f,
+                }
+            };
+
+            await ExecuteLoadingStep();
             onCompleted?.Invoke();
         }
     }
