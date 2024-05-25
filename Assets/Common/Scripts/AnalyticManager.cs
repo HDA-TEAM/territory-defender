@@ -35,15 +35,15 @@ namespace Common.Scripts
         }
         private void LogEventStageStart(StageStartPayload stageStartPayload)
         {
-            // Firebase.Analytics.FirebaseAnalytics
-            //     .LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
-            // Firebase.Analytics.FirebaseAnalytics.LogEvent(
-            //     Firebase.Analytics.FirebaseAnalytics.EventSelectContent,
-            //     new Firebase.Analytics.Parameter(
-            //         Firebase.Analytics.FirebaseAnalytics.ParameterItemName, "name"),
-            //     new Firebase.Analytics.Parameter(
-            //         Firebase.Analytics.FirebaseAnalytics.UserPropertySignUpMethod, "Google")
-            // );
+            Firebase.Analytics.FirebaseAnalytics
+                .LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
+            Firebase.Analytics.FirebaseAnalytics.LogEvent(
+                Firebase.Analytics.FirebaseAnalytics.EventSelectContent,
+                new Firebase.Analytics.Parameter(
+                    Firebase.Analytics.FirebaseAnalytics.ParameterItemName, "name"),
+                new Firebase.Analytics.Parameter(
+                    Firebase.Analytics.FirebaseAnalytics.UserPropertySignUpMethod, "Google")
+            );
             try
             {
                 List<Parameter> parameters = new List<Parameter>
