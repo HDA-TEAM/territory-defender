@@ -1,4 +1,5 @@
-using System;
+#if UNITY_EDITOR
+using Common.Scripts;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -27,3 +28,4 @@ namespace _ZZ
         }
     }
 }
+#endif

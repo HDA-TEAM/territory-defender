@@ -1,5 +1,6 @@
 using Common.Scripts;
 using GamePlay.Scripts.Menu;
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using SuperMaxim.Messaging;
 using UnityEngine;
 

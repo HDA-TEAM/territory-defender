@@ -1,29 +1,32 @@
 using UnityEngine;
 
-public class ClickEffectHandle : MonoBehaviour
+namespace Common.Scripts.Effects
 {
-    [SerializeField] private ParticleSystem _clickingEffect;
-    private bool _isOnDown;
-    private Camera _camera;
-    private void Update()
+    public class ClickEffectHandle : MonoBehaviour
     {
-        switch (Input.anyKeyDown)
+        [SerializeField] private ParticleSystem _clickingEffect;
+        private bool _isOnDown;
+        private UnityEngine.Camera _camera;
+        private void Update()
         {
-            case true when _isOnDown == false:
-                _isOnDown = true;
-                OnPlayClickEffect();
-                break;
-            case false: _isOnDown = false;
-                break;
+            switch (Input.anyKeyDown)
+            {
+                case true when _isOnDown == false:
+                    _isOnDown = true;
+                    OnPlayClickEffect();
+                    break;
+                case false: _isOnDown = false;
+                    break;
+            }
         }
-    }
-    private void OnPlayClickEffect()
-    {
-        var screenPos = Input.mousePosition;
-        if (_camera == null)
-            _camera = Camera.main;
-        var worldPos = _camera.ScreenToWorldPoint(screenPos);
-        _clickingEffect.transform.position = worldPos;
-        _clickingEffect.Play();
+        private void OnPlayClickEffect()
+        {
+            var screenPos = Input.mousePosition;
+            if (_camera == null)
+                _camera = UnityEngine.Camera.main;
+            var worldPos = _camera.ScreenToWorldPoint(screenPos);
+            _clickingEffect.transform.position = worldPos;
+            _clickingEffect.Play();
+        }
     }
 }

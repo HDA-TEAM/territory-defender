@@ -17,11 +17,11 @@ MonoBehaviour:
     - Key: 100
       Value:
         StageId: 100
-        StartCoin: 10000
+        StartCoin: 200
         MaxHealth: 1
     - Key: 101
       Value:
         StageId: 101
         StartCoin: 150
         MaxHealth: 10
-  _dataString: '[{"StageId":100,"StartCoin":150,"MaxHealth":20}]'
+  _dataString: '[{"StageId":100,"StartCoin":10000,"MaxHealth":1},{"StageId":101,"StartCoin":150,"MaxHealth":10}]'

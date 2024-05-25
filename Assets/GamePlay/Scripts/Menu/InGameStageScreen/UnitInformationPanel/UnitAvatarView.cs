@@ -1,9 +1,10 @@
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Menu.UnitInformationPanel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GamePlay.Scripts.Menu.UnitInformationPanel
+namespace GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel
 {
     public class UnitAvatarView : MonoBehaviour
     {
