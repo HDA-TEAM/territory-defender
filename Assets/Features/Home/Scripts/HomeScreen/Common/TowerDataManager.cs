@@ -1,41 +1,45 @@
 using Common.Scripts;
 using Common.Scripts.Data.DataConfig;
+using Features.MasteryPage.Scripts.Tower;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class TowerDataManager : SingletonBase<TowerDataManager>
+namespace Features.Home.Scripts.HomeScreen.Common
 {
-      [FormerlySerializedAs("_towerRuneDataConfig")]
-      [Header("Data"), Space(12)]
-      [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
-      public List<TowerComposite> TowerComposites { get; private set; }
-
-      protected override void Awake()
+      public class TowerDataManager : SingletonBase<TowerDataManager>
       {
-            base.Awake();
-            LoadTowerData();
-      }
-      private void LoadTowerData()
-      {
-            if (TowerComposites == null) 
-                  TowerComposites = new List<TowerComposite>();
+            [FormerlySerializedAs("_towerRuneDataConfig")]
+            [Header("Data"), Space(12)]
+            [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
+            public List<TowerComposite> TowerComposites { get; private set; }
 
-            else TowerComposites.Clear();
-            
-            if (_towerRuneDataAsset == null)
-                  return;
-            
-            List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerDataConfig();
-            foreach (var towerDataSo in listTowerData)
+            protected override void Awake()
             {
-                  TowerComposites.Add(
-                        new TowerComposite
-                        {
-                              TowerId = towerDataSo.GetTowerId(),
-                              RuneLevels = towerDataSo.GetAllRuneDatLevels(),
-                        }
-                  );
+                  base.Awake();
+                  LoadTowerData();
+            }
+            private void LoadTowerData()
+            {
+                  if (TowerComposites == null) 
+                        TowerComposites = new List<TowerComposite>();
+
+                  else TowerComposites.Clear();
+            
+                  if (_towerRuneDataAsset == null)
+                        return;
+            
+                  List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerDataConfig();
+                  foreach (var towerDataSo in listTowerData)
+                  {
+                        TowerComposites.Add(
+                              new TowerComposite
+                              {
+                                    TowerId = towerDataSo.GetTowerId(),
+                                    RuneLevels = towerDataSo.GetAllRuneDatLevels(),
+                              }
+                        );
+                  }
             }
       }
 }

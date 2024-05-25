@@ -1,11 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts;
+using Common.Scripts.Data.DataAsset;
+using Common.Scripts.Data.DataConfig;
 using GamePlay.Scripts.Data;
 using UnityEngine;
-using TowerDataConfig = Features.MasteryPage.Scripts.Tower.TowerDataConfig;
 
 
 [CreateAssetMenu(fileName = "TowerRuneDataAsset", menuName = "ScriptableObject/DataAsset/TowerRuneDataAsset")]

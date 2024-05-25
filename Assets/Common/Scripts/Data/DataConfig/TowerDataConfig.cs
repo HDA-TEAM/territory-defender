@@ -1,8 +1,8 @@
-using Common.Scripts;
+using Common.Scripts.Data.DataAsset;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Features.MasteryPage.Scripts.Tower
+namespace Common.Scripts.Data.DataConfig
 {
     [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/DataAsset/TowerDataConfig")]
     public class TowerDataConfig : ScriptableObject

@@ -1,5 +1,6 @@
 using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data.DataAsset;
+using Features.MasteryPage.Scripts.Rune;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -123,10 +124,6 @@ namespace Common.Scripts.Data.DataConfig
 
             // Optionally save changes to disk or server
             _towerDataAsset.SaveTowers(_towerTypeDict);
-        }
-        public List<TowerSoSaver> GetTowerDataAsset()
-        {
-            return _towerDataAsset.LoadTowers();
         }
     }
 }

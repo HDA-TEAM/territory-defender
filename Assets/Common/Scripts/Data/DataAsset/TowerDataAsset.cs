@@ -11,12 +11,13 @@ namespace Common.Scripts.Data.DataAsset
     {
         public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
         {
-            List<TowerSoSaver> newTowerList = new List<TowerSoSaver>(); // Create a new list for towers
+            Debug.Log("SaveTowers");
+            List<TowerDataSaver> newTowerList = new List<TowerDataSaver>(); // Create a new list for towers
             foreach (var kvp in towerTypeDict)
             {
                 if (kvp.Value != null && kvp.Value._runeLevels is { Count: > 0 })
                 {
-                    var towerSoSaver = new TowerSoSaver
+                    var towerSoSaver = new TowerDataSaver
                     {
                         TowerId = kvp.Key,
                         RuneLevels = kvp.Value._runeLevels
@@ -28,9 +29,10 @@ namespace Common.Scripts.Data.DataAsset
             SaveData();
         }
     
-        public List<TowerSoSaver> LoadTowers()
+        public List<TowerDataSaver> GetTowers()
         {
             LoadData(); // Load the data from json file into _model
+            //TowerList = _model.TowerList ?? new List<TowerDataSaver>();
             return _model.TowerList;
         }
     }
@@ -38,7 +40,7 @@ namespace Common.Scripts.Data.DataAsset
     [Serializable]
     public struct TowerDataModel : IDefaultDataModel
     {
-        public List<TowerSoSaver> TowerList;
+        public List<TowerDataSaver> TowerList;
         public bool IsEmpty()
         {
             return (TowerList == null || TowerList.Count == 0);
@@ -46,9 +48,9 @@ namespace Common.Scripts.Data.DataAsset
         public void SetDefault()
         {
             // Ensure defaults are set for both lists
-            TowerList = new List<TowerSoSaver>
+            TowerList = new List<TowerDataSaver>
             {
-                new TowerSoSaver
+                new TowerDataSaver
                 {
                     TowerId = 0, // Default Tower ID
                     RuneLevels = new List<RuneLevel>() // Default empty rune levels
@@ -58,11 +60,10 @@ namespace Common.Scripts.Data.DataAsset
     }
 
     [Serializable]
-    public struct TowerSoSaver
+    public struct TowerDataSaver
     {
         public UnitId.Tower TowerId;
         public List<RuneLevel> RuneLevels;
-
     }
 
     [Serializable]
