@@ -1,6 +1,7 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Data;
+using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using GamePlay.Scripts.Menu.UnitInformationPanel;
 using System.Collections.Generic;
 

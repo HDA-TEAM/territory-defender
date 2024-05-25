@@ -1,9 +1,11 @@
-using Common.Scripts.Datas;
 using CustomInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using Common.Scripts.Data;
+using Common.Scripts.Data.DataAsset;
+using Features.MasteryPage.Scripts.Rune;
 using Features.StageInfo.Scripts.StageInfoView;
 using UnityEngine;
 
@@ -31,7 +33,7 @@ namespace GamePlay.Scripts.Data
     }
 
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
-    public class StageDataAsset : BaseDataAsset<StageDataModel>
+    public class StageDataAsset : LocalDataAsset<StageDataModel>
     {
         [SerializedDictionary("StageId", "StageDataSO")] 
         [SerializeField] private SerializedDictionary<StageId, StageDataSO> _stageDataDict = new SerializedDictionary<StageId, StageDataSO>();

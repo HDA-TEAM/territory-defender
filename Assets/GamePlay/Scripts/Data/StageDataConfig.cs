@@ -1,4 +1,4 @@
-using Common.Scripts.Datas;
+using Common.Scripts.Data.DataConfig;
 using CustomInspector;
 using Newtonsoft.Json;
 using System;
@@ -14,18 +14,37 @@ namespace GamePlay.Scripts.Data
         Chap1Stage1 = 101,
         Chap1Stage2 = 102,
     }
-    
-    [Serializable,Preserve]
+
+    [Serializable, Preserve]
     public struct StageConfig
     {
         public StageId StageId;
         public int StartCoin;
         public int MaxHealth;
     }
+
     [CreateAssetMenu(fileName = "StageDataConfig", menuName = "ScriptableObject/Configs/StageDataConfig")]
-    public class StageDataConfig : DataConfigBase<StageId,StageConfig>
+    public class StageDataConfig : DataConfigBase<StageId, StageConfig>
     {
-        #if UNITY_EDITOR
+
+        #region FireBaseConfig
+        public void SetRemoteConfig(string dataConfig)
+        {
+            try
+            {
+                List<StageConfig> stageParseData = JsonConvert.DeserializeObject<List<StageConfig>>(dataConfig);
+                _data.Clear();
+                foreach (var stage in stageParseData)
+                    _data.Add(stage.StageId, stage);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+            Debug.Log("Set remote config succeed for " + name);
+        }
+        #endregion
+#if UNITY_EDITOR
         [Button("ParseToJson")]
         [Button("ReadJsonData")]
         [SerializeField] private string _dataString;
@@ -39,9 +58,7 @@ namespace GamePlay.Scripts.Data
             List<StageConfig> stageParseData = JsonConvert.DeserializeObject<List<StageConfig>>(_dataString);
             _data.Clear();
             foreach (var stage in stageParseData)
-            {
-                _data.Add(stage.StageId,stage);
-            }
+                _data.Add(stage.StageId, stage);
         }
 #endif
     }
