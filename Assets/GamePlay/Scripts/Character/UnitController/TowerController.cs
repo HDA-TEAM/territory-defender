@@ -1,34 +1,39 @@
 using Common.Scripts.Utilities;
 using GamePlay.Scripts.Character.Stats;
-using GamePlay.Scripts.Character.UnitController;
 using GamePlay.Scripts.GamePlayController;
 using System.Collections.Generic;
 
-public class TowerController : UnitController
+namespace GamePlay.Scripts.Character.UnitController
 {
-    public override void UpdateStatus(List<UnitBase> targets)
+    public class TowerController : UnitController
     {
-        _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
-        // if (!CheckTargetAvailable())
-        //     return;
-
-        float nearestUnit = float.MaxValue;
-        UnitBase target = null;
-        foreach (var unit in targets)
+        public override void UpdateStatus(List<UnitBase> targets)
         {
-            float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, this.gameObject);
+            _unitBaseParent.CharacterStateMachine().UpdateStateMachine();
+            // if (!CheckTargetAvailable())
+            //     return;
 
-            if (betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.DetectRange))
+            float nearestUnit = float.MaxValue;
+            UnitBase target = null;
+            foreach (var unit in targets)
             {
-                if (nearestUnit > betweenDistance)
+                if (!unit || !unit.HealthComp() || unit.HealthComp().IsDie())
+                    continue;
+                
+                float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, gameObject);
+
+                if (betweenDistance < _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.AttackRange))
                 {
-                    nearestUnit = betweenDistance;
-                    target = unit;
+                    if (nearestUnit > betweenDistance)
+                    {
+                        nearestUnit = betweenDistance;
+                        target = unit;
+                    }
                 }
             }
+
+            OnChangeTarget(target, BeingTargetCommand.None);
         }
 
-        OnChangeTarget(target, BeingTargetCommand.None);
     }
-
 }
