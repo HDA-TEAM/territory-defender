@@ -7,17 +7,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d28d09f4c1c44d8f896cfb069a7f7907, type: 3}
   m_Name: InventoryDataAsset
   m_EditorClassIdentifier: 
   _filename: InventoryDataAsset
   _model:
-    ListInventoryDataSaver:
+    ListInventoryData:
+    - InventoryType: 1
+      Amount: 0
     - InventoryType: 2
-      Amount: 9
-  _stageDataAsset: {fileID: 11400000, guid: a5ed3e7e2e3ad447e95f9f42f34d16b0, type: 2}
-  InventoryDatas:
-  - InventoryType: 2
-    Amount: 9
+      Amount: 0
+    - InventoryType: 3
+      Amount: 0
+    - InventoryType: 4
+      Amount: 50
+  TestInventoryType: 4
+  TestAmountChange: 10

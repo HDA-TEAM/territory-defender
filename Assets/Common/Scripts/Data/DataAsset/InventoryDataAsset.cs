@@ -1,102 +1,106 @@
+using CustomInspector;
+using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
-using GamePlay.Scripts.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Scripts.Data.DataAsset
 {
     public enum InventoryType
     {
-        TotalStar   = 1, // Total Star of all Stage are conquered
-        TalentPoint = 2, // Available Point can be used to upgrade Runes
-        GoldenCoin  = 3, // Can be placed when purchase
-        SliverCoin  = 4, // Can be placed after complete each Stage
+        TotalStar = 1, // Total Star of all Stage are conquered
+        TalentPoint = 2, // Point use to upgrade Rune
+        GoldenCoin = 3, // Can be placed when purchase
+        SliverCoin = 4, // Can be placed after complete each Stage
     }
+
     [Serializable]
     public struct InventoryData
     {
         public InventoryType InventoryType;
         public int Amount;
-
-        #region Callback
-        private Action<int> _onAmountChange;
-        
-        // TODO: check event inside struct, maybe it not run when create new struct
-        public void RegisterAmountChange(Action<int> action) => _onAmountChange += action;
-        public void UnRegisterAmountChange(Action<int> action) => _onAmountChange -= action;
-        public void NotifyAmountChange() => _onAmountChange?.Invoke(this.Amount);
-        #endregion
-        
-        public void TryChangeAmount(int amount)
-        {
-            this.Amount += amount;
-        }
     }
-    
+
     [Serializable]
     public struct InventoryDataModel : IDefaultDataModel
     {
-        public List<InventoryData> ListInventoryDataSaver;
+        public List<InventoryData> ListInventoryData;
         public bool IsEmpty()
         {
             return false;
         }
         public void SetDefault()
         {
-            ListInventoryDataSaver = new List<InventoryData>();
+            ListInventoryData = new List<InventoryData>
+            {
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TotalStar,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TalentPoint,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.GoldenCoin,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.SliverCoin,
+                    Amount = 0,
+                },
+            };
         }
     }
-    
+
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : LocalDataAsset<InventoryDataModel>
     {
-        [SerializeField] private StageDataAsset _stageDataAsset;
-        
-        public List<InventoryData> InventoryDatas;
-
-        public void UpdateTalentPointAmount()
+        public List<InventoryData> InventoryDatas
         {
-            // Update talent point base on data in json
+            get
+            {
+                return _model.ListInventoryData ??= new List<InventoryData>();
+            }
+            set
+            {
+                _model.ListInventoryData = InventoryDatas;
+                SaveData();
+            }
         }
-        public int CalculatorTotalTalentPoint()
+#if UNITY_EDITOR
+        [Button("TestTryChangeInventoryData")]
+        public InventoryType TestInventoryType;
+        public int TestAmountChange;
+        public void TestTryChangeInventoryData()
         {
-            int totalStar = _stageDataAsset.GetTotalStar();
-            // for (int i = 0; i < InventoryDatas.Count; i++)
-            // {
-            //     if (InventoryDatas[i].InventoryType == InventoryType.CurrentTalentPoint)
-            //     {
-            //         InventoryData updatedInventory = InventoryDatas[i];
-            //         
-            //         // Talent point = total star * coefficient
-            //         updatedInventory.Amount = (int)(totalStar * 1.5);
-            //         InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
-            //
-            //         // If there's a callback registered, call it
-            //         updatedInventory.NotifyAmountChange();
-            //         break;
-            //     }
-            // }
-            // Total Talent point = total star * coefficient
-            return (int)(totalStar * 1.5);
+            TryChangeInventoryData(TestInventoryType, TestAmountChange);
         }
-        public void AmountDataChange(InventoryType type, int amountChange)
+#endif
+        public void TryChangeInventoryData(InventoryType type, int amountChange)
         {
             for (int i = 0; i < InventoryDatas.Count; i++)
             {
-                if (InventoryDatas[i].InventoryType == type)
-                {
-                    InventoryData updatedInventory = InventoryDatas[i];
-                    updatedInventory.Amount += amountChange;
-                    InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
+                if (InventoryDatas[i].InventoryType != type)
+                    continue;
+                InventoryData updatedInventory = InventoryDatas[i];
+                updatedInventory.Amount += amountChange;
+                InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
 
-                    // If there's a callback registered, call it
-                    updatedInventory.NotifyAmountChange();
-                    
-                    SaveInventoryData(updatedInventory);
-                    break;
-                }
+                NotifyAmountChange(type);
+                break;
             }
+        }
+        private static void NotifyAmountChange(InventoryType inventoryType)
+        {
+            Messenger.Default.Publish(new InventoryChangePayload
+            {
+                InventoryType = inventoryType,
+            });
         }
         public InventoryData GetInventoryDataByType(InventoryType type)
         {
@@ -106,30 +110,10 @@ namespace Common.Scripts.Data.DataAsset
         {
             return InventoryDatas;
         }
+    }
 
-        public void SaveInventoryData(InventoryData inventoryData)
-        {
-            List<InventoryData> newTowerList = new List<InventoryData>();
-            foreach (var data in InventoryDatas)
-            {
-                if (data.InventoryType == inventoryData.InventoryType)
-                {
-                    var newInventoryData = new InventoryData()
-                    {
-                        InventoryType = data.InventoryType,
-                        Amount = data.Amount
-                    };
-                    newTowerList.Add(newInventoryData); 
-                }
-            }
-            _model.ListInventoryDataSaver = newTowerList;
-            SaveData();
-        }
-
-        public void GetInventoryData()
-        {
-            LoadData();
-            InventoryDatas = _model.ListInventoryDataSaver ?? new List<InventoryData>();
-        }
+    public struct InventoryChangePayload
+    {
+        public InventoryType InventoryType;
     }
 }

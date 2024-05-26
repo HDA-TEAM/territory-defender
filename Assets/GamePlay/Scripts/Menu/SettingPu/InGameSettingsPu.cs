@@ -11,7 +11,7 @@ namespace GamePlay.Scripts.Menu.SettingPu
         [Header("UI")]
         [SerializeField] private Button _btnQuit;
    
-        private void OnEnable()
+        protected override void OnEnable()
         {
             _settingDataAsset.TimeScaleSetting = ETimeScaleType.Pause;
             SetupView();
