@@ -38,7 +38,6 @@ namespace GamePlay.Scripts.Character
         public void PlayHurting(float dame)
         {
             _currentHealth -= dame;
-            Debug.LogError("_currentHealth " + _currentHealth);
             SetHealthSlider();
 
             CheckDie();

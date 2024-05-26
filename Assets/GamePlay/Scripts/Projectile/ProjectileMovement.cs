@@ -37,7 +37,8 @@ namespace GamePlay.Scripts.Projectile
                 _particleCompleted.Play();
                 await UniTask.Delay(
                     TimeSpan.FromSeconds(_particleCompleted.main.duration));
-                _particleCompleted.Stop();
+                if (_particleCompleted)
+                    _particleCompleted.Stop();
             }
         
             gameObject.SetActive(false);

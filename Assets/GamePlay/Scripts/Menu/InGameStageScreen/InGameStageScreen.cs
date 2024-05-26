@@ -1,4 +1,5 @@
 using Common.Scripts.Navigator;
+using GamePlay.Scripts.Menu.SettingPu;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityScreenNavigator.Runtime.Core.Page;
