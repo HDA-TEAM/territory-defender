@@ -77,6 +77,10 @@ namespace Common.Scripts.Data.DataAsset
             {
                 return  _model.ListInventoryData ??= new List<InventoryData>();
             }
+            set
+            {
+                _model.ListInventoryData = InventoryDatas;
+            }
         }
         
         public void TryChangeInventoryData(InventoryType type, int amountChange)
