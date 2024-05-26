@@ -1,7 +1,7 @@
 using Common.Scripts;
 using GamePlay.Scripts.Character;
 using GamePlay.Scripts.Character.StateMachine;
-using GamePlay.Scripts.Character.StateMachine.TowerBehaviour;
+using GamePlay.Scripts.Character.TowerBehaviour;
 using GamePlay.Scripts.Character.UnitController;
 using GamePlay.Scripts.GamePlayController;
 using System;
