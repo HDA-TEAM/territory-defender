@@ -1,7 +1,7 @@
 using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.Tower.TowerKIT;
 
-namespace GamePlay.Scripts.Character.StateMachine.TowerBehaviour
+namespace GamePlay.Scripts.Character.TowerBehaviour
 {
     public class TowerBehaviourBase : UnitBaseComponent
     {
@@ -17,6 +17,5 @@ namespace GamePlay.Scripts.Character.StateMachine.TowerBehaviour
         {
             _towerKit.TowerRangingHandler().SetShowRanging(true);
         }
-        
     }
 }

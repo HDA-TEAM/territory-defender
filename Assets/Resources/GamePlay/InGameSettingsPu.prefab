@@ -231,7 +231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85.771484, y: -90.999985}
+  m_AnchoredPosition: {x: 0, y: -90.999985}
   m_SizeDelta: {x: 109, y: 92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6770130262682204507
@@ -897,8 +897,8 @@ MonoBehaviour:
   - {fileID: 5644655739403307707}
   _btnSound: {fileID: 5851720007937004548}
   _btnMusic: {fileID: 9186833909316944043}
-  _btnQuit: {fileID: 1580029748679628520}
   _settingDataAsset: {fileID: 11400000, guid: a715273e6e2004f21ae4bde9d592b8af, type: 2}
+  _btnQuit: {fileID: 1580029748679628520}
 --- !u!1 &2471879197144513937
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,7 +917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7429635418307487478
 RectTransform:
   m_ObjectHideFlags: 0

@@ -15,10 +15,12 @@ namespace GamePlay.Scripts.Character
         [SerializeField] private TMP_Text _txtToast;
         [SerializeField] private Slider _healthSlider;
         [SerializeField] private CanvasGroup _healthParentCanvasGroup;
-        [SerializeField] private float _unitDurationHealthChange = 2f;
-        private const float MinDurationShowToast = 0.5f;
+        [SerializeField] private float _unitDurationHealthChange = 1f;
+        [SerializeField] private float _unitDurationShowHealth = 2f;
 
-        private Tween _tweenProgressHeal;
+        private Tween _tweenProgressHealChange;
+        private Tween _tweenShowHealthBar;
+        private Sequence _sequenceProgressHeal;
         protected override void StatsUpdate()
         {
             StatsHandlerComponent stats = _unitBaseParent.UnitStatsHandlerComp();
@@ -29,7 +31,7 @@ namespace GamePlay.Scripts.Character
         protected override void BuffUpdate()
         {
             float curHealthUnit = _currentHealth / _maxHeath;
-            var stats = _unitBaseParent.UnitStatsHandlerComp();
+            StatsHandlerComponent stats = _unitBaseParent.UnitStatsHandlerComp();
             _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
             _currentHealth = curHealthUnit * _maxHeath;
         }
@@ -42,20 +44,31 @@ namespace GamePlay.Scripts.Character
 
             ShowToastHitting(dame);
         }
-        private async void SetHealthSlider()
+        private void SetHealthSlider()
         {
-            _healthParentCanvasGroup.alpha = 1;
-            var sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
-            // var duration = Math.Abs(_healthSlider.value - sliderValue) * _unitDurationHealthChange;
-            var duration = _unitDurationHealthChange;
-            // ensuring minDurationShowToast 
-            duration = duration < MinDurationShowToast ? MinDurationShowToast : duration;
-        
-            _tweenProgressHeal = _healthSlider.DOValue(sliderValue, duration).OnComplete(() =>
+            _sequenceProgressHeal?.Kill();
+            _sequenceProgressHeal = DOTween.Sequence();
+
+            float sliderValue = (float)(_currentHealth * 1.0 / _maxHeath);
+
+            _tweenProgressHealChange = _healthSlider.DOValue(sliderValue, _unitDurationHealthChange);
+
+            _tweenShowHealthBar = DOVirtual.DelayedCall(_unitDurationShowHealth, () =>
             {
                 _healthParentCanvasGroup.alpha = 0;
             });
-            await _tweenProgressHeal.AsyncWaitForCompletion();
+            _sequenceProgressHeal.Append(_tweenProgressHealChange);
+            _sequenceProgressHeal.Append(_tweenShowHealthBar);
+            _sequenceProgressHeal.OnKill(() =>
+            {
+                _healthSlider.value = sliderValue;
+                _healthParentCanvasGroup.alpha = 0;
+            });
+            _sequenceProgressHeal.OnUpdate(() =>
+            {
+                _healthParentCanvasGroup.alpha = 1;
+            });
+            _sequenceProgressHeal.Play();
         }
         private async void ShowToastHitting(float dame)
         {
@@ -64,6 +77,10 @@ namespace GamePlay.Scripts.Character
             await UniTask.Delay(TimeSpan.FromSeconds(1f));
             if (_txtToast)
                 _txtToast.gameObject.SetActive(false);
+        }
+        public bool IsDie()
+        {
+            return _currentHealth <= 0;
         }
         private void CheckDie()
         {
@@ -75,7 +92,7 @@ namespace GamePlay.Scripts.Character
         }
         private void OnDisable()
         {
-            _tweenProgressHeal.Kill();
+            _sequenceProgressHeal?.Kill();
         }
         public void ResetState()
         {

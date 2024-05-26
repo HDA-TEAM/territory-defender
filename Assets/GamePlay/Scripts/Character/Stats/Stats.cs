@@ -89,6 +89,7 @@ namespace GamePlay.Scripts.Character.Stats
         CampingRange = 4,
         BuffRange = 5,
         BuffPercent = 6,
+        ProjectileImpactRange = 7,
 
         /// Characteristic
         Level = 20,
