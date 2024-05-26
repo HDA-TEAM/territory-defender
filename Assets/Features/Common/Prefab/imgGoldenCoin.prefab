@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4870768951627595789}
   - component: {fileID: 4870768951627595791}
   - component: {fileID: 4870768951627595788}
+  - component: {fileID: 3599432323650131197}
+  - component: {fileID: 8037578039844539373}
   m_Layer: 5
   m_Name: imgGoldenCoin
   m_TagString: Untagged
@@ -77,6 +79,34 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3599432323650131197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870768951627595786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7c3c633bfce4d6a894f1a2ce4482642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _txtAmount: {fileID: 4870768952125063305}
+--- !u!114 &8037578039844539373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4870768951627595786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b36572eb62f54ba69fe68e534519e216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inventoryType: 3
+  _inventoryDataView: {fileID: 3599432323650131197}
+  _inventoryDataAsset: {fileID: 11400000, guid: a54b3b648b29c44e6b642be027fcb7a0, type: 2}
 --- !u!1 &4870768952125063303
 GameObject:
   m_ObjectHideFlags: 0

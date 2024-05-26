@@ -24,13 +24,15 @@ namespace GamePlay.Scripts.Data
         }
         public void SetDefault()
         {
-            IsMusicOn = false;
-            IsSoundOn = false;
+            IsMusicOn = true;
+            IsSoundOn = true;
         }
     }
     [CreateAssetMenu(fileName = "SettingDataAsset", menuName = "ScriptableObject/DataAsset/SettingDataAsset")]
     public class SettingDataAsset : LocalDataAsset<SettingDataModel>
     {
+        public Action<bool> OnChangeMusic;
+        public Action<bool> OnChangeSound;
         public bool IsMusicOn
         {
             get
@@ -40,6 +42,7 @@ namespace GamePlay.Scripts.Data
             set
             {
                 _model.IsMusicOn = value;
+                OnChangeMusic?.Invoke(value);
                 SaveData();
             }
         }
@@ -52,6 +55,7 @@ namespace GamePlay.Scripts.Data
             set
             {
                 _model.IsSoundOn = value;
+                OnChangeSound?.Invoke(value);
                 SaveData();
             }
         }

@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: InventoryDataAsset
   _model:
-    ListInventoryData: []
-  InventoryDatas:
-  - InventoryType: 1
-    Amount: 99
-  - InventoryType: 2
-    Amount: 99
+    ListInventoryData:
+    - InventoryType: 1
+      Amount: 0
+    - InventoryType: 2
+      Amount: 0
+    - InventoryType: 3
+      Amount: 0
+    - InventoryType: 4
+      Amount: 50
+  TestInventoryType: 4
+  TestAmountChange: 10
