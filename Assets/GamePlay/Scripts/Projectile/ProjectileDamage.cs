@@ -21,9 +21,10 @@ namespace GamePlay.Scripts.Projectile
         [Header("Sounds"),Space(12)]
         [SerializeField] private AudioClip _audioClipHit;
 
-        public void Setup(float dame)
+        public void Setup(float dame, float affectRange)
         {
             _dame = dame;
+            _affectRange = affectRange;
         }
         public void DealDamage(UnitBase target)
         {
