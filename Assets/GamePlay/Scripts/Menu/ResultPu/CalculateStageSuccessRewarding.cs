@@ -20,7 +20,6 @@ namespace GamePlay.Scripts.GamePlay
                 if (successCondition.IsPassCondition())
                 {
                     totalStarsRewarding += 1;
-                    Debug.Log(totalStarsRewarding);
                 }
             }
             return totalStarsRewarding;

@@ -22,11 +22,12 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         {
             // Checked enough coin to build
             _towerCanBuild = _towerDataConfigBase.GeConfigByKey(_towerBuildId).UnitBase;
-            var towerStats = _towerCanBuild.UnitStatsHandlerComp();
+            StatsHandlerComponent towerStats = _towerCanBuild.UnitStatsHandlerComp();
             return towerStats.GetCurrentStatValue(StatId.CoinNeedToBuild) <= _inGameResourceRuntimeData.GetCurrencyValue();
         }
         protected override void ApplyTool()
         {
+            _towerCanBuild.UnitController().enabled = true;
             GameObject tower = Instantiate(_towerCanBuild.gameObject);
             _towerKit.SetTower(tower, _towerBuildId);
             
@@ -40,6 +41,10 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
             _towerKit.ShowPreviewChanging(
                 new TowerPreviewBuiltTowerToolTip(_towerDataConfigBase, _towerBuildId)
             );
+            _towerCanBuild.UnitController().enabled = false;
+            GameObject tower = Instantiate(_towerCanBuild.gameObject);
+            _towerKit.SetPreviewTower(tower, _towerBuildId);
+
         }
     }
 }
