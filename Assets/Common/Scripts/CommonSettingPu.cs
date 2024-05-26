@@ -20,6 +20,10 @@ namespace Common.Scripts
             _btnSound.Setup(OnClickSound);
             _btnMusic.Setup(OnClickMusic);
         }
+        protected virtual void OnEnable()
+        {
+            SetupView();
+        }
 
         protected void SetupView()
         {

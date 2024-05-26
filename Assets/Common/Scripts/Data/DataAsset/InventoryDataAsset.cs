@@ -1,3 +1,5 @@
+using CustomInspector;
+using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,32 +8,19 @@ namespace Common.Scripts.Data.DataAsset
 {
     public enum InventoryType
     {
-        TotalStar =  1, // Total Star of all Stage are conquered
+        TotalStar = 1, // Total Star of all Stage are conquered
         TalentPoint = 2, // Point use to upgrade Rune
         GoldenCoin = 3, // Can be placed when purchase
         SliverCoin = 4, // Can be placed after complete each Stage
     }
+
     [Serializable]
     public struct InventoryData
     {
         public InventoryType InventoryType;
         public int Amount;
-
-        #region Callback
-        private Action<int> _onAmountChange;
-        
-        // TODO: check event inside struct, maybe it not run when create new struct
-        public void RegisterAmountChange(Action<int> action) => _onAmountChange += action;
-        public void UnRegisterAmountChange(Action<int> action) => _onAmountChange -= action;
-        public void NotifyAmountChange() => _onAmountChange?.Invoke(this.Amount);
-        #endregion
-        
-        public void TryChangeAmount(int amount)
-        {
-            this.Amount += amount;
-        }
     }
-    
+
     [Serializable]
     public struct InventoryDataModel : IDefaultDataModel
     {
@@ -42,30 +31,76 @@ namespace Common.Scripts.Data.DataAsset
         }
         public void SetDefault()
         {
-            ListInventoryData = new List<InventoryData>();
+            ListInventoryData = new List<InventoryData>
+            {
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TotalStar,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TalentPoint,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.GoldenCoin,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.SliverCoin,
+                    Amount = 0,
+                },
+            };
         }
     }
-    
+
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : LocalDataAsset<InventoryDataModel>
     {
-        public List<InventoryData> InventoryDatas;
-        
-        public void AmountDataChange(InventoryType type, int amountChange)
+        public List<InventoryData> InventoryDatas
+        {
+            get
+            {
+                return _model.ListInventoryData ??= new List<InventoryData>();
+            }
+            set
+            {
+                _model.ListInventoryData = InventoryDatas;
+                SaveData();
+            }
+        }
+#if UNITY_EDITOR
+        [Button("TestTryChangeInventoryData")]
+        public InventoryType TestInventoryType;
+        public int TestAmountChange;
+        public void TestTryChangeInventoryData()
+        {
+            TryChangeInventoryData(TestInventoryType, TestAmountChange);
+        }
+#endif
+        public void TryChangeInventoryData(InventoryType type, int amountChange)
         {
             for (int i = 0; i < InventoryDatas.Count; i++)
             {
-                if (InventoryDatas[i].InventoryType == type)
-                {
-                    InventoryData updatedInventory = InventoryDatas[i];
-                    updatedInventory.Amount += amountChange;
-                    InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
+                if (InventoryDatas[i].InventoryType != type)
+                    continue;
+                InventoryData updatedInventory = InventoryDatas[i];
+                updatedInventory.Amount += amountChange;
+                InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
 
-                    // If there's a callback registered, call it
-                    updatedInventory.NotifyAmountChange();
-                    break;
-                }
+                NotifyAmountChange(type);
+                break;
             }
+        }
+        private static void NotifyAmountChange(InventoryType inventoryType)
+        {
+            Messenger.Default.Publish(new InventoryChangePayload
+            {
+                InventoryType = inventoryType,
+            });
         }
         public InventoryData GetInventoryDataByType(InventoryType type)
         {
@@ -75,5 +110,10 @@ namespace Common.Scripts.Data.DataAsset
         {
             return InventoryDatas;
         }
+    }
+
+    public struct InventoryChangePayload
+    {
+        public InventoryType InventoryType;
     }
 }
