@@ -28,7 +28,7 @@ namespace Common.Scripts.Data.DataAsset
         
         public void TryChangeAmount(int amount)
         {
-            this.Amount += amount;
+            Amount += amount;
         }
     }
     
@@ -83,16 +83,15 @@ namespace Common.Scripts.Data.DataAsset
         {
             for (int i = 0; i < InventoryDatas.Count; i++)
             {
-                if (InventoryDatas[i].InventoryType == type)
-                {
-                    InventoryData updatedInventory = InventoryDatas[i];
-                    updatedInventory.Amount += amountChange;
-                    InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
+                if (InventoryDatas[i].InventoryType != type)
+                    continue;
+                InventoryData updatedInventory = InventoryDatas[i];
+                updatedInventory.Amount += amountChange;
+                InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
 
-                    // If there's a callback registered, call it
-                    updatedInventory.NotifyAmountChange();
-                    break;
-                }
+                // If there's a callback registered, call it
+                updatedInventory.NotifyAmountChange();
+                break;
             }
         }
         public InventoryData GetInventoryDataByType(InventoryType type)
