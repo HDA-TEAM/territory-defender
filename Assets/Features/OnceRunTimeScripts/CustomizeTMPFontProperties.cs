@@ -1,41 +1,43 @@
 #if UNITY_EDITOR
-using System;
-using UnityEngine;
-using UnityEditor;
 using TMPro;
+using UnityEditor;
+using UnityEngine;
 
-public class CustomizeTMPFontProperties : EditorWindow
+namespace Features.OnceRunTimeScripts
 {
-    private TMP_FontAsset newFontAsset;
-
-    [MenuItem("Tools/Customize TMP Font Properties")]
-    public static void ShowWindow()
+    public class CustomizeTMPFontProperties : EditorWindow
     {
-        GetWindow<CustomizeTMPFontProperties>("Customize TMP Font Properties");
-    }
+        private TMP_FontAsset newFontAsset;
+
+        [MenuItem("Tools/Customize TMP Font Properties")]
+        public static void ShowWindow()
+        {
+            GetWindow<CustomizeTMPFontProperties>("Customize TMP Font Properties");
+        }
 
 
-    void OnGUI()
-    {
-        GUILayout.Label("Customize Font Properties", EditorStyles.boldLabel);
+        void OnGUI()
+        {
+            GUILayout.Label("Customize Font Properties", EditorStyles.boldLabel);
         
-        newFontAsset = EditorGUILayout.ObjectField("Font Asset", newFontAsset, typeof(TMP_FontAsset), false) as TMP_FontAsset;
-        if (GUILayout.Button("Apply Changes"))
-        {
-            ApplyChangesToAllTMP();
+            newFontAsset = EditorGUILayout.ObjectField("Font Asset", newFontAsset, typeof(TMP_FontAsset), false) as TMP_FontAsset;
+            if (GUILayout.Button("Apply Changes"))
+            {
+                ApplyChangesToAllTMP();
+            }
         }
-    }
 
-    private void ApplyChangesToAllTMP()
-    {
-        TextMeshProUGUI[] texts = Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
-        foreach (TextMeshProUGUI text in texts)
+        private void ApplyChangesToAllTMP()
         {
-            Undo.RecordObject(text, "Customize TMP Font Properties");
-            if (newFontAsset != null) text.font = newFontAsset;
-            EditorUtility.SetDirty(text);
+            TextMeshProUGUI[] texts = Resources.FindObjectsOfTypeAll<TextMeshProUGUI>();
+            foreach (TextMeshProUGUI text in texts)
+            {
+                Undo.RecordObject(text, "Customize TMP Font Properties");
+                if (newFontAsset != null) text.font = newFontAsset;
+                EditorUtility.SetDirty(text);
+            }
+            Debug.Log("Customized properties applied to all TMP texts.");
         }
-        Debug.Log("Customized properties applied to all TMP texts.");
     }
 }
 #endif
