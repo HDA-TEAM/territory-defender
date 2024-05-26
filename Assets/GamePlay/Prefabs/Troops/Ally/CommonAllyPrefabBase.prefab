@@ -130,6 +130,7 @@ MonoBehaviour:
   _unitReviveHandler: {fileID: 7920704266535785964}
   _animationController: {fileID: 582174163768808235}
   _towerBehaviourBase: {fileID: 0}
+  UnitId: 
   CurrentTarget: {fileID: 0}
 --- !u!114 &3109024967751958898
 MonoBehaviour:
@@ -149,7 +150,8 @@ MonoBehaviour:
   _txtToast: {fileID: 8558587330452848467}
   _healthSlider: {fileID: 202728007452633824}
   _healthParentCanvasGroup: {fileID: 952266492841516387}
-  _unitDurationHealthChange: 2
+  _unitDurationHealthChange: 1
+  _unitDurationShowHealth: 2
 --- !u!114 &-866078463075045641
 MonoBehaviour:
   m_ObjectHideFlags: 0
