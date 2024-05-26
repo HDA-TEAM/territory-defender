@@ -1,16 +1,16 @@
-using System.Collections.Generic;
-using UnityEngine;
+using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Tower.TowerKIT;
 
-public class BuffTowerBehaviour : UnitBaseComponent
+namespace GamePlay.Scripts.Character.TowerBehaviour
 {
-    
-    // [SerializeField] private List<UnitBase> _buffsBuffer;
-    // [SerializeField] private float _buffRange;
-    //
-    // protected override void StatsUpdate()
-    // {
-    //     var stats = _unitBaseParent.UnitStatsHandlerComp();
-    //     _buffRange = stats.GetCurrentStatValue(StatId.BuffRange);
-    // }
-   
+    public class BuffTowerBehaviour : TowerBehaviourBase
+    {
+        public override void Setup(TowerKit towerKit)
+        {
+            _towerKit = towerKit;
+            
+            var rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.BuffRange);
+            towerKit.TowerRangingHandler().SetUp(rangeVal);
+        }
+    }
 }

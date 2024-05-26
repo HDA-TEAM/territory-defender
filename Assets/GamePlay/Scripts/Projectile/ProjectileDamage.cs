@@ -1,5 +1,6 @@
 using Common.Scripts;
 using Common.Scripts.Utilities;
+using GamePlay.Scripts.Character;
 using SuperMaxim.Messaging;
 using System.Linq;
 using UnityEngine;
@@ -21,9 +22,10 @@ namespace GamePlay.Scripts.Projectile
         [Header("Sounds"),Space(12)]
         [SerializeField] private AudioClip _audioClipHit;
 
-        public void Setup(float dame)
+        public void Setup(float dame, float affectRange)
         {
             _dame = dame;
+            _affectRange = affectRange;
         }
         public void DealDamage(UnitBase target)
         {
@@ -31,6 +33,7 @@ namespace GamePlay.Scripts.Projectile
             {
                 AudioClip = _audioClipHit,
             });
+
             switch (_dealDamageType)
             {
                 case EProjectileDealDamageType.Crowd:
@@ -81,8 +84,12 @@ namespace GamePlay.Scripts.Projectile
     {
         public void ApplyDealDamage(UnitBase mainTarget, float dame)
         {
-            if (mainTarget &&mainTarget.HealthComp())
-                mainTarget.HealthComp().PlayHurting(dame);
+            if (!mainTarget || !mainTarget.HealthComp() || mainTarget.HealthComp().IsDie())
+                return;
+            
+            HealthComp healthComp = mainTarget.HealthComp();
+            healthComp.PlayHurting(dame);
+
         }
     }
 }
