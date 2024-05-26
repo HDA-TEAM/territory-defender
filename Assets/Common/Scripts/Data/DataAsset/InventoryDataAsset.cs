@@ -66,11 +66,6 @@ namespace Common.Scripts.Data.DataAsset
             {
                 return _model.ListInventoryData ??= new List<InventoryData>();
             }
-            set
-            {
-                _model.ListInventoryData = InventoryDatas;
-                SaveData();
-            }
         }
 #if UNITY_EDITOR
         [Button("TestTryChangeInventoryData")]
@@ -91,6 +86,8 @@ namespace Common.Scripts.Data.DataAsset
                 updatedInventory.Amount += amountChange;
                 InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
 
+                SaveData();
+                
                 NotifyAmountChange(type);
                 break;
             }
