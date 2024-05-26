@@ -79,7 +79,7 @@ namespace Common.Scripts.Data.DataAsset
             }
         }
         
-        public void OnAmountDataChange(InventoryType type, int amountChange)
+        public void TryChangeInventoryData(InventoryType type, int amountChange)
         {
             for (int i = 0; i < InventoryDatas.Count; i++)
             {
