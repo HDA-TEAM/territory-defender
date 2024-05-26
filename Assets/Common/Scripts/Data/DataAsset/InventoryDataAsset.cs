@@ -42,16 +42,44 @@ namespace Common.Scripts.Data.DataAsset
         }
         public void SetDefault()
         {
-            ListInventoryData = new List<InventoryData>();
+            ListInventoryData = new List<InventoryData>
+            {
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TotalStar,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.TalentPoint,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.GoldenCoin,
+                    Amount = 0,
+                },
+                new InventoryData
+                {
+                    InventoryType = InventoryType.SliverCoin,
+                    Amount = 0,
+                },
+            };
         }
     }
     
     [CreateAssetMenu(fileName = "InventoryDataAsset", menuName = "ScriptableObject/DataAsset/InventoryDataAsset")]
     public class InventoryDataAsset : LocalDataAsset<InventoryDataModel>
     {
-        public List<InventoryData> InventoryDatas;
+        public List<InventoryData> InventoryDatas
+        {
+            get
+            {
+                return  _model.ListInventoryData ??= new List<InventoryData>();
+            }
+        }
         
-        public void AmountDataChange(InventoryType type, int amountChange)
+        public void OnAmountDataChange(InventoryType type, int amountChange)
         {
             for (int i = 0; i < InventoryDatas.Count; i++)
             {

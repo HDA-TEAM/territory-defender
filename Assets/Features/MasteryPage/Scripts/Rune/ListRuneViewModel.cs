@@ -214,7 +214,7 @@ public class ListRuneViewModel : MonoBehaviour
                 towerRuneDataConfig.UpdateTowerData(_preTowerHasComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite);
             
                 // Get data from inventory data & Subtract star number
-                _inventoryDataAsset.AmountDataChange(_starInventory.Type, -1);
+                _inventoryDataAsset.OnAmountDataChange(_starInventory.Type, -1);
                 Debug.Log("Upgrade rune successful....");
                 
                 _onTowerDataUpdatedAction?.Invoke();
@@ -244,7 +244,7 @@ public class ListRuneViewModel : MonoBehaviour
                 towerRuneDataConfig.ResetRuneLevel(_preTowerHasComposite.TowerId, _preSelectedResetRuneItem.RuneComposite);
                 
                 // Get data from inventory data & Return star number after reset
-                _inventoryDataAsset.AmountDataChange(_starInventory.Type, towerRuneDataConfig._returnStar);
+                _inventoryDataAsset.OnAmountDataChange(_starInventory.Type, towerRuneDataConfig._returnStar);
 
                 Debug.Log("Upgrade rune successful".ToUpper());
                 
