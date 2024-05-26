@@ -84,6 +84,8 @@ namespace Common.Scripts.Data.DataAsset
             {
                 model = new T();
                 model.SetDefault();
+                // Init data file with default value
+                SaveData();
             }
             _isDoneLoadData = true;
         }
