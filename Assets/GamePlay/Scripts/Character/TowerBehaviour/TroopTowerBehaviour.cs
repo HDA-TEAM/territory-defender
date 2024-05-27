@@ -67,6 +67,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             objectSpawned.transform.position = _towerKit.transform.position;
             objectSpawned.SetActive(true);
             _allyUnits.Add(unitBase);
+            SetCampingPlaceCorner();
         }
         private void OnDisable()
         {
@@ -106,6 +107,10 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
 
             _campingPos = newCampingPos;
 
+            SetCampingPlaceCorner();
+        }
+        private void SetCampingPlaceCorner()
+        {
             // Set camping pos for each unit
             for (int i = 0; i < _allyUnits.Count; i++)
             {

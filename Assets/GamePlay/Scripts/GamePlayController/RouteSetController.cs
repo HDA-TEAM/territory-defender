@@ -16,6 +16,7 @@ namespace GamePlay.Scripts.GamePlayController
         public Vector3 PosInput;
         public Action<Vector3> OnCalculateSuccess;
     }
+
     public class RouteSetController : GamePlayMainFlowBase
     {
         [Button("SaveToConfig")]
@@ -32,7 +33,7 @@ namespace GamePlay.Scripts.GamePlayController
                 return _activeSingleRouteComposite;
             }
         }
-        
+
         protected override void Awake()
         {
             base.Awake();
@@ -43,12 +44,12 @@ namespace GamePlay.Scripts.GamePlayController
             base.OnDestroy();
             Messenger.Default.Unsubscribe<OnGetNearestPosFromRoutePayload>(GetNearestPosFromRoute);
         }
-        
+
         private void Start()
         {
             foreach (var lineRender in _currentSingleRouteComposite)
             {
-                lineRender.SingleLineRenderer.widthMultiplier = 0f;
+                lineRender._subLineRendererSet.SetMultiplier(0f);
             }
         }
 
@@ -56,28 +57,38 @@ namespace GamePlay.Scripts.GamePlayController
         {
             RouteSetConfig.RouteSet routeSet = new RouteSetConfig.RouteSet
             {
-                RouteLines = new List<RouteSetConfig.RouteLine>(),
+                MainRouteLines = new List<RouteSetConfig.RouteLine>(),
             };
 
-            for (int i = 0; i < _currentSingleRouteComposite.Count; i++)
+            foreach (SingleRoute mainRoute in _currentSingleRouteComposite)
             {
                 // Check if lineRender want to save
-                if (!_currentSingleRouteComposite[i].SingleLineRenderer.gameObject.activeSelf)
+                if (!mainRoute._subLineRendererSet.gameObject.activeSelf)
                     continue;
 
-                routeSet.ECallWaveUnitPreviewDirectionType = _currentSingleRouteComposite[i].HandleSingleCallWaveShowTooltip.ECallWaveUnitPreviewDirectionType;
+                routeSet.ECallWaveUnitPreviewDirectionType = mainRoute.HandleSingleCallWaveShowTooltip.ECallWaveUnitPreviewDirectionType;
+
+                // add RouteSetConfig.subRouteLines
+                List<RouteSetConfig.SubRouteLine> subRouteLines = new List<RouteSetConfig.SubRouteLine>();
+                foreach (LineRenderer line in mainRoute._subLineRendererSet.GetActiveSubLine())
+                {
+                    List<Vector3> subLine = new List<Vector3>();
+                    for (int i = 0; i < line.positionCount; i++)
+                        subLine.Add(line.GetPosition(i));
+
+                    subRouteLines.Add(new RouteSetConfig.SubRouteLine
+                    {
+                        PointSet = subLine,
+                    });
+                }
 
                 // add RouteSetConfig.RouteLine
-                routeSet.RouteLines.Add(new RouteSetConfig.RouteLine
+                routeSet.MainRouteLines.Add(new RouteSetConfig.RouteLine
                 {
-                    CallwaveButtonPos = _currentSingleRouteComposite[i].CallWaveBtnViewModel.transform.position,
-                    PointSet = new List<Vector3>()
+                    CallwaveButtonPos = mainRoute.CallWaveBtnViewModel.transform.position,
+                    SubRouteLines = subRouteLines,
                 });
-
-                for (int j = 0; j < _currentSingleRouteComposite[i].SingleLineRenderer.positionCount; j++)
-                    routeSet.RouteLines[i].PointSet.Add(_currentSingleRouteComposite[i].SingleLineRenderer.GetPosition(j));
             }
-
             _routeSetConfig.SaveToConfig(routeSet, _currentStageId);
         }
 
@@ -86,36 +97,40 @@ namespace GamePlay.Scripts.GamePlayController
             List<CallWaveBtnViewModel> callWaveViews = new List<CallWaveBtnViewModel>();
             List<HandleSingleCallWaveShowTooltip> handleSingleCallWaveShowTooltips = new List<HandleSingleCallWaveShowTooltip>();
             RouteSetConfig.RouteSet lineRouteSet = _routeSetConfig.LoadFromConfig(_currentStageId);
-            int lineCount = lineRouteSet.RouteLines.Count;
+            int mainLineCount = lineRouteSet.MainRouteLines.Count;
             for (int i = 0; i < _currentSingleRouteComposite.Count; i++)
             {
                 // If route set config < total active routeSet on map
-                if (i >= lineCount)
+                if (i >= mainLineCount)
                 {
-                    _currentSingleRouteComposite[i].SingleLineRenderer.gameObject.SetActive(false);
+                    _currentSingleRouteComposite[i]._subLineRendererSet.gameObject.SetActive(false);
                     continue;
                 }
 
                 // Set call wave button pos
-                _currentSingleRouteComposite[i].CallWaveBtnViewModel.transform.position = lineRouteSet.RouteLines[i].CallwaveButtonPos;
+                _currentSingleRouteComposite[i].CallWaveBtnViewModel.transform.position = lineRouteSet.MainRouteLines[i].CallwaveButtonPos;
                 callWaveViews.Add(_currentSingleRouteComposite[i].CallWaveBtnViewModel);
-                
+
                 handleSingleCallWaveShowTooltips.Add(_currentSingleRouteComposite[i].HandleSingleCallWaveShowTooltip);
                 handleSingleCallWaveShowTooltips[i].ECallWaveUnitPreviewDirectionType = _currentSingleRouteComposite[i].HandleSingleCallWaveShowTooltip.ECallWaveUnitPreviewDirectionType;
+
                 // Check if this lineRender available to save
-                _currentSingleRouteComposite[i].SingleLineRenderer.gameObject.SetActive(true);
+                _currentSingleRouteComposite[i]._subLineRendererSet.gameObject.SetActive(true);
 
-                // Init lineRender max space
-                _currentSingleRouteComposite[i].SingleLineRenderer.positionCount = lineRouteSet.RouteLines[i].PointSet.Count;
-
-                // Set position at each point in lineRender
-                // z always zero
-                for (int j = 0; j < lineRouteSet.RouteLines[i].PointSet.Count; j++)
-                    _currentSingleRouteComposite[i].SingleLineRenderer.SetPosition(j,
-                        new Vector3(
-                            lineRouteSet.RouteLines[i].PointSet[j].x,
-                            lineRouteSet.RouteLines[i].PointSet[j].y,
+                for (int j = 0; j < lineRouteSet.MainRouteLines[i].SubRouteLines.Count; j++)
+                {
+                    // Init lineRender max space
+                    _currentSingleRouteComposite[i]._subLineRendererSet.CurSubLineRenderers[j].positionCount = lineRouteSet.MainRouteLines[i].SubRouteLines[j].PointSet.Count;
+                    // Set position at each point in sub lineRender
+                    // z always zero
+                    for (int k = 0; k < _currentSingleRouteComposite[i]._subLineRendererSet.CurSubLineRenderers[j].positionCount; k++)
+                    {
+                        _currentSingleRouteComposite[i]._subLineRendererSet.CurSubLineRenderers[j].SetPosition(k, new Vector3(
+                            lineRouteSet.MainRouteLines[i].SubRouteLines[j].PointSet[k].x,
+                            lineRouteSet.MainRouteLines[i].SubRouteLines[j].PointSet[k].y,
                             0));
+                    }
+                }
             }
             BuildActiveRoute();
             _callWaveListViewModel.Setup(callWaveViews, handleSingleCallWaveShowTooltips, _currentStageId);
@@ -135,14 +150,15 @@ namespace GamePlay.Scripts.GamePlayController
             Vector3 res = Vector3.zero;
             foreach (SingleRoute routeLineRender in ActiveSingleRouteLineRenderers)
             {
-                for (int i = 0; i < routeLineRender.SingleLineRenderer.positionCount; i++)
+                LineRenderer curCenterLine = routeLineRender._subLineRendererSet.GetCenterSubLineRenderer();
+                for (int i = 0; i < curCenterLine.positionCount; i++)
                 {
-                    float curDis = VectorUtility.Distance2dOfTwoPos(payload.PosInput, routeLineRender.SingleLineRenderer.GetPosition(i));
+                    Vector3 curPos = curCenterLine.GetPosition(i);
+                    float curDis = VectorUtility.Distance2dOfTwoPos(payload.PosInput, curPos);
                     if (!(nearestDis > curDis))
                         continue;
                     nearestDis = curDis;
-                    res = routeLineRender.SingleLineRenderer.GetPosition(i);
-
+                    res = curPos;
                 }
             }
             payload.OnCalculateSuccess?.Invoke(res);

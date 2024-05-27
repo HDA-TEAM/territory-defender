@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Data
 {
@@ -13,16 +14,24 @@ namespace GamePlay.Scripts.Data
         [SerializeField][SerializedDictionary("StageId", "RouteLineSet")]
         private SerializedDictionary<StageId, RouteSet> _routeLineSets = new SerializedDictionary<StageId, RouteSet>();
 
+        /// Equal a set of main lines in a stage 
         [Serializable]
         public struct RouteSet
         {
             public ECallWaveUnitPreviewDirectionType ECallWaveUnitPreviewDirectionType;
-            public List<RouteLine> RouteLines;
+            public List<RouteLine> MainRouteLines;
         }
+        /// Equal a main line in map
         [Serializable]
         public struct RouteLine
         {
             public Vector3 CallwaveButtonPos;
+            public List<SubRouteLine> SubRouteLines;
+        }
+        /// Equal a sub line contain by main line
+        [Serializable]
+        public struct SubRouteLine
+        {
             public List<Vector3> PointSet;
         }
         public void SaveToConfig(RouteSet inputRouteSet, StageId stageId)
