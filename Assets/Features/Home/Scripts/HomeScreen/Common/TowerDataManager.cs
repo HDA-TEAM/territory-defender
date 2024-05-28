@@ -9,9 +9,10 @@ namespace Features.Home.Scripts.HomeScreen.Common
 {
       public class TowerDataManager : SingletonBase<TowerDataManager>
       {
+            [FormerlySerializedAs("_towerRuneDataAsset")]
             [FormerlySerializedAs("_towerRuneDataConfig")]
             [Header("Data"), Space(12)]
-            [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
+            [SerializeField] private TowerDataAsset _towerDataAsset;
             public List<TowerComposite> TowerComposites { get; private set; }
 
             protected override void Awake()
@@ -26,10 +27,10 @@ namespace Features.Home.Scripts.HomeScreen.Common
 
                   else TowerComposites.Clear();
             
-                  if (_towerRuneDataAsset == null)
+                  if (_towerDataAsset == null)
                         return;
             
-                  List<TowerDataConfig> listTowerData = _towerRuneDataAsset.GetAllTowerDataConfig();
+                  List<TowerDataConfig> listTowerData = _towerDataAsset.GetAllTowerDataConfig();
                   foreach (var towerDataSo in listTowerData)
                   {
                         TowerComposites.Add(

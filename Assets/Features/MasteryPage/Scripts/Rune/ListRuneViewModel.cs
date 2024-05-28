@@ -101,7 +101,7 @@ namespace Features.MasteryPage.Scripts.Rune
             }
 
             // Update talent point amount before get that data
-            _inventoryDataAsset.GetInventoryData();
+            //_inventoryDataAsset.G();
             _talentPointInventory = new InventoryComposite();
         
             UpdateData();
@@ -234,7 +234,7 @@ namespace Features.MasteryPage.Scripts.Rune
                     _towerRuneDataController.ExecuteStrategy();
 
                     // Get data from inventory data & Subtract Talent Point number
-                    _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, -1);
+                    _inventoryDataAsset.TryChangeInventoryData(_talentPointInventory.Type, -1);
                     Debug.Log("Upgrade rune successful....");
                  
                     _onTowerDataUpdatedAction?.Invoke();
@@ -265,7 +265,7 @@ namespace Features.MasteryPage.Scripts.Rune
                     _towerRuneDataController.ExecuteStrategy();
                 
                     // Get data from inventory data & Return Talent Point number after reset
-                    _inventoryDataAsset.AmountDataChange(_talentPointInventory.Type, _towerRuneDataController.GetReturnStar());
+                    _inventoryDataAsset.TryChangeInventoryData(_talentPointInventory.Type, _towerRuneDataController.GetReturnStar());
         
                     Debug.Log("Reset rune successful".ToUpper());
                     _onTowerRuneResetAction?.Invoke();

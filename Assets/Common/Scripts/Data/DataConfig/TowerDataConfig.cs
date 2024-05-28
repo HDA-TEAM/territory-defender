@@ -9,7 +9,7 @@ namespace Common.Scripts.Data.DataConfig
     {
         public UnitId.Tower _towerId;
         public List<RuneLevel> _runeLevels;
-        public void Initialize(List<RuneLevel> runeLevels)
+        public void InitializeRune(List<RuneLevel> runeLevels)
         {
             _runeLevels = new List<RuneLevel>(runeLevels);
         }

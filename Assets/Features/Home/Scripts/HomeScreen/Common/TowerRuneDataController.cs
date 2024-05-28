@@ -5,13 +5,15 @@ using Common.Scripts.Data.DataConfig;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Home.Scripts.HomeScreen.Common
 {
     public class TowerRuneDataController : MonoBehaviour
     {
+        [FormerlySerializedAs("_towerRuneDataAsset")]
         [Header("Data"), Space(12)]
-        [SerializeField] private TowerRuneDataAsset _towerRuneDataAsset;
+        [SerializeField] private TowerDataAsset _towerDataAsset;
         
         public RuneDataAsset _runeDataAsset;
         public List<TowerRuneComposite> TowerRuneComposites { get; private set; }
@@ -30,7 +32,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         }
         public int GetReturnStar()
         {
-            return _towerRuneDataAsset._returnStar;
+            return _towerDataAsset._returnStar;
         }
         public void InitializeTowerRuneData()
         {
@@ -46,8 +48,10 @@ namespace Features.Home.Scripts.HomeScreen.Common
             
             // Load Rune data into each Tower
             List<RuneDataConfig> listRuneSos = _runeDataAsset.GetAllRuneData();
-            List<TowerDataConfig> towerDataConfigs = _towerRuneDataAsset.GetAllTowerDataConfig();
-            List<TowerDataSaver> loadedTowerData = _towerRuneDataAsset._towerDataAsset.GetTowers();
+            
+            _towerDataAsset.UpdateTowerDataConfig();
+            List<TowerDataConfig> towerDataConfigs = _towerDataAsset.GetAllTowerDataConfig();
+            List<TowerDataSaver> loadedTowerData = _towerDataAsset.GetTowers();
             
             foreach (var towerSo in towerDataConfigs)
             {
@@ -99,7 +103,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         }
         public void UpgradeTowerRuneData(UnitId.Tower towerId, RuneComposite runeComposite)
         {
-            _towerRuneDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataConfig curTower);
+            _towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataConfig curTower);
             if (!curTower)
             {
                 Debug.LogError("Tower type not exist in dictionary");
@@ -119,7 +123,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
                     AddRune(curTower, runeLevel);
                 }
 
-                _towerRuneDataAsset._towerDataAsset.SaveTowers(_towerRuneDataAsset._towerTypeDict);
+                _towerDataAsset.SaveTowers(_towerDataAsset._towerTypeDict);
             }
         }
         private void AddRune(TowerDataConfig towerDataConfig, RuneLevel runeLevel)
@@ -163,20 +167,20 @@ namespace Features.Home.Scripts.HomeScreen.Common
         public void ResetTowerRuneData(UnitId.Tower towerId)
         {
             // Attempt to get the tower configuration
-            if (!_towerRuneDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataConfig towerDataConfig))
+            if (!_towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataConfig towerDataConfig))
             {
                 Debug.LogError("Tower type not exist in dictionary for reset");
                 return;
             }
 
-            _towerRuneDataAsset._returnStar = 0;
+            _towerDataAsset._returnStar = 0;
         
             for (int i = 0; i < towerDataConfig._runeLevels.Count; i++)
             {
                 RuneLevel rune = towerDataConfig._runeLevels[i];
                 if (towerDataConfig._runeLevels[i].Level > 0)
                 {
-                    _towerRuneDataAsset._returnStar += rune.Level;
+                    _towerDataAsset._returnStar += rune.Level;
                     rune.Level = 0;
                     towerDataConfig._runeLevels[i] = rune;
                 }
@@ -186,7 +190,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             towerDataConfig._runeLevels.RemoveAll(rune => rune.Level == 0);
         
             // Save changes to disk or server
-            _towerRuneDataAsset._towerDataAsset.SaveTowers(_towerRuneDataAsset._towerTypeDict);
+            _towerDataAsset.SaveTowers(_towerDataAsset._towerTypeDict);
         }
     }
 }

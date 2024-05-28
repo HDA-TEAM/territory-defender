@@ -9,11 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba056ef77d6d49eab6f1ff9298bad58a, type: 3}
+  m_Script: {fileID: 11500000, guid: beed9b66779449009cb2ff91f8db2c76, type: 3}
   m_Name: TowerDataAsset
   m_EditorClassIdentifier: 
-  _filename: TowerDataModel.json
+  _filename: TowerDataAsset
   _model:
-    TowerList:
-    - TowerId: 0
-      RuneLevels: []
+    TowerList: []
+  _towerTypeDict:
+    _serializedList:
+    - Key: 301
+      Value: {fileID: 11400000, guid: 966a3e33aa2fd468eaadd51dfda98549, type: 2}
+    - Key: 311
+      Value: {fileID: 11400000, guid: 00e2c18222e5144dca7571596858e476, type: 2}
+    - Key: 321
+      Value: {fileID: 11400000, guid: 0f53710b0a46e4fe49a85af47a78afec, type: 2}
+    - Key: 331
+      Value: {fileID: 11400000, guid: 9f39b640eb6ac41fda78229104115dc7, type: 2}
+  _towerDataConfigBases:
+  - {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
+  _returnStar: 0
