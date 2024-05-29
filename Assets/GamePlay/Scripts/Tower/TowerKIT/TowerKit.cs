@@ -52,7 +52,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         [Header("Data"), Space(12)]
         [SerializeField] private InGameResourceRuntimeData _resourceRuntime;
         [SerializeField] private UnitId.Tower _towerId;
-        [SerializeField] private UnitBase _unitBase;
+        [SerializeField] private UnitBase _unitBaseOfCurrentTower;
         
         [Header("Sounds"), Space(12)]
         [SerializeField] private AudioClip _audioClipOpenKit;
@@ -80,8 +80,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         #region Access
         public UnitId.Tower GetTowerId() => _towerId;
         public TowerRangingHandler TowerRangingHandler() => _towerRangingHandler;
-        public UnitBase GetUnitBase() => _unitBase;
-    
+        public UnitBase GetUnitBase() => _unitBaseOfCurrentTower;
+        public bool IsExistTower() => _unitBaseOfCurrentTower;
         #endregion
 
         private TowerKitSetController _towerKitSetController;
@@ -155,8 +155,8 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                     {
                         _towerUsingTool.SetActive(true);
                         
-                        _unitBase.TowerBehaviourBase().ShowTool();
-                        _unitBase.UnitShowingInformationComp().ShowUnitInformation();
+                        _unitBaseOfCurrentTower.TowerBehaviourBase().ShowTool();
+                        _unitBaseOfCurrentTower.UnitShowingInformationComp().ShowUnitInformation();
 
                         Messenger.Default.Publish(new AudioPlayOneShotPayload
                         {
@@ -197,11 +197,11 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             CheckAndRemoveExistTower(_previewTowerEntity);
             _towerId = towerId;
             _towerEntity = tower;
-            _unitBase = _towerEntity.GetComponent<UnitBase>();
-            _unitBase.TowerBehaviourBase().Setup(this);
+            _unitBaseOfCurrentTower = _towerEntity.GetComponent<UnitBase>();
+            _unitBaseOfCurrentTower.TowerBehaviourBase().Setup(this);
             
             // Reduce coin in inventory
-            var coinNeedToBuild = (int)_unitBase.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
+            var coinNeedToBuild = (int)_unitBaseOfCurrentTower.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CoinNeedToBuild);
             _resourceRuntime.TryChangeCurrency(
                 - coinNeedToBuild);
             _totalUsedCoin += coinNeedToBuild;
@@ -237,7 +237,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             // reset Coin
             _totalUsedCoin = 0;
 
-            _unitBase = null;
+            _unitBaseOfCurrentTower = null;
             Destroy(_towerEntity);
 
             // Hiding tower info
@@ -262,7 +262,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
         }
         private void OnSelectCampingPlace()
         {
-            var troopTowerBehaviour = _unitBase.GetComponent<TroopTowerBehaviour>();
+            var troopTowerBehaviour = _unitBaseOfCurrentTower.GetComponent<TroopTowerBehaviour>();
             var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             var campingPos = new Vector3(mousePos.x, mousePos.y,0);
