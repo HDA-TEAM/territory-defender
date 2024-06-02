@@ -39,7 +39,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         {
             _towerKit = towerKit;
             
-            var rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
+            float rangeVal= _unitBaseParent.UnitStatsHandlerComp().GetCurrentStatValue(StatId.CampingRange);
             towerKit.TowerRangingHandler().SetUp(rangeVal);
             
             _parentPos = _towerKit.transform.position;
@@ -50,6 +50,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
                     ObjectType = UnitId.Ally.Warrior.ToString(),
                     OnSpawned = SpawnSingleUnit,
                 });
+            
             Messenger.Default.Publish(new OnGetNearestPosFromRoutePayload
             {
                 PosInput = _parentPos,
@@ -79,7 +80,10 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
                 // remove callback for reviving first
                 unitBase.UnitReviveHandlerComp().OnRemoveRevive();
                 // Return to pool
-                unitBase.gameObject.SetActive(false);
+                Messenger.Default.Publish(new OnReturnObjectToPoolPayload
+                {
+                    GameObject = unitBase.gameObject,
+                });
             }
 
         }
@@ -87,8 +91,11 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         {
             // remove old unit and returning it to the pool
             _allyUnits.Remove(unitBase);
+            
             await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
-
+            // Prevent spawning if tower is destroy
+            if (!_towerKit.IsExistTower())
+                return;
             // Spawning new unit from pool
             Messenger.Default.Publish(new OnSpawnObjectPayload
             {
@@ -97,7 +104,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
                 OnSpawned = SpawnSingleUnit,
             });
         }
-        // private void 
+        
         public void SetCampingPlace(Vector3 newCampingPos)
         {
             // Get current tower pos on the map
