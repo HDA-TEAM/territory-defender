@@ -25,10 +25,10 @@ namespace Features.MasteryPage.Scripts.Rune
     
         [Header("Data"), Space(12)]
         [SerializeField] private InventoryDataAsset _inventoryDataAsset;
-        [SerializeField] private TowerRuneDataController _towerRuneDataController;
-    
+        public TowerRuneDataController _towerRuneDataController;
+
         // INTERNAL
-        private List<RuneLevel> _runeLevels;
+        private List<RuneLevelData> _runeLevels;
         private int _totalTalentPoint;
     
         // Data Asset
@@ -40,8 +40,8 @@ namespace Features.MasteryPage.Scripts.Rune
         private InventoryComposite _talentPointInventory;
     
         // Config
-        private List<RuneDataConfig> _runeSos;
-        private RuneDataConfig _preRuneDataConfig;
+        private List<RuneDataSo> _runeSos;
+        private RuneDataSo _preRuneDataSo;
     
         // Item object
         private ItemRuneView _preSelectedRuneItem;
@@ -69,7 +69,7 @@ namespace Features.MasteryPage.Scripts.Rune
                 _onTowerDataUpdatedAction += UpdateData;
             }
         
-            // // Handle reset rune clicking
+            //Handle reset rune clicking
             if (_itemResetRuneView != null)
             {
                 _onTowerRuneResetAction += UpdateData;
@@ -101,10 +101,11 @@ namespace Features.MasteryPage.Scripts.Rune
             }
 
             // Update talent point amount before get that data
-            //_inventoryDataAsset.G();
             _talentPointInventory = new InventoryComposite();
         
             UpdateData();
+            
+            _listTowerViewModel.SetupTower();
             SetupRuneDetailView(true);
     
             UnsubscribeEvents(); // Ensure there are no duplicates
@@ -226,8 +227,8 @@ namespace Features.MasteryPage.Scripts.Rune
             if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
                 && _talentPointInventory.Amount > 0)
             {
-                _preRuneDataConfig = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
-                if (_preRuneDataConfig != null)
+                _preRuneDataSo = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
+                if (_preRuneDataSo != null)
                 {
                     // To update rune data
                     _towerRuneDataController.SetStrategy(new UpdateTowerRuneStrategy(_preTowerComposite.TowerId, _preSelectedUpgradeRuneItem.RuneComposite));
@@ -257,8 +258,8 @@ namespace Features.MasteryPage.Scripts.Rune
             _preSelectedResetRuneItem = itemResetRuneView;
             if (_preSelectedRuneItem.RuneComposite.Level > 0)
             {
-                _preRuneDataConfig =_towerRuneDataController. _runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
-                if (_preRuneDataConfig != null)
+                _preRuneDataSo =_towerRuneDataController. _runeDataAsset.GetRune(_preSelectedResetRuneItem.RuneComposite.RuneId);
+                if (_preRuneDataSo != null)
                 {
                     // To reset rune data
                     _towerRuneDataController.SetStrategy(new ResetTowerRuneStrategy(_preTowerComposite.TowerId));

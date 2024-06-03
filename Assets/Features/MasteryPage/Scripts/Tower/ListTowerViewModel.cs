@@ -1,5 +1,4 @@
 using Common.Scripts;
-using Common.Scripts.Data.DataAsset;
 using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using System;
@@ -13,13 +12,14 @@ namespace Features.MasteryPage.Scripts.Tower
         [Header("UI")]
         [SerializeField] private List<ItemTowerView> _itemTowerViews;
         [SerializeField] private ListRuneViewModel _listRuneViewModel;
-
+        //[SerializeField] private TowerRuneDataController _towerRuneDataController;
+        
         public Action<UnitId.Tower> _onUpdateViewAction;
 
         // Internal
-        private List<TowerComposite> _towerComposites;
+        private List<TowerRuneComposite> _towerRuneComposites;
         private ItemTowerView _preSelectedItem;
-        private void Start()
+        public void SetupTower()
         {
             UpdateData();
         
@@ -33,12 +33,12 @@ namespace Features.MasteryPage.Scripts.Tower
 
         private void UpdateData()
         {
-            var towerDataManager = TowerDataManager.Instance;
+            //var towerDataManager = TowerDataManager.Instance;
 
-            if (towerDataManager == null) return;
-            if (towerDataManager.TowerComposites == null) return;
+            if (_listRuneViewModel._towerRuneDataController == null) return;
+            if (_listRuneViewModel._towerRuneDataController.TowerRuneComposites == null) return;
 
-            _towerComposites = towerDataManager.TowerComposites;
+            _towerRuneComposites = _listRuneViewModel._towerRuneDataController.TowerRuneComposites;
             UpdateView();
         }
 
@@ -46,10 +46,10 @@ namespace Features.MasteryPage.Scripts.Tower
         {
             for (int i = 0; i < _itemTowerViews.Count; i++)
             {
-                if (i < _towerComposites.Count)
+                if (i < _towerRuneComposites.Count)
                 {
                     // Setup hero property
-                    _itemTowerViews[i].Setup(_towerComposites[i], OnSelectedItem);
+                    _itemTowerViews[i].Setup(_towerRuneComposites[i], OnSelectedItem);
                     _itemTowerViews[i].gameObject.SetActive(true);
                 }
                 else
@@ -72,11 +72,10 @@ namespace Features.MasteryPage.Scripts.Tower
             _preSelectedItem = itemTowerView;
             _preSelectedItem.OnSelectedTower();
         
-            Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerComposite.TowerId}");
+            Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerRuneComposite.TowerId}");
 
             // Reset view of rune detail
-            //GlobalUtility.ResetRuneDetailView(_listRuneViewModel);
-            _onUpdateViewAction?.Invoke(_preSelectedItem.TowerComposite.TowerId);
+            _onUpdateViewAction?.Invoke(_preSelectedItem.TowerRuneComposite.TowerId);
         }
 
         public void ResetView()
@@ -92,14 +91,8 @@ namespace Features.MasteryPage.Scripts.Tower
             if (_itemTowerViews != null)
             {
                 _itemTowerViews[0].OnSelectedTower();
-                _onUpdateViewAction?.Invoke(_towerComposites[0].TowerId);
+                _onUpdateViewAction?.Invoke(_towerRuneComposites[0].TowerId);
             }
         }
-    }
-
-    public struct TowerComposite
-    {
-        public UnitId.Tower TowerId;
-        public List<RuneLevel> RuneLevels;
     }
 }

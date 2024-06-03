@@ -133,9 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 79665027}
   - component: {fileID: 79665024}
-  - component: {fileID: 79665025}
   - component: {fileID: 79665026}
-  - component: {fileID: 79665028}
   m_Layer: 0
   m_Name: GameObjectManager
   m_TagString: Untagged
@@ -156,19 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _heroDataAsset: {fileID: 11400000, guid: 04558a922d93f4cebad8cce24f3121ae, type: 2}
---- !u!114 &79665025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79665022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a8af6406e7649839924c9cb9598e841, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _towerRuneDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
 --- !u!114 &79665026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,20 +182,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &79665028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79665022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a19db0d4d404e968073dc2a430e4e52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
-  _towerRuneDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
 --- !u!1 &703018977
 GameObject:
   m_ObjectHideFlags: 0

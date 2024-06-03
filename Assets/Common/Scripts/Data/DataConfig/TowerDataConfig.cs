@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Common.Scripts.Data.DataConfig
 {
-    [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/DataAsset/TowerDataConfig")]
+    [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/Config/TowerDataConfig")]
     public class TowerDataConfig : ScriptableObject
     {
         public UnitId.Tower _towerId;
-        public List<RuneLevel> _runeLevels;
-        public void InitializeRune(List<RuneLevel> runeLevels)
+        public List<RuneLevelData> _runeLevels;
+        public void InitializeRune(List<RuneLevelData> runeLevels)
         {
-            _runeLevels = new List<RuneLevel>(runeLevels);
+            _runeLevels = new List<RuneLevelData>(runeLevels);
         }
         public UnitId.Tower GetTowerId()
         {
@@ -19,7 +19,7 @@ namespace Common.Scripts.Data.DataConfig
         }
         #region MasteryPage access
 
-        public List<RuneLevel> GetAllRuneDatLevels()
+        public List<RuneLevelData> GetAllRuneDataLevels()
         {
             return _runeLevels;
         }

@@ -11,12 +11,21 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
 public class TowerDataAsset : LocalDataAsset<TowerDataModel>
 {
-    [SerializedDictionary("TowerId", "TowerDataConfig")] 
+    [SerializedDictionary("TowerId", "TowerDataSO")] 
     public SerializedDictionary<UnitId.Tower, TowerDataConfig> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataConfig>();
 
     [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
     public int _returnStar;
     
+    public List<TowerData> TowerDatas
+    {
+        //LoadData(); // Load the data from json file into _model
+        get
+        {
+            LoadData();
+            return _model.ListTowerDatas ??= new List<TowerData>();
+        }
+    }
     public TowerDataConfig GetTower(UnitId.Tower towerId)
     {
         _towerTypeDict.TryGetValue(towerId, out TowerDataConfig tower);
@@ -28,11 +37,11 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
         return tower;
     }
 
-    public List<TowerDataConfig> GetAllTowerDataConfig()
+    public List<TowerDataConfig> GetAllTowerData()
     {
         return _towerTypeDict.Values.ToList();
     }
-    private void LoadTowerDataFromLocal(List<TowerDataSaver> towerDataSavers)
+    private void LoadTowerDataFromLocal(List<TowerData> towerDataSavers)
     {
         //_towerTypeDict.Clear(); // Clear existing data
 
@@ -50,27 +59,24 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     public void UpdateTowerDataConfig()
     {
         // TODO: load TowerDataConfig data
-        var towerSavers = GetTowers();  // Retrieve the list of TowerDataSaver from the asset
-
-        if (towerSavers.Count > 0)
+        var towerDatas = TowerDatas;  // Retrieve the list of TowerDataSaver from the asset
+        
+        if (towerDatas.Count > 0)
         {
             Debug.Log("Exist towerSavers");
         }
-        
-        LoadTowerDataFromLocal(towerSavers);  
-       // return _towerDataAsset.GetTowers();
+        LoadTowerDataFromLocal(towerDatas);
     }
     
     // New
     public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataConfig> towerTypeDict)
     {
-        Debug.Log("SaveTowers");
-        List<TowerDataSaver> newTowerList = new List<TowerDataSaver>(); // Create a new list for towers
+        List<TowerData> newTowerList = new List<TowerData>(); // Create a new list for towers
         foreach (var kvp in towerTypeDict)
         {
             if (kvp.Value != null && kvp.Value._runeLevels is { Count: > 0 })
             {
-                var towerSoSaver = new TowerDataSaver
+                var towerSoSaver = new TowerData
                 {
                     TowerId = kvp.Key,
                     RuneLevels = kvp.Value._runeLevels
@@ -78,54 +84,49 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
                 newTowerList.Add(towerSoSaver); // Add to the new list
             }
         }
-        _model.TowerList = newTowerList; // Update the model's TowerList only, without overwriting the entire model
+        _model.ListTowerDatas = newTowerList; // Update the model's TowerList only, without overwriting the entire model
         SaveData();
     }
     
-    public List<TowerDataSaver> GetTowers()
-    {
-        LoadData(); // Load the data from json file into _model
-        //TowerList = _model.TowerList ?? new List<TowerDataSaver>();
-        return _model.TowerList;
-    }
+    
 }
 
 [Serializable]
 public struct TowerDataModel : IDefaultDataModel
 {
-    public List<TowerDataSaver> TowerList;
+    public List<TowerData> ListTowerDatas;
     public bool IsEmpty()
     {
-        return (TowerList == null || TowerList.Count == 0);
+        return (ListTowerDatas == null || ListTowerDatas.Count == 0);
     }
     public void SetDefault()
     {
         // Ensure defaults are set for both lists
-        TowerList = new List<TowerDataSaver>
+        ListTowerDatas = new List<TowerData>
         {
-            new TowerDataSaver
+            new TowerData
             {
                 TowerId = 0, // Default Tower ID
-                RuneLevels = new List<RuneLevel>() // Default empty rune levels
+                RuneLevels = new List<RuneLevelData>() // Default empty rune levels
             }
         };
     }
 }
 
 [Serializable]
-public struct TowerDataSaver
+public struct TowerData
 {
     public UnitId.Tower TowerId;
-    public List<RuneLevel> RuneLevels;
+    public List<RuneLevelData> RuneLevels;
 }
 
 [Serializable]
-public struct RuneLevel
+public struct RuneLevelData
 {
     public RuneId RuneId;
     public int Level;
 
-    public RuneLevel(RuneId runeId, int level)
+    public RuneLevelData(RuneId runeId, int level)
     {
         RuneId = runeId;
         Level = level;

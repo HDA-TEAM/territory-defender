@@ -25,22 +25,22 @@ namespace Common.Scripts.Data.DataAsset
     public class RuneDataAsset : ScriptableObject
     {
         [SerializedDictionary("RuneId", "RuneDataSO")] 
-        [SerializeField] private SerializedDictionary<RuneId, RuneDataConfig> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataConfig>();
+        [SerializeField] private SerializedDictionary<RuneId, RuneDataSo> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataSo>();
 
-        public RuneDataConfig GetRune(RuneId runeId)
+        public RuneDataSo GetRune(RuneId runeId)
         {
-            if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataConfig runeDataSo))
+            if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataSo runeDataSo))
                 return runeDataSo;
             
             Debug.LogError($"No rune value found for key {runeId} on ");
             return null;
         }
-        public List<RuneDataConfig> GetAllRuneData()
+        public List<RuneDataSo> GetAllRuneData()
         {
             return _masteryPageDataDict.Values.ToList();
         }
 
-        public void RuneUpdate(RuneDataConfig runeDataConfig)
+        public void RuneUpdate(RuneDataSo runeDataSo)
         {
         }
 

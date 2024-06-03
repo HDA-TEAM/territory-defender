@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a19db0d4d404e968073dc2a430e4e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerRuneDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
+  _towerDataAsset: {fileID: 0}
   _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
 --- !u!1 &1528055087266344016
 GameObject:
@@ -1002,6 +1002,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3883877204902993744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4737894554800329473}
+  - component: {fileID: 5020850980292813543}
+  m_Layer: 5
+  m_Name: objTowerRuneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4737894554800329473
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883877204902993744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7210937206813889141}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5020850980292813543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3883877204902993744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a19db0d4d404e968073dc2a430e4e52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
+  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
 --- !u!1 &4035778417772432614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,6 +1165,7 @@ RectTransform:
   - {fileID: 4295717179596592673}
   - {fileID: 3694783169640777360}
   - {fileID: 1150572961465642404}
+  - {fileID: 4737894554800329473}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1294,7 +1345,7 @@ MonoBehaviour:
   _itemStarView: {fileID: 3647299838282285556}
   _runeDetailView: {fileID: 7505075942688255521}
   _inventoryDataAsset: {fileID: 11400000, guid: a54b3b648b29c44e6b642be027fcb7a0, type: 2}
-  _towerRuneDataController: {fileID: 8702845364653681304}
+  _towerRuneDataController: {fileID: 5020850980292813543}
 --- !u!1 &4880375718204489336
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,6 +4060,10 @@ PrefabInstance:
       propertyPath: _commonTowerDataAsset
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6782918887739409250, guid: ceaed9381fbec43aba1d5a619dac32cd, type: 3}
+      propertyPath: _towerRuneDataController
+      value: 
+      objectReference: {fileID: 5020850980292813543}
     - target: {fileID: 6782918887739409250, guid: ceaed9381fbec43aba1d5a619dac32cd, type: 3}
       propertyPath: _itemTowerViews.Array.size
       value: 7

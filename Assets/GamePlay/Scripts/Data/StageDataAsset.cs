@@ -5,8 +5,6 @@ using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
-using Features.MasteryPage.Scripts.Rune;
-using Features.StageInfo.Scripts.StageInfoView;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
