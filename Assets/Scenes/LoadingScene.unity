@@ -175,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioSourceLoop: {fileID: 167268594}
   _audioSourceOneShot: {fileID: 167268593}
+  _settingDataAsset: {fileID: 11400000, guid: a715273e6e2004f21ae4bde9d592b8af, type: 2}
 --- !u!82 &167268593
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1005,7 +1006,7 @@ GameObject:
   - component: {fileID: 1840081469}
   - component: {fileID: 1840081470}
   m_Layer: 0
-  m_Name: Setting
+  m_Name: FpsSetting
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

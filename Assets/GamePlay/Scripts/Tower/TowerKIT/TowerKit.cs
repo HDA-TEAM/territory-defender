@@ -71,6 +71,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             }
         }
         private GameObject _towerEntity;
+        private GameObject _previewTowerEntity;
         [ReadOnly][SerializeField] private int _totalUsedCoin;
     
         // call back
@@ -134,6 +135,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT
                     {
                         _spiteFlag.gameObject.SetActive(true);
                         _canvasGroupBtn.alpha = 1f;
+                        CheckAndRemoveExistTower(_previewTowerEntity);
                         return;
                     }
                 case TowerKitState.Building:
@@ -182,17 +184,17 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _onSelected = onSelected;
             _towerKitSetController = towerKitSetController;
         }
-        private void CheckAndRemoveExistTower()
+        private void CheckAndRemoveExistTower(GameObject tower)
         {
-            if (!_towerEntity)
+            if (!tower)
                 return;
             
-            Destroy(_towerEntity);
+            Destroy(tower);
         }
         public void SetTower(GameObject tower, UnitId.Tower towerId)
         {
-            CheckAndRemoveExistTower();
-            
+            CheckAndRemoveExistTower(_towerEntity);
+            CheckAndRemoveExistTower(_previewTowerEntity);
             _towerId = towerId;
             _towerEntity = tower;
             _unitBase = _towerEntity.GetComponent<UnitBase>();
@@ -207,6 +209,18 @@ namespace GamePlay.Scripts.Tower.TowerKIT
             _towerEntity.transform.SetParent(_spawnTowerHolder.transform);
             _towerEntity.transform.position = _spawnTowerHolder.transform.position;
             TowerKitState = TowerKitState.Hiding;
+        }
+        public void SetPreviewTower(GameObject tower, UnitId.Tower towerId)
+        {
+            CheckAndRemoveExistTower(_previewTowerEntity);
+            
+            _towerId = towerId;
+            _previewTowerEntity = tower;
+
+            _previewTowerEntity.transform.SetParent(_spawnTowerHolder.transform);
+            _previewTowerEntity.transform.position = _spawnTowerHolder.transform.position;
+            
+            SetFlagActive(false);
         }
         public void ShowPreviewChanging(TowerPreviewToolTipBase towerPreviewToolTipBase)
         {

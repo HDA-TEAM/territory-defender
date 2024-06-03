@@ -65,7 +65,6 @@ namespace GamePlay.Scripts.Data.StageSpawning
             public int RouteId;
             public int NumberSpawning;
         }
-
         public int GetTotalUnitsSpawning()
         {
             int total = 0;

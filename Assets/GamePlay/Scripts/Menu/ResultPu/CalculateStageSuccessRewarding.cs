@@ -20,7 +20,6 @@ namespace GamePlay.Scripts.GamePlay
                 if (successCondition.IsPassCondition())
                 {
                     totalStarsRewarding += 1;
-                    Debug.Log(totalStarsRewarding);
                 }
             }
             return totalStarsRewarding;
@@ -49,7 +48,6 @@ namespace GamePlay.Scripts.GamePlay
         }
         public override bool IsPassCondition()
         {
-            Debug.Log(_curHealth + " " + _minPassHealth);
             return _curHealth >= _minPassHealth;
         }
     }

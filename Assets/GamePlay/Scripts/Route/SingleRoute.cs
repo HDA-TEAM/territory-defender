@@ -6,7 +6,7 @@ namespace GamePlay.Scripts.Route
     public class SingleRoute : MonoBehaviour
     {
         public CallWaveBtnViewModel CallWaveBtnViewModel;
-        public LineRenderer SingleLineRenderer;
         public HandleSingleCallWaveShowTooltip HandleSingleCallWaveShowTooltip;
+        public SubLineRendererSet _subLineRendererSet;
     }
 }
