@@ -21,7 +21,7 @@ namespace GamePlay.Scripts.Tower.TowerKIT.TowerTools
         private bool CheckCurrencyIsEnough()
         {
             // Checked enough coin to build
-            _towerCanBuild = _towerDataConfigBase.GeConfigByKey(_towerBuildId).UnitBase;
+            _towerCanBuild = _towerDataConfigBase.GetConfigByKey(_towerBuildId).UnitBase;
             StatsHandlerComponent towerStats = _towerCanBuild.UnitStatsHandlerComp();
             return towerStats.GetCurrentStatValue(StatId.CoinNeedToBuild) <= _inGameResourceRuntimeData.GetCurrencyValue();
         }

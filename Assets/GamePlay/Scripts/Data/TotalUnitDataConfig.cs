@@ -28,16 +28,16 @@ namespace GamePlay.Scripts.Data
         public UnitDataComposite GetSingleUnitDataConfig(string key)
         {
             if (Enum.TryParse(key, out UnitId.Tower towerKey))
-                return _towerDataConfigBase.GeConfigByKey(towerKey);
+                return _towerDataConfigBase.GetConfigByKey(towerKey);
             
             if (Enum.TryParse(key, out UnitId.Ally allyKey))
-                return _allyTroopsDataConfigBase.GeConfigByKey(allyKey);
+                return _allyTroopsDataConfigBase.GetConfigByKey(allyKey);
             
             if (Enum.TryParse(key, out UnitId.Enemy enemyKey))
-                return _enemyDataConfigBase.GeConfigByKey(enemyKey);
+                return _enemyDataConfigBase.GetConfigByKey(enemyKey);
             
             if (Enum.TryParse(key, out UnitId.Hero heroKey))
-                return _heroDataConfigBase.GeConfigByKey(heroKey);
+                return _heroDataConfigBase.GetConfigByKey(heroKey);
 
             return new UnitDataComposite();
         }

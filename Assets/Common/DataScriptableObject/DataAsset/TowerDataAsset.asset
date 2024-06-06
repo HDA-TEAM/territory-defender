@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: TowerDataAsset
   _model:
-    TowerList: []
+    ListTowerDatas: []
   _towerTypeDict:
     _serializedList:
     - Key: 301
@@ -27,4 +27,4 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 9f39b640eb6ac41fda78229104115dc7, type: 2}
   _towerDataConfigBases:
   - {fileID: 11400000, guid: e91f4137479da4a26b1e6f4b905f68af, type: 2}
-  _returnStar: 0
+  _returnStar: 3

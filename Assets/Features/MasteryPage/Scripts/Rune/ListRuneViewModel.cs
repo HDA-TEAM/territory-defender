@@ -28,7 +28,7 @@ namespace Features.MasteryPage.Scripts.Rune
         public TowerRuneDataController _towerRuneDataController;
 
         // INTERNAL
-        private List<RuneLevelData> _runeLevels;
+        private List<RuneData> _runeLevels;
         private int _totalTalentPoint;
     
         // Data Asset
@@ -149,10 +149,10 @@ namespace Features.MasteryPage.Scripts.Rune
                 Amount = _inventoryData.Amount,
             };
         
-            // Default setting
+            // // Default setting
             if (_preTowerComposite.RuneComposite == null)
                 _preTowerComposite = _towerRuneComposites[0];
-        
+            
             UpdateView(_preTowerComposite.TowerId);
         }
         private void UpdateView(UnitId.Tower towerId)

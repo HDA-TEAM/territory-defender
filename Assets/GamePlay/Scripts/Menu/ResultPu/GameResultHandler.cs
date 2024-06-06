@@ -17,7 +17,7 @@ namespace GamePlay.Scripts.Menu.ResultPu
         public async void ShowStageSuccessPu(StartStageComposite startStageComposite)
         {
             StageId stageId = startStageComposite.StageId;
-            int maxLife = _stageDataConfig.GeConfigByKey(stageId).MaxHealth;
+            int maxLife = _stageDataConfig.GetConfigByKey(stageId).MaxHealth;
             int curLife = _resourceRuntimeData.GetLifeValue();
 
             int curClaimStarsCount = _calculateStageSuccess.GetStarsRewarding(maxLife, curLife);

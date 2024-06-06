@@ -5,13 +5,13 @@ using UnityEngine;
 namespace Common.Scripts.Data.DataConfig
 {
     [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/Config/TowerDataConfig")]
-    public class TowerDataConfig : ScriptableObject
+    public class TowerDataSo : ScriptableObject
     {
         public UnitId.Tower _towerId;
-        public List<RuneLevelData> _runeLevels;
-        public void InitializeRune(List<RuneLevelData> runeLevels)
+        public List<RuneData> _runeLevels;
+        public void InitializeRune(List<RuneData> runeLevels)
         {
-            _runeLevels = new List<RuneLevelData>(runeLevels);
+            _runeLevels = new List<RuneData>(runeLevels);
         }
         public UnitId.Tower GetTowerId()
         {
@@ -19,7 +19,7 @@ namespace Common.Scripts.Data.DataConfig
         }
         #region MasteryPage access
 
-        public List<RuneLevelData> GetAllRuneDataLevels()
+        public List<RuneData> GetAllRuneDataLevels()
         {
             return _runeLevels;
         }

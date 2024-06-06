@@ -1,7 +1,9 @@
+using System;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data.DataConfig;
 using System.Collections.Generic;
 using System.Linq;
+using Common.Scripts.Data.DataAsset;
 using UnityEngine;
 
 namespace Common.Scripts.Data.DataAsset
@@ -22,10 +24,10 @@ namespace Common.Scripts.Data.DataAsset
     }
 
     [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
-    public class RuneDataAsset : ScriptableObject
+    public class RuneDataAsset : LocalDataAsset<RuneDataModel>
     {
         [SerializedDictionary("RuneId", "RuneDataSO")] 
-        [SerializeField] private SerializedDictionary<RuneId, RuneDataSo> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataSo>();
+        public SerializedDictionary<RuneId, RuneDataSo> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataSo>();
 
         public RuneDataSo GetRune(RuneId runeId)
         {
@@ -39,10 +41,48 @@ namespace Common.Scripts.Data.DataAsset
         {
             return _masteryPageDataDict.Values.ToList();
         }
+        
+        public List<RuneData> GetAllRuneDataAsRuneData()
+        {
+            return _masteryPageDataDict.Values.Select(runeDataSo => new RuneData
+            {
+                RuneId = runeDataSo.GetRuneId(),
+                Level = 0 // Assuming you want to set default level to 0
+            }).ToList();
+        }
 
         public void RuneUpdate(RuneDataSo runeDataSo)
         {
         }
 
+    }
+}
+
+[Serializable]
+public struct RuneDataModel : IDefaultDataModel
+{
+    public List<RuneData> ListRuneDatas;
+
+    public bool IsEmpty()
+    {
+        return (ListRuneDatas == null || ListRuneDatas.Count == 0);
+    }
+
+    public void SetDefault()
+    {
+        
+    }
+}
+
+[Serializable]
+public struct RuneData
+{
+    public RuneId RuneId;
+    public int Level;
+
+    public RuneData(RuneId runeId, int level)
+    {
+        RuneId = runeId;
+        Level = level;
     }
 }

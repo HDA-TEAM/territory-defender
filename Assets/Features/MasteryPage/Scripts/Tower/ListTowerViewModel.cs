@@ -91,7 +91,7 @@ namespace Features.MasteryPage.Scripts.Tower
             if (_itemTowerViews != null)
             {
                 _itemTowerViews[0].OnSelectedTower();
-                _onUpdateViewAction?.Invoke(_towerRuneComposites[0].TowerId);
+                // _onUpdateViewAction?.Invoke(_towerRuneComposites[0].TowerId);
             }
         }
     }
