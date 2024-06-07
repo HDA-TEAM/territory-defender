@@ -22,8 +22,10 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
         // Load the data from json file into _model
         get
         {
-            //LoadData();
-            return _model.ListTowerDatas ??= new List<TowerData>();
+            // Todo: Would change when LoadData() be fixed
+            LoadData();
+            
+            return _model.ListTowerDatas ?? (_model.ListTowerDatas = new List<TowerData>());
         }
     }
     public TowerDataSo GetTower(UnitId.Tower towerId)

@@ -18,7 +18,6 @@ namespace Features.Home.Scripts.HomeScreen.OnHomeMap
         {
             var stateMachine = UIManagerStateMachine.Instance;   
             _buttonHeroInfo.onClick.AddListener(() => stateMachine.ChangeModalState<HeroInfoPuState>());
-            //_buttonShop.onClick.AddListener(() => _stateMachine.ChangeState<ShopState>());
             _buttonDictionary.onClick.AddListener(() => stateMachine.ChangeModalState<DictionaryPuState>());
             _buttonHistory.onClick.AddListener(() => stateMachine.ChangeModalState<HistoryPuState>());
             _buttonUpgradeTower.onClick.AddListener(() => stateMachine.ChangeModalState<MasteryPagePuState>());

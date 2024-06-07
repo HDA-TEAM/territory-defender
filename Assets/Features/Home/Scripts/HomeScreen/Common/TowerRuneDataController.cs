@@ -195,17 +195,11 @@ namespace Features.Home.Scripts.HomeScreen.Common
             {
                 RuneData runeData = new RuneData(runeComposite.RuneId, runeComposite.Level);
                 int index = curTower._runeLevels.FindIndex(r => r.RuneId == runeComposite.RuneId);
-                //Todo: addition more the condition for this logic update rune
                 if (index != -1)
                 {
                     // RuneId exists, update the rune
                     UpgradeRune(curTower, index);
                 }
-                // else
-                // {
-                //     // RuneId does not exist, add a new rune
-                //     AddRune(curTower, runeLevelData);
-                // }
 
                 _towerDataAsset.SaveTowers(_towerDataAsset._towerTypeDict);
             }
@@ -273,7 +267,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             }
         
             // Remove all runes with level
-            towerDataConfig._runeLevels.RemoveAll(rune => rune.Level == 0);
+            //towerDataConfig._runeLevels.RemoveAll(rune => rune.Level == 0);
         
             // Save changes to disk or server
             _towerDataAsset.SaveTowers(_towerDataAsset._towerTypeDict);
