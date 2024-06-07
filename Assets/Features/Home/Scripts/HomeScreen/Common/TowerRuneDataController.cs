@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Common.Scripts;
@@ -7,7 +6,6 @@ using Common.Scripts.Data.DataConfig;
 using Features.MasteryPage.Scripts.Rune;
 using Features.MasteryPage.Scripts.Tower;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Home.Scripts.HomeScreen.Common
 {
@@ -58,11 +56,12 @@ namespace Features.Home.Scripts.HomeScreen.Common
             else _runeComposites.Clear();
             
             // Load Rune data into each Tower
+            _towerDataAsset.UpdateTowerDataConfig(); //TODO
+            
             List<RuneDataSo> listRuneSos = _runeDataAsset.GetAllRuneData();
+            List<TowerDataSo> towerDataConfig = _towerDataAsset.GetAllTowerData();
             List<TowerData> loadedTowerData = _towerDataAsset.TowerDatas;
             
-            _towerDataAsset.UpdateTowerDataConfig();
-            List<TowerDataSo> towerDataConfig = _towerDataAsset.GetAllTowerData();
             if (towerDataConfig == null || towerDataConfig.Count == 0)
             {
                 Debug.LogError("No tower data found in _towerDataAsset.");
