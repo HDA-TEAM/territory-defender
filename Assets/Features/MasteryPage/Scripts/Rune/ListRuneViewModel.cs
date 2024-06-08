@@ -227,7 +227,7 @@ namespace Features.MasteryPage.Scripts.Rune
             if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
                 && _talentPointInventory.Amount > 0)
             {
-                _preRuneDataSo = runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
+                _preRuneDataSo = _towerRuneDataController._runeDataAsset.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
                 if (_preRuneDataSo != null)
                 {
                     // To update rune data

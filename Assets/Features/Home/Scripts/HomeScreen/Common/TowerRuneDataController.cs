@@ -143,24 +143,33 @@ namespace Features.Home.Scripts.HomeScreen.Common
         private void InitializeTowerWithLocalRunes(TowerDataSo towerIsFound, List<RuneDataSo> listRuneSos)
         {
             var runeComposites = new List<RuneComposite>();
+            var listRuneLocal = towerIsFound._runeLevels;
 
-            foreach (var runeSo in listRuneSos)
+            // Create a list to store the indices of runes that need to be modified
+            //var runesToModify = new List<int>();
+
+            // Iterate over the local tower's rune data
+            for (int i = 0; i < listRuneLocal.Count; i++)
             {
-                int index = towerIsFound._runeLevels.FindIndex(r => r.RuneId == runeSo.GetRuneId());
+                var runeData = listRuneLocal[i];
+                var index = listRuneSos.FindIndex(rune => rune.GetRuneId() == runeData.RuneId);
+                var runeSo = listRuneSos[index];
                 int level = 0;
 
                 if (index != -1)
                 {
-                    // Retrieve the RuneLevelData struct, modify it, and assign it back
+                    // Retrieve the RuneLevelData struct, modify it, and add its index to the list of runes to modify
                     var runeLevelData = towerIsFound._runeLevels[index];
                     level = runeLevelData.Level;
                     runeLevelData.Level = level;
                     towerIsFound._runeLevels[index] = runeLevelData;
+                    //runesToModify.Add(index);
                 }
                 else
                 {
                     // Add new RuneLevelData if it does not exist
                     towerIsFound._runeLevels.Add(new RuneData(runeSo.GetRuneId(), level));
+                    //runesToModify.Add(towerIsFound._runeLevels.Count - 1);
                 }
 
                 runeComposites.Add(new RuneComposite
@@ -181,7 +190,16 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 TowerId = towerIsFound.GetTowerId(),
                 RuneComposite = runeComposites
             });
+
+            // Apply modifications to the rune levels after the loop
+            // foreach (var index in runesToModify)
+            // {
+            //     var runeData = towerIsFound._runeLevels[index];
+            //     // Modify the rune data here if needed
+            // }
         }
+
+
 
         public void UpgradeTowerRuneData(UnitId.Tower towerId, RuneComposite runeComposite)
         {
@@ -226,7 +244,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             //     Debug.Log("ID: "+ item.RuneId + "..." + item.Level);
             // }
             // Optionally, sort the RuneLevels list by RuneId
-            towerDataSo._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
+            //towerDataSo._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
         }
 
         private void UpgradeRune(TowerDataSo towerDataSo, int index)

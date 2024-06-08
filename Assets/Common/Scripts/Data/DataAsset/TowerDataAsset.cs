@@ -48,7 +48,7 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     {
         return _towerTypeDict.Values.ToList();
     }
-    private void LoadTowerDataFromLocal(List<TowerData> towerDataSavers)
+    private void LoadTowerDataFromLocalToTowerDict(List<TowerData> towerDataSavers)
     {
         foreach (var saver in towerDataSavers)
         {
@@ -66,11 +66,12 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
         // TODO: load TowerDataConfig data
         var towerDatas = TowerDatas;  // Retrieve the list of TowerDataSaver from the asset
         
-        if (towerDatas.Count > 0)
-        {
-            towerDatas.Clear();
-        }
-        LoadTowerDataFromLocal(towerDatas);
+        // if (towerDatas.Count > 0)
+        // {
+        //     // Clear current data before loading
+        //     towerDatas.Clear();
+        // }
+        LoadTowerDataFromLocalToTowerDict(towerDatas);
     }
     
     // New
@@ -104,15 +105,16 @@ public struct TowerDataModel : IDefaultDataModel
     }
     public void SetDefault()
     {
+        ListTowerDatas = new List<TowerData>();
         // Ensure defaults are set for both lists
-        ListTowerDatas = new List<TowerData>
-        {
-            new TowerData
-            {
-                TowerId = 0, // Default Tower ID
-                RuneLevels = new List<RuneData>() // Default empty rune levels
-            }
-        };
+        // ListTowerDatas = new List<TowerData>
+        // {
+        //     new TowerData
+        //     {
+        //         TowerId = 0, // Default Tower ID
+        //         RuneLevels = new List<RuneData>() // Default empty rune levels
+        //     }
+        // };
     }
 }
 
