@@ -38,7 +38,7 @@ public class ListStageViewModel : MonoBehaviour
         var stateMachine = UIManagerStateMachine.Instance;  
         for (int i = 0; i < _itemStageViews.Count; i++)
         {
-            _itemStageViews[i].Setup(_stageComposites[i], OnStageSelected, stateMachine);
+            _itemStageViews[i].Setup(_stageComposites[i], OnStageSelected, stateMachine, _preSelectedStageView);
         }
     }
     private void OnStageSelected(ItemStageView itemStageView)

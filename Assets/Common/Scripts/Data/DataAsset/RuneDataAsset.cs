@@ -50,11 +50,6 @@ namespace Common.Scripts.Data.DataAsset
                 Level = 0 // Assuming you want to set default level to 0
             }).ToList();
         }
-
-        public void RuneUpdate(RuneDataSo runeDataSo)
-        {
-        }
-
     }
 }
 

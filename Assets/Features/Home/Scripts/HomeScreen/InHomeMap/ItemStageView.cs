@@ -1,5 +1,4 @@
 using System;
-using Features.Home.Scripts.HomeScreen.InHomeMap;
 using GamePlay.Scripts.Data;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,15 +11,17 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
         [SerializeField] private GameObject _imgFlag;
 
         // Internal
+        private ItemStageView _preStageSelected;
         private Action<ItemStageView> _onSelected;
         public StageComposite StageComposite;
 
         public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction,
-            UIManagerStateMachine stateMachine)
+            UIManagerStateMachine stateMachine, ItemStageView preItem)
         {
             StageComposite = stageComposite;
             _onSelected = onAction;
-
+            _preStageSelected = preItem;
+            
             if (stageComposite.StageState)
                 _imgFlag.SetActive(true);
 
@@ -33,14 +34,15 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
             var stateMachine = UIManagerStateMachine.Instance;
             _onSelected?.Invoke(this);
 
-            HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
+            if (_preStageSelected != this)
+                HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
+            
             stateMachine.ChangeModalState<StageInfoPuState>();
         }
 
         private void StageLoad(StageId stageID)
         {
             //TODO: Load Name for each Stage
-            //Debug.Log("Stage " + stageID + " is setting");
         }
     }
 }

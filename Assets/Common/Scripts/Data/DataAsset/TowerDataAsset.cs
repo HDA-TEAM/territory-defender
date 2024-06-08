@@ -17,19 +17,11 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
     public int _returnStar;
 
-    // private void Awake()
-    // {
-    //     this.UpdateTowerDataConfig();
-    // }
-
     public List<TowerData> TowerDatas
     {
         // Load the data from json file into _model
         get
         {
-            // Todo: Would change when LoadData() be fixed
-            //     LoadData();
-            
             return _model.ListTowerDatas ?? (_model.ListTowerDatas = new List<TowerData>());
         }
     }

@@ -71,28 +71,22 @@ namespace Features.Home.Scripts.HomeScreen.Common
             // Data in local is null
             if (loadedTowerData.Count == 0)
             {
-                Debug.Log("Data default is null");
                 // No local data, initialize from default configs
                 
                 foreach (var itemTowerConfig in towerDataConfig)
                 {
                     InitializeTowerWithDefaultRunes(itemTowerConfig, _towerRuneDataConfig.GetConfigByKey(itemTowerConfig.GetTowerId()));
                 }
-            }
-           
-            else
-            {
-                Debug.Log("Data default not null");
+            } else {
                 // Local data exists, load from it
                 foreach (var localData in loadedTowerData)
                 {
                     if (_towerDataAsset._towerTypeDict.TryGetValue(localData.TowerId, out TowerDataSo towerFind))
                     {
+                        var listRuneConfig = _towerRuneDataConfig.GetConfigByKey(localData.TowerId);
                         towerFind._runeLevels = new List<RuneData>(localData.RuneLevels);
-                        InitializeTowerWithLocalRunes(towerFind, listRuneSos);
-                    }
-                    else
-                    {
+                        InitializeTowerWithLocalRunes(towerFind, listRuneSos, listRuneConfig);
+                    } else {
                         Debug.LogWarning($"Tower with ID {localData.TowerId} not found in _towerTypeDict.");
                     }
                 }
@@ -140,14 +134,19 @@ namespace Features.Home.Scripts.HomeScreen.Common
             }
         }
         
-        private void InitializeTowerWithLocalRunes(TowerDataSo towerIsFound, List<RuneDataSo> listRuneSos)
+        private void InitializeTowerWithLocalRunes(TowerDataSo towerIsFound, List<RuneDataSo> listRuneSos, List<RuneId> runeIds)
         {
+            towerIsFound._runeLevels.Sort((rune1, rune2) => 
+            {
+                int index1 = runeIds.IndexOf(rune1.RuneId);
+                int index2 = runeIds.IndexOf(rune2.RuneId);
+                return index1.CompareTo(index2);
+            });
+            
             var runeComposites = new List<RuneComposite>();
             var listRuneLocal = towerIsFound._runeLevels;
 
             // Create a list to store the indices of runes that need to be modified
-            //var runesToModify = new List<int>();
-
             // Iterate over the local tower's rune data
             for (int i = 0; i < listRuneLocal.Count; i++)
             {
@@ -163,13 +162,11 @@ namespace Features.Home.Scripts.HomeScreen.Common
                     level = runeLevelData.Level;
                     runeLevelData.Level = level;
                     towerIsFound._runeLevels[index] = runeLevelData;
-                    //runesToModify.Add(index);
                 }
                 else
                 {
                     // Add new RuneLevelData if it does not exist
                     towerIsFound._runeLevels.Add(new RuneData(runeSo.GetRuneId(), level));
-                    //runesToModify.Add(towerIsFound._runeLevels.Count - 1);
                 }
 
                 runeComposites.Add(new RuneComposite
@@ -190,17 +187,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 TowerId = towerIsFound.GetTowerId(),
                 RuneComposite = runeComposites
             });
-
-            // Apply modifications to the rune levels after the loop
-            // foreach (var index in runesToModify)
-            // {
-            //     var runeData = towerIsFound._runeLevels[index];
-            //     // Modify the rune data here if needed
-            // }
         }
-
-
-
         public void UpgradeTowerRuneData(UnitId.Tower towerId, RuneComposite runeComposite)
         {
             _towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataSo curTower);
