@@ -7,7 +7,7 @@ public class BottomBarViewModel : MonoBehaviour
     [SerializeField] private List<ItemMainMenuView> _listItemMainMenuViews;
     [SerializeField] private GameObject _gameObject;
 
-    private ItemMainMenuView _preItemSelected;
+    //private ItemMainMenuView _preItemSelected;
     void Awake()
     {
         _gameObject.SetActive(false);
@@ -23,11 +23,16 @@ public class BottomBarViewModel : MonoBehaviour
 
     private void OnSelectedAddition(ItemMainMenuView itemMainMenuView)
     {
-        if (_preItemSelected != null)
-            _preItemSelected.GameObject().SetActive(false);
+        //_preItemSelected = itemMainMenuView;
+        if (itemMainMenuView._additionMode == AdditionMode.On)
+        {
+            _listItemMainMenuViews.Find(menu => menu._additionMode == AdditionMode.On).GameObject().SetActive(false);
+            _gameObject.SetActive(true);
+        } else {
+            _listItemMainMenuViews.Find(menu => menu._additionMode == AdditionMode.On).GameObject().SetActive(true);
+            _gameObject.SetActive(false);
+        }
         
-        _preItemSelected = itemMainMenuView;
-        _gameObject.SetActive(itemMainMenuView._additionMode == AdditionMode.On);
     }
 }
 

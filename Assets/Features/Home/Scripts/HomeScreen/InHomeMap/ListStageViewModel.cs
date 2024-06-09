@@ -11,6 +11,8 @@ public class ListStageViewModel : MonoBehaviour
     // Internal
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;
+
+    public StageComposite NextStage;
     private void Awake()
     {
         _stageComposites = new List<StageComposite>();
@@ -30,16 +32,22 @@ public class ListStageViewModel : MonoBehaviour
         
         // Update data for list StageComposite
         _stageComposites = stageDataManager.StageComposites;
-        
+
+        foreach (var stage in _stageComposites)
+        {
+            if (!stage.StageState)
+                NextStage = stage;
+        }
         UpdateView();
     }
     private void UpdateView()
     {
-        var stateMachine = UIManagerStateMachine.Instance;  
         for (int i = 0; i < _itemStageViews.Count; i++)
         {
-            _itemStageViews[i].Setup(_stageComposites[i], OnStageSelected, stateMachine, _preSelectedStageView);
+            _itemStageViews[i].Setup(_stageComposites[i], OnStageSelected, _preSelectedStageView);
         }
+
+        _itemStageViews.Find(stage => stage.StageComposite.StageId == NextStage.StageId).ExistLightCol();
     }
     private void OnStageSelected(ItemStageView itemStageView)
     {

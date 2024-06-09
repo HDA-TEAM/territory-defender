@@ -12,8 +12,7 @@ namespace Features.MasteryPage.Scripts.Tower
         [Header("UI")]
         [SerializeField] private List<ItemTowerView> _itemTowerViews;
         [SerializeField] private ListRuneViewModel _listRuneViewModel;
-        //[SerializeField] private TowerRuneDataController _towerRuneDataController;
-        
+
         public Action<UnitId.Tower> _onUpdateViewAction;
 
         // Internal

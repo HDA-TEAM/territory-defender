@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f19b7e2285c104f6ca47d583f3e5444f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectFactor: 0.82242906
+  m_EffectFactor: 0.54139453
   m_Width: 0.075
   m_Rotation: 45
   m_Softness: 1
@@ -1152,6 +1152,7 @@ MonoBehaviour:
   - {fileID: 7827799921859122154}
   - {fileID: 7500333827854615169}
   - {fileID: 6350898767831761220}
+  _stageDataAsset: {fileID: 11400000, guid: a5ed3e7e2e3ad447e95f9f42f34d16b0, type: 2}
 --- !u!1 &5766446624270942635
 GameObject:
   m_ObjectHideFlags: 0
@@ -2390,7 +2391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5766446625358570884
 RectTransform:
   m_ObjectHideFlags: 0

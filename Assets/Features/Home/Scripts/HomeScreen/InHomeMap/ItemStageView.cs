@@ -15,8 +15,7 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
         private Action<ItemStageView> _onSelected;
         public StageComposite StageComposite;
 
-        public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction,
-            UIManagerStateMachine stateMachine, ItemStageView preItem)
+        public void Setup(StageComposite stageComposite, Action<ItemStageView> onAction, ItemStageView preItem)
         {
             StageComposite = stageComposite;
             _onSelected = onAction;
@@ -34,8 +33,9 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
             var stateMachine = UIManagerStateMachine.Instance;
             _onSelected?.Invoke(this);
 
-            if (_preStageSelected != this)
-                HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
+            // Move the light col depend on which stage is clicked
+            //if (_preStageSelected != this)
+                //HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
             
             stateMachine.ChangeModalState<StageInfoPuState>();
         }
@@ -43,6 +43,11 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
         private void StageLoad(StageId stageID)
         {
             //TODO: Load Name for each Stage
+        }
+
+        public void ExistLightCol() //Auto exist light col for next stage
+        {
+            HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
         }
     }
 }
