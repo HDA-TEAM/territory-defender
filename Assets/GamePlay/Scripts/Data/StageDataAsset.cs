@@ -5,8 +5,6 @@ using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
-using Features.MasteryPage.Scripts.Rune;
-using Features.StageInfo.Scripts.StageInfoView;
 using UnityEngine;
 
 namespace GamePlay.Scripts.Data
@@ -41,6 +39,16 @@ namespace GamePlay.Scripts.Data
         public List<StageDataSO> GetAllStageData()
         {
             return _stageDataDict.Values.ToList();
+        }
+
+        public int GetTotalStar()
+        {
+            int totalStar = 0;
+            foreach (var item in _stageDataDict)
+            {
+                totalStar += item.Value._stageStar;
+            }
+            return totalStar;
         }
         public List<StagePassed> ListStagePassed
         {

@@ -87,7 +87,6 @@ namespace Common.Scripts.Data.DataAsset
                 InventoryDatas[i] = updatedInventory; // Reassign the modified struct back to the list
 
                 SaveData();
-                
                 NotifyAmountChange(type);
                 break;
             }

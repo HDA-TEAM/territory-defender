@@ -1,4 +1,6 @@
+using Features.MasteryPage.Scripts.Tower;
 using System;
+using Features.MasteryPage.Scripts.Rune;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,7 +12,7 @@ public class ItemTowerView : MonoBehaviour
     [SerializeField] private Image _imageBg;
     [SerializeField] private Sprite _spriteSelectedBg;
     
-    public TowerComposite TowerComposite;
+    public TowerRuneComposite TowerRuneComposite;
     
     // Internal
     private Sprite _sprite;
@@ -24,12 +26,12 @@ public class ItemTowerView : MonoBehaviour
         _btn.onClick.AddListener(OnSelectedTower);
     }
     
-    public void Setup(TowerComposite towerComposite,Action<ItemTowerView> onSelected)
+    public void Setup(TowerRuneComposite towerRuneComposite,Action<ItemTowerView> onSelected)
     {
-        TowerComposite = towerComposite;
+        TowerRuneComposite = towerRuneComposite;
         _onSelected = onSelected;
 
-        SetName(towerComposite.TowerId.ToString());
+        SetName(towerRuneComposite.TowerId.ToString());
     }
     
     public void OnSelectedTower()

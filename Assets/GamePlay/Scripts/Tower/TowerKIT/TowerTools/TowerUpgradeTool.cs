@@ -42,7 +42,7 @@ public class TowerUpgradeTool : TowerToolBase
     private bool IsEnoughCurrency(UnitId.Tower towerId)
     {
         // Checked enough coin to upgrade
-        _towerCanBuild = _towerDataConfigBase.GeConfigByKey(towerId).UnitBase;
+        _towerCanBuild = _towerDataConfigBase.GetConfigByKey(towerId).UnitBase;
         StatsHandlerComponent towerStats = _towerCanBuild.UnitStatsHandlerComp();
         return towerStats.GetCurrentStatValue(StatId.CoinNeedToBuild) <= _inGameResourceRuntimeData.GetCurrencyValue();
     }

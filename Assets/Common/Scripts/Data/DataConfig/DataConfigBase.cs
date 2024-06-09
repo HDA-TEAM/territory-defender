@@ -8,7 +8,7 @@ namespace Common.Scripts.Data.DataConfig
         [SerializeField] [SerializedDictionary("TKey", "TVal")]
         protected SerializedDictionary<TKey, TVal> _data;
 
-        public TVal GeConfigByKey(TKey keyId)
+        public TVal GetConfigByKey(TKey keyId)
         {
             _data.TryGetValue(keyId, out TVal unitDataComposite);
             return unitDataComposite;
