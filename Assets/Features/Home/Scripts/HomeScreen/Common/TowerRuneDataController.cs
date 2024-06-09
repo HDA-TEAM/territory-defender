@@ -197,7 +197,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             }
             else
             {
-                RuneData runeData = new RuneData(runeComposite.RuneId, runeComposite.Level);
+                //RuneData runeData = new RuneData(runeComposite.RuneId, runeComposite.Level);
                 int index = curTower._runeLevels.FindIndex(r => r.RuneId == runeComposite.RuneId);
                 if (index != -1)
                 {
