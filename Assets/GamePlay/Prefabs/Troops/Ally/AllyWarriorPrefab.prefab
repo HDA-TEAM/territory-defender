@@ -27,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: DeadClip
       value: 
-      objectReference: {fileID: 7400000, guid: 31a917857d61b40f78f0bed70454076c, type: 2}
+      objectReference: {fileID: 7400000, guid: 6201a57551afd4ce1a6f65e9791f6760, type: 2}
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: IdleClip
       value: 
@@ -41,9 +41,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7400000, guid: 31a917857d61b40f78f0bed70454076c, type: 2}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_Size.x
+      value: 1.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_Size.y
+      value: 0.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c7cb4cf85057f4ae0a42156069bb039b, type: 3}
+      objectReference: {fileID: -1999803066, guid: 4bba4d0fefacd4c7bb4cdb71646b85a9, type: 3}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -107,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 6715228475396641559, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 7cd43bccf3a594fb89ae635736101117, type: 2}
     m_RemovedComponents:
     - {fileID: 666001084183805972, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
     m_RemovedGameObjects: []
