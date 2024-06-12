@@ -10,7 +10,7 @@ namespace GamePlay.Scripts.GamePlayController
         [SerializeField] private SpriteRenderer _spriteRendererMap;
         protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
         {
-            _spriteRendererMap.sprite =_mapDataConfig.GeConfigByKey(setUpNewGamePayload.StartStageComposite.StageId).MapSprite;
+            _spriteRendererMap.sprite =_mapDataConfig.GetConfigByKey(setUpNewGamePayload.StartStageComposite.StageId).MapSprite;
         }
         protected override void OnResetGame(ResetGamePayload resetGamePayload)
         {

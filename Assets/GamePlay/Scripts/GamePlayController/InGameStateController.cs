@@ -48,7 +48,7 @@ namespace GamePlay.Scripts.GamePlayController
             if (_isFastSetupStageForTest)
                 SetUpTestNewGame(_startStageComposite);
 #endif
-            StageConfig stageConfig = _stageDataConfig.GeConfigByKey(_startStageComposite.StageId);
+            StageConfig stageConfig = _stageDataConfig.GetConfigByKey(_startStageComposite.StageId);
             _resourceRuntimeData.InitData(stageConfig);
 
             Messenger.Default.Publish(new StageStartPayload

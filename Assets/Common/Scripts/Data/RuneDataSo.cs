@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Common.Scripts.Data.DataConfig
 {
     [CreateAssetMenu(fileName = "Rune", menuName = "ScriptableObject/Data/Rune")]
-    public class RuneDataConfig : ScriptableObject
+    public class RuneDataSo : ScriptableObject
     {
         [SerializeField]
         private RuneId _runeId;

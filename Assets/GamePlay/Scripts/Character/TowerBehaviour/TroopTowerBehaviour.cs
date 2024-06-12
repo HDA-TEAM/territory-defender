@@ -14,8 +14,8 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
     public class TroopTowerBehaviour : TowerBehaviourBase
     {
         // Default 3 units
-        private readonly int _maxAllyCount = 3;
-        private readonly float _minPerUnitDistance = 0.5f;
+        private const int MaxAllyCount = 3;
+        private const float MinPerUnitDistance = 0.5f;
         [SerializeField] private float _cooldownReviveUnit;
         [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
         [SerializeField] private float _campingRange;
@@ -23,7 +23,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         private Vector3 _parentPos;
         protected override void StatsUpdate()
         {
-            var stats = _unitBaseParent.UnitStatsHandlerComp();
+            StatsHandlerComponent stats = _unitBaseParent.UnitStatsHandlerComp();
             _cooldownReviveUnit = stats.GetCurrentStatValue(StatId.TimeToRevive);
             _campingRange = stats.GetCurrentStatValue(StatId.CampingRange);
         }
@@ -43,7 +43,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             towerKit.TowerRangingHandler().SetUp(rangeVal);
             
             _parentPos = _towerKit.transform.position;
-            for (int i = 0; i < _maxAllyCount; i++)
+            for (int i = 0; i < MaxAllyCount; i++)
                 Messenger.Default.Publish(new OnSpawnObjectPayload
                 {
                     ActiveAtSpawning = false,
@@ -121,7 +121,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             // Set camping pos for each unit
             for (int i = 0; i < _allyUnits.Count; i++)
             {
-                Vector3 curUnitCampingPlace = GetCampingPlaceOffset(_maxAllyCount, i, _campingPos);
+                Vector3 curUnitCampingPlace = GetCampingPlaceOffset(MaxAllyCount, i, _campingPos);
                 // Moving to camping pos
                 _allyUnits[i].UserActionController().SetMovingPosition(curUnitCampingPlace);
             }
@@ -131,7 +131,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             float startDegree = -90; // Ensure first unit will be create at bottom middle place
             float curDegree = (360f * index / maxNumber) + startDegree;
             float curRadian = curDegree * Mathf.Deg2Rad;
-            return startPos + new Vector3(_minPerUnitDistance * Mathf.Cos(curRadian), _minPerUnitDistance * Mathf.Sin(curRadian), 0f);
+            return startPos + new Vector3(MinPerUnitDistance * Mathf.Cos(curRadian), MinPerUnitDistance * Mathf.Sin(curRadian), 0f);
         }
     }
 }

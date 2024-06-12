@@ -1,3 +1,6 @@
+using Features.MasteryPage.Scripts.Rune;
+using Features.MasteryPage.Scripts.Tower;
+
 public static class GlobalUtility
 {
     public static void ResetView(ListTowerViewModel towerViewModel, ListHeroViewModel heroViewModel)

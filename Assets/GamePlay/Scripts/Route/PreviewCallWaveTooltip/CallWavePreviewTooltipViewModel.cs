@@ -43,7 +43,7 @@ namespace GamePlay.Scripts.Route.PreviewCallWaveTooltip
                 {
                     _unitCallWavePreviewViews[i].gameObject.SetActive(true);
 
-                    var avatar = _enemyDataConfigBase.GeConfigByKey(unitPreviewComposites[i].EnemyId).UnitSprites;
+                    var avatar = _enemyDataConfigBase.GetConfigByKey(unitPreviewComposites[i].EnemyId).UnitSprites;
                     _unitCallWavePreviewViews[i].Setup(avatar.AvatarIcon, unitPreviewComposites[i].Amount);
                 }
                 else
