@@ -30,15 +30,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         {
             _currentStrategy?.Execute(this);
         }
-
-        // private void Start()
-        // {
-        //     //_towerDataAsset.UpdateTowerDataConfig();
-        //     
-        //     SetStrategy(new InitTowerRuneStrategy());
-        //     ExecuteStrategy();
-        // }
-
+        
         public int GetReturnStar()
         {
             return _towerDataAsset._returnStar;

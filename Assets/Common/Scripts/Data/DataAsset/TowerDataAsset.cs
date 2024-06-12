@@ -55,14 +55,9 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     }
     public void UpdateTowerDataConfig()
     {
-        // TODO: load TowerDataConfig data
-        var towerDatas = TowerDatas;  // Retrieve the list of TowerDataSaver from the asset
+        // Load TowerDataConfig data from local
+        var towerDatas = TowerDatas;
         
-        // if (towerDatas.Count > 0)
-        // {
-        //     // Clear current data before loading
-        //     towerDatas.Clear();
-        // }
         LoadTowerDataFromLocalToTowerDict(towerDatas);
     }
     
@@ -99,14 +94,6 @@ public struct TowerDataModel : IDefaultDataModel
     {
         ListTowerDatas = new List<TowerData>();
         // Ensure defaults are set for both lists
-        // ListTowerDatas = new List<TowerData>
-        // {
-        //     new TowerData
-        //     {
-        //         TowerId = 0, // Default Tower ID
-        //         RuneLevels = new List<RuneData>() // Default empty rune levels
-        //     }
-        // };
     }
 }
 
