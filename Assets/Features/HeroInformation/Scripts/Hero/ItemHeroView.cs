@@ -35,6 +35,7 @@ public class ItemHeroView : MonoBehaviour
     #endregion
     public void OnSelectedHero()
     {
+        _sprite = _imageBg.sprite;
         _imageBg.sprite = _spriteSelectedBg;
         if (ColorUtility.TryParseHtmlString(_hexSelectedColor, out Color selectedColor))
         {

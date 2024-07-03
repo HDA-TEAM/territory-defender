@@ -1,5 +1,4 @@
 using Common.Scripts;
-using Features.Home.Scripts.HomeScreen.Common;
 using Features.MasteryPage.Scripts.Rune;
 using System;
 using System.Collections.Generic;
@@ -32,9 +31,7 @@ namespace Features.MasteryPage.Scripts.Tower
 
         private void UpdateData()
         {
-            //var towerDataManager = TowerDataManager.Instance;
-
-            if (_listRuneViewModel._towerRuneDataController == null) return;
+            if (!_listRuneViewModel._towerRuneDataController) return;
             if (_listRuneViewModel._towerRuneDataController.TowerRuneComposites == null) return;
 
             _towerRuneComposites = _listRuneViewModel._towerRuneDataController.TowerRuneComposites;
@@ -47,7 +44,7 @@ namespace Features.MasteryPage.Scripts.Tower
             {
                 if (i < _towerRuneComposites.Count)
                 {
-                    // Setup hero property
+                    // Setup item tower view
                     _itemTowerViews[i].Setup(_towerRuneComposites[i], OnSelectedItem);
                     _itemTowerViews[i].gameObject.SetActive(true);
                 }
@@ -70,8 +67,6 @@ namespace Features.MasteryPage.Scripts.Tower
 
             _preSelectedItem = itemTowerView;
             _preSelectedItem.OnSelectedTower();
-        
-            Debug.Log($"Invoking actions for tower ID: {itemTowerView.TowerRuneComposite.TowerId}");
 
             // Reset view of rune detail
             _onUpdateViewAction?.Invoke(_preSelectedItem.TowerRuneComposite.TowerId);
@@ -90,7 +85,6 @@ namespace Features.MasteryPage.Scripts.Tower
             if (_itemTowerViews != null)
             {
                 _itemTowerViews[0].OnSelectedTower();
-                // _onUpdateViewAction?.Invoke(_towerRuneComposites[0].TowerId);
             }
         }
     }

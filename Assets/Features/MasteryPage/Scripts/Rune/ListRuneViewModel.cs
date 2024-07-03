@@ -56,7 +56,7 @@ namespace Features.MasteryPage.Scripts.Rune
         private ITowerRune _currentTowerRune;
         private void SubscribeEvents()
         {
-            // Handle Tower changed
+            // Handle tower changed
             if (_listTowerViewModel != null)
             {
                 _listTowerViewModel._onUpdateViewAction += UpdateView;

@@ -21,7 +21,7 @@ namespace Features.Quest.Scripts
         public SerializedDictionary<QuestType, List<TaskDataSO>> _questTypeDict =
             new SerializedDictionary<QuestType, List<TaskDataSO>>();
         
-        public List<TaskDataSO> GetAllDailyListTask(QuestType questType)
+        public List<TaskDataSO> GetTaskListByType(QuestType questType)
         {
             _questTypeDict.TryGetValue(questType, out List<TaskDataSO> taskLists);
             
