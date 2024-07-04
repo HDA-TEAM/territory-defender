@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Common.Scripts.Data.DataConfig
 {
-    [CreateAssetMenu(fileName = "TowerDataConfig", menuName = "ScriptableObject/Config/TowerDataConfig")]
+    [CreateAssetMenu(fileName = "TowerDataSo", menuName = "ScriptableObject/Config/TowerDataSo")]
     public class TowerDataSo : ScriptableObject
     {
         public UnitId.Tower _towerId;

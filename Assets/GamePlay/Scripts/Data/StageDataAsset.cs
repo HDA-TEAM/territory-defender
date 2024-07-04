@@ -35,7 +35,6 @@ namespace GamePlay.Scripts.Data
     {
         [SerializedDictionary("StageId", "StageDataSO")] 
         [SerializeField] private SerializedDictionary<StageId, StageDataSO> _stageDataDict = new SerializedDictionary<StageId, StageDataSO>();
-        
         public List<StageDataSO> GetAllStageData()
         {
             return _stageDataDict.Values.ToList();
