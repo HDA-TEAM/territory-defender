@@ -1,19 +1,21 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 namespace Features.Quest.Scripts
 {
+    [Serializable]
     public struct QuestComposite
     {
         public QuestType Type;
-        public List<TaskDataSO> ListTaskData;
+      
     }
-
+    
     public class QuestDataController : MonoBehaviour
     {
         [Header("Data")] public QuestDataAsset _questDataAsset;
-        private List<QuestComposite> _curQuestComposites;
+        [SerializeField] private List<QuestComposite> _curQuestComposites;
         public List<QuestComposite> QuestComposites
         {
             get
@@ -32,17 +34,15 @@ namespace Features.Quest.Scripts
             
             for (int i = 0; i < keys.Count; i++)
             {
-                //Todo
+                //Todo rrr
                 QuestType questType = keys[i];
                 List<TaskDataSO> taskList = _questDataAsset.GetTaskListByType(questType);
-                _curQuestComposites = new List<QuestComposite>
-                {
-                    new QuestComposite
+                _curQuestComposites.Add(new QuestComposite
                     {
                         Type = questType, //Todo
-                        ListTaskData = taskList
+                        
                     }
-                };
+                );
             }
         }
     }

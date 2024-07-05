@@ -61,8 +61,7 @@ namespace Features.MasteryPage.Scripts.Rune
             {
                 _listTowerViewModel._onUpdateViewAction += UpdateView;
             }
-        
-            //TODO
+            
             // Handle upgrade rune clicking
             if (_itemUpgradeRuneView != null)
             {

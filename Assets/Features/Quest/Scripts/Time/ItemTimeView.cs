@@ -13,13 +13,18 @@ namespace Features.Quest.Scripts.Time
         [SerializeField] private Sprite _spriteUnSelectedBg;
         [SerializeField] private Image _imageBg;
 
-        public QuestComposite QuestComposite;
+        //Internal
         private Action<ItemTimeView> _onSelected;
+        private QuestType _questType;
+        public QuestType GetQuestType => _questType;
         
+        public void Initialize(QuestType questType)
+        {
+            _questType = questType;
+        }
         public void SetUp(Action<ItemTimeView> onAction, string timeType)
         {
             _onSelected = onAction;
-                
             SetName(timeType);
             
             _btn.onClick.AddListener(OnSelectedItemTime);

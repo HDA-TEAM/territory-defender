@@ -19,6 +19,7 @@ namespace Features.Quest.Scripts.Quest
         {
             if (_listTimeViewModel != null)
             {
+                //Debug.Log(_listTimeViewModel._preItemTimeView.GetQuestType + "............_listTimeViewModel._preItemTimeView.GetQuestType");
                 _listTimeViewModel._onUpdateViewAction += UpdateView;
             }
         }
@@ -37,7 +38,6 @@ namespace Features.Quest.Scripts.Quest
         private void Start()
         {
             UpdateData();
-            
             _listTimeViewModel.SetupTime();
             
             UnSubscribeEvents();
@@ -47,17 +47,18 @@ namespace Features.Quest.Scripts.Quest
         private void UpdateData()
         {
             _questDataController.InitQuestData();
-            //UpdateView(QuestType.DailyQuest);
+            
+            //Default setting
+            UpdateView(QuestType.DailyQuest);
         }
 
         private void UpdateView(QuestType questType)
         {
-            Debug.Log(questType + "............?");
             if (_preQuestType == questType) return;
             
             _preQuestType = questType;
        
-            var tasks = GetTasksByTimeType(_preQuestType);
+            var tasks = GetTasksByTimeType(questType);
             IItemSetupView<TaskDataSO> setupItemTask = new SetupItemTask();
             
             //TODO
