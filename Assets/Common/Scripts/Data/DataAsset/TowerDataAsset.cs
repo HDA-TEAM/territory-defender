@@ -17,19 +17,11 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
     public int _returnStar;
 
-    // private void Awake()
-    // {
-    //     this.UpdateTowerDataConfig();
-    // }
-
     public List<TowerData> TowerDatas
     {
         // Load the data from json file into _model
         get
         {
-            // Todo: Would change when LoadData() be fixed
-            //     LoadData();
-            
             return _model.ListTowerDatas ?? (_model.ListTowerDatas = new List<TowerData>());
         }
     }
@@ -63,14 +55,9 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     }
     public void UpdateTowerDataConfig()
     {
-        // TODO: load TowerDataConfig data
-        var towerDatas = TowerDatas;  // Retrieve the list of TowerDataSaver from the asset
+        // Load TowerDataConfig data from local
+        var towerDatas = TowerDatas;
         
-        // if (towerDatas.Count > 0)
-        // {
-        //     // Clear current data before loading
-        //     towerDatas.Clear();
-        // }
         LoadTowerDataFromLocalToTowerDict(towerDatas);
     }
     
@@ -107,14 +94,6 @@ public struct TowerDataModel : IDefaultDataModel
     {
         ListTowerDatas = new List<TowerData>();
         // Ensure defaults are set for both lists
-        // ListTowerDatas = new List<TowerData>
-        // {
-        //     new TowerData
-        //     {
-        //         TowerId = 0, // Default Tower ID
-        //         RuneLevels = new List<RuneData>() // Default empty rune levels
-        //     }
-        // };
     }
 }
 

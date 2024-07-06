@@ -2,6 +2,7 @@ using Common.Loading.Scripts;
 using GamePlay.Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.StageInfo.Scripts.StageInfoView
 {
@@ -12,7 +13,7 @@ namespace Features.StageInfo.Scripts.StageInfoView
         [SerializeField] private List<ItemStageStarView> _itemStageStarViews;
         [SerializeField] private StageInfoDetailView _stageInfoDetailView;
 
-        [Header("Data")] [SerializeField] private GameModeViewModel _gameModeViewModel;
+        [Header("Data")] [SerializeField] private StageModeViewModel _stageModeViewModel;
 
         [SerializeField] private ListHeroChooseViewModel _heroChooseView;
 
@@ -56,7 +57,7 @@ namespace Features.StageInfo.Scripts.StageInfoView
 
         private void OnSelectedItemPlay(ItemPlayView itemPlayView)
         {
-            GameMode currentGameMode = _gameModeViewModel.GetMode();
+            GameMode currentGameMode = _stageModeViewModel.GetMode();
             HeroComposite heroBeChosen = _heroChooseView.GetHeroChoose();
 
             //TODO: load the map is suitable with the (Stage, Mode, Hero Chosen)

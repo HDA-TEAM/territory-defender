@@ -7,7 +7,7 @@ public enum GameMode
     Hard
 }
 
-public class GameModeViewModel : MonoBehaviour
+public class StageModeViewModel : MonoBehaviour
 {
     [Header("UI")] [SerializeField] private List<ItemModeView> _itemModeViews;
 

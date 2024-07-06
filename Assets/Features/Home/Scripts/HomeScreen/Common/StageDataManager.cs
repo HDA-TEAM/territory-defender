@@ -1,7 +1,6 @@
 using Common.Scripts;
 using Common.Scripts.Data;
 using System.Collections.Generic;
-using Features.StageInfo.Scripts.StageInfoView;
 using GamePlay.Scripts.Data;
 using UnityEngine;
 
