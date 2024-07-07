@@ -32,7 +32,7 @@ public class TowerUpgradeTool : TowerToolBase
     }
     private UnitId.Tower GetNextUpgradableTower(UnitId.Tower towerId)
     {
-        List<UnitId.Tower> nextUpgradableTowers = _towerDataConfigBase.NextAvailableUpgradeTowers.GetNextAvailableUpgradeTowers(towerId);
+        List<UnitId.Tower> nextUpgradableTowers = _towerDataConfigBase.NextAvailableUpgradeTowers.GetSingleNextAvailableUpgradeTowers(towerId);
         
         if (nextUpgradableTowers == null || nextUpgradableTowers.Count <= 0)
             return towerId;
