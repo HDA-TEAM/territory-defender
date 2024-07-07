@@ -1,5 +1,6 @@
 using Common.Scripts;
 using Common.Scripts.Navigator;
+using Features.Dictionary.Scripts;
 using UnityEngine;
 
 public abstract class UIState

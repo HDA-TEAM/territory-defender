@@ -1,4 +1,7 @@
 using AYellowpaper.SerializedCollections;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Common.Scripts.Data.DataConfig
@@ -16,6 +19,10 @@ namespace Common.Scripts.Data.DataConfig
         public bool IsExist(TKey keyId)
         {
             return _data.ContainsKey(keyId);
+        }
+        public List<TVal> GetListItem()
+        {
+            return _data.Values.ToList();
         }
     }
 }

@@ -1,5 +1,8 @@
 using Common.Scripts.Navigator;
 
-public class DictionaryPu : CommonModal
+namespace Features.Dictionary.Scripts
 {
+    public class DictionaryPu : CommonModal
+    {
+    }
 }
