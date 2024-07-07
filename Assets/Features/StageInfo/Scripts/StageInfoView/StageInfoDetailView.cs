@@ -12,6 +12,7 @@ public class StageInfoDetailView : MonoBehaviour
     public void Setup(StageComposite stageComposite)
     {
         _txtStageName.text = stageComposite.StageName;
+        _imgStageMap.sprite = stageComposite.StageImage;
     }
     #endregion
 }

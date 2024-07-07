@@ -2,7 +2,6 @@ using Common.Loading.Scripts;
 using GamePlay.Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.StageInfo.Scripts.StageInfoView
 {
@@ -14,9 +13,11 @@ namespace Features.StageInfo.Scripts.StageInfoView
         [SerializeField] private StageInfoDetailView _stageInfoDetailView;
 
         [Header("Data")] [SerializeField] private StageModeViewModel _stageModeViewModel;
-
+        
         [SerializeField] private ListHeroChooseViewModel _heroChooseView;
-
+        [SerializeField] private StageDataAsset _stageDataAsset;
+        [SerializeField] private MapDataConfig _mapDataConfig;
+        [SerializeField] private StageDataConfig _stageDataConfig;
         // Internal
         private static StageComposite _currentStage;
 
@@ -33,19 +34,24 @@ namespace Features.StageInfo.Scripts.StageInfoView
             _currentStage = StageDataManager.Instance.CurrentStage;
             UpdateView();
         }
-
-        private void UpdateView()
+        private void UpdateStarView()
         {
+            StagePassed stagePassed = _stageDataAsset.ListStagePassed.Find((stage) => stage.StageId == _currentStage.StageId);
             // Fill the star result for that stage
             for (int i = 0; i < _itemStageStarViews.Count; i++)
             {
-                if (i < _currentStage.StageStar)
+                if (i < stagePassed.TotalStar)
                     _itemStageStarViews[i].SetupYellowStar();
 
                 else
                     _itemStageStarViews[i].SetupGrownStar();
             }
-
+        }
+        private void UpdateView()
+        {
+            UpdateStarView();
+            _currentStage.StageImage = _mapDataConfig.GetConfigByKey(_currentStage.StageId).MapSprite;
+            _currentStage.StageName = _stageDataConfig.GetConfigByKey(_currentStage.StageId).Name;
             _stageInfoDetailView.Setup(_currentStage);
         }
 

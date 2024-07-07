@@ -49,6 +49,7 @@ namespace GamePlay.Scripts.Data
             }
             return totalStar;
         }
+        
         public List<StagePassed> ListStagePassed
         {
             get
