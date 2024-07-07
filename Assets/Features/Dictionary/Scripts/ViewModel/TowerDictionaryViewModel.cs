@@ -99,7 +99,6 @@ namespace Features.Dictionary.Scripts.ViewModel
         }
         public bool IsExistLeftId()
         {
-            Debug.Log( "exist" + (_curTree.FindIndex((tower) => tower == _curNode) - 1));
             return _curTree.FindIndex((tower) => tower == _curNode) - 1 >= 0;
         }
         public bool IsExistRightId()
