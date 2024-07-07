@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Common.Scripts;
-using Common.Scripts.Data;
+using Common.Scripts.Data.DataConfig;
+using Features.HeroInformation.Scripts.Hero;
 using UnityEngine;
 
 public class ListHeroViewModel : MonoBehaviour
@@ -131,6 +132,6 @@ public struct HeroComposite: IComposite
     public Sprite HeroChoose;
     public Sprite HeroOwned;
     
-    
-    public List<SkillDataSO> Skills;
+    public ESkillId ActiveSkillId;
+    public ESkillId PassiveSkillId;
 }
