@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
-  m_Name: Rune 1
+  m_Name: ArmorRune
   m_EditorClassIdentifier: 
-  _runeId: 2
-  _name: Attack II
-  _maxLevel: 4
-  _avatarSelected: {fileID: 21300000, guid: 4b6c0021211ac4c5aad5b6897853abc1, type: 3}
-  _avatarStarted: {fileID: 21300000, guid: 340752574546e43739c126919ce63243, type: 3}
-  _effects: 02000000
+  _runeId: 21
+  _name: Armor Rune
+  Description: Increases armor by {0}%
+  _maxLevel: 3
+  PowerUnits:
+  - 10
+  - 25
+  - 35
+  _avatarSelected: {fileID: 21300000, guid: 6a18d68d953ce466290a0e4382f0bbaa, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 7fd647ec2e95c418aaf913072c801995, type: 3}
+  StatId: 105
+  _effects: 16000000

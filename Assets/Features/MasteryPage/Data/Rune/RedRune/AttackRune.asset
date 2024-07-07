@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
-  m_Name: Rune
+  m_Name: AttackRune
   m_EditorClassIdentifier: 
-  _runeId: 20
-  _name: Green I
-  _maxLevel: 4
-  _avatarSelected: {fileID: 21300000, guid: c708008c55325403898f1212132a7ac8, type: 3}
-  _avatarStarted: {fileID: 21300000, guid: 9fe2181fa50f44e77baf65079cc01606, type: 3}
-  _effects: 15000000
+  _runeId: 2
+  _name: Attack Rune
+  Description: Increases attack power by {0}%.
+  _maxLevel: 3
+  PowerUnits:
+  - 10
+  - 25
+  - 35
+  _avatarSelected: {fileID: 21300000, guid: 4b6c0021211ac4c5aad5b6897853abc1, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 340752574546e43739c126919ce63243, type: 3}
+  StatId: 0
+  _effects: 02000000

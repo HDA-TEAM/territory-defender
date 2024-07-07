@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
-  m_Name: Rune
+  m_Name: AttackRangeRune
   m_EditorClassIdentifier: 
-  _runeId: 1
-  _name: Attack I
-  _maxLevel: 4
-  _avatarSelected: {fileID: 21300000, guid: 35f52cbc401bb41e9be23952f885587b, type: 3}
-  _avatarStarted: {fileID: 21300000, guid: 7239c928fe7224f54897fbdf4fd0c6c4, type: 3}
-  _effects: 01000000
+  _runeId: 11
+  _name: Attack Range Rune
+  Description: Increases attack range by {0}%.
+  _maxLevel: 3
+  PowerUnits:
+  - 5
+  - 15
+  - 25
+  _avatarSelected: {fileID: 21300000, guid: f0c7532a16df1483aaca07c595def079, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 097ab8e562dd74fb8abe216afcef5e04, type: 3}
+  StatId: 2
+  _effects: 0c000000

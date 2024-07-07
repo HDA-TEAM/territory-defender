@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
-  m_Name: Rune 2
+  m_Name: StunRune
   m_EditorClassIdentifier: 
-  _runeId: 12
-  _name: Yellow III
+  _runeId: 4
+  _name: Stun Rune
+  Description: Increases stun chance by {0}%.
   _maxLevel: 3
-  _avatarSelected: {fileID: 21300000, guid: a29ad82ceee854d548b70eaa8e9befa3, type: 3}
-  _avatarStarted: {fileID: 21300000, guid: c72ed7678478b4a7581e980f68310089, type: 3}
-  _effects: 0d000000
+  PowerUnits:
+  - 5
+  - 15
+  - 25
+  _avatarSelected: {fileID: 21300000, guid: 65b4dcc8fb0b8456484de90884d39c7b, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 265db8bd43aed4d679496561dc6991d0, type: 3}
+  StatId: 11
+  _effects: 03000000

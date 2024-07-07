@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Scripts;
+using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
 using Common.Scripts.Data.DataConfig;
 using Features.MasteryPage.Scripts.Rune;
@@ -97,10 +98,12 @@ namespace Features.Home.Scripts.HomeScreen.Common
                     {
                         RuneId = value.GetRuneId(),
                         Name = value._name,
+                        Description = value.Description,
                         Level = 0,
                         MaxLevel = value._maxLevel,
                         AvatarSelected = value._avatarSelected,
                         AvatarStarted = value._avatarStarted,
+                        PowerUnits = value.PowerUnits,
                         Effects = value._effects,
                     });
                 }
@@ -147,8 +150,9 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 var runeSo = listRuneSos[index];
                 int level = 0;
 
-                if (index != -1)
+                if (index != -1 && index < towerIsFound._runeLevels.Count)
                 {
+                    Debug.Log("index " + index);
                     // Retrieve the RuneLevelData struct, modify it, and add its index to the list of runes to modify
                     var runeLevelData = towerIsFound._runeLevels[index];
                     level = runeLevelData.Level;
@@ -165,10 +169,12 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 {
                     RuneId = runeSo.GetRuneId(),
                     Name = runeSo._name,
+                    Description = runeSo.Description,
                     Level = level,
                     MaxLevel = runeSo._maxLevel,
                     AvatarSelected = runeSo._avatarSelected,
                     AvatarStarted = runeSo._avatarStarted,
+                    PowerUnits = runeSo.PowerUnits,
                     Effects = runeSo._effects,
                 });
             }

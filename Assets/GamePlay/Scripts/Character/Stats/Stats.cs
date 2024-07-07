@@ -108,6 +108,11 @@ namespace GamePlay.Scripts.Character.Stats
         BuffRange = 5,
         BuffPercent = 6,
         ProjectileImpactRange = 7,
+        DoubleAttackRate = 8,
+        Critical = 9,
+        Pierce = 10,
+        StunRate = 11,
+        EvasionRate = 12,
 
         /// Characteristic
         Level = 20,
@@ -119,11 +124,13 @@ namespace GamePlay.Scripts.Character.Stats
         LifeReduce = 107,
         DropCoinWhenDie = 108,
         TimeToRevive = 109,
-
+        GoldGatherBonus = 110, //Gold gather based on destroy each enemy
+        
         ///Tower
         CoinNeedToBuild = 200,
         CoinNeedToUpgrade = 201,
         TimeToSpawnUnit = 202,
+        ReduceSpawnUnit = 203,
     }
 
     public enum TroopBehaviourType

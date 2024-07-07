@@ -10,11 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
-  m_Name: Rune 2
+  m_Name: EvasionRune
   m_EditorClassIdentifier: 
-  _runeId: 3
-  _name: Attack III
-  _maxLevel: 4
-  _avatarSelected: {fileID: 21300000, guid: 65b4dcc8fb0b8456484de90884d39c7b, type: 3}
-  _avatarStarted: {fileID: 21300000, guid: 265db8bd43aed4d679496561dc6991d0, type: 3}
-  _effects: 03000000
+  _runeId: 23
+  _name: Evasion Rune
+  Description: Increases evasion chance by {0)%.
+  _maxLevel: 3
+  PowerUnits:
+  - 5
+  - 15
+  - 25
+  _avatarSelected: {fileID: 21300000, guid: c708008c55325403898f1212132a7ac8, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 9fe2181fa50f44e77baf65079cc01606, type: 3}
+  StatId: 12
+  _effects: 15000000
