@@ -37,7 +37,7 @@ namespace Features.Dictionary.Scripts.ViewModel
         {
             if (Enum.TryParse(unitId, out UnitId.Tower towerKey))
             {
-                _unitDictionaryDetailViewModel.SetUp(_towerDataConfigBase.GetConfigByKey(towerKey).UnitBase);
+                _unitDictionaryDetailViewModel.SetUp(_towerDataConfigBase.GetConfigByKey(towerKey));
             }
         }
     }

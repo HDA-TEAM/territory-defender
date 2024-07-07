@@ -37,7 +37,7 @@ namespace Features.Dictionary.Scripts.ViewModel
         {
             if (Enum.TryParse(unitId, out UnitId.Enemy key))
             {
-                _unitDictionaryDetailViewModel.SetUp(_enemyDataConfigBase.GetConfigByKey(key).UnitBase);
+                _unitDictionaryDetailViewModel.SetUp(_enemyDataConfigBase.GetConfigByKey(key));
             }
         }
     }

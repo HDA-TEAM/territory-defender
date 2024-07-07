@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Features.Dictionary.Scripts.View
 {
     public struct UnitDictionaryDetailComposite
     {
         public string Name;
+        public Sprite Avatar;
         public List<UnitDictionaryStatComposite> UnitDictionaryStatComposites;
     }
     public class UnitDictionaryDetailView : MonoBehaviour
@@ -14,6 +16,7 @@ namespace Features.Dictionary.Scripts.View
         [SerializeField]
         private List<UnitDictionaryStatView> _unitDictionaryStatViews;
         [SerializeField] private TextMeshProUGUI _textName;
+        [SerializeField] private Image _imgAvatar;
         public void SetUp(UnitDictionaryDetailComposite unitDictionaryDetailComposite)
         {
             int numView = unitDictionaryDetailComposite.UnitDictionaryStatComposites.Count;
@@ -27,6 +30,7 @@ namespace Features.Dictionary.Scripts.View
                 _unitDictionaryStatViews[i].gameObject.SetActive(isShow);
             }
             _textName.text = unitDictionaryDetailComposite.Name;
+            _imgAvatar.sprite = unitDictionaryDetailComposite.Avatar;
         }
     }
 }

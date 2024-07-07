@@ -1,5 +1,6 @@
 using Features.Dictionary.Scripts.View;
 using GamePlay.Scripts.Character.Stats;
+using GamePlay.Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,16 +11,16 @@ namespace Features.Dictionary.Scripts.ViewModel
         [SerializeField] private List<StatId> _listStatCanBeShow;
         [SerializeField] private UnitDictionaryDetailView _dictionaryDetailView;
 
-        public void SetUp(UnitBase unitBase)
+        public void SetUp(UnitDataComposite unitDataComposite)
         {
-            PrepareInformation(unitBase);
+            PrepareInformation(unitDataComposite);
         }
-        private void PrepareInformation(UnitBase unitBase)
+        private void PrepareInformation(UnitDataComposite unitDataComposite)
         {
             List<UnitDictionaryStatComposite> unitDictionaryStatComposites = new List<UnitDictionaryStatComposite>();
-            Stats stats = unitBase.UnitStatsHandlerComp().GetBaseStats();
+            Stats stats = unitDataComposite.UnitBase.UnitStatsHandlerComp().GetBaseStats();
             
-            foreach (var statsComposite in stats.GetListStat())
+            foreach (StatsComposite statsComposite in stats.GetListStat())
             {
                 if (_listStatCanBeShow.Contains(statsComposite.StatId))
                 {
@@ -34,7 +35,9 @@ namespace Features.Dictionary.Scripts.ViewModel
             {
                 UnitDictionaryStatComposites = unitDictionaryStatComposites,
                 Name = stats.GetInformation(InformationId.Name),
+                Avatar = unitDataComposite.UnitSprites.AvatarFull,
             };
+            
             _dictionaryDetailView.SetUp(unitDictionaryDetailComposite);
         }
     }

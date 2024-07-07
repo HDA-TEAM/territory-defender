@@ -20,6 +20,10 @@ namespace Features.Dictionary.Scripts.View
 
             SetName(DictionaryComposite.Name);
         }
+        public void OnDefaultShow()
+        {
+            OnSelected();
+        }
         protected override void OnSelected()
         {
             base.OnSelected();
