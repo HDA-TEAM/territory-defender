@@ -11,8 +11,8 @@ namespace Features.Dictionary.Scripts.ViewModel
 
         public void Setup(Action leftClick, Action rightClick)
         {
-            _towerButtonPreviewLeftView.gameObject.SetActive(leftClick == null);
-            _towerButtonPreviewRightView.gameObject.SetActive(rightClick == null);
+            _towerButtonPreviewLeftView.gameObject.SetActive(leftClick != null);
+            _towerButtonPreviewRightView.gameObject.SetActive(rightClick != null);
             _towerButtonPreviewLeftView.Setup(leftClick);
             _towerButtonPreviewRightView.Setup(rightClick);
         }

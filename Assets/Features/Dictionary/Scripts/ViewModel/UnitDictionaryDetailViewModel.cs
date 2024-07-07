@@ -36,6 +36,7 @@ namespace Features.Dictionary.Scripts.ViewModel
                 UnitDictionaryStatComposites = unitDictionaryStatComposites,
                 Name = stats.GetInformation(InformationId.Name),
                 Avatar = unitDataComposite.UnitSprites.AvatarFull,
+                Intro = stats.GetInformation(InformationId.Description),
             };
             
             _dictionaryDetailView.SetUp(unitDictionaryDetailComposite);

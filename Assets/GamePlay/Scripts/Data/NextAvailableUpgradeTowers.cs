@@ -19,13 +19,15 @@ namespace GamePlay.Scripts.Data
         public List<UnitId.Tower> GetAllNextAvailableUpgradeTowers(UnitId.Tower towerId)
         {
             List<UnitId.Tower> res = new List<UnitId.Tower>();
-            while (_availableUpgradeTowers.TryGetValue(towerId, out List<UnitId.Tower> availableUpgradeNextTowers))
+            UnitId.Tower curId = towerId;
+            while (_availableUpgradeTowers.TryGetValue(curId, out List<UnitId.Tower> availableUpgradeNextTowers))
             {
-                foreach (var tower in availableUpgradeNextTowers)
+                foreach (UnitId.Tower tower in availableUpgradeNextTowers)
                 {
                     if (!res.Contains(tower))
                     {
                         res.Add(tower);
+                        curId = tower;
                     }
                 }
             }

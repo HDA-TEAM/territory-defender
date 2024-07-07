@@ -73,6 +73,12 @@ namespace Features.Dictionary.Scripts.ViewModel
                 return;
             _unitDataComposite = _towerDataConfigBase.GetConfigByKey(towerKey);
             _unitDictionaryDetailViewModel.SetUp(_unitDataComposite);
+
+            if (_baseTowerIds.Contains(towerKey))
+            {
+                _nextUpgradeTreeHandle = new NextUpgradeTreeHandle(towerKey, _towerDataConfigBase);
+                SetupButtonPreview();
+            }
         }
     }
 
@@ -83,10 +89,17 @@ namespace Features.Dictionary.Scripts.ViewModel
 
         public NextUpgradeTreeHandle(UnitId.Tower curNode, TowerDataConfigBase towerDataConfigBase)
         {
-            _curTree = towerDataConfigBase.NextAvailableUpgradeTowers.GetAllNextAvailableUpgradeTowers(curNode);
+            _curNode = curNode;
+            _curTree = new List<UnitId.Tower> { curNode };
+            foreach (var tower in towerDataConfigBase.NextAvailableUpgradeTowers.GetAllNextAvailableUpgradeTowers(curNode))
+            {
+                _curTree.Add(tower);
+            }
+            
         }
         public bool IsExistLeftId()
         {
+            Debug.Log( "exist" + (_curTree.FindIndex((tower) => tower == _curNode) - 1));
             return _curTree.FindIndex((tower) => tower == _curNode) - 1 >= 0;
         }
         public bool IsExistRightId()

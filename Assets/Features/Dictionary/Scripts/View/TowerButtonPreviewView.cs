@@ -9,8 +9,6 @@ namespace Features.Dictionary.Scripts.View
         [SerializeField] private Button _btn;
 
         private Action _onClick;
-        // Internal
-        private Sprite _sprite;
         
         #region Core
         private void Awake()
@@ -22,7 +20,7 @@ namespace Features.Dictionary.Scripts.View
             _onClick = onClick;
         }
         #endregion
-        protected virtual void OnSelected()
+        private void OnSelected()
         {
             _onClick?.Invoke();
         }

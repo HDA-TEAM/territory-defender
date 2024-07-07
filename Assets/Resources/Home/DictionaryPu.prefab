@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 5156611151309544921}
   - component: {fileID: 4806427086198687539}
   - component: {fileID: 7817016844512223377}
+  - component: {fileID: 1938075934937784753}
   m_Layer: 5
   m_Name: TowerDic
   m_TagString: Untagged
@@ -163,7 +164,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2334471576452765550}
+  - {fileID: 8902702226950728125}
   m_Father: {fileID: 8370995370682385913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -202,6 +205,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _towerButtonPreviewLeftView: {fileID: 5865746429498911032}
   _towerButtonPreviewRightView: {fileID: 3958585105984719707}
+--- !u!225 &1938075934937784753
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783577225935114000}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &938131546083513073
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +229,7 @@ GameObject:
   - component: {fileID: 2065667761602171484}
   - component: {fileID: 6064933094700797423}
   m_Layer: 5
-  m_Name: SkillName
+  m_Name: txtIntroLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -267,7 +282,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ELEPHANT GOD
+  m_text: 'Information
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
   m_sharedMaterial: {fileID: -3163399200741351937, guid: 3dd240c990b484e37909e42ea26cd762, type: 2}
@@ -1061,6 +1078,7 @@ MonoBehaviour:
   - {fileID: 4645022946313799366}
   - {fileID: 7412556351561509823}
   _textName: {fileID: 3906453133299312084}
+  _textIntro: {fileID: 1562301476798421711}
   _imgAvatar: {fileID: 1412858602755827065}
 --- !u!1 &1671194797216609483
 GameObject:
@@ -1285,12 +1303,12 @@ GameObject:
   - component: {fileID: 8290369081375994504}
   - component: {fileID: 4482165490351265456}
   m_Layer: 5
-  m_Name: imgSkillBoard
+  m_Name: imgIntroBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7084330699582459861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1440,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3686707758816014565
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1700,16 +1718,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3242138536596966526}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5255509376326683719}
+  m_Father: {fileID: 5156611151309544921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 41.951416, y: -234.87366}
+  m_AnchoredPosition: {x: 35.60144, y: -235.17776}
   m_SizeDelta: {x: 146.901, y: 82.9501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7136397645130229690
@@ -1817,12 +1835,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2600325185123506388}
   m_Layer: 5
-  m_Name: objHeroSkills
+  m_Name: objUnitIntro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2600325185123506388
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1910,16 +1928,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4412042266954813152}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5255509376326683719}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_Father: {fileID: 5156611151309544921}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200.1, y: -237.4}
+  m_AnchoredPosition: {x: 193.75003, y: -237.7041}
   m_SizeDelta: {x: 146.901, y: 82.9501}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3089745165889802153
@@ -2081,6 +2099,8 @@ MonoBehaviour:
   _enemyToggleDictionaryMode: {fileID: 1208096861935620868}
   _enemyDictionaryViewModel: {fileID: 8704795233948799801}
   _towerDictionaryViewModel: {fileID: 4806427086198687539}
+  _enemyDictionaryViewModelCanvasGroup: {fileID: 5792880821830338373}
+  _towerDictionaryViewModelCanvasGroup: {fileID: 1938075934937784753}
 --- !u!1 &4675020545638094106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,6 +2618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 667631212845394639}
   - component: {fileID: 8704795233948799801}
+  - component: {fileID: 5792880821830338373}
   m_Layer: 5
   m_Name: EnemyDic
   m_TagString: Untagged
@@ -2639,6 +2660,18 @@ MonoBehaviour:
   _enemyDataConfigBase: {fileID: 11400000, guid: 4db6666d52c634e94b5a9a69ed5ea2b1, type: 2}
   _listButtonDictionaryViewModel: {fileID: 7890282130227368168}
   _unitDictionaryDetailViewModel: {fileID: 8272278759967805942}
+--- !u!225 &5792880821830338373
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098924941611443396}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6152806560006410915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,10 +2683,8 @@ GameObject:
   - component: {fileID: 4823311139732228189}
   - component: {fileID: 8684130474107685406}
   - component: {fileID: 6933782861892250876}
-  - component: {fileID: 7624358055991086044}
-  - component: {fileID: 3629577369896215384}
   m_Layer: 5
-  m_Name: btnPassiveSkill
+  m_Name: imgInfoIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2716,64 +2747,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7624358055991086044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6152806560006410915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 6933782861892250876}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &3629577369896215384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6152806560006410915}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5a9f524009d14036948aba1405888e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _buttonSkill: {fileID: 7624358055991086044}
-  _describeSkillImage: {fileID: 4482165490351265456}
 --- !u!1 &6304313419200923786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3059,7 +3032,7 @@ GameObject:
   - component: {fileID: 9171816120471491258}
   - component: {fileID: 1562301476798421711}
   m_Layer: 5
-  m_Name: SkillText
+  m_Name: txtIntro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3252,8 +3225,6 @@ RectTransform:
   - {fileID: 864537442613145170}
   - {fileID: 610775061242712531}
   - {fileID: 6906467076001111658}
-  - {fileID: 2334471576452765550}
-  - {fileID: 8902702226950728125}
   m_Father: {fileID: 8370995370682385913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3397,7 +3368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3261451827052068206}
   m_Layer: 5
-  m_Name: objPassiveSkill
+  m_Name: objIntro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

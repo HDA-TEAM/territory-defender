@@ -9,6 +9,7 @@ namespace Features.Dictionary.Scripts.View
     {
         public string Name;
         public Sprite Avatar;
+        public string Intro;
         public List<UnitDictionaryStatComposite> UnitDictionaryStatComposites;
     }
     public class UnitDictionaryDetailView : MonoBehaviour
@@ -16,6 +17,7 @@ namespace Features.Dictionary.Scripts.View
         [SerializeField]
         private List<UnitDictionaryStatView> _unitDictionaryStatViews;
         [SerializeField] private TextMeshProUGUI _textName;
+        [SerializeField] private TextMeshProUGUI _textIntro;
         [SerializeField] private Image _imgAvatar;
         public void SetUp(UnitDictionaryDetailComposite unitDictionaryDetailComposite)
         {
@@ -30,6 +32,7 @@ namespace Features.Dictionary.Scripts.View
                 _unitDictionaryStatViews[i].gameObject.SetActive(isShow);
             }
             _textName.text = unitDictionaryDetailComposite.Name;
+            _textIntro.text = unitDictionaryDetailComposite.Intro;
             _imgAvatar.sprite = unitDictionaryDetailComposite.Avatar;
         }
     }
