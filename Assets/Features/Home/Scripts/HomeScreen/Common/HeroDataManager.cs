@@ -46,7 +46,8 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
                 Avatar = item._imageHero,
                 HeroChoose = item._imageHeroChoose,
                 HeroOwned = item._imageHeroOwned,
-                Skills = item._heroSkill.GetAllSkillData()
+                ActiveSkillId = item.ActiveSkillId,
+                PassiveSkillId = item.PassiveSkillId,
             });
         }
     }

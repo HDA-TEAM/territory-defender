@@ -19,12 +19,127 @@ MonoBehaviour:
       - StartSpawning: 0
         ObjectSpawn: 201
         RouteId: 0
-        NumberSpawning: 3
+        NumberSpawning: 4
+      - StartSpawning: 0
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 15
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 5
+      - StartSpawning: 15
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 5
+      - StartSpawning: 60
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 60
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 100
+        ObjectSpawn: 221
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 100
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 7
   - StageId: 101
     WavesSpawning:
     - GroupsSpawning:
       - StartSpawning: 0
         ObjectSpawn: 211
-        RouteId: 2
+        RouteId: 0
         NumberSpawning: 4
+      - StartSpawning: 0
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 30
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 3
+      - StartSpawning: 30
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 3
+      - StartSpawning: 46
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 3
+      - StartSpawning: 70
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 70
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 70
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 100
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 8
+      - StartSpawning: 100
+        ObjectSpawn: 221
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 100
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 8
+  - StageId: 102
+    WavesSpawning:
+    - GroupsSpawning:
+      - StartSpawning: 0
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 4
+      - StartSpawning: 0
+        ObjectSpawn: 201
+        RouteId: 1
+        NumberSpawning: 4
+      - StartSpawning: 5
+        ObjectSpawn: 201
+        RouteId: 2
+        NumberSpawning: 3
+      - StartSpawning: 30
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 3
+      - StartSpawning: 46
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 3
+      - StartSpawning: 70
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 70
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 70
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 100
+        ObjectSpawn: 211
+        RouteId: 0
+        NumberSpawning: 8
+      - StartSpawning: 100
+        ObjectSpawn: 221
+        RouteId: 0
+        NumberSpawning: 6
+      - StartSpawning: 100
+        ObjectSpawn: 201
+        RouteId: 0
+        NumberSpawning: 8
   _data: '[{"StageId":100,"WaveIndex":1,"StartSpawning":0.0,"ObjectSpawning":200,"RouteId":1,"NumberSpawning":1},{"StageId":100,"WaveIndex":1,"StartSpawning":4.0,"ObjectSpawning":210,"RouteId":1,"NumberSpawning":2},{"StageId":101,"WaveIndex":1,"StartSpawning":0.0,"ObjectSpawning":220,"RouteId":2,"NumberSpawning":4}]'

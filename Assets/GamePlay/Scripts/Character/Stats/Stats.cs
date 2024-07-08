@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace GamePlay.Scripts.Character.Stats
 {
+    public struct StatsComposite
+    {
+        public StatId StatId;
+        public float StatVal;
+    }
     [CreateAssetMenu(fileName = "StatsConfig", menuName = "ScriptableObject/StatsConfig")]
     public class Stats : ScriptableObject
     {
@@ -14,6 +19,19 @@ namespace GamePlay.Scripts.Character.Stats
         [SerializeField] private SerializedDictionary<InformationId, string> _informationDict = new SerializedDictionary<InformationId, string>();
    
         #region Stats access
+        public List<StatsComposite> GetListStat()
+        {
+            List<StatsComposite> listStat = new List<StatsComposite>();
+            foreach (var item in _statDict)
+            {
+                listStat.Add(new StatsComposite
+                {
+                    StatId = item.Key,
+                    StatVal = item.Value,
+                });
+            }
+            return listStat;
+        }
         public float GetStat(StatId statId)
         {
             if (_statDict.TryGetValue(statId, out float res))
@@ -90,6 +108,11 @@ namespace GamePlay.Scripts.Character.Stats
         BuffRange = 5,
         BuffPercent = 6,
         ProjectileImpactRange = 7,
+        DoubleAttackRate = 8,
+        Critical = 9,
+        Pierce = 10,
+        StunRate = 11,
+        EvasionRate = 12,
 
         /// Characteristic
         Level = 20,
@@ -101,11 +124,13 @@ namespace GamePlay.Scripts.Character.Stats
         LifeReduce = 107,
         DropCoinWhenDie = 108,
         TimeToRevive = 109,
-
+        GoldGatherBonus = 110, //Gold gather based on destroy each enemy
+        
         ///Tower
         CoinNeedToBuild = 200,
         CoinNeedToUpgrade = 201,
         TimeToSpawnUnit = 202,
+        ReduceSpawnUnit = 203,
     }
 
     public enum TroopBehaviourType

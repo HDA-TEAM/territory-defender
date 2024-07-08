@@ -21,6 +21,7 @@ namespace GamePlay.Scripts.Data
         public StageId StageId;
         public int StartCoin;
         public int MaxHealth;
+        public string Name;
     }
 
     [CreateAssetMenu(fileName = "StageDataConfig", menuName = "ScriptableObject/Configs/StageDataConfig")]

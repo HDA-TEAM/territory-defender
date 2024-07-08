@@ -13,6 +13,7 @@ namespace Features.MasteryPage.Scripts.Rune
         AttackSpeed = 11,
         Ranged = 12,
         Cooldown = 13,
+        DoubleAttack = 14,
         
         //Purple rune effect
         Hp = 21,

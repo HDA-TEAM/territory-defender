@@ -12,7 +12,8 @@ namespace Common.Scripts.Data
         public Sprite _imageHeroChoose;
         public Sprite _imageHeroOwned;
     
-        public SkillDataConfig _heroSkill;
+        public ESkillId ActiveSkillId;
+        public ESkillId PassiveSkillId;
         public Stats _stats;
     }
 }

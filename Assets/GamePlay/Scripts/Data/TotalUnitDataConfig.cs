@@ -15,6 +15,7 @@ namespace GamePlay.Scripts.Data
     public struct UnitSprites
     {
         public Sprite AvatarIcon;
+        public Sprite AvatarFull;
     }
     [CreateAssetMenu(fileName = "TotalUnitDataConfig", menuName = "ScriptableObject/Common/Configs/TotalUnitDataConfig")]
     public class TotalUnitDataConfig : ScriptableObject

@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using Common.Scripts;
-using Common.Scripts.Data;
-using SuperMaxim.Messaging;
+using Common.Scripts.Data.DataConfig;
+using Features.HeroInformation.Scripts.Hero;
 using UnityEngine;
 
 public class ListHeroViewModel : MonoBehaviour
@@ -72,7 +71,7 @@ public class ListHeroViewModel : MonoBehaviour
             _preSelectedItem.RemoveSelected();
         
         _preSelectedItem = itemHeroView;
-        _preSelectedItem.OnSelectedHero();
+        _preSelectedItem.OnSelected();
 
         // Setup hero detail view
         _heroDetailView.Setup(itemHeroView.HeroComposite);
@@ -115,7 +114,7 @@ public class ListHeroViewModel : MonoBehaviour
         // Select the first hero by default if the list is not empty
         if (_itemHeroViews != null)
         {
-            _itemHeroViews[0].OnSelectedHero();
+            _itemHeroViews[0].OnSelected();
         }
     }
 }
@@ -133,6 +132,6 @@ public struct HeroComposite: IComposite
     public Sprite HeroChoose;
     public Sprite HeroOwned;
     
-    
-    public List<SkillDataSO> Skills;
+    public ESkillId ActiveSkillId;
+    public ESkillId PassiveSkillId;
 }

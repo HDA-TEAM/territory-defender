@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
+  m_Name: ArmorPiercingRune
+  m_EditorClassIdentifier: 
+  _runeId: 1
+  _name: Armor-Piercing Rune
+  Description: Increases armor penetration by {0}%.
+  _maxLevel: 3
+  PowerUnits:
+  - 10
+  - 25
+  - 35
+  _avatarSelected: {fileID: 21300000, guid: 35f52cbc401bb41e9be23952f885587b, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 7239c928fe7224f54897fbdf4fd0c6c4, type: 3}
+  StatId: 10
+  _effects: 01000000
