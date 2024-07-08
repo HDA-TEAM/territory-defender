@@ -12,13 +12,14 @@ namespace Features.Quest.Scripts.Time
 
         [Header("Data")] 
         [SerializeField] private ListQuestViewModel _listQuestViewModel;
-
+        [SerializeField] private QuestDataController _questDataController;
+        
         private List<QuestComposite> _questComposites;
         public Action<QuestType> _onUpdateViewAction;
         private ItemTimeView _preItemTimeView;
 
         //public ItemTimeView GetPreItemTime => _preItemTimeView;
-        public void SetupTime()
+        public void Start()
         {
             UpdateData();
             
@@ -27,7 +28,7 @@ namespace Features.Quest.Scripts.Time
 
         private void UpdateData()
         {
-            _questComposites = _listQuestViewModel._questDataController.QuestComposites;
+            _questComposites = _questDataController.QuestComposites;
             UpdateView();
         }
 
