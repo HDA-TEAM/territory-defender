@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0f3a6c2d02a4755a35de08db6173763, type: 3}
+  m_Name: AttackRune
+  m_EditorClassIdentifier: 
+  _runeId: 2
+  _name: Attack Rune
+  Description: Increases attack power by {0}%.
+  _maxLevel: 3
+  PowerUnits:
+  - 10
+  - 25
+  - 35
+  _avatarSelected: {fileID: 21300000, guid: 4b6c0021211ac4c5aad5b6897853abc1, type: 3}
+  _avatarStarted: {fileID: 21300000, guid: 340752574546e43739c126919ce63243, type: 3}
+  StatId: 0
+  _effects: 02000000

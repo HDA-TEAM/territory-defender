@@ -23,7 +23,7 @@ public class ItemHeroView : MonoBehaviour
     private void Awake()
     {
         _sprite = _imageBg.sprite;
-        _btn.onClick.AddListener(OnSelectedHero);
+        _btn.onClick.AddListener(OnSelected);
     }
     public void Setup(HeroComposite heroComposite,Action<ItemHeroView> onSelected)
     {
@@ -33,9 +33,8 @@ public class ItemHeroView : MonoBehaviour
         SetName(heroComposite.Name);
     }
     #endregion
-    public void OnSelectedHero()
+    public void OnSelected()
     {
-        _sprite = _imageBg.sprite;
         _imageBg.sprite = _spriteSelectedBg;
         if (ColorUtility.TryParseHtmlString(_hexSelectedColor, out Color selectedColor))
         {
@@ -55,5 +54,4 @@ public class ItemHeroView : MonoBehaviour
     {
         _txtName.text = name;
     }
-
 }

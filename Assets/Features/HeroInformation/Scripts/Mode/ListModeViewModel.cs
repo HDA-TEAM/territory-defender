@@ -1,3 +1,4 @@
+using Features.HeroInformation.Scripts.Hero;
 using UnityEngine;
 using UnityEngine.Serialization;
 

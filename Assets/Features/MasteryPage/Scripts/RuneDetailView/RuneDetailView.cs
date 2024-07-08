@@ -22,10 +22,8 @@ public class RuneDetailView : MonoBehaviour
         _txtRuneStacks.text = "Level " + runeComposite.Level;
         
         // Post by RuneController
-        for (int i = 0; i < runeComposite.Effects.Count; i++)
-        {
-           _txtRuneDescribe.text = runeComposite.Effects[i] + " (+" + effects[i] * runeComposite.Level + "%)";
-        }
+        float level = Mathf.Lerp(0, 2, runeComposite.Level);
+        _txtRuneDescribe.text = string.Format(runeComposite.Description, runeComposite.PowerUnits[(int)level]);
 
     }
 

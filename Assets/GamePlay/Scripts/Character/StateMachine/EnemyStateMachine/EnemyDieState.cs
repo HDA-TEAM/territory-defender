@@ -1,4 +1,5 @@
 using Common.Scripts;
+using GamePlay.Scripts.Character.Stats;
 using GamePlay.Scripts.GamePlayController;
 using SuperMaxim.Messaging;
 using UnityEngine;
@@ -24,8 +25,15 @@ namespace GamePlay.Scripts.Character.StateMachine.EnemyStateMachine
             _durationDie -= Time.deltaTime;
             CheckSwitchState();
         }
+        private void AddCoin()
+        {
+            _context.InGameResourceData.TryChangeCurrency(
+                + (int)_context.CharacterStats.GetCurrentStatValue(StatId.DropCoinWhenDie));
+        }
         public override void ExitState()
         {
+            AddCoin();
+            
             Messenger.Default.Publish(new AudioPlayOneShotPayload
             {
                 AudioClip = Context.AudioClipDeath,

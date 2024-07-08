@@ -10,17 +10,20 @@ namespace Common.Scripts.Data.DataAsset
 {
     public enum RuneId
     {
-        Red1 = 1,
-        Red2 = 2,
-        Red3 = 3,
+        ArmorPiercingRune = 1,
+        AttackRune = 2,
+        CriticalRune = 3,
+        StunRune = 4,
     
-        Yellow1 = 10,
-        Yellow2 = 11,
-        Yellow3 = 12,
+        AttackSpeedRune = 10,
+        AttackRangeRune = 11,
+        UnitProductionRune = 12,
+        ChainStrikeRune = 13,
     
-        Green1 = 20,
-        Green2 = 21,
-        Green3 = 22
+        HealthRune = 20,
+        ArmorRune = 21,
+        GoldRune = 22,
+        EvasionRune = 23,
     }
 
     [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]

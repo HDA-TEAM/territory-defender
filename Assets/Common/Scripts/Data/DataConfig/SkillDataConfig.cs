@@ -9,6 +9,8 @@ namespace Common.Scripts.Data.DataConfig
     {
         SummonElephant = 1,
         TurnTheWhip = 2,
+        BrutalStrike = 11,
+        FocusStrike = 12,
     }
 
     [CreateAssetMenu(fileName = "SkillDataConfig", menuName = "ScriptableObject/Config/SkillDataConfig")]

@@ -1,4 +1,5 @@
 using Common.Scripts;
+using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
 using Common.Scripts.Data.DataConfig;
 using Features.Home.Scripts.HomeScreen.Common;
@@ -298,10 +299,12 @@ namespace Features.MasteryPage.Scripts.Rune
     {
         public RuneId RuneId;
         public string Name;
+        public string Description;
         public int Level;
         public int MaxLevel;
         public Sprite AvatarSelected;
         public Sprite AvatarStarted;
+        public List<float> PowerUnits;
         public List<EffectId> Effects;
     }
 
