@@ -169,6 +169,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
         public void UpgradeTowerRuneData(UnitId.Tower towerId, RuneComposite runeComposite)
         {
             _towerDataAsset.CheckAndUpgradeTowerRuneLevel(towerId,runeComposite.RuneId,runeComposite.MaxLevel);
+            InitializeTowerWithLocalRunes(_towerDataAsset.TowerRuneDataList);
             // _towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataSo curTower);
             // if (!curTower)
             // {
@@ -231,7 +232,7 @@ namespace Features.Home.Scripts.HomeScreen.Common
             {
                 _inventoryDataAsset.TryChangeInventoryData(InventoryType.TalentPoint, _towerDataAsset.GetReturnStar(towerId));
                 _towerDataAsset.ResetSpecificTowerRuneData(towerId);
-                //
+                
                 // // Attempt to get the tower configuration
                 // if (!_towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataSo towerDataConfig))
                 // {

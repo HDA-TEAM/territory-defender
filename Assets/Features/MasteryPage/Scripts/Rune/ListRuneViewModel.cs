@@ -27,7 +27,7 @@ namespace Features.MasteryPage.Scripts.Rune
         [SerializeField] private InventoryDataAsset _inventoryDataAsset;
         [SerializeField] private RuneDataConfig _runeDataConfig;
         public TowerRuneDataController _towerRuneDataController;
-
+        
         // INTERNAL
         private List<RuneData> _runeLevels;
         private int _totalTalentPoint;
@@ -224,7 +224,7 @@ namespace Features.MasteryPage.Scripts.Rune
 
             //Conditions to upgrade any skill
             if (_preSelectedRuneItem.RuneComposite.Level < _preSelectedRuneItem.RuneComposite.MaxLevel
-                && _talentPointInventory.Amount > 0)
+                && _talentPointInventory.Amount >= _runeDataConfig.GetUpgradeStar(_preSelectedUpgradeRuneItem.RuneComposite.Level + 1))
             {
                 _preRuneDataSo = _runeDataConfig.GetRune(_preSelectedUpgradeRuneItem.RuneComposite.RuneId);
                 if (_preRuneDataSo != null)
@@ -234,7 +234,7 @@ namespace Features.MasteryPage.Scripts.Rune
                     _towerRuneDataController.ExecuteStrategy();
 
                     // Get data from inventory data & Subtract Talent Point number
-                    _inventoryDataAsset.TryChangeInventoryData(_talentPointInventory.Type, -1);
+                    _inventoryDataAsset.TryChangeInventoryData(_talentPointInventory.Type, - _runeDataConfig.GetUpgradeStar(_preSelectedUpgradeRuneItem.RuneComposite.Level + 1));
                     Debug.Log("Upgrade rune successful....");
 
                     _onTowerDataUpdatedAction?.Invoke();
