@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: _startAttackPoint
       value: 
       objectReference: {fileID: 5622914905824994617}
+    - target: {fileID: 3869030732222157000, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.17
+      objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
       value: ArmoredElephantTower
@@ -90,7 +94,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.y
