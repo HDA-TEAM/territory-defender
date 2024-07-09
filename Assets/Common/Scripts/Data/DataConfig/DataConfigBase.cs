@@ -11,6 +11,7 @@ namespace Common.Scripts.Data.DataConfig
         [SerializeField] [SerializedDictionary("TKey", "TVal")]
         protected SerializedDictionary<TKey, TVal> _data;
 
+        public IReadOnlyDictionary<TKey, TVal> DataDict => _data;
         public TVal GetConfigByKey(TKey keyId)
         {
             _data.TryGetValue(keyId, out TVal unitDataComposite);

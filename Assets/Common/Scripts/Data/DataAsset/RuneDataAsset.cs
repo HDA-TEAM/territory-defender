@@ -1,8 +1,4 @@
 using System;
-using AYellowpaper.SerializedCollections;
-using Common.Scripts.Data.DataConfig;
-using System.Collections.Generic;
-using System.Linq;
 using Common.Scripts.Data.DataAsset;
 using UnityEngine;
 
@@ -10,6 +6,7 @@ namespace Common.Scripts.Data.DataAsset
 {
     public enum RuneId
     {
+        None = 0,
         ArmorPiercingRune = 1,
         AttackRune = 2,
         CriticalRune = 3,
@@ -29,41 +26,16 @@ namespace Common.Scripts.Data.DataAsset
     [CreateAssetMenu(fileName = "RuneDataAsset", menuName = "ScriptableObject/DataAsset/RuneDataAsset")]
     public class RuneDataAsset : LocalDataAsset<RuneDataModel>
     {
-        [SerializedDictionary("RuneId", "RuneDataSO")] 
-        public SerializedDictionary<RuneId, RuneDataSo> _masteryPageDataDict = new SerializedDictionary<RuneId, RuneDataSo>();
-
-        public RuneDataSo GetRune(RuneId runeId)
-        {
-            if (_masteryPageDataDict.TryGetValue(runeId, out RuneDataSo runeDataSo))
-                return runeDataSo;
-            
-            Debug.LogError($"No rune value found for key {runeId} on ");
-            return null;
-        }
-        public List<RuneDataSo> GetAllRuneData()
-        {
-            return _masteryPageDataDict.Values.ToList();
-        }
-        
-        public List<RuneData> GetAllRuneDataAsRuneData()
-        {
-            return _masteryPageDataDict.Values.Select(runeDataSo => new RuneData
-            {
-                RuneId = runeDataSo.GetRuneId(),
-                Level = 0 // Assuming you want to set default level to 0
-            }).ToList();
-        }
     }
 }
 
 [Serializable]
 public struct RuneDataModel : IDefaultDataModel
 {
-    public List<RuneData> ListRuneDatas;
 
     public bool IsEmpty()
     {
-        return (ListRuneDatas == null || ListRuneDatas.Count == 0);
+        return false;
     }
 
     public void SetDefault()
@@ -73,7 +45,7 @@ public struct RuneDataModel : IDefaultDataModel
 }
 
 [Serializable]
-public struct RuneData
+public struct RuneData : IDefaultDataModel
 {
     public RuneId RuneId;
     public int Level;
@@ -82,5 +54,14 @@ public struct RuneData
     {
         RuneId = runeId;
         Level = level;
+    }
+    public bool IsEmpty()
+    {
+        return RuneId == RuneId.None;
+    }
+    public void SetDefault()
+    {
+        RuneId = RuneId.None;
+        Level = -1;
     }
 }

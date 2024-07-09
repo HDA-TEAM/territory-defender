@@ -297,9 +297,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a19db0d4d404e968073dc2a430e4e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _towerDataAsset: {fileID: 0}
-  _towerRuneDataConfig: {fileID: 0}
-  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
+  _towerDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
+  _runeDataConfig: {fileID: 11400000, guid: 3b74366e712d646fc9a000c7ac1fa7c8, type: 2}
+  _inventoryDataAsset: {fileID: 11400000, guid: a54b3b648b29c44e6b642be027fcb7a0, type: 2}
 --- !u!1 &1528055087266344016
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 1859970969229627768}
   - component: {fileID: 5343250760397809494}
   m_Layer: 5
-  m_Name: imgUpgradeBoard (1)
+  m_Name: imgUpgradeBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1052,8 +1052,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
-  _towerRuneDataConfig: {fileID: 11400000, guid: 73d6a7a3448bf41ae86f1dcb3a5ef105, type: 2}
-  _runeDataAsset: {fileID: 11400000, guid: 85c0c6b3cc9064145b85f9d78147e37c, type: 2}
+  _runeDataConfig: {fileID: 11400000, guid: 3b74366e712d646fc9a000c7ac1fa7c8, type: 2}
+  _inventoryDataAsset: {fileID: 11400000, guid: a54b3b648b29c44e6b642be027fcb7a0, type: 2}
 --- !u!1 &4035778417772432614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1347,6 +1347,7 @@ MonoBehaviour:
   _itemStarView: {fileID: 3647299838282285556}
   _runeDetailView: {fileID: 7505075942688255521}
   _inventoryDataAsset: {fileID: 11400000, guid: a54b3b648b29c44e6b642be027fcb7a0, type: 2}
+  _runeDataConfig: {fileID: 11400000, guid: 3b74366e712d646fc9a000c7ac1fa7c8, type: 2}
   _towerRuneDataController: {fileID: 5020850980292813543}
 --- !u!1 &4880375718204489336
 GameObject:
@@ -1360,7 +1361,7 @@ GameObject:
   - component: {fileID: 2867374489764817523}
   - component: {fileID: 9215438890136403778}
   m_Layer: 5
-  m_Name: imgUpgradeBoard
+  m_Name: pref
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
