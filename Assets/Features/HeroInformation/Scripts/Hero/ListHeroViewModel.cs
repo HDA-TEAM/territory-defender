@@ -56,6 +56,7 @@ public class ListHeroViewModel : MonoBehaviour
                 foreach (var itemSkill in _itemSkillViews)
                 {
                     itemSkill.Setup(OnSkillSelected);
+                    OnSkillSelected(_itemSkillViews[0]);
                 }
             } else {
                 _itemHeroViews[i].gameObject.SetActive(false);    
