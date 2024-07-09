@@ -229,8 +229,8 @@ namespace Features.Home.Scripts.HomeScreen.Common
             //
             public void ResetTowerRuneData(UnitId.Tower towerId)
             {
-                _inventoryDataAsset.TryChangeInventoryData(InventoryType.TotalStar, _towerDataAsset.GetReturnStar());
-                _towerDataAsset.ResetTowerRuneData();
+                _inventoryDataAsset.TryChangeInventoryData(InventoryType.TalentPoint, _towerDataAsset.GetReturnStar(towerId));
+                _towerDataAsset.ResetSpecificTowerRuneData(towerId);
                 //
                 // // Attempt to get the tower configuration
                 // if (!_towerDataAsset._towerTypeDict.TryGetValue(towerId, out TowerDataSo towerDataConfig))

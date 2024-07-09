@@ -65,21 +65,41 @@ namespace Common.Scripts.Data.DataAsset
             }
             SaveData();
         }
-        public int GetReturnStar()
+        public int GetReturnStar(UnitId.Tower towerId)
         {
             int totalStar = 0;
             foreach (TowerRuneData towerRuneData in TowerRuneDataList)
             {
-                foreach (RuneData runeData in towerRuneData.RuneLevels)
+                if (towerId == towerRuneData.TowerId)
                 {
-                    totalStar += _runeDataConfig.GetReturnStar(runeData.Level);
+                    foreach (RuneData runeData in towerRuneData.RuneLevels)
+                    {
+                        totalStar += _runeDataConfig.GetReturnStar(runeData.Level);
+                    }
+                    break;
                 }
             }
             return totalStar;
         }
-        public void ResetTowerRuneData()
+        public void ResetSpecificTowerRuneData(UnitId.Tower towerId)
         {
-            InitDefaultTowerRuneData();
+            _model.ListTowerRuneDatas.RemoveAll((towerRuneData) => towerRuneData.TowerId == towerId);
+
+            List<RuneData> listRuneData = new List<RuneData>();
+            foreach (RuneId runeId in _towerRuneDataConfig.DataDict[towerId])
+            {
+                listRuneData.Add(new RuneData
+                {
+                    RuneId = runeId,
+                    Level = 0,
+                });
+            }
+            _model.ListTowerRuneDatas.Add(new TowerRuneData
+            {
+                TowerId = towerId,
+                RuneLevels = listRuneData,
+            });
+            SaveData();
         }
 
         // public TowerDataSo GetTower(UnitId.Tower towerId)

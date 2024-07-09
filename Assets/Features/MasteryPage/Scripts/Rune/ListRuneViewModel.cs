@@ -21,7 +21,6 @@ namespace Features.MasteryPage.Scripts.Rune
         // Single Item
         [SerializeField] private ItemUpgradeRuneView _itemUpgradeRuneView;
         [SerializeField] private ItemResetRuneView _itemResetRuneView;
-        [SerializeField] private ItemStarView _itemStarView;
         [SerializeField] private global::RuneDetailView _runeDetailView;
 
         [Header("Data"), Space(12)]
@@ -172,9 +171,6 @@ namespace Features.MasteryPage.Scripts.Rune
                 // Setup rune view
                 _itemRuneViews[runeIndex].SetRuneLevel(result.RuneComposite[runeIndex]);
 
-                // Setup Talent Point view
-                _itemStarView.Setup(_talentPointInventory);
-
                 // Rune avatar logic
                 _itemRuneViews[runeIndex].SetAvatarRune(result.RuneComposite[runeIndex].Level > 0 ? result.RuneComposite[runeIndex].AvatarSelected : result.RuneComposite[runeIndex].AvatarStarted);
 
@@ -219,7 +215,7 @@ namespace Features.MasteryPage.Scripts.Rune
         {
 
             //TODO
-            if (itemUpgradeRuneView == null || _preSelectedRuneItem == null || _itemStarView == null)
+            if (itemUpgradeRuneView == null || _preSelectedRuneItem == null)
             {
                 Debug.LogError("One or more required objects are null.");
                 return;
