@@ -48,9 +48,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14cdf2e8405349cb805d2d7dfc950bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questDataController: {fileID: 0}
-  _day: 
-  _month: 
+  _datetimeInt: 1
+  _day: 11
+  _month: 7
+  _year: 2024
+  _hour: 6
+  _minute: 0
+  _second: 0
 --- !u!1 &1419033080733608333
 GameObject:
   m_ObjectHideFlags: 0

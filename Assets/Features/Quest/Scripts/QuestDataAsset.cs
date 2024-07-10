@@ -23,11 +23,13 @@ namespace Features.Quest.Scripts
         
         public List<TaskDataSO> GetTaskListByType(QuestType questType)
         {
-            _questTypeDict.TryGetValue(questType, out List<TaskDataSO> taskLists);
-            
-            return taskLists;
+            if (_questTypeDict.TryGetValue(questType, out var taskList))
+            {
+                return taskList;
+            }
+
+            return new List<TaskDataSO>();
         }
-        
         public List<QuestData> QuestDatas
         {
             get

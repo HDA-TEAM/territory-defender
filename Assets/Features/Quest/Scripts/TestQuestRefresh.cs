@@ -1,30 +1,47 @@
-using System;
 using CustomInspector;
+using System;
+using Common.Scripts.Data.DataAsset;
+using SuperMaxim.Messaging;
 using UnityEngine;
 
 namespace Features.Quest.Scripts
 {
     public class TestQuestRefresh : MonoBehaviour
     {
-        [SerializeField] private QuestDataController _questDataController;
-        
-        [Header("UI Elements")]
+
+#if UNITY_EDITOR
+        [Button("TestTryRefresh")] public int _datetimeInt;
         [SerializeField] private string _day;
         [SerializeField] private string _month;
-
-        private void Start()
+        [SerializeField] private int _year = 2024;
+        [SerializeField] private int _hour = 7;
+        [SerializeField] private int _minute = 0;
+        [SerializeField] private int _second = 0;
+        public void TestTryRefresh()
         {
             int.TryParse(_day, out var day);
             int.TryParse(_month, out var month);
-            
-            DateTime testTime = new DateTime(2024, month, day, 7, 0, 0);
-            _questDataController.TestCheckAndRefreshTasks(testTime);
-        }
-        
-#if UNITY_EDITOR
-        [Button("TestTryChangeDateTimeData")] 
-        public DateTime TestDateTimee;
 
+            _datetimeInt = 1;
+            DateTime dateTime =  new DateTime(_year, month, day, _hour, _minute, _second);
+            TryChangeTimeRefresh(dateTime);
+        }
 #endif
+        private void TryChangeTimeRefresh(DateTime dateTime)
+        {
+            NotifyDateTimeChange(dateTime);
+        }
+        private static void NotifyDateTimeChange(DateTime dateTime)
+        {
+            Messenger.Default.Publish(new DatetimeChangePayload
+            {
+                DateTime = dateTime,
+            });
+        }
+    }
+    
+    public struct DatetimeChangePayload
+    {
+        public DateTime DateTime;
     }
 }

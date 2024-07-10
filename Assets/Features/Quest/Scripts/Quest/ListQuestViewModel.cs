@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Common.Scripts.Data.DataAsset;
 using Features.Common.Scripts;
 using Features.Quest.Scripts.Time;
+using SuperMaxim.Messaging;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,8 +25,26 @@ namespace Features.Quest.Scripts.Quest
 
         private List<InventoryData> _listInventoryReceived;
         private QuestType _preQuestType;
+        private bool _validDateTimeChange;
+        
+        private void OnEnable()
+        {
+            
+        }
+
+        private void OnDisable()
+        {
+            
+        }
+        
         private void SubscribeEvents()
         {
+            if (_questDataController != null)
+            {
+                _validDateTimeChange = true;
+                _questDataController.OnDateTimeChanged += UpdateData;
+            }
+            
             if (_listTimeViewModel != null)
             {
                 _listTimeViewModel._onUpdateViewAction += UpdateView;
@@ -34,6 +53,12 @@ namespace Features.Quest.Scripts.Quest
         
         private void UnSubscribeEvents()
         {
+            if (_questDataController != null)
+            {
+                _validDateTimeChange = false;
+                _questDataController.OnDateTimeChanged -= UpdateData;
+            }
+            
             if (_listTimeViewModel != null)
             {
                 _listTimeViewModel._onUpdateViewAction -= UpdateView;
@@ -44,12 +69,12 @@ namespace Features.Quest.Scripts.Quest
         {
             _imgInventoryGet.gameObject.SetActive(false);
         }
+
         private void Start()
         {
             Setup();
             UpdateData();
-            //_listTimeViewModel.SetupTime();
-            
+
             UnSubscribeEvents();
             SubscribeEvents();
         }
@@ -64,8 +89,11 @@ namespace Features.Quest.Scripts.Quest
 
         private void UpdateView(QuestType questType)
         {
-            if (_preQuestType == questType) return;
-            
+            if (_preQuestType == questType && !_validDateTimeChange)
+            {
+                Debug.Log("_preQuestType == questType.......????/");
+                return;
+            }
             _preQuestType = questType;
        
             var tasks = GetTasksByTimeType(questType);

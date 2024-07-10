@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SuperMaxim.Messaging;
 using TMPro;
 using UnityEngine;
 
@@ -17,8 +18,9 @@ namespace Features.Quest.Scripts
     {
         [Header("Data")] public QuestDataAsset _questDataAsset;
         [SerializeField] private List<QuestComposite> _curQuestComposites;
-        
+
         private readonly TimeSpan _refreshTime = new TimeSpan(7, 0, 0); // 7:00 AM
+        public Action OnDateTimeChanged;
         public List<QuestComposite> QuestComposites
         {
             get
@@ -27,15 +29,31 @@ namespace Features.Quest.Scripts
                     return _curQuestComposites;
                 
                 InitQuestData();
-                InvokeRepeating(nameof(CheckAndRefreshTasks), 0, 60); // Check every minute
+                //InvokeRepeating(nameof(CheckAndRefreshTasks), 0, 60); // Check every minute
                 
                 return _curQuestComposites;
             }
         }
-
-        private void CheckAndRefreshTasks()
+        
+        private void Awake()
         {
-            DateTime now = DateTime.Now;
+            Messenger.Default.Subscribe<DatetimeChangePayload>(GetDateTimeTest);
+        }
+
+        private void OnDestroy()
+        {
+            Messenger.Default.Unsubscribe<DatetimeChangePayload>(GetDateTimeTest);
+        }
+
+        private void GetDateTimeTest(DatetimeChangePayload datetimeChangePayload)
+        {
+            CheckAndRefreshTasks(datetimeChangePayload.DateTime);
+        }
+
+        private void CheckAndRefreshTasks(DateTime? testTime = null)
+        {
+            //DateTime now = DateTime.Now;
+            DateTime now = testTime ?? DateTime.Now;
             DateTime nextDailyRefresh = GetNextRefreshTime(now, _refreshTime, "daily");
             DateTime nextWeeklyRefresh = GetNextRefreshTime(now, _refreshTime, "weekly");
             DateTime nextMonthlyRefresh = GetNextRefreshTime(now, _refreshTime, "monthly");
@@ -54,6 +72,7 @@ namespace Features.Quest.Scripts
             {
                 RefreshMonthlyTasks();
             }
+            OnDateTimeChanged?.Invoke(); 
         }
         
         private DateTime GetNextRefreshTime(DateTime now, TimeSpan refreshTime, string type)
@@ -109,7 +128,7 @@ namespace Features.Quest.Scripts
             if (index != -1)
             {
                 var weeklyQuest = _curQuestComposites[index];
-                weeklyQuest.ListTasks = GenerateNewDailyTasks();
+                weeklyQuest.ListTasks = GenerateNewWeeklyTasks();
                 ResetTasks(weeklyQuest.ListTasks);
                 _curQuestComposites[index] = weeklyQuest;
             }
@@ -120,7 +139,7 @@ namespace Features.Quest.Scripts
             if (index != -1)
             {
                 var monthlyQuest = _curQuestComposites[index];
-                monthlyQuest.ListTasks = GenerateNewDailyTasks();
+                monthlyQuest.ListTasks = GenerateNewMonthlyTasks();
                 ResetTasks(monthlyQuest.ListTasks);
                 _curQuestComposites[index] = monthlyQuest;
             }
@@ -137,18 +156,18 @@ namespace Features.Quest.Scripts
         
         private List<TaskDataSO> GenerateNewDailyTasks()
         {
-            // Generate and return new daily tasks
-            return new List<TaskDataSO>();
+            // Return daily tasks
+            return _questDataAsset.GetTaskListByType(QuestType.DailyQuest);
         }
         private List<TaskDataSO> GenerateNewWeeklyTasks()
         {
-            // Generate and return new weekly tasks
-            return new List<TaskDataSO>();
+            // Return weekly tasks
+            return _questDataAsset.GetTaskListByType(QuestType.WeeklyQuest);
         }
         private List<TaskDataSO> GenerateNewMonthlyTasks()
         {
-            // Generate and return new monthly tasks
-            return new List<TaskDataSO>();
+            // Return monthly tasks
+            return _questDataAsset.GetTaskListByType(QuestType.MonthlyQuest);
         }
         
         public void InitQuestData()
@@ -162,7 +181,7 @@ namespace Features.Quest.Scripts
                 List<TaskDataSO> taskList = _questDataAsset.GetTaskListByType(questType);
                 _curQuestComposites.Add(new QuestComposite
                     {
-                        Type = questType, //Todo
+                        Type = questType,
                         ListTasks = taskList
                     }
                 );
@@ -178,11 +197,6 @@ namespace Features.Quest.Scripts
             }
 
             return questComposite.ListTasks.FirstOrDefault(t => t.TaskId == taskId);
-        }
-        
-        public void TestCheckAndRefreshTasks(DateTime testTime)
-        {
-            //CheckAndRefreshTasks(testTime);
         }
     }
 }
