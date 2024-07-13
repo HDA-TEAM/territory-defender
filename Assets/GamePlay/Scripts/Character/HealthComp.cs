@@ -23,7 +23,6 @@ namespace GamePlay.Scripts.Character
         private Sequence _sequenceProgressHeal;
         protected override void StatsUpdate()
         {
-            Debug.Log("HealthComp " + _unitBaseParent.UnitId);
             StatsHandlerComponent stats = _unitBaseParent.UnitStatsHandlerComp();
             _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
             _currentHealth = _maxHeath;
