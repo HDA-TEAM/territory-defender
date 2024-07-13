@@ -13,7 +13,11 @@ public struct SelectHeroPayload
 {
     public UnitBase UnitBase;
 }
-
+public struct HeroSpawnedPayload
+{
+    public UnitId.Hero HeroId;
+    public UnitBase UnitBase;
+}
 public class HeroRevive : MonoBehaviour
 {
     [SerializeField] private UnitBase _hero;
@@ -22,6 +26,7 @@ public class HeroRevive : MonoBehaviour
     private bool _isCooldown;
     private void Start()
     {
+        Messenger.Default.Subscribe<HeroSpawnedPayload>(OnHeroSpawned);
         Messenger.Default.Subscribe<UnitRevivePayload>(OnReviveHero);
         Messenger.Default.Subscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
         Messenger.Default.Subscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
@@ -32,9 +37,18 @@ public class HeroRevive : MonoBehaviour
     }
     private void OnDestroy()
     {
+        Messenger.Default.Unsubscribe<HeroSpawnedPayload>(OnHeroSpawned);
         Messenger.Default.Unsubscribe<UnitRevivePayload>(OnReviveHero);
         Messenger.Default.Unsubscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
         Messenger.Default.Unsubscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
+    }
+    private void OnHeroSpawned(HeroSpawnedPayload heroSpawnedPayload)
+    {
+        _hero = heroSpawnedPayload.UnitBase;
+        _heroItemView.Setup(new HeroItemViewComposite
+        {
+            HeroId = heroSpawnedPayload.HeroId,
+        }, SelectHero);
     }
     private void OnRemoveHeroSelected(HideUnitInformationPayload payload)
     {
