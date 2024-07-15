@@ -16,6 +16,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
         // Default 3 units
         private const int MaxAllyCount = 3;
         private const float MinPerUnitDistance = 0.5f;
+        [SerializeField] private UnitId.Ally _unitSpawnId;
         [SerializeField] private float _cooldownReviveUnit;
         [SerializeField] private List<UnitBase> _allyUnits = new List<UnitBase>();
         [SerializeField] private float _campingRange;
@@ -47,7 +48,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
                 Messenger.Default.Publish(new OnSpawnObjectPayload
                 {
                     ActiveAtSpawning = false,
-                    ObjectType = UnitId.Ally.Warrior.ToString(),
+                    ObjectType = _unitSpawnId.ToString(),
                     OnSpawned = SpawnSingleUnit,
                 });
             
@@ -100,7 +101,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             Messenger.Default.Publish(new OnSpawnObjectPayload
             {
                 ActiveAtSpawning = false,
-                ObjectType = UnitId.Ally.Warrior.ToString(),
+                ObjectType = _unitSpawnId.ToString(),
                 OnSpawned = SpawnSingleUnit,
             });
         }

@@ -16,7 +16,9 @@ namespace Common.Scripts
 
         public enum Ally
         {
-            Warrior = 101,
+            SpearMan = 101,
+            PikeMan = 102,
+            MasterPikeMan = 103,
         }
 
         public enum Enemy
