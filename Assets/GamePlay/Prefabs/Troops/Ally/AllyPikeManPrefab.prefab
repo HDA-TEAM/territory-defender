@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: UnitId
-      value: Warrior
+      value: PikeMan
       objectReference: {fileID: 0}
     - target: {fileID: 1678257229, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: _unitSideId
@@ -27,19 +27,19 @@ PrefabInstance:
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: DeadClip
       value: 
-      objectReference: {fileID: 7400000, guid: 6201a57551afd4ce1a6f65e9791f6760, type: 2}
+      objectReference: {fileID: 7400000, guid: 450369a3d0e0c408793427fa60eae683, type: 2}
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: IdleClip
       value: 
-      objectReference: {fileID: 7400000, guid: 851d8ab4d250f410ea9db86bc8ccd98a, type: 2}
+      objectReference: {fileID: 7400000, guid: ef7c4c6d830a54efa8bd9edc72c8c358, type: 2}
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: MovingClip
       value: 
-      objectReference: {fileID: 7400000, guid: 3dd79f74812a14e4fad371fa299556d9, type: 2}
+      objectReference: {fileID: 7400000, guid: 26c65b7415a07406f8934f23c29c0447, type: 2}
     - target: {fileID: 582174163768808235, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: NormalAttackClip
       value: 
-      objectReference: {fileID: 7400000, guid: 31a917857d61b40f78f0bed70454076c, type: 2}
+      objectReference: {fileID: 7400000, guid: 1ce25e8aa005740b1be780987aa7b733, type: 2}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Size.x
       value: 1.12
@@ -51,14 +51,14 @@ PrefabInstance:
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1999803066, guid: 4bba4d0fefacd4c7bb4cdb71646b85a9, type: 3}
+      objectReference: {fileID: -318816576, guid: c4d9674e394544bd9a57b0b38a88c0b3, type: 3}
     - target: {fileID: 1035520470572084874, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1192807291828039942, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_Name
-      value: AllyWarriorPrefab
+      value: AllyPikeManPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 2125775758959885298, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_RootOrder
@@ -109,6 +109,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4296595683639626517, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698198409624127681, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4698198409624127681, guid: 03c74b24e64464b819d727cd87dafd80, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
