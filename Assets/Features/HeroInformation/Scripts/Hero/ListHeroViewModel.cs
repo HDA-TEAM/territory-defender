@@ -83,6 +83,8 @@ public class ListHeroViewModel : MonoBehaviour
         }
         _listModeViewModel.ResetToSkillView(EHeroViewMode.Skill);
         _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
+        
+        OnSkillSelected(_itemSkillViews[0]);
     }
     private void OnSkillSelected(ItemSkillView itemSkillView)
     {
