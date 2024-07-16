@@ -95,7 +95,7 @@ namespace GamePlay.Scripts.Character.TowerBehaviour
             
             await UniTask.Delay(TimeSpan.FromSeconds(_cooldownReviveUnit));
             // Prevent spawning if tower is destroy
-            if (!_towerKit.IsExistTower())
+            if (!_towerKit.IsExistTower() && _allyUnits.Count >= 3)
                 return;
             // Spawning new unit from pool
             Messenger.Default.Publish(new OnSpawnObjectPayload
