@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Common.Scripts.Data.DataAsset;
 using Features.Common.Scripts;
 using TMPro;
 using UnityEngine;
@@ -8,8 +10,12 @@ namespace Features.Quest.Scripts.Quest
 {
     public class ItemTaskView : ItemViewBase<TaskDataSO>
     {
-        [SerializeField] private Button _btnGet;
+        public Button _btnGet;
         [SerializeField] private TextMeshProUGUI _txtContent;
+
+        private TaskId _taskId;
+        public TaskId GetTaskId => _taskId;
+        public List<InventoryData> InventoryGetAfterCompleteTask { get; set; }
 
         private void Start()
         {
@@ -18,13 +24,29 @@ namespace Features.Quest.Scripts.Quest
 
         public void Setup(TaskDataSO taskDataSo, Action<ItemTaskView> onAction)
         {
+            _taskId = taskDataSo.TaskId;
             OnSelected = (Action<ItemViewBase<TaskDataSO>>)onAction;
+            InventoryGetAfterCompleteTask = taskDataSo.InventoryDatas;
             SetName(taskDataSo);
         }
 
         protected override void SetName(TaskDataSO taskDataSo)
         {
-            _txtContent.text = taskDataSo._txtTask;
+            _txtContent.text = taskDataSo.TxtTask;
+        }
+
+        // public void ProcessInventoryItems()
+        // {
+        //     foreach (var item in InventoryGetAfterCompleteTask)
+        //     {
+        //         GetInventoryItem(item);
+        //     }
+        // }
+
+        private void GetInventoryItem(InventoryData item)
+        {
+            // Example processing logic
+            Debug.Log("Getting inventory item: " + item.Amount + " " + item.InventoryType);
         }
     }
 }

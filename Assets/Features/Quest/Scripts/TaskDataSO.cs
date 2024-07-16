@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using Common.Scripts.Data.DataAsset;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.Quest.Scripts
 {
@@ -14,9 +16,11 @@ namespace Features.Quest.Scripts
     [CreateAssetMenu(fileName = "TaskDataSO", menuName = "ScriptableObject/Config/TaskDataSO")]
     public class TaskDataSO : ScriptableObject
     {
-        public TaskId _taskId;
-        public string _txtTask;
-        public List<InventoryData> _inventoryDatas;
+        public TaskId TaskId;
+        public string TxtTask;
+        public List<InventoryData> InventoryDatas;
+        public DateTime CompletionTime;
+        public bool IsCompleted;
     }
 
     

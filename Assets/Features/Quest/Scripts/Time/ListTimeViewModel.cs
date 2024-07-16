@@ -12,12 +12,13 @@ namespace Features.Quest.Scripts.Time
 
         [Header("Data")] 
         [SerializeField] private ListQuestViewModel _listQuestViewModel;
-
+        [SerializeField] private QuestDataController _questDataController;
+        
         private List<QuestComposite> _questComposites;
         public Action<QuestType> _onUpdateViewAction;
         private ItemTimeView _preItemTimeView;
-
-        public void SetupTime()
+        
+        public void Start()
         {
             UpdateData();
             
@@ -26,7 +27,7 @@ namespace Features.Quest.Scripts.Time
 
         private void UpdateData()
         {
-            _questComposites = _listQuestViewModel._questDataController.QuestComposites;
+            _questComposites = _questDataController.QuestComposites;
             UpdateView();
         }
 
@@ -34,6 +35,7 @@ namespace Features.Quest.Scripts.Time
         {
             for (int i = 0; i < _questComposites.Count; i++)
             {
+                _itemQuestTimes[i].Initialize(_questComposites[i].Type);
                 _itemQuestTimes[i].SetUp(OnSelectedQuestTime, SetQuestText(_questComposites[i]));
             }
         }
@@ -42,13 +44,21 @@ namespace Features.Quest.Scripts.Time
         {
             if (_preItemTimeView == itemTimeView) return;
             if (_preItemTimeView != null)
+            {
                 _preItemTimeView.RemoveSelected();
+            }
             
             _preItemTimeView = itemTimeView;
             _preItemTimeView.OnSelectedItemTime();
             
             //Post data
-            _onUpdateViewAction?.Invoke(_preItemTimeView.QuestComposite.Type);
+            if (_preItemTimeView == null)
+            {
+                Debug.LogError("_preItemTimeView is null");
+                return;
+            }
+
+            _onUpdateViewAction?.Invoke(_preItemTimeView.GetQuestType);
         }
         
         private string SetQuestText(QuestComposite questComposite)

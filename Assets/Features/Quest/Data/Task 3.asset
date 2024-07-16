@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a150fc5afb0412982a73e48e2b12ba0, type: 3}
   m_Name: Task 3
   m_EditorClassIdentifier: 
-  _taskId: 4
-  _txtTask: Upgrade once time rune
-  _inventoryDatas:
+  TaskId: 4
+  TxtTask: Complete a stage
+  InventoryDatas:
   - InventoryType: 4
-    Amount: 100
+    Amount: 50
+  IsCompleted: 0
