@@ -26,23 +26,13 @@ namespace Features.Quest.Scripts.Quest
         private List<InventoryData> _listInventoryReceived;
         private QuestType _preQuestType;
         private bool _validDateTimeChange;
-        
+       
         private void OnEnable()
-        {
-            
-        }
-
-        private void OnDisable()
-        {
-            
-        }
-        
-        private void SubscribeEvents()
         {
             if (_questDataController != null)
             {
                 _validDateTimeChange = true;
-                _questDataController.OnDateTimeChanged += UpdateData;
+                _questDataController.OnDateTimeChange += UpdateData;
             }
             
             if (_listTimeViewModel != null)
@@ -51,12 +41,12 @@ namespace Features.Quest.Scripts.Quest
             }
         }
         
-        private void UnSubscribeEvents()
+        private void OnDisable()
         {
             if (_questDataController != null)
             {
                 _validDateTimeChange = false;
-                _questDataController.OnDateTimeChanged -= UpdateData;
+                _questDataController.OnDateTimeChange -= UpdateData;
             }
             
             if (_listTimeViewModel != null)
@@ -67,6 +57,7 @@ namespace Features.Quest.Scripts.Quest
 
         private void Setup()
         {
+            _preQuestType = QuestType.DailyQuest;
             _imgInventoryGet.gameObject.SetActive(false);
         }
 
@@ -74,24 +65,22 @@ namespace Features.Quest.Scripts.Quest
         {
             Setup();
             UpdateData();
-
-            UnSubscribeEvents();
-            SubscribeEvents();
         }
 
         private void UpdateData()
         {
             _questDataController.InitQuestData();
             
+            //Debug.Log(_preQuestType + "..._preQuestType");
             //Default setting
-            UpdateView(QuestType.DailyQuest);
+            UpdateView(_preQuestType);
         }
 
         private void UpdateView(QuestType questType)
         {
             if (_preQuestType == questType && !_validDateTimeChange)
             {
-                Debug.Log("_preQuestType == questType.......????/");
+                //Debug.Log("_preQuestType == questType.......????/");
                 return;
             }
             _preQuestType = questType;
@@ -154,7 +143,7 @@ namespace Features.Quest.Scripts.Quest
         private IEnumerator ShowImageTemporarily()
         {
             _imgInventoryGet.gameObject.SetActive(true);
-            yield return new WaitForSeconds(2f); // Wait for 2 seconds
+            yield return new WaitForSeconds(3f); // Wait for 3 seconds
             _imgInventoryGet.gameObject.SetActive(false);
         }
     }

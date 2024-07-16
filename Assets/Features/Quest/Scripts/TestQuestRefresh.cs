@@ -19,8 +19,7 @@ namespace Features.Quest.Scripts
         {
             int.TryParse(_day, out var day);
             int.TryParse(_month, out var month);
-
-            //_datetimeInt = 1;
+            
             DateTime dateTime =  new DateTime(_year, month, day, _hour, _minute, _second);
             TryChangeTimeRefresh(dateTime);
         }

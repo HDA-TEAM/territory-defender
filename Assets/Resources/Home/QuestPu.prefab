@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14cdf2e8405349cb805d2d7dfc950bec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _day: 11
+  _day: 17
   _month: 7
   _year: 2024
   _hour: 7
@@ -932,6 +932,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _questDataAsset: {fileID: 11400000, guid: b00f041dd17fd48f38d904b1489c308f, type: 2}
   _curQuestComposites: []
+  _refreshHour: 7
+  _refreshMinute: 0
+  _refreshSecond: 0
 --- !u!1 &7860609952076340206
 GameObject:
   m_ObjectHideFlags: 0

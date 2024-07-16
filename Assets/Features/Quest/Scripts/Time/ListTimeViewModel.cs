@@ -17,8 +17,7 @@ namespace Features.Quest.Scripts.Time
         private List<QuestComposite> _questComposites;
         public Action<QuestType> _onUpdateViewAction;
         private ItemTimeView _preItemTimeView;
-
-        //public ItemTimeView GetPreItemTime => _preItemTimeView;
+        
         public void Start()
         {
             UpdateData();
