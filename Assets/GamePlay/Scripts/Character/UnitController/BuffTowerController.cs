@@ -18,7 +18,7 @@ namespace GamePlay.Scripts.Character.UnitController
             foreach (var unit in targets)
             {
                 if (unit == _unitBaseParent)
-                    break;
+                    continue;
             
                 float betweenDistance = GameObjectUtility.Distance2dOfTwoGameObject(unit.gameObject, gameObject);
 

@@ -91,12 +91,12 @@ namespace GamePlay.Scripts.GamePlayController
 
             ClearUnavailableUnit();
 
-            foreach (var enemy in _unitEnemies)
+            foreach (UnitBase enemy in _unitEnemies)
             {
                 _unitsNeed = GetUnitsNeed(enemy.TargetSideNeeding()[0]);
                 enemy.UnitController().UpdateStatus(_unitsNeed);
             }
-            foreach (var ally in _unitAllys)
+            foreach (UnitBase ally in _unitAllys)
             {
                 _unitsNeed = GetUnitsNeed(ally.TargetSideNeeding()[0]);
                 ally.UnitController().UpdateStatus(_unitsNeed);
@@ -112,6 +112,18 @@ namespace GamePlay.Scripts.GamePlayController
                         foreach (var unit in _unitAllys)
                         {
                             if (unit.CharacterStateMachine().CharacterTroopBehaviourType != TroopBehaviourType.Tower)
+                            {
+                                _allys.Add(unit);
+                            }
+                        }
+                        return _allys;
+                    }
+                case UnitId.BaseId.Tower:
+                    {
+                        _allys.Clear();
+                        foreach (var unit in _unitAllys)
+                        {
+                            if (unit.CharacterStateMachine().CharacterTroopBehaviourType == TroopBehaviourType.Tower)
                             {
                                 _allys.Add(unit);
                             }
