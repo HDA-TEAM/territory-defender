@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a150fc5afb0412982a73e48e2b12ba0, type: 3}
   m_Name: Task
   m_EditorClassIdentifier: 
-  _taskId: 1
-  _txtTask: Play 1 game
-  _inventoryDatas:
+  TaskId: 1
+  TxtTask: Play 1 time
+  InventoryDatas:
   - InventoryType: 4
-    Amount: 50
+    Amount: 25
+  IsCompleted: 0
