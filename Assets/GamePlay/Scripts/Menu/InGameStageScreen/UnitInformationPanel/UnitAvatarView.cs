@@ -24,8 +24,6 @@ namespace GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel
                 avatarRect.anchorMin = new Vector2(0.5f, 0.5f);
                 avatarRect.anchoredPosition = Vector2.zero;
             }
-            
-            Debug.Log(unitDataComposite.UnitBase.name);
         }
     }
 }
