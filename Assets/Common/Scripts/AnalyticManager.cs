@@ -1,5 +1,5 @@
+#if !UNITY_WEBGL
 using Firebase.Analytics;
-using GamePlay.Scripts.Data;
 using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
@@ -7,10 +7,6 @@ using UnityEngine;
 
 namespace Common.Scripts
 {
-    public struct StageStartPayload
-    {
-        public StageId StageId;
-    }
     public class AnalyticManager : MonoBehaviour
     {
         #region Event names
@@ -22,7 +18,6 @@ namespace Common.Scripts
         private const string StageId = "stage_id";
         private const string StarClaimed = "star_claimed";
         #endregion
-
         private void Start()
         {
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
@@ -35,14 +30,14 @@ namespace Common.Scripts
         }
         private void LogEventStageStart(StageStartPayload stageStartPayload)
         {
-            Firebase.Analytics.FirebaseAnalytics
-                .LogEvent(Firebase.Analytics.FirebaseAnalytics.EventLogin);
-            Firebase.Analytics.FirebaseAnalytics.LogEvent(
-                Firebase.Analytics.FirebaseAnalytics.EventSelectContent,
-                new Firebase.Analytics.Parameter(
-                    Firebase.Analytics.FirebaseAnalytics.ParameterItemName, "name"),
-                new Firebase.Analytics.Parameter(
-                    Firebase.Analytics.FirebaseAnalytics.UserPropertySignUpMethod, "Google")
+            FirebaseAnalytics
+                .LogEvent(FirebaseAnalytics.EventLogin);
+            FirebaseAnalytics.LogEvent(
+                FirebaseAnalytics.EventSelectContent,
+                new Parameter(
+                    FirebaseAnalytics.ParameterItemName, "name"),
+                new Parameter(
+                    FirebaseAnalytics.UserPropertySignUpMethod, "Google")
             );
             try
             {
@@ -52,12 +47,14 @@ namespace Common.Scripts
                 };
 
                 LogEvent(StageStart,parameters.ToArray());
+
             }
             catch (Exception e)
             {
                 Debug.LogError(e);
             }
         }
+        
         private static void LogEvent(string eventName, Parameter[] parameters)
         {
             FirebaseAnalytics.LogEvent(eventName,parameters);
@@ -70,3 +67,4 @@ namespace Common.Scripts
         }
     }
 }
+#endif

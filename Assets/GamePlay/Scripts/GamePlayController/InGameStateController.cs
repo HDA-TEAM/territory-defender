@@ -1,4 +1,3 @@
-using Common.Scripts;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
@@ -6,6 +5,11 @@ using GamePlay.Scripts.Menu.ResultPu;
 using GamePlay.Scripts.Stage;
 using SuperMaxim.Messaging;
 using UnityEngine;
+
+public struct StageStartPayload
+{
+    public StageId StageId;
+}
 
 namespace GamePlay.Scripts.GamePlayController
 {

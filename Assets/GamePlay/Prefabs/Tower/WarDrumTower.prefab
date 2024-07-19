@@ -107,12 +107,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _targetSidesNeeding.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _targetSideNeeding.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _targetSidesNeeding.Array.data[0]
-      value: 1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -7030754689199355094, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: _targetSidesNeeding.Array.data[1]
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1069866960922029881, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Enabled
