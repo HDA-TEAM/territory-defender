@@ -1,3 +1,4 @@
+#if !UNITY_WEBGL
 using Firebase.Extensions;
 using Firebase.RemoteConfig;
 using GamePlay.Scripts.Data;
@@ -59,3 +60,4 @@ namespace Common.Scripts
         }
     }
 }
+#endif
