@@ -23,23 +23,23 @@ PrefabInstance:
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: DeadClip
       value: 
-      objectReference: {fileID: 7400000, guid: c248ad0bb2d8b445989e9e88368d1f7f, type: 2}
+      objectReference: {fileID: 7400000, guid: 6c545ac95b8cf47dd906900791c0b73b, type: 2}
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: IdleClip
       value: 
-      objectReference: {fileID: 7400000, guid: 4d6ac178d207840b99f1e048c2561cdc, type: 2}
+      objectReference: {fileID: 7400000, guid: 0173108c0014a493cbed08cd85ffac80, type: 2}
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: MovingClip
       value: 
-      objectReference: {fileID: 7400000, guid: 4690f997a41a14f1cbaa162caea0b78c, type: 2}
+      objectReference: {fileID: 7400000, guid: 5cfb144690adf4ffa8a2fac242315c7c, type: 2}
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: NormalAttackClip
       value: 
-      objectReference: {fileID: 7400000, guid: 724ac035474e34ddea3caee64e05b3ff, type: 2}
+      objectReference: {fileID: 7400000, guid: d9516a60c580f476ca4cf5e18994dffe, type: 2}
     - target: {fileID: 2586391441342603645, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: FirstActiveSkillClip
       value: 
-      objectReference: {fileID: 7400000, guid: eeb8dbbe7a1df4c7480388913e627760, type: 2}
+      objectReference: {fileID: 7400000, guid: 8caa9fb8bb42148d09472fc757a91d21, type: 2}
     - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Size.x
       value: 3.88
@@ -51,14 +51,14 @@ PrefabInstance:
     - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 423699641, guid: 19754286380fc40f6b42b4ceac655797, type: 3}
+      objectReference: {fileID: 887176771, guid: 56dd4bf4fe4a5439f81354e580d33351, type: 3}
     - target: {fileID: 2715126733351656668, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: UnitId
-      value: TrungTrac
+      value: TrungNhi
       objectReference: {fileID: 0}
     - target: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: _userActionController
@@ -110,12 +110,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4286664783864283984, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Name
-      value: TrungTracPrefab
+      value: TrungNhiPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 7160055862065391615, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7217911202667017612, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: _baseStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 124f6c6c104d945a5a77eba6a0dbef75, type: 2}
     - target: {fileID: 7693172422962068119, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -127,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 8557316177088831809, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 4722d95c7eccd4582a99cdd1d169342d, type: 2}
+      objectReference: {fileID: 9100000, guid: 5b150a7b576314ddaaa48278dddde596, type: 2}
     m_RemovedComponents:
     - {fileID: 265673086395741768, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
     m_RemovedGameObjects: []
@@ -157,7 +161,7 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 3604273176490995714}
   _eUserAction: 0
   _skillDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
-  ActiveSkillId: 1
+  ActiveSkillId: 2
 --- !u!114 &3604273176490995714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}

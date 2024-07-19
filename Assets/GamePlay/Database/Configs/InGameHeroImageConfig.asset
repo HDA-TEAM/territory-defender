@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 237dfc8b5d51420abff317d96dcbfe68, type: 3}
+  m_Name: InGameHeroImageConfig
+  m_EditorClassIdentifier: 
+  _data:
+    _serializedList:
+    - Key: 400
+      Value:
+        IconHeroSelected: {fileID: 21300000, guid: 277b8c6b519ca4c80a9765dcbbb29e19, type: 3}
+        IconHeroUnSelected: {fileID: 21300000, guid: 44731fdd95fb342ff8cd709733952a25, type: 3}
+        SpriteHeroCooldown: {fileID: 21300000, guid: 3e6c90e617cf44e3089ccdac823b87bd, type: 3}
+        HeroId: 400
+    - Key: 410
+      Value:
+        IconHeroSelected: {fileID: 21300000, guid: 9f0c8793d90ca4735a32b04b90a0a005, type: 3}
+        IconHeroUnSelected: {fileID: 21300000, guid: a4b682d33b35e4e0fb3fa86a5126c855, type: 3}
+        SpriteHeroCooldown: {fileID: 21300000, guid: decd2f16024f84448b33c38b8661c6ea, type: 3}
+        HeroId: 410

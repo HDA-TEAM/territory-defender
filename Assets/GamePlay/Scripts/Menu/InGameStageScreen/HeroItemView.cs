@@ -6,17 +6,22 @@ using UnityEngine.UI;
 
 namespace GamePlay.Scripts.Menu
 {
+    [Serializable]
     public struct HeroItemViewComposite
     {
-        public UnitId.Hero HeroId;
+        public Sprite IconHeroSelected;
+        public Sprite IconHeroUnSelected;
+        public Sprite SpriteHeroCooldown;
     }
 
     public class HeroItemView : MonoBehaviour
     {
-        [SerializeField] private Image _iconHero;
+        [SerializeField] private Image _imgHeroSelected;
         [SerializeField] private Image _imgHeroAvatarCooldown;
         [SerializeField] private Button _btnSelectHero;
         [SerializeField] private GameObject _gameObjectSelected;
+        [SerializeField] private Image _imgHeroUnSelected;
+        [SerializeField] private Image _imgHeroAvatar;
 
         private HeroItemViewComposite _heroItemViewComposite;
         private Action _onSelectHero;
@@ -30,6 +35,10 @@ namespace GamePlay.Scripts.Menu
         {
             SetHeroSelected(false);
             //Set up avatar
+            _imgHeroSelected.sprite = heroItemViewComposite.IconHeroSelected;
+            _imgHeroUnSelected.sprite = heroItemViewComposite.IconHeroUnSelected;
+            _imgHeroAvatar.sprite = heroItemViewComposite.SpriteHeroCooldown;
+            
             _heroItemViewComposite = heroItemViewComposite;
             _onSelectHero = onSelecting;
         }
