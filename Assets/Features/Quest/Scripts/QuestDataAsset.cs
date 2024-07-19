@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using AYellowpaper.SerializedCollections;
+using Common.Scripts;
 using Common.Scripts.Data.DataAsset;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -40,15 +41,51 @@ namespace Features.Quest.Scripts
 
         public void UpdateQuestData()
         {
-            
+            var questDatas = QuestDatas;
+            LoadQuestDataFromLocal(questDatas);
+        }
+
+        private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
+        {
+            foreach (var quest in questDataLoader)
+            {
+                if (_questTypeDict.ContainsKey(quest._questType))
+                {
+                    // Update existing tasks in the dictionary with the ones from local data
+                    _questTypeDict[quest._questType] = quest._tasksData;
+                }
+                else
+                {
+                    // If the quest type is not found, add it to the dictionary
+                    _questTypeDict.Add(quest._questType, quest._tasksData);
+                }
+            }
+        }
+        
+        public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict)
+        {
+            List<QuestData> newQuestList = new List<QuestData>();
+            foreach (var quest in questTypeDict)
+            {
+                if (quest.Value is { Count: > 0 })
+                {
+                    var questDataSaver = new QuestData
+                    {
+                        _questType = quest.Key,
+                        _tasksData = quest.Value
+                    };
+                    newQuestList.Add(questDataSaver);
+                }
+            }
+            _model.QuestDatas = newQuestList;
+            SaveData();
         }
     }
-
     [Serializable]
     public struct QuestData
     {
         public QuestType _questType;
-        public List<TaskId> _taskIds;
+        public List<TaskDataSO> _tasksData;
     }   
 
     [Serializable]

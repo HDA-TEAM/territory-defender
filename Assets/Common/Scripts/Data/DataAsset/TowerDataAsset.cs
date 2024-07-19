@@ -40,9 +40,9 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     {
         return _towerTypeDict.Values.ToList();
     }
-    private void LoadTowerDataFromLocalToTowerDict(List<TowerData> towerDataSavers)
+    private void LoadTowerDataFromLocalToTowerDict(List<TowerData> towerDataLoaded)
     {
-        foreach (var saver in towerDataSavers)
+        foreach (var saver in towerDataLoaded)
         {
             if (!_towerTypeDict.ContainsKey(saver.TowerId))
             {
@@ -65,16 +65,16 @@ public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataSo> towerTypeDict)
     {
         List<TowerData> newTowerList = new List<TowerData>(); // Create a new list for towers
-        foreach (var kvp in towerTypeDict)
+        foreach (var tower in towerTypeDict)
         {
-            if (kvp.Value != null && kvp.Value._runeLevels is { Count: > 0 })
+            if (tower.Value != null && tower.Value._runeLevels is { Count: > 0 })
             {
-                var towerSoSaver = new TowerData
+                var towerDataSaver = new TowerData
                 {
-                    TowerId = kvp.Key,
-                    RuneLevels = kvp.Value._runeLevels
+                    TowerId = tower.Key,
+                    RuneLevels = tower.Value._runeLevels
                 };
-                newTowerList.Add(towerSoSaver); // Add to the new list
+                newTowerList.Add(towerDataSaver); // Add to the new list
             }
         }
         _model.ListTowerDatas = newTowerList; // Update the model's TowerList only, without overwriting the entire model

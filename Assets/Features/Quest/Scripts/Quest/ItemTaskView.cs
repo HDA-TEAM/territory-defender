@@ -34,15 +34,6 @@ namespace Features.Quest.Scripts.Quest
         {
             _txtContent.text = taskDataSo.TxtTask;
         }
-
-        // public void ProcessInventoryItems()
-        // {
-        //     foreach (var item in InventoryGetAfterCompleteTask)
-        //     {
-        //         GetInventoryItem(item);
-        //     }
-        // }
-
         private void GetInventoryItem(InventoryData item)
         {
             // Example processing logic

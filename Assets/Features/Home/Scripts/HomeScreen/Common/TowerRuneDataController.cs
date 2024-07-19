@@ -223,13 +223,6 @@ namespace Features.Home.Scripts.HomeScreen.Common
                 Level = 1 // Set level to 1 for the new rune
             };
             towerDataSo._runeLevels.Add(newRune);
-
-            // foreach (var item in towerDataConfig._runeLevels)
-            // {
-            //     Debug.Log("ID: "+ item.RuneId + "..." + item.Level);
-            // }
-            // Optionally, sort the RuneLevels list by RuneId
-            //towerDataSo._runeLevels.Sort((a, b) => a.RuneId.CompareTo(b.RuneId));
         }
 
         private void UpgradeRune(TowerDataSo towerDataSo, int index)
