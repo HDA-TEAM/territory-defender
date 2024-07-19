@@ -43,9 +43,5 @@ namespace GamePlay.Scripts.Data
                 _life += value;
             _onLifeChange?.Invoke(_life);
         }
-        // public void OnChangeWave(int curWave, int maxWave)
-        // {
-        //     _onCurrencyChange?.Invoke(_currency);
-        // }
     }
 }

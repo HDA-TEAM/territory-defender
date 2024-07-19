@@ -4,7 +4,7 @@ namespace GamePlay.Scripts.Character.AttackingComponent
 {
     public interface ICharacterAttacking
     {
-        void PlayAttacking(UnitBase unitBase, float attackingDamage);
+        void PlayAttacking(UnitBase unitBase, float attackingDamage, string attackSource);
     }
 
     public class CharacterAttackingFactory
@@ -35,17 +35,16 @@ namespace GamePlay.Scripts.Character.AttackingComponent
 
     internal class MeleeAttacking : ICharacterAttacking
     {
-        public void PlayAttacking(UnitBase target, float attackingDamage)
+        public void PlayAttacking(UnitBase target, float attackingDamage, string attackSource)
         {
-            target.HealthComp().PlayHurting(attackingDamage);
+            target.HealthComp().PlayHurting(attackingDamage, attackSource);
         }
     }
 
     internal class TowerAttacking : ICharacterAttacking
     {
-        public void PlayAttacking(UnitBase target, float attackingDamage)
+        public void PlayAttacking(UnitBase target, float attackingDamage, string attackSource)
         {
-
 
         }
     }
