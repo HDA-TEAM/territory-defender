@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Common.Scripts;
 using Common.Scripts.Data.DataConfig;
 using Features.HeroInformation.Scripts.Hero;
+using Features.HeroInformation.Scripts.Mode;
 using UnityEngine;
 
 public class ListHeroViewModel : MonoBehaviour
@@ -12,6 +13,7 @@ public class ListHeroViewModel : MonoBehaviour
     
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
+    [SerializeField] private HeroUpgradeViewModel _heroUpgradeViewModel;
 
     // Internal
     private List<HeroComposite> _heroComposites;
@@ -28,19 +30,26 @@ public class ListHeroViewModel : MonoBehaviour
     {
         ResetView();
     }
+    private void OnUpgradeSuccess()
+    {
+        UpdateData();
+        _heroDetailView.Setup(_preSelectedItem.HeroComposite);
+        _heroUpgradeViewModel.SetUpUpgradable(_preSelectedItem.HeroComposite.HeroId, OnUpgradeSuccess);
+    }
     private void UpdateData()
     {
         // Access the singleton instance directly.
         var heroDataManager = HeroDataManager.Instance;
-    
+
         if (heroDataManager == null) return;
         if (heroDataManager.HeroComposites == null) return;
-
+        
+        heroDataManager.ReloadData();
+        
         // Update data from list hero data to HeroComposite
         _heroComposites = heroDataManager.HeroComposites;
-    
+       
         UpdateView();
-        
     }
     private void UpdateView()
     {
@@ -85,12 +94,14 @@ public class ListHeroViewModel : MonoBehaviour
         _listModeViewModel.Setup(itemHeroView.HeroComposite, EHeroViewMode.Skill);
         
         OnSkillSelected(_itemSkillViews[0]);
+        
+        _heroUpgradeViewModel.SetUpUpgradable(itemHeroView.HeroComposite.HeroId, OnUpgradeSuccess);
     }
     private void OnSkillSelected(ItemSkillView itemSkillView)
     {
         foreach (var itemSkill in _itemSkillViews)
         {
-            _status = itemSkill.SkillDescribeButton() == itemSkillView ? true : false;
+            _status = itemSkill.SkillDescribeButton() == itemSkillView;
             itemSkill.DescribeSkillImage().gameObject.SetActive(_status);
         }
 
@@ -118,6 +129,7 @@ public class ListHeroViewModel : MonoBehaviour
         {
             _itemHeroViews[0].OnSelected();
         }
+        
     }
 }
 
