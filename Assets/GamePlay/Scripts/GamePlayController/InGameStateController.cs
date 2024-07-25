@@ -10,6 +10,11 @@ public struct StageStartPayload
 {
     public StageId StageId;
 }
+public struct StageFinishedPayload
+{
+    public StageId StageId;
+    public int StarCount;
+}
 
 namespace GamePlay.Scripts.GamePlayController
 {
@@ -86,6 +91,11 @@ namespace GamePlay.Scripts.GamePlayController
                 // show results
                 IsGamePlaying = false;
                 Debug.Log("Stage Failed");
+                Messenger.Default.Publish(new StageFinishedPayload
+                {
+                    StageId = _startStageComposite.StageId,
+                    StarCount = 0,
+                });
                 _resultsController.ShowStageFailedPu();
             }
         }
