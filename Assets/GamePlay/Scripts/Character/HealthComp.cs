@@ -39,7 +39,6 @@ namespace GamePlay.Scripts.Character
         {
             _currentHealth -= dame;
             
-            Debug.Log("attackSource: " + attackSource);
             SetHealthSlider();
 
             CheckDie();
