@@ -55,7 +55,7 @@ namespace Features.MasteryPage.Scripts.Rune
         private Action _onTowerRuneResetAction;
     
         private ITowerRune _currentTowerRune;
-        private void SubscribeEvents()
+        private void OnEnable()
         {
             // Handle tower changed
             if (_listTowerViewModel != null)
@@ -75,7 +75,7 @@ namespace Features.MasteryPage.Scripts.Rune
                 _onTowerRuneResetAction += UpdateData;
             }
         }
-        private void UnsubscribeEvents()
+        private void OnDisable()
         {
             if (_listTowerViewModel != null)
             {
@@ -107,9 +107,6 @@ namespace Features.MasteryPage.Scripts.Rune
             
             _listTowerViewModel.SetupTower();
             SetupRuneDetailView(true);
-    
-            UnsubscribeEvents(); // Ensure there are no duplicates
-            SubscribeEvents();
         }
         private void SetDefault()
         {

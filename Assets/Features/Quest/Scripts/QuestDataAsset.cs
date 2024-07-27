@@ -45,6 +45,23 @@ namespace Features.Quest.Scripts
             LoadQuestDataFromLocal(questDatas);
         }
 
+        public void UpdateQuestData(List<QuestComposite> questComposites)
+        {
+            for (int i = 0; i < questComposites.Count; i++)
+            {
+                var index = QuestDatas.FindIndex(q => q._questType == questComposites[i].Type);
+                QuestComposite questComposite = new QuestComposite()
+                {
+                    Type = questComposites[i].Type,
+                    ListTasks = questComposites[i].ListTasks,
+                    LastRefreshTime = questComposites[i].LastRefreshTime
+                };
+                
+                questComposite.LastRefreshTime = QuestDatas[index]._lastRefreshTIme;
+                questComposites[i] = questComposite;
+            }
+        }
+
         private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
         {
             foreach (var quest in questDataLoader)
@@ -62,17 +79,19 @@ namespace Features.Quest.Scripts
             }
         }
         
-        public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict)
+        public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict, List<QuestComposite> questComposites)
         {
             List<QuestData> newQuestList = new List<QuestData>();
             foreach (var quest in questTypeDict)
             {
                 if (quest.Value is { Count: > 0 })
                 {
+                    var questComposite = questComposites.Find(q => q.Type == quest.Key);
                     var questDataSaver = new QuestData
                     {
                         _questType = quest.Key,
-                        _tasksData = quest.Value
+                        _tasksData = quest.Value,
+                        _lastRefreshTIme = questComposite.LastRefreshTime
                     };
                     newQuestList.Add(questDataSaver);
                 }
@@ -86,6 +105,7 @@ namespace Features.Quest.Scripts
     {
         public QuestType _questType;
         public List<TaskDataSO> _tasksData;
+        public DateTime _lastRefreshTIme;
     }   
 
     [Serializable]

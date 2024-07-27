@@ -119,7 +119,7 @@ namespace Features.Quest.Scripts.Quest
                 if (taskView != null && !foundTask.IsCompleted)
                 {
                     foundTask.IsCompleted = true; // Mark task as completed
-                    foundTask.CompletionTime = DateTime.Now; // Update completion time
+                    //foundTask.CompletionTime = DateTime.Now; // Update completion time
                 
                     _listInventoryReceived = taskView.InventoryGetAfterCompleteTask;
                     foreach (var item in _listInventoryReceived)
