@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3aab669bbb4e5f859b0ef714d2c656, type: 3}
+  m_Name: MasterTowerByRune
+  m_EditorClassIdentifier: 
+  _statDict:
+    _serializedList:
+    - Key: 101
+      Value: 100
+    - Key: 109
+      Value: 15
+    - Key: 0
+      Value: 15
+    - Key: 4
+      Value: 5
+    - Key: 1
+      Value: 1
+    - Key: 2
+      Value: 1
+    - Key: 3
+      Value: 1.5
+    - Key: 106
+      Value: 5
+    - Key: 105
+      Value: 50
+    - Key: 200
+      Value: 250
+    - Key: 201
+      Value: 50
+  _informationDict:
+    _serializedList:
+    - Key: 0
+      Value: Pike Master Tower
+    - Key: 1
+      Value: The Pike Master Tower trains elite pikemen skilled in defense and offense
+        with their long spears, adept at blocking and damaging enemies.
+  _towerId: 311
+  _towerDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
+  _runeDataConfig: {fileID: 11400000, guid: 3b74366e712d646fc9a000c7ac1fa7c8, type: 2}

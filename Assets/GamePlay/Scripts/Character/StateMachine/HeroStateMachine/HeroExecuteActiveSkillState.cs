@@ -67,7 +67,7 @@ public class HeroExecuteActiveSkillState : CharacterBaseState
             if (GameObjectUtility.Distance2dOfTwoGameObject(_context.gameObject, target) <= skillConfig.GetStat(StatId.AttackRange))
             {
                 var healComp = target.GetComponent<UnitBase>().HealthComp();
-                if (healComp) healComp.PlayHurting(skillConfig.GetStat(StatId.AttackDamage));
+                if (healComp) healComp.PlayHurting(skillConfig.GetStat(StatId.AttackDamage), Context.UnitId);
             }
         }
     }

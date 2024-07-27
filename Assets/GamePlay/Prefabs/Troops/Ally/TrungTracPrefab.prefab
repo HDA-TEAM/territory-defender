@@ -116,6 +116,10 @@ PrefabInstance:
       propertyPath: m_Alpha
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7217911202667017612, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
+      propertyPath: _baseStats
+      value: 
+      objectReference: {fileID: 11400000, guid: f674e9647f81542a9ba3c5c1f6c47cc4, type: 2}
     - target: {fileID: 7693172422962068119, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -157,6 +161,7 @@ MonoBehaviour:
   _unitBaseParent: {fileID: 3604273176490995714}
   _eUserAction: 0
   _skillDataConfig: {fileID: 11400000, guid: a2979b64e8b7248359b62f2955c29fb9, type: 2}
+  ActiveSkillId: 1
 --- !u!114 &3604273176490995714 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3166304321394941467, guid: eeab1632a8bb04598aa42a0502bf0109, type: 3}

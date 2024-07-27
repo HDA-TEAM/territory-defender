@@ -3,6 +3,7 @@ using Common.Scripts.Navigator;
 using Cysharp.Threading.Tasks;
 using GamePlay.Scripts.Data;
 using GamePlay.Scripts.GamePlay;
+using SuperMaxim.Messaging;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -37,6 +38,12 @@ namespace GamePlay.Scripts.Menu.ResultPu
                     StageId = stageId,
                     TotalStar = curClaimStarsCount,
                 });
+            
+            Messenger.Default.Publish(new StageFinishedPayload
+            {
+                StageId = startStageComposite.StageId,
+                StarCount = curClaimStarsCount,
+            });
         }
         public void ShowStageFailedPu()
         {

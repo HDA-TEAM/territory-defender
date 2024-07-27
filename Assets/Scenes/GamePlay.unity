@@ -5544,7 +5544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rink: {fileID: 1271352672}
-  _magnitudeUnit: 0.1
+  _magnitudeUnit: -0.1
 --- !u!61 &1271352674
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9145,6 +9145,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8701790987077287295, guid: 35ca8b4066b2e41b0a01080c683d8fd6, type: 3}
   m_PrefabInstance: {fileID: 3752961014642146360}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672060972 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5420690574950385219, guid: a284604ea963f45848f931d2a303967d, type: 3}
+  m_PrefabInstance: {fileID: 1104370465718874147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1736963591
 GameObject:
   m_ObjectHideFlags: 0
@@ -9248,6 +9259,8 @@ MonoBehaviour:
       _units:
       - Key: 400
         Value: {fileID: 2488591404240547145, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
+      - Key: 410
+        Value: {fileID: 2488591404240547145, guid: 544d5479d1210499daa14aa7d0090aef, type: 3}
     _projectiles:
       _units:
       - Key: 1002
@@ -9270,6 +9283,8 @@ MonoBehaviour:
       Value: {fileID: 6073425626227146260, guid: 0038c5a8f3e354f95aaeea73ce5777e8, type: 3}
     - Key: TrungTrac
       Value: {fileID: 2488591404240547145, guid: f73feb0bfb1804928b137c1a2e384d1a, type: 3}
+    - Key: TrungNhi
+      Value: {fileID: 2488591404240547145, guid: 544d5479d1210499daa14aa7d0090aef, type: 3}
     - Key: WaterBomb
       Value: {fileID: 4282071385477853601, guid: 0287e11e59b96453db3f73dfbea0aac5, type: 3}
     - Key: Arrow
@@ -9810,6 +9825,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1921123579}
     m_Modifications:
+    - target: {fileID: 453522244719680308, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: _imgHeroAvatar
+      value: 
+      objectReference: {fileID: 1104370465718874148}
+    - target: {fileID: 453522244719680308, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: _imgHeroSelected
+      value: 
+      objectReference: {fileID: 1672060972}
+    - target: {fileID: 453522244719680308, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: _imgHeroUnSelected
+      value: 
+      objectReference: {fileID: 1104370465718874149}
+    - target: {fileID: 604630848209107871, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -34.1508
+      objectReference: {fileID: 0}
+    - target: {fileID: 604630848209107871, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -19.3284
+      objectReference: {fileID: 0}
+    - target: {fileID: 604630848209107871, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.7893982
+      objectReference: {fileID: 0}
+    - target: {fileID: 604630848209107871, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.123001
+      objectReference: {fileID: 0}
     - target: {fileID: 1082345417214699144, guid: a284604ea963f45848f931d2a303967d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9886,6 +9929,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameStageScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 4080784276918136037, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e6c90e617cf44e3089ccdac823b87bd, type: 3}
+    - target: {fileID: 4412789033514826493, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: _heroDataConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d04d11bf739148c284bf3799ca05c56, type: 2}
     - target: {fileID: 4412789033514826493, guid: a284604ea963f45848f931d2a303967d, type: 3}
       propertyPath: _skillDataConfig
       value: 
@@ -9894,10 +9945,18 @@ PrefabInstance:
       propertyPath: _hero
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7478297427249034977, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8121791054044502488, guid: a284604ea963f45848f931d2a303967d, type: 3}
       propertyPath: _hero
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8121791054044502488, guid: a284604ea963f45848f931d2a303967d, type: 3}
+      propertyPath: _heroImageConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 89da10cf50cfd4b4fa030e4cc28bc28b, type: 2}
     - target: {fileID: 8631145404288319984, guid: a284604ea963f45848f931d2a303967d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9983,6 +10042,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a284604ea963f45848f931d2a303967d, type: 3}
+--- !u!114 &1104370465718874148 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4080784276918136037, guid: a284604ea963f45848f931d2a303967d, type: 3}
+  m_PrefabInstance: {fileID: 1104370465718874147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1104370465718874149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2594147164310409836, guid: a284604ea963f45848f931d2a303967d, type: 3}
+  m_PrefabInstance: {fileID: 1104370465718874147}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!199 &2442647174936108691
 ParticleSystemRenderer:
   serializedVersion: 6

@@ -13,11 +13,13 @@ namespace GamePlay.Scripts.Projectile
         [SerializeField] private float _duration;
         [SerializeField] private float _unitHeight;
         private UnitBase _target;
+        private string _attackSource;
         private Tween _movingTween;
         // Get route between cur pos to target 
-        public void SetLineRoute(Vector2 posSpawn, EProjectileType bulletType, UnitBase target)
+        public void SetLineRoute(Vector2 posSpawn, EProjectileType bulletType, UnitBase target, string attackSource)
         {
             _target = target;
+            _attackSource = attackSource;
             transform.position = posSpawn;
             _movingTween = new ProjectileTrajectoryRouteLine().ApplyLineRoute(
                 curWeapon: gameObject,
@@ -30,7 +32,7 @@ namespace GamePlay.Scripts.Projectile
         private void OnDisable() => _movingTween.Kill();
         private async void OnCompleted()
         {
-            _projectileBase.GetProjectileDamage().DealDamage(_target);
+            _projectileBase.GetProjectileDamage().DealDamage(_target, _attackSource);
         
             if (_particleCompleted)
             {

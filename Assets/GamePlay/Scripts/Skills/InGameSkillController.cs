@@ -1,32 +1,38 @@
+using Common.Scripts;
 using Common.Scripts.Data;
 using Common.Scripts.Data.DataConfig;
 using Cysharp.Threading.Tasks;
+using GamePlay.Scripts.Data;
+using GamePlay.Scripts.GamePlay;
 using SuperMaxim.Messaging;
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public struct UsingSkillPayload
 {
     public ESkillId ESkillId;
 }
-public class InGameSkillController : MonoBehaviour
+public class InGameSkillController : GamePlayMainFlowBase
 {
     [SerializeField] private InGameActiveSkillView _firstSkillView;
     [SerializeField] private SkillDataConfig _skillDataConfig;
+    [SerializeField] private InGameHeroDataConfigBase _heroDataConfig;
     private SkillDataSO _curSkillConfig;
     private bool _isCooldown = false;
-    private void Awake()
+    protected override void OnSetupNewGame(SetUpNewGamePayload setUpNewGamePayload)
     {
-        SetUpSkill();
+        UnitId.Hero heroId = setUpNewGamePayload.StartStageComposite.HeroId;
+        UnitBase unitBase = _heroDataConfig.GetConfigByKey(heroId).UnitBase;
+        UserActionHeroBaseController userActionController = unitBase.UserActionController() as UserActionHeroBaseController;
+        SetUpSkill(userActionController.ActiveSkillId);
     }
-    private void OnDestroy()
+    protected override void OnResetGame(ResetGamePayload resetGamePayload)
     {
     }
-    private void SetUpSkill()
+    private void SetUpSkill(ESkillId skillId)
     {
-        _firstSkillView.SetUpSkill(ESkillId.SummonElephant,ExecuteSkill);
-        _curSkillConfig = _skillDataConfig.GetSkillDataById(ESkillId.SummonElephant);
+        _firstSkillView.SetUpSkill(skillId,ExecuteSkill);
+        _curSkillConfig = _skillDataConfig.GetSkillDataById(skillId);
     }
     private async void ExecuteSkill(ESkillId eSkillId)
     {

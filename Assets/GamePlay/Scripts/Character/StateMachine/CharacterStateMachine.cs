@@ -43,6 +43,7 @@ namespace GamePlay.Scripts.Character.StateMachine
         public AudioClip AudioClipAttack { get { return _audioClipAttack; } }
         public AudioClip AudioClipDeath { get { return _audioClipDeath; } }
         public UnitBase CurrentTarget { get { return _unitBaseParent.CurrentTarget; } }
+        public string UnitId { get { return _unitBaseParent.UnitId; } }
         public BeingTargetCommand BeingTargetCommand { get { return _beingTargetCommand; } }
         public ProjectileDataAsset CharacterProjectileDataAsset { get { return _projectileDataAsset; } }
         public UnitId.Projectile CharacterProjectileIUnitId { get { return _projectileId; } }
