@@ -5,7 +5,6 @@ using System.Linq;
 using SuperMaxim.Messaging;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Quest.Scripts
 {
@@ -14,6 +13,7 @@ namespace Features.Quest.Scripts
     {
         public QuestType Type;
         public List<TaskDataSO> ListTasks;
+        public DateTime LastRefreshTime;
     }
     
     public class QuestDataController : MonoBehaviour
@@ -28,10 +28,14 @@ namespace Features.Quest.Scripts
         public int _refreshSecond = 0;
 
         private TimeSpan _refreshTime;
-        private DateTime _lastDailyRefresh;
-        private DateTime _lastWeeklyRefresh;
-        private DateTime _lastMonthlyRefresh;
+        private static DateTime _lastDailyRefresh;
+        private static DateTime _lastWeeklyRefresh;
+        private static DateTime _lastMonthlyRefresh;
         
+        private static DateTime _nextDailyRefresh;
+        private static DateTime _nextWeeklyRefresh;
+        private static DateTime _nextMonthlyRefresh;
+
         public Action OnDateTimeChange;
         public List<QuestComposite> QuestComposites
         {
@@ -41,26 +45,77 @@ namespace Features.Quest.Scripts
                     return _curQuestComposites;
                 
                 InitQuestData();
-                StartCoroutine(RefreshAtTime());
-                
+
                 return _curQuestComposites;
             }
         }
+        
         private void Start()
         {
             _refreshTime = new TimeSpan(_refreshHour, _refreshMinute, _refreshSecond);
             SetLastRefreshTimes();
+            StartCoroutine(RefreshAtTime());
         }
         
-        private void SetLastRefreshTimes()
+        private void SetLastRefreshTimes(DateTime? time = null)
         {
-            _lastDailyRefresh = DateTime.Now.Date.AddDays(-1).Add(_refreshTime); // Yesterday at refresh time
-            _lastWeeklyRefresh = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 7).Date.Add(_refreshTime); // Last week
-            _lastMonthlyRefresh = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(-1).Add(_refreshTime); // Last month
+            //DateTime todayTime = time ?? DateTime.Now;
+            if (time == null)
+            {
+                DateTime todayTime = DateTime.Now;
+                _lastDailyRefresh = todayTime.TimeOfDay >= _refreshTime ? todayTime.Date.Add(_refreshTime) : todayTime.Date.AddDays(-1).Add(_refreshTime);
+
+                // Calculate last weekly refresh
+                var today = todayTime.Date;
+                var daysSinceLastMonday = (int)today.DayOfWeek - (int)DayOfWeek.Monday;
+                if (daysSinceLastMonday < 0)
+                {
+                    daysSinceLastMonday += 7; // Adjust if the current day is Sunday
+                }
+                _lastWeeklyRefresh = today.AddDays(-daysSinceLastMonday).Add(_refreshTime);
+            
+                // Calculate last monthly refresh
+                var firstDayOfCurrentMonth = new DateTime(todayTime.Year, todayTime.Month, 1);
+                _lastMonthlyRefresh = firstDayOfCurrentMonth.Add(_refreshTime);
+            }
+            else
+            {
+                var dailyQuest = _curQuestComposites.Find(q => q.Type == QuestType.DailyQuest);
+                _lastDailyRefresh = dailyQuest.LastRefreshTime;
+                
+                var weeklyQuest = _curQuestComposites.Find(q => q.Type == QuestType.WeeklyQuest);
+                _lastWeeklyRefresh = weeklyQuest.LastRefreshTime;
+                
+                var monthlyQuest = _curQuestComposites.Find(q => q.Type == QuestType.MonthlyQuest);
+                _lastMonthlyRefresh = monthlyQuest.LastRefreshTime;
+            }
+            
+
+            _nextDailyRefresh = GetNextDailyRefreshTime(_lastDailyRefresh, _refreshTime);
+            _nextWeeklyRefresh = GetNextWeeklyRefreshTime(_lastWeeklyRefresh, _refreshTime);
+            _nextMonthlyRefresh = GetNextMonthlyRefreshTime(_lastMonthlyRefresh, _refreshTime);
+            
+            // Log the values
+            Debug.Log("Last Daily Refresh: " + _lastDailyRefresh);
+            Debug.Log("Last Weekly Refresh: " + _lastWeeklyRefresh);
+            Debug.Log("Last Monthly Refresh: " + _lastMonthlyRefresh);
+            Debug.Log("Next Daily Refresh: " + _nextDailyRefresh);
+            Debug.Log("Next Weekly Refresh: " + _nextWeeklyRefresh);
+            Debug.Log("Next Monthly Refresh: " + _nextMonthlyRefresh);
+        }
+        
+        private void SetLastTimeRefresh(QuestType questType, DateTime lastTimeRefresh)
+        {
+            var index = _curQuestComposites.FindIndex(q => q.Type == questType);
+            var quest = _curQuestComposites[index];
+            quest.LastRefreshTime = lastTimeRefresh;
+            _curQuestComposites[index] = quest;
+
         }
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator RefreshAtTime()
         {
+            Debug.Log("RefreshAtTime....???");
             while (true)
             {
                 DateTime now = DateTime.Now;
@@ -76,12 +131,9 @@ namespace Features.Quest.Scripts
                     timeUntilNextRefresh = TimeSpan.Zero; // Refresh immediately if the time has already passed
                 }
                 
-                yield return new WaitForSeconds((float)timeUntilNextRefresh.TotalSeconds);
+                CheckAndRefreshTasks();
                 
-                // Update messenger
-                DatetimeChangePayload datetimeChangePayload;
-                datetimeChangePayload.DateTime = now;
-                CheckAndRefreshTasks(datetimeChangePayload.DateTime);
+                yield return new WaitForSeconds((float)timeUntilNextRefresh.TotalSeconds);
             }
         }
 
@@ -97,37 +149,66 @@ namespace Features.Quest.Scripts
         {
             CheckAndRefreshTasks(datetimeChangePayload.DateTime);
         }
-        private void CheckAndRefreshTasks(DateTime? testTime = null)
+        private void CheckAndRefreshTasks(DateTime? time = null)
         {
-            DateTime now = testTime ?? DateTime.Now;
+            DateTime now = time ?? DateTime.Now;
             
-            if (now >= GetNextDailyRefreshTime(_lastDailyRefresh, _refreshTime))
+            if (time != null)
+            {
+                SetLastRefreshTimes(time);
+            }
+            
+            bool isNewDay = now >= _lastDailyRefresh && (now - _lastDailyRefresh).TotalDays >= 1;
+            bool isNewWeek = now >= _lastWeeklyRefresh && (now - _lastWeeklyRefresh).TotalDays >= 7;
+            bool isNewMonth = now >= _lastMonthlyRefresh && (now - _lastMonthlyRefresh).TotalDays >= DateTime.DaysInMonth(now.Year, now.Month - 1);
+
+            // if (isNewDay) SetLastTimeRefresh(QuestType.DailyQuest, _lastDailyRefresh);
+            // if (isNewWeek) SetLastTimeRefresh(QuestType.WeeklyQuest, _lastWeeklyRefresh);
+            // if (isNewMonth) SetLastTimeRefresh(QuestType.MonthlyQuest, _lastMonthlyRefresh);
+    
+            if (isNewDay)
             {
                 RefreshDailyTasks();
-                _lastDailyRefresh = now.Date.Add(_refreshTime);
-                Debug.Log(" RefreshDailyTasks........Done");
-            } else { Debug.Log("RefreshDailyTasks......Fail!");}
-            
-            if (now >= GetNextWeeklyRefreshTime(_lastWeeklyRefresh, _refreshTime))
+                _lastDailyRefresh = _nextDailyRefresh;
+                _nextDailyRefresh = GetNextDailyRefreshTime(now, _refreshTime);
+                Debug.Log("RefreshDailyTasks........Done");
+            }
+            else
+            {
+                Debug.Log("RefreshDailyTasks......Fail!");
+            }
+    
+            if (isNewWeek)
             {
                 RefreshWeeklyTasks();
-                _lastWeeklyRefresh = GetNextWeeklyRefreshTime(_lastWeeklyRefresh, _refreshTime);
-                Debug.Log(" RefreshWeeklyTasks........Done");
-            } else { Debug.Log("RefreshWeeklyTasks......Fail!");}
-            
-            if (now >= GetNextMonthlyRefreshTime(_lastMonthlyRefresh, _refreshTime))
+                _lastWeeklyRefresh = _nextWeeklyRefresh;
+                _nextWeeklyRefresh = GetNextWeeklyRefreshTime(_lastWeeklyRefresh, _refreshTime);
+                Debug.Log("RefreshWeeklyTasks........Done");
+            }
+            else
+            {
+                Debug.Log("RefreshWeeklyTasks......Fail!");
+            }
+    
+            if (isNewMonth)
             {
                 RefreshMonthlyTasks();
-                _lastMonthlyRefresh = GetNextMonthlyRefreshTime(_lastMonthlyRefresh, _refreshTime);
-                Debug.Log(" RefreshMonthlyTasks........Done");
-            } else { Debug.Log("RefreshWeeklyTasks......Fail!");}
-            
+                _lastMonthlyRefresh = _nextMonthlyRefresh;
+                _nextMonthlyRefresh = GetNextMonthlyRefreshTime(_lastMonthlyRefresh, _refreshTime);
+                Debug.Log("RefreshMonthlyTasks........Done");
+            }
+            else
+            {
+                Debug.Log("RefreshMonthlyTasks......Fail!");
+            }
+    
+            _questDataAsset.SaveQuestToLocal(_questDataAsset._questTypeDict, _curQuestComposites);
             OnDateTimeChange?.Invoke();
         }
         
         private DateTime GetNextDailyRefreshTime(DateTime lastRefresh, TimeSpan refreshTime)
         {
-            DateTime nextRefresh = new DateTime(_lastDailyRefresh.Year, _lastDailyRefresh.Month, _lastDailyRefresh.Day, refreshTime.Hours, refreshTime.Minutes, refreshTime.Seconds);
+            DateTime nextRefresh = lastRefresh.Date.Add(refreshTime);
             if (nextRefresh <= lastRefresh)
             {
                 nextRefresh = nextRefresh.AddDays(1);
@@ -137,7 +218,7 @@ namespace Features.Quest.Scripts
         
         private DateTime GetNextWeeklyRefreshTime(DateTime lastRefresh, TimeSpan refreshTime)
         {
-            DateTime nextRefresh = new DateTime(_lastWeeklyRefresh.Year, _lastWeeklyRefresh.Month, _lastWeeklyRefresh.Day, refreshTime.Hours, refreshTime.Minutes, refreshTime.Seconds);
+            DateTime nextRefresh = lastRefresh.Date.Add(refreshTime);
             if (nextRefresh <= lastRefresh)
             {
                 nextRefresh = nextRefresh.AddDays(7);
@@ -147,7 +228,7 @@ namespace Features.Quest.Scripts
         
         private DateTime GetNextMonthlyRefreshTime(DateTime lastRefresh, TimeSpan refreshTime)
         {
-            DateTime nextRefresh = new DateTime(_lastMonthlyRefresh.Year, _lastMonthlyRefresh.Month, _lastMonthlyRefresh.Day, refreshTime.Hours, refreshTime.Minutes, refreshTime.Seconds);
+            DateTime nextRefresh = lastRefresh.Date.Add(refreshTime);
             if (nextRefresh <= lastRefresh)
             {
                 nextRefresh = nextRefresh.AddMonths(1);
@@ -162,6 +243,7 @@ namespace Features.Quest.Scripts
                 var dailyQuest = _curQuestComposites[index];
                 dailyQuest.ListTasks = GenerateNewDailyTasks();
                 ResetTasks(dailyQuest.ListTasks);
+                dailyQuest.LastRefreshTime = _lastDailyRefresh;
                 _curQuestComposites[index] = dailyQuest;
             }
         }
@@ -173,6 +255,7 @@ namespace Features.Quest.Scripts
                 var weeklyQuest = _curQuestComposites[index];
                 weeklyQuest.ListTasks = GenerateNewWeeklyTasks();
                 ResetTasks(weeklyQuest.ListTasks);
+                weeklyQuest.LastRefreshTime = _lastWeeklyRefresh;
                 _curQuestComposites[index] = weeklyQuest;
             }
         }
@@ -184,6 +267,7 @@ namespace Features.Quest.Scripts
                 var monthlyQuest = _curQuestComposites[index];
                 monthlyQuest.ListTasks = GenerateNewMonthlyTasks();
                 ResetTasks(monthlyQuest.ListTasks);
+                monthlyQuest.LastRefreshTime = _lastMonthlyRefresh;
                 _curQuestComposites[index] = monthlyQuest;
             }
         }
@@ -193,7 +277,7 @@ namespace Features.Quest.Scripts
             foreach (var task in tasks)
             {
                 task.IsCompleted = false;
-                task.CompletionTime = DateTime.MinValue;
+                //task.CompletionTime = DateTime.MinValue;
             }
         }
         
@@ -215,6 +299,10 @@ namespace Features.Quest.Scripts
         
         public void InitQuestData()
         {
+            // Update data
+            _questDataAsset.UpdateQuestData();
+           
+            
             // Convert keys to a list for indexing
             var keys = new List<QuestType>(_questDataAsset._questTypeDict.Keys);
             
@@ -229,6 +317,7 @@ namespace Features.Quest.Scripts
                     }
                 );
             }
+            _questDataAsset.UpdateQuestData(_curQuestComposites);
         }
         
         public TaskDataSO FindTask(QuestType questType, TaskId taskId)
@@ -240,6 +329,14 @@ namespace Features.Quest.Scripts
             }
 
             return questComposite.ListTasks.FirstOrDefault(t => t.TaskId == taskId);
+        }
+
+        public void UpdateTaskCompletedData(TaskId taskId)
+        {
+            var tasks = QuestComposites.Find(quest => quest.ListTasks.Find(task => task.TaskId == taskId));
+            var findTask = tasks.ListTasks.Find(task => task.TaskId == taskId);
+            //findTask.CompletionTime = DateTime.Now;
+            _questDataAsset.SaveQuestToLocal(_questDataAsset._questTypeDict, _curQuestComposites);
         }
     }
 }
