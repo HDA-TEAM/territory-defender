@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28132e80f441413299fa8e019cbdfb09, type: 3}
+  m_Name: TrungNhiStatsByLevelConfig
+  m_EditorClassIdentifier: 
+  _statDict:
+    _serializedList:
+    - Key: 1
+      Value: 2
+    - Key: 20
+      Value: 1
+    - Key: 21
+      Value: 50
+    - Key: 0
+      Value: 30
+    - Key: 101
+      Value: 500
+    - Key: 105
+      Value: 15
+    - Key: 3
+      Value: 2
+    - Key: 106
+      Value: 2
+    - Key: 2
+      Value: 1.5
+  _informationDict:
+    _serializedList:
+    - Key: 0
+      Value: 'Lashia '
+  _heroId: 410
+  _heroDataAsset: {fileID: 11400000, guid: 04558a922d93f4cebad8cce24f3121ae, type: 2}

@@ -27,7 +27,7 @@ namespace GamePlay.Scripts.Projectile
             _dame = dame;
             _affectRange = affectRange;
         }
-        public void DealDamage(UnitBase target)
+        public void DealDamage(UnitBase target, string attackSource)
         {
             Messenger.Default.Publish(new AudioPlayOneShotPayload
             {
@@ -40,12 +40,12 @@ namespace GamePlay.Scripts.Projectile
                     {
                         var dealType = new DealCrowdDamage();
                         dealType.SetUp(_affectRange, gameObject);
-                        dealType.ApplyDealDamage(target,_dame);
+                        dealType.ApplyDealDamage(target,_dame, attackSource);
                         return;
                     }
                 case EProjectileDealDamageType.Single:
                     {
-                        new DealSingleDamage().ApplyDealDamage(target,_dame);
+                        new DealSingleDamage().ApplyDealDamage(target,_dame, attackSource);
                         return;
                     }
             }
@@ -54,19 +54,20 @@ namespace GamePlay.Scripts.Projectile
     }
     public interface IProjectileDealDamageType
     {
-        void ApplyDealDamage(UnitBase mainTarget, float dame);
+        void ApplyDealDamage(UnitBase mainTarget, float dame, string attackSource);
     }
 
     public class DealCrowdDamage: IProjectileDealDamageType
     {
         private float _affectRange;
+        private string _attackSource;
         private GameObject _projectile;
         public void SetUp(float range, GameObject projectile)
         {
             _affectRange = range;
             _projectile = projectile;
         }
-        public void ApplyDealDamage(UnitBase mainTarget, float dame)
+        public void ApplyDealDamage(UnitBase mainTarget, float dame, string attackSource)
         {
             var targetList = GameObject.FindGameObjectsWithTag("Enemy").ToList();
             foreach (var target in targetList)
@@ -74,7 +75,7 @@ namespace GamePlay.Scripts.Projectile
                 if (GameObjectUtility.Distance2dOfTwoGameObject(_projectile, target) <= _affectRange)
                 {
                     var healComp = target.GetComponent<UnitBase>().HealthComp();
-                    if(healComp) healComp.PlayHurting(dame);
+                    if(healComp) healComp.PlayHurting(dame,attackSource);
                 }
             }
         }
@@ -82,13 +83,13 @@ namespace GamePlay.Scripts.Projectile
 
     public class DealSingleDamage : IProjectileDealDamageType
     {
-        public void ApplyDealDamage(UnitBase mainTarget, float dame)
+        public void ApplyDealDamage(UnitBase mainTarget, float dame, string attackSource)
         {
             if (!mainTarget || !mainTarget.HealthComp() || mainTarget.HealthComp().IsDie())
                 return;
             
             HealthComp healthComp = mainTarget.HealthComp();
-            healthComp.PlayHurting(dame);
+            healthComp.PlayHurting(dame, attackSource);
 
         }
     }

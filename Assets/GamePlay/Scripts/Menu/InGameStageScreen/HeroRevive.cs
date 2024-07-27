@@ -1,5 +1,6 @@
 using Common.Scripts;
 using GamePlay.Scripts.Menu;
+using GamePlay.Scripts.Menu.InGameStageScreen;
 using GamePlay.Scripts.Menu.InGameStageScreen.UnitInformationPanel;
 using SuperMaxim.Messaging;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class HeroRevive : MonoBehaviour
     [SerializeField] private UnitBase _hero;
     [SerializeField] private float _cooldownRevive;
     [SerializeField] private HeroItemView _heroItemView;
+    [SerializeField] private InGameHeroImageConfig _heroImageConfig;
     private bool _isCooldown;
     private void Start()
     {
@@ -30,10 +32,6 @@ public class HeroRevive : MonoBehaviour
         Messenger.Default.Subscribe<UnitRevivePayload>(OnReviveHero);
         Messenger.Default.Subscribe<ShowUnitInformationPayload>(OnCheckSelectingHero);
         Messenger.Default.Subscribe<HideUnitInformationPayload>(OnRemoveHeroSelected);
-        _heroItemView.Setup(new HeroItemViewComposite
-        {
-            HeroId = UnitId.Hero.TrungTrac
-        }, SelectHero);
     }
     private void OnDestroy()
     {
@@ -45,10 +43,8 @@ public class HeroRevive : MonoBehaviour
     private void OnHeroSpawned(HeroSpawnedPayload heroSpawnedPayload)
     {
         _hero = heroSpawnedPayload.UnitBase;
-        _heroItemView.Setup(new HeroItemViewComposite
-        {
-            HeroId = heroSpawnedPayload.HeroId,
-        }, SelectHero);
+        HeroItemViewComposite heroImgComposite = _heroImageConfig.GetConfigByKey(heroSpawnedPayload.HeroId);
+        _heroItemView.Setup(heroImgComposite, SelectHero);
     }
     private void OnRemoveHeroSelected(HideUnitInformationPayload payload)
     {

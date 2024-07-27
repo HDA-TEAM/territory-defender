@@ -19,7 +19,7 @@ namespace GamePlay.Scripts.Character.Stats
         [SerializeField] private SerializedDictionary<InformationId, string> _informationDict = new SerializedDictionary<InformationId, string>();
    
         #region Stats access
-        public List<StatsComposite> GetListStat()
+        public virtual List<StatsComposite> GetListStat()
         {
             List<StatsComposite> listStat = new List<StatsComposite>();
             foreach (var item in _statDict)
@@ -32,7 +32,7 @@ namespace GamePlay.Scripts.Character.Stats
             }
             return listStat;
         }
-        public float GetStat(StatId statId)
+        public virtual float GetStat(StatId statId)
         {
             if (_statDict.TryGetValue(statId, out float res))
                 return res;

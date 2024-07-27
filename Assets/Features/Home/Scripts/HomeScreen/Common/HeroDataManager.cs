@@ -17,7 +17,10 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
         base.Awake(); // Call the base to check singleton integrity
         LoadHeroData();
     }
-
+    public void ReloadData()
+    {
+        LoadHeroData();
+    }
     private void LoadHeroData()
     {
         // Ensure HeroComposites is initialized
@@ -38,7 +41,7 @@ public class HeroDataManager : SingletonBase<HeroDataManager>
             {
                 HeroId = item._heroId,
                 Name = item._stats.GetInformation(InformationId.Name),
-                Level = item._stats.GetStat(StatId.Level).ToString(),
+                Level = _heroDataAsset.GetHeroLevel(item._heroId).ToString(),
                 Hp = item._stats.GetStat(StatId.MaxHeal).ToString(),
                 Atk = item._stats.GetStat(StatId.AttackDamage).ToString(),
                 Def = item._stats.GetStat(StatId.Armour).ToString(),

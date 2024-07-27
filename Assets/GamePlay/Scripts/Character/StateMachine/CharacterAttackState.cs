@@ -94,7 +94,7 @@ namespace GamePlay.Scripts.Character.StateMachine
                     }
                 case TroopBehaviourType.Melee:
                     {
-                        new CharacterAttackingFactory().GetAttackingStrategy(TroopBehaviourType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame);
+                        new CharacterAttackingFactory().GetAttackingStrategy(TroopBehaviourType.Melee).PlayAttacking(Context.CurrentTarget, _attackDame, Context.UnitId);
 
                         return;
                     }
@@ -112,7 +112,7 @@ namespace GamePlay.Scripts.Character.StateMachine
             dameComp.Setup(
                 statsComp.GetCurrentStatValue(StatId.AttackDamage),
                 statsComp.GetCurrentStatValue(StatId.ProjectileImpactRange));
-            prjBase.GetProjectileMovement().SetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget);
+            prjBase.GetProjectileMovement().SetLineRoute(Context.StartAttackPoint.position, EProjectileType.Arrow, Context.CurrentTarget, Context.UnitId);
             projectile.SetActive(true);
         }
     }

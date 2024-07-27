@@ -35,9 +35,10 @@ namespace GamePlay.Scripts.Character
             _maxHeath = stats.GetCurrentStatValue(StatId.MaxHeal);
             _currentHealth = curHealthUnit * _maxHeath;
         }
-        public void PlayHurting(float dame)
+        public void PlayHurting(float dame, string attackSource)
         {
             _currentHealth -= dame;
+            
             SetHealthSlider();
 
             CheckDie();
@@ -82,13 +83,15 @@ namespace GamePlay.Scripts.Character
         {
             return _currentHealth <= 0;
         }
-        private void CheckDie()
+        private bool CheckDie()
         {
+            bool isDie = _currentHealth <= 0;
             // Notify for unit observer to remove it self
             _unitBaseParent.OnOutOfHeal?.Invoke(_unitBaseParent);
             // UnitManager.Instance.NotifyAllUnit(_unitBaseParent.gameObject.tag,_unitBaseParent);
             // Notify for state machine
-            _unitBaseParent.OnDie?.Invoke(_currentHealth <= 0);
+            _unitBaseParent.OnDie?.Invoke(isDie);
+            return isDie;
         }
         private void OnDisable()
         {

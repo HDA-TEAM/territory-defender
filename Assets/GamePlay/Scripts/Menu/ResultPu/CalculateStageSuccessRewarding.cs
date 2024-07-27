@@ -22,6 +22,10 @@ namespace GamePlay.Scripts.GamePlay
                     totalStarsRewarding += 1;
                 }
             }
+            if (totalStarsRewarding == 0)
+            {
+                return 1;
+            }
             return totalStarsRewarding;
         }
     }

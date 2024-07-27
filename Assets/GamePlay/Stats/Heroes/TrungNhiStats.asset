@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1da985ce8b6b4fa795c80c065d77d4d2, type: 3}
-  m_Name: TrungNhi
+  m_Name: TrungNhiStats
   m_EditorClassIdentifier: 
   _statDict:
     _serializedList:
+    - Key: 1
+      Value: 2
     - Key: 20
       Value: 1
     - Key: 21
@@ -23,14 +25,14 @@ MonoBehaviour:
     - Key: 101
       Value: 500
     - Key: 105
-      Value: 100
+      Value: 15
     - Key: 3
-      Value: 3
+      Value: 2
     - Key: 106
       Value: 2
     - Key: 2
-      Value: 3
+      Value: 1.5
   _informationDict:
     _serializedList:
     - Key: 0
-      Value: Trung Nhi
+      Value: 'Lashia '
