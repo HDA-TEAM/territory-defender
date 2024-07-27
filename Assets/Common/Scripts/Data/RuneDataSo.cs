@@ -29,5 +29,13 @@ namespace Common.Scripts.Data
         {
             return _runeId;
         }
+        public float GetPowerByLevel(int level)
+        {
+            if (level <= 0 || level > PowerUnits.Count)
+            {
+                return 0;
+            }
+            return PowerUnits[level - 1];
+        }
     }
 }

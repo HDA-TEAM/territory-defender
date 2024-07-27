@@ -1,4 +1,5 @@
 using Common.Scripts.Data.DataConfig;
+using GamePlay.Scripts.Character.Stats;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,22 @@ namespace Common.Scripts.Data.DataAsset
                 InitDefaultTowerRuneData();
                 return _model.ListTowerRuneDatas;
             }
+        }
+        public RuneData GetTowerRuneDataLevel(UnitId.Tower towerId, StatId statId)
+        {
+            TowerRuneData towerRuneData = TowerRuneDataList.Find(towerRunData => towerRunData.TowerId == towerId);
+            foreach (RuneData runeData in towerRuneData.RuneLevels)
+            {
+                if (_runeDataConfig.DataDict[runeData.RuneId].StatId == statId)
+                {
+                    return runeData;
+                }
+            }
+            return new RuneData
+            {
+                RuneId = RuneId.None,
+                Level = -1,
+            };
         }
         public bool CheckAndUpgradeTowerRuneLevel(UnitId.Tower towerId, RuneId runeId, int maxLevel)
         {
