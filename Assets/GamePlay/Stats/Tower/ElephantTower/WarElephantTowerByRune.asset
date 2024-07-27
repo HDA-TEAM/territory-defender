@@ -10,29 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f3aab669bbb4e5f859b0ef714d2c656, type: 3}
-  m_Name: MarksmanTowerByRune
+  m_Name: WarElephantTowerByRune
   m_EditorClassIdentifier: 
   _statDict:
     _serializedList:
     - Key: 101
-      Value: 10
+      Value: -1
+    - Key: 7
+      Value: 1
     - Key: 0
-      Value: 7.5
+      Value: 20
     - Key: 1
-      Value: 0.75
+      Value: 0.3
     - Key: 2
       Value: 4
     - Key: 200
-      Value: 125
+      Value: 200
     - Key: 201
-      Value: 250
+      Value: 300
   _informationDict:
     _serializedList:
     - Key: 0
-      Value: Marksman Tower
+      Value: War Elephant Tower
     - Key: 1
-      Value: Features expert marksmen delivering precise strikes from long range
-        with unparalleled accuracy and lethal efficiency.
-  _towerId: 301
+      Value: Unleashes formidable war elephants that trample enemies, dealing area
+        damage and creating chaos with their sheer size and power.
+  _towerId: 321
   _towerDataAsset: {fileID: 11400000, guid: a1453186cf09041e3b18a2a00738f53a, type: 2}
   _runeDataConfig: {fileID: 11400000, guid: 3b74366e712d646fc9a000c7ac1fa7c8, type: 2}

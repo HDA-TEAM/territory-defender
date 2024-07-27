@@ -18,7 +18,7 @@ namespace GamePlay.Scripts.Character.Stats
             {
                 float originVal = base.GetStat(statId);
                 float buffUnit = _runeDataConfig.GetConfigByKey(runeData.RuneId).GetPowerByLevel(runeData.Level);
-                return originVal + buffUnit * originVal;
+                return originVal + buffUnit * 0.01f * originVal;
             }
             return base.GetStat(statId);
 
