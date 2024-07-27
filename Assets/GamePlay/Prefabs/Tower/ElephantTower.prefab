@@ -31,10 +31,10 @@ PrefabInstance:
     - target: {fileID: 1747842702292361965, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: NormalAttackClip
       value: 
-      objectReference: {fileID: 7400000, guid: 7b54fa05adbc741db9633e60cde15d34, type: 2}
+      objectReference: {fileID: 7400000, guid: 1974a368b9f3045d7991d6069da56e36, type: 2}
     - target: {fileID: 2176556897988213634, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _stats
@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: _startAttackPoint
       value: 
       objectReference: {fileID: 5622914905824994617}
+    - target: {fileID: 3869030732222157000, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.143
+      objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
       value: ElephantTower
@@ -71,7 +75,7 @@ PrefabInstance:
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1254888987, guid: 355d0cc81b32241d08bb08513892cc68, type: 3}
+      objectReference: {fileID: 1043113813, guid: fe3077f4380534c75a1a7733ad7423c2, type: 3}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -94,11 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: 0.497
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 0.135
       objectReference: {fileID: 0}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_RootOrder

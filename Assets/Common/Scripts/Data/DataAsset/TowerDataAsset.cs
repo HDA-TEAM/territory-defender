@@ -1,107 +1,183 @@
+using Common.Scripts.Data.DataConfig;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using AYellowpaper.SerializedCollections;
-using Common.Scripts;
-using Common.Scripts.Data.DataAsset;
-using Common.Scripts.Data.DataConfig;
-using GamePlay.Scripts.Data;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
-public class TowerDataAsset : LocalDataAsset<TowerDataModel>
+namespace Common.Scripts.Data.DataAsset
 {
-    [SerializedDictionary("TowerId", "TowerDataSO")] 
-    public SerializedDictionary<UnitId.Tower, TowerDataSo> _towerTypeDict = new SerializedDictionary<UnitId.Tower, TowerDataSo>();
-
-    [SerializeField] private List<TowerDataConfigBase> _towerDataConfigBases;
-    public int _returnStar;
-
-    public List<TowerData> TowerDatas
+    [CreateAssetMenu(fileName = "TowerDataAsset", menuName = "ScriptableObject/DataAsset/TowerDataAsset")]
+    public class TowerDataAsset : LocalDataAsset<TowerDataModel>
     {
-        // Load the data from json file into _model
-        get
+        [SerializeField] private RuneDataConfig _runeDataConfig;
+        [SerializeField] private TowerRuneDataConfig _towerRuneDataConfig;
+        public List<TowerRuneData> TowerRuneDataList
         {
-            return _model.ListTowerDatas ?? (_model.ListTowerDatas = new List<TowerData>());
-        }
-    }
-    public TowerDataSo GetTower(UnitId.Tower towerId)
-    {
-        _towerTypeDict.TryGetValue(towerId, out TowerDataSo tower);
-        if (!tower)
-        {
-            Debug.LogError("Tower type not exist in dictionary");
-            return _towerTypeDict[0];
-        }
-        return tower;
-    }
-
-    public List<TowerDataSo> GetAllTowerData()
-    {
-        return _towerTypeDict.Values.ToList();
-    }
-    private void LoadTowerDataFromLocalToTowerDict(List<TowerData> towerDataLoaded)
-    {
-        foreach (var saver in towerDataLoaded)
-        {
-            if (!_towerTypeDict.ContainsKey(saver.TowerId))
+            // Load the data from json file into _model
+            get
             {
-                // Create a new TowerDataConfig instance and initialize it
-                TowerDataSo towerDataSo = ScriptableObject.CreateInstance<TowerDataSo>();
-                towerDataSo.InitializeRune(saver.RuneLevels);
-                _towerTypeDict.Add(saver.TowerId, towerDataSo);
+                List<TowerRuneData> list = _model.ListTowerRuneDatas;
+                if (list != null && list.Count > 0)
+                    return _model.ListTowerRuneDatas;
+
+                InitDefaultTowerRuneData();
+                return _model.ListTowerRuneDatas;
             }
         }
-    }
-    public void UpdateTowerDataConfig()
-    {
-        // Load TowerDataConfig data from local
-        var towerDatas = TowerDatas;
-        
-        LoadTowerDataFromLocalToTowerDict(towerDatas);
-    }
-    
-    // New
-    public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataSo> towerTypeDict)
-    {
-        List<TowerData> newTowerList = new List<TowerData>(); // Create a new list for towers
-        foreach (var tower in towerTypeDict)
+        public bool CheckAndUpgradeTowerRuneLevel(UnitId.Tower towerId, RuneId runeId, int maxLevel)
         {
-            if (tower.Value != null && tower.Value._runeLevels is { Count: > 0 })
+            TowerRuneData towerRuneData = TowerRuneDataList.Find(towerRunData => towerRunData.TowerId == towerId);
+            int idx = towerRuneData.RuneLevels.FindIndex(runeDataFinder => runeDataFinder.RuneId == runeId);
+            if (idx != -1)
             {
-                var towerDataSaver = new TowerData
+                RuneData newRuneData = towerRuneData.RuneLevels[idx];
+                if (newRuneData.Level >= maxLevel)
+                    return false;
+                newRuneData.Level++;
+                towerRuneData.RuneLevels[idx] = newRuneData;
+                SaveData();
+            }
+            else
+            {
+                Debug.Log($"{name} :RuneId or towerId not exist");
+                return false;
+            }
+            return true;
+        }
+        private void InitDefaultTowerRuneData()
+        {
+            _model.ListTowerRuneDatas = new List<TowerRuneData>();
+            foreach (var keyVarPair in _towerRuneDataConfig.DataDict)
+            {
+                List<RuneData> listRuneData = new List<RuneData>();
+                foreach (var runeId in keyVarPair.Value)
                 {
-                    TowerId = tower.Key,
-                    RuneLevels = tower.Value._runeLevels
-                };
-                newTowerList.Add(towerDataSaver); // Add to the new list
+                    listRuneData.Add(new RuneData
+                    {
+                        RuneId = runeId,
+                        Level = 0,
+                    });
+                }
+                _model.ListTowerRuneDatas.Add(new TowerRuneData
+                {
+                    TowerId = keyVarPair.Key,
+                    RuneLevels = listRuneData,
+                });
             }
+            SaveData();
         }
-        _model.ListTowerDatas = newTowerList; // Update the model's TowerList only, without overwriting the entire model
-        SaveData();
-    }
-}
+        public int GetReturnStar(UnitId.Tower towerId)
+        {
+            int totalStar = 0;
+            foreach (TowerRuneData towerRuneData in TowerRuneDataList)
+            {
+                if (towerId == towerRuneData.TowerId)
+                {
+                    foreach (RuneData runeData in towerRuneData.RuneLevels)
+                    {
+                        totalStar += _runeDataConfig.GetReturnStar(runeData.Level);
+                    }
+                    break;
+                }
+            }
+            return totalStar;
+        }
+        public void ResetSpecificTowerRuneData(UnitId.Tower towerId)
+        {
+            _model.ListTowerRuneDatas.RemoveAll((towerRuneData) => towerRuneData.TowerId == towerId);
 
-[Serializable]
-public struct TowerDataModel : IDefaultDataModel
-{
-    public List<TowerData> ListTowerDatas;
-    public bool IsEmpty()
+            List<RuneData> listRuneData = new List<RuneData>();
+            foreach (RuneId runeId in _towerRuneDataConfig.DataDict[towerId])
+            {
+                listRuneData.Add(new RuneData
+                {
+                    RuneId = runeId,
+                    Level = 0,
+                });
+            }
+            _model.ListTowerRuneDatas.Add(new TowerRuneData
+            {
+                TowerId = towerId,
+                RuneLevels = listRuneData,
+            });
+            SaveData();
+        }
+
+        // public TowerDataSo GetTower(UnitId.Tower towerId)
+        // {
+        //     _towerTypeDict.TryGetValue(towerId, out TowerDataSo tower);
+        //     if (!tower)
+        //     {
+        //         Debug.LogError("Tower type not exist in dictionary");
+        //         return _towerTypeDict[0];
+        //     }
+        //     return tower;
+        // }
+        //
+        // public List<TowerDataSo> GetAllTowerData()
+        // {
+        //     return _towerTypeDict.Values.ToList();
+        // }
+        // private void LoadTowerDataFromLocalToTowerDict(List<TowerRuneData> towerDataSavers)
+        // {
+        //     foreach (var saver in towerDataSavers)
+        //     {
+        //         if (!_towerTypeDict.ContainsKey(saver.TowerId))
+        //         {
+        //             // Create a new TowerDataConfig instance and initialize it
+        //             TowerDataSo towerDataSo = ScriptableObject.CreateInstance<TowerDataSo>();
+        //             towerDataSo.InitializeRune(saver.RuneLevels);
+        //             _towerTypeDict.Add(saver.TowerId, towerDataSo);
+        //         }
+        //     }
+        // }
+        // public void UpdateTowerDataConfig()
+        // {
+        //     // Load TowerDataConfig data from local
+        //     var towerDatas = TowerDatas;
+        //     
+        //     LoadTowerDataFromLocalToTowerDict(towerDatas);
+        // }
+        //
+        // New
+        // public void SaveTowers(SerializedDictionary<UnitId.Tower, TowerDataSo> towerTypeDict)
+        // {
+        //     List<TowerRuneData> newTowerList = new List<TowerRuneData>(); // Create a new list for towers
+        //     foreach (var kvp in towerTypeDict)
+        //     {
+        //         if (kvp.Value != null && kvp.Value._runeLevels is { Count: > 0 })
+        //         {
+        //             var towerSoSaver = new TowerRuneData
+        //             {
+        //                 TowerId = kvp.Key,
+        //                 RuneLevels = kvp.Value._runeLevels
+        //             };
+        //             newTowerList.Add(towerSoSaver); // Add to the new list
+        //         }
+        //     }
+        //     _model.ListTowerRuneDatas = newTowerList; // Update the model's TowerList only, without overwriting the entire model
+        //     SaveData();
+        // }
+    }
+
+    [Serializable]
+    public struct TowerDataModel : IDefaultDataModel
     {
-        return (ListTowerDatas == null || ListTowerDatas.Count == 0);
+        public List<TowerRuneData> ListTowerRuneDatas;
+        public bool IsEmpty()
+        {
+            return (ListTowerRuneDatas == null || ListTowerRuneDatas.Count == 0);
+        }
+        public void SetDefault()
+        {
+            // Ensure defaults are set for both lists
+            ListTowerRuneDatas = new List<TowerRuneData>();
+        }
     }
-    public void SetDefault()
+
+    [Serializable]
+    public struct TowerRuneData
     {
-        ListTowerDatas = new List<TowerData>();
-        // Ensure defaults are set for both lists
+        public UnitId.Tower TowerId;
+        public List<RuneData> RuneLevels;
     }
 }
-
-[Serializable]
-public struct TowerData
-{
-    public UnitId.Tower TowerId;
-    public List<RuneData> RuneLevels;
-}
-
-

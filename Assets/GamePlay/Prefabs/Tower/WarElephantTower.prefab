@@ -27,11 +27,11 @@ PrefabInstance:
     - target: {fileID: 1747842702292361965, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: IdleClip
       value: 
-      objectReference: {fileID: 7400000, guid: 7b54fa05adbc741db9633e60cde15d34, type: 2}
+      objectReference: {fileID: 7400000, guid: 410fb12d010c84fb78ab65d091172779, type: 2}
     - target: {fileID: 1747842702292361965, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: NormalAttackClip
       value: 
-      objectReference: {fileID: 7400000, guid: 7b54fa05adbc741db9633e60cde15d34, type: 2}
+      objectReference: {fileID: 7400000, guid: 37e0647b1c55247a0b1863b425a17e63, type: 2}
     - target: {fileID: 3298969290697362971, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: _stats
       value: 
@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: _startAttackPoint
       value: 
       objectReference: {fileID: 5622914905824994617}
+    - target: {fileID: 3869030732222157000, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.102
+      objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494009, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Name
       value: WarElephantTower
@@ -57,9 +61,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_Size.x
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
+      propertyPath: m_Size.y
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0de1716f6c82941de8ed222e32b6d745, type: 3}
+      objectReference: {fileID: 1655873768, guid: 81b74db2bcc864db688cb673d9b2215e, type: 3}
     - target: {fileID: 6093051815202494013, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -82,11 +94,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: 0.516
       objectReference: {fileID: 0}
     - target: {fileID: 8679165266974667951, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.14
+      value: 0.134
       objectReference: {fileID: 0}
     - target: {fileID: 8934224768507753962, guid: e00f71510ffe44fa5a54b582ad068cc1, type: 3}
       propertyPath: m_RootOrder

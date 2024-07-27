@@ -1,3 +1,4 @@
+#if !UNITY_WEBGL
 using Firebase.Extensions;
 using Firebase.RemoteConfig;
 using GamePlay.Scripts.Data;
@@ -57,33 +58,6 @@ namespace Common.Scripts
                         Debug.Log($"Remote data loaded and ready for use. Last fetch time {info.FetchTime}.");
                     });
         }
-        // Invoke the listener.
-//     void Start()
-//     {
-//         FirebaseRemoteConfig.DefaultInstance.OnConfigUpdateListener
-//             += ConfigUpdateListenerEventHandler;
-//     }
-//
-// // Handle real-time Remote Config events.
-//     void ConfigUpdateListenerEventHandler(
-//         object sender, ConfigUpdateEventArgs args) {
-//         if (args.Error != RemoteConfigError.None) {
-//             Debug.Log($"Error occurred while listening: {args.Error}");
-//             return;
-//         }
-//
-//         Debug.Log("Updated keys: " + string.Join(", ", args.UpdatedKeys));
-//         // Activate all fetched values and then display a welcome message.
-//         remoteConfig.ActivateAsync().ContinueWithOnMainThread(
-//             task => {
-//                 DisplayWelcomeMessage();
-//             });
-//     }
-//
-// // Stop the listener.
-//     void OnDestroy() {
-//         FirebaseRemoteConfig.DefaultInstance.OnConfigUpdateListener
-//             -= ConfigUpdateListenerEventHandler;
-//     }
     }
 }
+#endif
