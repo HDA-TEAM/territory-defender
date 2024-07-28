@@ -19,7 +19,7 @@ namespace Features.Quest.Scripts
         public TaskId TaskId;
         public string TxtTask;
         public List<InventoryData> InventoryDatas;
-        public DateTime CompletionTime;
+        // public DateTime CompletionTime;
         public bool IsCompleted;
     }
 
