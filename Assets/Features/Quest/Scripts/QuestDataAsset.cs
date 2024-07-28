@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using AYellowpaper.SerializedCollections;
-using Common.Scripts;
 using Common.Scripts.Data.DataAsset;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Features.Quest.Scripts
 {
