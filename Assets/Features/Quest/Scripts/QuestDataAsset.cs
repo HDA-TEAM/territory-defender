@@ -64,17 +64,44 @@ namespace Features.Quest.Scripts
 
         private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
         {
+            // foreach (var quest in questDataLoader)
+            // {
+            //     if (_questTypeDict.ContainsKey(quest._questType))
+            //     {
+            //         // Update existing tasks in the dictionary with the ones from local data
+            //         _questTypeDict[quest._questType] = quest._tasksData;
+            //     }
+            //     else
+            //     {
+            //         // If the quest type is not found, add it to the dictionary
+            //         _questTypeDict.Add(quest._questType, quest._tasksData);
+            //     }
+            // }
             foreach (var quest in questDataLoader)
             {
+                List<TaskDataSO> taskDataList = new List<TaskDataSO>();
+
+                foreach (var taskData in quest._tasksData)
+                {
+                    // Create a new instance of TaskDataSO
+                    TaskDataSO newTaskData = ScriptableObject.CreateInstance<TaskDataSO>();
+                    
+                    newTaskData._taskType = taskData._taskType;
+                    newTaskData.TxtTask = taskData.TxtTask;
+                    newTaskData.IsCompleted = taskData.IsCompleted;
+
+                    taskDataList.Add(newTaskData);
+                }
+
                 if (_questTypeDict.ContainsKey(quest._questType))
                 {
                     // Update existing tasks in the dictionary with the ones from local data
-                    _questTypeDict[quest._questType] = quest._tasksData;
+                    _questTypeDict[quest._questType] = taskDataList;
                 }
                 else
                 {
                     // If the quest type is not found, add it to the dictionary
-                    _questTypeDict.Add(quest._questType, quest._tasksData);
+                    _questTypeDict.Add(quest._questType, taskDataList);
                 }
             }
         }

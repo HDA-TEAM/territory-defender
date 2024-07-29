@@ -92,9 +92,22 @@ namespace Features.Quest.Scripts.Quest
             {
                 if (i < tasks.Count)
                 {
-                    _itemTaskViews[i]._btnGet.gameObject.SetActive(!tasks[i].IsCompleted);
                     _itemTaskViews[i].gameObject.SetActive(true);
                     _itemTaskViews[i].Initialize(setupItemTask, tasks[i], OnSelectedGet);
+                    //_itemTaskViews[i]._btnGet.gameObject.SetActive(!tasks[i].IsCompleted);
+                    if (!tasks[i].IsCompleted)
+                    {
+                        _itemTaskViews[i].SetUnCompleted("UnCompleted");
+                    }
+                    else if (tasks[i].IsCompleted && !tasks[i].IsGotten)
+                    {
+                        _itemTaskViews[i].SetCompleted(""); //Todo
+                    }
+
+                    else
+                    {
+                        _itemTaskViews[i].SetUnCompleted("Received");
+                    }
                 }
                 else
                 {
@@ -115,32 +128,48 @@ namespace Features.Quest.Scripts.Quest
             ItemTaskView taskView = itemTaskView as ItemTaskView;
             if (taskView != null)
             {
-                TaskDataSO foundTask = _questDataController.FindTask(_preQuestType, taskView.GetTaskId);
-                if (taskView != null && !foundTask.IsCompleted)
+                if (!taskView.TaskDataSo.IsCompleted)
                 {
-                    foundTask.IsCompleted = true; // Mark task as completed
-                    //foundTask.CompletionTime = DateTime.Now; // Update completion time
+                    Debug.Log("You haven't completed the task...");
+                }
+                else if (taskView.TaskDataSo.IsCompleted && !taskView.TaskDataSo.IsGotten)
+                {
+                    TaskDataSO foundTask = taskView.TaskDataSo;
+                    //TaskDataSO foundTask = _questDataController.FindTask(_preQuestType, taskView.TaskDataSo._taskType);
+                    // if (taskView != null && !foundTask.IsCompleted)
+                    // {
+                        foundTask.IsCompleted = true; // Mark task as completed
+                        foundTask.IsGotten = true;
+                        //foundTask.CompletionTime = DateTime.Now; // Update completion time
                 
-                    _listInventoryReceived = taskView.InventoryGetAfterCompleteTask;
-                    foreach (var item in _listInventoryReceived)
-                    {
-                        // Update inventory
-                        _inventoryDataAsset.TryChangeInventoryData(item.InventoryType, item.Amount);
+                        _listInventoryReceived = taskView.InventoryGetAfterCompleteTask;
+                        foreach (var item in _listInventoryReceived)
+                        {
+                            // Update inventory
+                            _inventoryDataAsset.TryChangeInventoryData(item.InventoryType, item.Amount);
                         
-                        // Update view of rewards
-                        _txtNumberInventory.text = item.Amount.ToString();
+                            // Update view of rewards
+                            _txtNumberInventory.text = item.Amount.ToString();
                     
-                        // Update view of button Get
-                        var btnGet =_itemTaskViews.Find(itemView => itemView == itemTaskView);
+                            // Update view of button Get
+                            var btnGet =_itemTaskViews.Find(itemView => itemView == itemTaskView);
                        
-                        // Todo: Update Time complete task
-                        _questDataController.UpdateTaskCompletedData(btnGet.GetTaskId);
-                        btnGet._btnGet.gameObject.SetActive(!foundTask.IsCompleted);
+                            // Todo: Update Time complete task
+                            _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskType);
+                            btnGet.SetUnCompleted("Received");
+                            //btnGet._btnGet.gameObject.SetActive(!foundTask.IsCompleted);
+                        //}
+                        StartCoroutine(ShowImageTemporarily());
                     }
                 }
+                else
+                {
+                    Debug.Log("You received this reward...");
+                }
+                
             }
 
-            StartCoroutine(ShowImageTemporarily());
+            
         }
         
         private IEnumerator ShowImageTemporarily()

@@ -277,6 +277,7 @@ namespace Features.Quest.Scripts
             foreach (var task in tasks)
             {
                 task.IsCompleted = false;
+                task.IsGotten = false;
                 //task.CompletionTime = DateTime.MinValue;
             }
         }
@@ -320,7 +321,7 @@ namespace Features.Quest.Scripts
             _questDataAsset.UpdateQuestData(_curQuestComposites);
         }
         
-        public TaskDataSO FindTask(QuestType questType, TaskId taskId)
+        public TaskDataSO FindTask(QuestType questType, TaskType taskType)
         {
             var questComposite = _curQuestComposites.FirstOrDefault(q => q.Type == questType);
             if (questComposite.Equals(default(QuestComposite)))
@@ -328,13 +329,13 @@ namespace Features.Quest.Scripts
                 return null;
             }
 
-            return questComposite.ListTasks.FirstOrDefault(t => t.TaskId == taskId);
+            return questComposite.ListTasks.FirstOrDefault(t => t._taskType == taskType);
         }
 
-        public void UpdateTaskCompletedData(TaskId taskId)
+        public void UpdateTaskCompletedData(TaskType taskType)
         {
-            var tasks = QuestComposites.Find(quest => quest.ListTasks.Find(task => task.TaskId == taskId));
-            var findTask = tasks.ListTasks.Find(task => task.TaskId == taskId);
+            var tasks = QuestComposites.Find(quest => quest.ListTasks.Find(task => task._taskType == taskType));
+            var findTask = tasks.ListTasks.Find(task => task._taskType == taskType);
             //findTask.CompletionTime = DateTime.Now;
             _questDataAsset.SaveQuestToLocal(_questDataAsset._questTypeDict, _curQuestComposites);
         }
