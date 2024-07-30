@@ -6,16 +6,18 @@ using UnityEngine.Serialization;
 
 namespace Features.Quest.Scripts
 {
-    public enum TaskType
+    public enum TaskId
     {
+        None = 0,
         Logging = 1,
         Gathering = 2,
-        Winning = 3
+        Winning1Stage = 3,
+        WinningAMap = 4,
     }
     [CreateAssetMenu(fileName = "TaskDataSO", menuName = "ScriptableObject/Config/TaskDataSO")]
     public class TaskDataSO : ScriptableObject
     {
-        public TaskType _taskType;
+        public TaskId _taskId;
         public string TxtTask;
         public List<InventoryData> InventoryDatas;
         public bool IsCompleted;

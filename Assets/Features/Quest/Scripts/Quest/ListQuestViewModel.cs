@@ -69,7 +69,7 @@ namespace Features.Quest.Scripts.Quest
 
         private void UpdateData()
         {
-            _questDataController.InitQuestData();
+            //_questDataController.InitQuestData();
             
             //Debug.Log(_preQuestType + "..._preQuestType");
             //Default setting
@@ -155,7 +155,7 @@ namespace Features.Quest.Scripts.Quest
                             var btnGet =_itemTaskViews.Find(itemView => itemView == itemTaskView);
                        
                             // Todo: Update Time complete task
-                            _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskType);
+                            _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskId);
                             btnGet.SetUnCompleted("Received");
                             //btnGet._btnGet.gameObject.SetActive(!foundTask.IsCompleted);
                         //}
@@ -168,8 +168,6 @@ namespace Features.Quest.Scripts.Quest
                 }
                 
             }
-
-            
         }
         
         private IEnumerator ShowImageTemporarily()
@@ -177,6 +175,12 @@ namespace Features.Quest.Scripts.Quest
             _imgInventoryGet.gameObject.SetActive(true);
             yield return new WaitForSeconds(3f); // Wait for 3 seconds
             _imgInventoryGet.gameObject.SetActive(false);
+        }
+
+        private IEnumerator ShowWarning()
+        {
+            //Todo
+            yield return new WaitForSeconds(3f);
         }
     }
 }

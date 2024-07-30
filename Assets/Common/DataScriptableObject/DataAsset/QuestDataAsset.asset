@@ -14,25 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: QuestDataAsset
   _model:
-    QuestDatas:
-    - _questType: 1
-      _tasksData:
-      - {fileID: 0}
-      - {fileID: 0}
-    - _questType: 2
-      _tasksData:
-      - {fileID: 0}
-    - _questType: 3
-      _tasksData:
-      - {fileID: 0}
-  _questTypeDict:
-    _serializedList:
-    - Key: 1
-      Value:
-      - {fileID: 11400000, guid: 3f0bfcf03801143d38066fe1fb86d03e, type: 2}
-    - Key: 2
-      Value:
-      - {fileID: 11400000, guid: 2facb53cd7a21444689cf36deba93ca5, type: 2}
-    - Key: 3
-      Value:
-      - {fileID: 11400000, guid: 2ea5f642ee8c24837b4e4df2c65e2a93, type: 2}
+    ListQuestData: []
+  _taskDataConfig: {fileID: 11400000, guid: 745179eb7e54a44f58ecb830910a963d, type: 2}
+  _questDataConfig: {fileID: 11400000, guid: da802190f490947a8a1b1659856cfbf4, type: 2}

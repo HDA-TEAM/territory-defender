@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a150fc5afb0412982a73e48e2b12ba0, type: 3}
   m_Name: Complete1Map
   m_EditorClassIdentifier: 
-  TaskId: 3
+  _taskType: 4
   TxtTask: Complete a map
   InventoryDatas:
   - InventoryType: 4
     Amount: 100
   IsCompleted: 0
+  IsGotten: 0
