@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data.DataAsset;
 using Common.Scripts.Data.DataConfig;
 using UnityEngine;
@@ -16,7 +15,7 @@ namespace Features.Quest.Scripts
     [CreateAssetMenu(fileName = "QuestDataAsset", menuName = "ScriptableObject/DataAsset/QuestDataAsset")]
     public class QuestDataAsset : LocalDataAsset<QuestDataModel>
     {
-        [SerializedDictionary("QuestType", "TowerDataSO")]
+        // [SerializedDictionary("QuestType", "QuestDataSO")]
         //public SerializedDictionary<QuestType, List<TaskDataSO>> _questTypeDict =
         //new SerializedDictionary<QuestType, List<TaskDataSO>>();
 

@@ -91,6 +91,6 @@ namespace Common.Scripts
             }
             Debug.Log(strEventLog);
         }
-    }
 #endif
+    }
 }

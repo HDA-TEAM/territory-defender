@@ -65,6 +65,6 @@ namespace Common.Scripts
                         Debug.Log($"Remote data loaded and ready for use. Last fetch time {info.FetchTime}.");
                     });
         }
-    }
 #endif
+    }
 }
