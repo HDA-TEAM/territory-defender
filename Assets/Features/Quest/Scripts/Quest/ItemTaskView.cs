@@ -13,8 +13,15 @@ namespace Features.Quest.Scripts.Quest
         public Button _btnGet;
         [SerializeField] private TextMeshProUGUI _txtContent;
 
-        private TaskId _taskId;
-        public TaskId GetTaskId => _taskId;
+        [SerializeField] private Image _imageBtn;
+        [SerializeField] private Sprite _spriteUncompleted;
+        [SerializeField] private Sprite _spriteCompleted;
+        [SerializeField] private TextMeshProUGUI _txtBtnName;
+        
+        // private TaskType _taskType;
+        // public TaskType GetTaskType => _taskType;
+
+        public TaskDataSO TaskDataSo;
         public List<InventoryData> InventoryGetAfterCompleteTask { get; set; }
 
         private void Start()
@@ -24,7 +31,8 @@ namespace Features.Quest.Scripts.Quest
 
         public void Setup(TaskDataSO taskDataSo, Action<ItemTaskView> onAction)
         {
-            _taskId = taskDataSo.TaskId;
+            //_taskType = taskDataSo._taskType;
+            TaskDataSo = taskDataSo;
             OnSelected = (Action<ItemViewBase<TaskDataSO>>)onAction;
             InventoryGetAfterCompleteTask = taskDataSo.InventoryDatas;
             SetName(taskDataSo);
@@ -34,10 +42,16 @@ namespace Features.Quest.Scripts.Quest
         {
             _txtContent.text = taskDataSo.TxtTask;
         }
-        private void GetInventoryItem(InventoryData item)
+        public void SetUnCompleted(string txt)
         {
-            // Example processing logic
-            Debug.Log("Getting inventory item: " + item.Amount + " " + item.InventoryType);
+            _imageBtn.sprite = _spriteUncompleted;
+            _txtBtnName.text = txt;
+        }
+
+        public void SetCompleted(string txt)
+        {
+            _imageBtn.sprite = _spriteCompleted;
+            _txtBtnName.text = txt;
         }
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Common.Scripts.Data.DataAsset;
+using Common.Scripts.Data.DataConfig;
 using UnityEngine;
 
 namespace Features.Quest.Scripts
@@ -16,108 +17,146 @@ namespace Features.Quest.Scripts
     public class QuestDataAsset : LocalDataAsset<QuestDataModel>
     {
         [SerializedDictionary("QuestType", "TowerDataSO")]
-        public SerializedDictionary<QuestType, List<TaskDataSO>> _questTypeDict =
-            new SerializedDictionary<QuestType, List<TaskDataSO>>();
-        
-        public List<TaskDataSO> GetTaskListByType(QuestType questType)
-        {
-            if (_questTypeDict.TryGetValue(questType, out var taskList))
-            {
-                return taskList;
-            }
+        //public SerializedDictionary<QuestType, List<TaskDataSO>> _questTypeDict =
+        //new SerializedDictionary<QuestType, List<TaskDataSO>>();
 
-            return new List<TaskDataSO>();
-        }
-        public List<QuestData> QuestDatas
+        //[SerializeField] private List<TaskDataSO> _taskDataSoList;
+        [SerializeField] private TaskDataConfig _taskDataConfig;
+        [SerializeField] private QuestDataConfig _questDataConfig;
+        
+
+        public List<QuestData> QuestDataList
         {
             get
             {
-                return _model.QuestDatas ?? (_model.QuestDatas = new List<QuestData>());
-            }
-        }
+                List<QuestData> list = _model.ListQuestData;
+                if (list != null && list.Count > 0)
+                    return _model.ListQuestData;
 
-        public void UpdateQuestData()
-        {
-            var questDatas = QuestDatas;
-            LoadQuestDataFromLocal(questDatas);
-        }
-
-        public void UpdateQuestData(List<QuestComposite> questComposites)
-        {
-            for (int i = 0; i < questComposites.Count; i++)
-            {
-                var index = QuestDatas.FindIndex(q => q._questType == questComposites[i].Type);
-                QuestComposite questComposite = new QuestComposite()
-                {
-                    Type = questComposites[i].Type,
-                    ListTasks = questComposites[i].ListTasks,
-                    LastRefreshTime = questComposites[i].LastRefreshTime
-                };
-                
-                questComposite.LastRefreshTime = QuestDatas[index]._lastRefreshTIme;
-                questComposites[i] = questComposite;
-            }
-        }
-
-        private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
-        {
-            foreach (var quest in questDataLoader)
-            {
-                if (_questTypeDict.ContainsKey(quest._questType))
-                {
-                    // Update existing tasks in the dictionary with the ones from local data
-                    _questTypeDict[quest._questType] = quest._tasksData;
-                }
-                else
-                {
-                    // If the quest type is not found, add it to the dictionary
-                    _questTypeDict.Add(quest._questType, quest._tasksData);
-                }
+                InitDefaultQuestData();
+                return _model.ListQuestData;
             }
         }
         
-        public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict, List<QuestComposite> questComposites)
+        public List<TaskDataSO> GetTaskDataSo(QuestType questType)
         {
-            List<QuestData> newQuestList = new List<QuestData>();
-            foreach (var quest in questTypeDict)
+            QuestData questData = QuestDataList.Find(questData => questData.QuestType == questType);
+            if (questData.TaskDataList.Count > 0)
+                return questData.TaskDataList;
+            
+            return new List<TaskDataSO>();
+        }
+
+        private void InitDefaultQuestData()
+        {
+            _model.ListQuestData = new List<QuestData>();
+            foreach (var keyVarPair in _questDataConfig.DataDict)
             {
-                if (quest.Value is { Count: > 0 })
+                List<TaskDataSO> listTaskData = new List<TaskDataSO>();
+                foreach (var taskId in keyVarPair.Value)
                 {
-                    var questComposite = questComposites.Find(q => q.Type == quest.Key);
-                    var questDataSaver = new QuestData
+                    if(_taskDataConfig.DataDict.TryGetValue(taskId, out TaskDataSO task))
                     {
-                        _questType = quest.Key,
-                        _tasksData = quest.Value,
-                        _lastRefreshTIme = questComposite.LastRefreshTime
-                    };
-                    newQuestList.Add(questDataSaver);
+                        listTaskData.Add(task);
+                    }
                 }
+                _model.ListQuestData.Add(new QuestData
+                {
+                    QuestType = keyVarPair.Key,
+                    TaskDataList = listTaskData,
+                    LastRefreshTime = DateTime.MinValue
+                });
             }
-            _model.QuestDatas = newQuestList;
             SaveData();
         }
+
+        // public void UpdateQuestData()
+        // {
+        //     var questDatas = QuestDataList;
+        //     //LoadQuestDataFromLocal(questDatas);
+        // }
+        
+        // public void UpdateCurQuestComposites(List<QuestComposite> questComposites)
+        // {
+        //     for (int i = 0; i < questComposites.Count; i++)
+        //     {
+        //         var index = QuestDataList.FindIndex(q => q.QuestType == questComposites[i].Type);
+        //         QuestComposite questComposite = new QuestComposite()
+        //         {
+        //             Type = questComposites[i].Type,
+        //             ListTasks = questComposites[i].ListTasks,
+        //             LastRefreshTime = questComposites[i].LastRefreshTime
+        //         };
+        //         
+        //         questComposite.LastRefreshTime = QuestDataList[index].LastRefreshTime;
+        //         questComposites[i] = questComposite;
+        //     }
+        // }
+        //
+        // private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
+        // {
+        //     foreach (var quest in questDataLoader)
+        //     {
+        //         if (_questDataConfig.GetConfigByKey(quest.QuestType).Count > 0)
+        //         {
+        //             // Update existing tasks in the dictionary with the ones from local data
+        //             var taskIdList =  _questDataConfig.GetConfigByKey(quest.QuestType);
+        //             foreach (var task in taskIdList)
+        //             {
+        //                 _taskDataConfig.GetConfigByKey(task);
+        //             }
+        //             
+        //         }
+        //         else
+        //         {
+        //             // If the quest type is not found, add it to the dictionary
+        //             //_questTypeDict.Add(quest._questType, quest._tasksData);
+        //         }
+        //     }
+        // }
+        //
+        // public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict, List<QuestComposite> questComposites)
+        // {
+        //     List<QuestData> newQuestList = new List<QuestData>();
+        //     foreach (var quest in questTypeDict)
+        //     {
+        //         if (quest.Value is { Count: > 0 })
+        //         {
+        //             var questComposite = questComposites.Find(q => q.Type == quest.Key);
+        //             var questDataSaver = new QuestData
+        //             {
+        //                 QuestType = quest.Key,
+        //                 TaskDataList = quest.Value,
+        //                 LastRefreshTime = questComposite.LastRefreshTime
+        //             };
+        //             newQuestList.Add(questDataSaver);
+        //         }
+        //     }
+        //     _model.ListQuestData = newQuestList;
+        //     SaveData();
+        // }
     }
     [Serializable]
     public struct QuestData
     {
-        public QuestType _questType;
-        public List<TaskDataSO> _tasksData;
-        public DateTime _lastRefreshTIme;
+        public QuestType QuestType;
+        public List<TaskDataSO> TaskDataList;
+        public DateTime LastRefreshTime;
     }   
 
     [Serializable]
     public struct QuestDataModel : IDefaultDataModel
     {
-        public List<QuestData> QuestDatas;
+        public List<QuestData> ListQuestData;
 
         public bool IsEmpty()
         {
-            return (QuestDatas == null || QuestDatas.Count == 0);
+            return (ListQuestData == null || ListQuestData.Count == 0);
         }
 
         public void SetDefault()
         {
-            QuestDatas = new List<QuestData>();
+            ListQuestData = new List<QuestData>();
         }
     }
 }
