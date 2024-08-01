@@ -135,9 +135,7 @@ namespace Features.Quest.Scripts.Quest
                 else if (taskView.TaskDataSo.IsCompleted && !taskView.TaskDataSo.IsGotten)
                 {
                     TaskDataSO foundTask = taskView.TaskDataSo;
-                    //TaskDataSO foundTask = _questDataController.FindTask(_preQuestType, taskView.TaskDataSo._taskType);
-                    // if (taskView != null && !foundTask.IsCompleted)
-                    // {
+                    
                         foundTask.IsCompleted = true; // Mark task as completed
                         foundTask.IsGotten = true;
                         //foundTask.CompletionTime = DateTime.Now; // Update completion time
@@ -157,8 +155,7 @@ namespace Features.Quest.Scripts.Quest
                             // Todo: Update Time complete task
                             _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskId);
                             btnGet.SetUnCompleted("Received");
-                            //btnGet._btnGet.gameObject.SetActive(!foundTask.IsCompleted);
-                        //}
+                            
                         StartCoroutine(ShowImageTemporarily());
                     }
                 }

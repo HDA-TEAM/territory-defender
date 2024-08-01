@@ -69,71 +69,30 @@ namespace Features.Quest.Scripts
             SaveData();
         }
 
-        // public void UpdateQuestData()
-        // {
-        //     var questDatas = QuestDataList;
-        //     //LoadQuestDataFromLocal(questDatas);
-        // }
+        public void SaveQuestData()
+        {
+            SaveData();
+        }
+
+        public void UpdateCurQuestComposites(List<QuestComposite> curQuestComposites)
+        {
+            Debug.Log("UpdateCurQuestComposites......????");
+            foreach (var composite in curQuestComposites)
+            {
+                var idx = _model.ListQuestData.FindIndex(q => q.QuestType == composite.Type);
+                if (idx != -1)
+                {
+                    QuestDataList[idx] = new QuestData
+                    {
+                        QuestType = composite.Type,
+                        TaskDataList = composite.ListTasks,
+                        LastRefreshTime = composite.LastRefreshTime
+                    };
+                }
+            }
+            SaveData();
+        }
         
-        // public void UpdateCurQuestComposites(List<QuestComposite> questComposites)
-        // {
-        //     for (int i = 0; i < questComposites.Count; i++)
-        //     {
-        //         var index = QuestDataList.FindIndex(q => q.QuestType == questComposites[i].Type);
-        //         QuestComposite questComposite = new QuestComposite()
-        //         {
-        //             Type = questComposites[i].Type,
-        //             ListTasks = questComposites[i].ListTasks,
-        //             LastRefreshTime = questComposites[i].LastRefreshTime
-        //         };
-        //         
-        //         questComposite.LastRefreshTime = QuestDataList[index].LastRefreshTime;
-        //         questComposites[i] = questComposite;
-        //     }
-        // }
-        //
-        // private void LoadQuestDataFromLocal(List<QuestData> questDataLoader)
-        // {
-        //     foreach (var quest in questDataLoader)
-        //     {
-        //         if (_questDataConfig.GetConfigByKey(quest.QuestType).Count > 0)
-        //         {
-        //             // Update existing tasks in the dictionary with the ones from local data
-        //             var taskIdList =  _questDataConfig.GetConfigByKey(quest.QuestType);
-        //             foreach (var task in taskIdList)
-        //             {
-        //                 _taskDataConfig.GetConfigByKey(task);
-        //             }
-        //             
-        //         }
-        //         else
-        //         {
-        //             // If the quest type is not found, add it to the dictionary
-        //             //_questTypeDict.Add(quest._questType, quest._tasksData);
-        //         }
-        //     }
-        // }
-        //
-        // public void SaveQuestToLocal(SerializedDictionary<QuestType, List<TaskDataSO>> questTypeDict, List<QuestComposite> questComposites)
-        // {
-        //     List<QuestData> newQuestList = new List<QuestData>();
-        //     foreach (var quest in questTypeDict)
-        //     {
-        //         if (quest.Value is { Count: > 0 })
-        //         {
-        //             var questComposite = questComposites.Find(q => q.Type == quest.Key);
-        //             var questDataSaver = new QuestData
-        //             {
-        //                 QuestType = quest.Key,
-        //                 TaskDataList = quest.Value,
-        //                 LastRefreshTime = questComposite.LastRefreshTime
-        //             };
-        //             newQuestList.Add(questDataSaver);
-        //         }
-        //     }
-        //     _model.ListQuestData = newQuestList;
-        //     SaveData();
-        // }
     }
     [Serializable]
     public struct QuestData
