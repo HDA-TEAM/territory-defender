@@ -15,11 +15,6 @@ namespace Features.Quest.Scripts
     [CreateAssetMenu(fileName = "QuestDataAsset", menuName = "ScriptableObject/DataAsset/QuestDataAsset")]
     public class QuestDataAsset : LocalDataAsset<QuestDataModel>
     {
-        // [SerializedDictionary("QuestType", "QuestDataSO")]
-        //public SerializedDictionary<QuestType, List<TaskDataSO>> _questTypeDict =
-        //new SerializedDictionary<QuestType, List<TaskDataSO>>();
-
-        //[SerializeField] private List<TaskDataSO> _taskDataSoList;
         [SerializeField] private TaskDataConfig _taskDataConfig;
         [SerializeField] private QuestDataConfig _questDataConfig;
         
@@ -68,15 +63,9 @@ namespace Features.Quest.Scripts
             }
             SaveData();
         }
-
-        public void SaveQuestData()
-        {
-            SaveData();
-        }
-
-        public void UpdateCurQuestComposites(List<QuestComposite> curQuestComposites)
-        {
-            Debug.Log("UpdateCurQuestComposites......????");
+        
+        public void UpdateCurQuestComposites(List<QuestComposite> curQuestComposites) //Todo: Need to optimize
+        { 
             foreach (var composite in curQuestComposites)
             {
                 var idx = _model.ListQuestData.FindIndex(q => q.QuestType == composite.Type);
