@@ -1,5 +1,6 @@
 #if !UNITY_WEBGL
 using Firebase.Analytics;
+#endif
 using SuperMaxim.Messaging;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Common.Scripts
     {
         #region Event names
         private const string StageStart = "stage_start";
-        private const string StageFailed= "stage_failed";
+        private const string StageFailed = "stage_failed";
         private const string StageSuccess = "stage_success";
         #endregion
 
@@ -19,6 +20,8 @@ namespace Common.Scripts
         private const string StageId = "stage_id";
         private const string StarCollect = "star_collected";
         #endregion
+
+#if !UNITY_WEBGL
         private void Start()
         {
             FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
@@ -49,7 +52,7 @@ namespace Common.Scripts
                     new Parameter(StageId, stageStartPayload.StageId.ToString()),
                 };
 
-                LogEvent(StageStart,parameters.ToArray());
+                LogEvent(StageStart, parameters.ToArray());
 
             }
             catch (Exception e)
@@ -60,7 +63,7 @@ namespace Common.Scripts
         private void LogEventStageFinished(StageFinishedPayload stageFinishedPayload)
         {
             string eventName = stageFinishedPayload.StarCount > 0 ? StageSuccess :
-            StageFailed;
+                StageFailed;
             try
             {
                 List<Parameter> parameters = new List<Parameter>
@@ -69,7 +72,7 @@ namespace Common.Scripts
                     new Parameter(StarCollect, stageFinishedPayload.StarCount.ToString()),
                 };
 
-                LogEvent(eventName,parameters.ToArray());
+                LogEvent(eventName, parameters.ToArray());
 
             }
             catch (Exception e)
@@ -77,10 +80,10 @@ namespace Common.Scripts
                 Debug.LogError(e);
             }
         }
-        
+
         private static void LogEvent(string eventName, Parameter[] parameters)
         {
-            FirebaseAnalytics.LogEvent(eventName,parameters);
+            FirebaseAnalytics.LogEvent(eventName, parameters);
             string strEventLog = $"LogEvent :{eventName} ";
             foreach (var parameter in parameters)
             {
@@ -88,6 +91,6 @@ namespace Common.Scripts
             }
             Debug.Log(strEventLog);
         }
+#endif
     }
 }
-#endif
