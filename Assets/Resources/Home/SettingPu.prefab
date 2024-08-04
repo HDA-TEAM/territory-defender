@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1169991426948536121}
   - component: {fileID: 1704302046363032276}
   - component: {fileID: 4289473932750499646}
+  - component: {fileID: 8737234125438025636}
   m_Layer: 6
   m_Name: btnClose
   m_TagString: Untagged
@@ -134,6 +135,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _backButton: {fileID: 1704302046363032276}
+--- !u!114 &8737234125438025636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208110138032868111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958ebfe8fcc84e85a49427e463d41d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClipChangeUI: {fileID: 8300000, guid: 969efda4c43e74552bd74b0ae69dc36b, type: 3}
+  _isButtonAudioPlay: 1
 --- !u!1 &500010932459619455
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,6 +769,7 @@ GameObject:
   - component: {fileID: 5287650304810029216}
   - component: {fileID: 1276581714368964758}
   - component: {fileID: 9084667509466202757}
+  - component: {fileID: 2277092001530997014}
   m_Layer: 6
   m_Name: BtnSound
   m_TagString: Untagged
@@ -878,6 +894,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _btn: {fileID: 1276581714368964758}
   _imgTurnOff: {fileID: 1705053454567216363}
+--- !u!114 &2277092001530997014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4032842387885549332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958ebfe8fcc84e85a49427e463d41d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClipChangeUI: {fileID: 8300000, guid: 969efda4c43e74552bd74b0ae69dc36b, type: 3}
+  _isButtonAudioPlay: 1
 --- !u!1 &4463005905412452071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1658,7 @@ GameObject:
   - component: {fileID: 224774121946553147}
   - component: {fileID: 6339767223806189823}
   - component: {fileID: 2503707697716771149}
+  - component: {fileID: -4605108610889150855}
   m_Layer: 6
   m_Name: BtnMusic
   m_TagString: Untagged
@@ -1752,3 +1783,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _btn: {fileID: 6339767223806189823}
   _imgTurnOff: {fileID: 1104321944394943533}
+--- !u!114 &-4605108610889150855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112937969875541573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958ebfe8fcc84e85a49427e463d41d5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClipChangeUI: {fileID: 8300000, guid: 969efda4c43e74552bd74b0ae69dc36b, type: 3}
+  _isButtonAudioPlay: 1

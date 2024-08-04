@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class ListStageViewModel : MonoBehaviour
 {
-    [Header("UI")] 
+    [Header("UI"), Space(12)] 
     [SerializeField] private List<ItemStageView> _itemStageViews;
-
+    
     // Internal
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;

@@ -33,10 +33,6 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
             var stateMachine = UIManagerStateMachine.Instance;
             _onSelected?.Invoke(this);
 
-            // Move the light col depend on which stage is clicked
-            //if (_preStageSelected != this)
-                //HomeMapViewModel.Instance?.MoveLightColTo(this.transform.position);
-            
             stateMachine.ChangeModalState<StageInfoPuState>();
         }
 

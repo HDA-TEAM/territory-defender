@@ -18,7 +18,6 @@ namespace Features.Quest.Scripts
         [SerializeField] private TaskDataConfig _taskDataConfig;
         [SerializeField] private QuestDataConfig _questDataConfig;
         
-
         public List<QuestData> QuestDataList
         {
             get
