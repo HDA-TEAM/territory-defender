@@ -21,7 +21,7 @@ namespace Features.Home.Scripts.HomeScreen.InHomeMap
             _onSelected = onAction;
             _preStageSelected = preItem;
             
-            if (stageComposite.StageState)
+            if (stageComposite.StageState && stageComposite.StageStar > 0)
                 _imgFlag.SetActive(true);
 
             StageLoad(stageComposite.StageId);
