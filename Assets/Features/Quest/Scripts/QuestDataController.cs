@@ -148,7 +148,7 @@ namespace Features.Quest.Scripts
         {
             CheckAndRefreshTasks(datetimeChangePayload.DateTime);
         }
-        private void CheckAndRefreshTasks(DateTime? time = null)
+        private void CheckAndRefreshTasks(DateTime? time = null) //Todo: Need to optimize
         {
             DateTime now = time ?? DateTime.Now;
             
@@ -208,16 +208,12 @@ namespace Features.Quest.Scripts
             {
                 Debug.Log("RefreshMonthlyTasks......Fail!");
             }
-            //Todo
-            //_questDataAsset.SaveQuestToLocal(_questDataAsset._questTypeDict, _curQuestComposites);
-            
-            
+
             Debug.Log("Next Daily Refresh: " + _nextDailyRefresh);
             Debug.Log("Next Weekly Refresh: " + _nextWeeklyRefresh);
             Debug.Log("Next Monthly Refresh: " + _nextMonthlyRefresh);
             
             _questDataAsset.UpdateCurQuestComposites(_curQuestComposites);
-            //_questDataAsset.SaveQuestData();
             OnDateTimeChange?.Invoke();
         }
         
@@ -313,15 +309,8 @@ namespace Features.Quest.Scripts
             return _questDataAsset.GetTaskDataSo(QuestType.MonthlyQuest);
         }
         
-        public void InitQuestData()
+        private void InitQuestData()
         {
-            // Update data
-            //_questDataAsset.UpdateQuestData();
-           
-            //Todo
-            // Convert keys to a list for indexing
-            //var keys = new List<QuestType>(_questDataAsset.QuestDataList);
-            
             for (int i = 0; i < _questDataAsset.QuestDataList.Count; i++)
             {
                 var type = _questDataAsset.QuestDataList[i].QuestType;
@@ -351,7 +340,7 @@ namespace Features.Quest.Scripts
 
         public void UpdateTaskCompletedData(TaskId taskId)
         {
-            //Todo
+            //Todo: Need to optimize
             var idx = _curQuestComposites.FindIndex(quest => quest.ListTasks.Find(task => task._taskId == taskId));
             var foundTask = _curQuestComposites[idx].ListTasks.Find(task => task._taskId == taskId);
             var foundTaskIdx = _curQuestComposites[idx].ListTasks.FindIndex(task => task._taskId == taskId);
