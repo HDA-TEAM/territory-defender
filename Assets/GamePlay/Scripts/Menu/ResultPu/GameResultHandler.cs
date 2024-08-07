@@ -33,7 +33,7 @@ namespace GamePlay.Scripts.Menu.ResultPu
                 });
             
             if (stageSuccessPu)
-                stageSuccessPu.SetupData(new StagePassed
+                stageSuccessPu.SetupData(new StageData
                 {
                     StageId = stageId,
                     TotalStar = curClaimStarsCount,

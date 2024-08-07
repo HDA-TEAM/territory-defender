@@ -7,8 +7,5 @@ namespace Common.Scripts.Data
     public class StageDataSO : ScriptableObject
     {
         public StageId _stageId;
-        public int _stageStar;
-        public string _stageName;
-        public bool _stageState;
     }
 }

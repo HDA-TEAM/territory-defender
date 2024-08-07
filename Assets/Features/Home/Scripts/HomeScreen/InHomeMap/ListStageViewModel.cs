@@ -1,7 +1,9 @@
 using Features.Home.Scripts.HomeScreen.InHomeMap;
 using System.Collections.Generic;
+using System.Linq;
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ListStageViewModel : MonoBehaviour
 {
@@ -22,21 +24,12 @@ public class ListStageViewModel : MonoBehaviour
     }
     private void UpdateData()
     {
-        // TODO: Run with data for testing, and it would be updated soon
-        var stageDataManager = StageDataManager.Instance;
-        if (stageDataManager == null) 
-            return;
-        if (stageDataManager.StageComposites == null) 
-            return;
-        
         // Update data for list StageComposite
-        _stageComposites = stageDataManager.StageComposites;
+        _stageComposites = StageDataController.Instance.StageComposites;
 
-        foreach (var stage in _stageComposites)
-        {
-            if (!stage.StageState)
-                _nextStage = stage;
-        }
+        // Determined index of next expended stage 
+        _nextStage = _stageComposites.FirstOrDefault(stage => stage.StageStar <= 0);
+        
         UpdateView();
     }
     private void UpdateView()
@@ -52,7 +45,7 @@ public class ListStageViewModel : MonoBehaviour
     {
         _preSelectedStageView = itemStageView;
 
-        StageDataManager.Instance.CurrentStage = _preSelectedStageView.StageComposite;
+        StageDataController.Instance.CurrentStage = _preSelectedStageView.StageComposite;
     }
 }
 
@@ -66,7 +59,6 @@ public struct StageComposite : IComposite
     public StageId StageId;
     public int StageStar;
     public string StageName;
-    public bool StageState;
     public Sprite StageImage;
 }
 
