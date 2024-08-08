@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _filename: StageDataAsset
   _model:
-    StageDataList: []
+    StageDataList:
+    - TotalStar: 0
+      StageId: 100
+    - TotalStar: 0
+      StageId: 101
+    - TotalStar: 0
+      StageId: 102
   _stageDataConfig: {fileID: 11400000, guid: 07af98a6585604eeab6da17b8d21fe0d, type: 2}
   _testStageData:
     TotalStar: 0

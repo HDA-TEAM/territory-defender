@@ -46,17 +46,6 @@ namespace GamePlay.Scripts.Data
             }
         }
 
-        public StageData GetStageData(StageId stageId)
-        {
-            StageData stageData = StageDataList.Find(stage => stage.StageId == stageId);
-            if (!stageData.Equals(default(StageData)))
-            {
-                return stageData;
-            }
-            return new StageData();
-        }
-
-
         private void InitDefaultStageData()
         {
             _model.StageDataList = new List<StageData>();
@@ -78,18 +67,21 @@ namespace GamePlay.Scripts.Data
 #endif
         public void AddStagePassed(StageData newStageData)
         {
-            StageData existStageData = StageDataList.Find((stage) => stage.StageId == newStageData.StageId);
-            // not existStagePassed
-            if (existStageData.TotalStar == 0)
-                StageDataList.Add(newStageData);
-            // Compare lager
-            else if (existStageData.TotalStar < newStageData.TotalStar)
+            StageData? existStageData = StageDataList.Find(stage => stage.StageId == newStageData.StageId);
+
+            // If the stage data exists, update it
             {
-                StageDataList.Remove(existStageData);
-                StageDataList.Add(newStageData);
+                int index = StageDataList.IndexOf(existStageData.Value);
+
+                if (existStageData.Value.TotalStar < newStageData.TotalStar)
+                {
+                    StageDataList[index] = new StageData
+                    {
+                        StageId = newStageData.StageId,
+                        TotalStar = newStageData.TotalStar
+                    };
+                }
             }
-            else
-                return;
             SaveData();
         }
     }
