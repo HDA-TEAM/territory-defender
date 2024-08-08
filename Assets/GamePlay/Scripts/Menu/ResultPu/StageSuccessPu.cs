@@ -3,6 +3,7 @@ using Common.Scripts.Navigator;
 using CustomInspector;
 using GamePlay.Scripts.Data;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Menu.ResultPu
 {
@@ -10,22 +11,23 @@ namespace GamePlay.Scripts.Menu.ResultPu
     {
         [SerializeField] private StageSuccessModelView _stageSuccessModelView;
         [SerializeField] private StageDataAsset _stageDataAsset;
-        public void SetupData(StagePassed stagePassed)
+        public void SetupData(StageData stageData)
         {
-            int icrStar = stagePassed.TotalStar;
-            if (_stageDataAsset.ListStagePassed.Exists(passed => passed.StageId == stagePassed.StageId))
+            int icrStar = stageData.TotalStar;
+            if (_stageDataAsset.StageDataList.Exists(passed => passed.StageId == stageData.StageId))
             {
-                int prevStar = _stageDataAsset.ListStagePassed.Find(passed => passed.StageId == stagePassed.StageId).TotalStar;
-                if (prevStar < stagePassed.TotalStar)
-                    icrStar = stagePassed.TotalStar - prevStar;
+                int prevStar = _stageDataAsset.StageDataList.Find(passed => passed.StageId == stageData.StageId).TotalStar;
+                if (prevStar < stageData.TotalStar)
+                    icrStar = stageData.TotalStar - prevStar;
             }
-            _stageDataAsset.AddStagePassed(stagePassed);
-            _stageSuccessModelView.SetupView(stagePassed.TotalStar, incStars: icrStar);
+            _stageDataAsset.AddStagePassed(stageData);
+            _stageSuccessModelView.SetupView(stageData.TotalStar, incStars: icrStar);
         }
 
 #if UNITY_EDITOR
+        [FormerlySerializedAs("_testStagePassed")]
         [Button("SetupData", usePropertyAsParameter: true)]
-        [SerializeField] private StagePassed _testStagePassed;
+        [SerializeField] private StageData _testStageData;
 #endif
     }
 }

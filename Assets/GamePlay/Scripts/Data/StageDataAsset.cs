@@ -1,16 +1,14 @@
 using CustomInspector;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using AYellowpaper.SerializedCollections;
-using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Data
 {
     [Serializable]
-    public struct StagePassed
+    public struct StageData
     {
         public int TotalStar;
         public StageId StageId;
@@ -19,62 +17,71 @@ namespace GamePlay.Scripts.Data
     [Serializable]
     public struct StageDataModel : IDefaultDataModel
     {
-        public List<StagePassed> ListStagePassed;
+        [FormerlySerializedAs("ListStagePassed")] public List<StageData> StageDataList;
         public bool IsEmpty()
         {
             return false;
         }
         public void SetDefault()
         {
-            ListStagePassed = new List<StagePassed>();
+            StageDataList = new List<StageData>();
         }
     }
 
     [CreateAssetMenu(fileName = "StageDataAsset", menuName = "ScriptableObject/Database/Stage/StageDataAsset")]
     public class StageDataAsset : LocalDataAsset<StageDataModel>
     {
-        [SerializedDictionary("StageId", "StageDataSO")] 
-        [SerializeField] private SerializedDictionary<StageId, StageDataSO> _stageDataDict = new SerializedDictionary<StageId, StageDataSO>();
-        public List<StageDataSO> GetAllStageData()
-        {
-            return _stageDataDict.Values.ToList();
-        }
+        [SerializeField] private StageDataConfig _stageDataConfig;
 
-        public int GetTotalStar()
-        {
-            int totalStar = 0;
-            foreach (var item in _stageDataDict)
-            {
-                totalStar += item.Value._stageStar;
-            }
-            return totalStar;
-        }
-        
-        public List<StagePassed> ListStagePassed
+        public List<StageData> StageDataList
         {
             get
             {
-                return _model.ListStagePassed ?? (_model.ListStagePassed = new List<StagePassed>());
+                List<StageData> list = _model.StageDataList;
+                if (list != null && list.Count > 0)
+                    return _model.StageDataList;
+
+                InitDefaultStageData();
+                return _model.StageDataList;
             }
         }
-#if UNITY_EDITOR
-        [Button("AddStagePassed", usePropertyAsParameter: true)]
-        [SerializeField] private StagePassed TestStagePassed;
-#endif
-        public void AddStagePassed(StagePassed newStagePassed)
+
+        private void InitDefaultStageData()
         {
-            StagePassed existStagePassed = ListStagePassed.Find((stage) => stage.StageId == newStagePassed.StageId);
-            // not existStagePassed
-            if (existStagePassed.TotalStar == 0)
-                ListStagePassed.Add(newStagePassed);
-            // Compare lager
-            else if (existStagePassed.TotalStar < newStagePassed.TotalStar)
+            _model.StageDataList = new List<StageData>();
+            foreach (var keyVarPair in _stageDataConfig.DataDict)
             {
-                ListStagePassed.Remove(existStagePassed);
-                ListStagePassed.Add(newStagePassed);
+                _model.StageDataList.Add(new StageData
+                {
+                    TotalStar = 0,
+                    StageId = keyVarPair.Value.StageId,
+                });
             }
-            else
-                return;
+            SaveData();
+        }
+        
+#if UNITY_EDITOR
+        [FormerlySerializedAs("TestStagePassed")]
+        [Button("AddStagePassed", usePropertyAsParameter: true)]
+        [SerializeField] private StageData _testStageData;
+#endif
+        public void AddStagePassed(StageData newStageData)
+        {
+            StageData? existStageData = StageDataList.Find(stage => stage.StageId == newStageData.StageId);
+
+            // If the stage data exists, update it
+            {
+                int index = StageDataList.IndexOf(existStageData.Value);
+
+                if (existStageData.Value.TotalStar < newStageData.TotalStar)
+                {
+                    StageDataList[index] = new StageData
+                    {
+                        StageId = newStageData.StageId,
+                        TotalStar = newStageData.TotalStar
+                    };
+                }
+            }
             SaveData();
         }
     }

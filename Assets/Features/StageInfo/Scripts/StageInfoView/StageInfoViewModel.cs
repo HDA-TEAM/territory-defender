@@ -2,6 +2,7 @@ using Common.Loading.Scripts;
 using GamePlay.Scripts.Data;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Features.StageInfo.Scripts.StageInfoView
 {
@@ -18,8 +19,9 @@ namespace Features.StageInfo.Scripts.StageInfoView
         [SerializeField] private StageDataAsset _stageDataAsset;
         [SerializeField] private MapDataConfig _mapDataConfig;
         [SerializeField] private StageDataConfig _stageDataConfig;
+        
         // Internal
-        private static StageComposite _currentStage;
+        private StageComposite _currentStage;
 
         private void Awake()
         {
@@ -31,16 +33,16 @@ namespace Features.StageInfo.Scripts.StageInfoView
 
         private void UpdateData()
         {
-            _currentStage = StageDataManager.Instance.CurrentStage;
+            _currentStage = StageDataController.Instance.CurrentStage;
             UpdateView();
         }
         private void UpdateStarView()
         {
-            StagePassed stagePassed = _stageDataAsset.ListStagePassed.Find((stage) => stage.StageId == _currentStage.StageId);
+            StageData stageData = _stageDataAsset.StageDataList.Find((stage) => stage.StageId == _currentStage.StageId);
             // Fill the star result for that stage
             for (int i = 0; i < _itemStageStarViews.Count; i++)
             {
-                if (i < stagePassed.TotalStar)
+                if (i < stageData.TotalStar)
                     _itemStageStarViews[i].SetupYellowStar();
 
                 else
