@@ -1,10 +1,11 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Features.Home.Scripts.HomeScreen
+namespace Features.Home.Scripts.HomeScreen.Sounds
 {
     public class AddClickEffectToButtons : EditorWindow
     {
@@ -55,3 +56,4 @@ namespace Features.Home.Scripts.HomeScreen
         }
     }
 }
+#endif
