@@ -80,7 +80,6 @@ namespace Features.Quest.Scripts
             }
             SaveData();
         }
-        
     }
     [Serializable]
     public struct QuestData

@@ -18,11 +18,8 @@ namespace Features.Quest.Scripts.Quest
         [SerializeField] private Sprite _spriteCompleted;
         [SerializeField] private TextMeshProUGUI _txtBtnName;
         
-        // private TaskType _taskType;
-        // public TaskType GetTaskType => _taskType;
-
         public TaskDataSO TaskDataSo;
-        public List<InventoryData> InventoryGetAfterCompleteTask { get; set; }
+        public List<InventoryData> InventoryGetAfterCompleteTask { get; private set; }
 
         private void Start()
         {
@@ -31,7 +28,6 @@ namespace Features.Quest.Scripts.Quest
 
         public void Setup(TaskDataSO taskDataSo, Action<ItemTaskView> onAction)
         {
-            //_taskType = taskDataSo._taskType;
             TaskDataSo = taskDataSo;
             OnSelected = (Action<ItemViewBase<TaskDataSO>>)onAction;
             InventoryGetAfterCompleteTask = taskDataSo.InventoryDatas;

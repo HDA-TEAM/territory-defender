@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Common.Scripts.Data.DataAsset;
 using Features.Common.Scripts;
 using Features.Quest.Scripts.Time;
-using SuperMaxim.Messaging;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +16,8 @@ namespace Features.Quest.Scripts.Quest
         [SerializeField] private List<ItemTaskView> _itemTaskViews;
         [SerializeField] private Image _imgInventoryGet;
         [SerializeField] private TextMeshProUGUI _txtNumberInventory;
+        [SerializeField] private Image _imgNotifyOnUI;
+        [SerializeField] private TextMeshProUGUI _txtNotifyMessage;
         
         [Header("Data")] 
         [SerializeField] private ListTimeViewModel _listTimeViewModel;
@@ -59,6 +60,7 @@ namespace Features.Quest.Scripts.Quest
         {
             _preQuestType = QuestType.DailyQuest;
             _imgInventoryGet.gameObject.SetActive(false);
+            _imgNotifyOnUI.gameObject.SetActive(false);
         }
 
         private void Start()
@@ -69,9 +71,6 @@ namespace Features.Quest.Scripts.Quest
 
         private void UpdateData()
         {
-            //_questDataController.InitQuestData();
-            
-            //Debug.Log(_preQuestType + "..._preQuestType");
             //Default setting
             UpdateView(_preQuestType);
         }
@@ -80,7 +79,6 @@ namespace Features.Quest.Scripts.Quest
         {
             if (_preQuestType == questType && !_validDateTimeChange)
             {
-                //Debug.Log("_preQuestType == questType.......????/");
                 return;
             }
             _preQuestType = questType;
@@ -94,7 +92,7 @@ namespace Features.Quest.Scripts.Quest
                 {
                     _itemTaskViews[i].gameObject.SetActive(true);
                     _itemTaskViews[i].Initialize(setupItemTask, tasks[i], OnSelectedGet);
-                    //_itemTaskViews[i]._btnGet.gameObject.SetActive(!tasks[i].IsCompleted);
+                    
                     if (!tasks[i].IsCompleted)
                     {
                         _itemTaskViews[i].SetUnCompleted("UnCompleted");
@@ -120,7 +118,6 @@ namespace Features.Quest.Scripts.Quest
         {
             var questComposite = _questDataController.QuestComposites.Find(quest => quest.Type == questType);
             return questComposite.ListTasks.Count > 0 ? questComposite.ListTasks : new List<TaskDataSO>();
-            //return _questDataController.QuestComposites.Find(quest => quest.Type == questType).ListTasks;
         }
 
         private void OnSelectedGet(ItemViewBase<TaskDataSO> itemTaskView)
@@ -130,54 +127,63 @@ namespace Features.Quest.Scripts.Quest
             {
                 if (!taskView.TaskDataSo.IsCompleted)
                 {
-                    Debug.Log("You haven't completed the task...");
+                    // Debug.Log("You haven't completed the task...");
+                    
+                    string msg = "You haven't completed the task";
+                    _txtNotifyMessage.text = msg;
+                   StartCoroutine(ShowImageNotifyMessage());
                 }
+                
                 else if (taskView.TaskDataSo.IsCompleted && !taskView.TaskDataSo.IsGotten)
                 {
                     TaskDataSO foundTask = taskView.TaskDataSo;
                     
-                        foundTask.IsCompleted = true; // Mark task as completed
-                        foundTask.IsGotten = true;
-                        //foundTask.CompletionTime = DateTime.Now; // Update completion time
-                
-                        _listInventoryReceived = taskView.InventoryGetAfterCompleteTask;
-                        foreach (var item in _listInventoryReceived)
-                        {
-                            // Update inventory
-                            _inventoryDataAsset.TryChangeInventoryData(item.InventoryType, item.Amount);
-                        
-                            // Update view of rewards
-                            _txtNumberInventory.text = item.Amount.ToString();
+                    foundTask.IsCompleted = true; // Mark task as completed
+                    foundTask.IsGotten = true;
+
+                    _listInventoryReceived = taskView.InventoryGetAfterCompleteTask;
+                    foreach (var item in _listInventoryReceived)
+                    {
+                        // Update inventory
+                        _inventoryDataAsset.TryChangeInventoryData(item.InventoryType, item.Amount);
                     
-                            // Update view of button Get
-                            var btnGet =_itemTaskViews.Find(itemView => itemView == itemTaskView);
-                       
-                            // Todo: Update Time complete task
-                            _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskId);
-                            btnGet.SetUnCompleted("Received");
-                            
-                        StartCoroutine(ShowImageTemporarily());
+                        // Update view of rewards
+                        _txtNumberInventory.text = item.Amount.ToString();
+                
+                        // Update view of button Get
+                        var btnGet =_itemTaskViews.Find(itemView => itemView == itemTaskView);
+                   
+                        // Todo: Update Time complete task
+                        _questDataController.UpdateTaskCompletedData(btnGet.TaskDataSo._taskId);
+                        btnGet.SetUnCompleted("Received");
+                        
+                        StartCoroutine(ShowImageReceivedReward());
                     }
                 }
+                
                 else
                 {
-                    Debug.Log("You received this reward...");
+                    //Debug.Log("You received this reward...");
+                    string msg = "You received this reward";
+                    _txtNotifyMessage.text = msg;
+                    StartCoroutine(ShowImageNotifyMessage());
                 }
                 
             }
         }
         
-        private IEnumerator ShowImageTemporarily()
+        private IEnumerator ShowImageReceivedReward()
         {
             _imgInventoryGet.gameObject.SetActive(true);
             yield return new WaitForSeconds(3f); // Wait for 3 seconds
             _imgInventoryGet.gameObject.SetActive(false);
         }
-
-        private IEnumerator ShowWarning()
+        
+        private IEnumerator ShowImageNotifyMessage()
         {
-            //Todo
-            yield return new WaitForSeconds(3f);
+            _imgNotifyOnUI.gameObject.SetActive(true);
+            yield return new WaitForSeconds(5f); // Wait for 5 seconds
+            _imgNotifyOnUI.gameObject.SetActive(false);
         }
     }
 }

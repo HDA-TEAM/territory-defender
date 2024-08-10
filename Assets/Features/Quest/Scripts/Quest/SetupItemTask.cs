@@ -21,7 +21,7 @@ namespace Features.Quest.Scripts.Quest
             _isClick?.Invoke(true);
         }
 
-        void SetUpp(Action<bool> isClick)
+        void SetUp(Action<bool> isClick)
         {
             _isClick = isClick;
         }

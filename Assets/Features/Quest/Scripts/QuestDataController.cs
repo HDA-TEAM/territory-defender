@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using SuperMaxim.Messaging;
-using TMPro;
 using UnityEngine;
 
 namespace Features.Quest.Scripts
@@ -45,7 +44,6 @@ namespace Features.Quest.Scripts
                     return _curQuestComposites;
                 
                 InitQuestData();
-
                 return _curQuestComposites;
             }
         }
@@ -53,8 +51,7 @@ namespace Features.Quest.Scripts
         private void Start()
         {
             _refreshTime = new TimeSpan(_refreshHour, _refreshMinute, _refreshSecond);
-            //SetLastRefreshTimes();
-            
+
             InitializeQuestRefreshTimes();
             StartCoroutine(RefreshAtTime());
         }
