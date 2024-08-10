@@ -9,7 +9,7 @@ namespace Features.Quest.Scripts
     public enum TaskId
     {
         None = 0,
-        Logging = 1,
+        Login = 1,
         Gathering = 2,
         Winning1Stage = 3,
         WinningAMap = 4,

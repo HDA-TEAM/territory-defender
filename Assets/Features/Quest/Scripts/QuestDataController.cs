@@ -54,6 +54,25 @@ namespace Features.Quest.Scripts
 
             InitializeQuestRefreshTimes();
             StartCoroutine(RefreshAtTime());
+            
+            //CheckLoginTask();
+        }
+
+        public void CheckLoginTask()
+        {
+            CompleteLoginTask();
+        }
+
+        private void CompleteLoginTask()
+        {
+            var listTask = _curQuestComposites.Find(task => task.Type == QuestType.DailyQuest);
+
+            var loginTask = listTask.ListTasks.Find(t => t._taskId == TaskId.Login);
+            if ( loginTask != null && !loginTask.IsCompleted)
+            {
+                loginTask.IsCompleted = true;
+                Debug.Log("Login task completed!");
+            }
         }
 
         private void SetLastRefreshTime(QuestType questType, ref DateTime lastRefreshTime)
@@ -112,7 +131,6 @@ namespace Features.Quest.Scripts
         // ReSharper disable Unity.PerformanceAnalysis
         private IEnumerator RefreshAtTime()
         {
-            Debug.Log("RefreshAtTime....???");
             while (true)
             {
                 DateTime now = DateTime.Now;
@@ -150,9 +168,9 @@ namespace Features.Quest.Scripts
             DateTime now = time ?? DateTime.Now;
             
             // Log the values
-            Debug.Log("Last Daily Refresh: " + _lastDailyRefresh);
-            Debug.Log("Last Weekly Refresh: " + _lastWeeklyRefresh);
-            Debug.Log("Last Monthly Refresh: " + _lastMonthlyRefresh);
+            // Debug.Log("Last Daily Refresh: " + _lastDailyRefresh);
+            // Debug.Log("Last Weekly Refresh: " + _lastWeeklyRefresh);
+            // Debug.Log("Last Monthly Refresh: " + _lastMonthlyRefresh);
             
             if (now >= _lastDailyRefresh)
             {
@@ -165,12 +183,12 @@ namespace Features.Quest.Scripts
                 quest.LastRefreshTime = _lastDailyRefresh;
                 _curQuestComposites[index] = quest;
                 
-                Debug.Log("RefreshDailyTasks........Done");
+                //Debug.Log("RefreshDailyTasks........Done");
             }
-            else
-            {
-                Debug.Log("RefreshDailyTasks......Fail!");
-            }
+            // else
+            // {
+            //     Debug.Log("RefreshDailyTasks......Fail!");
+            // }
     
             if (now >= _lastWeeklyRefresh)
             {
@@ -182,12 +200,12 @@ namespace Features.Quest.Scripts
                 var quest = _curQuestComposites.Find(q => q.Type == QuestType.WeeklyQuest);
                 quest.LastRefreshTime = _lastWeeklyRefresh;
                 _curQuestComposites[index] = quest;
-                Debug.Log("RefreshWeeklyTasks........Done");
+                //Debug.Log("RefreshWeeklyTasks........Done");
             }
-            else
-            {
-                Debug.Log("RefreshWeeklyTasks......Fail!");
-            }
+            // else
+            // {
+            //     Debug.Log("RefreshWeeklyTasks......Fail!");
+            // }
     
             if (now >= _lastMonthlyRefresh)
             {
@@ -199,16 +217,16 @@ namespace Features.Quest.Scripts
                 var quest = _curQuestComposites.Find(q => q.Type == QuestType.MonthlyQuest);
                 quest.LastRefreshTime = _lastMonthlyRefresh;
                 _curQuestComposites[index] = quest;
-                Debug.Log("RefreshMonthlyTasks........Done");
+                //Debug.Log("RefreshMonthlyTasks........Done");
             }
-            else
-            {
-                Debug.Log("RefreshMonthlyTasks......Fail!");
-            }
+            // else
+            // {
+            //     Debug.Log("RefreshMonthlyTasks......Fail!");
+            // }
 
-            Debug.Log("Next Daily Refresh: " + _nextDailyRefresh);
-            Debug.Log("Next Weekly Refresh: " + _nextWeeklyRefresh);
-            Debug.Log("Next Monthly Refresh: " + _nextMonthlyRefresh);
+            // Debug.Log("Next Daily Refresh: " + _nextDailyRefresh);
+            // Debug.Log("Next Weekly Refresh: " + _nextWeeklyRefresh);
+            // Debug.Log("Next Monthly Refresh: " + _nextMonthlyRefresh);
             
             _questDataAsset.UpdateCurQuestComposites(_curQuestComposites);
             OnDateTimeChange?.Invoke();
