@@ -72,6 +72,7 @@ namespace Features.Quest.Scripts.Quest
         private void UpdateData()
         {
             //Default setting
+            _questDataController.CheckLoginTask();
             UpdateView(_preQuestType);
         }
 
@@ -101,7 +102,6 @@ namespace Features.Quest.Scripts.Quest
                     {
                         _itemTaskViews[i].SetCompleted(""); //Todo
                     }
-
                     else
                     {
                         _itemTaskViews[i].SetUnCompleted("Received");
