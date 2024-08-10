@@ -1,15 +1,15 @@
+using Features.Home.Scripts.HomeScreen.Common;
 using Features.Home.Scripts.HomeScreen.InHomeMap;
 using System.Collections.Generic;
 using System.Linq;
 using GamePlay.Scripts.Data;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class ListStageViewModel : MonoBehaviour
 {
     [Header("UI"), Space(12)] 
     [SerializeField] private List<ItemStageView> _itemStageViews;
-    
+    [SerializeField] private StageDataAsset _stageDataAsset;
     // Internal
     private List<StageComposite> _stageComposites;
     private ItemStageView _preSelectedStageView;
@@ -25,7 +25,7 @@ public class ListStageViewModel : MonoBehaviour
     private void UpdateData()
     {
         // Update data for list StageComposite
-        _stageComposites = StageDataController.Instance.StageComposites;
+        _stageComposites = new StageDataAdapter().GetStageComposites(stageDataAsset: _stageDataAsset);
 
         // Determined index of next expended stage 
         _nextStage = _stageComposites.FirstOrDefault(stage => stage.StageStar <= 0);
