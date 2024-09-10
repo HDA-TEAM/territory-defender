@@ -1,3 +1,4 @@
+using Common.Scripts.Data.DataAsset;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ public class ListHeroChooseViewModel : MonoBehaviour
 {
     [Header("UI")] 
     [SerializeField] private List<ItemHeroChooseView> _itemHeroChooseViews;
-    
+    [SerializeField] private HeroDataAsset _heroDataAsset;
     // Internal
     private static List<HeroComposite> _currentHeroes;
     private static HeroComposite _preHeroChoose;
@@ -30,7 +31,14 @@ public class ListHeroChooseViewModel : MonoBehaviour
     {
         for (int i = 0; i < _itemHeroChooseViews.Count; i++ ) 
         {
-            _itemHeroChooseViews[i].Setup(_currentHeroes[i], OnHeroChooseSelected);
+            if (i < _currentHeroes.Count && _heroDataAsset.ListOwnedHeroNft.Contains(_currentHeroes[i].HeroId))
+            {
+                _itemHeroChooseViews[i].Setup(_currentHeroes[i], OnHeroChooseSelected); 
+                _itemHeroChooseViews[i].gameObject.SetActive(true);
+                
+            } else {
+                _itemHeroChooseViews[i].gameObject.SetActive(false);    
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Common.Scripts;
+using Common.Scripts.Data.DataAsset;
 using Common.Scripts.Data.DataConfig;
 using Features.HeroInformation.Scripts.Hero;
 using Features.HeroInformation.Scripts.Mode;
@@ -14,7 +15,8 @@ public class ListHeroViewModel : MonoBehaviour
     [SerializeField] private HeroDetailView _heroDetailView;
     [SerializeField] private ListModeViewModel _listModeViewModel;
     [SerializeField] private HeroUpgradeViewModel _heroUpgradeViewModel;
-
+    [SerializeField] private HeroDataAsset _heroDataAsset;
+    
     // Internal
     private List<HeroComposite> _heroComposites;
     private ItemHeroView _preSelectedItem;
@@ -55,7 +57,7 @@ public class ListHeroViewModel : MonoBehaviour
     {
         for (int i = 0; i < _itemHeroViews.Count; i++)
         {
-            if (i < _heroComposites.Count)
+            if (i < _heroComposites.Count && _heroDataAsset.ListOwnedHeroNft.Contains(_heroComposites[i].HeroId))
             {
                 // Setup hero property
                 _itemHeroViews[i].Setup(_heroComposites[i],OnSelectedItem);  

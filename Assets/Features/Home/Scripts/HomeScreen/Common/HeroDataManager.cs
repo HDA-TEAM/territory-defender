@@ -3,7 +3,6 @@ using Common.Scripts.Data;
 using Common.Scripts.Data.DataAsset;
 using GamePlay.Scripts.Character.Stats;
 using System.Collections.Generic;
-using Features.HeroInformation;
 using UnityEngine;
 
 public class HeroDataManager : SingletonBase<HeroDataManager>

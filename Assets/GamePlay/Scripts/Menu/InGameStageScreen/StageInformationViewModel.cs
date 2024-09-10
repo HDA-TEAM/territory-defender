@@ -2,7 +2,6 @@ using GamePlay.Scripts.Data;
 using GamePlay.Scripts.Stage;
 using SuperMaxim.Messaging;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace GamePlay.Scripts.Menu.InGameStageScreen
 {

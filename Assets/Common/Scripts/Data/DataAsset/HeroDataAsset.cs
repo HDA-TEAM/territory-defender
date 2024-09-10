@@ -16,6 +16,7 @@ namespace Common.Scripts.Data.DataAsset
     public struct HeroDataModel : IDefaultDataModel
     {
         public List<HeroDataSO> ListHero;
+        public List<UnitId.Hero> ListOwnedHeroNft;
         public List<HeroLevel> HeroLevels;
         public bool IsEmpty()
         {
@@ -23,14 +24,10 @@ namespace Common.Scripts.Data.DataAsset
         }
         public void SetDefault()
         {
+            ListOwnedHeroNft = new List<UnitId.Hero>();
             ListHero = new List<HeroDataSO>();
             HeroLevels = new List<HeroLevel>
             {
-                new HeroLevel
-                {
-                    HeroId = UnitId.Hero.TrungNhi,
-                    Level = 1,
-                },
                 new HeroLevel
                 {
                     HeroId = UnitId.Hero.TrungTrac,
@@ -45,7 +42,24 @@ namespace Common.Scripts.Data.DataAsset
     {
         [SerializedDictionary("HeroId", "HeroDataSO")]
         [SerializeField] private SerializedDictionary<UnitId.Hero, HeroDataSO> _heroDataDict = new SerializedDictionary<UnitId.Hero, HeroDataSO>();
-
+        
+        public List<UnitId.Hero> ListOwnedHeroNft
+        {
+            get
+            {
+                if (_model.ListOwnedHeroNft == null || _model.ListOwnedHeroNft.Count <= 0)
+                {
+                    _model.ListOwnedHeroNft = new List<UnitId.Hero>();
+                }
+                return _model.ListOwnedHeroNft;
+            }
+        }
+        public void UpdateListOwnedHeroNft(List<UnitId.Hero> listOwnedHeroNft)
+        {
+            _model.ListOwnedHeroNft = listOwnedHeroNft;
+            SaveData();
+        }
+        
         public List<HeroLevel> HeroLevels
         {
             get
@@ -53,11 +67,6 @@ namespace Common.Scripts.Data.DataAsset
                 if (_model.HeroLevels == null || _model.HeroLevels.Count <= 0)
                 {
                     _model.HeroLevels = new List<HeroLevel>();
-                    _model.HeroLevels.Add(new HeroLevel
-                    {
-                        HeroId = UnitId.Hero.TrungNhi,
-                        Level = 1,
-                    });
                     _model.HeroLevels.Add(new HeroLevel
                     {
                         HeroId = UnitId.Hero.TrungTrac,
