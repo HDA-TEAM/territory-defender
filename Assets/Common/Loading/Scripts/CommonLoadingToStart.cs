@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 namespace Common.Loading.Scripts
 {
-    [CreateAssetMenu(fileName = "CommonLoadingStartToHome", menuName = "ScriptableObject/LoadingScene/CommonLoadingStartToHome")]
-    public class CommonLoadingStartToHome : CommonLoadingScene
+    [CreateAssetMenu(fileName = "CommonLoadingToStart", menuName = "ScriptableObject/LoadingScene/CommonLoadingToStart")]
+    public class CommonLoadingToStart : CommonLoadingScene
     {
-        private async UniTask LoadingScene()
+        private async UniTask LoadingAllLocalData()
         {
-            string sceneLoadingName = SceneIdentified.GetSceneName(ESceneIdentified.Home);
-            await SceneManager.LoadSceneAsync(sceneLoadingName, LoadSceneMode.Single);
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneLoadingName));
-            await UniTask.WaitUntil(() => SceneManager.GetActiveScene().name == sceneLoadingName);
+            foreach (var localData in _localDataList)
+            {
+                localData.LoadData();
+                await UniTask.WaitUntil(localData.IsDoneLoadData);
+            }
         }
         public override async void StartLoading(Action onCompleted, IProgress<float> progress)
         {
@@ -24,8 +25,8 @@ namespace Common.Loading.Scripts
                 new LoadingStep
                 {
                     Percent = 0.5f,
-                    OnAction = LoadingScene,
-                    MinDelayNextStepDuration = 0.4f,
+                    OnAction = LoadingAllLocalData,
+                    MinDelayNextStepDuration = 0.5f,
                 },
                 new LoadingStep
                 {

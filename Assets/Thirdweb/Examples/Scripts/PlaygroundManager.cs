@@ -1,5 +1,7 @@
+using Common.Loading.Scripts;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,6 +48,7 @@ namespace Thirdweb.Unity.Examples
 
         private ThirdwebChainData _chainDetails;
 
+        [SerializeField] private string _abi = "";
         private void Awake()
         {
             InitializePanels();
@@ -97,6 +100,7 @@ namespace Thirdweb.Unity.Examples
 
         private async void ConnectWallet(WalletOptions options)
         {
+
             // Connect the wallet
 
             var internalWalletProvider = options.Provider == WalletProvider.MetaMaskWallet ? WalletProvider.WalletConnectWallet : options.Provider;
@@ -107,9 +111,14 @@ namespace Thirdweb.Unity.Examples
             var wallet = await ThirdwebManager.Instance.ConnectWallet(options);
 
             // Initialize the wallet panel
+            
 
+            LoadingSceneController.Instance.LoadingStartToHome();
+            
+            return;
+            
             CloseAllPanels();
-
+                
             // Setup actions
 
             ClearLog(currentPanel.LogText);
@@ -363,10 +372,12 @@ namespace Thirdweb.Unity.Examples
             {
                 try
                 {
+                    
                     LoadingLog(panel.LogText);
-                    var contract = await ThirdwebManager.Instance.GetContract(address: "0x6A7a26c9a595E6893C255C9dF0b593e77518e0c3", chainId: ActiveChainId);
-                    var result = await contract.ERC1155_URI(tokenId: 1);
-                    Log(panel.LogText, $"Result (uri): {result}");
+                    var contract = await ThirdwebManager.Instance.GetContract(address: "0xbe15DA2Fc63f5FDa81519E8A9D30aa8a71F4E435", chainId: ActiveChainId, abi: _abi);
+                   
+                    var result = await ThirdwebContract.Read<BigInteger>(contract, "totalSupply", parameters: null);
+                    Log(panel.LogText, $"Result totalSupply {result}");
                 }
                 catch (System.Exception e)
                 {

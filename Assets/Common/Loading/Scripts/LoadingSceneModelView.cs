@@ -10,20 +10,30 @@ namespace Common.Loading.Scripts
         [SerializeField] private float _showLoadingSceneDuration = 0.2f;
         [SerializeField] private float _hidingLoadingSceneDuration = 0.1f;
         [SerializeField] private LoadingSceneView _loadingSceneView;
+        [SerializeField] private CanvasGroup _loginWalletBtn;
         
         [Header("Sounds"), Space(12)]
         [SerializeField] private AudioClip _audioClipShowingLoadingScene;
 
         public void ShowLoadingScene()
         {
+            _loginWalletBtn.alpha = 0;
+            
             Messenger.Default.Publish(new AudioPlayOneShotPayload
             {
                 AudioClip = _audioClipShowingLoadingScene
             });
             
+            
+            _loadingSceneView.SetSliderActive(true);
             _loadingSceneView.SetupBlockRaycast(true);
             _loadingSceneView.UpdateProgressBar(0f, 0f);
             _loadingSceneView.PlayDoFadeEffect(1f, 1f, _showLoadingSceneDuration);
+        }
+        public void ShowLoginButton()
+        {
+            _loginWalletBtn.alpha = 1f;
+            _loadingSceneView.SetSliderActive(false);
         }
         public void HidingLoadingScene()
         {

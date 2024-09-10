@@ -27,6 +27,10 @@ namespace Common.Loading.Scripts
             int updateVal = (int)(value * 100);
             _textProgressPercent.text = String.Format(_formatTextProgressPercent,updateVal);
         }
+        public void SetSliderActive(bool isActive)
+        {
+            _slider.gameObject.SetActive(isActive);
+        }
         public void PlayDoFadeEffect(float startVal, float endVal, float duration)
         {
             _canvasGroup.alpha = startVal;

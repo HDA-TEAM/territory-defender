@@ -12,6 +12,7 @@ namespace Common.Loading.Scripts
         [SerializeField] private CommonLoadingStartToHome _startToHomeCommonLoading;
         [SerializeField] private CommonLoadingHomeToGame _homeToGameCommonLoading;
         [SerializeField] private CommonLoadingGameToHome _gameToHomeCommonLoading;
+        [SerializeField] private CommonLoadingToStart _toStartCommonLoading;
 
         [SerializeField] private LoadingSceneModelView _loadingSceneModelView;
         
@@ -21,16 +22,22 @@ namespace Common.Loading.Scripts
         
         private void Start()
         {
-            LoadingStartToHome();
+            LoadingToStart();
         }
-        private void LoadingStartToHome()
+        private void LoadingToStart()
+        {
+            _loadingSceneModelView.ShowLoadingScene();
+            
+            IProgress<float> progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
+            
+            _toStartCommonLoading.StartLoading(_loadingSceneModelView.ShowLoginButton, progress: progress);
+        }
+        public void LoadingStartToHome()
         {
             Messenger.Default.Publish(new AudioPlayLoopPayload
             {
                 AudioClip = _audioClipBMGHome
             });
-            
-            _loadingSceneModelView.ShowLoadingScene();
             
             IProgress<float> progress = Progress.Create<float>(x => _loadingSceneModelView.UpdateProgress(x));
             
